@@ -1,0 +1,439 @@
+{
+  // Editor
+  "editor.autoClosingOvertype": "always",
+  "editor.columnSelection": false,
+  "editor.cursorSurroundingLines": 10,
+  "editor.minimap.enabled": false,
+  "editor.rulers": [80],
+  "editor.suggestSelection": "first",
+  "editor.wordWrap": "off",
+  "editor.wordWrapColumn": 80,
+  "editor.wrappingIndent": "deepIndent",
+  
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": false,
+  "editor.lineNumbers": "on",
+  "editor.gotoLocation.multipleTypeDefinitions": "goto",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleDeclarations": "goto",
+  "editor.gotoLocation.multipleImplementations": "goto",
+  "editor.gotoLocation.multipleReferences": "goto",
+
+  // VSCode UI
+  "breadcrumbs.enabled": true,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "window.menuBarVisibility": "compact",
+  "workbench.iconTheme": "eq-material-theme-icons",
+
+  // Miscellaneous
+  "keyboard.dispatch": "keyCode",
+  "git.autofetch": true,
+  "telemetry.enableTelemetry": false,
+
+  // Vim: Settings
+  "vim.debug.silent": false,
+  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.highlightedyank.enable": true,
+  "vim.leader": " ",
+  "vim.smartRelativeLine": false,
+  "vim.surround": true,
+  "vim.textwidth": 80,
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": true,
+
+  // Vim: NORMAL MODE
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    {
+      "before": ["<leader", "*"],
+      "commands": ["references-view.find"]
+    },
+
+    // Vim: IDE Features
+    {
+      "before": ["g", "f"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["g", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["g", "o"],
+      "commands": ["editor.action.organizeImports"]
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.rename"],
+      "when": ["editorHasRenameProvider && editorTextFocus && !editorReadonly"]
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["g", "a"],
+      "commands": ["keyboard-quickfix.openQuickFix"]
+    },
+    // {
+    //   "before": ["g", "b"],
+    //   "commands": ["jupyter.runcurrentcell"],
+    //   "when": ["editorTextFocus && jupyter.hascodecells && !editorHasSelection && !jupyter.havenativecells && !notebookEditorFocused"]
+    // },
+    {
+      "before": ["g", "c", "c"],
+      "commands": ["editor.action.commentLine"]
+    },
+
+    // Vim: Buffer Navigation
+    {
+      "before": ["<leader>", "b", "n"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "p"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "o"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+    {
+      "before": ["<leader>", "b", "d"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "u"],
+      "commands": ["workbench.action.reopenClosedEditor"]
+    },
+
+    // Vim: Window management
+    {
+      "before": ["<leader>", "w", "j"],
+      "commands": ["workbench.action.navigateDown"]
+    },
+    {
+      "before": ["<leader>", "w", "k"],
+      "commands": ["workbench.action.navigateUp"]
+    },
+    {
+      "before": ["<leader>", "w", "h"],
+      "commands": ["workbench.action.navigateLeft"]
+    },
+    {
+      "before": ["<leader>", "w", "l"],
+      "commands": ["workbench.action.navigateRight"]
+    },
+
+    // Vim: Files
+    {
+      "before": ["<leader>", "f", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "f", "W"],
+      "commands": ["workbench.action.files.saveAll"]
+    },
+    {
+      "before": ["<leader>", "f", "l"],
+      "commands": ["workbench.files.action.showActiveFileInExplorer"]
+    },
+    {
+      "before": ["<leader>", "f", "y"],
+      "commands": ["workbench.action.files.copyPathOfActiveFile"]
+    },
+    {
+      "before": ["<leader>", "f", "r"],
+      "commands": ["fileutils.renameFile"]
+    },
+
+    // Vim: UI Toggles
+    {
+      "before": ["<leader>", "t", "f"],
+      "commands": ["workbench.action.toggleFullScreen"]
+    },
+    {
+      "before": ["<leader>", "t", "f"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "t", "a"],
+      "commands": ["workbench.action.toggleActivityBarVisibility"]
+    },
+    {
+      "before": ["<leader>", "t", "o"],
+      "commands": ["outline.focus"]
+    },
+    {
+      "before": ["<leader>", "t", "t"],
+      "commands": ["workbench.action.terminal.focus"]
+    },
+
+    // Vim: Error Markers
+    {
+      "before": ["<leader>", "e", "l"],
+      "commands": ["workbench.actions.view.problems"]
+    },
+    {
+      "before": ["<leader>", "e", "n"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["<leader>", "e", "p"],
+      "commands": ["editor.action.marker.prev"]
+    },
+
+    // Vim: Bookmarks
+    {
+      "before": ["'", "a"],
+      "commands": ["numberedBookmarks.jumpToBookmark1"]
+    },
+    {
+      "before": ["'", "b"],
+      "commands": ["numberedBookmarks.jumpToBookmark2"]
+    },
+    {
+      "before": ["'", "c"],
+      "commands": ["numberedBookmarks.jumpToBookmark3"]
+    },
+    {
+      "before": ["'", "d"],
+      "commands": ["numberedBookmarks.jumpToBookmark4"]
+    },
+    {
+      "before": ["'", "e"],
+      "commands": ["numberedBookmarks.jumpToBookmark5"]
+    },
+    {
+      "before": ["'", "f"],
+      "commands": ["numberedBookmarks.jumpToBookmark6"]
+    },
+    {
+      "before": ["'", "g"],
+      "commands": ["numberedBookmarks.jumpToBookmark7"]
+    },
+    {
+      "before": ["'", "h"],
+      "commands": ["numberedBookmarks.jumpToBookmark8"]
+    },
+    {
+      "before": ["'", "i"],
+      "commands": ["numberedBookmarks.jumpToBookmark9"]
+    },
+    {
+      "before": ["'", "j"],
+      "commands": ["numberedBookmarks.jumpToBookmark0"]
+    },
+    {
+      "before": ["m", "a"],
+      "commands": ["numberedBookmarks.toggleBookmark1"]
+    },
+    {
+      "before": ["m", "b"],
+      "commands": ["numberedBookmarks.toggleBookmark2"]
+    },
+    {
+      "before": ["m", "c"],
+      "commands": ["numberedBookmarks.toggleBookmark3"]
+    },
+    {
+      "before": ["m", "d"],
+      "commands": ["numberedBookmarks.toggleBookmark4"]
+    },
+    {
+      "before": ["m", "e"],
+      "commands": ["numberedBookmarks.toggleBookmark5"]
+    },
+    {
+      "before": ["m", "f"],
+      "commands": ["numberedBookmarks.toggleBookmark6"]
+    },
+    {
+      "before": ["m", "g"],
+      "commands": ["numberedBookmarks.toggleBookmark7"]
+    },
+    {
+      "before": ["m", "h"],
+      "commands": ["numberedBookmarks.toggleBookmark8"]
+    },
+    {
+      "before": ["m", "i"],
+      "commands": ["numberedBookmarks.toggleBookmark9"]
+    },
+    {
+      "before": ["m", "j"],
+      "commands": ["numberedBookmarks.toggleBookmark0"]
+    },
+
+    // Vim: Cursor Navigation
+    {
+      "after": ["g", "j"],
+      "before": ["j"]
+    },
+    {
+      "after": ["g", "k"],
+      "before": ["k"]
+    },
+    {
+      "before": ["0"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<leader>", "j"],
+      "after": ["J"]
+    },
+    // {
+    //   "before": ["g", "h"],
+    //   "after": ["_"]
+    // },
+    {
+      "before": ["g", "l"],
+      "after": ["$"]
+    }
+  ],
+
+  // Vim: Visual Mode
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["g", "c", "c"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["<leader>", "*"],
+      "commands": ["references-view.find"]
+    },
+    {
+      "before": ["<leader>", "g", "f"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+
+  // Vim: Ctrl Keys
+  "vim.handleKeys": {
+    "<C-d>": true,
+    "<C-h>": true,
+    "<C-l>": true,
+    "<C-p>": false,
+    "<C-r>": false,
+    "<C-u>": true,
+    "<C-o>": false,
+    "<C-w>": false
+  },
+
+  // Extensions: Formatters & Linters
+  "prettier.jsxBracketSameLine": true,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": {
+      "strings": true
+    }
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": {
+      "strings": true
+    }
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Language: Javascript
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // Extensions: Languages
+  "html.format.wrapLineLength": 80,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  // Language: Rust
+  "rust-analyzer.updates.askBeforeDownload": false,
+  "rust-analyzer.callInfo.full": false,
+  "rust-analyzer.inlayHints.parameterHints": false,
+
+  // Language: Java
+  "redhat.telemetry.enabled": true,
+  "java.configuration.checkProjectSettingsExclusions": false,
+  "java.project.importOnFirstTimeStartup": "automatic",
+  "java.semanticHighlighting.enabled": true,
+
+  // Language: Python
+  "python.showStartPage": false,
+  "python.analysis.memory.keepLibraryAst": true,
+  "python.diagnostics.sourceMapsEnabled": true,
+  "python.autoComplete.addBrackets": true,
+  "python.languageServer": "Pylance",
+  "python.analysis.completeFunctionParens": true,
+
+  "jupyter.interactiveWindowMode": "perFile",
+  "jupyter.disableJupyterAutoStart": true,
+  "jupyter.alwaysTrustNotebooks": true,
+  "jupyter.enableAutoMoveToNextCell": false,
+  "jupyter.sendSelectionToInteractiveWindow": true,
+  "jupyter.alwaysScrollOnNewCell": true,
+  "jupyter.experiments.enabled": false,
+
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+
+  // Extension: Material Theme
+  "editor.fontLigatures": true,
+  "explorer.decorations.badges": false,
+
+  // Extension: LiveShare
+  "liveshare.allowGuestDebugControl": true,
+  "liveshare.allowGuestTaskControl": true,
+  "liveshare.languages.allowGuestCommandControl": true,
+  "liveshare.notebooks.allowGuestExecuteCells": true,
+
+  // Extension: Gitlens
+  "gitlens.statusBar.enabled": false,
+  "gitlens.hovers.enabled": false,
+
+  // Extension: Beautify (for django-html)
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "beautify.language": {
+    "html": ["htm", "html", "django-html"]
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+
+  // Miscellaneous
+  "references.preferredLocation": "view",
+  "window.zoomLevel": 1,
+}

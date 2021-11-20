@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# The ~/.profile file is a shell independent (sh-compatible)
+# file. It is meant to be source by a login shell, and as 
+# such contains environment variables.
+
+# Under bash, it is source if no '.bash_profile' is found.
+# Zsh does not source '.profile'.
+
+# On MANJARO, the ~/.profile is sourced by Light Display
+# Manager (?). Therefore, all environment variables defined
+# in ~/.profile are available in all shells started from
+# within X.
+#
+# On a remote session however, ~/.profile is likely not
+# sourced. Therefore we need to source it manually.
+source $HOME/.profile
+

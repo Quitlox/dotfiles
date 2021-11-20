@@ -1,0 +1,116 @@
+#!/bin/bash
+
+source "$(chezmoi source-path)/private_dot_config/chezmoi/script/dep_all.sh"
+
+YAY={{- joinPath .chezmoi.sourceDir "private_dot_config/chezmoi/script/yay_needed.sh" }}
+
+{{ if eq .chezmoi.osRelease.id "manjaro" }}
+binformation "Manjaro detected"
+
+#######################################
+### essential packages              ###
+#######################################
+
+# Alternative for default 'diff'
+# > Used by   ~/.config/zsh/zsh-config alias for 'diff'
+sudo pacman -S --needed -q colordiff
+# Cross-platform, fast, feature-rich, GPU based terminal
+sudo pacman -S --needed -q kitty
+
+#######################################
+### desktop environment             ###
+#######################################
+
+# [minimal]
+# Simple screenshot utility (printscreen)
+# > Used by ~/.config/i3/pixel_lockscreen.sh
+sudo pacman -S --needed -q maim
+# Auto-detect the connected display hardware and load the
+# appropiate X11 setup using xrandr.
+sudo pacman -S --needed -q autorandr
+# ARandR is designed to provide a simple visual front end
+# for XRandR.
+sudo pacman -S --needed -q arandr
+# A fast and easy-to-use status bar
+sudo pacman -S --needed -q polybar
+# The efficient blur method "dual_kawase" is not yet in the
+# latest official release
+/bin/bash $YAY picom-git
+# Rofi: A window switcher, application launcher and dmenu
+# replacement
+sudo pacman -S --needed -q rofi
+# xidlehook: xautolock rewrite in Rust, we a few extra features
+/bin/bash $YAY xidlehook
+
+# [gui-controls]
+# A fast and easy-to-use status bar
+sudo pacman -S --needed -q blueman
+# Bluetooth support for PulseAudio
+sudo pacman -S --needed -q pulseaudio-bluetooth
+# Pulseaudio-Alsa compatability.
+# > Needed by Audacity
+sudo pacman -S --needed -q pulseaudio-alsa
+# PulseAudio Volume Control
+sudo pacman -S --needed -q pavucontrol
+# System Tray Applet that allows you to control some of
+# PulseAudio's features. (Most importantly: It binds XF86
+# volume control keys).
+#sudo pacman -S --needed -q pa-applet
+
+# [optional]
+# Iconic font aggregator, collection, and patcher.
+# > Includes font used by Desktop Environment
+/bin/bash $YAY nerd-fonts-complete
+# MPRIS Media Player command-line controller for vlc, mpv,
+# ThythmBox, web browsers, cmus, mpd, spotify and others.
+# > Used by ~/.config/polybar/polybar-spotify
+sudo pacman -S --needed -q pacman playerctl
+# A text scroller for panels or terminals
+# > Used by ~/.config/polybar/polybar-spotify
+/bin/bash $YAY zscroll-git
+
+# Maybe?
+#/bin/bash $YAY lx-appearance qt5-ct
+
+#######################################
+### applications                    ###
+#######################################
+
+# Zathura is a highly customizable and functional document
+# viewer.
+sudo pacman -S --needed -q zathura
+# PDF support for Zathura
+sudo pacman -S --needed -q zathura-pdf-mupdf
+
+# Lightweight spotify streaming daemon with spotify connect
+# support.
+# > Used by spotify-tui
+sudo pacman -S --needed -q spotifyd
+# Command-line Spotify client written in Rust
+/bin/bash $YAY spotify-tui
+
+# A modernized, complete, self-contained TeX/LaTeX engine,
+# powered by XeTeX and TeXLive.
+# > Used by ~/.config/vim/vimrc
+/bin/bash $YAY tectonic-bin
+# Pretty-Print LaTeX: A tool to reformat the output of latex
+# and friends into readable messages.
+# > Used by ~/.config/vim/vimrc
+/bin/bash $YAY pplatex-git
+
+# Obsidian is a powerful knowledge base that works on top 
+# of a local folder of plain text Markdown files
+/bin/bash $YAY obsidian-appimage
+
+# [optional]
+sudo pacman -S --needed -q github-cli
+# > Needed by "~/.local/bin/cht.sh"
+sudo pacman -S --needed -q rlwrap
+
+#######################################
+### hacking tools                   ###
+#######################################
+
+sudo pacman -S --needed -q nmap sqlmap wireshark-qt
+
+{{ end }}

@@ -1,0 +1,19 @@
+# Base16 Theme
+include ./base16_theme
+set recolor true
+set default-bg rgba(0,0,0,0.6)
+set recolor-lightcolor rgba(0,0,0,0)
+
+set selection-clipboard clipboard
+
+set window-title-basename true
+
+map <C-=> zoom in
+map <C--> zoom out
+map zi zoom in
+map zo zoom out
+
+# [I]nvert colors
+map <C-i> recolor
+# [R]otate PDF
+map <C-r> rotate

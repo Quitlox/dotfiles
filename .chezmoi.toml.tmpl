@@ -1,0 +1,17 @@
+
+{{- $email := "" -}}
+{{- if (hasKey . "email") -}}
+{{-   $email = .email -}}
+{{- else -}}
+{{-   $email = promptString "E-Mail (git)" -}}
+{{- end -}}
+
+encryption = "age"
+
+[data]
+	email = {{ $email | quote }}
+
+[age]
+	identity = "private_dot_ssh/.chezmoi_encryption_key.txt"
+	recipient = "{{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_recipient_key.value }}"
+

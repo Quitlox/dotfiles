@@ -1,0 +1,91 @@
+Colorscheme: "materialtheme"
+DryRun: false
+GithubToken: {{ (bitwardenFields "item" "github.com").pa_token_base16_universal_manager.value }}
+
+applications:
+  kitty:
+    enabled: true
+    hook: "kitty @ set-colors ~/.config/kitty/theme.conf"
+    files:
+      default-256:
+        path: ~/.config/kitty/theme.conf
+        mode: rewrite
+  shell:
+    enabled: true
+    files:
+      default:
+        path: ~/.config/zsh/base16_theme.sh
+        mode: rewrite
+  vim:
+    enabled: true
+    files:
+      default:
+        path: ~/.config/vim/colors/base16_theme.vim
+        mode: replace
+        start_marker: "\" <<<<<<<<<<"
+        end_marker: "\" >>>>>>>>>>"
+
+  i3:
+    enabled: true
+    hook: "i3-msg restart"
+    files:
+      colors:
+        path: ~/.config/i3/config
+        mode: replace
+        start_marker: "# <<<<<<<<<<"
+        end_marker: "# >>>>>>>>>>"
+      client-properties:
+        path: ~/.config/i3/config
+        mode: replace
+        start_marker: "# <<<<<<<<<<2"
+        end_marker: "# >>>>>>>>>>2"
+  base16-polybar:
+    enabled: true
+    files:
+      default:
+        path: ~/.config/polybar/config
+        mode: replace
+        start_marker: "# <<<<<<<<<<"
+        end_marker: "# >>>>>>>>>>"
+  rofi:
+    enabled: true
+    files:
+      default:
+        path: ~/.config/rofi/base16_theme.rofi
+        mode: rewrite
+
+  zathura:
+    enabled: true
+    files:
+      default:
+        path: ~/.config/zathura/base16_theme
+        mode: rewrite
+
+  gtk2:
+    enabled: true
+    template: base16-gtk-flatcolor
+    files:
+      gtk-2:
+        path: ~/.config/gtk-2.0/gtkrc-2.0.mine
+        mode: replace
+        start_marker: "# <<<<<<<<<<"
+        end_marker: "# >>>>>>>>>>"
+  gtk3:
+    enabled: true
+    template: base16-gtk-flatcolor
+    files:
+      gtk-3:
+        path: ~/.config/gtk-3.0/gtk.css
+        mode: replace
+        start_marker: "/* <<<<<<<<<< "
+        end_marker: "/* >>>>>>>>>> "
+
+  xresources:
+    enabled: true
+    hook: "xrdb /home/quitlox/.Xresources"
+    files:
+      default-256:
+        path: ~/.Xresources
+        mode: replace
+        start_marker: "! <<<<<<<<<<"
+        end_marker: "! >>>>>>>>>>"

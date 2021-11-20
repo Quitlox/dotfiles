@@ -1,0 +1,17 @@
+[".local/share/vim/bundle/repos/github.com/Shougo/dein.vim"]
+	type = "archive"
+	url = "https://github.com/Shougo/dein.vim/archive/master.tar.gz"
+	exact = true
+	stripComponents = 1
+	refreshPeriod = "672h"
+[".config/polybar/polybar-spotify"]
+	type = "archive"
+	url = "https://github.com/PrayagS/polybar-spotify/archive/master.tar.gz"
+	exact = true
+	stripComponents = 1
+	refreshPeriod = "672h"
+[".local/bin/cht.sh"]
+	type = "file"
+	url = "https://cht.sh/:cht.sh"
+	executable = true
+	refreshPeriod = "672h"

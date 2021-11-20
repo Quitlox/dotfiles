@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# The ~/.Xresources is partly managed by Base16 Manager.
+# The file contains the markers
+# 	! <<<<<<<<<<
+# 	! >>>>>>>>>>
+# between which Base16 Manager writes in theme.
+#
+# This script overwrites the ~/.Xresources, removing
+# the content in between the markers.
+#
+# After running `chezmoi apply`, run `base16-universal-manager`.
+
+sed -i -e '/! <<<<<<<<<</,/! >>>>>>>>>>/c\! <<<<<<<<<<\n! >>>>>>>>>>' $HOME/.Xresources
+

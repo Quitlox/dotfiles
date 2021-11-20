@@ -1,0 +1,470 @@
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin Manager: dein.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""  dein.vim  """""""""""""""""""""""""
+
+if &compatible
+  set nocompatible " Be iMproved
+endif
+
+" Required:
+let deinbasepath=$HOME . '/.local/share/vim/bundle'
+let deininstallpath=deinbasepath . '/repos/github.com/Shougo/dein.vim'
+exe 'set rtp+=' . deininstallpath
+
+" Required:
+call dein#begin(deinbasepath)
+
+
+call dein#add(deininstallpath)
+
+
+"""""""""""""""  dein.vim - User Interface """""""""""""""""
+
+" Plugin: Dein UI
+" Link: https://github.com/wsdjeg/dein-ui.vim
+" Official Description: UI for Shougo's dein.vim.
+"
+" This adds a simple popup-as-needed UI element that
+" displays the status of dein.vim while installing plugins.
+" Call with ':DeinUpdate'
+call dein#add('wsdjeg/dein-ui.vim')
+
+
+" TODO:
+"   - gitgutter
+"   - fugitive?
+"   - codi !
+"   - characterize
+"   - vim space controller
+"   - argwrap
+"   - vimoutliner
+"   - vim diminactive
+"   - vim sandwich
+"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => User Interface
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" Plugin: ctrlp.vim
+" Link: https://github.com/ctrlpvim/ctrlp.vim
+" Official Description: Full path fuzzy file, buffer, mru,
+" tag, ... finder for Vim.
+"
+" Simple UI element that popups under your statusline that
+" allows you to fuzzy-search your files and buffers.
+" Default mapping on ctrl+p, who would've thought.
+call dein#add('ctrlpvim/ctrlp.vim')
+
+
+" Plugin: Tagbar
+" Link: https://vimawesome.com/plugin/tagbar
+" Official Description: Tagbar is a Vim plugin that provides
+" an easy way to browse the tags of the current file and get
+" an overview of its structure. It does this by creating a
+" sidebar that displays the ctags-generated tags of the
+" current file, ordered by their scope. This means that for
+" example methods in C++ are displayed under the class they
+" are defined in.
+call dein#add('majutsushi/tagbar')
+
+
+" Plugin: Vim-which-key
+" Link: https://vimawesome.com/plugin/vim-which-key#introduction
+"
+" This utility displays available keybindings in a popup.
+" Activate by pressing the leader key.
+call dein#add('liuchengxu/vim-which-key')
+
+
+"""""""""""""""""""""""""""""
+" => User Interface: File Explorer
+"""""""""""""""""""""""""""""
+
+" Plugin: NERDTree
+" Link: https://github.com/preservim/nerdtree
+" Official Description: The NERDTree is a file system
+" explorer for the Vim editor. Using this plugin, users can
+" visually browse complex directory hierarchies, quickly
+" open files for reading or editing, and perform basic file
+" system operations.
+call dein#add('preservim/nerdtree')
+
+
+" Plugin: nerdtree-git-plugin
+" Link: https://github.com/Xuyuanp/nerdtree-git-plugin
+" Official Description: A plugin of NERDTree showing git
+" status flags.
+call dein#add('Xuyuanp/nerdtree-git-plugin')
+
+" Plugin: vim-nerdtree-syntax-highlight
+" Link: https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
+" Official Description: This adds syntax for nerdtree on
+" most common file extensions. [..] This is intended to be
+" used with vim-devicons to add color to icons ore entire
+" labels, but will work without it.
+call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+
+"""""""""""""""""""""""""""""
+" => User Interface: Statusline
+"""""""""""""""""""""""""""""
+
+" Plugin: Vim-Airline
+" Link: https://vimawesome.com/plugin/vim-airline-superman
+" Official Description: Lean & mean status/tabline for vim
+" that's light as air.
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+
+"""""""""""""""""""""""""""""
+" => User Interface: Hints
+"""""""""""""""""""""""""""""
+
+" Plugin: Terminus
+" Link: https://github.com/wincent/terminus
+" Official Description: Terminus enhances Vim's and Neovim's
+" integration with the terminal in four ways, particularly
+" when using tmux and iTerm or KDE Konsole, closing the gap
+" between terminal and GUI Vim.
+call dein#add('wincent/terminus')
+
+
+" Plugin: CSS color
+" Link: https://vimawesome.com/plugin/vim-css-color-the-story-of-us
+" Official Description: A very fast, multi-syntax
+" context-sensitive color name highlighter.
+call dein#add('ap/vim-css-color')
+
+
+" Plugin: Rainbow Parentheses Improved
+" Link: https://github.com/luochen1990/rainbow
+"
+" Colors Parentheses and brackets to make the different
+" pairs more easily distinguishable.
+call dein#add('luochen1990/rainbow', {'merged': 0})
+
+
+" Plugin: quick-scope
+" Link: https://github.com/unblevable/quick-scope
+" Official Description: An always-on highlight for a unique
+" character in every word on a line to help you use f, F 
+" and family.
+call dein#add('unblevable/quick-scope')
+
+
+" Plugin: Indentline
+" Link: https://vimawesome.com/plugin/indentline
+" Official Description: This plugin is used for displaying
+" thin vertical lines at each indentation level for code
+" indented with spaces.
+call dein#add('yggdroot/indentline')
+
+
+"""""""""""""""""""""""""""""
+" => Miscelaneous
+"""""""""""""""""""""""""""""
+
+" Plugin: VimDevIcons
+" Link: https://github.com/ryanoasis/vim-devicons
+" Official Description: Adds Icons to Your Plugins
+call dein#add('ryanoasis/vim-devicons')
+
+
+" Plugin: goyo.vim
+" Link: https://vimawesome.com/plugin/goyo-vim
+" Official Description: Distraction-free writing in Vim.
+call dein#add('junegunn/goyo.vim')
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plugin: BufOnly
+" Link: https://github.com/vim-scripts/BufOnly.vim
+call dein#add('vim-scripts/BufOnly.vim/')
+
+" Plugin: Tabular
+" Link: https://vimawesome.com/plugin/tabular
+"
+" Command for lining up text, :Tabular.
+call dein#add('godlygeek/tabular')
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim Elemenbts: Motions, Verbs
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plugin: EasyMotion
+" Link: https://vimawesome.com/plugin/easymotion
+" Official Description: EasyMotion provides a much simpler
+"
+" way to use some motions in vim. It takes the <number> out
+" of <number>w or <number>f{char} by highlighting all
+" possible choices and allowing you to press one key to jump
+" directly to the target.
+call dein#add('easymotion/vim-easymotion')
+
+" Plugin: surround.vim
+" Link: https://vimawesome.com/plugin/surround-vim
+" Official Description: Surround.vim is all about
+" "surroundings": parentheses, brackets, quotes, XML tags,
+" and more. The plugin provides mapping to easily delete,
+" change and add such surroundings in pairs.
+"
+" Introduces a new verb, namely 'surround', bound to the 's'
+" key. This verb allows you to easily add and manipulate
+" quotes, paranthesis and HTML tags around words and lines.
+call dein#add('tpope/vim-surround')
+
+" Plugin: Sneak
+" Link: https://vimawesome.com/plugin/vim-sneak
+" Official Description: Jump to any location specified by
+" two characters.
+"
+" Adds a new motions to the 's' key. The motion is basically
+" 'f' but with two characters. This motion does not conflict
+" with 'vim-surround' (also bound to 's'), since the latter
+" is a verb instead of a motion.
+call dein#add('justinmk/vim-sneak')
+
+" Plugin: tComment
+" Link: https://vimawesome.com/plugin/tcomment
+" Official Description: tcomment provides easy to use,
+" file-type sensible comments for Vim. It can handle
+" embedded syntax.
+call dein#add('tomtom/tcomment_vim')
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plugin: Vim Better Whitespace Plugin
+" Link: https://vimawesome.com/plugin/better-whitespace
+" Official Description: This plugin causes all trailing
+" whitespace characters to be highlighted. Whtiespace for
+" the current line will note be highlighted while in insert
+" mode. It is possible to disable current line highlighting
+" while in other modes as well. A helper function
+" ':StripWhitespace' is also provided to make whitespace
+" cleaning painless.
+call dein#add('ntpeters/vim-better-whitespace')
+
+
+" Plugin: vim-pencil
+" Link: https://vimawesome.com/plugin/vim-pencil
+" Official Description: The pencil plugin aspires to make
+" Vim as powerful a tool for writers as it is for coders by
+" focusing narrowly on the handful of tweaks needed to
+" smooth the path to writing prose.
+call dein#add('reedes/vim-pencil')
+
+"""""""""""""""""""""""""""""
+" => Editing: Auto-configuration
+"""""""""""""""""""""""""""""
+
+" Plugin: Sleuth.vim
+" Link: https://vimawesome.com/plugin/sleuth-vim
+" Official Description: This plugin automatically adjusts
+" 'shiftwidth' and 'expandtab' heuristically based on the
+" current file, or, in the case the current file is new,
+" blank, or otherwise insufficient, by looking at other
+" files of the same type in the current and parent
+" directories. In lieu of adjusting 'softtabstop',
+" 'smarttab' is enabled.
+call dein#add('tpope/vim-sleuth')
+
+
+" Plugin: vim-lastplace
+" Link: https://vimawesome.com/plugin/vim-lastplace
+" Official Description: Intelligently reopen files at your
+" last edit position.
+call dein#add('farmergreg/vim-lastplace')
+
+
+"""""""""""""""""""""""""""""
+" => Editing: Assistance
+"""""""""""""""""""""""""""""
+
+" Plugin: delimitmate
+" Link: https://vimawesome.com/plugin/delimitmate
+" Official Description: This plug-in provides automatic
+" closing of quotes, parenthesis, brackets, etc., besides
+" some other related featues that should make youre time in
+" insert mode a little bit easier, like syntax awereness,
+" and expansions, and some more.
+" call dein#add('raimondi/delimitmate')
+
+
+" Plugin: vim-closetag
+" Link: https://vimawesome.com/plugin/vim-closetag
+"
+" Small plugin that auto-closes HTML/XML tags.
+" Should be straightforward :P
+"call dein#add('alvan/vim-closetag')
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Language Support
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plugin: coc.vim
+" Link: https://github.com/neoclide/coc.nvim
+" Official Description: Make your Vim/Neovim as smart as 
+" VSCode.
+call dein#add('neoclide/coc.nvim', {'merged': 0})
+
+
+" Plugin: vim-repl
+" Link: https://github.com/sillybun/vim-repl
+" Official Description: Best REPL environment for Vim
+call dein#add('sillybun/vim-repl')
+
+"""""""""""""""""""""""""""""
+" => Languages
+"""""""""""""""""""""""""""""
+
+" Plugin: vimtex
+" Link: https://github.com/lervag/vimtex
+" Official Description: VimTeX is a modern Vim and Neovim
+" filetype and syntax plugin for LaTeX files.
+call dein#add('lervag/vimtex')
+
+
+"""""""""""""""""""""""""""""
+" => Syntax Highlighting
+"""""""""""""""""""""""""""""
+
+
+" Plugin: vim-jsonc
+" Link: https://github.com/kevinoid/vim-jsonc
+" Official Description: Vim syntax highlighting plugin for
+" JSON with C-style line (//) and block (/**/) comments.
+" Required By: coc.vim
+call dein#add('kevinoid/vim-jsonc')
+
+
+" Plugin: i3config.vim
+" Link: https://github.com/mboughaba/i3config.vim
+"
+" Syntax Highlighting for the i3 config file
+call dein#add('mboughaba/i3config.vim')
+
+
+" Plugin: Vim Markdown
+" Link: https://github.com/plasticboy/vim-markdown
+" Official Description: Syntax highlighting, matching rules
+" and mappings for the original Markdown and extensions.
+call dein#add('plasticboy/vim-markdown')
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Miscellaneous
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plugin: Vim-Pasta
+" Link: https://vimawesome.com/plugin/vim-pasta
+" Official Description: Pasting in Vim with Indentation
+" adjusted to destination context.
+"
+" Small utility that remaps the '(p)ut' verb, such that
+" pasted code is adjusted to indentation context.
+"call dein#add('sickill/vim-pasta')
+
+" Plugin: Vim-Pase-Easy
+" Link: https://vimawesome.com/plugin/vim-paste-easy
+" Official Description: This is a tiny plugin that simply
+" monitors your typing speed and 'set paste' automatically.
+"
+" This plugin ensures that pasting larger pieces of text
+" will not be wrongly indented.
+call dein#add('roxma/vim-paste-easy')
+
+" Plugin: repeat.vim
+" Link: https://github.com/tpope/vim-repeat
+"
+" Small helper plugin that remaps '.' to work with plugin
+" mappings.
+call dein#add('tpope/vim-repeat')
+
+" Plugin: sudo.vim
+" Link: https://vimawesome.com/plugin/sudo-vim
+" Official Description: This script eases use of vim with
+" sudo by adding the ability to edit one file with root
+" privileges without running the whole session that way.
+call dein#add('vim-scripts/sudo.vim')
+
+
+"""""""""""""""""""""""  dein.vim  """""""""""""""""""""""""
+
+" Required:
+call dein#end()
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vimrc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set runtimepath+=~/.config/vim
+
+""""""""""""""""""""""""""""""
+" => Theme
+""""""""""""""""""""""""""""""
+
+" Set colorscheme (managed by Base16 Universal Manager)
+try
+    let base16colorspace=256
+    colorscheme base16_theme
+catch
+endtry
+
+" Set Airline Theme
+let g:airline_theme='base16'
+
+" Transparent background
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
+autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
+
+""""""""""""""""""""""""""""""
+" => Environment Specific
+""""""""""""""""""""""""""""""
+
+" Please select the configurations that apply to your
+" environment.
+"
+" NOTE: These should be sourced first, as these files often
+" contain work-arounds to make the general configurations
+" compatible.
+
+
+source ~/.config/vim/environments/gui.vim
+"source ~/.config/vim/environments/mac.vim
+"source ~/.config/vim/environments/windows.vim
+"source ~/.config/vim/terminals/urxvt.vim
+"source ~/.config/vim/terminals/gnome_terminal.vim
+source ~/.config/vim/terminals/kitty.vim
+
+""""""""""""""""""""""""""""""
+" => General Configurations
+""""""""""""""""""""""""""""""
+
+source ~/.config/vim/key_bindings.vim
+source ~/.config/vim/filetypes.vim
+source ~/.config/vim/basic.vim
+source ~/.config/vim/plugins.vim
+

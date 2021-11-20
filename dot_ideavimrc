@@ -1,0 +1,192 @@
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <SPACE> <Nop>
+nnoremap , <Nop>
+map g <Nop>
+let mapleader = " "
+let localleader = ","
+
+set ignorecase smartcase
+set hlsearch " highlight search occurrences
+set incsearch " show search results while typing
+set showmode
+set scrolloff=7 sidescrolloff=10
+set number
+set wrapscan
+set clipboard=unnamedplus,unnamed,ideaput " integrate with system clipboard
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: Navigation
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Remap 0 to first non-blank character"
+map 0 ^
+
+" Fix code navigation with softwrapping
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+
+" Easier line-wise movement
+noremap gh g^
+noremap gl g$
+
+" Re-select blocks after indenting in visual/select mode
+xnoremap < <gv
+xnoremap > >gv|
+vnoremap = =gv
+
+" Disable highlight when <leader><cr> is pressed
+noremap <leader><cr> :noh<cr>
+
+" Move a line of text using ALT
+nnoremap <M-j> :m .+1<cr>==
+nnoremap <M-k> :m .-2<cr>==
+inoremap <M-j> <esc>:m .+1<cr>==gi
+inoremap <M-k> <esc>:m .-2<cr>==gi
+vnoremap <M-j> :m '>+1<cr>gv=gv
+vnoremap <M-k> :m '<-2<cr>gv=gv
+
+" unimpaired mappings
+nnoremap [<space> O<esc>j
+nnoremap ]<space> o<esc>k
+nnoremap [q :action PreviousOccurence<cr>
+nnoremap ]q :action NextOccurence<cr>
+nnoremap [m :action MethodUp<cr>
+nnoremap ]m :action MethodDown<cr>
+nnoremap [c :action VcsShowPrevChangeMarker<cr>
+nnoremap ]c :action VcsShowNextChangeMarker<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: IDEA
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+noremap gg :action ScrollPane-scrollHome<cr>
+" [g]o [f]ormat
+nnoremap gf :action ReformatCode<cr>
+" [g]o [o]ptimize
+nnoremap go :action OptimizeImports<cr>
+" [g]o ge[n]erate
+nnoremap gn :action Generate<cr>
+" [g]o [r]efactor
+nnoremap gr :action Refactorings.QuickListPopupAction<cr>
+" [g]o [i]mplementations
+nnoremap gi :action GotoImplementations<cr>
+" [g]o [d]ecleration
+nnoremap gd :action GotoDeclaration<cr>
+" [g]o [u]sages
+nnoremap gu :action ShowUsages<cr>
+" [g]o Find [U]sages
+nnoremap gU :action FindUsages<cr>
+" [g]o [s]ymbol
+nnoremap gs :action GotoSymbol<cr>
+" [g]o [t]est
+nnoremap gt :action GotoTest<cr>
+" [g]o [e]rror
+nnoremap ge :action ShowErrorDescription<cr>
+" [g]o intent
+nnoremap g<cr> :action ShowIntentionActions<cr>
+" [g]o [b]uild
+nnoremap gb :action Maven.RunBuild<cr>
+" [g]o [e]xecute
+nnoremap ge :action Run<cr>
+
+
+" [o]pen [f]ile
+noremap <leader>of :action SearchEverywhere<cr>
+" [o]pen [a]ctions
+"noremap <leader>oa :action SearchEverywhereActions<cr>
+
+" [t]oggle [c]tags
+nnoremap <leader>tc :action FileStructurePopup<cr> "ActivateStructureToolWindow<cr>
+" [t]oggle [f]iletree
+nnoremap <leader>tf :action ActivateProjectToolWindow<cr>
+" [t]oggle [w]hitespace
+nnoremap <leader>tw :action EditorToggleShowWhitespaces<cr>
+" [t]oggle [s]witcher
+nnoremap <leader>ts :action Switcher<cr>
+" [t]oggle [t]erminal
+nnoremap <leader>tt :action ActivateTerminalToolWindow<cr>
+" [t]oggle [d]ocumentation
+nnoremap <leader>td :action QuickJavaDoc<cr>
+
+" EditorToggleShowBreadcrumbs
+" EditorToggleShowGutterIcons
+" EditorToggleShowIndentLines
+" EditorToggleShowLineNumbers
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: Windows and Buffers
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+noremap <leader>wh <C-W>h
+noremap <leader>wj <C-W>j
+noremap <leader>wk <C-W>k
+noremap <leader>wl <C-W>l
+
+noremap <leader>wv :action SplitHorizontally<cr>
+noremap <leader>wb :action SplitVertically<cr>
+noremap <leader>wd :action CloseEditorsGroup<cr>
+noremap <leader>wo :action HideAllWindows<cr>
+
+noremap <leader>bd :action CloseEditor<cr>
+noremap <leader>bn :action NextTab<cr>
+noremap <leader>bp :action PreviousTab<cr>
+noremap <leader>bo :action CloseAllEditorsButActive<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: Miscellaneous
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vim config
+nnoremap <leader>vs :source "/home/quitlox/.ideavimrc" <cr>
+nnoremap <leader>ve :e "/home/quitlox/.ideavimrc" <cr>
+
+" vim annoyances
+nnoremap Y y$ " Yank from cursor position to end-of-line
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: Bookmarks
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap mA :action ToggleBookmarkA
+nnoremap mB :action ToggleBookmarkB
+nnoremap mC :action ToggleBookmarkC
+nnoremap mD :action ToggleBookmarkD
+nnoremap mE :action ToggleBookmarkE
+nnoremap mF :action ToggleBookmarkF
+nnoremap mG :action ToggleBookmarkG
+nnoremap mH :action ToggleBookmarkH
+nnoremap mI :action ToggleBookmarkI
+nnoremap mJ :action ToggleBookmarkJ
+nnoremap mK :action ToggleBookmarkK
+nnoremap mL :action ToggleBookmarkL
+nnoremap mM :action ToggleBookmarkM
+nnoremap mN :action ToggleBookmarkN
+nnoremap mO :action ToggleBookmarkO
+nnoremap mP :action ToggleBookmarkP
+nnoremap mQ :action ToggleBookmarkQ
+nnoremap mR :action ToggleBookmarkR
+nnoremap mS :action ToggleBookmarkS
+nnoremap mT :action ToggleBookmarkT
+nnoremap mU :action ToggleBookmarkU
+nnoremap mV :action ToggleBookmarkV
+nnoremap mW :action ToggleBookmarkW
+nnoremap mX :action ToggleBookmarkX
+nnoremap mY :action ToggleBookmarkY
+nnoremap mZ :action ToggleBookmarkZ
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'machakann/vim-highlightedyank'

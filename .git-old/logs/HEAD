@@ -1,0 +1,65 @@
+0000000000000000000000000000000000000000 580778ce1bc43864536300f4f789cddfa948e6f0 Kevin Witlox <kevin.witlox@upcmail.nl> 1634910905 +0200	commit (initial): Add Workspace folder structure
+580778ce1bc43864536300f4f789cddfa948e6f0 2142371ed4be44ce872a4f8a68e74d133b1ddbee Kevin Witlox <kevin.witlox@upcmail.nl> 1634913932 +0200	commit: Add symlinked Code/User/settings.josn
+2142371ed4be44ce872a4f8a68e74d133b1ddbee 2552c0665d4dbb76f952f19f7ecd2bfd0657716c Kevin Witlox <kevin.witlox@upcmail.nl> 1634999878 +0200	commit: Add .Xresources
+2552c0665d4dbb76f952f19f7ecd2bfd0657716c 1c622bd19a7614648df430b63fc0b239adf852af Kevin Witlox <kevin.witlox@upcmail.nl> 1635000013 +0200	commit: Add .ideavimrc
+1c622bd19a7614648df430b63fc0b239adf852af a86c9cbbd620e451ab0c9fbe5e733130f9eb2d41 Kevin Witlox <kevin.witlox@upcmail.nl> 1635001213 +0200	commit: Add .gitconfig
+a86c9cbbd620e451ab0c9fbe5e733130f9eb2d41 a7012102d2285d599fd663b6583c92efcd130ff7 Kevin Witlox <kevin.witlox@upcmail.nl> 1635001466 +0200	commit: Add .profile and .xprofile
+a7012102d2285d599fd663b6583c92efcd130ff7 c3d08e63fd452be801cb9b2e41d62c7e5fbcd0be Kevin Witlox <kevin.witlox@upcmail.nl> 1635001932 +0200	commit: Add sage to .profile
+c3d08e63fd452be801cb9b2e41d62c7e5fbcd0be bf07bf5496d617a3ac00c686339ab97c038a53ca Kevin Witlox <kevin.witlox@upcmail.nl> 1635001995 +0200	commit: Add .config/user-dirs.dirs
+bf07bf5496d617a3ac00c686339ab97c038a53ca 9d0ffbde578c247573f49c8b1c848f4fa71dbe3b Kevin Witlox <kevin.witlox@upcmail.nl> 1635002168 +0200	commit: Add .config/i3-scrot.conf .config/pythonrc
+9d0ffbde578c247573f49c8b1c848f4fa71dbe3b 0e2b2b81ec45a3c9931ec1bf113cd6d95ab8f830 Kevin Witlox <kevin.witlox@upcmail.nl> 1635002199 +0200	commit: Add .config/picom.conf
+0e2b2b81ec45a3c9931ec1bf113cd6d95ab8f830 24ee67418fa6339367159c52a1f2035a22dd2814 Kevin Witlox <kevin.witlox@upcmail.nl> 1635002298 +0200	commit: Add zsh configuration
+24ee67418fa6339367159c52a1f2035a22dd2814 0e2b2b81ec45a3c9931ec1bf113cd6d95ab8f830 Kevin Witlox <kevin.witlox@upcmail.nl> 1635002344 +0200	reset: moving to HEAD~
+0e2b2b81ec45a3c9931ec1bf113cd6d95ab8f830 a4736264ff62b8c4e099087a8935ad1e3c0b2cd9 Kevin Witlox <kevin.witlox@upcmail.nl> 1635002358 +0200	commit: Add zsh configuration
+a4736264ff62b8c4e099087a8935ad1e3c0b2cd9 2e7bba58e0f50f24bbbb8b19fcda86e3f8a70008 Kevin Witlox <kevin.witlox@upcmail.nl> 1635005155 +0200	commit: Add Zathura config
+2e7bba58e0f50f24bbbb8b19fcda86e3f8a70008 0e97cbe5bb5971c4f9a6051df5f776a46e797bae Kevin Witlox <kevin.witlox@upcmail.nl> 1635005511 +0200	commit: Add vim config
+0e97cbe5bb5971c4f9a6051df5f776a46e797bae 4ec2feffac2daf84b87fce28492030ee4ed5fc10 Kevin Witlox <kevin.witlox@upcmail.nl> 1635006905 +0200	commit: Add spotifyd
+4ec2feffac2daf84b87fce28492030ee4ed5fc10 8493fb29904cf9e68daacea9a1eb02a95ca9bacb Kevin Witlox <kevin.witlox@upcmail.nl> 1635007098 +0200	commit: Fix modify_base16_theme.vim
+8493fb29904cf9e68daacea9a1eb02a95ca9bacb 2b879d278586be4bf4fb05366c6e5775832820b5 Kevin Witlox <kevin.witlox@upcmail.nl> 1635180961 +0200	commit: [vim] update markdown settings
+2b879d278586be4bf4fb05366c6e5775832820b5 fef833ccd04140f98d41a4fb13c07e42d50d70ab Kevin Witlox <kevin.witlox@upcmail.nl> 1635180987 +0200	commit: [idea] gq to g<enter>
+fef833ccd04140f98d41a4fb13c07e42d50d70ab 212feb1f2597c79e71f772f5b4b55ec71f97d3ce Kevin Witlox <kevin.witlox@upcmail.nl> 1635181150 +0200	commit: Add systemd user services: spotifyd, ssh-agent
+212feb1f2597c79e71f772f5b4b55ec71f97d3ce f2e7e4818f53ca777ddaecdb60674ae1e3cd98db Kevin Witlox <kevin.witlox@upcmail.nl> 1635183140 +0200	commit: Fix modify_dot_Xresources (contained relative path)
+f2e7e4818f53ca777ddaecdb60674ae1e3cd98db 212feb1f2597c79e71f772f5b4b55ec71f97d3ce Kevin Witlox <kevin.witlox@upcmail.nl> 1635183147 +0200	reset: moving to HEAD~
+212feb1f2597c79e71f772f5b4b55ec71f97d3ce a1e235820087eb1a6df4836bde1525f377922b36 Kevin Witlox <kevin.witlox@upcmail.nl> 1635183238 +0200	commit: Add polybar config
+a1e235820087eb1a6df4836bde1525f377922b36 b498baf8448fe31ecb3ce53b515aae105bfdcbf9 Kevin Witlox <kevin.witlox@upcmail.nl> 1635183254 +0200	commit: Fix modify_dot_Xresources not using absolute path
+b498baf8448fe31ecb3ce53b515aae105bfdcbf9 dc8d24b45acaf20959d7046ad2bc20b3e0e7ca71 Kevin Witlox <kevin.witlox@upcmail.nl> 1635183453 +0200	commit: Change .Xresources from modify_ to before_ method
+dc8d24b45acaf20959d7046ad2bc20b3e0e7ca71 b75fea672642032b5054f42a4000a3ee1b4b1f3a Kevin Witlox <kevin.witlox@upcmail.nl> 1636991622 +0100	commit: [systemd] Disable StdOut for spotifyd.service
+b75fea672642032b5054f42a4000a3ee1b4b1f3a b157f4eed3ebca1556422aadb18ca4d5f90d6fc0 Kevin Witlox <kevin.witlox@upcmail.nl> 1636991673 +0100	commit: [vscode] Udate settings.json
+b157f4eed3ebca1556422aadb18ca4d5f90d6fc0 3326ad470cacd5072c256288e09370f43c7eda24 Kevin Witlox <kevin.witlox@upcmail.nl> 1636991936 +0100	commit: [vscode] Add keybindings.json symlink
+3326ad470cacd5072c256288e09370f43c7eda24 004681ba0c8131ebfa2cb25e75de2e7e03cb2deb Kevin Witlox <kevin.witlox@upcmail.nl> 1636993289 +0100	commit: [chezmoi] Add chezmoi.toml\nIncludes prompts for 'email' and 'frontSize'
+004681ba0c8131ebfa2cb25e75de2e7e03cb2deb 4c991f6b0922bee7abf121d9d2c9f7af0f24c40c Kevin Witlox <kevin.witlox@upcmail.nl> 1637064946 +0100	commit: [vim] auto expand tabs
+4c991f6b0922bee7abf121d9d2c9f7af0f24c40c 824c1987597e9ae8479daa04de9b6f41cedc5103 Kevin Witlox <kevin.witlox@upcmail.nl> 1637097196 +0100	commit: [chezmoi] Add bootstrapping script
+824c1987597e9ae8479daa04de9b6f41cedc5103 4fac4e6dd92f8d3df1e31428bb3edc332be9f7e8 Kevin Witlox <kevin.witlox@upcmail.nl> 1637097776 +0100	commit: [picom] Various fixes
+4fac4e6dd92f8d3df1e31428bb3edc332be9f7e8 b8b7074f3889ff2e03702f32a984f541ad40f804 Kevin Witlox <kevin.witlox@upcmail.nl> 1637097879 +0100	commit: [vim] disable pencil#autoformat
+b8b7074f3889ff2e03702f32a984f541ad40f804 1cbea47e5e69fab796e29b137bdf2ba266182770 Kevin Witlox <kevin.witlox@upcmail.nl> 1637098192 +0100	commit: [ssh] Add ssh config
+1cbea47e5e69fab796e29b137bdf2ba266182770 e6df81d747a107e18e87f28ac55bc869354ed443 Kevin Witlox <kevin.witlox@upcmail.nl> 1637099331 +0100	commit: [i3] add config
+e6df81d747a107e18e87f28ac55bc869354ed443 931c9f280ec4a28b28b1ea72b63098978d107be9 Kevin Witlox <kevin.witlox@upcmail.nl> 1637100871 +0100	commit: [zsh] add .zshenv + [chezmoi] add .environment
+931c9f280ec4a28b28b1ea72b63098978d107be9 dd3709fe7568455f53f1ad95bd9ce810ece2da89 Kevin Witlox <kevin.witlox@upcmail.nl> 1637173608 +0100	commit: [vscode] Update settings.json
+dd3709fe7568455f53f1ad95bd9ce810ece2da89 0000000000000000000000000000000000000000 Kevin Witlox <kevin.witlox@upcmail.nl> 1637173679 +0100	Branch: renamed refs/heads/main to refs/heads/main
+dd3709fe7568455f53f1ad95bd9ce810ece2da89 dd3709fe7568455f53f1ad95bd9ce810ece2da89 Kevin Witlox <kevin.witlox@upcmail.nl> 1637173679 +0100	Branch: renamed refs/heads/main to refs/heads/main
+dd3709fe7568455f53f1ad95bd9ce810ece2da89 871b15aa56c971e4dbb25133f4e37fcc30b386fe Kevin Witlox <kevin.witlox@upcmail.nl> 1637264554 +0100	commit: [vim] add deim.vim as external
+871b15aa56c971e4dbb25133f4e37fcc30b386fe e9be5a46d2fde39cf73bd423111d4bc2185e4011 Kevin Witlox <kevin.witlox@upcmail.nl> 1637264577 +0100	commit: [ssh] encrypt .ssh/locations
+e9be5a46d2fde39cf73bd423111d4bc2185e4011 69d2899987553046f38bc81904a5e13b9e3da265 Kevin Witlox <kevin.witlox@upcmail.nl> 1637264588 +0100	commit: [chezmoi] use email in dot_config
+69d2899987553046f38bc81904a5e13b9e3da265 25aeae1fb49681dd7f81fe80691e772ee7198a21 Kevin Witlox <kevin.witlox@upcmail.nl> 1637270715 +0100	commit: [chezmoi] add install_package script
+25aeae1fb49681dd7f81fe80691e772ee7198a21 13e0b443bb4d7ba4315582f1464d6f3d3710588f Kevin Witlox <kevin.witlox@upcmail.nl> 1637271155 +0100	commit: [nitrogen] add monitor setups
+13e0b443bb4d7ba4315582f1464d6f3d3710588f 85f85670c882fc5aa5c279c8034ca8e387e1f63b Kevin Witlox <kevin.witlox@upcmail.nl> 1637272736 +0100	commit: [i3] remove template attr
+85f85670c882fc5aa5c279c8034ca8e387e1f63b c4abf78e09bc8ec6f4df6f6d8faf8bd356dd67bf Kevin Witlox <kevin.witlox@upcmail.nl> 1637273024 +0100	commit: [kitty] add kitty config
+c4abf78e09bc8ec6f4df6f6d8faf8bd356dd67bf b0f7f7be914fbf8ad5983dcd350ee2ad514587cb Kevin Witlox <kevin.witlox@upcmail.nl> 1637273478 +0100	commit: [vscode] fix keybindings.json symlink
+b0f7f7be914fbf8ad5983dcd350ee2ad514587cb fb106469e1f6ae69d9ffbf9bd5dfecbf025ae51a Kevin Witlox <kevin.witlox@upcmail.nl> 1637274264 +0100	commit: [chezmoi] bugfixes
+fb106469e1f6ae69d9ffbf9bd5dfecbf025ae51a 0bf2ae2470f0abeeb6717c0e5938806e2ff8ce78 Kevin Witlox <kevin.witlox@upcmail.nl> 1637274438 +0100	commit: [chezmoi] bugfixes
+0bf2ae2470f0abeeb6717c0e5938806e2ff8ce78 cc0351b8c34b7a7315b83be61c51fc43e3f91312 Kevin Witlox <kevin.witlox@upcmail.nl> 1637327731 +0100	commit: [autorandr] add config + [polybar] multimonitor fix?
+cc0351b8c34b7a7315b83be61c51fc43e3f91312 2514f1fb559742bd832fb04201c7b38dd43c4bb9 Kevin Witlox <kevin.witlox@upcmail.nl> 1637327821 +0100	commit: [chezmoi] install packages now onchange
+2514f1fb559742bd832fb04201c7b38dd43c4bb9 cec6530fac9769464e0f091a95090ec0ae384ecc Kevin Witlox <kevin.witlox@upcmail.nl> 1637327977 +0100	commit: [chezmoi] move install_packages script
+cec6530fac9769464e0f091a95090ec0ae384ecc 1a27dde69b2d09b0b3bbe940b29ca353728fa591 Kevin Witlox <kevin.witlox@upcmail.nl> 1637407944 +0100	commit: [base16] add base16_universal_manager config
+1a27dde69b2d09b0b3bbe940b29ca353728fa591 3d91481f183aa35e69a693c201a2bc5334466f6e Kevin Witlox <kevin.witlox@upcmail.nl> 1637408294 +0100	commit: [chezmoi] remove unused template data + [zsh] add .zprofile?
+3d91481f183aa35e69a693c201a2bc5334466f6e 0710ed4aff7a1a89ffdc67bd4a5b64d409baf6d1 Kevin Witlox <kevin.witlox@upcmail.nl> 1637408561 +0100	commit: [i3] fix autostart power-manager
+0710ed4aff7a1a89ffdc67bd4a5b64d409baf6d1 d8a7fffaa3e79debc20eb1c3245c93f11331a4ca Kevin Witlox <kevin.witlox@upcmail.nl> 1637408581 +0100	commit: [polybar] polybar-spotify script now managed by chezmoi
+d8a7fffaa3e79debc20eb1c3245c93f11331a4ca 71cc7ecc1536d33b72570559613dadc55f561bd5 Kevin Witlox <kevin.witlox@upcmail.nl> 1637408618 +0100	commit: [base16] remove quote around token
+71cc7ecc1536d33b72570559613dadc55f561bd5 47222a787d9c4be48f83252c02656e97971a63b5 Kevin Witlox <kevin.witlox@upcmail.nl> 1637408921 +0100	commit: [chezmoi] enable .chezmoiexternal.toml
+47222a787d9c4be48f83252c02656e97971a63b5 4a5e4070134a0150710eaf28a6c75056800eca0a Kevin Witlox <kevin.witlox@upcmail.nl> 1637409014 +0100	commit: [polybar] add source to new script
+4a5e4070134a0150710eaf28a6c75056800eca0a 97b170c71adde8677d99e049951b36879645b053 Kevin Witlox <kevin.witlox@upcmail.nl> 1637410935 +0100	commit: [chezmoi] add cht.sh
+97b170c71adde8677d99e049951b36879645b053 2ae5dc4dcde443eebc440fb56fa9356dbd6c5988 Kevin Witlox <kevin.witlox@upcmail.nl> 1637421420 +0100	commit: [i3] change xautolock to xidlehook
+2ae5dc4dcde443eebc440fb56fa9356dbd6c5988 2e34cf20d7b402754c61d24f85878af482a272d0 Kevin Witlox <kevin.witlox@upcmail.nl> 1637423017 +0100	commit: [chezmoi] rename install_packages back to run_
+2e34cf20d7b402754c61d24f85878af482a272d0 94d34007d46df09f9b6c0d15cf25bc5362f386f4 Kevin Witlox <kevin.witlox@upcmail.nl> 1637426816 +0100	commit: [zsh] add cht.sh completions
+94d34007d46df09f9b6c0d15cf25bc5362f386f4 2c7771c2bfae1df0fb0036424bf29909c09923ed Kevin Witlox <kevin.witlox@upcmail.nl> 1637426874 +0100	commit: add pulse
+2c7771c2bfae1df0fb0036424bf29909c09923ed 0a32d477789280882cf413b776fcd23af8269ae3 Kevin Witlox <kevin.witlox@upcmail.nl> 1637426887 +0100	commit: update .chezmoiexternal.toml

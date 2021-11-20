@@ -1,0 +1,270 @@
+
+# Create .cache folder
+mkdir -p $HOME/.cache/zsh
+
+# Source Base16 Theme
+[ -f "$HOME/.config/zsh/base16_theme.sh" ] && . ~/.config/zsh/base16_theme.sh
+
+# Colors
+autoload colors && colors
+
+############################################################
+### Zsh Settings 					 ###
+############################################################
+
+setopt extendedglob             # Extended globbing. Allows using regular expressions with *
+setopt nocaseglob               # Case insensitive globbing
+setopt numericglobsort          # Sort filenames numerically when it makes sense
+setopt globdots			# files beginning with . matched without explicit .
+
+setopt rcexpandparam            # Array expension with parameters
+#setopt nocheckjobs          	 # Don't warn about running processes when exiting
+setopt nobeep                   # No beep
+setopt autocd                   # if only directory path is entered, cd there.
+
+# History Settings
+
+setopt extended_history 	# Record timestamp of command in HISTFILE
+setopt appendhistory            # Immediately append history instead of overwriting
+setopt histignorealldups        # If a new command is a duplicate, remove the older one
+setopt share_history 		# Share command history data
+setopt inc_append_history       # save commands are added to the history immediately,
+				                # otherwise only when shell exits.
+
+# Bash style Ctrl+Backspace (till first slash)
+autoload -Uz select-word-style
+select-word-style bash
+
+############################################################
+### Zsh Completion Settings 				 ###
+############################################################
+
+# Completion rleated settings
+setopt always_to_end 		# Cursor moved to the end in full copmletion
+setopt hash_list_all 		# Hash everything before completion
+unsetopt menu_complete 		# Do not autoselect the first completion entry
+setopt auto_menu 		# Show completion menu on successive tab presses
+
+# Performance
+#zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache/zsh
+# Case insensitive tab completion
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+# [alt] first case insensitive, then complete partial words
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# Automatically find new executables in path
+zstyle ':completion:*' rehash true
+# Set order of different completion types
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+# Show file details on file completion
+#zstyle ':completion:*' file-list all
+
+############################################################
+### Zinit: Init & Settings 				 ###
+############################################################
+
+HISTSIZE=999999999
+HISTFILE="$HOME/.cache/zsh/zhistory"
+SAVEHIST=$HISTSIZE
+
+# Zinit Paths
+typeset -A ZINIT  # initial Zinit's hash definition
+ZINIT[BIN_DIR]=$HOME/.local/src/zinit
+ZINIT[HOME_DIR]=$HOME/.local/share/zinit
+ZINIT[PLUGINS_DIR]=$HOME/.local/share/zinit/plugins
+ZINIT[COMPLETIONS_DIR]=$HOME/.local/share/zinit/completions
+ZINIT[SNIPPETS_DIR]=$HOME/.local/share/zinit/snippets
+ZINIT[ZCOMPDUMP_PATH]=$HOME/.cache/zsh/zcompdump
+ZPFX=~/.local/share/zinit/polaris
+
+source ~/.local/src/zinit/zinit.zsh
+
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Turbo Mode:
+# Wait 0 - Instantly needed for properly navigating the shell
+# Wait 1 - Often used commands, programs and extra features
+# Wait 2 - Non-urgent stuff
+
+############################################################
+### Zinit: Annexes 					 ###
+############################################################
+
+# z-a-bin-gem-node: Provides a RVM-like solution for Ruby
+# Gems, Node modules and regular binaries.
+zinit load zinit-zsh/z-a-bin-gem-node
+
+# z-a-eval: Caches arbitrarily slow command output to speed
+# up shell startup
+zinit load NICHOLAS85/z-a-eval
+
+# z-a-patch-dl: Downlaods files and applies patches
+zinit load zinit-zsh/z-a-patch-dl
+
+# z-a-man: Automatically generates man pages out of plugin
+# README.md files.
+zinit load zinit-zsh/z-a-man
+
+
+
+############################################################
+### Zinit: Programs 				 	 ###
+############################################################
+
+### exa
+# A modern replacement for 'ls'.
+zinit ice \
+  from"gh-r" as"program" \
+  mv"bin/exa* -> exa"
+zinit load ogham/exa
+
+### bat
+# A cat clone with wings.
+zinit ice wait"2" as"command" from"gh-r" \
+  mv"bat* -> bat" pick"bat/bat"
+zinit load sharkdp/bat
+
+### fzf
+# A command-line fuzzy finder.
+zinit ice wait"2" as"program" from"gh-r"
+zinit load junegunn/fzf-bin
+
+### fd
+zinit ice \
+  as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+zinit load sharkdp/fd
+
+### zoxide
+zinit ice wait"1" as"command" from"gh-r" lucid \
+  mv"zoxide*/zoxide -> zoxide" \
+  atclone"./zoxide init zsh > init.zsh" \
+  atpull"%atclone" src"init.zsh" nocompile'!'
+zinit load ajeetdsouza/zoxide
+
+### zinit-console
+# A curses consolette for Zsh-Zinit plugin manager.
+zinit wait"2" for \
+  zdharma/zui \
+  zinit-zsh/zinit-console
+
+############################################################
+### Zinit: Completions 					 ###
+############################################################
+
+### Docker
+# Add Support for stacking flags (e.g. docker run -it)
+# By default, zsh does not parse these
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+zinit ice as"completion" blockf
+zinit snippet OMZP::docker/_docker
+
+### Cargo
+zinit ice as"completion" blockf
+zinit snippet OMZP::cargo/_cargo
+
+### GIT
+zinit load davidde/git
+
+############################################################
+### Zinit: Scripts 					 ###
+############################################################
+
+### SSH-Agent ###
+zinit ice wait"1" lucid
+zinit load bobsoppe/zsh-ssh-agent
+
+### Node Version Manager (NVM)
+export LESSCHARSET=utf-8
+export NVM_LAZY_LOAD=true
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim')
+export NVM_SYMLINK_CURRENT=true
+export NVM_COMPLETION=false
+export NVM_DIR="$HOME/.local/share/nvm"
+zinit ice blockf wait
+zinit load lukechilds/zsh-nvm
+
+### Gitignore plugin – commands gi and gii
+zinit ice wait \
+  trigger-load'!gi;!gii'
+zinit load voronkovich/gitignore.plugin.zsh
+
+### zhooks
+#zinit ice wait \
+#  trigger-load'!zhooks'
+#zinit load agkozak/zhooks
+
+############################################################
+### Zinit: Plugins 					 ###
+############################################################
+
+
+### History Substring Searching
+function __bind_history_keys() {
+  bindkey "^P" history-substring-search-up
+  bindkey "^N" history-substring-search-down
+  bindkey -M vicmd "k" history-substring-search-up
+  bindkey -M vicmd "j" history-substring-search-down
+}
+zinit ice wait atload'__bind_history_keys'
+zinit load zsh-users/zsh-history-substring-search
+
+### Colored man pages
+# UNNEEDED: See exports.zsh
+#zinit ice wait \
+#  trigger-load'!man'
+#zinit load ael-code/zsh-colored-man-pages
+
+### zconvey
+# Send notifications and commands to all or selected
+# Zshell instances.
+zinit ice wait for \
+  zdharma/zconvey \
+  as"command" pick"cmds/zc-bg-notify" silent \
+    zdharma/zconvey
+
+### bgnotify
+# Cross-platform background notifications for long running
+# commands.
+
+### command-not-found
+# Uses command-not-found package for zsh to provide
+# suggested packages to be installed if a command cannot
+# be found.
+
+
+############################################################
+### Zinit: Miscelleneous
+############################################################
+
+# Source custom files
+#zinit ice atinit'local i; for i in ~/.config/zsh/*.zsh; do source $i; done'
+#zinit load ~/.local
+
+# Custom Plugins & Completions
+zinit wait as"none" \
+  id-as"local-plugins" nocompile \
+  multisrc"${ZDOTDIR}/*.zsh" \
+  atpull"zinit creinstall -q ${ZDOTDIR}/completions" \
+  run-atpull \
+for zdharma-continuum/null
+
+# Starship prompt
+zinit ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
+zinit load starship/starship
+
+# Zsh Autosuggestions
+zinit ice wait atload'_zsh_autosuggest_start'
+zinit load zsh-users/zsh-autosuggestions
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
+
+# Zsh Completions
+zinit ice wait blockf atpull'zinit creinstall -q .'
+zinit load zsh-users/zsh-completions
+
+# Fast Syntax Highlighting
+zinit ice wait atinit'zpcompinit; zpcdreplay'
+zinit load zdharma/fast-syntax-highlighting
+
