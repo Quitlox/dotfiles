@@ -12,6 +12,6 @@ encryption = "age"
 	email = {{ $email | quote }}
 
 [age]
-	identity = "private_dot_ssh/.chezmoi_encryption_key.txt"
+	identity = "{{ joinPath .chezmoi.sourceDir "private_dot_ssh/.chezmoi_encryption_key.txt" }}"
 	recipient = "{{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_recipient_key.value }}"
 

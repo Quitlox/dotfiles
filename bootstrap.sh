@@ -28,8 +28,24 @@ if ! command -v "7z"
 then
 	if [[ $(uname -r) == *"MANJARO"* ]]; then
 		sudo pacman -S p7zip
+	elif [[ $(uname -v) == *"Debian"* ]]; then
+		sudo apt install p7zip
 	else
 		echo -e "${BRed}=> Please install p7zip!${Color_Off}"
+		exit
+	fi
+fi
+
+# [BOOTSTRAPPING - ZSH]
+if ! command -v "zsh"
+then
+	if [[ $(uname -r) == *"MANJARO"* ]]; then
+		sudo pacman -S zsh
+	elif [[ $(uname -v) == *"Debian"* ]]; then
+		sudo apt install zsh
+	else
+		echo -e "${BRed}=> Please install zsh!${Color_Off}"
+		exit
 	fi
 fi
 

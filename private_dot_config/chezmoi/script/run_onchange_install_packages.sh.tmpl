@@ -76,19 +76,6 @@ sudo pacman -S --needed -q pacman playerctl
 ### applications                    ###
 #######################################
 
-# Zathura is a highly customizable and functional document
-# viewer.
-sudo pacman -S --needed -q zathura
-# PDF support for Zathura
-sudo pacman -S --needed -q zathura-pdf-mupdf
-
-# Lightweight spotify streaming daemon with spotify connect
-# support.
-# > Used by spotify-tui
-sudo pacman -S --needed -q spotifyd
-# Command-line Spotify client written in Rust
-/bin/bash $YAY spotify-tui
-
 # A modernized, complete, self-contained TeX/LaTeX engine,
 # powered by XeTeX and TeXLive.
 # > Used by ~/.config/vim/vimrc
@@ -98,14 +85,48 @@ sudo pacman -S --needed -q spotifyd
 # > Used by ~/.config/vim/vimrc
 /bin/bash $YAY pplatex-git
 
+# [terminal applications]
+
+# Lightweight spotify streaming daemon with spotify connect
+# support.
+# > Used by spotify-tui
+sudo pacman -S --needed -q spotifyd
+# Command-line Spotify client written in Rust
+/bin/bash $YAY spotify-tui
+
+install bashtop
+
+# [desktop applications]
+
+# Zathura is a highly customizable and functional document
+# viewer.
+sudo pacman -S --needed -q zathura
+# PDF support for Zathura
+sudo pacman -S --needed -q zathura-pdf-mupdf
+
 # Obsidian is a powerful knowledge base that works on top 
 # of a local folder of plain text Markdown files
 /bin/bash $YAY obsidian-appimage
+
+install discord
+
+# Play all your games by Lutris
+#install lutris
+# Live streaming and video recording software
+#install obs-studio
 
 # [optional]
 sudo pacman -S --needed -q github-cli
 # > Needed by "~/.local/bin/cht.sh"
 sudo pacman -S --needed -q rlwrap
+
+#######################################
+### development tools               ###
+#######################################
+
+install cmake
+install firefox-developer-edition
+install jdk11-openjdk
 
 #######################################
 ### hacking tools                   ###
