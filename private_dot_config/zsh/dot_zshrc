@@ -1,7 +1,4 @@
 
-# Create .cache folder
-mkdir -p $HOME/.cache/zsh
-
 # Source Base16 Theme
 [ -f "$HOME/.config/zsh/base16_theme.sh" ] && . ~/.config/zsh/base16_theme.sh
 
@@ -78,19 +75,36 @@ ZINIT[SNIPPETS_DIR]=$HOME/.local/share/zinit/snippets
 ZINIT[ZCOMPDUMP_PATH]=$HOME/.cache/zsh/zcompdump
 ZPFX=~/.local/share/zinit/polaris
 
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+### End of Zinit's installer chunk
+
 source ~/.local/src/zinit/zinit.zsh
 
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+
+############################################################
+### Zinit: Annexes 					 ###
+############################################################
 
 # Turbo Mode:
 # Wait 0 - Instantly needed for properly navigating the shell
 # Wait 1 - Often used commands, programs and extra features
 # Wait 2 - Non-urgent stuff
 
-############################################################
-### Zinit: Annexes 					 ###
-############################################################
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-rust
 
 # z-a-bin-gem-node: Provides a RVM-like solution for Ruby
 # Gems, Node modules and regular binaries.
@@ -146,7 +160,7 @@ zinit load ajeetdsouza/zoxide
 ### zinit-console
 # A curses consolette for Zsh-Zinit plugin manager.
 zinit wait"2" for \
-  zdharma-continuum/zui \
+  zdharma/zui \
   zinit-zsh/zinit-console
 
 ############################################################
@@ -221,9 +235,9 @@ zinit load zsh-users/zsh-history-substring-search
 # Send notifications and commands to all or selected
 # Zshell instances.
 zinit ice wait for \
-  zdharma-continuum/zconvey \
+  zdharma/zconvey \
   as"command" pick"cmds/zc-bg-notify" silent \
-    zdharma-continuum/zconvey
+    zdharma/zconvey
 
 ### bgnotify
 # Cross-platform background notifications for long running
@@ -266,5 +280,5 @@ zinit load zsh-users/zsh-completions
 
 # Fast Syntax Highlighting
 zinit ice wait atinit'zpcompinit; zpcdreplay'
-zinit load zdharma-continuum/fast-syntax-highlighting
+zinit load zdharma/fast-syntax-highlighting
 
