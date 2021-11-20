@@ -146,7 +146,7 @@ zinit load ajeetdsouza/zoxide
 ### zinit-console
 # A curses consolette for Zsh-Zinit plugin manager.
 zinit wait"2" for \
-  zdharma/zui \
+  zdharma-continuum/zui \
   zinit-zsh/zinit-console
 
 ############################################################
@@ -221,9 +221,9 @@ zinit load zsh-users/zsh-history-substring-search
 # Send notifications and commands to all or selected
 # Zshell instances.
 zinit ice wait for \
-  zdharma/zconvey \
+  zdharma-continuum/zconvey \
   as"command" pick"cmds/zc-bg-notify" silent \
-    zdharma/zconvey
+    zdharma-continuum/zconvey
 
 ### bgnotify
 # Cross-platform background notifications for long running
@@ -266,5 +266,5 @@ zinit load zsh-users/zsh-completions
 
 # Fast Syntax Highlighting
 zinit ice wait atinit'zpcompinit; zpcdreplay'
-zinit load zdharma/fast-syntax-highlighting
+zinit load zdharma-continuum/fast-syntax-highlighting
 
