@@ -108,18 +108,18 @@ zinit light-mode for \
 
 # z-a-bin-gem-node: Provides a RVM-like solution for Ruby
 # Gems, Node modules and regular binaries.
-zinit load zinit-zsh/z-a-bin-gem-node
+zinit load zdharma-continuum/z-a-bin-gem-node
 
 # z-a-eval: Caches arbitrarily slow command output to speed
 # up shell startup
 zinit load NICHOLAS85/z-a-eval
 
 # z-a-patch-dl: Downlaods files and applies patches
-zinit load zinit-zsh/z-a-patch-dl
+zinit load zdharma-continuum/z-a-patch-dl
 
 # z-a-man: Automatically generates man pages out of plugin
 # README.md files.
-zinit load zinit-zsh/z-a-man
+zinit load zdharma-continuum/z-a-man
 
 
 
@@ -160,8 +160,8 @@ zinit load ajeetdsouza/zoxide
 ### zinit-console
 # A curses consolette for Zsh-Zinit plugin manager.
 zinit wait"2" for \
-  zdharma/zui \
-  zinit-zsh/zinit-console
+  zdharma-continuum/zui \
+  zdharma-continuum/zinit-console
 
 ############################################################
 ### Zinit: Completions 					 ###
@@ -235,9 +235,9 @@ zinit load zsh-users/zsh-history-substring-search
 # Send notifications and commands to all or selected
 # Zshell instances.
 zinit ice wait for \
-  zdharma/zconvey \
+  zdharma-continuum/zconvey \
   as"command" pick"cmds/zc-bg-notify" silent \
-    zdharma/zconvey
+    zdharma-continuum/zconvey
 
 ### bgnotify
 # Cross-platform background notifications for long running
@@ -280,5 +280,5 @@ zinit load zsh-users/zsh-completions
 
 # Fast Syntax Highlighting
 zinit ice wait atinit'zpcompinit; zpcdreplay'
-zinit load zdharma/fast-syntax-highlighting
+zinit load zdharma-continuum/fast-syntax-highlighting
 
