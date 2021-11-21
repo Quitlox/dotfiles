@@ -1,50 +1,116 @@
 #!/bin/bash
 
-Color_Off='\033[0m'       # Text Reset
+cecho () {
 
-Blue='\033[0;34m'         # Blue
-BBlue='\033[1;34m'        # Bold Blue
-Yellow='\033[0;33m'       # Yellow
-BYellow='\033[1;33m'      # Bold Yellow
-Red='\033[0;31m'          # Red
-BRed='\033[1;31m'         # Bold Red
+    declare -A colors;
+    colors=(\
+        ['black']='\033[0;47m'\
+        ['red']='\033[0;31m'\
+        ['green']='\033[0;32m'\
+        ['yellow']='\033[0;33m'\
+        ['blue']='\033[0;34m'\
+        ['magenta']='\033[0;35m'\
+        ['cyan']='\033[0;36m'\
+        ['white']='\033[1;37m'\
+        ['bblack']='\033[1;47m'\
+        ['bred']='\033[1;31m'\
+        ['bgreen']='\033[1;32m'\
+        ['byellow']='\033[1;33m'\
+        ['bblue']='\033[1;34m'\
+        ['bmagenta']='\033[1;35m'\
+        ['bcyan']='\033[1;36m'\
+        ['bwhite']='\033[1;37m'\
+    );
+
+    local defaultMSG="No message passed.";
+    local defaultColor="black";
+    local defaultNewLine=true;
+
+    while [[ $# -gt 1 ]];
+    do
+    key="$1";
+
+    case $key in
+        -c|--color)
+            color="$2";
+            shift;
+        ;;
+        -n|--noline)
+            newLine=false;
+        ;;
+        *)
+            # unknown option
+        ;;
+    esac
+    shift;
+    done
+
+    message=${1:-$defaultMSG};   # Defaults to default message.
+    color=${color:-$defaultColor};   # Defaults to default color, if not specified.
+    newLine=${newLine:-$defaultNewLine};
+
+    echo -en "${colors[$color]}";
+    echo -en "$message";
+    if [ "$newLine" = true ] ; then
+        echo;
+    fi
+    tput sgr0; #  Reset text attributes to normal without clearing screen.
+
+    return;
+}
+
+function warning () {
+    cecho -c 'yellow' "=> $@";
+}
+function bwarning () {
+    cecho -c 'byellow' "=> ⚠️  $@";
+}
+
+function error () {
+    cecho -c 'red' "=> $@";
+}
+function berror () {
+    cecho -c 'bred' "=> ⚡ $@";
+}
+
+function information () {
+    cecho -c 'blue' "=> $@";
+}
+function binformation () {
+    cecho -c 'bblue' "=> \uf129 $@";
+}
+function success () {
+    cecho -c 'green' "=> $@";
+}
+function bsuccess () {
+    cecho -c 'bgreen' "=> $@";
+}
+
 
 # VARIABLES
 BW_BIN="$HOME/.local/bin/bw"
 
 # [BOOTSTRAPPING - DIRECTORIES]
-[[ ! -e "$HOME/.local" ]] && mkdir "$HOME/.local" && echo "=> Created folder ~/.local"
-[[ ! -e "$HOME/.local/src" ]] && mkdir "$HOME/.local/src" && echo "=> Created folder ~/.local/src"
-[[ ! -e "$HOME/.local/bin" ]] && mkdir "$HOME/.local/bin" && echo "${Blue}=> Created folder ~/.local/bin${Color_Off}"
+[[ ! -e "$HOME/.local" ]] && mkdir "$HOME/.local" && information "Created folder ~/.local"
+[[ ! -e "$HOME/.local/src" ]] && mkdir "$HOME/.local/src" && information "Created folder ~/.local/src"
+[[ ! -e "$HOME/.local/bin" ]] && mkdir "$HOME/.local/bin" && information "Created folder ~/.local/bin"
 
 # [BOOTSTRAPPING - PATH]
 if [[ ! ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
-	echo -e "${BBlue}=> Adding ~/.local/bin to \$PATH${Color_Off}"
+	information "Adding ~/.local/bin to \$PATH"
 	export PATH=$PATH:$HOME/.local/bin
 fi
 
 # [BOOTSTRAPPING - 7zip]
 if ! command -v "7z"
+binformation "Not installed: 7zip!"
 then
 	if [[ $(uname -r) == *"MANJARO"* ]]; then
 		sudo pacman -S p7zip
 	elif [[ $(uname -v) == *"Debian"* ]]; then
 		sudo apt install p7zip
 	else
-		echo -e "${BRed}=> Please install p7zip!${Color_Off}"
-		exit
-	fi
-fi
-
-# [BOOTSTRAPPING - ZSH]
-if ! command -v "zsh"
-then
-	if [[ $(uname -r) == *"MANJARO"* ]]; then
-		sudo pacman -S zsh
-	elif [[ $(uname -v) == *"Debian"* ]]; then
-		sudo apt install zsh
-	else
-		echo -e "${BRed}=> Please install zsh!${Color_Off}"
+		berror "Please install p7zip!"
 		exit
 	fi
 fi
@@ -53,14 +119,14 @@ fi
 if ! command -v bw &> /dev/null
 then
 	# [BOOTSTRAPPING - BITWARDEN]
-	echo -e "${BBlue}Bitwarden not installed, bootstrapping Bitwarden...${Color_Off}"
+	binformation "Bitwarden not installed, bootstrapping Bitwarden..."
 
 	# [BOOTSTRAPPING - BITWARDEN] Get tag of latest release
 	TAG=$(curl -u "quitlox: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" -L --silent "https://api.github.com/repos/bitwarden/cli/releases/latest" \
 		| grep '"tag_name":' \
 		| sed -E 's/.*"([^"]+)".*/\1/')
 	BW_SRC="$HOME/.local/src/bitwardencli/bw-${TAG}"
-	echo -e "${Blue}=> Found release: ${TAG}${Color_Off}"
+	information "Found release: ${TAG}"
 
 	# EXPLANATION
 	#curl \
@@ -87,7 +153,7 @@ then
 			| grep -B 3 'linux.*.zip' \
 			| awk '/"id"/ { print $2 }' \
 			| sed 's/,//')
-	echo -e "${Blue}=> Found asset: ${ASSET_ID}${Color_Off}"
+	information "Found asset: ${ASSET_ID}"
 
 
 	# [BOOTSTRAPPING - BITWARDEN] Download latest release
@@ -95,26 +161,26 @@ then
 		# No, so download the latest asset
 
 		# Create directory if non-existant
-		[[ ! -e "$HOME/.local/src/bitwardencli" ]] && mkdir "$HOME/.local/src/bitwardencli" && echo "=> Created folder ~/.local/src/bitwardencli"
+		[[ ! -e "$HOME/.local/src/bitwardencli" ]] && mkdir "$HOME/.local/src/bitwardencli" && information "Created folder ~/.local/src/bitwardencli"
 
 		# Download...
-		echo -e "${Blue}=> Downloading...${Color_Off}"
+		information "Downloading..."
 		curl -u "quitlox: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" -L -H "Accept: application/octet-stream" \
 			"https://api.github.com/repos/bitwarden/cli/releases/assets/48085900" \
 			--output "$BW_SRC.zip"
 	else
-		echo -e "${Yellow}=> Latest release already downloaded!${Color_Off}"
+		warning "Latest release already downloaded!"
 	fi
 
 	# [BOOTSTRAPPING - BITWARDEN] Extract the binary
 	if [[ ! -e "$BW_SRC" ]]; then
-		echo -e "${Blue}=> Extracting binary $BW_SRC.zip${Color_Off}"
+		information "Extracting binary $BW_SRC.zip"
 		7z x -o"$BW_SRC" "$BW_SRC.zip"
 	fi
 
 	# [BOOTSTRAPPING - BITWARDEN] Symlink ~/.local/src to ~/.local/bin
 	if [[ ! -e "$BW_BIN" ]]; then
-		echo -e "${Blue}=> Symlinking binary to $BW_BIN${Color_Off}"
+		information "Symlinking binary to $BW_BIN"
 		ln -s "$BW_SRC/bw" "$BW_BIN"
 	fi
 
@@ -122,12 +188,12 @@ then
 	if [[ ! -x "$BW_BIN" ]]; then
 		# Set executable flag
 		chmod +x "$BW_BIN"
-		echo -e "${Blue}=> Executable flag set${Color_Off}"
+		information "Executable flag set"
 	fi
 fi
 
 # [BITWARDEN] Login to Bitwarden
-echo -e "${BBlue}Login to Bitwarden${Color_Off}"
+binformation "Login to Bitwarden"
 export BW_SESSION=$(bw unlock --raw)
 
 # [CHEZMOI] Get Age (File Encryption) key from Bitwarden

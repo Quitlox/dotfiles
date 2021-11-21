@@ -67,14 +67,14 @@ function warning () {
     cecho -c 'yellow' "=> $@";
 }
 function bwarning () {
-    cecho -c 'byellow' "=> $@";
+    cecho -c 'byellow' "=> ⚠️  $@";
 }
 
 function error () {
     cecho -c 'red' "=> $@";
 }
 function berror () {
-    cecho -c 'bred' "=> $@";
+    cecho -c 'bred' "=> ⚡ $@";
 }
 
 function information () {
@@ -82,4 +82,10 @@ function information () {
 }
 function binformation () {
     cecho -c 'bblue' "=> \uf129 $@";
+}
+function success () {
+    cecho -c 'green' "=> $@";
+}
+function bsuccess () {
+    cecho -c 'bgreen' "=> $@";
 }
