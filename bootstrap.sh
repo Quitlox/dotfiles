@@ -129,6 +129,9 @@ then
 		| grep '"tag_name":' \
 		| sed -E 's/.*"([^"]+)".*/\1/')
 	BW_SRC="$HOME/.local/src/bitwardencli/bw-${TAG}"
+	if [[ -z "$TAG" ]]
+	    bdanger "Something went wrong while fetching the Bitwarden release"
+	fi
 	information "Found release: ${TAG}"
 
 	# EXPLANATION
@@ -156,6 +159,9 @@ then
 			| grep -B 3 'linux.*.zip' \
 			| awk '/"id"/ { print $2 }' \
 			| sed 's/,//')
+	if [[ -z "$ASSET_ID" ]]
+	    bdanger "Something went wrong while fetching the Bitwarden asset"
+	fi
 	information "Found asset: ${ASSET_ID}"
 
 
