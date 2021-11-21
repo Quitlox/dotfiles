@@ -77,18 +77,23 @@ function information () {
     cecho -c 'blue' "=> $@";
 }
 function binformation () {
-    cecho -c 'bblue' "=> \uf129 $@";
+    cecho -c 'bblue' "=> ℹ️  $@";
 }
 function success () {
     cecho -c 'green' "=> $@";
 }
 function bsuccess () {
-    cecho -c 'bgreen' "=> $@";
+    cecho -c 'bgreen' "=> ✅ $@";
 }
-
 
 # VARIABLES
 BW_BIN="$HOME/.local/bin/bw"
+
+# [BOOTSTRAPPING - .PROFILE]
+if [[ -e $HOME/.profile ]]; then
+    bwarning "Found .profile. Please remove before continuing."
+    exit
+fi
 
 # [BOOTSTRAPPING - DIRECTORIES]
 [[ ! -e "$HOME/.local" ]] && mkdir "$HOME/.local" && information "Created folder ~/.local"
