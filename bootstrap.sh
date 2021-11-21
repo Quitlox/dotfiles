@@ -107,7 +107,7 @@ if [[ ! ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
 fi
 
 # [BOOTSTRAPPING - 7zip]
-if ! command -v "7z"; then
+if ! command -v "7z" && ! command -v "p7zip"; then
     binformation "Not installed: 7zip!"
     if [[ $(uname -r) == *"MANJARO"* ]]; then
 	    sudo pacman -S p7zip
@@ -178,7 +178,15 @@ then
 	# [BOOTSTRAPPING - BITWARDEN] Extract the binary
 	if [[ ! -e "$BW_SRC" ]]; then
 		information "Extracting binary $BW_SRC.zip"
-		7z x -o"$BW_SRC" "$BW_SRC.zip"
+
+		if [[ command -v "7z" ]]; then
+		    7z x -o"$BW_SRC" "$BW_SRC.zip"
+		elif [[ command -v "p7zip" ]]; then
+		    p7zip x -o"$BW_SRC" "$BW_SRC.zip"
+		else
+		    berror "Cannot find command for 7z!"
+		    exit
+		fi
 	fi
 
 	# [BOOTSTRAPPING - BITWARDEN] Symlink ~/.local/src to ~/.local/bin
