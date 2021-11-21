@@ -202,4 +202,9 @@ binformation "Login to Bitwarden"
 export BW_SESSION=$(bw unlock --raw)
 
 # [CHEZMOI] Get Age (File Encryption) key from Bitwarden
+information "Retrieving encryption key..."
 bw get attachment "chezmoi_encryption_key.txt" --itemid b33b9474-c3ba-4961-abef-ade1010e1597 --output "$(chezmoi source-path)/private_dot_ssh/.chezmoi_encryption_key.txt"
+
+# [CHEZMOI]
+binformation "Downloading chezmoi..."
+sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply quitlox

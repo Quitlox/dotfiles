@@ -81,11 +81,11 @@ function information () {
     cecho -c 'blue' "=> $@";
 }
 function binformation () {
-    cecho -c 'bblue' "=> \uf129 $@";
+    cecho -c 'bblue' "=> ℹ️  $@";
 }
 function success () {
     cecho -c 'green' "=> $@";
 }
 function bsuccess () {
-    cecho -c 'bgreen' "=> $@";
+    cecho -c 'bgreen' "=> ✅ $@";
 }
