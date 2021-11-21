@@ -107,17 +107,15 @@ if [[ ! ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
 fi
 
 # [BOOTSTRAPPING - 7zip]
-if ! command -v "7z"
-binformation "Not installed: 7zip!"
-then
-	if [[ $(uname -r) == *"MANJARO"* ]]; then
-		sudo pacman -S p7zip
-	elif [[ $(uname -v) == *"Debian"* ]]; then
-		sudo apt install p7zip
-	else
-		berror "Please install p7zip!"
-		exit
-	fi
+if ! command -v "7z"; then
+    binformation "Not installed: 7zip!"
+    if [[ $(uname -r) == *"MANJARO"* ]]; then
+	    sudo pacman -S p7zip
+    elif [[ $(uname -v) == *"Debian"* ]]; then
+	    sudo apt install p7zip
+    else
+	    exit
+    fi
 fi
 
 # [BOOTSTRAPPING - BITWARDEN]
@@ -207,4 +205,5 @@ bw get attachment "chezmoi_encryption_key.txt" --itemid b33b9474-c3ba-4961-abef-
 
 # [CHEZMOI]
 binformation "Downloading chezmoi..."
+BINDIR="$HOME/.local/bin"
 sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply quitlox
