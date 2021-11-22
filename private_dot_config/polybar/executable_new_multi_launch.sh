@@ -70,7 +70,7 @@ fi
     if [ -e "${_log}" ] ; then
       rm --recursive --force "${_log}"
     fi
-    export POLYMON="${_mon}"
+    export MONITOR="${_mon}"
 
     #--Get the horizontal resolution to differentiate hidpi
     _hor="$(sed 's|.* \([0-9]\+\)x[0-9]\+.*|\1|' <<< "${_pom}")"

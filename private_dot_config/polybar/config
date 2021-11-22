@@ -34,6 +34,7 @@ font-1 = Iosevka Nerd Font:size=10;2
 [bar/top]
 ; Monitor
 monitor = ${env:MONITOR:}
+monitor-strict = true
 ; i3 sucks
 override-redirect = true
 wm-restack = i3
@@ -90,6 +91,7 @@ enable-ipc = true
 
 [bar/bottom]
 monitor = ${env:MONITOR:}
+monitor-strict = true
 
 bottom = true
 width=100%
