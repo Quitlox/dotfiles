@@ -130,7 +130,8 @@ then
 		| sed -E 's/.*"([^"]+)".*/\1/')
 	BW_SRC="$HOME/.local/src/bitwardencli/bw-${TAG}"
 	if [[ -z "$TAG" ]]; then
-	    bdanger "Something went wrong while fetching the Bitwarden release"
+	    berror "Something went wrong while fetching the Bitwarden release"
+	    exit
 	fi
 	information "Found release: ${TAG}"
 
@@ -160,7 +161,8 @@ then
 			| awk '/"id"/ { print $2 }' \
 			| sed 's/,//')
 	if [[ -z "$ASSET_ID" ]]; then
-	    bdanger "Something went wrong while fetching the Bitwarden asset"
+	    berror "Something went wrong while fetching the Bitwarden asset"
+	    exit
 	fi
 	information "Found asset: ${ASSET_ID}"
 
@@ -185,9 +187,9 @@ then
 	if [[ ! -e "$BW_SRC" ]]; then
 		information "Extracting binary $BW_SRC.zip"
 
-		if [[ command -v "7z" ]]; then
+		if command -v "7z"; then
 		    7z x -o"$BW_SRC" "$BW_SRC.zip"
-		elif [[ command -v "p7zip" ]]; then
+		elif command -v "p7zip"; then
 		    p7zip x -o"$BW_SRC" "$BW_SRC.zip"
 		else
 		    berror "Cannot find command for 7z!"
