@@ -205,7 +205,7 @@ fi
 
 # [BITWARDEN] Login to Bitwarden
 binformation "Login to Bitwarden"
-export BW_SESSION=$(bw unlock --raw)
+export BW_SESSION=$(bw login --raw)
 
 # [CHEZMOI] Download
 binformation "Downloading chezmoi..."
@@ -217,5 +217,6 @@ information "Retrieving encryption key..."
 bw get attachment "chezmoi_encryption_key.txt" --itemid b33b9474-c3ba-4961-abef-ade1010e1597 --output "$(chezmoi source-path)/private_dot_ssh/.chezmoi_encryption_key.txt"
 
 # [CHEZMOI] Apply
+chezmoi init quitlox
 chezmoi apply
 
