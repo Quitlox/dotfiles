@@ -4,7 +4,7 @@
 ############################################################
 
 # Needed for kitty terminal
-alias ssh=kitty +kitten ssh
+alias ssh='kitty +kitten ssh'
 
 alias cp='cp -iv' 		# cp: Confirm + Verbose
 alias df='df -h' 		# Human-readable sizes
