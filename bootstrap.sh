@@ -125,7 +125,7 @@ then
 	binformation "Bitwarden not installed, bootstrapping Bitwarden..."
 
 	# [BOOTSTRAPPING - BITWARDEN] Get tag of latest release
-	TAG=$(curl -u "quitlox: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" -L --silent "https://api.github.com/repos/bitwarden/cli/releases/latest" \
+	TAG=$(curl -L --silent "https://api.github.com/repos/bitwarden/cli/releases/latest" \
 		| grep '"tag_name":' \
 		| sed -E 's/.*"([^"]+)".*/\1/')
 	BW_SRC="$HOME/.local/src/bitwardencli/bw-${TAG}"
@@ -154,7 +154,7 @@ then
 	#		| sed 's/,//'
 
 	# [BITWARDEN] Get the id of the 'linux.*.zip' Asset
-	ASSET_ID=$(curl -u "quitlox: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" -L -H "Accept: application/vnd.github.v3+json" \
+	ASSET_ID=$(curl -L -H "Accept: application/vnd.github.v3+json" \
 		"https://api.github.com/repos/bitwarden/cli/releases/tags/v1.19.1" \
 			| grep -B 3 '"name"' \
 			| grep -B 3 'linux.*.zip' \
@@ -176,7 +176,7 @@ then
 
 		# Download...
 		information "Downloading..."
-		curl -u "quitlox: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" -L -H "Accept: application/octet-stream" \
+		curl -L -H "Accept: application/octet-stream" \
 			"https://api.github.com/repos/bitwarden/cli/releases/assets/48085900" \
 			--output "$BW_SRC.zip"
 	else
