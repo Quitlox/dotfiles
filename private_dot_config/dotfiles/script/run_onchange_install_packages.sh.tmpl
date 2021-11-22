@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Packages you probably want on any system
-#sudo pacman -S git vim p7zip zsh
-#sudo apt install git vim p7zip zsh
+#sudo pacman -S git vim p7zip zsh 
+#sudo apt install git vim p7zip zsh rubygems
 
-source "$(chezmoi source-path)/private_dot_config/chezmoi/script/dep_all.sh"
+source "$(chezmoi source-path)/private_dot_config/dotfiles/script_include/dep_all.sh"
 
-YAY={{- joinPath .chezmoi.sourceDir "private_dot_config/chezmoi/script/yay_needed.sh" }}
+YAY={{- joinPath .chezmoi.sourceDir "private_dot_config/dotfiles/script_include/yay_needed.sh" }}
 
 {{ if eq .chezmoi.osRelease.id "manjaro" }}
 binformation "Manjaro detected"
