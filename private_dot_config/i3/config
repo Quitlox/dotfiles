@@ -471,7 +471,7 @@ for_window [window_role="task_dialog"] floating enable
 
 # Assigning windows to specific workspaces
 for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9 focus
-assign[class="discord"] number $ws8
+assign [class="discord"] number $ws8
 
 ###########################################
 ### Theme Resources                     ###
