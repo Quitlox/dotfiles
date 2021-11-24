@@ -10,7 +10,7 @@
 set $mod Mod4
 
 # Termianl
-set $terminal kitty
+set $terminal i3-sensible-terminal
 
 # Vim
 set $up k
@@ -470,7 +470,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # Assigning windows to specific workspaces
-for_window [class="Spotify"] move to workspace $ws9
+for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9 focus
 assign[class="discord"] number $ws8
 
 ###########################################
