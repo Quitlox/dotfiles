@@ -1,15 +1,30 @@
 
-{{- $email := "" -}}
-{{- if (hasKey . "email") -}}
-{{-   $email = .email -}}
-{{- else -}}
-{{-   $email = promptString "E-Mail (git)" -}}
-{{- end -}}
+{{- $email := "" }}
+{{- if (hasKey . "email") }}
+{{-   $email = .email }}
+{{- else }}
+{{-   $email = promptString "E-Mail (git)" }}
+{{- end }}
+
+{{- $environment := "" }}
+{{- if (hasKey . "environment") }}
+{{-   $environment = .environment }}
+{{- else }}
+
+{{- if (eq (expandenv "$SSH_TTY$SSH_CLIENT") "") }}
+{{-   $environment = "desktop" }}
+{{- else }}
+{{-   $environment = "headless" }}
+{{- end }}
+
+{{- end }}
+
 
 encryption = "age"
 
 [data]
 	email = {{ $email | quote }}
+	environment = {{ $environment | quote }}
 
 [age]
 	identity = "{{ joinPath .chezmoi.sourceDir "private_dot_ssh/.chezmoi_encryption_key.txt" }}"

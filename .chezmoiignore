@@ -2,3 +2,15 @@ bootstrap.sh
 
 settings.json
 keybindings.json
+
+{{ if (eq .environment "headless") }}
+dot_xprofile
+dot_ideavimrc
+private_dot_config/kitty
+private_dot_config/i3
+private_dot_config/nitrogen
+private_dot_config/polybar
+private_dot_config/private_Code
+private_dot_config/spotifyd
+private_dot_config/zathura
+{{ end }}
