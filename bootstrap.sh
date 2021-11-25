@@ -89,12 +89,6 @@ function bsuccess () {
 # VARIABLES
 BW_BIN="$HOME/.local/bin/bw"
 
-# [BOOTSTRAPPING - .PROFILE]
-if [[ -e $HOME/.profile ]]; then
-    bwarning "Found .profile. Please remove before continuing."
-    exit
-fi
-
 # [BOOTSTRAPPING - DIRECTORIES]
 [[ ! -e "$HOME/.local" ]] && mkdir "$HOME/.local" && information "Created folder ~/.local"
 [[ ! -e "$HOME/.local/src" ]] && mkdir "$HOME/.local/src" && information "Created folder ~/.local/src"
@@ -107,8 +101,8 @@ if [[ ! ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
 fi
 
 # [BOOTSTRAPPING - 7zip]
-if ! command -v "7z" &> /dev/null && ! command -v "p7zip" &> /dev/null; then
-    binformation "Not installed: 7zip!"
+if ! command -v "unzip" &> /dev/null &&! command -v "7z" &> /dev/null && ! command -v "p7zip" &> /dev/null; then
+    binformation "Neither unzip or p7zip is installed!"
     if [[ $(uname -r) == *"MANJARO"* ]]; then
 	    sudo pacman -S p7zip
     elif [[ $(uname -v) == *"Debian"* ]]; then
@@ -186,7 +180,16 @@ then
 	# [BOOTSTRAPPING - BITWARDEN] Extract the binary
 	if [[ ! -e "$BW_SRC" ]]; then
 		information "Extracting binary $BW_SRC.zip"
-		7z x -o"$BW_SRC" "$BW_SRC.zip"
+		if command -v "unzip" &> /dev/null; then
+		    unzip "$BW_SRC.zip" -d "BW_SRC"
+		elif  command -v "7z" &> /dev/null; then
+		    7z x -o"$BW_SRC" "$BW_SRC.zip"
+		elif command -v "p7zip" &> /dev/null; then
+		    p7zip x -o"$BW_SRC" "$BW_SRC.zip"
+		else
+		    berror "No zipping software, could not unpack archive!"
+		    exit
+		fi
 	fi
 
 	# [BOOTSTRAPPING - BITWARDEN] Symlink ~/.local/src to ~/.local/bin
@@ -204,8 +207,13 @@ then
 fi
 
 # [BITWARDEN] Login to Bitwarden
-binformation "Login to Bitwarden"
-export BW_SESSION=$(bw login --raw)
+if bw --nointeraction --quiet login --check; then
+    binformation "Unlock to Bitwarden"
+    export BW_SESSION=$(bw unlock --raw)
+else
+    binformation "Login to Bitwarden"
+    export BW_SESSION=$(bw login --raw)
+fi
 
 # [CHEZMOI] Download
 binformation "Downloading chezmoi..."
@@ -214,7 +222,7 @@ sh -c "$(curl -fsLS git.io/chezmoi)"
 
 # [CHEZMOI] Get Age (File Encryption) key from Bitwarden
 information "Retrieving encryption key..."
-bw get attachment "chezmoi_encryption_key.txt" --itemid b33b9474-c3ba-4961-abef-ade1010e1597 --output "$(chezmoi source-path)/private_dot_ssh/.chezmoi_encryption_key.txt"
+bw --nointeraction get attachment "chezmoi_encryption_key.txt" --itemid b33b9474-c3ba-4961-abef-ade1010e1597 --output "$(chezmoi source-path)/private_dot_ssh/.chezmoi_encryption_key.txt"
 
 # [CHEZMOI] Apply
 chezmoi init quitlox
