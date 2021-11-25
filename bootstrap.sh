@@ -181,7 +181,7 @@ then
 	if [[ ! -e "$BW_SRC" ]]; then
 		information "Extracting binary $BW_SRC.zip"
 		if command -v "unzip" &> /dev/null; then
-		    unzip "$BW_SRC.zip" -d "BW_SRC"
+		    unzip "$BW_SRC.zip" -d "$BW_SRC"
 		elif  command -v "7z" &> /dev/null; then
 		    7z x -o"$BW_SRC" "$BW_SRC.zip"
 		elif command -v "p7zip" &> /dev/null; then
