@@ -269,6 +269,10 @@ for zdharma-continuum/null
 zinit ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
 zinit load starship/starship
 
+# zsh-fzf-history-search
+zinit ice lucid wait'0'
+zinit light joshskidmore/zsh-fzf-history-search
+
 # Zsh Autosuggestions
 zinit ice wait atload'_zsh_autosuggest_start'
 zinit load zsh-users/zsh-autosuggestions
