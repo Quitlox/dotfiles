@@ -228,3 +228,6 @@ bw --nointeraction get attachment "chezmoi_encryption_key.txt" --itemid b33b9474
 chezmoi init quitlox
 chezmoi apply
 
+# EXIT
+trap "exit" INT
+bwarning "This script has been brutally murdered"

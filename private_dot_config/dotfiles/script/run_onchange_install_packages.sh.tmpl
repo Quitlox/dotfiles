@@ -1,12 +1,20 @@
-#!/bin/bash
+#!/bin/bash 
 
 # Packages you probably want on any system
 #sudo pacman -S git vim p7zip zsh 
 #sudo apt install git vim p7zip zsh rubygems
 
+# Import Scripting Dependencies
 source "$(chezmoi source-path)/private_dot_config/dotfiles/script_include/dep_all.sh"
-
+# Convenience wrapper around yay
 YAY={{- joinPath .chezmoi.sourceDir "private_dot_config/dotfiles/script_include/yay_needed.sh" }}
+
+# Obtain SUDO
+information "Please enter sudo password..."
+if ! sudo -Sv; then
+	berror "Failed to obtain Sudo" >&2
+	exit
+fi
 
 {{ if eq .chezmoi.osRelease.id "manjaro" }}
 binformation "Manjaro detected"
