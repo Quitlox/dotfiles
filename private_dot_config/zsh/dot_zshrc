@@ -129,9 +129,9 @@ zinit load zdharma-continuum/z-a-man
 
 ### exa
 # A modern replacement for 'ls'.
-zinit ice \
-  from"gh-r" as"program" \
-  mv"bin/exa* -> exa"
+zinit ice wait"1" \
+  from"gh-r" as"command" \
+  extract mv"bin/exa* -> exa" pick"exa"
 zinit load ogham/exa
 
 ### bat
@@ -187,7 +187,7 @@ zinit load davidde/git
 ############################################################
 
 ### SSH-Agent ###
-zinit ice wait"1" lucid
+zinit ice wait"1" silent 
 zinit load bobsoppe/zsh-ssh-agent
 
 ### Node Version Manager (NVM)
@@ -268,6 +268,10 @@ for zdharma-continuum/null
 # Starship prompt
 zinit ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
 zinit load starship/starship
+
+# zsh-fzf-history-search
+zinit ice lucid wait'0'
+zinit light joshskidmore/zsh-fzf-history-search
 
 # Zsh Autosuggestions
 zinit ice wait atload'_zsh_autosuggest_start'

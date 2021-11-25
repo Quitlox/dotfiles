@@ -1,8 +1,5 @@
-#!/bin/bash 
+#!/bin/bash
 
-# Packages you probably want on any system
-#sudo pacman -S git vim p7zip zsh 
-#sudo apt install git vim p7zip zsh rubygems
 
 # Import Scripting Dependencies
 source "$(chezmoi source-path)/private_dot_config/dotfiles/script_include/dep_all.sh"
@@ -16,7 +13,19 @@ if ! sudo -Sv; then
 	exit
 fi
 
-{{ if eq .chezmoi.osRelease.id "manjaro" }}
+
+# Packages you probably want on any system
+
+{{- if eq .chezmoi.osRelease.id "manjaro" }}
+sudo pacman -S --needed -q git vim zsh unzip exa bat tree make
+{{- else if eq .chezmoi.osRelease.id "debian" }}
+sudo apt install git vim zsh rubygems unzip exa bat tree make
+{{- end }}
+
+# Packages only needed on desktop
+{{- if eq .environment "desktop" }}
+
+{{- if eq .chezmoi.osRelease.id "manjaro" }}
 binformation "Manjaro detected"
 
 #######################################
@@ -116,7 +125,7 @@ sudo pacman -S --needed -q zathura
 # PDF support for Zathura
 sudo pacman -S --needed -q zathura-pdf-mupdf
 
-# Obsidian is a powerful knowledge base that works on top 
+# Obsidian is a powerful knowledge base that works on top
 # of a local folder of plain text Markdown files
 /bin/bash $YAY obsidian-appimage
 
@@ -136,9 +145,9 @@ sudo pacman -S --needed -q rlwrap
 ### development tools               ###
 #######################################
 
-install cmake
-install firefox-developer-edition
-install jdk11-openjdk
+#install cmake
+#install firefox-developer-edition
+#install jdk11-openjdk
 
 #######################################
 ### hacking tools                   ###
@@ -146,4 +155,5 @@ install jdk11-openjdk
 
 sudo pacman -S --needed -q nmap sqlmap wireshark-qt
 
-{{ end }}
+{{- end }}
+{{- end }}
