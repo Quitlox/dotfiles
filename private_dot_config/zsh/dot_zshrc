@@ -187,7 +187,7 @@ zinit load davidde/git
 ############################################################
 
 ### SSH-Agent ###
-zinit ice wait"1" lucid
+zinit ice wait"1" silent 
 zinit load bobsoppe/zsh-ssh-agent
 
 ### Node Version Manager (NVM)
