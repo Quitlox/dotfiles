@@ -89,8 +89,6 @@ mode "$mode_launcher" {
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 $i3lockwall
-
 
 # Autostart UI elements
 
@@ -470,8 +468,8 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # Assigning windows to specific workspaces
-for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9 focus
-assign [class="discord"] number $ws8
+for_window [class="Spotify"] move to workspace $ws9; workspace $ws9
+assign[class="discord"] number $ws8
 
 ###########################################
 ### Theme Resources                     ###
