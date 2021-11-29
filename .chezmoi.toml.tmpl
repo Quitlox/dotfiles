@@ -6,6 +6,13 @@
 {{-   $email = promptString "E-Mail (git)" }}
 {{- end }}
 
+{{- $priviliged := "" }}
+{{- if (hasKey . "priviliged") }}
+{{-   $priviliged = .priviliged }}
+{{- else }}
+{{-   $priviliged = promptBool "Do you have sudo priviliges" }}
+{{- end }}
+
 {{- $environment := "" }}
 {{- if (hasKey . "environment") }}
 {{-   $environment = .environment }}
@@ -25,6 +32,7 @@ encryption = "age"
 [data]
 	email = {{ $email | quote }}
 	environment = {{ $environment | quote }}
+	priviliged = {{ $priviliged }}
 
 [age]
 	identity = "{{ joinPath .chezmoi.sourceDir "private_dot_ssh/.chezmoi_encryption_key.txt" }}"

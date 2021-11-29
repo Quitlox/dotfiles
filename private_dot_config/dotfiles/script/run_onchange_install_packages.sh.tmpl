@@ -1,5 +1,6 @@
 #!/bin/bash
 
+{{- if .priviliged }}
 
 # Import Scripting Dependencies
 source "$(chezmoi source-path)/private_dot_config/dotfiles/script_include/dep_all.sh"
@@ -155,5 +156,6 @@ sudo pacman -S --needed -q rlwrap
 
 sudo pacman -S --needed -q nmap sqlmap wireshark-qt
 
+{{- end }}
 {{- end }}
 {{- end }}
