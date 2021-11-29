@@ -59,8 +59,8 @@ export PKG_CACHE_PATH="$XDG_CACHE_HOME/pkg-cache"
 export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 
-# Python
 {{- if (not (eq .environment "headless")) }}
+# Python
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/pythonrc"
 export PYTHONHISTFILE="$XDG_DATA_HOME/python_history"
 export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
