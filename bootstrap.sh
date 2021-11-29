@@ -215,14 +215,19 @@ else
     export BW_SESSION=$(bw login --raw)
 fi
 
-# [CHEZMOI] Download
-binformation "Downloading chezmoi..."
-export BINDIR="$HOME/.local/bin"
-sh -c "$(curl -fsLS git.io/chezmoi)"
-
 # [CHEZMOI] Get Age (File Encryption) key from Bitwarden
 information "Retrieving encryption key..."
 bw --nointeraction get attachment "chezmoi_encryption_key.txt" --itemid b33b9474-c3ba-4961-abef-ade1010e1597 --output "$(chezmoi source-path)/private_dot_ssh/.chezmoi_encryption_key.txt"
+
+# [CHEZMOI] Check for existing installation
+if [[ -e "$HOME/.local/share/chezmoi" ]]; then
+    bwarning "Chezmoi is already installed"
+else
+    # [CHEZMOI] Download
+    binformation "Downloading chezmoi..."
+    export BINDIR="$HOME/.local/bin"
+    sh -c "$(curl -fsLS git.io/chezmoi)"
+fi
 
 # [CHEZMOI] Apply
 chezmoi init quitlox --ssh
