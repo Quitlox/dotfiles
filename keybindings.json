@@ -84,6 +84,23 @@
     "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
   },
 
+  // ...
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.showCommands",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "workbench.action.quickOpen",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+    "when": "inFilesPicker && inQuickOpen && !terminalFocus"
+  },
+
   // Disable vscode defaults
   {
     "key": "ctrl+w",
@@ -122,13 +139,8 @@
   },
   {
     "key": "ctrl+p",
-    "command": "workbench.action.quickOpenNavigateNextInFilePicker",
-    "when": "inFilesPicker && inQuickOpen && !focusTerminal"
-  },
-  {
-    "key": "ctrl+p",
     "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
-    "when": "inFilesPicker && inQuickOpen"
+    "when": "inFilesPicker && inQuickOpen "
   },
   {
     "key": "ctrl+j",
@@ -156,19 +168,15 @@
     "when": "isMacNative && openFolderWorkspaceSupport"
   },
   {
-    "key": "ctrl+o",
-    "command": "workbench.action.quickOpen"
-  },
-  {
     "key": "ctrl+p",
     "command": "-workbench.action.quickOpen"
   },
   {
-    "key": "ctrl+p",
-    "command": "workbench.action.showCommands"
-  },
-  {
     "key": "ctrl+shift+p",
     "command": "-workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-workbench.action.quickOpen"
   }
 ]
