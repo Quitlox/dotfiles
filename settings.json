@@ -9,7 +9,7 @@
   "editor.wordWrap": "off",
   "editor.wordWrapColumn": 80,
   "editor.wrappingIndent": "deepIndent",
-  
+
   "editor.acceptSuggestionOnEnter": "on",
   "editor.cursorStyle": "line",
   "editor.insertSpaces": false,
@@ -364,7 +364,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.quickSuggestions": {
       "strings": true
-    }
+    },
+    "outline.showVariables": false,
+    "outline.showFields": false
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -435,5 +437,5 @@
 
   // Miscellaneous
   "references.preferredLocation": "view",
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 1
 }
