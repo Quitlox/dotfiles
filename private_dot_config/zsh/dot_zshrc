@@ -151,7 +151,7 @@ zinit ice \
 zinit load sharkdp/fd
 
 ### zoxide
-zinit ice wait"1" as"command" from"gh-r" lucid \
+zinit ice wait"0" as"command" from"gh-r" lucid \
   mv"zoxide*/zoxide -> zoxide" \
   atclone"./zoxide init zsh > init.zsh" \
   atpull"%atclone" src"init.zsh" nocompile'!'
@@ -177,7 +177,7 @@ zinit snippet OMZP::docker/_docker
 
 ### Cargo
 zinit ice as"completion" blockf
-zinit snippet OMZP::cargo/_cargo
+zinit snippet OMZP::cargo/cargo.plugin.zsh
 
 ### GIT
 zinit load davidde/git
@@ -187,17 +187,17 @@ zinit load davidde/git
 ############################################################
 
 ### SSH-Agent ###
-zinit ice wait"1" silent 
+zinit ice wait"1" silent
 zinit load bobsoppe/zsh-ssh-agent
 
 ### Node Version Manager (NVM)
 export LESSCHARSET=utf-8
 export NVM_LAZY_LOAD=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim')
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim', 'chezmoi')
 export NVM_SYMLINK_CURRENT=true
 export NVM_COMPLETION=false
 export NVM_DIR="$HOME/.local/share/nvm"
-zinit ice blockf wait
+zinit ice blockf wait"1"
 zinit load lukechilds/zsh-nvm
 
 ### Gitignore plugin – commands gi and gii

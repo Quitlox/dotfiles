@@ -88,7 +88,6 @@ mode "$mode_launcher" {
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id start-pulseaudio-x11
-# exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 $i3lockwall
 
 # Autostart UI elements
@@ -108,6 +107,7 @@ exec --no-startup-id blueman-applet             # Bluetooth Manager
 exec --no-startup-id pamac-tray                 # Pamac Update Notifier
 exec --no-startup-id clipit                     # Clipboard Helper
 exec --no-startup-id pa-applet --disable-notifications
+exec --no-startup-id ibus-daemon -drxR          # Keyboard 
 
 # Autostart utilities
 exec_always --no-startup-id fix_xcursor		# Monitor cursor theme
@@ -374,7 +374,7 @@ set $ws3 3:Code
 set $ws4 4:Search
 set $ws5 5:Documentation
 set $ws6 6:Servers
-set $ws7 7
+set $ws7 7:Scratch
 set $ws8 8:Communication
 set $ws9 9:Music
 

@@ -31,7 +31,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 ### XDG_BASE_DIR: fucking conform
 ########################################
 
-{{- if (not (eq .environment "headless")) }}
+{{ if (eq .environment "headless") }}
 # CHEZMOI: Some environment variables have been
 # removed, as they can conflict in
 # remote controlled environments.
