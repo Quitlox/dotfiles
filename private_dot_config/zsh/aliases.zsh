@@ -26,6 +26,19 @@ alias mkdir="mkdir -v"
 	alias cd="z"
 #fi
 
+# CHEZMOI
+bw-chezmoi() {
+	emulate -L zsh;
+	if [[ "$1" == "chezmoi apply"* ]]; then
+		if ! bw --nointeraction --quiet login --check; then
+			export BW_SESSION=$(bw login --raw)
+		elif ! bw --nointeraction --quiet unlock --check; then
+			export BW_SESSION=$(bw unlock --raw)
+		fi
+	fi
+}
+add-zsh-hook preexec bw-chezmoi
+
 # XDG_BASE_DIR
 alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
 

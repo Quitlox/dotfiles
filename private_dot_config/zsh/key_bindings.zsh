@@ -15,7 +15,11 @@ bindkey '^Y' yank
 # Vi-like
 bindkey '^B' vi-backward-blank-word
 bindkey '^F' vi-forward-blank-word
-bindkey '^L' forward-char
+
+# default
+#bindkey '^L' forward-char
+# for zsh-users/zsh-autosuggestions
+bindkey '^L' forward-word
 
 
 # Obvious Special Key Defaults

@@ -206,9 +206,9 @@ zinit ice wait \
 zinit load voronkovich/gitignore.plugin.zsh
 
 ### zhooks
-#zinit ice wait \
-#  trigger-load'!zhooks'
-#zinit load agkozak/zhooks
+zinit ice wait \
+  trigger-load'!zhooks'
+zinit load agkozak/zhooks
 
 ############################################################
 ### Zinit: Plugins 					 ###
@@ -274,9 +274,10 @@ zinit ice lucid wait'0'
 zinit light joshskidmore/zsh-fzf-history-search
 
 # Zsh Autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history)
 zinit ice wait atload'_zsh_autosuggest_start'
 zinit load zsh-users/zsh-autosuggestions
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
+#export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
 
 # Zsh Completions
 zinit ice wait blockf atpull'zinit creinstall -q .'

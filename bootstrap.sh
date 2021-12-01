@@ -207,12 +207,12 @@ then
 fi
 
 # [BITWARDEN] Login to Bitwarden
-if bw --nointeraction --quiet login --check; then
-    binformation "Unlock to Bitwarden"
-    export BW_SESSION=$(bw unlock --raw)
-else
+if ! bw --nointeraction --quiet login --check; then
     binformation "Login to Bitwarden"
     export BW_SESSION=$(bw login --raw)
+elif ! bw --nointeraction --quiet unlock --check; then
+    binformation "Unlock Bitwarden"
+    export BW_SESSION=$(bw unlock --raw)
 fi
 
 # [CHEZMOI] Get Age (File Encryption) key from Bitwarden
