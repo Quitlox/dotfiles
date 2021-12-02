@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(chezmoi source-path)/private_dot_config/chezmoi/script/dep_all.sh"
+source "$(chezmoi source-path)/private_dot_config/dotfiles/include/dep_all.sh"
 
 binformation "Running script: \"adjust_touch_screen.sh\""
 

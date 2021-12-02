@@ -193,7 +193,7 @@ zinit load bobsoppe/zsh-ssh-agent
 ### Node Version Manager (NVM)
 export LESSCHARSET=utf-8
 export NVM_LAZY_LOAD=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim', 'chezmoi')
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=("vim" "chezmoi")
 export NVM_SYMLINK_CURRENT=true
 export NVM_COMPLETION=false
 export NVM_DIR="$HOME/.local/share/nvm"

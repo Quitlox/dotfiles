@@ -3,9 +3,9 @@
 {{- if .priviliged }}
 
 # Import Scripting Dependencies
-source "$(chezmoi source-path)/private_dot_config/dotfiles/script_include/dep_all.sh"
+source "$(chezmoi source-path)/private_dot_config/dotfiles/include/dep_all.sh"
 # Convenience wrapper around yay
-YAY={{- joinPath .chezmoi.sourceDir "private_dot_config/dotfiles/script_include/yay_needed.sh" }}
+YAY={{- joinPath .chezmoi.sourceDir "private_dot_config/dotfiles/include/yay_needed.sh" }}
 
 # Obtain SUDO
 information "Please enter sudo password..."
