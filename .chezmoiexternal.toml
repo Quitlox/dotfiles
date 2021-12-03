@@ -4,12 +4,12 @@
 	exact = true
 	stripComponents = 1
 	refreshPeriod = "672h"
-[".config/polybar/polybar-spotify"]
-	type = "archive"
-	url = "https://github.com/PrayagS/polybar-spotify/archive/master.tar.gz"
-	exact = true
-	stripComponents = 1
-	refreshPeriod = "672h"
+#[".config/polybar/polybar-spotify"]
+#	type = "archive"
+#	url = "https://github.com/PrayagS/polybar-spotify/archive/master.tar.gz"
+#	exact = true
+##	stripComponents = 1
+#	refreshPeriod = "672h"
 [".local/bin/cht.sh"]
 	type = "file"
 	url = "https://cht.sh/:cht.sh"
