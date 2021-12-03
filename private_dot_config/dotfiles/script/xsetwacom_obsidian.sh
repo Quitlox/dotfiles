@@ -24,6 +24,7 @@ if [[ -z $pad ]]; then
 fi
 
 xsetwacom set $stylus MapToOutput 1920x1080+0+0
+xsetwacom set $stylus Threshold 700
 
 # Setup Tablet
 xsetwacom set $pad Button 2 "key +ctrl z -ctrl"
