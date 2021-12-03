@@ -67,14 +67,15 @@ bindsym Print exec --no-startup-id maim -o ~/Pictures/Screenshots/$(date +%Y-%M-
 bindsym shift+Print exec --no-startup-id maim -s -o | tee ~/Pictures/Screenshots/$(date +%Y-%M-%d-%s).png | xclip -selection clipboard -t image/png
 
 # Common Application Launcher Menu
-set $mode_launcher Launch: [f]irefox [t]hunderbird [e]xplorer [d]iscord [b]menu
+set $mode_launcher Launch: [f]irefox [t]hunderbird [e]xplorer [d]iscord [s]potify [b]menu
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
 	bindsym f exec firefox; mode "default"
 	bindsym t exec thunderbird; mode "default"
 	bindsym e exec pcmanfm; mode "default"
-  bindsym d exec discord --no-sandbox; mode "default"
+        bindsym d exec discord --no-sandbox; mode "default"
+        bindsym s exec spotify; mode "default"
 	bindsym b exec $terminal -e 'bmenu'; mode "default"
 
 	bindsym Escape mode "default"
