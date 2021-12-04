@@ -340,6 +340,14 @@ call dein#add('lervag/vimtex')
 " => Syntax Highlighting
 """""""""""""""""""""""""""""
 
+" Plugin: chezmoi.vim
+" Link: https://github.com/alker0/chezmoi.vim
+" Official Description: Highlight dotfiles you manage with
+" chezmoi.
+" 
+" This plugin fixes syntax highlighting by resolving the
+" chezmoi modifiers (.tmp, dot_) in the chezmoi directory.
+call dein#add('alker0/chezmoi.vim')
 
 " Plugin: vim-jsonc
 " Link: https://github.com/kevinoid/vim-jsonc
@@ -361,7 +369,6 @@ call dein#add('mboughaba/i3config.vim')
 " Official Description: Syntax highlighting, matching rules
 " and mappings for the original Markdown and extensions.
 call dein#add('plasticboy/vim-markdown')
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Miscellaneous
