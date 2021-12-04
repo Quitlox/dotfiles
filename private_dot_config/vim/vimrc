@@ -349,6 +349,15 @@ call dein#add('lervag/vimtex')
 " chezmoi modifiers (.tmp, dot_) in the chezmoi directory.
 call dein#add('alker0/chezmoi.vim')
 
+" Plugin: vim-chezmoi
+" Link: https://github.com/Lilja/vim-chezmoi
+" Official Description: Let's you apply files on write
+" to chezmoi.
+" 
+" This plugin automatically applies changes to dotfiles
+call dein#add('Lilja/vim-chezmoi')
+let g:chezmoi = "enabled"
+
 " Plugin: vim-jsonc
 " Link: https://github.com/kevinoid/vim-jsonc
 " Official Description: Vim syntax highlighting plugin for
