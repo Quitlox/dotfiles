@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$_CHEZMOI_INCLUDE"
+source {{- joinPath .includeDir "/dep_all.sh" | quote }}
 
 if ! command -v "xsetwacom" &> /dev/null
 then
