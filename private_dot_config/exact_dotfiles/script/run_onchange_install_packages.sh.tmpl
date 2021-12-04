@@ -29,16 +29,16 @@ fi
 #######################################
 
 # Packages you probably want on any system
-{{- if eq .chezmoi.osRelease.id "manjaro" }}
-sudo pacman -S --needed -q git vim zsh unzip exa bat tree make
+{{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
+sudo pacman -S --needed -q git vim zsh unzip exa bat tree make openssh
 {{- else if eq .chezmoi.osRelease.id "debian" }}
-sudo apt install git vim zsh rubygems unzip exa bat tree make
+sudo apt install git vim zsh rubygems unzip exa bat tree make openssh
 {{- end }}
 
 # Packages only needed on desktop
 {{- if eq .environment "desktop" }}
 
-{{- if eq .chezmoi.osRelease.id "manjaro" }}
+{{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
 binformation "Manjaro detected"
 
 
@@ -52,6 +52,7 @@ binformation "Manjaro detected"
 sudo pacman -S --needed -q colordiff
 
 ### [minimal] #########################
+sudo pacman -S --needed -q dmenu
 # Cross-platform, fast, feature-rich, GPU based terminal
 sudo pacman -S --needed -q kitty
 # Simple screenshot utility (printscreen)
@@ -63,8 +64,10 @@ sudo pacman -S --needed -q autorandr
 # ARandR is designed to provide a simple visual front end
 # for XRandR.
 sudo pacman -S --needed -q arandr
+# Background browser and setter for X windows
+sudo pacman -S --needed -q nitrogen
 # A fast and easy-to-use status bar
-sudo pacman -S --needed -q polybar
+install_yay polybar
 # The efficient blur method "dual_kawase" is not yet in the
 # latest official release
 install_yay picom-git
@@ -95,8 +98,12 @@ sudo pacman -S --needed -q qt5ct
 
 ### [optional] #########################
 # Iconic font aggregator, collection, and patcher.
-# > Includes font used by Desktop Environment
+# > Includes font used by Desktop Environment (Iosevka)
 install_yay nerd-fonts-complete
+# An iconic bitmap font based on Stlarch with additional 
+# glyphs.
+# > Used in polybar
+install_yay siji
 # MPRIS Media Player command-line controller for vlc, mpv,
 # ThythmBox, web browsers, cmus, mpd, spotify and others.
 # > Used by ~/.config/polybar/polybar-spotify
@@ -165,6 +172,13 @@ install_yay obsidian-appimage
 sudo pacman -S --needed -q github-cli
 # > Needed by "~/.local/bin/cht.sh"
 sudo pacman -S --needed -q rlwrap
+
+#######################################
+### build tools                     ###
+#######################################
+
+sudo pacman -S --needed -q go
+sudo pacman -S --needed -q nodejs
 
 #######################################
 ### development tools               ###
