@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# EXIT
+set -e
+function cleanup {
+    bwarning "This script has been brutally murdered"
+    exit
+}
+trap cleanup INT QUIT TERM
+
+# Dependencies
 cecho () {
 
     declare -A colors;
@@ -211,7 +220,7 @@ if ! bw --nointeraction --quiet login --check; then
     binformation "Login to Bitwarden"
     export BW_SESSION=$(bw login --raw)
 elif ! bw --nointeraction --quiet unlock --check; then
-    binformation "Unlock Bitwarden"
+    binformation "Unlock to Bitwarden"
     export BW_SESSION=$(bw unlock --raw)
 fi
 
@@ -233,6 +242,3 @@ fi
 chezmoi init quitlox --ssh
 chezmoi apply
 
-# EXIT
-trap "exit" INT
-bwarning "This script has been brutally murdered"
