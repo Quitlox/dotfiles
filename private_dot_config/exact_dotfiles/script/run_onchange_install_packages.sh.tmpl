@@ -1,17 +1,17 @@
 #!/bin/bash
 
-trap cleanup INT QUIT TERM
-function cleanup {
-	echo "exited"
-	exit
-}
-
-{{- if .priviliged }}
-
 # Import Scripting Dependencies
 source {{ joinPath .chezmoi.sourceDir .includeDir "/dep_all.sh" | quote }}
 # Convenience wrapper around yay
 YAY={{- joinPath .chezmoi.sourceDir .includeDir "/yay_needed.sh" | quote }}
+
+function cleanup {
+	warning "Script exited by user"
+	exit
+}
+trap cleanup INT QUIT TERM
+
+{{- if .priviliged }}
 
 function install_yay {
 	/bin/bash $YAY $1
@@ -19,7 +19,7 @@ function install_yay {
 
 # Obtain SUDO
 information "Please enter sudo password..."
-if ! sudo -Sv; then
+if ! sudo -v; then
 	berror "Failed to obtain Sudo" >&2
 	exit
 fi
@@ -129,6 +129,7 @@ install_yay spotify-tui
 install_yay btop
 
 ### [desktop] ##########################
+
 # Microsoft vscode
 install_yay visual-studio-code-bin
 code --install-extension coenraads.bracket-pair-colorizer-2
