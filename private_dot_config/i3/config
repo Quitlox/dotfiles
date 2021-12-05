@@ -30,6 +30,18 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keycode 9 = Escape NoSymbol Escape"
 exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
 ###########################################
 ### Settings                            ###
 ###########################################
@@ -53,7 +65,7 @@ mouse_warping none
 bindsym $mod+Return exec $terminal
 
 # Desktop Environment
-bindsym $mod+d exec --no-startup-id dmenu_recency               # DMenu
+bindsym $mod+d exec --no-startup-id dmenu_run               # DMenu
 bindsym $mod+ctrl+b exec $terminal -e 'bmenu'                   # BMenu
 bindsym $mod+ctrl+m exec pavucontrol                            # Audio Manager
 
@@ -105,10 +117,9 @@ exec --no-startup-id picom -b --experimental-backends --backend glx             
 exec --no-startup-id nm-applet                  # Network Manager
 exec --no-startup-id xfce4-power-manager        # Power Manager
 exec --no-startup-id blueman-applet             # Bluetooth Manager
-exec --no-startup-id pamac-tray                 # Pamac Update Notifier
 exec --no-startup-id clipit                     # Clipboard Helper
 exec --no-startup-id pa-applet --disable-notifications
-exec --no-startup-id ibus-daemon -drxR          # Keyboard 
+exec --no-startup-id ibus-daemon -drxR          # Keyboard
 
 # Autostart utilities
 exec_always --no-startup-id fix_xcursor		# Monitor cursor theme

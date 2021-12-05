@@ -53,6 +53,8 @@ sudo pacman -S --needed -q colordiff
 
 ### [minimal] #########################
 
+#TODO: acpi?
+
 sudo pacman -S --needed -q i3-gaps
 install_yay i3exit
 sudo pacman -S --needed -q dmenu
@@ -64,9 +66,13 @@ sudo pacman -S --needed -q maim
 # Auto-detect the connected display hardware and load the
 # appropiate X11 setup using xrandr.
 sudo pacman -S --needed -q autorandr
+# A program to read and control device brightness
+sudo pacman -S brightnessctl
 # ARandR is designed to provide a simple visual front end
 # for XRandR.
 sudo pacman -S --needed -q arandr
+# xidlehook: xautolock rewrite in Rust, we a few extra features
+install_yay xidlehook
 # Background browser and setter for X windows
 sudo pacman -S --needed -q nitrogen
 # A fast and easy-to-use status bar
@@ -77,12 +83,11 @@ install_yay picom-git
 # Rofi: A window switcher, application launcher and dmenu
 # replacement
 sudo pacman -S --needed -q rofi
-# xidlehook: xautolock rewrite in Rust, we a few extra features
-install_yay xidlehook
 
 ### [gui-controls] #####################
 # A fast and easy-to-use status bar
 sudo pacman -S --needed -q blueman
+sudo pacman -S --needed -q bluez-utils
 # Bluetooth support for PulseAudio
 #sudo pacman -S --needed -q pulseaudio-bluetooth
 # Pulseaudio-Alsa compatability.
@@ -99,11 +104,14 @@ sudo pacman -S --needed -q lxappearance
 # Graphical interface for setting QT themes
 sudo pacman -S --needed -q qt5ct
 
+sudo pacman -S --needed -q xorg-xev
+install_yay evtest
+
 ### [optional] #########################
 # Iconic font aggregator, collection, and patcher.
 # > Includes font used by Desktop Environment (Iosevka)
 install_yay nerd-fonts-complete
-# An iconic bitmap font based on Stlarch with additional 
+# An iconic bitmap font based on Stlarch with additional
 # glyphs.
 # > Used in polybar
 install_yay siji

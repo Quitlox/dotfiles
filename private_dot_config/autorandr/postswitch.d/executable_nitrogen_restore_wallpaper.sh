@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(chezmoi source-path)/private_dot_config/dotfiles/include/dep_all.sh"
+source {{ joinPath .chezmoi.sourceDir .includeDir "/dep_all.sh" | quote }}
 
 binformation "Running script: \"nitrogen_restore_wallpaper.sh\""
 
