@@ -54,6 +54,11 @@ sudo pacman -S --needed -q colordiff
 # > Used by ~/.config/zsh/.zshrc (history search)
 sudo pacman -S --needed -q fzf
 
+### [dependencies] #####################
+# XOrg Wacom tablet driver
+# > Used by ~/.config/dotfiles/script/xsetwacom_obsidian.sh
+sudo pacman -S --needed -q xf86-input-wacom
+
 ### [window-manager] ###################
 
 #TODO: acpi?
@@ -100,17 +105,9 @@ sudo pacman -S --needed -q xorg-xinput
 sudo pacman -S --needed -q blueman
 sudo pacman -S --needed -q bluez-utils
 sudo pacman -S --needed -q wireplumber
-# Bluetooth support for PulseAudio
-#sudo pacman -S --needed -q pulseaudio-bluetooth
-# Pulseaudio-Alsa compatability.
-# > Needed by Audacity
-#sudo pacman -S --needed -q pulseaudio-alsa
-# PulseAudio Volume Control
+# Volume Control
 sudo pacman -S --needed -q pavucontrol
-# System Tray Applet that allows you to control some of
-# PulseAudio's features. (Most importantly: It binds XF86
-# volume control keys).
-#sudo pacman -S --needed -q pa-applet
+
 # Graphical interface for setting GTK themes
 sudo pacman -S --needed -q lxappearance
 # Graphical interface for setting QT themes
