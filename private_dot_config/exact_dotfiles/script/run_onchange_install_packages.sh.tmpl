@@ -30,9 +30,9 @@ fi
 
 # Packages you probably want on any system
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
-sudo pacman -S --needed -q git vim zsh unzip exa bat tree make openssh
+sudo pacman -S --needed -q git vim zsh unzip exa bat tree make openssh chezmoi
 {{- else if eq .chezmoi.osRelease.id "debian" }}
-sudo apt install git vim zsh rubygems unzip exa bat tree make openssh
+sudo apt install git vim zsh rubygems unzip exa bat tree make openssh chezmoi
 {{- end }}
 
 # Packages only needed on desktop
@@ -48,8 +48,11 @@ binformation "Manjaro detected"
 
 ### [terminal] ########################
 # Alternative for default 'diff'
-# > Used by   ~/.config/zsh/zsh-config alias for 'diff'
+# > Used by  ~/.config/zsh/zsh-config alias for 'diff'
 sudo pacman -S --needed -q colordiff
+# A command-line fuzzy finder
+# > Used by ~/.config/zsh/.zshrc (history search)
+sudo pacman -S --needed -q fzf
 
 ### [minimal] #########################
 
@@ -84,6 +87,10 @@ install_yay picom-git
 # replacement
 sudo pacman -S --needed -q rofi
 
+### [tools] ############################
+sudo pacman -S --needed -q xorg-xev
+install_yay evtest
+
 ### [gui-controls] #####################
 # A fast and easy-to-use status bar
 sudo pacman -S --needed -q blueman
@@ -103,9 +110,6 @@ sudo pacman -S --needed -q pavucontrol
 sudo pacman -S --needed -q lxappearance
 # Graphical interface for setting QT themes
 sudo pacman -S --needed -q qt5ct
-
-sudo pacman -S --needed -q xorg-xev
-install_yay evtest
 
 ### [optional] #########################
 # Iconic font aggregator, collection, and patcher.
