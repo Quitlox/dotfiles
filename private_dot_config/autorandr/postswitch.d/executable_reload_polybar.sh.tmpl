@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-source "$(chezmoi source-path)/private_dot_config/dotfiles/include/dep_all.sh"
+source {{ joinPath .chezmoi.sourceDir .includeDir "/dep_all.sh" | quote }}
 
 binformation "Running script: \"reload_polybar.sh\""
 

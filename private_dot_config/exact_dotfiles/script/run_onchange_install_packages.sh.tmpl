@@ -54,28 +54,18 @@ sudo pacman -S --needed -q colordiff
 # > Used by ~/.config/zsh/.zshrc (history search)
 sudo pacman -S --needed -q fzf
 
-### [minimal] #########################
+### [window-manager] ###################
 
 #TODO: acpi?
 
 sudo pacman -S --needed -q i3-gaps
 install_yay i3exit
 sudo pacman -S --needed -q dmenu
+# Rofi: A window switcher, application launcher and dmenu
+# replacement
+sudo pacman -S --needed -q rofi
 # Cross-platform, fast, feature-rich, GPU based terminal
 sudo pacman -S --needed -q kitty
-# Simple screenshot utility (printscreen)
-# > Used by ~/.config/i3/pixel_lockscreen.sh
-sudo pacman -S --needed -q maim
-# Auto-detect the connected display hardware and load the
-# appropiate X11 setup using xrandr.
-sudo pacman -S --needed -q autorandr
-# A program to read and control device brightness
-sudo pacman -S brightnessctl
-# ARandR is designed to provide a simple visual front end
-# for XRandR.
-sudo pacman -S --needed -q arandr
-# xidlehook: xautolock rewrite in Rust, we a few extra features
-install_yay xidlehook
 # Background browser and setter for X windows
 sudo pacman -S --needed -q nitrogen
 # A fast and easy-to-use status bar
@@ -83,13 +73,27 @@ install_yay polybar
 # The efficient blur method "dual_kawase" is not yet in the
 # latest official release
 install_yay picom-git
-# Rofi: A window switcher, application launcher and dmenu
-# replacement
-sudo pacman -S --needed -q rofi
+
+# Simple screenshot utility (printscreen)
+# > Used by ~/.config/i3/pixel_lockscreen.sh
+sudo pacman -S --needed -q maim
+# Auto-detect the connected display hardware and load the
+# appropiate X11 setup using xrandr.
+sudo pacman -S --needed -q autorandr
+# A program to read and control device brightness
+sudo pacman -S --needed -q brightnessctl
+# ARandR is designed to provide a simple visual front end
+# for XRandR.
+sudo pacman -S --needed -q arandr
+# xidlehook: xautolock rewrite in Rust, we a few extra features
+install_yay xidlehook
 
 ### [tools] ############################
 sudo pacman -S --needed -q xorg-xev
 install_yay evtest
+# Utility to configure and test X input devices
+# > Used by ~/.config/autorandr/postswitch.d/adjust_touch_screen.sh
+sudo pacman -S --needed -q xorg-xinput
 
 ### [gui-controls] #####################
 # A fast and easy-to-use status bar
