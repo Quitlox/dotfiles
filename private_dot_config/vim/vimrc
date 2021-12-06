@@ -317,7 +317,7 @@ call dein#add('farmergreg/vim-lastplace')
 " Link: https://github.com/neoclide/coc.nvim
 " Official Description: Make your Vim/Neovim as smart as 
 " VSCode.
-call dein#add('neoclide/coc.nvim', {'merged': 0})
+call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
 
 
 " Plugin: vim-repl
