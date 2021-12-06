@@ -32,8 +32,8 @@ exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl --set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl --set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
@@ -66,8 +66,9 @@ bindsym $mod+Return exec $terminal
 
 # Desktop Environment
 bindsym $mod+d exec --no-startup-id dmenu_run               # DMenu
-bindsym $mod+ctrl+b exec $terminal -e 'bmenu'                   # BMenu
+#bindsym $mod+ctrl+b exec $terminal -e 'bmenu'                   # BMenu
 bindsym $mod+ctrl+m exec pavucontrol                            # Audio Manager
+bindsym $mod+ctrl+b exec blueman-manager                            # Bluetooth Manager
 
 # Killing windows
 bindsym $mod+shift+q kill
