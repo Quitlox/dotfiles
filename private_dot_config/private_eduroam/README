@@ -1,0 +1,11 @@
+Author: Kevin Witlox
+
+I did not get the python script installer working with NetworkManager, so I configured it manually.
+
+The command is this (replace information):
+
+nmcli connection add type wifi con-name "eduroam" ifname wlp3s0 ssid "eduroam" -- \
+wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.phase2-auth mschapv2 \
+802-1x.identity <EMAIL> \
+802-1x.ca-cert ~/.config/eduroam/ca.pem \
+802-1x.password <PASSWORD>
