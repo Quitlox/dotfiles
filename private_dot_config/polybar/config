@@ -70,7 +70,7 @@ font-1 = Iosevka Nerd Font:size=10;2
 
 ; Modules
 modules-left = launcher workspaces
-modules-center = spotify spotify-prev spotify-play-pause spotify-next
+;modules-center = spotify spotify-prev spotify-play-pause spotify-next
 modules-right = time pulseaudio battery sysmenu
 
 ; Tray
