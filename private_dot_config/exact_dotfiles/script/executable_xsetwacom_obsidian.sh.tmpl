@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source {{ joinPath .includeDir "/dep_all.sh" | quote }}
+source {{ joinPath .chezmoi.sourceDir .includeDir "/dep_all.sh" | quote }}
 
 if ! command -v "xsetwacom" &> /dev/null
 then
