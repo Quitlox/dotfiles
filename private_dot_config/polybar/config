@@ -70,7 +70,7 @@ font-1 = Iosevka Nerd Font:size=10;2
 
 ; Modules
 modules-left = launcher workspaces
-modules-center = spotify spotify-prev spotify-play-pause spotify-next
+;modules-center = spotify spotify-prev spotify-play-pause spotify-next
 modules-right = time pulseaudio battery sysmenu
 
 ; Tray
@@ -315,7 +315,7 @@ type = custom/ipc
 hook-0 = echo ""
 hook-1 = echo ""
 initial = 1
-click-left = playerctl play-pause spotify
+click-left = playerctl play-pause -p spotify
 
 [module/spotify-next]
 type = custom/script

@@ -30,6 +30,18 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keycode 9 = Escape NoSymbol Escape"
 exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
 ###########################################
 ### Settings                            ###
 ###########################################
@@ -53,9 +65,10 @@ mouse_warping none
 bindsym $mod+Return exec $terminal
 
 # Desktop Environment
-bindsym $mod+d exec --no-startup-id dmenu_recency               # DMenu
-bindsym $mod+ctrl+b exec $terminal -e 'bmenu'                   # BMenu
+bindsym $mod+d exec --no-startup-id dmenu_run               # DMenu
+#bindsym $mod+ctrl+b exec $terminal -e 'bmenu'                   # BMenu
 bindsym $mod+ctrl+m exec pavucontrol                            # Audio Manager
+bindsym $mod+ctrl+b exec blueman-manager                            # Bluetooth Manager
 
 # Killing windows
 bindsym $mod+shift+q kill
@@ -67,14 +80,15 @@ bindsym Print exec --no-startup-id maim -o ~/Pictures/Screenshots/$(date +%Y-%M-
 bindsym shift+Print exec --no-startup-id maim -s -o | tee ~/Pictures/Screenshots/$(date +%Y-%M-%d-%s).png | xclip -selection clipboard -t image/png
 
 # Common Application Launcher Menu
-set $mode_launcher Launch: [f]irefox [t]hunderbird [e]xplorer [d]iscord [b]menu
+set $mode_launcher Launch: [f]irefox [t]hunderbird [e]xplorer [d]iscord [s]potify [b]menu
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
 	bindsym f exec firefox; mode "default"
 	bindsym t exec thunderbird; mode "default"
 	bindsym e exec pcmanfm; mode "default"
-  bindsym d exec discord --no-sandbox; mode "default"
+        bindsym d exec discord --no-sandbox; mode "default"
+        bindsym s exec spotify; mode "default"
 	bindsym b exec $terminal -e 'bmenu'; mode "default"
 
 	bindsym Escape mode "default"
@@ -87,7 +101,7 @@ mode "$mode_launcher" {
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id start-pulseaudio-x11
+#exec --no-startup-id start-pulseaudio-x11
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 $i3lockwall
 
 # Autostart UI elements
@@ -101,13 +115,13 @@ exec_always --no-startup-id autorandr --change --force --default default
 exec --no-startup-id picom -b --experimental-backends --backend glx             # Wallpaper
 
 # Autostart tray applications
-exec --no-startup-id nm-applet                  # Network Manager
-exec --no-startup-id xfce4-power-manager        # Power Manager
-exec --no-startup-id blueman-applet             # Bluetooth Manager
-exec --no-startup-id pamac-tray                 # Pamac Update Notifier
-exec --no-startup-id clipit                     # Clipboard Helper
-exec --no-startup-id pa-applet --disable-notifications
-exec --no-startup-id ibus-daemon -drxR          # Keyboard 
+#exec --no-startup-id nm-applet                  # Network Manager
+#exec --no-startup-id xfce4-power-manager        # Power Manager
+#exec --no-startup-id blueman-applet             # Bluetooth Manager
+#exec --no-startup-id clipit                     # Clipboard Helper
+#exec --no-startup-id pa-applet --disable-notifications
+exec --no-startup-id ibus-daemon -drxR          # Keyboard
+exec --no-startup-id copyq                      # Clipboard Manager
 
 # Autostart utilities
 exec_always --no-startup-id fix_xcursor		# Monitor cursor theme
@@ -478,36 +492,7 @@ assign [class="discord"] number $ws8
 
 # Managed by base16-universal-manager
 # <<<<<<<<<<
-## Base16 Materia
-# Author: Defman21
-#
-# You can use these variables anywhere in the i3 configuration file.
-
-set $base00 #263238
-set $base01 #2C393F
-set $base02 #37474F
-set $base03 #707880
-set $base04 #C9CCD3
-set $base05 #CDD3DE
-set $base06 #D5DBE5
-set $base07 #FFFFFF
-set $base08 #EC5F67
-set $base09 #EA9560
-set $base0A #FFCC00
-set $base0B #8BD649
-set $base0C #80CBC4
-set $base0D #89DDFF
-set $base0E #82AAFF
-set $base0F #EC5F67
 # >>>>>>>>>>
 
 # <<<<<<<<<<2
-# Basic color configuration using the Base16 variables for windows and borders.
-# Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base05 $base0D $base00 $base0D $base0C
-client.focused_inactive $base01 $base01 $base05 $base03 $base01
-client.unfocused        $base01 $base00 $base05 $base01 $base01
-client.urgent           $base08 $base08 $base00 $base08 $base08
-client.placeholder      $base00 $base00 $base05 $base00 $base00
-client.background       $base07
 # >>>>>>>>>>2

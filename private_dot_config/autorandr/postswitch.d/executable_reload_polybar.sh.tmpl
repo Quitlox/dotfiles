@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+source {{ joinPath .chezmoi.sourceDir .includeDir "/dep_all.sh" | quote }}
+
+binformation "Running script: \"reload_polybar.sh\""
+
+# Restart polybars
+source $HOME/.config/polybar/new_multi_launch.sh

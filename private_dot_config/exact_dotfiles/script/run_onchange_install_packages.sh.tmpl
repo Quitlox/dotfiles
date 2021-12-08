@@ -1,0 +1,235 @@
+#!/bin/bash
+
+# Import Scripting Dependencies
+source {{ joinPath .chezmoi.sourceDir .includeDir "/dep_all.sh" | quote }}
+# Convenience wrapper around yay
+YAY={{- joinPath .chezmoi.sourceDir .includeDir "/yay_needed.sh" | quote }}
+
+function cleanup {
+	warning "Script exited by user"
+	exit
+}
+trap cleanup INT QUIT TERM
+
+{{- if .priviliged }}
+
+function install_yay {
+	/bin/bash $YAY $1
+}
+
+# Obtain SUDO
+information "Please enter sudo password..."
+if ! sudo -v; then
+	berror "Failed to obtain Sudo" >&2
+	exit
+fi
+
+#######################################
+### essential packages              ###
+#######################################
+
+# Packages you probably want on any system
+{{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
+sudo pacman -S --needed -q git gvim zsh unzip exa bat tree make openssh chezmoi
+{{- else if eq .chezmoi.osRelease.id "debian" }}
+sudo apt install git gvim zsh rubygems unzip exa bat tree make openssh chezmoi
+{{- end }}
+
+# Packages only needed on desktop
+{{- if eq .environment "desktop" }}
+
+{{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
+binformation "Manjaro detected"
+
+
+#######################################
+### desktop environment             ###
+#######################################
+
+### [terminal] ########################
+# Alternative for default 'diff'
+# > Used by  ~/.config/zsh/zsh-config alias for 'diff'
+sudo pacman -S --needed -q colordiff
+# A command-line fuzzy finder
+# > Used by ~/.config/zsh/.zshrc (history search)
+sudo pacman -S --needed -q fzf
+
+### [window-manager] ###################
+
+#TODO: acpi?
+
+sudo pacman -S --needed -q i3-gaps
+install_yay i3exit
+sudo pacman -S --needed -q dmenu
+# Rofi: A window switcher, application launcher and dmenu
+# replacement
+sudo pacman -S --needed -q rofi
+# Cross-platform, fast, feature-rich, GPU based terminal
+sudo pacman -S --needed -q kitty
+# Background browser and setter for X windows
+sudo pacman -S --needed -q nitrogen
+# A fast and easy-to-use status bar
+install_yay polybar
+# The efficient blur method "dual_kawase" is not yet in the
+# latest official release
+install_yay picom-git
+
+# Simple screenshot utility (printscreen)
+# > Used by ~/.config/i3/pixel_lockscreen.sh
+sudo pacman -S --needed -q maim
+# Auto-detect the connected display hardware and load the
+# appropiate X11 setup using xrandr.
+sudo pacman -S --needed -q autorandr
+# A program to read and control device brightness
+sudo pacman -S --needed -q brightnessctl
+# ARandR is designed to provide a simple visual front end
+# for XRandR.
+sudo pacman -S --needed -q arandr
+# xidlehook: xautolock rewrite in Rust, we a few extra features
+install_yay xidlehook
+# Clipboard manager with advanced features
+sudo pacman -S --needed -q copyq
+
+### [tools] ############################
+
+sudo pacman -S --needed -q xorg-xev
+install_yay evtest
+# Utility to configure and test X input devices
+# > Used by ~/.config/autorandr/postswitch.d/adjust_touch_screen.sh
+sudo pacman -S --needed -q xorg-xinput
+# > Used by ~/.config/i3/config
+sudo pacman -S --needed -q xorg-xkill
+
+### [gui-controls] #####################
+
+sudo pacman -S --needed -q blueman
+sudo pacman -S --needed -q bluez-utils
+sudo pacman -S --needed -q wireplumber
+
+# Volume Control
+sudo pacman -S --needed -q pavucontrol
+
+# Graphical interface for setting GTK themes
+sudo pacman -S --needed -q lxappearance
+# Graphical interface for setting QT themes
+sudo pacman -S --needed -q qt5ct
+
+# An Arch Linux News reader and pacman hook.
+# Make sure I read Arch News if any on update
+install_yay informant
+
+### [dependencies] #####################
+
+# XOrg Wacom tablet driver
+# > Used by ~/.config/dotfiles/script/xsetwacom_obsidian.sh
+sudo pacman -S --needed -q xf86-input-wacom
+
+# Needed for configuring environment variables (e.g. XDG_DATA_HOME)
+sudo pacman -S --needed -q xdg-user-dir
+
+# Iconic font aggregator, collection, and patcher.
+# > Includes font used by Desktop Environment (Iosevka)
+install_yay nerd-fonts-complete
+
+# An iconic bitmap font based on Stlarch with additional
+# glyphs.
+# > Used in polybar
+install_yay siji
+
+# MPRIS Media Player command-line controller for vlc, mpv,
+# ThythmBox, web browsers, cmus, mpd, spotify and others.
+# > Used by ~/.config/polybar/polybar-spotify
+sudo pacman -S --needed -q pacman playerctl
+
+# A text scroller for panels or terminals
+# > Used by ~/.config/polybar/polybar-spotify
+install_yay zscroll-git
+
+#######################################
+### applications                    ###
+#######################################
+
+# A modernized, complete, self-contained TeX/LaTeX engine,
+# powered by XeTeX and TeXLive.
+# > Used by ~/.config/vim/vimrc
+install_yay tectonic-bin
+# Pretty-Print LaTeX: A tool to reformat the output of latex
+# and friends into readable messages.
+# > Used by ~/.config/vim/vimrc
+install_yay pplatex-git
+# > Needed for biblatex files
+sudo pacman -S --needed -q biber
+
+### [terminal] ########################
+# Lightweight spotify streaming daemon with spotify connect
+# support.
+# > Used by spotify-tui
+sudo pacman -S --needed -q spotifyd
+# Command-line Spotify client written in Rust
+install_yay spotify-tui
+# A monitor of resources
+install_yay btop
+
+### [desktop] ##########################
+
+# Microsoft vscode
+install_yay visual-studio-code-bin
+code --install-extension coenraads.bracket-pair-colorizer-2
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension eamodio.gitlens
+code --install-extension pascalsenn.keyboard-quickfix
+code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension alefragnani.numbered-bookmarks
+code --install-extension vscodevim.vim
+code --install-extension visualstudioexptteam.vscodeintellicode
+
+code --install-extension firefox-devtools.vscode-firefox-debug
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension ms-toolsai.jupyter-keymap
+code --install-extension esbenp.prettier-vscode
+code --install-extension njpwerner.autodocstring
+code --install-extension bradlc.vscode-tailwindcss
+code --install-extension austenc.tailwind-docs
+
+# Your place to Talk and Hang out
+sudo pacman -S --needed -q discord
+# Zathura is a highly customizable and functional document
+# viewer.
+sudo pacman -S --needed -q zathura
+# PDF support for Zathura
+sudo pacman -S --needed -q zathura-pdf-mupdf
+
+# Obsidian is a powerful knowledge base that works on top
+# of a local folder of plain text Markdown files
+install_yay obsidian-appimage
+
+# [optional]
+sudo pacman -S --needed -q github-cli
+# > Needed by "~/.local/bin/cht.sh"
+sudo pacman -S --needed -q rlwrap
+
+#######################################
+### build tools                     ###
+#######################################
+
+sudo pacman -S --needed -q go
+sudo pacman -S --needed -q nodejs
+sudo pacman -S --needed -q npm
+
+#######################################
+### development tools               ###
+#######################################
+
+#install cmake
+#install firefox-developer-edition
+#install jdk11-openjdk
+
+#######################################
+### hacking tools                   ###
+#######################################
+
+sudo pacman -S --needed -q nmap sqlmap wireshark-qt
+
+{{- end }}
+{{- end }}
+{{- end }}

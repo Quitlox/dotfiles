@@ -161,6 +161,8 @@ call dein#add('unblevable/quick-scope')
 " Official Description: This plugin is used for displaying
 " thin vertical lines at each indentation level for code
 " indented with spaces.
+let g:indentLine_setConceal = 0
+let g:indentLine_setColors = 0
 call dein#add('yggdroot/indentline')
 
 
@@ -298,7 +300,7 @@ call dein#add('farmergreg/vim-lastplace')
 " some other related featues that should make youre time in
 " insert mode a little bit easier, like syntax awereness,
 " and expansions, and some more.
-" call dein#add('raimondi/delimitmate')
+call dein#add('raimondi/delimitmate')
 
 
 " Plugin: vim-closetag
@@ -317,7 +319,7 @@ call dein#add('farmergreg/vim-lastplace')
 " Link: https://github.com/neoclide/coc.nvim
 " Official Description: Make your Vim/Neovim as smart as 
 " VSCode.
-call dein#add('neoclide/coc.nvim', {'merged': 0})
+call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
 
 
 " Plugin: vim-repl
@@ -340,13 +342,30 @@ call dein#add('lervag/vimtex')
 " => Syntax Highlighting
 """""""""""""""""""""""""""""
 
+" Plugin: chezmoi.vim
+" Link: https://github.com/alker0/chezmoi.vim
+" Official Description: Highlight dotfiles you manage with
+" chezmoi.
+" 
+" This plugin fixes syntax highlighting by resolving the
+" chezmoi modifiers (.tmp, dot_) in the chezmoi directory.
+call dein#add('alker0/chezmoi.vim')
+
+" Plugin: vim-chezmoi
+" Link: https://github.com/Lilja/vim-chezmoi
+" Official Description: Let's you apply files on write
+" to chezmoi.
+" 
+" This plugin automatically applies changes to dotfiles
+call dein#add('Lilja/vim-chezmoi')
+let g:chezmoi = "enabled"
 
 " Plugin: vim-jsonc
 " Link: https://github.com/kevinoid/vim-jsonc
 " Official Description: Vim syntax highlighting plugin for
 " JSON with C-style line (//) and block (/**/) comments.
 " Required By: coc.vim
-call dein#add('kevinoid/vim-jsonc')
+"call dein#add('kevinoid/vim-jsonc')
 
 
 " Plugin: i3config.vim
@@ -361,7 +380,6 @@ call dein#add('mboughaba/i3config.vim')
 " Official Description: Syntax highlighting, matching rules
 " and mappings for the original Markdown and extensions.
 call dein#add('plasticboy/vim-markdown')
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Miscellaneous
@@ -399,6 +417,11 @@ call dein#add('tpope/vim-repeat')
 " privileges without running the whole session that way.
 call dein#add('vim-scripts/sudo.vim')
 
+" Plugin: localvimrc
+" Link: https://github.com/embear/vim-localvimrc
+" Official Description: Search local vimrc (".vimrc") in
+" the tree (root dir up to current dir) and load them.
+call dein#add('embear/vim-localvimrc')
 
 """""""""""""""""""""""  dein.vim  """""""""""""""""""""""""
 
@@ -439,6 +462,9 @@ let g:airline_theme='base16'
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
 autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
+
+" Fix for conceal (used alot in vimtex)
+autocmd vimenter * hi Conceal guifg=#aeaeae ctermfg=7
 
 """"""""""""""""""""""""""""""
 " => Environment Specific

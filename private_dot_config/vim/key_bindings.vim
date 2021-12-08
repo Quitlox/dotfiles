@@ -51,10 +51,10 @@ nnoremap j gj
 nnoremap gj j
 nnoremap k gk
 nnoremap gk k
-
-" Easier line-wise movement
-" nnoremap gh g^
-nnoremap gl g$
+nnoremap 0 g0
+nnoremap g0 0
+nnoremap $ g$
+nnoremap g$ $
 
 " Yank from cursor position to end-of-line
 nnoremap Y y$
@@ -262,11 +262,14 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 " Autocomplete on Tab
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+"inoremap <silent><expr> <Tab>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<Tab>" :
+"      \ coc#refresh()
+" Autocompletion on ctrl+space
+inoremap <silent><expr> <c-space> coc#refresh()
 " Navigate completion list backward with <S-Tab>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Trigger Autocomplete with <C-Space>
 if has('nvim')

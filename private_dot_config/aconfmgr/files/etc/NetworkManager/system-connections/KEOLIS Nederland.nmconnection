@@ -1,0 +1,22 @@
+[connection]
+id=KEOLIS Nederland
+uuid=7470bbe0-10ac-4423-b6f6-4fb0e027b2be
+type=wifi
+interface-name=wlp3s0
+permissions=user:quitlox:;
+
+[wifi]
+mac-address-blacklist=
+mode=infrastructure
+ssid=KEOLIS Nederland
+
+[ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto
+
+[proxy]

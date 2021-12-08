@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# EXIT
+set -e
+function cleanup {
+    bwarning "This script has been brutally murdered"
+    exit
+}
+trap cleanup INT QUIT TERM
+
+# Dependencies
 cecho () {
 
     declare -A colors;
@@ -211,28 +220,28 @@ if ! bw --nointeraction --quiet login --check; then
     binformation "Login to Bitwarden"
     export BW_SESSION=$(bw login --raw)
 elif ! bw --nointeraction --quiet unlock --check; then
-    binformation "Unlock Bitwarden"
+    binformation "Unlock to Bitwarden"
     export BW_SESSION=$(bw unlock --raw)
 fi
+
+# [CHEZMOI] Check for existing installation
+if [[ -e "$HOME/.local/share/chezmoi" ]]; then
+    bwarning "Chezmoi is already installed, removing..."
+    rm -r -f ~/.local/share/chezmoi
+fi
+    
+# [CHEZMOI] Download
+binformation "Downloading chezmoi..."
+export BINDIR="$HOME/.local/bin"
+sh -c "$(curl -fsLS git.io/chezmoi)"
+
+# [CHEZMOI] Init
+chezmoi init quitlox
 
 # [CHEZMOI] Get Age (File Encryption) key from Bitwarden
 information "Retrieving encryption key..."
 bw --nointeraction get attachment "chezmoi_encryption_key.txt" --itemid b33b9474-c3ba-4961-abef-ade1010e1597 --output "$(chezmoi source-path)/private_dot_ssh/.chezmoi_encryption_key.txt"
 
-# [CHEZMOI] Check for existing installation
-if [[ -e "$HOME/.local/share/chezmoi" ]]; then
-    bwarning "Chezmoi is already installed"
-else
-    # [CHEZMOI] Download
-    binformation "Downloading chezmoi..."
-    export BINDIR="$HOME/.local/bin"
-    sh -c "$(curl -fsLS git.io/chezmoi)"
-fi
-
 # [CHEZMOI] Apply
-chezmoi init quitlox --ssh
 chezmoi apply
 
-# EXIT
-trap "exit" INT
-bwarning "This script has been brutally murdered"
