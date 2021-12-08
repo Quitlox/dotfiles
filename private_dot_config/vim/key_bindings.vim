@@ -51,10 +51,10 @@ nnoremap j gj
 nnoremap gj j
 nnoremap k gk
 nnoremap gk k
-
-" Easier line-wise movement
-" nnoremap gh g^
-nnoremap gl g$
+nnoremap 0 g0
+nnoremap g0 0
+nnoremap $ g$
+nnoremap g$ $
 
 " Yank from cursor position to end-of-line
 nnoremap Y y$

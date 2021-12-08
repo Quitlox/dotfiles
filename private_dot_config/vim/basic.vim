@@ -58,7 +58,7 @@ set sidescrolloff=10 " Leave 10 characters around the cursor when moving horizon
 set ruler		        " Always show current position
 set mat=2		        " How many tenths of a second to blink when matching brackets
 set showmatch 		    " Show matching brackets when text indicator is over them
-set concealcursor=nc
+set concealcursor=c
 set conceallevel=2
 " Searching
 set ignorecase		    " Ignore case when searching
