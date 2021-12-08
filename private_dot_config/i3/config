@@ -118,9 +118,10 @@ exec --no-startup-id picom -b --experimental-backends --backend glx             
 #exec --no-startup-id nm-applet                  # Network Manager
 #exec --no-startup-id xfce4-power-manager        # Power Manager
 #exec --no-startup-id blueman-applet             # Bluetooth Manager
-exec --no-startup-id clipit                     # Clipboard Helper
+#exec --no-startup-id clipit                     # Clipboard Helper
 #exec --no-startup-id pa-applet --disable-notifications
 exec --no-startup-id ibus-daemon -drxR          # Keyboard
+exec --no-startup-id copyq                      # Clipboard Manager
 
 # Autostart utilities
 exec_always --no-startup-id fix_xcursor		# Monitor cursor theme

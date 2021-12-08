@@ -54,13 +54,6 @@ sudo pacman -S --needed -q colordiff
 # > Used by ~/.config/zsh/.zshrc (history search)
 sudo pacman -S --needed -q fzf
 
-### [dependencies] #####################
-# XOrg Wacom tablet driver
-# > Used by ~/.config/dotfiles/script/xsetwacom_obsidian.sh
-sudo pacman -S --needed -q xf86-input-wacom
-# Needed for configuring environment variables (e.g. XDG_DATA_HOME)
-sudo pacman -S --needed -q xdg-user-dir
-
 ### [window-manager] ###################
 
 #TODO: acpi?
@@ -94,8 +87,11 @@ sudo pacman -S --needed -q brightnessctl
 sudo pacman -S --needed -q arandr
 # xidlehook: xautolock rewrite in Rust, we a few extra features
 install_yay xidlehook
+# Clipboard manager with advanced features
+sudo pacman -S --needed -q copyq
 
 ### [tools] ############################
+
 sudo pacman -S --needed -q xorg-xev
 install_yay evtest
 # Utility to configure and test X input devices
@@ -105,10 +101,11 @@ sudo pacman -S --needed -q xorg-xinput
 sudo pacman -S --needed -q xorg-xkill
 
 ### [gui-controls] #####################
-# A fast and easy-to-use status bar
+
 sudo pacman -S --needed -q blueman
 sudo pacman -S --needed -q bluez-utils
 sudo pacman -S --needed -q wireplumber
+
 # Volume Control
 sudo pacman -S --needed -q pavucontrol
 
@@ -117,18 +114,30 @@ sudo pacman -S --needed -q lxappearance
 # Graphical interface for setting QT themes
 sudo pacman -S --needed -q qt5ct
 
-### [optional] #########################
+
+### [dependencies] #####################
+
+# XOrg Wacom tablet driver
+# > Used by ~/.config/dotfiles/script/xsetwacom_obsidian.sh
+sudo pacman -S --needed -q xf86-input-wacom
+
+# Needed for configuring environment variables (e.g. XDG_DATA_HOME)
+sudo pacman -S --needed -q xdg-user-dir
+
 # Iconic font aggregator, collection, and patcher.
 # > Includes font used by Desktop Environment (Iosevka)
 install_yay nerd-fonts-complete
+
 # An iconic bitmap font based on Stlarch with additional
 # glyphs.
 # > Used in polybar
 install_yay siji
+
 # MPRIS Media Player command-line controller for vlc, mpv,
 # ThythmBox, web browsers, cmus, mpd, spotify and others.
 # > Used by ~/.config/polybar/polybar-spotify
 sudo pacman -S --needed -q pacman playerctl
+
 # A text scroller for panels or terminals
 # > Used by ~/.config/polybar/polybar-spotify
 install_yay zscroll-git
