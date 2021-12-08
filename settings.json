@@ -437,5 +437,8 @@
 
   // Miscellaneous
   "references.preferredLocation": "view",
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
