@@ -481,6 +481,7 @@ autocmd vimenter * hi Conceal guifg=#aeaeae ctermfg=7
 source ~/.config/vim/environments/gui.vim
 "source ~/.config/vim/environments/mac.vim
 "source ~/.config/vim/environments/windows.vim
+source ~/.config/vim/environments/chezmoi.vim
 "source ~/.config/vim/terminals/urxvt.vim
 "source ~/.config/vim/terminals/gnome_terminal.vim
 source ~/.config/vim/terminals/kitty.vim
