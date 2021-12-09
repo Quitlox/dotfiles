@@ -80,6 +80,11 @@ call dein#add('majutsushi/tagbar')
 " Activate by pressing the leader key.
 call dein#add('liuchengxu/vim-which-key')
 
+" Plugin: vim-tmux-navigator
+" Link: https://github.com/christoomey/vim-tmux-navigator
+" Official Description: Seamless navigation between tmux
+" panes and vim splits
+call dein#add('christoomey/vim-tmux-navigator')
 
 """""""""""""""""""""""""""""
 " => User Interface: File Explorer
@@ -151,7 +156,7 @@ call dein#add('luochen1990/rainbow', {'merged': 0})
 " Plugin: quick-scope
 " Link: https://github.com/unblevable/quick-scope
 " Official Description: An always-on highlight for a unique
-" character in every word on a line to help you use f, F 
+" character in every word on a line to help you use f, F
 " and family.
 call dein#add('unblevable/quick-scope')
 
@@ -317,7 +322,7 @@ call dein#add('raimondi/delimitmate')
 
 " Plugin: coc.vim
 " Link: https://github.com/neoclide/coc.nvim
-" Official Description: Make your Vim/Neovim as smart as 
+" Official Description: Make your Vim/Neovim as smart as
 " VSCode.
 call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
 
@@ -346,7 +351,7 @@ call dein#add('lervag/vimtex')
 " Link: https://github.com/alker0/chezmoi.vim
 " Official Description: Highlight dotfiles you manage with
 " chezmoi.
-" 
+"
 " This plugin fixes syntax highlighting by resolving the
 " chezmoi modifiers (.tmp, dot_) in the chezmoi directory.
 call dein#add('alker0/chezmoi.vim')
@@ -355,7 +360,7 @@ call dein#add('alker0/chezmoi.vim')
 " Link: https://github.com/Lilja/vim-chezmoi
 " Official Description: Let's you apply files on write
 " to chezmoi.
-" 
+"
 " This plugin automatically applies changes to dotfiles
 call dein#add('Lilja/vim-chezmoi')
 let g:chezmoi = "enabled"

@@ -201,12 +201,12 @@ zinit ice blockf wait"1"
 zinit load lukechilds/zsh-nvm
 
 ### Gitignore plugin – commands gi and gii
-zinit ice wait \
+zinit ice wait"2" \
   trigger-load'!gi;!gii'
 zinit load voronkovich/gitignore.plugin.zsh
 
 ### zhooks
-zinit ice wait \
+zinit ice wait"2" \
   trigger-load'!zhooks'
 zinit load agkozak/zhooks
 
@@ -214,6 +214,9 @@ zinit load agkozak/zhooks
 ### Zinit: Plugins 					 ###
 ############################################################
 
+ZSH_TMUX_CONFIG="$HOME/.config/tmux/tmux.conf"
+zinit ice wait"1"
+zinit snippet OMZP::tmux/tmux.plugin.zsh
 
 ### History Substring Searching
 HISTORY_SUBSTRING_SEARCH_PREFIXED=true # Match with autosuggestions
@@ -258,7 +261,6 @@ zinit light joshskidmore/zsh-fzf-history-search
 ZSH_AUTOSUGGEST_STRATEGY=(history) # Match suggestions with history-substring
 zinit ice wait atload'_zsh_autosuggest_start'
 zinit load zsh-users/zsh-autosuggestions
-#export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
 
 # Zsh Completions
 zinit ice wait blockf atpull'zinit creinstall -q .'
