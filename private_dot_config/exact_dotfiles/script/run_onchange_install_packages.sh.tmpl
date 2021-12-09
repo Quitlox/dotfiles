@@ -145,7 +145,6 @@ sudo pacman -S --needed -q xdg-user-dir
 # Iconic font aggregator, collection, and patcher.
 # > Includes font used by Desktop Environment (Iosevka)
 install_yay nerd-fonts-complete
-
 # An iconic bitmap font based on Stlarch with additional
 # glyphs.
 # > Used in polybar
@@ -155,10 +154,16 @@ install_yay siji
 # ThythmBox, web browsers, cmus, mpd, spotify and others.
 # > Used by ~/.config/polybar/polybar-spotify
 sudo pacman -S --needed -q pacman playerctl
-
 # A text scroller for panels or terminals
 # > Used by ~/.config/polybar/polybar-spotify
 install_yay zscroll-git
+
+# An image viewing/manipulation program
+# > Used by ~/.config/i3/pixel_lockscreen.sh
+sudo pacman -S --needed -q pacman imagemagick
+# > Used by ~/.config/i3/pixel_lockscreen.sh
+#	i.e. its the lockscreen
+sudo pacman -S --needed -q pacman i3lock
 
 ### [system] ###########################
 
