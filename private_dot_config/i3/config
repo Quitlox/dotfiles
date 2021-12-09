@@ -490,9 +490,4 @@ assign [class="discord"] number $ws8
 ### Theme Resources                     ###
 ###########################################
 
-# Managed by base16-universal-manager
-# <<<<<<<<<<
-# >>>>>>>>>>
-
-# <<<<<<<<<<2
-# >>>>>>>>>>2
+include ~/.config/i3/theme
