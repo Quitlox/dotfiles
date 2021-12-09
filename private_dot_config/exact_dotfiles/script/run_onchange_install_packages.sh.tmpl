@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +o errexit
+
 # Import Scripting Dependencies
 source {{ joinPath .chezmoi.sourceDir .includeDir "/dep_all.sh" | quote }}
 # Convenience wrapper around yay
@@ -22,6 +24,20 @@ information "Please enter sudo password..."
 if ! sudo -v; then
 	berror "Failed to obtain Sudo" >&2
 	exit
+fi
+
+# Exit if informant check fails
+# Informant is a script that keeps track
+# whether the user has read the latest Arch News.
+if command -v informant > /dev/null; then
+	if ! sudo informant check; then
+		berror "There is important Arch News! Go read! (sudo informant read)"
+		exit
+	else
+		info "No unread Arch News"
+	fi
+else
+	warning "Informant not installed. Install to keep up with important Arch Wiki updates."
 fi
 
 #######################################
@@ -143,6 +159,14 @@ sudo pacman -S --needed -q pacman playerctl
 # A text scroller for panels or terminals
 # > Used by ~/.config/polybar/polybar-spotify
 install_yay zscroll-git
+
+### [system] ###########################
+
+sudo pacman -S --needed -q nftables
+sudo systemctl enable --now nftables.service
+
+sudo pacman -S --needed -q cpupower.service
+sudo systemctl enable --now cpupower.service
 
 #######################################
 ### applications                    ###
