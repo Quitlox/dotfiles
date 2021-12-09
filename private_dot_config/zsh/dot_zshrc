@@ -119,7 +119,7 @@ zinit load zdharma-continuum/z-a-patch-dl
 
 # z-a-man: Automatically generates man pages out of plugin
 # README.md files.
-zinit load zdharma-continuum/z-a-man
+#zinit load zdharma-continuum/z-a-man
 
 
 
@@ -216,6 +216,7 @@ zinit load agkozak/zhooks
 
 
 ### History Substring Searching
+HISTORY_SUBSTRING_SEARCH_PREFIXED=true # Match with autosuggestions
 function __bind_history_keys() {
   bindkey "^P" history-substring-search-up
   bindkey "^N" history-substring-search-down
@@ -224,12 +225,6 @@ function __bind_history_keys() {
 }
 zinit ice wait atload'__bind_history_keys'
 zinit load zsh-users/zsh-history-substring-search
-
-### Colored man pages
-# UNNEEDED: See exports.zsh
-#zinit ice wait \
-#  trigger-load'!man'
-#zinit load ael-code/zsh-colored-man-pages
 
 ### zconvey
 # Send notifications and commands to all or selected
@@ -242,20 +237,6 @@ zinit ice wait for \
 ### bgnotify
 # Cross-platform background notifications for long running
 # commands.
-
-### command-not-found
-# Uses command-not-found package for zsh to provide
-# suggested packages to be installed if a command cannot
-# be found.
-
-
-############################################################
-### Zinit: Miscelleneous
-############################################################
-
-# Source custom files
-#zinit ice atinit'local i; for i in ~/.config/zsh/*.zsh; do source $i; done'
-#zinit load ~/.local
 
 # Custom Plugins & Completions
 zinit wait as"none" \
@@ -274,7 +255,7 @@ zinit ice lucid wait'0'
 zinit light joshskidmore/zsh-fzf-history-search
 
 # Zsh Autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history)
+ZSH_AUTOSUGGEST_STRATEGY=(history) # Match suggestions with history-substring
 zinit ice wait atload'_zsh_autosuggest_start'
 zinit load zsh-users/zsh-autosuggestions
 #export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
