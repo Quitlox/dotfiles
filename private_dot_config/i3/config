@@ -32,9 +32,14 @@ exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# pactl is native but increases volume past 100%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pamixer -t # mute sound
+# these keys are sent by OnePlus buds when connected via Bluetooth
+# and one takes out an earphone or puts it back in
+bindsym XF86AudioPause exec --no-startup-id playerctl pause # mute sound
+bindsym XF86AudioPlay exec --no-startup-id playerctl play # mute sound
 
 # Sreen brightness controls
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -144,13 +149,13 @@ bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id "$i3lockwall", mode "default"
-    bindsym s exec --no-startup-id "$i3lockwall; systemctl suspend", mode "default"
-    bindsym u exec --no-startup-id "dm-tool switch-to-greeter", mode "default"
-    bindsym e exec --no-startup-id "i3-msg exit", mode "default"
-    bindsym h exec --no-startup-id "$i3lockwall; systemctl hibernate", mode "default"
-    bindsym r exec --no-startup-id "$i3lockwall; systemctl reboot", mode "default"
-    bindsym Shift+s exec --no-startup-id $i3lockwall; systemctl poweroff, mode "default"
+    bindsym l exec --no-startup-id $i3lockwall , mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -375,7 +380,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+shift+s sticky toggle
+bindsym $mod+Shift+s sticky toggle
 
 ###########################################
 ### Workspace Management                ###
@@ -436,13 +441,13 @@ for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="fpakman"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="Gparted"] floating enable border normal
+for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="Musescore: play panel"] floating enable
+for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
@@ -490,4 +495,9 @@ assign [class="discord"] number $ws8
 ### Theme Resources                     ###
 ###########################################
 
-include ~/.config/i3/theme
+# Managed by base16-universal-manager
+# <<<<<<<<<<
+# >>>>>>>>>>
+
+# <<<<<<<<<<2
+# >>>>>>>>>>2

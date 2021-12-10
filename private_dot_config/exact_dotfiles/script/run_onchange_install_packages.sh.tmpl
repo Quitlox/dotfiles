@@ -123,6 +123,8 @@ sudo pacman -S --needed -q wireplumber
 
 # Volume Control
 sudo pacman -S --needed -q pavucontrol
+# Used by ~/.config/i3/config (keybinding)
+sudo pacman -S --needed -q pamixer
 
 # Graphical interface for setting GTK themes
 sudo pacman -S --needed -q lxappearance
@@ -153,6 +155,7 @@ install_yay siji
 # MPRIS Media Player command-line controller for vlc, mpv,
 # ThythmBox, web browsers, cmus, mpd, spotify and others.
 # > Used by ~/.config/polybar/polybar-spotify
+# > Used by ~/.config/i3/config (for pause music keybinding)
 sudo pacman -S --needed -q pacman playerctl
 # A text scroller for panels or terminals
 # > Used by ~/.config/polybar/polybar-spotify
