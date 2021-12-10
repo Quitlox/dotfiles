@@ -1,0 +1,13 @@
+[Unit]
+Description=Configure Wacom tablet
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+# ~/.config/dotfiles/script/xsetwacom_obsidian.sh
+# Should be in PATH
+ExecStart="%h/.config/dotfiles/script/xsetwacom_obsidian.sh"
+
+[Install]
+WantedBy=graphical-session.target

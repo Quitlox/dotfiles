@@ -11,6 +11,15 @@ then
 	berror "Missing dependency: 'awk'"
 fi
 
+# Wait until tablet is connected
+# (this script is launched by a udev rule)
+for i in $(seq 10); do
+    if xsetwacom list devices | grep -q Wacom; then
+        break
+    fi
+    sleep 1
+done
+
 # Find the id of the pad
 pad=$(xsetwacom --list devices \
 	| awk --field-separator '\t' '/pad/ {split($2, ID, ": "); print ID[2];}')
@@ -20,7 +29,7 @@ stylus=$(xsetwacom --list devices \
 # Exit if tablet not connected
 if [[ -z $pad ]]; then
 	bwarning "Wacom Tablet not connected!"
-	exit
+	exit 0
 fi
 
 xsetwacom set $stylus MapToOutput 1920x1080+0+0
@@ -34,3 +43,5 @@ xsetwacom set $pad Button 9 "key +ctrl button 5 key -ctrl"
 xsetwacom set $pad Button 10 "key +space"
 
 success "Succesfully remapped Pad for use with Obsidian!"
+
+exit 0
