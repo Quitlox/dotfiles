@@ -87,15 +87,15 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 "
 
 " Change current word in a repeatable manner
-nnoremap <leader>cw *``cgn
-nnoremap <leader>cW *``cgN
+"nnoremap <leader>cw *``cgn
+"nnoremap <leader>cW *``cgN
 
 " Change selected word in a repeatable manner
-vnoremap <expr> <leader>cw "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
-vnoremap <expr> <leader>cW "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
-let g:which_key_map.c = { 'name': 'which_key_ignore' }
-let g:which_key_map.p = 'which_key_ignore'
-let g:which_key_map.n = 'which_key_ignore'
+"vnoremap <expr> <leader>cw "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
+"vnoremap <expr> <leader>cW "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
+"let g:which_key_map.c = { 'name': 'which_key_ignore' }
+"let g:which_key_map.p = 'which_key_ignore'
+"let g:which_key_map.n = 'which_key_ignore'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,7 +136,7 @@ map <leader>wb <C-W>v
 let g:which_key_map.w.b = '[w]indow split horizontal'
 map <leader>wd <C-W>q
 let g:which_key_map.w.d = '[w]indow [d]elete'
-map <leader>ww :new
+map <leader>ww :new<CR>
 let g:which_key_map.w.w = ':new <window>'
 
 " Resize Windows
@@ -300,10 +300,12 @@ nmap gf :call CocAction('format')<cr>
 nmap ga  <Plug>(coc-codeaction)
 " QuickFix
 nmap g<enter>  <Plug>(coc-fix-current)
+" Hover
+nmap gh :call CocAction'doHover')<cr>
 " Organize Imports
 nmap go :call CocAction('runCommand', 'editor.action.organizeImport')<cr>
 " Documentation
-nnoremap <silent> <leader>gh :call <SID>show_documentation()<CR>
+"nnoremap <silent> <leader>gh :call <SID>show_documentation()<CR>
 " CocList
 nnoremap <silent><nowait> <leader>id :<C-u>CocList diagnostics<cr>
 nnoremap <silent><nowait> <leader>ie :<C-u>CocList extensions<cr>

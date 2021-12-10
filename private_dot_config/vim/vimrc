@@ -305,7 +305,17 @@ call dein#add('farmergreg/vim-lastplace')
 " some other related featues that should make youre time in
 " insert mode a little bit easier, like syntax awereness,
 " and expansions, and some more.
-call dein#add('raimondi/delimitmate')
+" 
+" Delimitmate does not play nice with Shift-Backspace
+"call dein#add('raimondi/delimitmate')
+
+" Plugin: Auto Pairs
+" Link: https://github.com/jiangmiao/auto-pairs
+" Official Decription: Vim plugin, insert or delete
+" brackets, parens, quotes in pair
+let g:AutoPairsMapBS=0
+call dein#add('jiangmiao/auto-pairs')
+let g:AutoPairsMapBS=0
 
 
 " Plugin: vim-closetag
