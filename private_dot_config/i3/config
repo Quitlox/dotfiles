@@ -70,10 +70,12 @@ mouse_warping none
 bindsym $mod+Return exec $terminal
 
 # Desktop Environment
-bindsym $mod+d exec --no-startup-id dmenu_run               # DMenu
-#bindsym $mod+ctrl+b exec $terminal -e 'bmenu'                   # BMenu
-bindsym $mod+ctrl+m exec pavucontrol                            # Audio Manager
-bindsym $mod+ctrl+b exec blueman-manager                            # Bluetooth Manager
+bindsym $mod+d exec --no-startup-id dmenu_run      # DMenu
+#bindsym $mod+ctrl+b exec $terminal -e 'bmenu      # BMenu
+bindsym $mod+ctrl+m exec pavucontrol               # Audio Manager
+bindsym $mod+ctrl+b exec blueman-manager           # Bluetooth Manager
+# Show Notification Center
+bindsym $mod+n exec kill -s USR1 $(pidof deadd-notification-center)
 
 # Killing windows
 bindsym $mod+shift+q kill
@@ -116,8 +118,12 @@ exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 60
 # 	- It also restarts the monitor dependen UI elements:
 # 		- Nitrogen is reloaded
 # 		- Polybars are started
-exec_always --no-startup-id autorandr --change --force --default default
-exec --no-startup-id picom -b --experimental-backends --backend glx             # Wallpaper
+exec_always --no-startup-id \
+    autorandr --change --force --default default
+exec --no-startup-id \
+    picom -b --experimental-backends --backend glx
+exec --no-startup-id \
+    deadd-notification-center
 
 # Autostart tray applications
 #exec --no-startup-id nm-applet                  # Network Manager
