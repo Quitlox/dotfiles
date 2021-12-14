@@ -15,9 +15,10 @@ export TERMINAL="kitty"
 export MOZ_USE_XINPUT2=1
 # Firefox does not repaint after disabling/enabling compositing
 # Note to self: I am not sure whether this actually fixes the
-# behaviour I wanted to fix, which is that on reboot when i open
-# firefox the window stays halfscreen even if the window is fullscreen.
+# behaviour I wanted to fix, which is that on reboot when I hit "restore seesion"
+# the window stays halfscreen even if the window is fullscreen.
 # https://wiki.archlinux.org/title/Firefox#Firefox_window_does_not_repaint_after_disabling_or_enabling_compositing
+# Update: It didn't
 unset MOZ_X11_EGL
 
 ########################################
