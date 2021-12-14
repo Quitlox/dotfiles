@@ -6,6 +6,7 @@
 {{-   $email = promptString "E-Mail (git)" }}
 {{- end }}
 
+# Priviliged (whether to install packages)
 {{- $priviliged := "" }}
 {{- if (hasKey . "priviliged") }}
 {{-   $priviliged = .priviliged }}
@@ -13,19 +14,31 @@
 {{-   $priviliged = promptBool "Do you have sudo priviliges" }}
 {{- end }}
 
+# Environment (desktop or headless)
 {{- $environment := "" }}
 {{- if (hasKey . "environment") }}
 {{-   $environment = .environment }}
 {{- else }}
-
 {{- if (eq (expandenv "$SSH_TTY$SSH_CLIENT") "") }}
 {{-   $environment = "desktop" }}
 {{- else }}
 {{-   $environment = "headless" }}
 {{- end }}
-
 {{- end }}
 
+# Set chassis type (desktop or laptop)
+{{- $chassisType := "desktop" }}
+{{- if (eq .chezmoi.os "darwin") }}
+{{-   if contains "MacBook" (output "sysctl" "-n" "hw.model") }}
+{{-     $chassisType = "laptop" }}
+{{-   else }}
+{{-     $chassisType = "desktop" }}
+{{-   end }}
+{{- else if (eq .chezmoi.os "linux") }}
+{{-   $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+{{- else if (eq .chezmoi.os "windows") }}
+{{-   $chassisType = (output "powershell.exe" "-noprofile" "-command" "if (Get-WmiObject -Class win32_battery -ComputerName localhost) { echo laptop } else { echo desktop }") }}
+{{- end }}
 
 encryption = "age"
 
