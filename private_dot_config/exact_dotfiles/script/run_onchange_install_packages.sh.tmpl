@@ -173,8 +173,14 @@ sudo pacman -S --needed -q pacman i3lock
 sudo pacman -S --needed -q nftables
 sudo systemctl enable --now nftables.service
 
-sudo pacman -S --needed -q cpupower.service
+sudo pacman -S --needed -q cpupower
 sudo systemctl enable --now cpupower.service
+
+# Laptop Mode Tools 
+# TODO: Make Laptop only
+sudo pacman -S --needed -q acpid sdparm ethtool iw
+yay_needed laptop-mode-tools
+sudo systemctl enable --now laptop-mode.service
 
 #######################################
 ### applications                    ###
@@ -224,6 +230,10 @@ code --install-extension austenc.tailwind-docs
 
 # Your place to Talk and Hang out
 sudo pacman -S --needed -q discord
+
+# Mailclient
+sudo pacman -S --needed -q thunderbird
+
 # Zathura is a highly customizable and functional document
 # viewer.
 sudo pacman -S --needed -q zathura
@@ -254,6 +264,7 @@ sudo pacman -S --needed -q npm
 #install cmake
 #install firefox-developer-edition
 #install jdk11-openjdk
+sudo pacman -S --needed -q jre11-openjdk jdk11-openjdk jre8-openjdk jdk8-openjdk
 
 #######################################
 ### hacking tools                   ###
