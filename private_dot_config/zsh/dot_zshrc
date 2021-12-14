@@ -100,27 +100,14 @@ autoload -Uz _zinit
 # Wait 1 - Often used commands, programs and extra features
 # Wait 2 - Non-urgent stuff
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-rust
-
 # z-a-bin-gem-node: Provides a RVM-like solution for Ruby
 # Gems, Node modules and regular binaries.
 zinit load zdharma-continuum/z-a-bin-gem-node
 
-# z-a-eval: Caches arbitrarily slow command output to speed
-# up shell startup
-zinit load NICHOLAS85/z-a-eval
-
-# z-a-patch-dl: Downlaods files and applies patches
-zinit load zdharma-continuum/z-a-patch-dl
-
 # z-a-man: Automatically generates man pages out of plugin
 # README.md files.
-#zinit load zdharma-continuum/z-a-man
-
+zinit ice has"tree"
+zinit load zdharma-continuum/z-a-man
 
 
 ############################################################
@@ -130,6 +117,7 @@ zinit load zdharma-continuum/z-a-patch-dl
 ### exa
 # A modern replacement for 'ls'.
 zinit ice wait"1" \
+  if'[[ -z "$commands[exa]" ]]' \
   from"gh-r" as"command" \
   extract mv"bin/exa* -> exa" pick"exa"
 zinit load ogham/exa
@@ -137,31 +125,31 @@ zinit load ogham/exa
 ### bat
 # A cat clone with wings.
 zinit ice wait"2" as"command" from"gh-r" \
+  if'[[ -z "$commands[bat]" ]]' \
   mv"bat* -> bat" pick"bat/bat"
 zinit load sharkdp/bat
 
 ### fzf
 # A command-line fuzzy finder.
-zinit ice wait"2" as"program" from"gh-r"
+zinit ice wait"2" \
+  if'[[ -z "$commands[fzf]" ]]' \
+  as"program" from"gh-r" \
 zinit load junegunn/fzf-bin
 
 ### fd
 zinit ice \
+  if'[[ -z "$commands[fd]" ]]' \
   as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
 zinit load sharkdp/fd
 
 ### zoxide
-zinit ice wait"0" as"command" from"gh-r" lucid \
+zinit ice wait"0" lucid \
+  if'[[ -z "$commands[zoxide]" ]]' \
+  as"command" from"gh-r" \
   mv"zoxide*/zoxide -> zoxide" \
   atclone"./zoxide init zsh > init.zsh" \
   atpull"%atclone" src"init.zsh" nocompile'!'
 zinit load ajeetdsouza/zoxide
-
-### zinit-console
-# A curses consolette for Zsh-Zinit plugin manager.
-zinit wait"2" for \
-  zdharma-continuum/zui \
-  zdharma-continuum/zinit-console
 
 ############################################################
 ### Zinit: Completions 					 ###
