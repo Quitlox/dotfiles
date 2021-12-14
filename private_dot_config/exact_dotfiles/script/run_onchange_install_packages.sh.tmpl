@@ -40,110 +40,144 @@ else
 	warning "Informant not installed. Install to keep up with important Arch Wiki updates."
 fi
 
-#######################################
-### essential packages              ###
-#######################################
+############################################################
+### essential packages                                   ###
+############################################################
 
 # Packages you probably want on any system
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
-sudo pacman -S --needed -q git gvim zsh unzip exa bat tree make openssh chezmoi
+sudo pacman -S --needed -q git gvim zsh unzip exa bat tree make openssh chezmoi fzf
 {{- else if eq .chezmoi.osRelease.id "debian" }}
-sudo apt install git gvim zsh rubygems unzip exa bat tree make openssh chezmoi
+sudo apt install git gvim zsh rubygems unzip exa bat tree make openssh chezmoi fzf
 {{- end }}
+
+############################################################
+### Desktop Environment                                  ###
+############################################################
 
 # Packages only needed on desktop
 {{- if eq .environment "desktop" }}
-
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
-binformation "Manjaro detected"
+binformation "Arch/Manjaro detected"
 
+########################################
+### Window Manager                   ###
+########################################
 
-#######################################
-### desktop environment             ###
-#######################################
-
-### [terminal] ########################
-# Alternative for default 'diff'
-# > Used by  ~/.config/zsh/zsh-config alias for 'diff'
-sudo pacman -S --needed -q colordiff
-# A command-line fuzzy finder
-# > Used by ~/.config/zsh/.zshrc (history search)
-sudo pacman -S --needed -q fzf
-
-### [window-manager] ###################
-
-#TODO: acpi?
-
+### THE WINOW MANAGER ##################
+# A fork of the i3 window manager with gaps and some other
+# features
 sudo pacman -S --needed -q i3-gaps
+### COMPOSITOR #########################
+# The efficient blur method "dual_kawase" is not yet in the
+# latest official release
+# > Note: Waiting for the experimental backend "glx"
+# to merge becuase of blur feature
+# https://github.com/yshui/picom/pull/382
+install_yay picom-git
+### LOCKSCREEN #########################
+# xautolock rewrite in Rust, we a few extra features
+# Note: The application responsible for activating
+# the lock screen after a specified period
+install_yay xidlehook
+# Note: The actual lockscreen
+# > Used by ~/.config/i3/pixel_lockscreen.sh
+sudo pacman -S --needed -q pacman i3lock
+### APPLICATION LAUNCHER ###############
 sudo pacman -S --needed -q dmenu
 # Rofi: A window switcher, application launcher and dmenu
 # replacement
 sudo pacman -S --needed -q rofi
+### TERMINAL EMULATOR ##################
 # Cross-platform, fast, feature-rich, GPU based terminal
 sudo pacman -S --needed -q kitty
+### WALLPAPER ##########################
 # Background browser and setter for X windows
 sudo pacman -S --needed -q nitrogen
+### STATUS BAR #########################
 # A fast and easy-to-use status bar
 install_yay polybar
-# The efficient blur method "dual_kawase" is not yet in the
-# latest official release
-install_yay picom-git
 
-# Simple screenshot utility (printscreen)
-# > Used by ~/.config/i3/pixel_lockscreen.sh
-sudo pacman -S --needed -q maim
-# Auto-detect the connected display hardware and load the
-# appropiate X11 setup using xrandr.
-sudo pacman -S --needed -q autorandr
+########################################
+### Main Features & Functionalities  ###
+########################################
+
+### BRIGHTNESS #########################
 # A program to read and control device brightness
 sudo pacman -S --needed -q brightnessctl
-# ARandR is designed to provide a simple visual front end
-# for XRandR.
-sudo pacman -S --needed -q arandr
-# xidlehook: xautolock rewrite in Rust, we a few extra features
-install_yay xidlehook
-# Clipboard manager with advanced features
-sudo pacman -S --needed -q copyq
 
-### [tools] ############################
-
-sudo pacman -S --needed -q xorg-xev
-install_yay evtest
-# Utility to configure and test X input devices
-# > Used by ~/.config/autorandr/postswitch.d/adjust_touch_screen.sh
-sudo pacman -S --needed -q xorg-xinput
-# > Used by ~/.config/i3/config
-sudo pacman -S --needed -q xorg-xkill
-
-### [gui-controls] #####################
-
+### BLUETOOTH ##########################
+# GTK+ Bluetooth Manager
 sudo pacman -S --needed -q blueman
+# Provides bluetoothctl
+# (bluez is the linux bluetooth kernel module)
 sudo pacman -S --needed -q bluez-utils
-sudo pacman -S --needed -q wireplumber
 
-# Volume Control
+### AUDIO ###############################
+# Low level multimedia framework
+sudo pacman -S --needed -q pipewire
+# PipeWire Session Manager
+# Note: Replaces the default pipewire-media-session
+sudo pacman -S --needed -q wireplumber
+# PulseAudio Volume Control GUI
+# (also works pipewire)
 sudo pacman -S --needed -q pavucontrol
+# PulseAudio Command Line Mixer
 # Used by ~/.config/i3/config (keybinding)
 sudo pacman -S --needed -q pamixer
 
+### MONITORS ###########################
+# Auto-detect the connected display hardware and load the
+# appropiate X11 setup using xrandr.
+sudo pacman -S --needed -q autorandr
+# ARandR is designed to provide a simple visual front end
+# for XRandR.
+sudo pacman -S --needed -q arandr
+
+### SCREENSHOT #########################
+# Simple screenshot utility (printscreen)
+# > Used by ~/.config/i3/pixel_lockscreen.sh
+sudo pacman -S --needed -q maim
+
+### CLIPBOARD ##########################
+# Clipboard manager with advanced features
+sudo pacman -S --needed -q copyq
+
+### APPEARANCE #########################
 # Graphical interface for setting GTK themes
 sudo pacman -S --needed -q lxappearance
 # Graphical interface for setting QT themes
 sudo pacman -S --needed -q qt5ct
 
-# An Arch Linux News reader and pacman hook.
-# Make sure I read Arch News if any on update
-install_yay informant
+########################################
+### (X) Tools                        ###
+########################################
 
-### [dependencies] #####################
+# Print contents of X events
+sudo pacman -S --needed -q xorg-xev
+# Event device test program
+install_yay evtest
+# Utility to configure and test X input devices
+# > Used by ~/.config/autorandr/postswitch.d/adjust_touch_screen.sh
+sudo pacman -S --needed -q xorg-xinput
+# Kill an X application by mouse click
+# > Used by ~/.config/i3/config
+sudo pacman -S --needed -q xorg-xkill
 
+########################################
+### Dependencies                     ###
+########################################
+
+### WACOM TABLET #######################
 # XOrg Wacom tablet driver
 # > Used by ~/.config/dotfiles/script/xsetwacom_obsidian.sh
 sudo pacman -S --needed -q xf86-input-wacom
 
+### XDG USER DIR #######################
 # Needed for configuring environment variables (e.g. XDG_DATA_HOME)
 sudo pacman -S --needed -q xdg-user-dir
 
+### FONTS ##############################
 # Iconic font aggregator, collection, and patcher.
 # > Includes font used by Desktop Environment (Iosevka)
 install_yay nerd-fonts-complete
@@ -152,6 +186,7 @@ install_yay nerd-fonts-complete
 # > Used in polybar
 install_yay siji
 
+### OTHER ##############################
 # MPRIS Media Player command-line controller for vlc, mpv,
 # ThythmBox, web browsers, cmus, mpd, spotify and others.
 # > Used by ~/.config/polybar/polybar-spotify
@@ -160,32 +195,33 @@ sudo pacman -S --needed -q pacman playerctl
 # A text scroller for panels or terminals
 # > Used by ~/.config/polybar/polybar-spotify
 install_yay zscroll-git
-
 # An image viewing/manipulation program
 # > Used by ~/.config/i3/pixel_lockscreen.sh
 sudo pacman -S --needed -q pacman imagemagick
-# > Used by ~/.config/i3/pixel_lockscreen.sh
-#	i.e. its the lockscreen
-sudo pacman -S --needed -q pacman i3lock
+# > Needed by "~/.local/bin/cht.sh"
+sudo pacman -S --needed -q rlwrap
 
-### [system] ###########################
+############################################################
+### System Packages                                      ###
+############################################################
 
+### FIREWALL ###########################
 sudo pacman -S --needed -q nftables
 sudo systemctl enable --now nftables.service
 
-sudo pacman -S --needed -q cpupower
-sudo systemctl enable --now cpupower.service
+### LAPTOP POWER MANAGEMENT ############
+{{- if (eq .chassisType "laptop") }}
+sudo pacman -S --needed -q ethtool tlp tlp-rdw
+{{- if (eq .chezmoi.hostname "quitlox-LenovoT14") }}
+sudo pacman -S --needed -q acpi_call
+{{- end }}
+{{- end }}
 
-# Laptop Mode Tools 
-# TODO: Make Laptop only
-sudo pacman -S --needed -q acpid sdparm ethtool iw
-yay_needed laptop-mode-tools
-sudo systemctl enable --now laptop-mode.service
+############################################################
+### Desktop Applications                                 ###
+############################################################
 
-#######################################
-### applications                    ###
-#######################################
-
+### LATEX ##############################
 # A modernized, complete, self-contained TeX/LaTeX engine,
 # powered by XeTeX and TeXLive.
 # > Used by ~/.config/vim/vimrc
@@ -197,19 +233,18 @@ install_yay pplatex-git
 # > Needed for biblatex files
 sudo pacman -S --needed -q biber
 
-### [terminal] ########################
+### SPOTIFY ############################
 # Lightweight spotify streaming daemon with spotify connect
 # support.
 # > Used by spotify-tui
 sudo pacman -S --needed -q spotifyd
 # Command-line Spotify client written in Rust
 install_yay spotify-tui
-# A monitor of resources
-install_yay btop
+# The official Spotify binary
+install_yay spotify
 
-### [desktop] ##########################
-
-# Microsoft vscode
+### VSCODE #############################
+# Language Agnostic (so probably always desired)
 install_yay visual-studio-code-bin
 code --install-extension coenraads.bracket-pair-colorizer-2
 code --install-extension ms-azuretools.vscode-docker
@@ -219,59 +254,91 @@ code --install-extension ms-vsliveshare.vsliveshare
 code --install-extension alefragnani.numbered-bookmarks
 code --install-extension vscodevim.vim
 code --install-extension visualstudioexptteam.vscodeintellicode
-
+# I am deffo gonna forget I liked these plugins so
+# better just install them
 code --install-extension firefox-devtools.vscode-firefox-debug
-code --install-extension dbaeumer.vscode-eslint
 code --install-extension ms-toolsai.jupyter-keymap
-code --install-extension esbenp.prettier-vscode
 code --install-extension njpwerner.autodocstring
+# Languages
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
+
 code --install-extension bradlc.vscode-tailwindcss
 code --install-extension austenc.tailwind-docs
 
+### DISCORD ############################
 # Your place to Talk and Hang out
 sudo pacman -S --needed -q discord
 
+### MAIL CLIENT ########################
 # Mailclient
 sudo pacman -S --needed -q thunderbird
 
+### PDF READER #########################
 # Zathura is a highly customizable and functional document
 # viewer.
 sudo pacman -S --needed -q zathura
 # PDF support for Zathura
 sudo pacman -S --needed -q zathura-pdf-mupdf
 
+### OBSIDIAN ###########################
 # Obsidian is a powerful knowledge base that works on top
 # of a local folder of plain text Markdown files
 install_yay obsidian-appimage
 
-# [optional]
+############################################################
+### Other Applications                                   ###
+############################################################
+
+#######################################
+### Terminal Applications           ###
+#######################################
+
+# A monitor of resources
+install_yay btop
+
+#######################################
+### Command-Line Tools              ###
+#######################################
+
+# An Arch Linux News reader and pacman hook.
+# Make sure I read Arch News if any on update
+install_yay informant
+
+# GitHub's official command line tool
 sudo pacman -S --needed -q github-cli
-# > Needed by "~/.local/bin/cht.sh"
-sudo pacman -S --needed -q rlwrap
+
+# Alternative for default 'diff'
+# > Used by  ~/.config/zsh/zsh-config alias for 'diff'
+sudo pacman -S --needed -q colordiff
 
 #######################################
-### build tools                     ###
+### Build Tools / Languages         ###
 #######################################
 
+### GO ################################
 sudo pacman -S --needed -q go
+### JAVASCRIPT ########################
 sudo pacman -S --needed -q nodejs
 sudo pacman -S --needed -q npm
+### JAVA ##############################
+sudo pacman -S --needed -q \
+	jre11-openjdk jdk11-openjdk \
+	jre8-openjdk jdk8-openjdk
 
 #######################################
-### development tools               ###
+### Development Tools               ###
 #######################################
 
-#install cmake
-#install firefox-developer-edition
-#install jdk11-openjdk
-sudo pacman -S --needed -q jre11-openjdk jdk11-openjdk jre8-openjdk jdk8-openjdk
+sudo pacman -S --needed -q firefox-developer-edition
 
 #######################################
-### hacking tools                   ###
+### Hacking Tools                   ###
 #######################################
 
 sudo pacman -S --needed -q nmap sqlmap wireshark-qt
+sudo usermod -aG wireshark quitlox
 
-{{- end }}
-{{- end }}
-{{- end }}
+{{- end }} # Desktop (not headless)
+{{- end }} # Arch / Manjaro
+{{- end }} # Priviliged (sudo)
