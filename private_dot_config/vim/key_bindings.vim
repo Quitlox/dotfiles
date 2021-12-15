@@ -261,11 +261,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-" Autocomplete on Tab
-"inoremap <silent><expr> <Tab>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<Tab>" :
-"      \ coc#refresh()
 " Autocompletion on ctrl+space
 inoremap <silent><expr> <c-space> coc#refresh()
 " Navigate completion list backward with <S-Tab>
@@ -279,19 +274,18 @@ else
 endif
 " Confirm completion
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 " Coc Navigate Diagnostics:
-" Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)"
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
 " CoC Keybindings:
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gu <Plug>(coc-references)
+
 " Symbol renaming
 nmap gr <Plug>(coc-rename)
 " Format buffer
@@ -301,7 +295,7 @@ nmap ga  <Plug>(coc-codeaction)
 " QuickFix
 nmap g<enter>  <Plug>(coc-fix-current)
 " Hover
-nmap gh :call CocAction'doHover')<cr>
+nmap gh :call CocAction('doHover')<cr>
 " Organize Imports
 nmap go :call CocAction('runCommand', 'editor.action.organizeImport')<cr>
 " Documentation
@@ -460,9 +454,9 @@ nnoremap <leader>vu :DeinUpdate<cr>
 let g:which_key_map.v.u = '[v]im [u]pdate plugins'
 
 " Extra mappings: [o]pen
-noremap <C-P> :NERDTreeClose\|CtrlP<cr>
+noremap <C-o> :NERDTreeClose\|CtrlP<cr>
 let g:which_key_map.o = { 'name': '+open' }
-noremap <leader>of :NERDTreeClose\|CtrlP<cr>
+noremap <leader>oo :NERDTreeClose\|CtrlP<cr>
 let g:which_key_map.o.f = '[o]pen [f]ile'
 noremap <leader>ob :NERDTreeClose\|CtrlPBuffer<cr>
 let g:which_key_map.o.b = '[o]pen [b]uffer'
