@@ -1,7 +1,11 @@
 
 ############################################################
-### Aliases 			              												 ###
+### Aliases                                              ###
 ############################################################
+
+# Enable vim server by default
+# Usefull for synctex + live updating color scheme
+alias vim='vim --servername vim'
 
 # Needed for kitty terminal
 alias ssh='kitty +kitten ssh'

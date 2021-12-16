@@ -1,5 +1,5 @@
 # Base16 Theme
-include ./base16_theme
+include ./theme
 set recolor true
 set default-bg rgba(0,0,0,0.6)
 set recolor-lightcolor rgba(0,0,0,0)

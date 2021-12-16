@@ -464,7 +464,7 @@ set runtimepath+=~/.config/vim
 " Set colorscheme (managed by Base16 Universal Manager)
 try
     let base16colorspace=256
-    colorscheme base16_theme
+    colorscheme theme
 catch
 endtry
 

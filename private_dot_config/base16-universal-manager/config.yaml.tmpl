@@ -5,7 +5,7 @@ GithubToken: {{ (bitwardenFields "item" "github.com").pa_token_base16_universal_
 applications:
   kitty:
     enabled: true
-    hook: "kitty @ set-colors ~/.config/kitty/theme.conf"
+    hook: "kitty @ set-colors --all ~/.config/kitty/theme.conf"
     files:
       default-256:
         path: ~/.config/kitty/theme.conf
@@ -14,20 +14,21 @@ applications:
     enabled: true
     files:
       default:
-        path: ~/.config/zsh/base16_theme.sh
+        path: ~/.config/zsh/theme.sh
         mode: rewrite
   vim:
     enabled: true
+    hook: vim --servername vim --remote-send '<Esc>:syntax sync fromstart<CR>'
     files:
       default:
-        path: ~/.config/vim/colors/base16_theme.vim
+        path: ~/.config/vim/colors/theme.vim
         mode: replace
         start_marker: "\" <<<<<<<<<<"
         end_marker: "\" >>>>>>>>>>"
 
   i3:
     enabled: true
-    hook: "i3-msg restart"
+    hook: "i3-msg reload"
     files:
       colors:
         path: ~/.config/i3/theme
@@ -41,9 +42,10 @@ applications:
         end_marker: "# >>>>>>>>>>2"
   base16-polybar:
     enabled: true
+    hook: polybar-msg cmd restart
     files:
       default:
-        path: ~/.config/polybar/config
+        path: ~/.config/polybar/theme
         mode: replace
         start_marker: "# <<<<<<<<<<"
         end_marker: "# >>>>>>>>>>"
@@ -58,11 +60,11 @@ applications:
     enabled: true
     files:
       default:
-        path: ~/.config/zathura/base16_theme
+        path: ~/.config/zathura/theme
         mode: rewrite
 
   gtk2:
-    enabled: true
+    enabled: false
     template: base16-gtk-flatcolor
     files:
       gtk-2:
@@ -71,7 +73,7 @@ applications:
         start_marker: "# <<<<<<<<<<"
         end_marker: "# >>>>>>>>>>"
   gtk3:
-    enabled: true
+    enabled: false
     template: base16-gtk-flatcolor
     files:
       gtk-3:

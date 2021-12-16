@@ -1,6 +1,6 @@
 
 # Source Base16 Theme
-[ -f "$HOME/.config/zsh/base16_theme.sh" ] && . ~/.config/zsh/base16_theme.sh
+[ -f "$HOME/.config/zsh/theme.sh" ] && . ~/.config/zsh/theme.sh
 
 # Colors
 autoload colors && colors

@@ -16,6 +16,8 @@
 ;
 ;==========================================================
 
+include-file = ~/.config/polybar/theme
+
 [bar/base]
 ; Color and Decoration
 background = ${colors.base00}
@@ -30,6 +32,9 @@ border-color = ${colors.base00}
 ; Fonts
 font-0 = siji:size=9:antialias=false
 font-1 = Iosevka Nerd Font:size=10;2
+
+; Enable support for inter-process messaging
+enable-ipc = true
 
 [bar/top]
 ; Monitor
@@ -86,8 +91,6 @@ tray-scale = 1.0
 ; Functionality
 cursor-click = pointer
 cursor-scroll = ns-resize
-; Enable support for inter-process messaging
-enable-ipc = true
 
 [bar/bottom]
 monitor = ${env:MONITOR:}
@@ -117,6 +120,9 @@ module-margin = 2
 modules-left = ip
 modules-center =
 modules-right = memory filesystem
+
+; Enable support for inter-process messaging
+enable-ipc = true
 
 [module/filesystem]
 type = internal/fs
@@ -323,11 +329,5 @@ exec = echo ""
 format = <label>
 click-left = playerctl next spotify
 
-[setttings]
+[settings]
 screenchange-reload = true
-
-
-# Managed by base16-universal-manager
-# <<<<<<<<<<
-# >>>>>>>>>>
-

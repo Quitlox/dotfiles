@@ -10,7 +10,7 @@
 set $mod Mod4
 
 # Termianl
-set $terminal i3-sensible-terminal
+set $terminal kitty --single-instance
 
 # Vim
 set $up k
@@ -76,6 +76,8 @@ bindsym $mod+ctrl+m exec pavucontrol               # Audio Manager
 bindsym $mod+ctrl+b exec blueman-manager           # Bluetooth Manager
 # Show Notification Center
 bindsym $mod+n exec kill -s USR1 $(pidof deadd-notification-center)
+# Show dropdown kitty terminal
+bindsym $mod+t nop kitti3
 
 # Killing windows
 bindsym $mod+shift+q kill
@@ -124,6 +126,8 @@ exec --no-startup-id \
     picom -b --experimental-backends --backend glx
 exec --no-startup-id \
     deadd-notification-center
+exec_always --no-startup-id \
+    kitti3 --position CT
 
 # Autostart tray applications
 #exec --no-startup-id nm-applet                  # Network Manager
