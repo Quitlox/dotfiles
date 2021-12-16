@@ -25,12 +25,11 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "window.menuBarVisibility": "compact",
-  "workbench.iconTheme": "eq-material-theme-icons",
 
   // Miscellaneous
   "keyboard.dispatch": "keyCode",
   "git.autofetch": true,
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "crash",
 
   // Vim: Settings
   "vim.debug.silent": false,
@@ -138,6 +137,14 @@
       "before": ["<leader>", "w", "l"],
       "commands": ["workbench.action.navigateRight"]
     },
+    {
+      "before": ["<leader>", "w", "v"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["<leader>", "w", "b"],
+      "commands": ["workbench.action.splitEditorRight"]
+    },
 
     // Vim: Files
     {
@@ -196,7 +203,14 @@
       "before": ["<leader>", "e", "p"],
       "commands": ["editor.action.marker.prev"]
     },
-
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prev"]
+    },
     // Vim: Bookmarks
     {
       "before": ["'", "a"],
@@ -346,9 +360,6 @@
   "prettier.jsxBracketSameLine": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 
-  "[java]": {
-    "editor.defaultFormatter": "redhat.java"
-  },
   "[typescriptreact]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -431,13 +442,9 @@
   "beautify.language": {
     "html": ["htm", "html", "django-html"]
   },
-  "[django-html]": {
-    "editor.defaultFormatter": "HookyQR.beautify"
-  },
 
   // Miscellaneous
   "references.preferredLocation": "view",
-  "window.zoomLevel": 1,
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }

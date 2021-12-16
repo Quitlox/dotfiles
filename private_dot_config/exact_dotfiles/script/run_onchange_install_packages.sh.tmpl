@@ -214,7 +214,7 @@ sudo pacman -S --needed -q nftables
 sudo systemctl enable --now nftables.service
 
 ### LAPTOP POWER MANAGEMENT ############
-{{- if (eq .chassisType "laptop") }}
+{{- if (eq .chassistype "laptop") }}
 sudo pacman -S --needed -q ethtool tlp tlp-rdw
 {{- if (eq .chezmoi.hostname "quitlox-LenovoT14") }}
 sudo pacman -S --needed -q acpi_call

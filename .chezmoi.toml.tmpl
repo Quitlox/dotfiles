@@ -1,3 +1,6 @@
+########################################
+### PROMPTED PROPERTIES              ###
+########################################
 
 {{- $email := "" }}
 {{- if (hasKey . "email") }}
@@ -13,6 +16,10 @@
 {{- else }}
 {{-   $priviliged = promptBool "Do you have sudo priviliges" }}
 {{- end }}
+
+########################################
+### CALCULATED PROPERTIES            ###
+########################################
 
 # Environment (desktop or headless)
 {{- $environment := "" }}
@@ -40,14 +47,19 @@
 {{-   $chassisType = (output "powershell.exe" "-noprofile" "-command" "if (Get-WmiObject -Class win32_battery -ComputerName localhost) { echo laptop } else { echo desktop }") }}
 {{- end }}
 
+########################################
+### DATA                             ###
+########################################
+
 encryption = "age"
 
 [data]
-	email = {{ $email | quote }}
-	environment = {{ $environment | quote }}
-	priviliged = {{ $priviliged }}
+    email = {{ $email | quote }}
+    priviliged = {{ $priviliged }}
+    environment = {{ $environment | quote }}
+    chassisType = {{ $chassisType | quote }}
 
 [age]
-	identity = "{{ joinPath .chezmoi.sourceDir "private_dot_ssh/.chezmoi_encryption_key.txt" }}"
-	recipient = "{{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_recipient_key.value }}"
+    identity = "{{ joinPath .chezmoi.sourceDir "private_dot_ssh/.chezmoi_encryption_key.txt" }}"
+    recipient = "{{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_recipient_key.value }}"
 
