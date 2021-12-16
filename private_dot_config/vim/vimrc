@@ -313,7 +313,7 @@ call dein#add('farmergreg/vim-lastplace')
 " Link: https://github.com/jiangmiao/auto-pairs
 " Official Decription: Vim plugin, insert or delete
 " brackets, parens, quotes in pair
-call dein#add('jiangmiao/auto-pairs')
+" call dein#add('jiangmiao/auto-pairs')
 
 
 " Plugin: vim-closetag
