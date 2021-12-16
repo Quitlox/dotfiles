@@ -89,7 +89,7 @@ sudo pacman -S --needed -q dmenu
 # replacement
 sudo pacman -S --needed -q rofi
 ### NOTIFICATIONS ######################
-yay_needed ddead-notification-center-bin
+install_yay ddead-notification-center-bin
 ### TERMINAL EMULATOR ##################
 # Cross-platform, fast, feature-rich, GPU based terminal
 sudo pacman -S --needed -q kitty
@@ -166,6 +166,8 @@ sudo pacman -S --needed -q xorg-xinput
 # > Used by ~/.config/i3/config
 sudo pacman -S --needed -q xorg-xkill
 
+sudo pacman -S --needed -q xdotool
+
 ########################################
 ### Dependencies                     ###
 ########################################
@@ -218,6 +220,9 @@ sudo pacman -S --needed -q ethtool tlp tlp-rdw
 sudo pacman -S --needed -q acpi_call
 {{- end }}
 {{- end }}
+
+### BUILD PERFORMANCE ##################
+sudo pacman -S --needed -q pigz pbzip2
 
 ############################################################
 ### Desktop Applications                                 ###
