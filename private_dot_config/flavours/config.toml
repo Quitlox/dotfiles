@@ -1,0 +1,57 @@
+########################################
+### Kitty                            ###
+########################################
+[[items]]
+file = "~/.config/kitty/theme.conf"
+template = "kitty"
+subtemplate = "default-256"
+rewrite = true
+hook = "kitty @ set-colors --all ~/.config/kitty/theme.conf"
+
+########################################
+### Shell                            ###
+########################################
+[[items]]
+file = "~/.config/zsh/theme.sh"
+template = "shell"
+subtemplate = "default"
+rewrite = true
+
+########################################
+### Vim                              ###
+########################################
+[[items]]
+file = "~/.config/vim/colors/theme.vim"
+template = "vim"
+subtemplate = "default"
+hook = "vim --servername vim --remote-send '<Esc>:syntax sync fromstart<CR>'"
+start = "\" <<<<<<<<<<"
+end = "\" >>>>>>>>>>"
+
+########################################
+### i3                               ###
+########################################
+[[items]]
+file = "~/.config/i3/theme"
+template = "i3"
+hook = "i3-msg reload"
+
+########################################
+### Polybar                          ###
+########################################
+[[items]]
+file = "~/.config/polybar/theme"
+template = "polybar"
+hook = "polybar-msg cmd restart"
+start = "# <<<<<<<<<<"
+end = "# >>>>>>>>>>"
+
+
+########################################
+### Zathura                          ###
+########################################
+[[items]]
+file = "~/.config/zathura/theme"
+template = "zathura"
+rewrite = true
+
