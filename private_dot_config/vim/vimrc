@@ -158,7 +158,7 @@ call dein#add('luochen1990/rainbow', {'merged': 0})
 " Official Description: An always-on highlight for a unique
 " character in every word on a line to help you use f, F
 " and family.
-call dein#add('unblevable/quick-scope')
+"call dein#add('unblevable/quick-scope')
 
 
 " Plugin: Indentline
@@ -194,13 +194,6 @@ call dein#add('junegunn/goyo.vim')
 " Plugin: BufOnly
 " Link: https://github.com/vim-scripts/BufOnly.vim
 call dein#add('vim-scripts/BufOnly.vim/')
-
-" Plugin: Tabular
-" Link: https://vimawesome.com/plugin/tabular
-"
-" Command for lining up text, :Tabular.
-call dein#add('godlygeek/tabular')
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Elemenbts: Motions, Verbs
@@ -244,8 +237,13 @@ call dein#add('justinmk/vim-sneak')
 " Official Description: tcomment provides easy to use,
 " file-type sensible comments for Vim. It can handle
 " embedded syntax.
-call dein#add('tomtom/tcomment_vim')
+" call dein#add('tomtom/tcomment_vim')
 
+" Plugin: NERDCommenter
+" Link: https://github.com/preservim/nerdcommenter
+" Official Description: Vim pluging for inesely nerdy
+" commenting powers.
+call dein#add('preservim/nerdcommenter')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing
@@ -338,7 +336,8 @@ call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
 " Plugin: vim-repl
 " Link: https://github.com/sillybun/vim-repl
 " Official Description: Best REPL environment for Vim
-call dein#add('sillybun/vim-repl')
+"call dein#add('sillybun/vim-repl')
+" Note: Binds keys that can't be disabled? (<leader>w)
 
 """""""""""""""""""""""""""""
 " => Languages
@@ -436,6 +435,7 @@ call dein#add('vim-scripts/sudo.vim')
 " the tree (root dir up to current dir) and load them.
 call dein#add('embear/vim-localvimrc')
 
+
 """""""""""""""""""""""  dein.vim  """""""""""""""""""""""""
 
 " Required:
@@ -490,21 +490,27 @@ autocmd vimenter * hi Conceal guifg=#aeaeae ctermfg=7
 " contain work-arounds to make the general configurations
 " compatible.
 
-
-source ~/.config/vim/environments/gui.vim
-"source ~/.config/vim/environments/mac.vim
-"source ~/.config/vim/environments/windows.vim
-source ~/.config/vim/environments/chezmoi.vim
-"source ~/.config/vim/terminals/urxvt.vim
-"source ~/.config/vim/terminals/gnome_terminal.vim
-source ~/.config/vim/terminals/kitty.vim
+source ~/.config/vim/settings/environments/chezmoi.vim
+source ~/.config/vim/settings/terminals/kitty.vim
 
 """"""""""""""""""""""""""""""
 " => General Configurations
 """"""""""""""""""""""""""""""
 
-source ~/.config/vim/key_bindings.vim
-source ~/.config/vim/filetypes.vim
-source ~/.config/vim/basic.vim
-source ~/.config/vim/plugins.vim
+source ~/.config/vim/settings/basic.vim
 
+source ~/.config/vim/settings/keybindings/general.vim
+source ~/.config/vim/settings/keybindings/toggles.vim
+source ~/.config/vim/settings/keybindings/navigation.vim
+
+source ~/.config/vim/settings/plugins/coc.vim
+source ~/.config/vim/settings/plugins/ctrlp.vim
+source ~/.config/vim/settings/plugins/sneak.vim
+source ~/.config/vim/settings/plugins/pencil.vim
+source ~/.config/vim/settings/plugins/vimtex.vim
+source ~/.config/vim/settings/plugins/comment.vim
+source ~/.config/vim/settings/plugins/markdown.vim
+source ~/.config/vim/settings/plugins/nerdtree.vim
+source ~/.config/vim/settings/plugins/statusline.vim
+source ~/.config/vim/settings/plugins/vim_which_key.vim
+source ~/.config/vim/settings/plugins/rainbow_parentheses.vim
