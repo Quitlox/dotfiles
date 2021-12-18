@@ -464,7 +464,7 @@ set runtimepath+=~/.config/vim
 " Set colorscheme (managed by Base16 Universal Manager)
 try
     let base16colorspace=256
-    colorscheme theme
+    colorscheme base16_theme
 catch
 endtry
 
@@ -498,6 +498,8 @@ source ~/.config/vim/settings/terminals/kitty.vim
 """"""""""""""""""""""""""""""
 
 source ~/.config/vim/settings/basic.vim
+source ~/.config/vim/settings/undo_swap_backup.vim
+source ~/.config/vim/settings/wildmenu.vim
 
 source ~/.config/vim/settings/keybindings/general.vim
 source ~/.config/vim/settings/keybindings/toggles.vim

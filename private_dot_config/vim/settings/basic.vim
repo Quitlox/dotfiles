@@ -9,14 +9,13 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Options
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set ffs=unix,dos,mac	" Use Unix as the standard file type
 "set autochdir 		" Set working directory
@@ -74,78 +73,3 @@ set history=500      " Sets how many lines of history VIM has to remember
 " What to save for views and sessions:
 set viewoptions=folds,cursor,curdir,slash,unix
 set sessionoptions=curdir,help,tabpages,winsize
-
-" Wildmenu: Ignore compiled files
-if has('wildmenu')
-	if ! has('nvim')
-		set nowildmenu
-		set wildmode=list:longest,full
-	endif
-	set wildignorecase
-	set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
-	set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store
-	set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
-	set wildignore+=__pycache__,*.egg-info,.pytest_cache,.mypy_cache/**
-endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Enable undo and swap
-set undofile swapfile
-
-" Configure vim directories
-let xdg_cache=$XDG_CACHE_HOME
-let xdg_data=$XDG_DATA_HOME
-let xdg_config=$XDG_CONFIG_HOME
-if empty(xdg_cache)
-	let xdg_cache=$HOME . '/.cache'
-endif
-if empty(xdg_data)
-	let xdg_data=$HOME . '/.local/share'
-endif
-if empty(xdg_config)
-	let xdg_config=$HOME . '/.config'
-endif
-
-" Update runtimepath
-exe 'set rtp^=' . xdg_config . '/vim'
-exe 'set rtp+=' . xdg_data . '/vim'
-exe 'set rtp+=' . xdg_config . '/vim/after'
-
-" Set directory locations
-let g:netrw_home = xdg_data . '/vim'
-let &viewdir=xdg_data . '/vim/view'
-let &backupdir=xdg_cache . '/vim/backup'
-let &directory=xdg_cache . '/vim/swap'
-let &undodir=xdg_cache . '/vim/undo'
-set viminfo+=n~/.local/share/vim/viminfo
-
-" Disable undo on tmp files
-augroup user_persistent_undo
-	autocmd!
-	au BufWritePre /tmp/*          setlocal noundofile
-	au BufWritePre COMMIT_EDITMSG  setlocal noundofile
-	au BufWritePre MERGE_MSG       setlocal noundofile
-	au BufWritePre *.tmp           setlocal noundofile
-	au BufWritePre *.bak           setlocal noundofile
-augroup END
-
-" If sudo, disable vim swap/backup/undo/shada/viminfo writing
-if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
-		\ && $HOME !=# expand('~'.$USER, 1)
-		\ && $HOME ==# expand('~'.$SUDO_USER, 1)
-
-	set noswapfile
-	set nobackup
-	set nowritebackup
-	set noundofile
-	if has('nvim')
-		set shada="NONE"
-	else
-		set viminfo="NONE"
-	endif
-endif
-
