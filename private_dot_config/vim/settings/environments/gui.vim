@@ -1,3 +1,4 @@
+if !has('gui_running') | finish | endif
 
 " No beep 
 set noerrorbells visualbell t_vb=

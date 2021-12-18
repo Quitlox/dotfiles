@@ -1,0 +1,163 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer:
+"       Kevin Witlox — @quitlox
+"
+" Sections:
+"    -> General
+"    -> Vim Editing and Navigation
+"    -> Visual Mode
+"    -> Command Mode
+"    -> Misc
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Leader
+nnoremap <Space> <Nop>
+let g:mapleader = " "
+
+" Ctrl+Backspace deletes word
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
+
+" Vim-which-key
+call which_key#register('<Space>', "g:which_key_map")
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+let g:which_key_map = {}
+
+map Q :qa<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim Editing and Navigation
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Remap 0 to first non-blank character
+map 0 ^
+
+" Fix code navigation with softwrapping
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+
+nnoremap 0 g0
+nnoremap g0 0
+nnoremap $ g$
+nnoremap g$ $
+
+" Yank from cursor position to end-of-line
+nnoremap Y y$
+" Make paste reselect yank
+xnoremap p pgvy
+
+" Keep cursor centered when jumping
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Undo breakpoints
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+" Re-select blocks after indenting in visual/select mode
+xnoremap < <gv
+xnoremap > >gv|
+vnoremap = =gv
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+let g:which_key_map["<CR>"] = 'which_key_ignore'
+
+" Source: https://vim.fandom.com/wiki/Moving_lines_up_or_down
+" Move a line of text using ALT+[jk]
+" NOTE: Some terminals (e.g. URxvt) are not by default
+"       compatible with <M-X> mappings. See
+"       'terminal_specific.vim' for work-around.
+nnoremap <M-j> :m .+1<CR>==
+nnoremap <M-k> :m .-2<CR>==
+inoremap <M-j> <Esc>:m .+1<CR>==gi
+inoremap <M-k> <Esc>:m .-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Visual Mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Command Mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" $q is super useful when browsing on the command line
+" it deletes everything until the last slash
+cno <C-Q> <C-\>eDeleteTillSlash()<cr>
+
+" Bash like keys for the command line
+cnoremap <C-A>		<Home>
+cnoremap <C-E>		<End>
+cnoremap <C-K>		<C-U>
+
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:which_key_map.g = { 'name': '+go' }
+
+" GoYo:
+noremap gy :Goyo<cr>
+noremap <leader>gy :Goyo<cr>
+let g:which_key_map.g.y = '[g]o[y]o'
+
+" Vim Better Whitespace Plugin:
+noremap gw :StripWhitespace<cr>
+noremap <leader>gw :StripWhitespace<cr>
+let g:which_key_map.g.w = '[g]o strip [w]hitespace'
+
+" Extra mappings: [v]im
+let g:which_key_map.v = { 'name': '+vim' }
+nnoremap <leader>vs :source ~/.config/vim/vimrc<cr>
+let g:which_key_map.v.s = '[v]im [s]ource vimrc'
+nnoremap <leader>vu :DeinUpdate<cr>
+let g:which_key_map.v.u = '[v]im [u]pdate plugins'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! CmdLine(str)
+    call feedkeys(":" . a:str)
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'gv'
+        call CmdLine("Ack '" . l:pattern . "' " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
