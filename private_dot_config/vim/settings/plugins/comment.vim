@@ -36,23 +36,6 @@ let g:NERDToggleCheckAllLines = 1
 
 map <C-_> <plug>NERDCommenterToggle
 
-let g:which_key_map.c = {
-            \ 'name': '+comment',
-            \ 'c': 'comment',
-            \ 'n': 'force nesting',
-            \ 'm': 'minimal',
-            \ 'i': 'invert',
-            \ '$': 'till EOL',
-            \ 'A': 'append',
-            \ 'a': 'alt. delim.',
-            \ 'u': 'uncomment',
-            \ 's': 'sexy',
-            \ 'b': 'align both',
-            \ 'l': 'align left',
-            \ 'y': 'yank',
-            \ }
-
-
 "#######################################
 "### ARCHIVE: TCOMMENT               ###
 "#######################################

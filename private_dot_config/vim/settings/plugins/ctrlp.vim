@@ -25,11 +25,7 @@ let g:ctrlp_open_new_file = 'r'
 
 " Extra mappings: [o]pen
 noremap <C-o> :NERDTreeClose\|CtrlP<cr>
-let g:which_key_map.o = { 'name': '+open' }
 noremap <leader>oo :NERDTreeClose\|CtrlP<cr>
-let g:which_key_map.o.f = '[o]pen [f]ile'
 noremap <leader>ob :NERDTreeClose\|CtrlPBuffer<cr>
-let g:which_key_map.o.b = '[o]pen [b]uffer'
 noremap <leader>or :NERDTreeClose\|CtrlPMRU<cr>
-let g:which_key_map.o.r = '[o]pen [r]ecent'
 

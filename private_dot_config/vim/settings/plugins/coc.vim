@@ -9,6 +9,7 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+set pyxversion=3
 
 let g:coc_config_home = '~/.config/vim'
 let g:coc_global_extensions = [

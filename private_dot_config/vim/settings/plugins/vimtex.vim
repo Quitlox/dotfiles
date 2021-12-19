@@ -25,16 +25,10 @@ let g:vimtex_syntax_conceal = {
 "### KEYBINDINGS                     ###
 "#######################################
 
-let g:which_key_map.l = {'name': '+LaTeX'}
-let g:which_key_map.l.l = '[l]atex compile'
 noremap <leader>ll :VimtexCompile<cr>
-let g:which_key_map.l.v = '[l]atex [v]iew'
 noremap <leader>lv :VimtexView<cr>
-let g:which_key_map.l.e = '[l]atex [e]rrors'
 noremap <leader>le :VimtexErrors<cr>
-let g:which_key_map.l.c = '[l]atex [c]lean'
 noremap <leader>lc :VimtexClean<cr>
-let g:which_key_map.l.c = '[l]atex toggle conceal [s]yntax'
 noremap <leader>ls :call ToggleVimtexConceal()<cr>
 
 "#######################################

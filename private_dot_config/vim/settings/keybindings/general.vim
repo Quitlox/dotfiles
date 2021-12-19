@@ -23,11 +23,6 @@ let g:mapleader = " "
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
 
-" Vim-which-key
-call which_key#register('<Space>', "g:which_key_map")
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-let g:which_key_map = {}
-
 map Q :qa<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,7 +66,6 @@ vnoremap = =gv
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
-let g:which_key_map["<CR>"] = 'which_key_ignore'
 
 " Source: https://vim.fandom.com/wiki/Moving_lines_up_or_down
 " Move a line of text using ALT+[jk]
@@ -116,24 +110,18 @@ cnoremap <C-N> <Down>
 " => Misc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:which_key_map.g = { 'name': '+go' }
 
 " GoYo:
 noremap gy :Goyo<cr>
 noremap <leader>gy :Goyo<cr>
-let g:which_key_map.g.y = '[g]o[y]o'
 
 " Vim Better Whitespace Plugin:
 noremap gw :StripWhitespace<cr>
 noremap <leader>gw :StripWhitespace<cr>
-let g:which_key_map.g.w = '[g]o strip [w]hitespace'
 
 " Extra mappings: [v]im
-let g:which_key_map.v = { 'name': '+vim' }
 nnoremap <leader>vs :source ~/.config/vim/vimrc<cr>
-let g:which_key_map.v.s = '[v]im [s]ource vimrc'
 nnoremap <leader>vu :DeinUpdate<cr>
-let g:which_key_map.v.u = '[v]im [u]pdate plugins'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
