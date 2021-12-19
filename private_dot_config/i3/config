@@ -200,7 +200,7 @@ mode "resize" {
 
 # Border Style
 default_border pixel 1
-default_floating_border normal
+default_floating_border none
 
 ###########################################
 ### Settings for i3-gaps                ###
@@ -444,7 +444,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 ### Application window defaults         ###
 ###########################################
 
-# i3 Defaults
+# Manjaro-i3 Defaults
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
@@ -492,6 +492,9 @@ for_window [class="zenity" title="Progress"] border none
 for_window [class="Ghidra"] floating enable
 for_window [title="CodeBrowser*"] floating disable
 for_window [class="PlayOnLinux"] floating disable
+
+for_window [class="zenity"] floating enable border none
+for_window [class="Zenity"] floating enable border none
 
 # General rule for Popups and Dialogs (https://wiki.archlinux.org/index.php/i3#Correct_handling_of_floating_dialogs)
 for_window [window_role="pop-up"] floating enable
