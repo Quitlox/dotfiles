@@ -1,8 +1,8 @@
-# Do not overwrite default concealcursor options
-# IndentLine sets concealcursor=inc
-# For latex we want concealcursor=c
+" Do not overwrite default concealcursor options
+" IndentLine sets concealcursor=inc
+" For latex we want concealcursor=c
 let g:indentLine_setConceal = 0
-# Do not overwrite default syntax highlighting
+" Do not overwrite default syntax highlighting
 let g:indentLine_setColors = 0
 
 au FileType tex let b:delimitMate_matchpairs = "[:],{:},<:>"
