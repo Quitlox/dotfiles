@@ -166,8 +166,6 @@ call dein#add('luochen1990/rainbow', {'merged': 0})
 " Official Description: This plugin is used for displaying
 " thin vertical lines at each indentation level for code
 " indented with spaces.
-let g:indentLine_setConceal = 1
-let g:indentLine_setColors = 1
 call dein#add('yggdroot/indentline')
 
 
