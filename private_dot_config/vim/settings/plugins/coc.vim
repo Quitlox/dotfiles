@@ -45,8 +45,6 @@ endfunction
 " Navigate completion list backward with <S-Tab>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Confirm completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "### TRIGGER ###########################
 " Trigger Autocomplete with <C-Space>

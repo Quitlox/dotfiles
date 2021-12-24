@@ -4,7 +4,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable undo and swap
-set undofile swapfile
+set undofile swapfile 
 
 if !has('nvim')
 
