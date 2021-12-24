@@ -13,7 +13,7 @@
   {
     "key": "escape",
     "command": "workbench.action.focusActiveEditorGroup",
-    "when": "!editorTextFocus"
+    "when": "!editorTextFocus && !renameInputVisible"
   },
   {
     "key": "escape",
