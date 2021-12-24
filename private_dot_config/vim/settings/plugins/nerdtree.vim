@@ -1,3 +1,4 @@
+if !(dein#is_available(['preservim/nerdtree'])) | finish | endif
 
 "#######################################
 "### SETTINGS                        ###

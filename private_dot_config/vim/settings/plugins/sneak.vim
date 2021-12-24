@@ -1,3 +1,4 @@
+if !(dein#is_available(['justinmk/vim-sneak'])) | finish | endif
 
 "#######################################
 "### SETTINGS                        ###
