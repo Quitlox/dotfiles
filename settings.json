@@ -88,6 +88,10 @@
       "before": ["g", "a"],
       "commands": ["keyboard-quickfix.openQuickFix"]
     },
+    {
+      "before": ["g", "u"],
+      "commands": ["editor.action.showReferences"]
+    },
     // {
     //   "before": ["g", "b"],
     //   "commands": ["jupyter.runcurrentcell"],
@@ -447,5 +451,7 @@
   "references.preferredLocation": "view",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true
 }
