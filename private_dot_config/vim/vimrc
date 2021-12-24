@@ -482,7 +482,7 @@ endtry
 
 " Set Airline Theme
 " let g:airline_theme='base16'
-"let g:airline_theme='codedark'
+let g:airline_theme='codedark'
 
 " Transparent background
 " autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE

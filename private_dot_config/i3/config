@@ -122,6 +122,8 @@ exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 60
 # 		- Polybars are started
 exec_always --no-startup-id \
     autorandr --change --force --default default
+exec_always --no-startup-id \
+    ~/.fehbg
 exec --no-startup-id \
     picom -b --experimental-backends --backend glx
 exec --no-startup-id \

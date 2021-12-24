@@ -20,13 +20,13 @@ rewrite = true
 ########################################
 ### Vim                              ###
 ########################################
-[[items]]
-file = "~/.config/vim/colors/theme.vim"
-template = "vim"
-subtemplate = "default"
-hook = "vim --servername vim --remote-send '<Esc>:syntax sync fromstart<CR>'"
-start = "\" <<<<<<<<<<"
-end = "\" >>>>>>>>>>"
+#[[items]]
+#file = "~/.config/vim/colors/theme.vim"
+#template = "vim"
+#subtemplate = "default"
+#hook = "vim --servername vim --remote-send '<Esc>:syntax sync fromstart<CR>'"
+#start = "\" <<<<<<<<<<"
+#end = "\" >>>>>>>>>>"
 
 ########################################
 ### i3                               ###
