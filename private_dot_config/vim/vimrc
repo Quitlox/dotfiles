@@ -438,6 +438,13 @@ call dein#add('embear/vim-localvimrc')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colorschemes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plugin: AfterColors.vim
+" Link: https://github.com/vim-scripts/AfterColors.vim
+" Official Description: Provides support for after/colors/
+" scripts.
+call dein#add('vim-scripts/AfterColors.vim')
+
 call dein#add('tomasiser/vim-code-dark')
 
 """""""""""""""""""""""  dein.vim  """""""""""""""""""""""""
@@ -475,15 +482,15 @@ endtry
 
 " Set Airline Theme
 " let g:airline_theme='base16'
-let g:g:airline_theme='codedark'
+"let g:airline_theme='codedark'
 
 " Transparent background
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
-autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
+" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+" autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
+" autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
 
 " Fix for conceal (used alot in vimtex)
-autocmd vimenter * hi Conceal guifg=#aeaeae ctermfg=7
+" autocmd vimenter * hi Conceal guifg=#aeaeae ctermfg=7
 
 """"""""""""""""""""""""""""""
 " => Environment Specific
