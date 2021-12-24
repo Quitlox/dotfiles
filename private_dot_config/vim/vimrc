@@ -435,6 +435,10 @@ call dein#add('vim-scripts/sudo.vim')
 " the tree (root dir up to current dir) and load them.
 call dein#add('embear/vim-localvimrc')
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colorschemes
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call dein#add('tomasiser/vim-code-dark')
 
 """""""""""""""""""""""  dein.vim  """""""""""""""""""""""""
 
@@ -463,13 +467,15 @@ set runtimepath+=~/.config/vim
 
 " Set colorscheme (managed by Base16 Universal Manager)
 try
-    let base16colorspace=256
-    colorscheme base16_theme
+  " let base16colorspace=256
+  " colorscheme base16_theme
+  colorscheme codedark
 catch
 endtry
 
 " Set Airline Theme
-let g:airline_theme='base16'
+" let g:airline_theme='base16'
+let g:g:airline_theme='codedark'
 
 " Transparent background
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE

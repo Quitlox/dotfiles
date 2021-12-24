@@ -1,4 +1,4 @@
-if !(dein#is_available(['neoclide/coc.nvim'])) | finish | endif
+if !(dein#is_available(['coc.nvim'])) | finish | endif
 
 "#######################################
 "### SETTINGS                        ###
