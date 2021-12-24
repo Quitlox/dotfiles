@@ -52,6 +52,18 @@ sudo apt install git gvim zsh rubygems unzip exa bat tree make openssh chezmoi f
 {{- end }}
 
 ############################################################
+### Headless                                             ###
+############################################################
+
+{{- if eq .environment "headless" }}
+{{- if eq .chezmoi.osRelease.id "debian" }}
+# Neovim
+sudo apt install neovim python3-pynvim
+{{- end }}
+{{- end }}
+
+
+############################################################
 ### Desktop Environment                                  ###
 ############################################################
 
