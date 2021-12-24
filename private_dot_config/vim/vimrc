@@ -32,6 +32,11 @@ call dein#add(deininstallpath)
 " Call with ':DeinUpdate'
 call dein#add('wsdjeg/dein-ui.vim')
 
+" Plugin: Dein Command
+" Link: https://github.com/haya14busa/dein-command.vim
+" Official Description: Utility commands of dein.vim with
+" rich completion
+call dein#add('haya14busa/dein-command.vim')
 
 " TODO:
 "   - gitgutter
@@ -49,6 +54,10 @@ call dein#add('wsdjeg/dein-ui.vim')
 " => User Interface
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Plugin: vim-startify
+" Link: https://github.com/vim-scripts/vim-startify
+" Official Description: A fancy start screen for Vim.
+call dein#add('vim-scripts/vim-startify')
 
 " Plugin: ctrlp.vim
 " Link: https://github.com/ctrlpvim/ctrlp.vim
@@ -79,12 +88,6 @@ call dein#add('majutsushi/tagbar')
 " This utility displays available keybindings in a popup.
 " Activate by pressing the leader key.
 call dein#add('liuchengxu/vim-which-key')
-
-" Plugin: vim-tmux-navigator
-" Link: https://github.com/christoomey/vim-tmux-navigator
-" Official Description: Seamless navigation between tmux
-" panes and vim splits
-call dein#add('christoomey/vim-tmux-navigator')
 
 """""""""""""""""""""""""""""
 " => User Interface: File Explorer
@@ -129,15 +132,6 @@ call dein#add('vim-airline/vim-airline-themes')
 " => User Interface: Hints
 """""""""""""""""""""""""""""
 
-" Plugin: Terminus
-" Link: https://github.com/wincent/terminus
-" Official Description: Terminus enhances Vim's and Neovim's
-" integration with the terminal in four ways, particularly
-" when using tmux and iTerm or KDE Konsole, closing the gap
-" between terminal and GUI Vim.
-call dein#add('wincent/terminus')
-
-
 " Plugin: CSS color
 " Link: https://vimawesome.com/plugin/vim-css-color-the-story-of-us
 " Official Description: A very fast, multi-syntax
@@ -151,14 +145,6 @@ call dein#add('ap/vim-css-color')
 " Colors Parentheses and brackets to make the different
 " pairs more easily distinguishable.
 call dein#add('luochen1990/rainbow', {'merged': 0})
-
-
-" Plugin: quick-scope
-" Link: https://github.com/unblevable/quick-scope
-" Official Description: An always-on highlight for a unique
-" character in every word on a line to help you use f, F
-" and family.
-"call dein#add('unblevable/quick-scope')
 
 
 " Plugin: Indentline
@@ -193,8 +179,14 @@ call dein#add('junegunn/goyo.vim')
 " Link: https://github.com/vim-scripts/BufOnly.vim
 call dein#add('vim-scripts/BufOnly.vim/')
 
+" Plugin: Bbye (Buffer Bye) for Vim
+" Link: https://github.com/moll/vim-bbye
+" Official Description: Dlete buffers and close files in Vim
+" without closing your windows or messing up your layout.
+call dein#add('moll/vim-bbye')
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim Elemenbts: Motions, Verbs
+" => Vim: Motions, Verbs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Plugin: EasyMotion
@@ -230,22 +222,20 @@ call dein#add('tpope/vim-surround')
 " is a verb instead of a motion.
 call dein#add('justinmk/vim-sneak')
 
-" Plugin: tComment
-" Link: https://vimawesome.com/plugin/tcomment
-" Official Description: tcomment provides easy to use,
-" file-type sensible comments for Vim. It can handle
-" embedded syntax.
-" call dein#add('tomtom/tcomment_vim')
-
-" Plugin: NERDCommenter
-" Link: https://github.com/preservim/nerdcommenter
-" Official Description: Vim pluging for inesely nerdy
-" commenting powers.
-call dein#add('preservim/nerdcommenter')
+" Plugin: repeat.vim
+" Link: https://github.com/tpope/vim-repeat
+"
+" Small helper plugin that remaps '.' to work with plugin
+" mappings.
+call dein#add('tpope/vim-repeat')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""
+" => Editing: Actions
+"""""""""""""""""""""""""""""
 
 " Plugin: Vim Better Whitespace Plugin
 " Link: https://vimawesome.com/plugin/better-whitespace
@@ -259,13 +249,12 @@ call dein#add('preservim/nerdcommenter')
 call dein#add('ntpeters/vim-better-whitespace')
 
 
-" Plugin: vim-pencil
-" Link: https://vimawesome.com/plugin/vim-pencil
-" Official Description: The pencil plugin aspires to make
-" Vim as powerful a tool for writers as it is for coders by
-" focusing narrowly on the handful of tweaks needed to
-" smooth the path to writing prose.
-call dein#add('reedes/vim-pencil')
+" Plugin: NERDCommenter
+" Link: https://github.com/preservim/nerdcommenter
+" Official Description: Vim pluging for inesely nerdy
+" commenting powers.
+call dein#add('preservim/nerdcommenter')
+
 
 """""""""""""""""""""""""""""
 " => Editing: Auto-configuration
@@ -320,6 +309,15 @@ call dein#add('farmergreg/vim-lastplace')
 "call dein#add('alvan/vim-closetag')
 
 
+" Plugin: vim-pencil
+" Link: https://vimawesome.com/plugin/vim-pencil
+" Official Description: The pencil plugin aspires to make
+" Vim as powerful a tool for writers as it is for coders by
+" focusing narrowly on the handful of tweaks needed to
+" smooth the path to writing prose.
+call dein#add('reedes/vim-pencil')
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Language Support
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -348,8 +346,57 @@ call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
 call dein#add('lervag/vimtex')
 
 
+" Plugin: Vim Markdown
+" Link: https://github.com/plasticboy/vim-markdown
+" Official Description: Syntax highlighting, matching rules
+" and mappings for the original Markdown and extensions.
+call dein#add('plasticboy/vim-markdown')
+
+
 """""""""""""""""""""""""""""
 " => Syntax Highlighting
+"""""""""""""""""""""""""""""
+
+" Plugin: vim-jsonc
+" Link: https://github.com/kevinoid/vim-jsonc
+" Official Description: Vim syntax highlighting plugin for
+" JSON with C-style line (//) and block (/**/) comments.
+" Required By: coc.vim
+"call dein#add('kevinoid/vim-jsonc')
+
+" Plugin: i3config.vim
+" Link: https://github.com/mboughaba/i3config.vim
+"
+" Syntax Highlighting for the i3 config file
+call dein#add('mboughaba/i3config.vim')
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Compatability & Sanity
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plugin: vim-tmux-navigator
+" Link: https://github.com/christoomey/vim-tmux-navigator
+" Official Description: Seamless navigation between tmux
+" panes and vim splits
+call dein#add('christoomey/vim-tmux-navigator')
+
+
+" Plugin: Terminus
+" Link: https://github.com/wincent/terminus
+" Official Description: Terminus enhances Vim's and Neovim's
+" integration with the terminal in four ways, particularly
+" when using tmux and iTerm or KDE Konsole, closing the gap
+" between terminal and GUI Vim.
+"
+" Stuff it does:
+" - Cursor Shape
+" - Improved Mouse Suppor
+" - Focus Reporting
+" - Bracketed Paste mode
+call dein#add('wincent/terminus')
+
+"""""""""""""""""""""""""""""
+" => Chezmoi
 """""""""""""""""""""""""""""
 
 " Plugin: chezmoi.vim
@@ -370,55 +417,10 @@ call dein#add('alker0/chezmoi.vim')
 call dein#add('Lilja/vim-chezmoi')
 let g:chezmoi = "enabled"
 
-" Plugin: vim-jsonc
-" Link: https://github.com/kevinoid/vim-jsonc
-" Official Description: Vim syntax highlighting plugin for
-" JSON with C-style line (//) and block (/**/) comments.
-" Required By: coc.vim
-"call dein#add('kevinoid/vim-jsonc')
-
-
-" Plugin: i3config.vim
-" Link: https://github.com/mboughaba/i3config.vim
-"
-" Syntax Highlighting for the i3 config file
-call dein#add('mboughaba/i3config.vim')
-
-
-" Plugin: Vim Markdown
-" Link: https://github.com/plasticboy/vim-markdown
-" Official Description: Syntax highlighting, matching rules
-" and mappings for the original Markdown and extensions.
-call dein#add('plasticboy/vim-markdown')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Miscellaneous
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Plugin: Vim-Pasta
-" Link: https://vimawesome.com/plugin/vim-pasta
-" Official Description: Pasting in Vim with Indentation
-" adjusted to destination context.
-"
-" Small utility that remaps the '(p)ut' verb, such that
-" pasted code is adjusted to indentation context.
-"call dein#add('sickill/vim-pasta')
-
-" Plugin: Vim-Pase-Easy
-" Link: https://vimawesome.com/plugin/vim-paste-easy
-" Official Description: This is a tiny plugin that simply
-" monitors your typing speed and 'set paste' automatically.
-"
-" This plugin ensures that pasting larger pieces of text
-" will not be wrongly indented.
-call dein#add('roxma/vim-paste-easy')
-
-" Plugin: repeat.vim
-" Link: https://github.com/tpope/vim-repeat
-"
-" Small helper plugin that remaps '.' to work with plugin
-" mappings.
-call dein#add('tpope/vim-repeat')
 
 " Plugin: sudo.vim
 " Link: https://vimawesome.com/plugin/sudo-vim

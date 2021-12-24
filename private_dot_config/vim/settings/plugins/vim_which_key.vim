@@ -1,4 +1,4 @@
-if has('nvim') | finish | endif
+"if has('nvim') | finish | endif
 
 "#######################################
 "### SETTINGS                        ###

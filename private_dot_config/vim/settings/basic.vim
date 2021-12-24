@@ -31,6 +31,7 @@ set showtabline=2
 set autoindent 		" Auto indent
 set smartindent 	" Smart indent
 set wrap 	    	" Wrap lines
+set linebreak		" Wrap lines at full words
 " Cursor
 set scrolloff=7      " Leave 7 lines around the cursor when moving vertically using j/k
 set sidescrolloff=10 " Leave 10 characters around the cursor when moving horizontally using h/l
@@ -73,3 +74,10 @@ set history=500      " Sets how many lines of history VIM has to remember
 " What to save for views and sessions:
 set viewoptions=folds,cursor,curdir,slash,unix
 set sessionoptions=curdir,help,tabpages,winsize
+
+if has('nvim')
+	let g:loaded_python_provider = 0
+	let g:python3_host_prog = '/usr/bin/python3'
+
+endif
+
