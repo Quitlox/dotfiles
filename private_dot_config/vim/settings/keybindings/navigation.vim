@@ -47,18 +47,18 @@ map <leader>bo :BufOnly<cr>
 "### KEYBINDINGS: TABS               ###
 "#######################################
 
-map <leader>tt :tabnew
-map <leader>to :tabonly<cr>
-map <leader>td :tabclose<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
+map <localleader>tt :tabnew<cr>
+map <localleader>to :tabonly<cr>
+map <localleader>td :tabclose<cr>
+map <localleader>tn :tabnext<cr>
+map <localleader>tp :tabprevious<cr>
 
 " Tabs: last
 let g:lasttab = 1
-map <leader>tl :exe "tabn ".g:lasttab<CR>
+map <localleader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
 " Tabs: Move
-map <leader>tmh :-tabmove<cr>
-map <leader>tml :+tabmove<cr>
+map <localleader>tmh :-tabmove<cr>
+map <localleader>tml :+tabmove<cr>
 

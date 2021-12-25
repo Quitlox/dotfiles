@@ -15,6 +15,7 @@ noremap <leader>Tr :RainbowToggle<cr>
 " Pencil:
 noremap <leader>Tp :TogglePencil<cr>
 
+
 "#######################################
 "### Toggle: User Interface          ###
 "#######################################
@@ -23,6 +24,9 @@ noremap <leader>Tp :TogglePencil<cr>
 noremap <leader>tt :TagbarToggle<cr>
 
 " NERDTree:
-nnoremap <leader>tf :NERDTreeMirror<cr>:NERDTreeToggle<cr>
+noremap <leader>tf :NERDTreeMirror<cr>:NERDTreeToggle<cr>
+
+" GoYo:
+noremap <leader>ty :Goyo<cr>
 
 

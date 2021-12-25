@@ -25,7 +25,7 @@ let g:ctrlp_open_new_file = 'r'
 
 " Extra mappings: [o]pen
 noremap <C-o> :NERDTreeClose\|CtrlP<cr>
-noremap <leader>oo :NERDTreeClose\|CtrlP<cr>
+noremap <leader>of :NERDTreeClose\|CtrlP<cr>
 noremap <leader>ob :NERDTreeClose\|CtrlPBuffer<cr>
 noremap <leader>or :NERDTreeClose\|CtrlPMRU<cr>
 

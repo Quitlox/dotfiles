@@ -1,9 +1,10 @@
+if has('nvim') | finish | endif
 
 "#######################################
 "### SETTINGS                        ###
 "#######################################
 
-let g:which_key_use_floating_win = 1
+let g:which_key_use_floating_win = 0
 
 " Vim-which-key
 call which_key#register('<Space>', "g:which_key_map")
@@ -50,14 +51,14 @@ let g:which_key_map.b.n = '[b]uffer [n]ext'
 let g:which_key_map.b.p = '[b]uffer [p]revious'
 let g:which_key_map.b.o = '[b]uffer [o]nly'
 
-let g:which_key_map.t = { 'name': '+tab' }
+"let g:which_key_map.t = { 'name': '+tab' }
 
-let g:which_key_map.t.t = '[t]ab <tab>'
-let g:which_key_map.t.o = '[t]ab [o]nly'
-let g:which_key_map.t.d = '[t]ab [d]elete'
-let g:which_key_map.t.n = '[t]ab [n]next'
-let g:which_key_map.t.p = '[t]ab [p]revious'
-let g:which_key_map.t.l = '[t]ab [l]ast'
+"let g:which_key_map.t.t = '[t]ab <tab>'
+"let g:which_key_map.t.o = '[t]ab [o]nly'
+"let g:which_key_map.t.d = '[t]ab [d]elete'
+"let g:which_key_map.t.n = '[t]ab [n]next'
+"let g:which_key_map.t.p = '[t]ab [p]revious'
+"let g:which_key_map.t.l = '[t]ab [l]ast'
 
 let g:which_key_map.t.m = { 'name': '+move' }
 
@@ -70,15 +71,16 @@ let g:which_key_map.t.m.h = '[t]ab right'
 
 let g:which_key_map.T = { 'name': '+toggle' }
 
-let g:which_key_map.T.g = '[t]oggle [g]uides'
-let g:which_key_map.T.c = '[t]oggle [c]lose tag'
-let g:which_key_map.T.r = '[t]oggle [r]ainbow parentheses'
-let g:which_key_map.T.p = '[t]oggle [p]encil'
+let g:which_key_map.T.g = '[T]oggle [g]uides'
+let g:which_key_map.T.c = '[T]oggle [c]lose tag'
+let g:which_key_map.T.r = '[T]oggle [r]ainbow parentheses'
+let g:which_key_map.T.p = '[T]oggle [p]encil'
 
 let g:which_key_map.t = { 'name': '+UI-Toggle' }
 
 let g:which_key_map.t.t = '[t]oggle [t]agbar'
 let g:which_key_map.t.f = '[t]oggle [f]iletree'
+let g:which_key_map.t.f = '[t]oggle go[y]o'
 
 """"""""""""""""""""""""""""""""""""""""
 " => KEYBINDINGS: GENERAL
@@ -132,7 +134,7 @@ let g:which_key_map.l.l = '[l]atex compile'
 let g:which_key_map.l.v = '[l]atex [v]iew'
 let g:which_key_map.l.e = '[l]atex [e]rrors'
 let g:which_key_map.l.c = '[l]atex [c]lean'
-let g:which_key_map.l.c = '[l]atex toggle conceal [s]yntax'
+let g:which_key_map.l.c = '[l]atex conceal [s]yntax'
 
 "#######################################
 "### BEHAVIOUR                       ###

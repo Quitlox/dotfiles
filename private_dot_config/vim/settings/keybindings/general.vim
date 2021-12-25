@@ -18,6 +18,7 @@
 " Leader
 nnoremap <Space> <Nop>
 let g:mapleader = " "
+let g:maplocalleader = ","
 
 " Ctrl+Backspace deletes word
 noremap! <C-BS> <C-w>
@@ -111,13 +112,8 @@ cnoremap <C-N> <Down>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" GoYo:
-noremap gy :Goyo<cr>
-noremap <leader>gy :Goyo<cr>
-
 " Vim Better Whitespace Plugin:
 noremap gw :StripWhitespace<cr>
-noremap <leader>gw :StripWhitespace<cr>
 
 " Extra mappings: [v]im
 nnoremap <leader>vs :source ~/.config/vim/vimrc<cr>

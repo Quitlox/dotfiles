@@ -81,13 +81,19 @@ call dein#add('ctrlpvim/ctrlp.vim')
 " are defined in.
 call dein#add('majutsushi/tagbar')
 
-
+if !has('nvim')
 " Plugin: Vim-which-key
 " Link: https://vimawesome.com/plugin/vim-which-key#introduction
 "
 " This utility displays available keybindings in a popup.
 " Activate by pressing the leader key.
-call dein#add('liuchengxu/vim-which-key')
+  call dein#add('liuchengxu/vim-which-key')
+else
+" Plugin: Which Key
+" Link: https://github.com/folke/which-key.nvim
+" Official Description: Create key bindings that stick.
+  call dein#add('folke/which-key.nvim')
+endif
 
 """""""""""""""""""""""""""""
 " => User Interface: File Explorer
@@ -527,5 +533,6 @@ source ~/.config/vim/settings/plugins/comment.vim
 source ~/.config/vim/settings/plugins/markdown.vim
 source ~/.config/vim/settings/plugins/nerdtree.vim
 source ~/.config/vim/settings/plugins/statusline.vim
-source ~/.config/vim/settings/plugins/vim_which_key.vim
+source ~/.config/vim/settings/plugins/which_key.vim
+source ~/.config/vim/settings/plugins/which_key.n.vim
 source ~/.config/vim/settings/plugins/rainbow_parentheses.vim
