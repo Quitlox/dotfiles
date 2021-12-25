@@ -5,7 +5,11 @@
 
 # Enable vim server by default
 # Usefull for synctex + live updating color scheme
-alias vim='vim --servername vim'
+
+if ! command -v nvim > /dev/null 2>&1; then
+	alias vim='vim --servername vim'
+fi
+
 
 # Needed for kitty terminal
 alias ssh='kitty +kitten ssh'
