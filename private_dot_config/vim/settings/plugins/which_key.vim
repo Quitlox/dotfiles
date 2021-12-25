@@ -60,10 +60,10 @@ let g:which_key_map.b.o = '[b]uffer [o]nly'
 "let g:which_key_map.t.p = '[t]ab [p]revious'
 "let g:which_key_map.t.l = '[t]ab [l]ast'
 
-let g:which_key_map.t.m = { 'name': '+move' }
+"let g:which_key_map.t.m = { 'name': '+move' }
 
-let g:which_key_map.t.m.h = '[t]ab left'
-let g:which_key_map.t.m.h = '[t]ab right'
+"let g:which_key_map.t.m.h = '[t]ab left'
+"let g:which_key_map.t.m.h = '[t]ab right'
 
 """"""""""""""""""""""""""""""""""""""""
 " => KEYBINDINGS: TOGGLES
