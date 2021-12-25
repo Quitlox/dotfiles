@@ -3,6 +3,9 @@
 set -o errexit
 set -o nounset
 
+# Change Working Directory
+cd "$(dirname "$0")"
+
 ########################################
 ### Wallpaper                        ###
 ########################################
