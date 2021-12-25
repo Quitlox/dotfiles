@@ -47,6 +47,15 @@ hook = "polybar-msg cmd restart"
 rewrite = true
 
 ########################################
+### Rofi                             ###
+########################################
+[[items]]
+file = "~/.config/rofi/colors.rasi"
+template = "rofi"
+subtemplate = "colors"
+rewrite = true
+
+########################################
 ### Zathura                          ###
 ########################################
 [[items]]
