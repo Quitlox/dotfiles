@@ -42,7 +42,11 @@
 {{-     $chassisType = "desktop" }}
 {{-   end }}
 {{- else if (eq .chezmoi.os "linux") }}
-{{-   $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+{{-   if (eq .chezmoi.osRelease.id "debian") }}
+{{-     $chassisType = (output "sh" "-c" "hostnamectl | awk '/Chassis/ { gsub(/ /, \"\", $0); split($0,a,\":\"); print a[2]; }' ") }}
+{{-   else }}
+{{-     $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+{{-   end }}
 {{- else if (eq .chezmoi.os "windows") }}
 {{-   $chassisType = (output "powershell.exe" "-noprofile" "-command" "if (Get-WmiObject -Class win32_battery -ComputerName localhost) { echo laptop } else { echo desktop }") }}
 {{- end }}
