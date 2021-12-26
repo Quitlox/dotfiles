@@ -21,6 +21,9 @@ require('telescope').setup {
     },
     frecency = {
       default_workspace = 'CWD',
+      workspaces = {
+        ["conf"]    = "/home/quitlox/.config",
+      },
     },
   },
 }
