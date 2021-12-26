@@ -95,6 +95,37 @@ else
   call dein#add('folke/which-key.nvim')
 endif
 
+
+"""""""""""""""""""""""""""""
+" => User Interface: Search
+"""""""""""""""""""""""""""""
+
+if has('nvim')
+
+" Plugin: telescope.nvim
+" Official Description: Gaze deeply into unknown regions
+" using the power of the moon.
+call dein#add('nvim-telescope/telescope.nvim')
+
+" Plugin: telescope-fzf-native.nvim
+" Official Description: FZF sorter for telescope written
+" in c.
+call dein#add('nvim-telescope/telescope-fzf-native.nvim', { 'build': 'make' })
+
+" Plugin:
+" Official Description: A telescope.nvim extension that
+" offers intelligent prioritization when selecting files
+" from your editing history.
+call dein#add('nvim-telescope/telescope-frecency.nvim')
+
+" Plugin: sqlite.lua
+" Official Description: SQLite/LuaJIT binding for lua and
+" neovim
+" Dependency of telescope-frecency.nvim
+call dein#add('tami5/sqlite.lua')
+
+endif
+
 """""""""""""""""""""""""""""
 " => User Interface: File Explorer
 """""""""""""""""""""""""""""
@@ -170,6 +201,11 @@ call dein#add('yggdroot/indentline')
 " Official Description: Adds Icons to Your Plugins
 call dein#add('ryanoasis/vim-devicons')
 
+if has('nvim')
+" Plugin: VimDevIcons
+" Official Description: A lua fork of vim-devicons
+call dein#add('kyazdani42/nvim-web-devicons')
+endif
 
 " Plugin: goyo.vim
 " Link: https://vimawesome.com/plugin/goyo-vim
@@ -442,6 +478,19 @@ call dein#add('vim-scripts/sudo.vim')
 call dein#add('embear/vim-localvimrc')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Miscellaneous
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('nvim')
+
+" Plugin: plenary.nvim
+" Official Description: All the lua functions I don't want
+" to write twice.
+  call dein#add('nvim-lua/plenary.nvim')
+
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colorschemes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -533,6 +582,7 @@ source ~/.config/vim/settings/plugins/comment.vim
 source ~/.config/vim/settings/plugins/markdown.vim
 source ~/.config/vim/settings/plugins/nerdtree.vim
 source ~/.config/vim/settings/plugins/statusline.vim
+source ~/.config/vim/settings/plugins/telescope.n.vim
 source ~/.config/vim/settings/plugins/which_key.vim
 source ~/.config/vim/settings/plugins/which_key.n.vim
 source ~/.config/vim/settings/plugins/rainbow_parentheses.vim

@@ -15,13 +15,18 @@ let g:which_key_map = {}
 " => KEYBINDINGS: NAGIVATION
 """"""""""""""""""""""""""""""""""""""""
 
-let g:which_key_map.f = { 'name': '+file' }
+"let g:which_key_map.f = { 'name': '+file' }
 
-let g:which_key_map.f.w = '[f]ile [w]rite'
-let g:which_key_map.f.W = '[f]ile [W]rite All'
-let g:which_key_map.f.t = '[f]ile [t]ree'
-let g:which_key_map.f.l = '[f]ile [l]ocate'
-let g:which_key_map.f.f = '[f]ile [f]ormat'
+"let g:which_key_map.f.w = '[f]ile [w]rite'
+"let g:which_key_map.f.W = '[f]ile [W]rite All'
+"let g:which_key_map.f.t = '[f]ile [t]ree'
+"let g:which_key_map.f.l = '[f]ile [l]ocate'
+"let g:which_key_map.f.f = '[f]ile [f]ormat'
+
+let g:which_key_map.f = { 'name': '+find' }
+
+let g:which_key_map.f.l = '[f]ind [l]ocate'
+
 
 let g:which_key_map.w = { 'name': '+window' }
 let g:which_key_map.w.j = 'focus [w]indow down'

@@ -68,7 +68,7 @@ set t_vb=
 " Misc
 set report=2         " Report on line changes
 set formatoptions+=1 " Don't break lines after a one-letter word
-set timeoutlen=500
+set timeoutlen=800
 set hidden           " Allow changed buffers to be hidden
 set history=500      " Sets how many lines of history VIM has to remember
 

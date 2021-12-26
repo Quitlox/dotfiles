@@ -3,11 +3,11 @@
 "### KEYBINDINGS: FILE               ###
 "#######################################
 
-noremap <leader>fw :w<cr>
-noremap <leader>fW :wa<cr>
-nnoremap <leader>ft :NERDTreeMirror<CR>:NERDTreeToggle<CR>
+"noremap <leader>fw :w<cr>
+"noremap <leader>fW :wa<cr>
+"nnoremap <leader>ft :NERDTreeMirror<CR>:NERDTreeToggle<CR>
 nnoremap <leader>fl :NERDTreeFind<CR>
-nnoremap <leader>ff :AutoFormat
+"nnoremap <leader>ff :AutoFormat
 
 "#######################################
 "### KEYBINDINGS: WINDOW             ###

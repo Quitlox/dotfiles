@@ -1,5 +1,6 @@
-if !has('nvim-0.5') | finish | endif
+if !has('nvim') | finish | endif
 
+echo "nvim whichkey"
 
 "#######################################
 "### SETTINGS                        ###
@@ -12,13 +13,19 @@ local wk = require("which-key")
 -- KEYBINDINGS: NAGIVATION
 wk.register({
   ["<leader>"] = {
+--    f = {
+--      name = "file",
+--      w = "[f]file [w]rite",
+--      W = "[f]ile [w]rite all",
+--      t = "[f]ile [t]ree",
+--      l = "[f]ile [l]ocate",
+--      f = "[f]ile [f]format",
+--    },
     f = {
-      name = "file",
-      w = "[f]file [w]rite",
-      W = "[f]ile [w]rite all",
-      t = "[f]ile [t]ree",
-      l = "[f]ile [l]ocate",
-      f = "[f]ile [f]format",
+      name = "find",
+      l = "[f]ind [l]ocate",
+      f = "[f]ind [f]ile",
+      b = "[f]ind [b]uffer",
     },
     w = {
       name = "window",
