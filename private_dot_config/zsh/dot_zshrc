@@ -62,7 +62,7 @@ zstyle ':completion:*' completer _expand _complete _ignored _approximate
 ############################################################
 
 HISTSIZE=999999999
-HISTFILE="$HOME/.cache/zsh/zhistory"
+export HISTFILE="$HOME/.cache/zsh/zhistory"
 SAVEHIST=$HISTSIZE
 
 # Zinit Paths
