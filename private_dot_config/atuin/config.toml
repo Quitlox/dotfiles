@@ -25,4 +25,4 @@ sync_address = "http://162.55.47.225:8888"
 
 ## which search mode to use
 ## possible values: prefix, fulltext, fuzzy
-# search_mode = "prefix"
+search_mode = "fuzzy"
