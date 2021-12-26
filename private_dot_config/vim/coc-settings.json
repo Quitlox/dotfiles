@@ -1,3 +1,5 @@
 {
-  "diagnostic.checkCurrentLine": true
+  "$schema": "https://raw.githubusercontent.com/neoclide/coc.nvim/master/data/schema.json"
+  "diagnostic.checkCurrentLine": true,
+  "tsserver.npm": "/usr/bin/npm"
 }
