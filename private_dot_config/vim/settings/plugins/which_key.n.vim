@@ -1,6 +1,5 @@
-if !has('nvim') | finish | endif
+if !has('nvim-0.5') | finish | endif
 
-echo "nvim whichkey"
 
 "#######################################
 "### SETTINGS                        ###
