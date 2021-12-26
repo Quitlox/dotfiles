@@ -197,10 +197,6 @@ zinit ice wait"2" \
   trigger-load'!zhooks'
 zinit load agkozak/zhooks
 
-### Atuin
-zinit ice id-as"atuin"
-zinit snippet https://raw.githubusercontent.com/ellie/atuin/main/atuin.plugin.zsh
-
 ############################################################
 ### Zinit: Plugins 					 ###
 ############################################################
@@ -244,9 +240,14 @@ for zdharma-continuum/null
 zinit ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
 zinit load starship/starship
 
+# Use Atuin or FZF for history searching
 # zsh-fzf-history-search
-#zinit ice lucid wait'0'
-#zinit light joshskidmore/zsh-fzf-history-search
+zinit ice lucid wait'0' if'[[ -z "$commands[atuin]" ]]'
+zinit light joshskidmore/zsh-fzf-history-search
+# Atuin
+zinit ice id-as"atuin"
+zinit snippet https://raw.githubusercontent.com/ellie/atuin/main/atuin.plugin.zsh
+
 
 # Zsh Autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history) # Match suggestions with history-substring
