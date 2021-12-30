@@ -31,7 +31,7 @@ let g:coc_global_extensions = [
             \]
 
 "#######################################
-"### COMPLETION                      ###
+"### COMPLETION TRIGGER              ###
 "#######################################
 
 "### BACKSPACE #########################
@@ -61,22 +61,19 @@ endif
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
+nmap <F5> <silent> <Plug>(coc-rename)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gu <Plug>(coc-references)
-nmap <silent> gr <Plug>(coc-rename)
+nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gf :call CocAction('format')<cr>
 nmap <silent> ga  <Plug>(coc-codeaction)
 nmap <silent> g<enter>  <Plug>(coc-fix-current)
 nmap <silent> gh :call CocAction('doHover')<cr>
 nmap <silent> go :call CocAction('runCommand', 'editor.action.organizeImport')<cr>
 "### LEADER ############################
-nnoremap <silent><nowait> <leader>id :<C-u>CocList diagnostics<cr>
-nnoremap <silent><nowait> <leader>ie :<C-u>CocList extensions<cr>
-nnoremap <silent><nowait> <leader>ic :<C-u>CocList commands<cr>
-nnoremap <silent><nowait> <leader>io :<C-u>CocList outline<cr>
-nnoremap <silent><nowait> <leader>is :<C-u>CocList -I symbols<cr>
+" Alternative
+nnoremap <silent><nowait> <leader>oc :<C-u>CocList commands<cr>
 "### YANK ##############################
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 

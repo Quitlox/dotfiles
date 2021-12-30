@@ -13,71 +13,42 @@ local wk = require("which-key")
 -- KEYBINDINGS: NAGIVATION
 wk.register({
   ["<leader>"] = {
---    f = {
---      name = "file",
---      w = "[f]file [w]rite",
---      W = "[f]ile [w]rite all",
---      t = "[f]ile [t]ree",
---      l = "[f]ile [l]ocate",
---      f = "[f]ile [f]format",
---    },
     f = {
       name = "find",
-      l = "[f]ind [l]ocate",
-      f = "[f]ind [f]ile",
-      b = "[f]ind [b]uffer",
+      l = { ":NERDTreeFind<CR>", "[f]ind [l]ocate" },
     },
+    W = { ":wa", "write all" },
     w = {
       name = "window",
-      j = "focus [w]indow down",
-      k = "focus [w]indow up",
-      h = "focus [w]indow left",
-      l = "focus [w]indow right",
-      o = "[w]indow [o]nly",
-      v = "[w]indow split vertical",
-      b = "[w]indow split horizontal",
-      d = "[w]indow [d]elete",
-      w = ":new <window>",
+      j = { "<C-W>j", "focus [w]indow down" },
+      k = { "<C-W>k", "focus [w]indow up" },
+      h = { "<C-W>h", "focus [w]indow left" },
+      l = { "<C-W>l", "focus [w]indow right" },
+      o = { "<C-W>o", "[w]indow [o]nly" },
+      v = { "<C-W>s", "[w]indow split vertical" },
+      b = { "<C-W>v", "[w]indow split horizontal" },
+      d = { "<C-W>q", "[w]indow [d]elete" },
+      w = { ":new<CR>", ":new <window>" },
       r = {
         name = "resize",
-        k = "[w]indow [r]esize up",
-        j = "[w]indow [r]esize down",
-        h = "[w]indow [r]esize left",
-        l = "[w]indow [r]esize right",
-        ["<Up>"] = "which_key_ignore",
-        ["<Down>"] = "which_key_ignore",
-        ["<Right>"] = "which_key_ignore",
-        ["<Left>"] = "which_key_ignore",
+        k = { ":resize +2<CR>", "[w]indow [r]esize up" },
+        j = { ":resize -2<CR>", "[w]indow [r]esize down" },
+        h = { ":vertical resize -2<CR>", "[w]indow [r]esize left" },
+        l = { ":vertical resize +2<CR>", "[w]indow [r]esize right" },
+        ["<Up>"] = { ":resize +2<CR>", "which_key_ignore" },
+        ["<Down>"] = { ":resize -2<CR>", "which_key_ignore" },
+        ["<Right>"] = { ":vertical resize +2<CR>", "which_key_ignore" },
+        ["<Left>"] = { ":vertical resize -2<CR>", "which_key_ignore" },
       },
     },
     b = {
       name = "buffer",
-      D = "[b]uffer [D]elete All",
-      d = "[b]uffer [d]elete",
-      n = "[b]uffer [n]ext",
-      p = "[b]uffer [p]revious",
-      o = "[b]uffer [o]nly",
+      d = { ":Bdelete<cr>", "[b]uffer [d]elete" },
+      n = { ":bnext<cr>", "[b]uffer [n]ext" },
+      p = { ":bprevious<cr>", "[b]uffer [p]revious" },
+      o = { ":BufOnly<cr>", "[b]uffer [o]nly" },
     },
   }
-})
-
--- KEYBINDINGS: TOGGLES
-wk.register({
-  ["<leader>"] = {
-    t = {
-      name = "UI-Toggle",
-      t = "[t]oggle [t]agbar",
-      f = "[t]oggle [f]iletree",
-      y = "[t]oggle go[y]o",
-    },
-    T = {
-      name = "toggle",
-      g = "[T]oggle [g]uides",
-      c = "[T]oggle [c]lose tag",
-      r = "[T]oggle [r]ainbow parentheses",
-      p = "[T]oggle [p]encil",
-    },
-  },
 })
 
 -- KEYBINDINGS: TABS
@@ -85,18 +56,52 @@ wk.register({
   ["<localleader>"] = {
     t = {
       name = "tab",
-      t = "[t]ab :new",
-      o = "[t]ab [o]nly",
-      d = "[t]ab [d]elete",
-      n = "[t]ab [n]next",
-      p = "[t]ab [p]revious",
-      l = "[t]ab [l]ast",
+      t = { ":tabnew<cr>", "[t]ab :new" },
+      o = { ":tabonly<cr>", "[t]ab [o]nly" },
+      d = { ":tabclose<cr>", "[t]ab [d]elete" },
+      n = { ":tabnext<cr>", "[t]ab [n]next" },
+      p = { ":tabprevious<cr>", "[t]ab [p]revious" },
+      l = { ":exe \"tabn \".g:lasttab<CR>", "[t]ab [l]ast" },
       m = {
         name = "move",
-        h = "[t]ab [m]ove left",
-        l = "[t]ab [m]ove right",
+        h = { ":-tabmove<cr>", "[t]ab [m]ove left" },
+        l = { ":+tabmove<cr>", "[t]ab [m]ove right" },
       },
     },
+  },
+})
+
+-- KEYBINDINGS: TOGGLES
+wk.register({
+  ["<leader>"] = {
+    t = {
+      name = "toggle",
+      f = { ":NERDTreeMirror<cr>:NERDTreeToggle<cr>", "[t]oggle [f]iletree" },
+      s = { ":TagbarToggle<cr>", "[t]oggle [s]ymbols" },
+      g = { ":IndentLinesToggle<cr>", "[t]oggle [g]uides" },
+      c = { ":CloseTagToggleBuffer<cr>", "[t]oggle [c]lose tag" },
+      r = { ":RainbowToggle<cr>", "[t]oggle [r]ainbow parentheses" },
+      p = { ":TogglePencil<cr>", "[t]oggle [p]encil" },
+      y = { ":Goyo<cr>", "[t]oggle go[y]o" },
+    },
+  },
+})
+
+-- KEYBINDINGS: MISCELLANEOUS
+wk.register({
+  ["<leader>"] = {
+    v = {
+      name = "vim",
+      s = { ":source ~/.config/vim/vimrc<cr>", "[v]im [s]ource vimrc" },
+      u = { ":DeinUpdate<cr>", "[v]im [u]pdate plugins" },
+    },
+    y = "yanklist",
+    ["<space>"] = "which_key_ignore", -- EasyMotion
+    ["<enter>"] = "which_key_ignore", -- NoHighlight
+  },
+  g = {
+    name = "go",
+    w = { ":StripWhitespace<cr>", "[g]o strip [w]hitespace" },
   },
 })
 
@@ -121,34 +126,37 @@ wk.register({
   },
 })
 
--- KEYBINDINGS: GENERAL
-wk.register({
-  ["<leader>"] = {
-    v = {
-      name = "vim",
-      s = "[v]im [s]ource vimrc",
-      u = "[v]im [u]pdate plugins",
-    },
-    y = "yanklist",
-    ["<space>"] = "which_key_ignore", -- EasyMotion
-    ["<enter>"] = "which_key_ignore", -- NoHighlight
-  },
-  g = {
-    name = "go",
-    w = "[g]o strip [w]hitespace",
-  },
-})
 
 -- KEYBINDINGS: NERDtree
 wk.register({
   ["<leader>"] = {
     o = {
       name = "open",
-      f = "[o]pen [f]ile",
-      b = "[o]pen [b]uffer",
-      r = "[o]pen [r]ecent",
+      f = { "<cmd>Telescope frecency<cr>", "[o]pen [f]ile" },
+      b = { "<cmd>Telescope buffers<cr>", "[o]pen [b]uffer" },
+      c = { ":<C-u>CocList commands<cr>", "[o]pen [c]ommands" },
     },
   },
+})
+
+-- KEYBINDINGS: CoC.vim
+wk.register({
+  ["<leader>"] = {
+    i = {
+      name = "IDE",
+      d = { ":<C-u>CocList diagnostics<cr>",    "[i]pen [d]iagnostics" },
+      e = { ":<C-u>CocList extensions<cr>",     "[i]pen [e]xtensions" },
+      o = { ":<C-u>CocList outline<cr>",        "[i]pen [o]utline" },
+      s = { ":<C-u>CocList -I symbols<cr>",     "[i]pen [s]ymbols" },
+      l = { ":<C-u>CocList<cr>",                "[i]pen [l]ist" },
+      m = { ":<C-u>CocList marketplace<cr>",    "[i]pen [m]arketplace" },
+      c = { ":<C-u>CocList commands<cr>",       "[i]pen [c]ommands" },
+    },
+  },
+}, {
+  mode = "n",
+  silent = true,
+  nowait = true,
 })
 
 -- KEYBINDINGS: LATEX
@@ -156,11 +164,11 @@ wk.register({
   ["<leader>"] = {
     l = {
       name = "LaTeX",
-      l = "[l]atex compile",
-      v = "[l]atex [v]iew",
-      e = "[l]atex [e]rrors",
-      c = "[l]atex [c]lean",
-      s = "[l]atex conceal [s]yntax",
+      l = { ":VimtexCompile<cr>", "[l]atex compile" },
+      v = { ":VimtexView<cr>", "[l]atex [v]iew" },
+      e = { ":VimtexErrors<cr>", "[l]atex [e]rrors" },
+      c = { ":VimtexClean<cr>", "[l]atex [c]lean" },
+      s = { ":call ToggleVimtexConceal()<cr>", "[l]atex conceal [s]yntax" },
     },
   },
 })

@@ -12,4 +12,4 @@ let g:airline_powerline_fonts = 1
 
 " Performance
 let g:airline_highlighting_cache = 1
-let g:airline_extensions = ['coc']
+let g:airline_extensions = ['coc', 'nerdtree']

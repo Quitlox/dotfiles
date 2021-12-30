@@ -35,28 +35,3 @@ let g:NERDToggleCheckAllLines = 1
 "#######################################
 
 map <C-_> <plug>NERDCommenterToggle
-
-"#######################################
-"### ARCHIVE: TCOMMENT               ###
-"#######################################
-
-" Extra mappings: [c]omment
-"let g:tcomment_maps = 0
-"nmap <silent><leader>c <Plug>TComment_gc
-"nnoremap <silent><leader>cc <Plug>TComment_gcc
-"nnoremap <silent><leader>c< <Plug>TComment_Uncomment
-"nnoremap <silent><leader>c<c <Plug>TComment_Uncommentc
-"nnoremap <silent><leader>c<b <Plug>TComment_Uncommentb
-"nnoremap <silent><leader>c> <Plug>TComment_Comment
-"nnoremap <silent><leader>c>c <Plug>TComment_Commentc
-"nnoremap <silent><leader>c>b <Plug>TComment_Commentb
-"let g:which_key_map.c = {
-"            \ 'name': '+comment',
-"            \ 'cc': 'toggle comment for current line',
-"            \ 'c<': 'uncomment region',
-"            \ 'c<c': 'uncomment current line',
-"            \ 'c<b': 'uncomment region as block',
-"            \ 'c>': 'comment region',
-"            \ 'c>c': 'comment current line',
-"            \ 'c>b': 'comment region as block',
-"            \ }

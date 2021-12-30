@@ -24,14 +24,13 @@ let g:maplocalleader = ","
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
 
-map Q :qa<CR>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Editing and Navigation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remap 0 to first non-blank character
-map 0 ^
+noremap 0 ^
+noremap ^ 0
 
 " Fix code navigation with softwrapping
 nnoremap j gj
@@ -106,19 +105,6 @@ cnoremap <C-K>		<C-U>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" Vim Better Whitespace Plugin:
-noremap gw :StripWhitespace<cr>
-
-" Extra mappings: [v]im
-nnoremap <leader>vs :source ~/.config/vim/vimrc<cr>
-nnoremap <leader>vu :DeinUpdate<cr>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

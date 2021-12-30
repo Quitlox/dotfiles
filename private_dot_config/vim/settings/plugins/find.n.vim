@@ -27,17 +27,7 @@ require('telescope').setup {
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
-require("telescope").load_extension("frecency")
+require('telescope').load_extension("frecency")
 
 EOF
 
-
-"#######################################
-"### KEYBINDINGS                     ###
-"#######################################
-
-nnoremap <leader>of <cmd>Telescope frecency<cr>
-nnoremap <leader>ob <cmd>Telescope buffers<cr>
-
-nnoremap <leader>ff <cmd>Telescope frecency<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>

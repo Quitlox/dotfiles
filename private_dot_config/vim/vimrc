@@ -21,7 +21,7 @@ call dein#begin(deinbasepath)
 call dein#add(deininstallpath)
 
 
-"""""""""""""""  dein.vim - User Interface """""""""""""""""
+"""""""""""""""  dein.vim """"""""""""""""""""""""""""""""""
 
 " Plugin: Dein UI
 " Link: https://github.com/wsdjeg/dein-ui.vim
@@ -37,6 +37,7 @@ call dein#add('wsdjeg/dein-ui.vim')
 " Official Description: Utility commands of dein.vim with
 " rich completion
 call dein#add('haya14busa/dein-command.vim')
+
 
 " TODO:
 "   - gitgutter
@@ -59,6 +60,7 @@ call dein#add('haya14busa/dein-command.vim')
 " Official Description: A fancy start screen for Vim.
 call dein#add('vim-scripts/vim-startify')
 
+if !has('nvim')
 " Plugin: ctrlp.vim
 " Link: https://github.com/ctrlpvim/ctrlp.vim
 " Official Description: Full path fuzzy file, buffer, mru,
@@ -68,7 +70,7 @@ call dein#add('vim-scripts/vim-startify')
 " allows you to fuzzy-search your files and buffers.
 " Default mapping on ctrl+p, who would've thought.
 call dein#add('ctrlpvim/ctrlp.vim')
-
+endif
 
 " Plugin: Tagbar
 " Link: https://vimawesome.com/plugin/tagbar
@@ -252,17 +254,6 @@ call dein#add('easymotion/vim-easymotion')
 " key. This verb allows you to easily add and manipulate
 " quotes, paranthesis and HTML tags around words and lines.
 call dein#add('tpope/vim-surround')
-
-" Plugin: Sneak
-" Link: https://vimawesome.com/plugin/vim-sneak
-" Official Description: Jump to any location specified by
-" two characters.
-"
-" Adds a new motions to the 's' key. The motion is basically
-" 'f' but with two characters. This motion does not conflict
-" with 'vim-surround' (also bound to 's'), since the latter
-" is a verb instead of a motion.
-call dein#add('justinmk/vim-sneak')
 
 " Plugin: repeat.vim
 " Link: https://github.com/tpope/vim-repeat
@@ -566,23 +557,17 @@ source ~/.config/vim/settings/terminals/kitty.vim
 """"""""""""""""""""""""""""""
 
 source ~/.config/vim/settings/basic.vim
+source ~/.config/vim/settings/keybindings.vim
 source ~/.config/vim/settings/undo_swap_backup.vim
 source ~/.config/vim/settings/wildmenu.vim
 
-source ~/.config/vim/settings/keybindings/general.vim
-source ~/.config/vim/settings/keybindings/toggles.vim
-source ~/.config/vim/settings/keybindings/navigation.vim
-
 source ~/.config/vim/settings/plugins/coc.vim
-source ~/.config/vim/settings/plugins/ctrlp.vim
-source ~/.config/vim/settings/plugins/sneak.vim
-source ~/.config/vim/settings/plugins/pencil.vim
-source ~/.config/vim/settings/plugins/vimtex.vim
 source ~/.config/vim/settings/plugins/comment.vim
-source ~/.config/vim/settings/plugins/markdown.vim
+source ~/.config/vim/settings/plugins/find.vim
+source ~/.config/vim/settings/plugins/find.n.vim
 source ~/.config/vim/settings/plugins/nerdtree.vim
+source ~/.config/vim/settings/plugins/pencil.vim
 source ~/.config/vim/settings/plugins/statusline.vim
-source ~/.config/vim/settings/plugins/telescope.n.vim
 source ~/.config/vim/settings/plugins/which_key.vim
 source ~/.config/vim/settings/plugins/which_key.n.vim
 source ~/.config/vim/settings/plugins/rainbow_parentheses.vim
