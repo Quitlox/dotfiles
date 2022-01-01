@@ -5,9 +5,14 @@ lua << EOF
 local actions = require("telescope.actions")
 require('telescope').setup {
   defaults = {
+    theme = "dropdown",
     mappings = {
       i = {
-        ["<esc>"] = actions.close
+        ["<esc>"] = actions.close,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-v>"] = actions.select_horizontal,
+        ["<C-b>"] = actions.select_vertical,
       },
     },
   },

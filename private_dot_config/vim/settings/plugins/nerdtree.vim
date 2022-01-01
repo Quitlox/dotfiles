@@ -7,7 +7,7 @@ if !(dein#is_available(['nerdtree'])) | finish | endif
 let NERDTreeShowHidden=1
 "let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
-let g:NERDTreeHighlightCursorLine=0
+let g:NERDTreeHighlightCursorline=0
 let g:NERDTreeRespectWildIgnore=1
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeCustomOpenArgs={
@@ -30,7 +30,7 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "let g:NERDTreeDirArrowCollapsible = "\u00a0"
 autocmd FileType nerdtree setlocal signcolumn=no
 " Make DeviCons and GitStatus behave
-let g:NERDTreeGitStatusConcealBrackets = 1
+let g:NERDTreeGitStatusConcealBrackets = 0
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
 "#######################################

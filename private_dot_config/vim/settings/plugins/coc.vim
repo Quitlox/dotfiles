@@ -62,27 +62,9 @@ nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
 nmap <F5> <silent> <Plug>(coc-rename)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gf :call CocAction('format')<cr>
-nmap <silent> ga  <Plug>(coc-codeaction)
-nmap <silent> g<enter>  <Plug>(coc-fix-current)
-nmap <silent> gh :call CocAction('doHover')<cr>
-nmap <silent> go :call CocAction('runCommand', 'editor.action.organizeImport')<cr>
-"### LEADER ############################
-" Alternative
-nnoremap <silent><nowait> <leader>oc :<C-u>CocList commands<cr>
-"### YANK ##############################
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-
 "### HIGHTLIGHT CURRENT ################
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"### COMMAND SELECTOR ##################
-map <C-P> :CocCommand<cr>
 
 "#######################################
 "### SNIPPETS                        ###

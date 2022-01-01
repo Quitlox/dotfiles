@@ -1,13 +1,27 @@
 if !has('nvim') | finish | endif
 
-echo "nvim whichkey"
-
 "#######################################
 "### SETTINGS                        ###
 "#######################################
 
 lua << EOF
-require("which-key").setup {}
+require("which-key").setup {
+  plugins = {
+    presets = {
+        operators = true,
+        motions = true,
+        text_objects = true,
+        windows = true,
+        nav = false,
+        z = true,
+        g = false,
+    },
+  },
+  layout = {
+    align = "center",
+  }
+}
+
 local wk = require("which-key")
 
 -- KEYBINDINGS: NAGIVATION
@@ -16,8 +30,9 @@ wk.register({
     f = {
       name = "find",
       l = { ":NERDTreeFind<CR>", "[f]ind [l]ocate" },
+      a = { "<cmd>Telescope live_grep theme=dropdown<cr>", "[f]ind [a]ll" },
     },
-    W = { ":wa", "write all" },
+    W = { ":wa<cr>", "write all" },
     w = {
       name = "window",
       j = { "<C-W>j", "focus [w]indow down" },
@@ -87,6 +102,23 @@ wk.register({
   },
 })
 
+-- KEYBINDINGS: OPEN
+wk.register({
+  ["<leader>"] = {
+    o = {
+      name = "open",
+      f = { "<cmd>Telescope frecency theme=dropdown<cr>", "[o]pen [f]ile" },
+      b = { "<cmd>Telescope buffers theme=dropdown<cr>", "[o]pen [b]uffer" },
+      c = { ":<C-u>CocList commands<cr>", "[o]pen [c]ommands", silent=true },
+      m = { "<cmd>Telescope man_pages theme=dropdown <cr>", "[f]ind [m]an page" },
+    },
+    f = {
+      m = { "<cmd>Telescope marks theme=dropdown<cr>", "[o]pen [m]arks" },
+      j = { "<cmd>Telescope jumplist theme=dropdown<cr>", "[o]pen [j]umplist" },
+    },
+  },
+})
+
 -- KEYBINDINGS: MISCELLANEOUS
 wk.register({
   ["<leader>"] = {
@@ -94,14 +126,37 @@ wk.register({
       name = "vim",
       s = { ":source ~/.config/vim/vimrc<cr>", "[v]im [s]ource vimrc" },
       u = { ":DeinUpdate<cr>", "[v]im [u]pdate plugins" },
+      l = {
+        name = "list",
+        f = { "<cmd>Telescope filetypes theme=dropdown<cr>", "[v]im [l]ist [f]iletypes" },
+        r = { "<cmd>Telescope registers theme=dropdown<cr>", "[v]im [l]ist [r]egisters" },
+        o = { "<cmd>Telescope vim_options theme=dropdown<cr>", "[v]im [l]ist [o]ptions" },
+        c = { "<cmd>Telescope autocommands theme=dropdown<cr>", "[v]im [l]ist [a]utocommands" },
+      }
     },
     y = "yanklist",
     ["<space>"] = "which_key_ignore", -- EasyMotion
     ["<enter>"] = "which_key_ignore", -- NoHighlight
   },
-  g = {
-    name = "go",
-    w = { ":StripWhitespace<cr>", "[g]o strip [w]hitespace" },
+})
+
+-- KEYBINDINGS: FUGITIVE
+wk.register({
+  ["<leader>"] = {
+    g = {
+      name = "git",
+      s = { ":G<cr>", "[g]it [s]tatus" },
+      -- Diffget (f is left index finger, j is right, as in left and right, ..get it?..)
+      j = { ":diffget //3<cr>", "[g]it :diffget //3" },
+      f = { ":diffget //2<cr>", "[g]it :diffget //2" },
+      -- list some git stuff using Telescope
+      l = {
+        name = "list",
+        c = { "<cmd>Telescope commits theme=dropdown<cr>", "[g]it [l]ist [c]ommits" },
+        b = { "<cmd>Telescope branches theme=dropdown<cr>", "[g]it [l]ist [b]ranches" },
+        s = { "<cmd>Telescope stash theme=dropdown<cr>", "[g]it [l]ist [s]tash" },
+      }
+    },
   },
 })
 
@@ -127,18 +182,6 @@ wk.register({
 })
 
 
--- KEYBINDINGS: NERDtree
-wk.register({
-  ["<leader>"] = {
-    o = {
-      name = "open",
-      f = { "<cmd>Telescope frecency<cr>", "[o]pen [f]ile" },
-      b = { "<cmd>Telescope buffers<cr>", "[o]pen [b]uffer" },
-      c = { ":<C-u>CocList commands<cr>", "[o]pen [c]ommands" },
-    },
-  },
-})
-
 -- KEYBINDINGS: CoC.vim
 wk.register({
   ["<leader>"] = {
@@ -153,10 +196,31 @@ wk.register({
       c = { ":<C-u>CocList commands<cr>",       "[i]pen [c]ommands" },
     },
   },
+  g = {
+    name = "go",
+    d = { "<Plug>(coc-definition)", "definition" },
+    y = { "<Plug>(coc-type-definition)", "type definition" },
+    i = { "<Plug>(coc-implementation)", "implementation" },
+    r = { "<Plug>(coc-references)", "references" },
+    f = { ":call CocAction('format')<cr>", "format" },
+    a = { "<Plug>(coc-codeaction)", "code-action" },
+    ["<enter>"] = { "<Plug>(coc-fix-current)", "fix-current" },
+    h = { ":call CocAction('doHover')<cr>", "hover" },
+    o = { ":call CocAction('runCommand', 'editor.action.organizeImport')<cr>", "organise imports" },
+
+    w = { ":StripWhitespace<cr>", "strip-whitespace" },
+
+    ["0"] = "which_key_ignore",
+    ["$"] = "which_key_ignore",
+    j = "which_key_ignore",
+    k = "which_key_ignore",
+    x = "which_key_ignore",
+    e = "which_key_ignore",
+    g = "which_key_ignore",
+  },
 }, {
   mode = "n",
   silent = true,
-  nowait = true,
 })
 
 -- KEYBINDINGS: LATEX

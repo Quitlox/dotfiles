@@ -60,17 +60,20 @@ call dein#add('haya14busa/dein-command.vim')
 " Official Description: A fancy start screen for Vim.
 call dein#add('vim-scripts/vim-startify')
 
-if !has('nvim')
-" Plugin: ctrlp.vim
-" Link: https://github.com/ctrlpvim/ctrlp.vim
-" Official Description: Full path fuzzy file, buffer, mru,
-" tag, ... finder for Vim.
-"
-" Simple UI element that popups under your statusline that
-" allows you to fuzzy-search your files and buffers.
-" Default mapping on ctrl+p, who would've thought.
-call dein#add('ctrlpvim/ctrlp.vim')
-endif
+
+"""""""""""""""""""""""""""""
+" => User Interface: Git
+"""""""""""""""""""""""""""""
+
+" Plugin: Fugitive
+" Link: https://github.com/tpope/vim-fugitive
+" Official Description: A Git wrapper so awesome, it should
+" be illegal.
+call dein#add('tpope/vim-fugitive')
+
+"""""""""""""""""""""""""""""
+" => User Interface: Tagbar
+"""""""""""""""""""""""""""""
 
 " Plugin: Tagbar
 " Link: https://vimawesome.com/plugin/tagbar
@@ -82,6 +85,10 @@ endif
 " example methods in C++ are displayed under the class they
 " are defined in.
 call dein#add('majutsushi/tagbar')
+
+"""""""""""""""""""""""""""""
+" => User Interface: WhichKey
+"""""""""""""""""""""""""""""
 
 if !has('nvim')
 " Plugin: Vim-which-key
@@ -126,6 +133,17 @@ call dein#add('nvim-telescope/telescope-frecency.nvim')
 " Dependency of telescope-frecency.nvim
 call dein#add('tami5/sqlite.lua')
 
+else
+
+" Plugin: ctrlp.vim
+" Link: https://github.com/ctrlpvim/ctrlp.vim
+" Official Description: Full path fuzzy file, buffer, mru,
+" tag, ... finder for Vim.
+"
+" Simple UI element that popups under your statusline that
+" allows you to fuzzy-search your files and buffers.
+" Default mapping on ctrl+p, who would've thought.
+call dein#add('ctrlpvim/ctrlp.vim')
 endif
 
 """""""""""""""""""""""""""""
@@ -195,7 +213,7 @@ call dein#add('yggdroot/indentline')
 
 
 """""""""""""""""""""""""""""
-" => Miscelaneous
+" => User Interface: Miscelaneous
 """""""""""""""""""""""""""""
 
 " Plugin: VimDevIcons
@@ -427,6 +445,18 @@ call dein#add('christoomey/vim-tmux-navigator')
 " - Focus Reporting
 " - Bracketed Paste mode
 call dein#add('wincent/terminus')
+
+if !has('nvim')
+" Plugin: vim-paste-easy
+" Link: https://github.com/roxma/vim-paste-easy
+" Official Description: Automatically set paste for you
+call dein#add('roxma/vim-paste-easy')
+endif
+
+" Plugin: Obsession
+" Link: https://github.com/tpope/vim-obsession
+" Official Description: Continuously updated session files
+call dein#add('tpope/vim-obsession')
 
 """""""""""""""""""""""""""""
 " => Chezmoi

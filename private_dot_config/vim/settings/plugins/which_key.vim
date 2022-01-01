@@ -12,8 +12,10 @@ highlight default link WhichKeySeperator Normal
 " Vim-which-key
 let g:which_key_map = {}
 let g:which_key_local_map = {}
+let g:which_key_go_map = {}
 call which_key#register('<Space>', "g:which_key_map")
 call which_key#register(',', "g:which_key_local_map")
+call which_key#register('g', "g:which_key_go_map")
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader>      :<c-u>WhichKey ','<CR>
 
@@ -190,6 +192,20 @@ let g:which_key_map.v.u = '[v]im [u]pdate plugins'
 nnoremap <leader>vs :source ~/.config/vim/vimrc<cr>
 nnoremap <leader>vu :DeinUpdate<cr>
 
+
+""""""""""""""""""""""""""""""""""""""""
+" => PLUGIN: FUGITIVE
+""""""""""""""""""""""""""""""""""""""""
+
+let g:which_key_map.g = { 'name': '+git' }
+let g:which_key_map.g.s = '[g]it [s]tatus'
+let g:which_key_map.g.j = '[g]it :diffget //3'
+let g:which_key_map.g.f = '[g]it :diffget //2'
+
+nnoremap <leader>gs :G<cr>
+nnoremap <leader>gj :diffget //3<cr>
+nnoremap <leader>gf :diffget //2<cr>
+
 """"""""""""""""""""""""""""""""""""""""
 " => PLUGIN: COMMENTARY
 """"""""""""""""""""""""""""""""""""""""
@@ -214,6 +230,7 @@ let g:which_key_map.c = {
 " => PLUGIN: COC (IDE)
 """"""""""""""""""""""""""""""""""""""""
 
+""" LEADER MAPPINGS """"""""""""""""""""
 let g:which_key_map.i = { 'name': '+IDE' }
 let g:which_key_map.i.d = '[i]pen [d]iagnostics'
 let g:which_key_map.i.e = '[i]pen [e]xtensions'
@@ -223,7 +240,6 @@ let g:which_key_map.i.l = '[i]pen [l]ist'
 let g:which_key_map.i.m = '[i]pen [m]arketplace'
 let g:which_key_map.i.c = '[i]pen [c]ommands'
 
-
 nnoremap <silent><nowait> <leader>id :<C-u>CocList diagnostics<cr>
 nnoremap <silent><nowait> <leader>ie :<C-u>CocList extensions<cr>
 nnoremap <silent><nowait> <leader>io :<C-u>CocList outline<cr>
@@ -231,6 +247,30 @@ nnoremap <silent><nowait> <leader>is :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <leader>il :<C-u>CocList<cr>
 nnoremap <silent><nowait> <leader>im :<C-u>CocList marketplace<cr>
 nnoremap <silent><nowait> <leader>ic :<C-u>CocList commands<cr>
+
+""" YANK """""""""""""""""""""""""""""""
+let g:which_key_map.y = 'CoC Yanklist'
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+
+""" GO """""""""""""""""""""""""""""""""
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gf :call CocAction('format')<cr>
+nmap <silent> ga  <Plug>(coc-codeaction)
+nmap <silent> g<enter>  <Plug>(coc-fix-current)
+nmap <silent> gh :call CocAction('doHover')<cr>
+nmap <silent> go :call CocAction('runCommand', 'editor.action.organizeImport')<cr>
+let g:which_key_go_map.d = 'definition'
+let g:which_key_go_map.y = 'type definition'
+let g:which_key_go_map.i = 'implementation'
+let g:which_key_go_map.r = 'references'
+let g:which_key_go_map.f = 'format'
+let g:which_key_go_map.a = 'code-action'
+let g:which_key_go_map["<CR>"] = 'fix-current'
+let g:which_key_go_map.h = 'hover'
+let g:which_key_go_map.o = 'organise imports'
 
 """"""""""""""""""""""""""""""""""""""""
 " => PLUGIN: LATEX
