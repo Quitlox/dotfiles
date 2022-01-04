@@ -34,4 +34,5 @@ let g:NERDToggleCheckAllLines = 1
 "### KEYBINDINGS                     ###
 "#######################################
 
-map <C-_> <plug>NERDCommenterToggle
+nnoremap <C-_> <plug>NERDCommenterToggle
+inoremap <C-_> <plug>NERDCommenterToggle

@@ -91,11 +91,13 @@ let g:which_key_map.b.d = '[b]uffer [d]elete'
 let g:which_key_map.b.n = '[b]uffer [n]ext'
 let g:which_key_map.b.p = '[b]uffer [p]revious'
 let g:which_key_map.b.o = '[b]uffer [o]nly'
+let g:which_key_map.b.s = '[b]uffer [s]ave'
 
 map <leader>bd :Bdelete<cr>
 map <leader>bn :bnext<cr>
 map <leader>bp :bprevious<cr>
 map <leader>bo :BufOnly<cr>
+map <leader>bs :w<cr>
 
 """"""""""""""""""""""""""""""""""""""""
 " => KEYBINDINGS: TABS
