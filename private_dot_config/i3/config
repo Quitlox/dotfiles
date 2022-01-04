@@ -29,6 +29,7 @@ set $i3lockwall bash ~/.config/i3/pixel_lockscreen.sh
 exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keycode 9 = Escape NoSymbol Escape"
 exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+#exec_always --no-startup-id setxkbmap -option caps:swapescape
 
 
 # Pulse Audio controls
@@ -40,6 +41,7 @@ bindsym XF86AudioMute exec --no-startup-id pamixer -t # mute sound
 # and one takes out an earphone or puts it back in
 bindsym XF86AudioPause exec --no-startup-id playerctl pause # mute sound
 bindsym XF86AudioPlay exec --no-startup-id playerctl play # mute sound
+bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # Sreen brightness controls
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
