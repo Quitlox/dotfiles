@@ -16,6 +16,9 @@ bindkey '^Y' yank
 bindkey '^B' vi-backward-blank-word
 bindkey '^F' vi-forward-blank-word
 
+# Fix backspace in vi-mode
+bindkey -v '^?' backward-delete-char
+
 # default
 #bindkey '^L' forward-char
 # for zsh-users/zsh-autosuggestions
