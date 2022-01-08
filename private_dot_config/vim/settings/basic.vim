@@ -72,6 +72,7 @@ set t_vb=
 "set tm=500
 " Misc
 set formatoptions+=1 " Don't break lines after a one-letter word
+set formatoptions+=j " join commented lines properly
 set timeoutlen=800
 set history=500      " Sets how many lines of history VIM has to remember
 
@@ -82,6 +83,13 @@ set sessionoptions=curdir,help,tabpages,winsize
 if has('nvim')
 	let g:loaded_python_provider = 0
 	let g:python3_host_prog = '/usr/bin/python3'
-
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Debuggin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+map <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 

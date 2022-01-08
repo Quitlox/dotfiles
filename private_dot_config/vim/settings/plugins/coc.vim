@@ -45,11 +45,12 @@ endfunction
 " Navigate completion list backward with <S-Tab>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 "### TRIGGER ###########################
 " Trigger Autocomplete with <C-Space>
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+   inoremap <silent><expr> <c-space> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
@@ -61,7 +62,7 @@ endif
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
-nmap <F5> <silent> <Plug>(coc-rename)
+nmap <F5> <Plug>(coc-rename)
 "### HIGHTLIGHT CURRENT ################
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')

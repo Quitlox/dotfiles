@@ -41,7 +41,6 @@ call dein#add('haya14busa/dein-command.vim')
 
 " TODO:
 "   - gitgutter
-"   - fugitive?
 "   - codi !
 "   - characterize
 "   - vim space controller
@@ -62,31 +61,6 @@ call dein#add('vim-scripts/vim-startify')
 
 
 """""""""""""""""""""""""""""
-" => User Interface: Git
-"""""""""""""""""""""""""""""
-
-" Plugin: Fugitive
-" Link: https://github.com/tpope/vim-fugitive
-" Official Description: A Git wrapper so awesome, it should
-" be illegal.
-call dein#add('tpope/vim-fugitive')
-
-"""""""""""""""""""""""""""""
-" => User Interface: Tagbar
-"""""""""""""""""""""""""""""
-
-" Plugin: Tagbar
-" Link: https://vimawesome.com/plugin/tagbar
-" Official Description: Tagbar is a Vim plugin that provides
-" an easy way to browse the tags of the current file and get
-" an overview of its structure. It does this by creating a
-" sidebar that displays the ctags-generated tags of the
-" current file, ordered by their scope. This means that for
-" example methods in C++ are displayed under the class they
-" are defined in.
-call dein#add('majutsushi/tagbar')
-
-"""""""""""""""""""""""""""""
 " => User Interface: WhichKey
 """""""""""""""""""""""""""""
 
@@ -102,48 +76,6 @@ else
 " Link: https://github.com/folke/which-key.nvim
 " Official Description: Create key bindings that stick.
   call dein#add('folke/which-key.nvim')
-endif
-
-
-"""""""""""""""""""""""""""""
-" => User Interface: Search
-"""""""""""""""""""""""""""""
-
-if has('nvim')
-
-" Plugin: telescope.nvim
-" Official Description: Gaze deeply into unknown regions
-" using the power of the moon.
-call dein#add('nvim-telescope/telescope.nvim')
-
-" Plugin: telescope-fzf-native.nvim
-" Official Description: FZF sorter for telescope written
-" in c.
-call dein#add('nvim-telescope/telescope-fzf-native.nvim', { 'build': 'make' })
-
-" Plugin:
-" Official Description: A telescope.nvim extension that
-" offers intelligent prioritization when selecting files
-" from your editing history.
-call dein#add('nvim-telescope/telescope-frecency.nvim')
-
-" Plugin: sqlite.lua
-" Official Description: SQLite/LuaJIT binding for lua and
-" neovim
-" Dependency of telescope-frecency.nvim
-call dein#add('tami5/sqlite.lua')
-
-else
-
-" Plugin: ctrlp.vim
-" Link: https://github.com/ctrlpvim/ctrlp.vim
-" Official Description: Full path fuzzy file, buffer, mru,
-" tag, ... finder for Vim.
-"
-" Simple UI element that popups under your statusline that
-" allows you to fuzzy-search your files and buffers.
-" Default mapping on ctrl+p, who would've thought.
-call dein#add('ctrlpvim/ctrlp.vim')
 endif
 
 """""""""""""""""""""""""""""
@@ -232,6 +164,89 @@ endif
 " Official Description: Distraction-free writing in Vim.
 call dein#add('junegunn/goyo.vim')
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => IDE - Integrated Development Environment
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""
+" => IDE: Async Tasks
+"""""""""""""""""""""""""""""
+
+" Plugin: Async Tasks
+" Link: https://github.com/skywind3000/asynctasks.vim
+" Official Description: Modern Task System for Project
+" Building, Testing and Deploying!
+call dein#add('skywind3000/asynctasks.vim')
+call dein#add('skywind3000/asyncrun.vim')
+
+"""""""""""""""""""""""""""""
+" => IDE: Git (Fugitive)
+"""""""""""""""""""""""""""""
+
+" Plugin: Fugitive
+" Link: https://github.com/tpope/vim-fugitive
+" Official Description: A Git wrapper so awesome, it should
+" be illegal.
+call dein#add('tpope/vim-fugitive')
+
+"""""""""""""""""""""""""""""
+" => IDE: Tagbar
+"""""""""""""""""""""""""""""
+
+" Plugin: Tagbar
+" Link: https://vimawesome.com/plugin/tagbar
+" Official Description: Tagbar is a Vim plugin that provides
+" an easy way to browse the tags of the current file and get
+" an overview of its structure. It does this by creating a
+" sidebar that displays the ctags-generated tags of the
+" current file, ordered by their scope. This means that for
+" example methods in C++ are displayed under the class they
+" are defined in.
+call dein#add('majutsushi/tagbar')
+
+
+"""""""""""""""""""""""""""""
+" => IDE: Search
+"""""""""""""""""""""""""""""
+
+if has('nvim')
+
+" Plugin: telescope.nvim
+" Official Description: Gaze deeply into unknown regions
+" using the power of the moon.
+call dein#add('nvim-telescope/telescope.nvim')
+
+" Plugin: telescope-fzf-native.nvim
+" Official Description: FZF sorter for telescope written
+" in c.
+call dein#add('nvim-telescope/telescope-fzf-native.nvim', { 'build': 'make' })
+
+" Plugin:
+" Official Description: A telescope.nvim extension that
+" offers intelligent prioritization when selecting files
+" from your editing history.
+call dein#add('nvim-telescope/telescope-frecency.nvim')
+
+" Plugin: sqlite.lua
+" Official Description: SQLite/LuaJIT binding for lua and
+" neovim
+" Dependency of telescope-frecency.nvim
+call dein#add('tami5/sqlite.lua')
+
+else
+
+" Plugin: ctrlp.vim
+" Link: https://github.com/ctrlpvim/ctrlp.vim
+" Official Description: Full path fuzzy file, buffer, mru,
+" tag, ... finder for Vim.
+"
+" Simple UI element that popups under your statusline that
+" allows you to fuzzy-search your files and buffers.
+" Default mapping on ctrl+p, who would've thought.
+call dein#add('ctrlpvim/ctrlp.vim')
+endif
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
@@ -281,11 +296,11 @@ call dein#add('tpope/vim-surround')
 call dein#add('tpope/vim-repeat')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing
+" => Editor
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""
-" => Editing: Actions
+" => Editor: Actions
 """""""""""""""""""""""""""""
 
 " Plugin: Vim Better Whitespace Plugin
@@ -306,9 +321,14 @@ call dein#add('ntpeters/vim-better-whitespace')
 " commenting powers.
 call dein#add('preservim/nerdcommenter')
 
+" Plugin: DOGE (Do)cument (Ge)nerator
+" Link: https://github.com/kkoomen/vim-doge
+" Official Description: Generate proper code documentation
+" skeletons with a single keypress.
+call dein#add('kkoomen/vim-doge' )
 
 """""""""""""""""""""""""""""
-" => Editing: Auto-configuration
+" => Editor: Auto-configuration
 """""""""""""""""""""""""""""
 
 " Plugin: Sleuth.vim
@@ -331,7 +351,7 @@ call dein#add('farmergreg/vim-lastplace')
 
 
 """""""""""""""""""""""""""""
-" => Editing: Assistance
+" => Editor: Assistance
 """""""""""""""""""""""""""""
 
 " Plugin: delimitmate
@@ -403,6 +423,11 @@ call dein#add('lervag/vimtex')
 " and mappings for the original Markdown and extensions.
 call dein#add('plasticboy/vim-markdown')
 
+" Plugin: vim-graphql
+" Link: https://github.com/jparise/vim-graphql
+" Official Description: A Vim plugin that provides GraphQL
+" file detect, syntax highlighting and indentation.
+call dein#add('jparise/vim-graphql')
 
 """""""""""""""""""""""""""""
 " => Syntax Highlighting
@@ -420,6 +445,12 @@ call dein#add('plasticboy/vim-markdown')
 "
 " Syntax Highlighting for the i3 config file
 call dein#add('mboughaba/i3config.vim')
+
+" Plugin: vim-kitty
+" Link: https://github.com/fladson/vim-kitty
+" Official Description: Syntax highlighting for Kitty
+" terminal config files.
+call dein#add('fladson/vim-kitty')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Compatability & Sanity
@@ -591,13 +622,17 @@ source ~/.config/vim/settings/keybindings.vim
 source ~/.config/vim/settings/undo_swap_backup.vim
 source ~/.config/vim/settings/wildmenu.vim
 
+source ~/.config/vim/settings/plugins/async_run.vim
 source ~/.config/vim/settings/plugins/coc.vim
 source ~/.config/vim/settings/plugins/comment.vim
+source ~/.config/vim/settings/plugins/devicons.n.vim
 source ~/.config/vim/settings/plugins/find.vim
 source ~/.config/vim/settings/plugins/find.n.vim
+source ~/.config/vim/settings/plugins/indent_line.vim
 source ~/.config/vim/settings/plugins/nerdtree.vim
 source ~/.config/vim/settings/plugins/pencil.vim
-source ~/.config/vim/settings/plugins/statusline.vim
-source ~/.config/vim/settings/plugins/which_key.vim
-source ~/.config/vim/settings/plugins/which_key.n.vim
 source ~/.config/vim/settings/plugins/rainbow_parentheses.vim
+source ~/.config/vim/settings/plugins/statusline.vim
+source ~/.config/vim/settings/plugins/tagbar.vim
+source ~/.config/vim/settings/plugins/which_key.n.vim
+source ~/.config/vim/settings/plugins/which_key.vim

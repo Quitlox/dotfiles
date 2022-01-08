@@ -298,12 +298,27 @@ sudo pacman -S --needed -q discord
 # Mailclient
 sudo pacman -S --needed -q thunderbird
 
+### PRINTING ###########################
+# Scanning
+sudo pacman -S --needed -q sane sane-airscan 
+# Fort PullenStein EPSON XP 200 SERIES
+#	You might need to configure the printer as follows
+#	Find printer ip using: `sudo arp-scan -I wlp4s0 -l`
+#	Add line to /etc/sane.d/epkowa.conf:
+#		`net <IP>`
+install_yay iscan iscan-plugin-network iscan-plugin-gt-s650
+# Frontend
+sudo pacman -S --needed -q simple-scan
+
 ### PDF READER #########################
 # Zathura is a highly customizable and functional document
 # viewer.
 sudo pacman -S --needed -q zathura
 # PDF support for Zathura
 sudo pacman -S --needed -q zathura-pdf-mupdf
+# Simple application to extract, merge, rotate and reorder
+# pages of PDF documents, with undo/redo support.
+sudo pacman -S --needed -q zathura
 
 ### OBSIDIAN ###########################
 # Obsidian is a powerful knowledge base that works on top

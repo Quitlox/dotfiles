@@ -27,11 +27,6 @@ local wk = require("which-key")
 -- KEYBINDINGS: NAGIVATION
 wk.register({
   ["<leader>"] = {
-    f = {
-      name = "find",
-      l = { ":NERDTreeFind<CR>", "[f]ind [l]ocate" },
-      a = { "<cmd>Telescope live_grep theme=dropdown<cr>", "[f]ind [a]ll" },
-    },
     W = { ":wa<cr>", "write all" },
     w = {
       name = "window",
@@ -62,6 +57,7 @@ wk.register({
       n = { ":bnext<cr>", "[b]uffer [n]ext" },
       p = { ":bprevious<cr>", "[b]uffer [p]revious" },
       o = { ":BufOnly<cr>", "[b]uffer [o]nly" },
+      s = { ":w<cr>", "[b]uffer [s]ave" },
     },
   }
 })
@@ -102,6 +98,21 @@ wk.register({
   },
 })
 
+-- KEYBINDINGS: FIND
+wk.register({
+  ["<leader>"] = {
+    f = {
+      name = "find",
+      l = { ":NERDTreeFind<CR>", "[f]ind [l]ocate" },
+      a = { "<cmd>Telescope live_grep theme=dropdown<cr>", "[f]ind [a]ll" },
+      f = { "<cmd>Telescope live_grep theme=dropdown<cr>", "[f]ind" },
+      m = { "<cmd>Telescope marks theme=dropdown<cr>", "[o]pen [m]arks" },
+      j = { "<cmd>Telescope jumplist theme=dropdown<cr>", "[o]pen [j]umplist" },
+      b = { "<cmd>Telescope buffer theme=dropdown<cr>", "[o]pen [b]uffers" },
+    },
+  }
+})
+
 -- KEYBINDINGS: OPEN
 wk.register({
   ["<leader>"] = {
@@ -111,10 +122,7 @@ wk.register({
       b = { "<cmd>Telescope buffers theme=dropdown<cr>", "[o]pen [b]uffer" },
       c = { ":<C-u>CocList commands<cr>", "[o]pen [c]ommands", silent=true },
       m = { "<cmd>Telescope man_pages theme=dropdown <cr>", "[f]ind [m]an page" },
-    },
-    f = {
-      m = { "<cmd>Telescope marks theme=dropdown<cr>", "[o]pen [m]arks" },
-      j = { "<cmd>Telescope jumplist theme=dropdown<cr>", "[o]pen [j]umplist" },
+      h = { "<cmd>Telescope help_tags theme=dropdown<cr>", "[o]pen [h]elp" },
     },
   },
 })
@@ -146,6 +154,7 @@ wk.register({
     g = {
       name = "git",
       s = { ":G<cr>", "[g]it [s]tatus" },
+      c = { ":Git commit<cr>", "[g]it [c]ommit" },
       -- Diffget (f is left index finger, j is right, as in left and right, ..get it?..)
       j = { ":diffget //3<cr>", "[g]it :diffget //3" },
       f = { ":diffget //2<cr>", "[g]it :diffget //2" },
@@ -207,6 +216,7 @@ wk.register({
     ["<enter>"] = { "<Plug>(coc-fix-current)", "fix-current" },
     h = { ":call CocAction('doHover')<cr>", "hover" },
     o = { ":call CocAction('runCommand', 'editor.action.organizeImport')<cr>", "organise imports" },
+    s = { ":wa<cr>", "save" },
 
     w = { ":StripWhitespace<cr>", "strip-whitespace" },
 
