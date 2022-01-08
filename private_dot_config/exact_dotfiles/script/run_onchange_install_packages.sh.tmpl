@@ -168,17 +168,22 @@ sudo pacman -S --needed -q qt5ct
 ### (X) Tools                        ###
 ########################################
 
-# Print contents of X events
-sudo pacman -S --needed -q xorg-xev
-# Event device test program
-install_yay evtest
 # Utility to configure and test X input devices
 # > Used by ~/.config/autorandr/postswitch.d/adjust_touch_screen.sh
 sudo pacman -S --needed -q xorg-xinput
 # Kill an X application by mouse click
 # > Used by ~/.config/i3/config
 sudo pacman -S --needed -q xorg-xkill
+# Command line interface to the X11 clipboard
+# > Used by ~/.config/i3/config 
+#	For taking screenshots
+sudo pacman -S --needed -q xclip
 
+# Print contents of X events
+sudo pacman -S --needed -q xorg-xev
+# Event device test program
+install_yay evtest
+# Fake keyboard/mouse input, window management and more
 sudo pacman -S --needed -q xdotool
 
 ########################################
