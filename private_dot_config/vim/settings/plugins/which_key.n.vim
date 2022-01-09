@@ -24,6 +24,13 @@ require("which-key").setup {
 
 local wk = require("which-key")
 
+-- KEYBINDINGS: SAVE
+wk.register({
+  ["<leader>"] = {
+    s = { ":wa<cr>", "save" },
+  }
+})
+
 -- KEYBINDINGS: NAGIVATION
 wk.register({
   ["<leader>"] = {
@@ -235,14 +242,30 @@ wk.register({
 
 -- KEYBINDINGS: LATEX
 wk.register({
-  ["<leader>"] = {
+  ["<localleader>"] = {
     l = {
-      name = "LaTeX",
-      l = { ":VimtexCompile<cr>", "[l]atex compile" },
-      v = { ":VimtexView<cr>", "[l]atex [v]iew" },
-      e = { ":VimtexErrors<cr>", "[l]atex [e]rrors" },
-      c = { ":VimtexClean<cr>", "[l]atex [c]lean" },
-      s = { ":call ToggleVimtexConceal()<cr>", "[l]atex conceal [s]yntax" },
+      name = "[L]aTeX",
+      a = "context menu",
+      C = "[c]lean full",
+      c = "[c]lean",
+      e = "[e]rrors",
+      g = "status",
+      G = "status all",
+      I = "[i]nfo full",
+      i = "[i]nfo",
+      K = "stop all",
+      k = "stop",
+      l = "compile",
+      L = "compile selected",
+      m = "i[m]aps list",
+      o = "compile [o]utput",
+      q = "log",
+      s = "toggle main",
+      t = "[t]oc open",
+      T = "[t]oc toggle",
+      v = "[v]iew",
+      X = "reload state",
+      x = "reload",
     },
   },
 })

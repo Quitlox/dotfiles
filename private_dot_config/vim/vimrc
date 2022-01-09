@@ -634,5 +634,6 @@ source ~/.config/vim/settings/plugins/pencil.vim
 source ~/.config/vim/settings/plugins/rainbow_parentheses.vim
 source ~/.config/vim/settings/plugins/statusline.vim
 source ~/.config/vim/settings/plugins/tagbar.vim
+source ~/.config/vim/settings/plugins/vimtex.vim
 source ~/.config/vim/settings/plugins/which_key.n.vim
 source ~/.config/vim/settings/plugins/which_key.vim
