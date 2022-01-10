@@ -42,7 +42,7 @@
 {{-     $chassisType = "desktop" }}
 {{-   end }}
 {{- else if (eq .chezmoi.os "linux") }}
-{{-   if (eq .chezmoi.osRelease.id "debian") }}
+{{-   if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
 {{-     $chassisType = (output "sh" "-c" "hostnamectl | awk '/Chassis/ { gsub(/ /, \"\", $0); split($0,a,\":\"); print a[2]; }' | tr -d '\\n' ") }}
 {{-   else }}
 {{-     $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
