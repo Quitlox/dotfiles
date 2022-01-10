@@ -14,7 +14,6 @@ keybindings.json
 
 !.cache/
 !.ssh/
-!Workspace/
 
 !.config/base16-universal-manager
 !.config/dotfiles
