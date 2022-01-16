@@ -57,6 +57,10 @@
       "before": ["<leader", "*"],
       "commands": ["references-view.find"]
     },
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.files.saveFiles"]
+    },
 
     // Vim: IDE Features
     {
@@ -77,8 +81,8 @@
     },
     {
       "before": ["g", "r"],
-      "commands": ["editor.action.rename"],
-      "when": ["editorHasRenameProvider && editorTextFocus && !editorReadonly"]
+      "commands": ["editor.action.goToReferences"],
+      "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
     },
     {
       "before": ["g", "h"],
@@ -88,19 +92,15 @@
       "before": ["g", "a"],
       "commands": ["keyboard-quickfix.openQuickFix"]
     },
-    {
-      "before": ["g", "u"],
-      "commands": ["editor.action.showReferences"]
-    },
     // {
     //   "before": ["g", "b"],
     //   "commands": ["jupyter.runcurrentcell"],
     //   "when": ["editorTextFocus && jupyter.hascodecells && !editorHasSelection && !jupyter.havenativecells && !notebookEditorFocused"]
     // },
-    {
-      "before": ["g", "c", "c"],
-      "commands": ["editor.action.commentLine"]
-    },
+    // {
+    //   "before": ["g", "c", "c"],
+    //   "commands": ["editor.action.commentLine"]
+    // },
 
     // Vim: Buffer Navigation
     {
@@ -149,29 +149,27 @@
       "before": ["<leader>", "w", "b"],
       "commands": ["workbench.action.splitEditorRight"]
     },
-
-    // Vim: Files
-    {
-      "before": ["<leader>", "f", "w"],
-      "commands": ["workbench.action.files.save"]
-    },
-    {
-      "before": ["<leader>", "f", "W"],
-      "commands": ["workbench.action.files.saveAll"]
-    },
+    // Vim: Find
+    //    Locate
     {
       "before": ["<leader>", "f", "l"],
       "commands": ["workbench.files.action.showActiveFileInExplorer"]
     },
+    //    All
     {
-      "before": ["<leader>", "f", "y"],
-      "commands": ["workbench.action.files.copyPathOfActiveFile"]
+      "before": ["<leader>", "f", "a"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    // Vim: Open
+    //    Commands
+    {
+      "before": ["<leader>", "o", "c"],
+      "commands": ["workbench.action.showCommands"]
     },
     {
-      "before": ["<leader>", "f", "r"],
-      "commands": ["fileutils.renameFile"]
+      "before": ["<leader>", "o", "f"],
+      "commands": ["workbench.action.files.openFile"]
     },
-
     // Vim: UI Toggles
     {
       "before": ["<leader>", "t", "f"],
@@ -198,14 +196,6 @@
     {
       "before": ["<leader>", "e", "l"],
       "commands": ["workbench.actions.view.problems"]
-    },
-    {
-      "before": ["<leader>", "e", "n"],
-      "commands": ["editor.action.marker.next"]
-    },
-    {
-      "before": ["<leader>", "e", "p"],
-      "commands": ["editor.action.marker.prev"]
     },
     {
       "before": ["]", "e"],
@@ -327,10 +317,6 @@
   // Vim: Visual Mode
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": ["g", "c", "c"],
-      "commands": ["editor.action.commentLine"]
-    },
-    {
       "before": ["<leader>", "*"],
       "commands": ["references-view.find"]
     },
@@ -356,7 +342,8 @@
     "<C-p>": false,
     "<C-r>": false,
     "<C-u>": true,
-    "<C-o>": false,
+    "<C-o>": true,
+    "<C-i>": true,
     "<C-w>": false
   },
 
@@ -453,5 +440,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true
+  "editor.guides.bracketPairs": true,
+  "window.zoomLevel": 1
 }

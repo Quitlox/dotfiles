@@ -91,11 +91,6 @@
     "when": "!terminalFocus"
   },
   {
-    "key": "ctrl+o",
-    "command": "workbench.action.quickOpen",
-    "when": "!terminalFocus"
-  },
-  {
     "key": "ctrl+p",
     "command": "workbench.action.quickOpenNavigateNextInFilePicker",
     "when": "inFilesPicker && inQuickOpen && !terminalFocus"
@@ -178,5 +173,10 @@
   {
     "key": "ctrl+e",
     "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "-workbench.action.files.openFile",
+    "when": "true"
   }
 ]
