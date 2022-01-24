@@ -506,6 +506,9 @@ for_window [class="Zenity"] floating enable border none
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
+# Sticky 
+for_window [title="Picture-in-Picture"] sticky enable
+
 # Assigning windows to specific workspaces
 for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9; workspace $ws9
 assign [class="discord"] number $ws8
