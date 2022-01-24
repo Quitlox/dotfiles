@@ -1,0 +1,13 @@
+[Added Associations]
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-4CCHE1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-4CCHE1.desktop;
+
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+
+[Default Applications]
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-4CCHE1.desktop
+message/rfc822=userapp-Thunderbird-4CCHE1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-4CCHE1.desktop
