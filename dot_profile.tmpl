@@ -93,3 +93,8 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 export STACK_ROOT="$XDG_DATA_HOME/stack"
 export GHCUP_USE_XDG_DIRS=1
+
+# Pyenv
+export PYENV_ROOT="$HOME/.local/src/pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"

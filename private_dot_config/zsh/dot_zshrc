@@ -1,6 +1,8 @@
 
 # Source Base16 Theme
 [ -f "$HOME/.config/zsh/theme.sh" ] && . ~/.config/zsh/theme.sh
+# Source Pyenv
+[ -d "$PYENV/.local/src/pyenv" ] && eval "$(pyenv init -)"
 
 # Colors
 autoload colors && colors
