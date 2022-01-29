@@ -26,19 +26,6 @@ if ! sudo -v; then
 	exit
 fi
 
-# Exit if informant check fails
-# Informant is a script that keeps track
-# whether the user has read the latest Arch News.
-if command -v informant > /dev/null; then
-	if ! sudo informant check; then
-		berror "There is important Arch News! Go read! (sudo informant read)"
-		exit
-	else
-		info "No unread Arch News"
-	fi
-else
-	warning "Informant not installed. Install to keep up with important Arch Wiki updates."
-fi
 
 ############################################################
 ### essential packages                                   ###
@@ -46,9 +33,9 @@ fi
 
 # Packages you probably want on any system
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
-sudo pacman -S --needed -q git gvim zsh unzip exa bat tree make openssh chezmoi fzf
+sudo pacman -S --needed -q zsh git gvim zsh unzip exa bat tree make openssh chezmoi fzf
 {{- else if eq .chezmoi.osRelease.id "debian" }}
-sudo apt install git gvim zsh rubygems unzip exa bat tree make openssh chezmoi fzf
+sudo apt install zsh git gvim zsh rubygems unzip exa bat tree make openssh chezmoi fzf
 {{- end }}
 
 ############################################################
@@ -71,6 +58,20 @@ sudo apt install neovim python3-pynvim
 {{- if eq .environment "desktop" }}
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
 binformation "Arch/Manjaro detected"
+
+# Exit if informant check fails
+# Informant is a script that keeps track
+# whether the user has read the latest Arch News.
+if command -v informant > /dev/null; then
+	if ! sudo informant check; then
+		berror "There is important Arch News! Go read! (sudo informant read)"
+		exit
+	else
+		info "No unread Arch News"
+	fi
+else
+	warning "Informant not installed. Install to keep up with important Arch Wiki updates."
+fi
 
 ########################################
 ### Window Manager                   ###
