@@ -3,6 +3,10 @@
 ### Functions		                		 ###
 ############################################################
 
+open () {
+    nohup xdg-open $1 > /dev/null &
+}
+
 bw-login () {
     export BW_SESSION=$(bw unlock --raw)
 }
