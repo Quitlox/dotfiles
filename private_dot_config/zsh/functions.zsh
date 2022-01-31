@@ -5,6 +5,7 @@
 
 open () {
     nohup xdg-open $1 > /dev/null &
+    disown
 }
 
 bw-login () {
