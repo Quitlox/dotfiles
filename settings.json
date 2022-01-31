@@ -413,7 +413,7 @@
   },
 
   // Extension: Material Theme
-  "editor.fontLigatures": true,
+  "editor.fontLigatures": false,
   "explorer.decorations.badges": false,
 
   // Extension: LiveShare
@@ -441,5 +441,8 @@
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }
