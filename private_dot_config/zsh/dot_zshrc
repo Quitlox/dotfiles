@@ -247,8 +247,12 @@ zinit load starship/starship
 zinit ice lucid wait'0c' if'[[ -z "$commands[atuin]" ]]'
 zinit light joshskidmore/zsh-fzf-history-search
 # Atuin
-zinit ice id-as"atuin"
-zinit snippet https://raw.githubusercontent.com/ellie/atuin/main/atuin.plugin.zsh
+export ATUIN_NOBIND="true"
+function __bind_atuin_keys() {
+  bindkey '^r' _atuin_search_widget
+}
+zinit ice atload'__bind_atuin_keys'
+zinit load ellie/atuin
 
 
 # Zsh Autosuggestions
