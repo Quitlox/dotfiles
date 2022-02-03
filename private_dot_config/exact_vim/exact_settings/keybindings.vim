@@ -89,7 +89,7 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-vnoremap : :<C-U>silent!
+vnoremap : :<C-U>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command Mode
