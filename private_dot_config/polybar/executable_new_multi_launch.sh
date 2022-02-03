@@ -94,13 +94,13 @@ fi
     if [ "${_mon}" = "${_primon}" ]; then
       debug "Launching polybars for $_mon (primary)..."
       # Launch the main bars
-      nohup polybar --reload top </dev/null 2>&1 | tee "${_log}-t" & disown
-      nohup polybar --reload bottom </dev/null 2>&1 | tee "${_log}-b" & disown
+      nohup polybar --reload top </dev/null 2>&1 >"${_log}-t" & disown
+      nohup polybar --reload bottom </dev/null 2>&1 >"${_log}-b" & disown
     else
       debug "Launching polybars for $_mon..."
       # Launch an auxillary bar
-      nohup polybar --reload top </dev/null 2>&1 | tee "${_log}-t" & disown
-      nohup polybar --reload bottom </dev/null 2>&1 | tee "${_log}-b" & disown
+      nohup polybar --reload top </dev/null 2>&1 >"${_log}-t" & disown
+      nohup polybar --reload bottom </dev/null 2>&1 >"${_log}-b" & disown
     fi
   done
 
