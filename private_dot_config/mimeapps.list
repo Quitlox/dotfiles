@@ -12,3 +12,4 @@ message/rfc822=userapp-Thunderbird-4CCHE1.desktop
 x-scheme-handler/mid=userapp-Thunderbird-4CCHE1.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
+x-scheme-handler/msteams=teams.desktop
