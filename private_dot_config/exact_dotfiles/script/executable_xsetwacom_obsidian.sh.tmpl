@@ -25,6 +25,7 @@ pad=$(xsetwacom --list devices \
 	| awk --field-separator '\t' '/pad/ {split($2, ID, ": "); print ID[2];}')
 stylus=$(xsetwacom --list devices \
 	| awk --field-separator '\t' '/stylus/ {split($2, ID, ": "); print ID[2];}')
+debug "stylus id is $stylus"
 
 # Exit if tablet not connected
 if [[ -z $pad ]]; then
