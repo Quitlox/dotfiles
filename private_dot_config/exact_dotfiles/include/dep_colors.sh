@@ -92,5 +92,5 @@ function bsuccess () {
     cecho -c 'bgreen' "=> ✅ $@";
 }
 function debug() {
-    cecho -c 'dgray' "$@";
+    cecho -c 'white' "=> $@";
 }
