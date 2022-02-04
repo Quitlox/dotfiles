@@ -27,7 +27,7 @@ set $i3lockwall bash ~/.config/i3/pixel_lockscreen.sh
 
 # Bind caps-lock to escape
 exec_always --no-startup-id xmodmap -e "clear lock"
-exec_always --no-startup-id xmodmap -e "keycode 9 = Escape NoSymbol Escape"
+exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
 exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 #exec_always --no-startup-id setxkbmap -option caps:swapescape
 
