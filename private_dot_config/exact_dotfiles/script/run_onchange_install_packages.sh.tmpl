@@ -255,15 +255,19 @@ sudo pacman -S --needed -q neovim-remote
 ### LATEX ##############################
 # A modernized, complete, self-contained TeX/LaTeX engine,
 # powered by XeTeX and TeXLive.
-# > Used by ~/.config/vim/vimrc
-#install_yay tectonic-bin
-sudo pacman -S --needed -q texlive-most
+# > Used by ~/.config/vim/settings/plugins/vimtex.vim
+sudo pacman -S --needed -q texlive-most texlive-most-doc
+# Package Manager for TexLive
+install_yay tllocalmgr
 # Pretty-Print LaTeX: A tool to reformat the output of latex
 # and friends into readable messages.
-# > Used by ~/.config/vim/vimrc
+# > Used by ~/.config/vim/settings/plugins/vimtex.vim
 install_yay pplatex-git
 # > Needed for biblatex files
 sudo pacman -S --needed -q biber
+### ZOTERO #############################
+warning "Don't forget to install the zotero-better-bibtex addon"
+install_yay zotero
 
 ### SPOTIFY ############################
 # Lightweight spotify streaming daemon with spotify connect
@@ -301,7 +305,7 @@ code --install-extension austenc.tailwind-docs
 # Your place to Talk and Hang out
 sudo pacman -S --needed -q discord
 
-### MAIL CLIENT ########################
+### MAIL ###############################
 # Mailclient
 sudo pacman -S --needed -q thunderbird
 
@@ -317,15 +321,12 @@ install_yay iscan iscan-plugin-network iscan-plugin-gt-s650
 # Frontend
 sudo pacman -S --needed -q simple-scan
 
-### PDF READER #########################
+### PDF ################################
 # Zathura is a highly customizable and functional document
 # viewer.
 sudo pacman -S --needed -q zathura
 # PDF support for Zathura
 sudo pacman -S --needed -q zathura-pdf-mupdf
-# Simple application to extract, merge, rotate and reorder
-# pages of PDF documents, with undo/redo support.
-sudo pacman -S --needed -q zathura
 
 ### OBSIDIAN ###########################
 # Obsidian is a powerful knowledge base that works on top
