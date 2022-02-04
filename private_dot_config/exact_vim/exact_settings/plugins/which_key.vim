@@ -20,20 +20,11 @@ nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader>      :<c-u>WhichKey ','<CR>
 
 """"""""""""""""""""""""""""""""""""""""
-" => KEYBINDINGS: FILE
+" => KEYBINDINGS
 """"""""""""""""""""""""""""""""""""""""
 
-let g:which_key_map.W = ':wa'
-noremap <leader>W :wa<cr>
-
-""""""""""""""""""""""""""""""""""""""""
-" => KEYBINDINGS: FIND
-""""""""""""""""""""""""""""""""""""""""
-
-let g:which_key_map.f = { 'name': '+find' }
-
-let g:which_key_map.f.l = '[f]ind [l]ocate'
-nnoremap <leader>fl :NERDTreeFind<CR>
+let g:which_key_map.s = ':wa'
+noremap <leader>s :wa<cr>
 
 """"""""""""""""""""""""""""""""""""""""
 " => KEYBINDINGS: WINDOW
@@ -161,6 +152,15 @@ noremap <leader>tp :TogglePencil<cr>
 noremap <leader>ty :Goyo<cr>
 
 """"""""""""""""""""""""""""""""""""""""
+" => KEYBINDINGS: FIND
+""""""""""""""""""""""""""""""""""""""""
+
+let g:which_key_map.f = { 'name': '+find' }
+
+let g:which_key_map.f.l = '[f]ind [l]ocate'
+nnoremap <leader>fl :NERDTreeFind<CR>
+
+""""""""""""""""""""""""""""""""""""""""
 " => KEYBINDINGS: OPEN
 """"""""""""""""""""""""""""""""""""""""
 
@@ -173,7 +173,7 @@ let g:which_key_map.o.c = '[o]pen [c]ommands'
 noremap <leader>of :NERDTreeClose\|CtrlP<cr>
 noremap <leader>ob :NERDTreeClose\|CtrlPBuffer<cr>
 noremap <leader>or :NERDTreeClose\|CtrlPMRU<cr>
-nnoremap <silent><nowait> <leader>ic :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>oc :<C-u>CocList commands<cr>
 
 """"""""""""""""""""""""""""""""""""""""
 " => KEYBINDINGS: MISCELLANEOUS
@@ -201,10 +201,12 @@ nnoremap <leader>vu :DeinUpdate<cr>
 
 let g:which_key_map.g = { 'name': '+git' }
 let g:which_key_map.g.s = '[g]it [s]tatus'
+let g:which_key_map.g.c = '[g]it [c]ommit'
 let g:which_key_map.g.j = '[g]it :diffget //3'
 let g:which_key_map.g.f = '[g]it :diffget //2'
 
 nnoremap <leader>gs :G<cr>
+nnoremap <leader>gc :Git commit<cr>
 nnoremap <leader>gj :diffget //3<cr>
 nnoremap <leader>gf :diffget //2<cr>
 
@@ -275,7 +277,7 @@ let g:which_key_go_map.h = 'hover'
 let g:which_key_go_map.o = 'organise imports'
 
 """"""""""""""""""""""""""""""""""""""""
-" => PLUGIN: LATEX
+" => PLUGIN: VIMTEX (LATEX)
 """"""""""""""""""""""""""""""""""""""""
 
 let g:which_key_map.l = {'name': '+LaTeX'}

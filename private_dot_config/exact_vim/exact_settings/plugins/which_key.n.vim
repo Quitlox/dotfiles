@@ -24,17 +24,18 @@ require("which-key").setup {
 
 local wk = require("which-key")
 
--- KEYBINDINGS: SAVE
 wk.register({
   ["<leader>"] = {
     s = { ":wa<cr>", "save" },
   }
 })
 
--- KEYBINDINGS: NAGIVATION
+----------------------------------------
+-- KEYBINDINGS: WINDOW
+----------------------------------------
 wk.register({
   ["<leader>"] = {
-    W = { ":wa<cr>", "write all" },
+    s = { ":wa<cr>", "save" },
     w = {
       name = "window",
       j = { "<C-W>j", "focus [w]indow down" },
@@ -58,6 +59,14 @@ wk.register({
         ["<Left>"] = { ":vertical resize -2<CR>", "which_key_ignore" },
       },
     },
+  }
+})
+
+----------------------------------------
+-- KEYBINDINGS: BUFFER
+----------------------------------------
+wk.register({
+  ["<leader>"] = {
     b = {
       name = "buffer",
       d = { ":Bdelete<cr>", "[b]uffer [d]elete" },
@@ -69,7 +78,9 @@ wk.register({
   }
 })
 
--- KEYBINDINGS: TABS
+----------------------------------------
+-- KEYBINDINGS: BUFFER
+----------------------------------------
 wk.register({
   ["<localleader>"] = {
     t = {
@@ -89,7 +100,9 @@ wk.register({
   },
 })
 
+----------------------------------------
 -- KEYBINDINGS: TOGGLES
+----------------------------------------
 wk.register({
   ["<leader>"] = {
     t = {
@@ -105,7 +118,9 @@ wk.register({
   },
 })
 
+----------------------------------------
 -- KEYBINDINGS: FIND
+----------------------------------------
 wk.register({
   ["<leader>"] = {
     f = {
@@ -120,7 +135,9 @@ wk.register({
   }
 })
 
+----------------------------------------
 -- KEYBINDINGS: OPEN
+----------------------------------------
 wk.register({
   ["<leader>"] = {
     o = {
@@ -134,7 +151,9 @@ wk.register({
   },
 })
 
+----------------------------------------
 -- KEYBINDINGS: MISCELLANEOUS
+----------------------------------------
 wk.register({
   ["<leader>"] = {
     v = {
@@ -155,7 +174,9 @@ wk.register({
   },
 })
 
--- KEYBINDINGS: FUGITIVE
+----------------------------------------
+-- PLUGIN: FUGITIVE
+----------------------------------------
 wk.register({
   ["<leader>"] = {
     g = {
@@ -176,7 +197,9 @@ wk.register({
   },
 })
 
--- KEYBINDINGS: COMMENT
+----------------------------------------
+-- PLUGIN: COMMENTARY
+----------------------------------------
 wk.register({
   ["<leader>"] = {
     c = {
@@ -198,7 +221,9 @@ wk.register({
 })
 
 
--- KEYBINDINGS: CoC.vim
+----------------------------------------
+-- PLUGIN: COC (IDE)
+----------------------------------------
 wk.register({
   ["<leader>"] = {
     i = {
@@ -240,7 +265,9 @@ wk.register({
   silent = true,
 })
 
--- KEYBINDINGS: LATEX
+----------------------------------------
+-- PLUGIN: VIMTEX (LATEX)
+----------------------------------------
 wk.register({
   ["<localleader>"] = {
     l = {

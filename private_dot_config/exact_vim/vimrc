@@ -299,6 +299,11 @@ call dein#add('tpope/vim-repeat')
 " => Editor
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Plugin: Zotcite
+" Link: https://github.com/jalvesaq/zotcite
+" Official Description: Vim plugin for integration with Zotero
+call dein#add('jalvesaq/zotcite')
+
 """""""""""""""""""""""""""""
 " => Editor: Actions
 """""""""""""""""""""""""""""
