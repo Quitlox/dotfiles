@@ -70,8 +70,8 @@ wk.register({
     b = {
       name = "buffer",
       d = { ":Bdelete<cr>", "[b]uffer [d]elete" },
-      n = { ":bnext<cr>", "[b]uffer [n]ext" },
-      p = { ":bprevious<cr>", "[b]uffer [p]revious" },
+      n = { ":<C-u>execute 'call Bswitch_normal(' . v:count1 . ', \"next\")'<CR>", "[b]uffer [n]ext" },
+      p = { ":<C-u>execute 'call Bswitch_normal(' . v:count1 . ', \"previous\")'<CR>", "[b]uffer [p]revious" },
       o = { ":BufOnly<cr>", "[b]uffer [o]nly" },
       s = { ":w<cr>", "[b]uffer [s]ave" },
     },
@@ -79,7 +79,7 @@ wk.register({
 })
 
 ----------------------------------------
--- KEYBINDINGS: BUFFER
+-- KEYBINDINGS: TAB
 ----------------------------------------
 wk.register({
   ["<localleader>"] = {

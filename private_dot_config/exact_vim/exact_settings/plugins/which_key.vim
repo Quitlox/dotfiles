@@ -85,8 +85,8 @@ let g:which_key_map.b.o = '[b]uffer [o]nly'
 let g:which_key_map.b.s = '[b]uffer [s]ave'
 
 map <leader>bd :Bdelete<cr>
-map <leader>bn :bnext<cr>
-map <leader>bp :bprevious<cr>
+map <leader>bn :<C-u>execute 'call Bswitch_normal(' . v:count1 . ', "next")'<CR>
+map <leader>bp :<C-u>execute 'call Bswitch_normal(' . v:count1 . ', "previous")'<CR>
 map <leader>bo :BufOnly<cr>
 map <leader>bs :w<cr>
 
