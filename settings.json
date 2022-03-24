@@ -444,5 +444,6 @@
   "window.zoomLevel": 1,
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  },
+  "emmet.showAbbreviationSuggestions": false
 }
