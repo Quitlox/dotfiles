@@ -25,7 +25,8 @@ require('telescope').setup {
                                        -- the default case_mode is "smart_case"
     },
     frecency = {
-      default_workspace = 'CWD',
+      -- default_workspace = 'CWD',
+      -- show_scores=true,
     },
   },
 }
