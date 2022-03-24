@@ -239,13 +239,14 @@ zinit wait as"none" \
 for zdharma-continuum/null
 
 # Starship prompt
-# zinit ice from"gh-r" as"program" \
-#   atload'!eval $(starship init zsh)'
-# zinit load starship/starship
 zinit ice from"gh-r" as"program" \
-  atclone'./starship init zsh > init.zsh; ./starship completions zsh > _starship' \
-  atpull'%atclone' src'init.zsh'
+  atload'!eval $(starship init zsh)'
 zinit load starship/starship
+# This hangs the terminal, don't do this
+#zinit ice from"gh-r" as"program" \
+#  atclone'./starship init zsh > init.zsh; ./starship completions zsh > _starship' \
+#  atpull'%atclone' src'init.zsh'
+#zinit load starship/starship
 
 # Use Atuin or FZF for history searching
 # zsh-fzf-history-search
