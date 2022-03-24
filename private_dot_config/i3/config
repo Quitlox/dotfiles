@@ -498,6 +498,7 @@ for_window [title="CodeBrowser*"] floating disable
 for_window [class="PlayOnLinux"] floating disable
 for_window [class="Thunderbird"] floating enable
 for_window [class="Thunderbird" instance="^Mail$"] floating disable
+for_window [class="Zotero" title="Advanced Search"] floating enable
 
 for_window [class="zenity"] floating enable border none
 for_window [class="Zenity"] floating enable border none
