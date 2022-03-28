@@ -1,9 +1,10 @@
 [Added Associations]
-application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;okularApplication_pdf.desktop;
 x-scheme-handler/mailto=userapp-Thunderbird-4CCHE1.desktop;
 x-scheme-handler/mid=userapp-Thunderbird-4CCHE1.desktop;
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/pdf=org.pwmt.zathura.desktop;
 
 [Default Applications]
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
@@ -13,3 +14,5 @@ x-scheme-handler/mid=userapp-Thunderbird-4CCHE1.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/gitkraken=GitKraken.desktop
