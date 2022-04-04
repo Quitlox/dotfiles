@@ -9,3 +9,4 @@ c: ConfigContainer = c  # noqa: F821 pylint: disable=E0602,C0103
 
 config.unbind('t', mode='normal')
 config.bind('t', 'set-cmd-text -s :open -t')
+config.bind('<Space>l', ':spawn --userscript qute-bitwarden')
