@@ -18,7 +18,7 @@ setopt numericglobsort          # Sort filenames numerically when it makes sense
 setopt globdots			# files beginning with . matched without explicit .
 
 setopt rcexpandparam            # Array expension with parameters
-#setopt nocheckjobs          	 # Don't warn about running processes when exiting
+setopt nocheckjobs          	 # Don't warn about running processes when exiting
 setopt nobeep                   # No beep
 setopt autocd                   # if only directory path is entered, cd there.
 

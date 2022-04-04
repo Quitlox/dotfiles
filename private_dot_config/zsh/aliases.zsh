@@ -33,24 +33,23 @@ alias mkdir="mkdir -v"
 #fi
 
 # CHEZMOI
-bw-chezmoi() {
-	emulate -L zsh;
-	if [[ "$1" == "chezmoi apply"* ]]; then
-		if ! bw --nointeraction --quiet login --check; then
-			export BW_SESSION=$(bw login --raw)
-		elif ! bw --nointeraction --quiet unlock --check; then
-			export BW_SESSION=$(bw unlock --raw)
-		fi
+bw-login() {
+	emulate -L sh;
+	if ! \bw --nointeraction login --check; then
+		export BW_SESSION=$(\bw login --raw)
+	elif ! \bw --nointeraction unlock --check; then
+		export BW_SESSION=$(\bw unlock --raw)
 	fi
 }
-add-zsh-hook preexec bw-chezmoi
+alias bw="bw-login;bw"
+alias chezmoi="bw-login;chezmoi"
 
 # XDG_BASE_DIR
 alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
 
 
 ########################################
-### Colorize												 ###
+### Colorize                         ###
 ########################################
 
 if command -v colordiff > /dev/null 2>&1; then
