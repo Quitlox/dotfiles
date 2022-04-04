@@ -8,10 +8,6 @@ open () {
     disown
 }
 
-bw-login () {
-    export BW_SESSION=$(bw unlock --raw)
-}
-
 # Reload: Reloads the zsh config of the current session
 reload () {
 		exec "${SHELL}" "$@"
