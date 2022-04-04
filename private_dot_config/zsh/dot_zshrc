@@ -133,10 +133,24 @@ zinit load sharkdp/bat
 
 ### fzf
 # A command-line fuzzy finder.
-zinit ice wait"0b" \
+export FZF_COMPLETION_TRIGGER=''
+function __bind_fzf_keys() {
+  source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
+  bindkey "^T" fzf-completion
+  bindkey "^I" $fzf_default_completion
+}
+if [[ -n "$commands[fzf]" ]]; then
+  __bind_fzf_keys
+fi
+zinit ice wait"0b" atload'__bind_fzf_keys' \
   if'[[ -z "$commands[fzf]" ]]' \
   as"command" from"gh-r" pick"fzf"
 zinit load junegunn/fzf-bin
+
+### Git Fuzzy
+zinit ice as"program" pick"bin/git-fuzzy"
+zinit light bigH/git-fuzzy
 
 ### fd
 zinit ice \
