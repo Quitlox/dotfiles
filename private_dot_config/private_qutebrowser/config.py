@@ -7,6 +7,7 @@ from qutebrowser.config.config import ConfigContainer  # noqa: F401
 config: ConfigAPI = config  # noqa: F821 pylint: disable=E0602,C0103
 c: ConfigContainer = c  # noqa: F821 pylint: disable=E0602,C0103
 
-config.unbind('t', mode='normal')
+config.load_autoconfig()
+
 config.bind('t', 'set-cmd-text -s :open -t')
 config.bind('<Space>l', ':spawn --userscript qute-bitwarden')
