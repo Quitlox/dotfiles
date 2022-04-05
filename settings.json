@@ -1,22 +1,17 @@
 {
-  // Editor
-  "editor.autoClosingOvertype": "always",
   "editor.columnSelection": false,
   "editor.cursorSurroundingLines": 10,
   "editor.minimap.enabled": false,
   "editor.rulers": [80],
   "editor.suggestSelection": "first",
-  "editor.wordWrap": "off",
   "editor.wordWrapColumn": 80,
   "editor.wrappingIndent": "deepIndent",
 
   "editor.acceptSuggestionOnEnter": "on",
   "editor.cursorStyle": "line",
-  "editor.insertSpaces": false,
   "editor.lineNumbers": "on",
   "editor.gotoLocation.multipleTypeDefinitions": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
-  "editor.gotoLocation.multipleDeclarations": "goto",
   "editor.gotoLocation.multipleImplementations": "goto",
   "editor.gotoLocation.multipleReferences": "goto",
 
@@ -29,12 +24,12 @@
   // Miscellaneous
   "keyboard.dispatch": "keyCode",
   "git.autofetch": true,
-  "telemetry.telemetryLevel": "crash",
+  "telemetry.telemetryLevel": "error",
 
   // Vim: Settings
   "vim.debug.silent": false,
   "vim.easymotion": true,
-  "vim.sneak": true,
+  "vim.sneak": false,
   "vim.highlightedyank.enable": true,
   "vim.leader": " ",
   "vim.smartRelativeLine": false,
@@ -149,6 +144,15 @@
       "before": ["<leader>", "w", "b"],
       "commands": ["workbench.action.splitEditorRight"]
     },
+    {
+      "before": ["<leader>", "w", "d"],
+      "commands": ["workbench.action.closeEditorsAndGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "o"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+
     // Vim: Find
     //    Locate
     {
@@ -168,9 +172,9 @@
     },
     {
       "before": ["<leader>", "o", "f"],
-      "commands": ["workbench.action.files.openFile"]
+      "commands": ["workbench.action.quickOpen"]
     },
-    // Vim: UI Toggles
+    // Vim: Toggles (IDE)
     {
       "before": ["<leader>", "t", "f"],
       "commands": ["workbench.action.toggleFullScreen"]
@@ -414,7 +418,6 @@
 
   // Extension: Material Theme
   "editor.fontLigatures": true,
-  "explorer.decorations.badges": false,
 
   // Extension: LiveShare
   "liveshare.allowGuestDebugControl": true,
@@ -441,5 +444,18 @@
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "workbench.editor.labelFormat": "short",
+  "explorer.decorations.badges": false,
+  "editor.wordWrap": "wordWrapColumn",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.venv": true
+  },
+  "editor.comments.ignoreEmptyLines": false,
+  "editor.copyWithSyntaxHighlighting": false,
+  "editor.gotoLocation.multipleDeclarations": "goto",
+  "editor.stablePeek": true,
+  "editor.stickyTabStops": true,
+  "update.mode": "manual"
 }

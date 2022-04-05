@@ -74,6 +74,21 @@
     "when": "inQuickOpen"
   },
   {
+    "key": "ctrl+n",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "explorer.openToSide",
+    "when": "inQuickOpen"
+  },
+  {
     "key": "ctrl+.",
     "command": "keyboard-quickfix.openQuickFix",
     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
@@ -83,19 +98,32 @@
     "command": "-extension.vim_ctrl+w",
     "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
   },
-
-  // ...
-  {
-    "key": "ctrl+p",
-    "command": "workbench.action.showCommands",
-    "when": "!terminalFocus"
-  },
+  // VSCode Navigation Compatibility
   {
     "key": "ctrl+p",
     "command": "workbench.action.quickOpenNavigateNextInFilePicker",
     "when": "inFilesPicker && inQuickOpen && !terminalFocus"
   },
-
+  {
+    "key": "ctrl+n",
+    "command": "search.action.focusNextSearchResult",
+    "when": "(hasSearchResult || inSearchEditor) && searchViewletVisible"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "(hasSearchResult || inSearchEditor) && searchViewletVisible"
+  },
+  {
+    "key": "escape",
+    "command": "workbench.action.findInFiles",
+    "when": "fileMatchOrMatchFocus && searchViewletVisible"
+  },
+  {
+    "key": "escape",
+    "command": "search",
+    "when": "inSearchEditor"
+  },
   // Disable vscode defaults
   {
     "key": "ctrl+w",
@@ -158,11 +186,6 @@
     "when": "interactivePlaygroundFocus && !editorTextFocus"
   },
   {
-    "key": "ctrl+o",
-    "command": "-workbench.action.files.openFileFolder",
-    "when": "isMacNative && openFolderWorkspaceSupport"
-  },
-  {
     "key": "ctrl+p",
     "command": "-workbench.action.quickOpen"
   },
@@ -178,5 +201,9 @@
     "key": "ctrl+o",
     "command": "-workbench.action.files.openFile",
     "when": "true"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
   }
 ]
