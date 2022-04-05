@@ -1,6 +1,8 @@
 
 # Source Base16 Theme
 [ -f "$HOME/.config/zsh/theme.sh" ] && . ~/.config/zsh/theme.sh
+# Source Pyenv
+[ -d "$PYENV/.local/src/pyenv" ] && eval "$(pyenv init -)"
 
 # Colors
 autoload colors && colors
@@ -9,18 +11,18 @@ autoload colors && colors
 ### Zsh Settings 					 ###
 ############################################################
 
+setopt rmstarsilent             # Don't prompt on rm * (already aliased rm, see ./aliases.zsh)
 setopt extendedglob             # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob               # Case insensitive globbing
 setopt numericglobsort          # Sort filenames numerically when it makes sense
 setopt globdots			# files beginning with . matched without explicit .
 
 setopt rcexpandparam            # Array expension with parameters
-#setopt nocheckjobs          	 # Don't warn about running processes when exiting
+setopt nocheckjobs          	 # Don't warn about running processes when exiting
 setopt nobeep                   # No beep
 setopt autocd                   # if only directory path is entered, cd there.
 
 # History Settings
-
 setopt extended_history 	# Record timestamp of command in HISTFILE
 setopt appendhistory            # Immediately append history instead of overwriting
 setopt histignorealldups        # If a new command is a duplicate, remove the older one
@@ -116,7 +118,7 @@ zinit load zdharma-continuum/z-a-man
 
 ### exa
 # A modern replacement for 'ls'.
-zinit ice wait"1" \
+zinit ice wait"0a" \
   if'[[ -z "$commands[exa]" ]]' \
   from"gh-r" as"command" \
   extract mv"bin/exa* -> exa" pick"exa"
@@ -124,21 +126,35 @@ zinit load ogham/exa
 
 ### bat
 # A cat clone with wings.
-zinit ice wait"2" as"command" from"gh-r" \
+zinit ice wait"3" as"command" from"gh-r" \
   if'[[ -z "$commands[bat]" ]]' \
   mv"bat* -> bat" pick"bat/bat"
 zinit load sharkdp/bat
 
 ### fzf
 # A command-line fuzzy finder.
-zinit ice wait"2" \
+export FZF_COMPLETION_TRIGGER=''
+function __bind_fzf_keys() {
+  source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
+  bindkey "^T" fzf-completion
+  bindkey "^I" $fzf_default_completion
+}
+if [[ -n "$commands[fzf]" ]]; then
+  __bind_fzf_keys
+fi
+zinit ice wait"0b" atload'__bind_fzf_keys' \
   if'[[ -z "$commands[fzf]" ]]' \
-  as"program" from"gh-r" \
+  as"command" from"gh-r" pick"fzf"
 zinit load junegunn/fzf-bin
+
+### Git Fuzzy
+zinit ice as"program" pick"bin/git-fuzzy"
+zinit light bigH/git-fuzzy
 
 ### fd
 zinit ice \
-  if'[[ -z "$commands[fd]" ]]' \
+  wait"3" if'[[ -z "$commands[fd]" ]]' \
   as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
 zinit load sharkdp/fd
 
@@ -237,16 +253,26 @@ zinit wait as"none" \
 for zdharma-continuum/null
 
 # Starship prompt
-zinit ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
+zinit ice from"gh-r" as"program" \
+  atload'!eval $(starship init zsh)'
 zinit load starship/starship
+# This hangs the terminal, don't do this
+#zinit ice from"gh-r" as"program" \
+#  atclone'./starship init zsh > init.zsh; ./starship completions zsh > _starship' \
+#  atpull'%atclone' src'init.zsh'
+#zinit load starship/starship
 
 # Use Atuin or FZF for history searching
 # zsh-fzf-history-search
-zinit ice lucid wait'0' if'[[ -z "$commands[atuin]" ]]'
+zinit ice lucid wait'0c' if'[[ -z "$commands[atuin]" ]]'
 zinit light joshskidmore/zsh-fzf-history-search
 # Atuin
-zinit ice id-as"atuin"
-zinit snippet https://raw.githubusercontent.com/ellie/atuin/main/atuin.plugin.zsh
+export ATUIN_NOBIND="true"
+function __bind_atuin_keys() {
+  bindkey '^r' _atuin_search_widget
+}
+zinit ice atload'__bind_atuin_keys'
+zinit load ellie/atuin
 
 
 # Zsh Autosuggestions

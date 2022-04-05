@@ -7,7 +7,6 @@
 " => Settings
 """"""""""""""""""""""""""""""""""""""""
 
-let g:vimtex_compiler_method = 'tectonic'
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_view_method = 'zathura'
 
@@ -49,6 +48,9 @@ let g:indentLine_setConceal = 0
 let g:indentLine_setColors = 0
 
 au FileType tex let b:delimitMate_matchpairs = "[:],{:},<:>"
+
+
+" (Fail to) conceal kets and bras
 au FileType tex syntax match texMathSymbol '\\bra{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=' contained conceal cchar=<
 au FileType tex syntax match texMathSymbol '\%(\\bra{[^{]*{[^}]*}[^}]*}\|[^}]*\)\@<=}' contained conceal cchar=|
 au FileType tex syntax match texMathSymbol '\\ket{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=' contained conceal cchar=|

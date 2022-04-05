@@ -27,7 +27,7 @@ set $i3lockwall bash ~/.config/i3/pixel_lockscreen.sh
 
 # Bind caps-lock to escape
 exec_always --no-startup-id xmodmap -e "clear lock"
-exec_always --no-startup-id xmodmap -e "keycode 9 = Escape NoSymbol Escape"
+exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
 exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 #exec_always --no-startup-id setxkbmap -option caps:swapescape
 
@@ -498,6 +498,7 @@ for_window [title="CodeBrowser*"] floating disable
 for_window [class="PlayOnLinux"] floating disable
 for_window [class="Thunderbird"] floating enable
 for_window [class="Thunderbird" instance="^Mail$"] floating disable
+for_window [class="Zotero" title="Advanced Search"] floating enable
 
 for_window [class="zenity"] floating enable border none
 for_window [class="Zenity"] floating enable border none
@@ -505,6 +506,9 @@ for_window [class="Zenity"] floating enable border none
 # General rule for Popups and Dialogs (https://wiki.archlinux.org/index.php/i3#Correct_handling_of_floating_dialogs)
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+
+# Sticky 
+for_window [title="Picture-in-Picture"] sticky enable
 
 # Assigning windows to specific workspaces
 for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9; workspace $ws9

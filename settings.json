@@ -416,8 +416,17 @@
     "*.ipynb": "jupyter.notebook.ipynb"
   },
 
+  // Languages: Other
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+
   // Extension: Material Theme
-  "editor.fontLigatures": true,
+  "editor.fontLigatures": false,
+  "explorer.decorations.badges": false,
 
   // Extension: LiveShare
   "liveshare.allowGuestDebugControl": true,
@@ -439,14 +448,10 @@
 
   // Miscellaneous
   "references.preferredLocation": "view",
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
   "window.zoomLevel": 1,
   "workbench.editor.labelFormat": "short",
-  "explorer.decorations.badges": false,
   "editor.wordWrap": "wordWrapColumn",
   "files.exclude": {
     "**/__pycache__": true,
@@ -457,5 +462,6 @@
   "editor.gotoLocation.multipleDeclarations": "goto",
   "editor.stablePeek": true,
   "editor.stickyTabStops": true,
-  "update.mode": "manual"
+  "update.mode": "manual",
+  "emmet.showAbbreviationSuggestions": false
 }

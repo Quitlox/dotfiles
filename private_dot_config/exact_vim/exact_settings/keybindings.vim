@@ -33,15 +33,15 @@ noremap 0 ^
 noremap ^ 0
 
 " Fix code navigation with softwrapping
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
+noremap j gj
+noremap gj j
+noremap k gk
+noremap gk k
 
-nnoremap 0 g0
-nnoremap g0 0
-nnoremap $ g$
-nnoremap g$ $
+noremap 0 g0
+noremap g0 0
+noremap $ g$
+noremap g$ $
 
 " Yank from cursor position to end-of-line
 nnoremap Y y$
@@ -89,6 +89,7 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
+vnoremap : :<C-U>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command Mode
@@ -131,3 +132,31 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
+" Switch buffer as expected (skip special buffers)
+" https://vi.stackexchange.com/a/37045
+function! Bswitch_normal(count, direction)
+    " This function switches to the previous or next normal buffer excluding
+    " all special buffers like quickfix or terminals
+    " Modified version of https://vi.stackexchange.com/a/16710/37509
+    let l:count = a:count
+    let l:cmd = (a:direction ==# 'previous') ? 'bprevious' : 'bnext'
+    let l:start_buffer = bufnr('%')
+    while 1
+        execute 'keepalt ' . l:cmd
+        if &buftype == ''
+            let l:count -= 1
+            if l:count <= 0
+                break
+            endif
+        endif
+        " Prevent infinite loops if no buffer is a normal buffer
+        if bufnr('%') == l:start_buffer && l:count == a:count
+            break
+        endif
+    endwhile
+    if bufnr('%') != l:start_buffer
+        " Jump back to the start buffer once to set the alternate buffer
+        execute 'buffer ' . l:start_buffer
+        buffer #
+    endif
+endfunction

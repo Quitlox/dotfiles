@@ -23,10 +23,30 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet .ket "Ket of the Dirac-notation" A
+snippet \ket "Ket of the Dirac-notation" A
 \ket{$1}
 endsnippet
 
-snippet .bra "Ket of the Dirac-notation" A
+snippet \bra "Ket of the Dirac-notation" A
 \bra{$1}
+endsnippet
+
+snippet beg "begin{} / end{}" bA
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+context "env(itemize)"
+snippet item "item " bA
+\item $1
+endsnippet
+
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
 endsnippet

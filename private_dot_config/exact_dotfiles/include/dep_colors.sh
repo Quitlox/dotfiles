@@ -15,6 +15,8 @@ cecho () {
         ['blue']='\033[0;34m'\
         ['magenta']='\033[0;35m'\
         ['cyan']='\033[0;36m'\
+        ['lgray']='\033[0;37m'\
+        ['dgray']='\033[1;30m'\
         ['white']='\033[1;37m'\
         ['bblack']='\033[1;47m'\
         ['bred']='\033[1;31m'\
@@ -88,4 +90,7 @@ function success () {
 }
 function bsuccess () {
     cecho -c 'bgreen' "=> ✅ $@";
+}
+function debug() {
+    cecho -c 'white' "=> $@";
 }

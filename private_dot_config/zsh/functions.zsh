@@ -3,8 +3,9 @@
 ### Functions		                		 ###
 ############################################################
 
-bw-login () {
-    export BW_SESSION=$(bw unlock --raw)
+open () {
+    nohup xdg-open $1 > /dev/null &
+    disown
 }
 
 # Reload: Reloads the zsh config of the current session
