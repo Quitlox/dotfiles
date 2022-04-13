@@ -88,7 +88,7 @@ bindsym $mod+ctrl+x --release exec --no-startup-id xkill
 
 # Screenshot
 bindsym Print exec --no-startup-id maim -o ~/Pictures/Screenshots/$(date +%Y-%M-%d-%s).png
-bindsym shift+Print exec --no-startup-id maim -s -o | tee ~/Pictures/Screenshots/$(date +%Y-%M-%d-%s).png | xclip -selection clipboard -t image/png
+bindsym shift+Print exec --no-startup-id maim -s -o | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d-%s).png | xclip -selection clipboard -t image/png
 
 # Common Application Launcher Menu
 set $mode_launcher Launch: [f]irefox [t]hunderbird [e]xplorer [d]iscord [s]potify [b]menu
