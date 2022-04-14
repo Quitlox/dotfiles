@@ -31,10 +31,6 @@ nnoremap gj j
 nnoremap k gk
 nnoremap gk k
 
-" Easier line-wise movement
-noremap gh g^
-noremap gl g$
-
 " Re-select blocks after indenting in visual/select mode
 xnoremap < <gv
 xnoremap > >gv|
