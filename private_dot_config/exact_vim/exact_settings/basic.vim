@@ -32,6 +32,7 @@ set autoindent 		" Auto indent
 set smartindent 	" Smart indent
 set wrap 	    	" Wrap lines
 set linebreak		" Wrap lines at full words
+set nofoldenable	" Disable folding
 " Cursor
 set scrolloff=7      " Leave 7 lines around the cursor when moving vertically using j/k
 set sidescrolloff=10 " Leave 10 characters around the cursor when moving horizontally using h/l
