@@ -280,6 +280,8 @@ install_yay spotify-tui
 install_yay spotify
 
 ### VSCODE #############################
+# Keyring manager needed in some use-cases
+sudo pacman -S --needed -q gnome-keyring libsecret
 # Language Agnostic (so probably always desired)
 install_yay visual-studio-code-bin
 code --install-extension ms-azuretools.vscode-docker
