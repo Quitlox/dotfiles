@@ -558,6 +558,7 @@ endif
 call dein#add('vim-scripts/AfterColors.vim')
 
 call dein#add('tomasiser/vim-code-dark')
+call dein#add('altercation/vim-colors-solarized')
 
 """""""""""""""""""""""  dein.vim  """""""""""""""""""""""""
 
@@ -584,25 +585,14 @@ set runtimepath+=~/.config/vim
 " => Theme
 """"""""""""""""""""""""""""""
 
-" Set colorscheme (managed by Base16 Universal Manager)
-try
-  " let base16colorspace=256
-  " colorscheme base16_theme
+if !empty(glob("~/.config/vim/settings/colorscheme.vim"))
+  source ~/.config/vim/settings/colorscheme.vim
+else
+  echo "colorscheme.vim not found"
+
   colorscheme codedark
-catch
-endtry
-
-" Set Airline Theme
-" let g:airline_theme='base16'
-let g:airline_theme='codedark'
-
-" Transparent background
-" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-" autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
-" autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
-
-" Fix for conceal (used alot in vimtex)
-" autocmd vimenter * hi Conceal guifg=#aeaeae ctermfg=7
+  let g:airline_theme='codedark'
+endif
 
 """"""""""""""""""""""""""""""
 " => Environment Specific
@@ -642,3 +632,5 @@ source ~/.config/vim/settings/plugins/tagbar.vim
 source ~/.config/vim/settings/plugins/vimtex.vim
 source ~/.config/vim/settings/plugins/which_key.n.vim
 source ~/.config/vim/settings/plugins/which_key.vim
+source ~/.config/vim/settings/plugins/whitespace.vim
+
