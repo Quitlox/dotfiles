@@ -7,9 +7,12 @@
 " => Settings
 """"""""""""""""""""""""""""""""""""""""
 
+" Backends
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_view_method = 'zathura'
-
+" Doc
+let g:vimtex_doc_handlers = ['vimtex#doc#handlers#texdoc']
+" Conceal
 let g:vimtex_syntax_conceal = {
             \ 'accents': 1,
             \ 'cites': 1,
