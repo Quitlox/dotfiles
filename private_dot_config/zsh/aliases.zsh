@@ -9,8 +9,9 @@ if vim --version | grep -q '\+clientserver'; then
 	alias vim='vim --servername vim'
 fi
 
-# Override davidde/git aliasses
+# Git (override davidde/git aliasses, fzf)
 alias gs='git_status_short'
+alias gfa='git add $(git ls-files --modified --others --exclude-standard | fzf -m)'
 
 # Needed for kitty terminal
 alias ssh='kitty +kitten ssh'
