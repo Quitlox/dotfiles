@@ -94,62 +94,62 @@ map <leader>bs :w<cr>
 " => KEYBINDINGS: TABS
 """"""""""""""""""""""""""""""""""""""""
 
-let g:which_key_local_map.t = { 'name': '+tab' }
+let g:which_key_map.t = { 'name': '+tab' }
 
-let g:which_key_local_map.t.t = '[t]ab <tab>'
-let g:which_key_local_map.t.o = '[t]ab [o]nly'
-let g:which_key_local_map.t.d = '[t]ab [d]elete'
-let g:which_key_local_map.t.n = '[t]ab [n]next'
-let g:which_key_local_map.t.p = '[t]ab [p]revious'
-map <localleader>tt :tabnew<cr>
-map <localleader>to :tabonly<cr>
-map <localleader>td :tabclose<cr>
-map <localleader>tn :tabnext<cr>
-map <localleader>tp :tabprevious<cr>
+let g:which_key_map.t.t = '[t]ab <tab>'
+let g:which_key_map.t.o = '[t]ab [o]nly'
+let g:which_key_map.t.d = '[t]ab [d]elete'
+let g:which_key_map.t.n = '[t]ab [n]next'
+let g:which_key_map.t.p = '[t]ab [p]revious'
+map <leader>tt :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>td :tabclose<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
 
 
-let g:which_key_local_map.t.l = '[t]ab [l]ast'
+let g:which_key_map.t.l = '[t]ab [l]ast'
 " Tabs: last
 let g:lasttab = 1
-map <localleader>tl :exe "tabn ".g:lasttab<CR>
+map <leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
-let g:which_key_local_map.t.m = { 'name': '+move' }
-let g:which_key_local_map.t.m.h = '[t]ab left'
-let g:which_key_local_map.t.m.h = '[t]ab right'
+let g:which_key_map.t.m = { 'name': '+move' }
+let g:which_key_map.t.m.h = '[t]ab left'
+let g:which_key_map.t.m.h = '[t]ab right'
 " Tabs: Move
-map <localleader>tmh :-tabmove<cr>
-map <localleader>tml :+tabmove<cr>
+map <leader>tmh :-tabmove<cr>
+map <leader>tml :+tabmove<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""
 " => KEYBINDINGS: TOGGLES
 """"""""""""""""""""""""""""""""""""""""
 
-let g:which_key_map.t = { 'name': '+toggle' }
+let g:which_key_map.T = { 'name': '+Toggle' }
 
-let g:which_key_map.t.f = '[t]oggle [f]iletree'
-let g:which_key_map.t.s = '[t]oggle [s]ymbols'
-let g:which_key_map.t.g = '[t]oggle [g]uides'
-let g:which_key_map.t.c = '[t]oggle [c]lose tag'
-let g:which_key_map.t.r = '[t]oggle [r]ainbow parentheses'
-let g:which_key_map.t.p = '[t]oggle [p]encil'
-let g:which_key_map.t.y = '[t]oggle go[y]o'
+let g:which_key_map.T.f = '[T]oggle [f]iletree'
+let g:which_key_map.T.s = '[T]oggle [s]ymbols'
+let g:which_key_map.T.g = '[T]oggle [g]uides'
+let g:which_key_map.T.c = '[T]oggle [c]lose tag'
+let g:which_key_map.T.r = '[T]oggle [r]ainbow parentheses'
+let g:which_key_map.T.p = '[T]oggle [p]encil'
+let g:which_key_map.T.y = '[T]oggle go[y]o'
 
 " NERDTree:
-noremap <leader>tf :NERDTreeMirror<cr>:NERDTreeToggle<cr>
+noremap <leader>Tf :NERDTreeMirror<cr>:NERDTreeToggle<cr>
 " Tagbar:
-noremap <leader>ts :TagbarToggle<cr>
+noremap <leader>Ts :TagbarToggle<cr>
 " Indent Guides:
-noremap <leader>tg :IndentLinesToggle<cr>
+noremap <leader>Tg :IndentLinesToggle<cr>
 " Vim Closetag:
-noremap <leader>tc :CloseTagToggleBuffer<cr>
+noremap <leader>Tc :CloseTagToggleBuffer<cr>
 " Better Rainbow Parentheses:
-noremap <leader>tr :RainbowToggle<cr>
+noremap <leader>Tr :RainbowToggle<cr>
 " Pencil:
-noremap <leader>tp :TogglePencil<cr>
+noremap <leader>Tp :TogglePencil<cr>
 " GoYo:
-noremap <leader>ty :Goyo<cr>
+noremap <leader>Ty :Goyo<cr>
 
 """"""""""""""""""""""""""""""""""""""""
 " => KEYBINDINGS: FIND

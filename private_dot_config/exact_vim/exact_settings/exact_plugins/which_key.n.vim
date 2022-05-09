@@ -82,7 +82,7 @@ wk.register({
 -- KEYBINDINGS: TAB
 ----------------------------------------
 wk.register({
-  ["<localleader>"] = {
+  ["<leader>"] = {
     t = {
       name = "tab",
       t = { ":tabnew<cr>", "[t]ab :new" },
@@ -105,7 +105,7 @@ wk.register({
 ----------------------------------------
 wk.register({
   ["<leader>"] = {
-    t = {
+    T = {
       name = "toggle",
       f = { ":NERDTreeMirror<cr>:NERDTreeToggle<cr>", "[t]oggle [f]iletree" },
       s = { ":TagbarToggle<cr>", "[t]oggle [s]ymbols" },

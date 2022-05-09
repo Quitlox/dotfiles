@@ -649,3 +649,5 @@ source ~/.config/vim/settings/plugins/which_key.vim
 source ~/.config/vim/settings/plugins/whitespace.vim
 
 source ~/.config/vim/settings/plugins/which_key.n.vim
+
+source ~/.config/vim/settings/plugins/test.vim
