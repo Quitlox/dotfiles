@@ -83,18 +83,18 @@ wk.register({
 ----------------------------------------
 wk.register({
   ["<leader>"] = {
-    t = {
-      name = "tab",
-      t = { ":tabnew<cr>", "[t]ab :new" },
-      o = { ":tabonly<cr>", "[t]ab [o]nly" },
-      d = { ":tabclose<cr>", "[t]ab [d]elete" },
-      n = { ":tabnext<cr>", "[t]ab [n]next" },
-      p = { ":tabprevious<cr>", "[t]ab [p]revious" },
-      l = { ":exe \"tabn \".g:lasttab<CR>", "[t]ab [l]ast" },
+    T = {
+      name = "Tab",
+      t = { ":tabnew<cr>", "[T]ab :new" },
+      o = { ":tabonly<cr>", "[T]ab [o]nly" },
+      d = { ":tabclose<cr>", "[T]ab [d]elete" },
+      n = { ":tabnext<cr>", "[T]ab [n]next" },
+      p = { ":tabprevious<cr>", "[T]ab [p]revious" },
+      l = { ":exe \"tabn \".g:lasttab<CR>", "[T]ab [l]ast" },
       m = {
         name = "move",
-        h = { ":-tabmove<cr>", "[t]ab [m]ove left" },
-        l = { ":+tabmove<cr>", "[t]ab [m]ove right" },
+        h = { ":-tabmove<cr>", "[T]ab [m]ove left" },
+        l = { ":+tabmove<cr>", "[T]ab [m]ove right" },
       },
     },
   },

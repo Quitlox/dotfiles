@@ -15,14 +15,16 @@ nmap [t <Plug>(ultest-prev-fail)
 "### VIM-TEST                        ###
 "#######################################
 
+nmap <silent> <localleader>tt :UltestNearest<cr>
+nmap <silent> <localleader>tf :Ultest<cr>
+nmap <silent> <localleader>ta :Ultest<cr>
+
 " VIM: WhichKey
 if !has('nvim')
-  nmap <silent> <localleader>Tt :TestFile<cr>
-  nmap <silent> <localleader>Ta :TestSuite<cr>
-
-  let g:which_key_local_map.T = {'name': '+Test'}
-  let g:which_key_local_map.T.t = '[T]est file'
-  let g:which_key_local_map.T.a = '[T]est [a]ll'
+  let g:which_key_local_map.t = {'name': '+test'}
+  let g:which_key_local_map.t.t = '[T]est nearest'
+  let g:which_key_local_map.t.f = '[T]est [f]ile'
+  let g:which_key_local_map.t.a = '[T]est [a]ll'
 else
 
 " NEOVIM: WhichKey
@@ -30,10 +32,11 @@ lua << EOF
 local wk = require("which-key")
 wk.register({
   ["<localleader>"] = {
-    T = {
-      name = "Test",
-      t = "[T]est file",
-      a = "[T]est [a]ll",
+    t = {
+      name = "test",
+      t = "[t]est nearest",
+      f = "[t]est [f]ile",
+      a = "[t]est [a]ll",
     },
   },
 })

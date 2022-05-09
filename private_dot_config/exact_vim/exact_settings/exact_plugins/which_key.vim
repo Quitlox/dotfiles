@@ -94,32 +94,32 @@ map <leader>bs :w<cr>
 " => KEYBINDINGS: TABS
 """"""""""""""""""""""""""""""""""""""""
 
-let g:which_key_map.t = { 'name': '+tab' }
+let g:which_key_map.T = { 'name': '+Tab' }
 
-let g:which_key_map.t.t = '[t]ab <tab>'
-let g:which_key_map.t.o = '[t]ab [o]nly'
-let g:which_key_map.t.d = '[t]ab [d]elete'
-let g:which_key_map.t.n = '[t]ab [n]next'
-let g:which_key_map.t.p = '[t]ab [p]revious'
-map <leader>tt :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>td :tabclose<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
+let g:which_key_map.T.t = '[T]ab <tab>'
+let g:which_key_map.T.o = '[T]ab [o]nly'
+let g:which_key_map.T.d = '[T]ab [d]elete'
+let g:which_key_map.T.n = '[T]ab [n]next'
+let g:which_key_map.T.p = '[T]ab [p]revious'
+map <leader>Tt :tabnew<cr>
+map <leader>To :tabonly<cr>
+map <leader>Td :tabclose<cr>
+map <leader>Tn :tabnext<cr>
+map <leader>Tp :tabprevious<cr>
 
 
-let g:which_key_map.t.l = '[t]ab [l]ast'
+let g:which_key_map.T.l = '[T]ab [l]ast'
 " Tabs: last
 let g:lasttab = 1
 map <leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
-let g:which_key_map.t.m = { 'name': '+move' }
-let g:which_key_map.t.m.h = '[t]ab left'
-let g:which_key_map.t.m.h = '[t]ab right'
+let g:which_key_map.T.m = { 'name': '+move' }
+let g:which_key_map.T.m.h = '[T]ab left'
+let g:which_key_map.T.m.h = '[T]ab right'
 " Tabs: Move
-map <leader>tmh :-tabmove<cr>
-map <leader>tml :+tabmove<cr>
+map <leader>Tmh :-tabmove<cr>
+map <leader>Tml :+tabmove<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""
