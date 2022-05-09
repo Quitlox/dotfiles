@@ -45,7 +45,6 @@ bw-login() {
 		export BW_SESSION=$(\bw unlock --raw)
 	fi
 }
-alias bw="bw-login;bw"
 
 # XDG_BASE_DIR
 alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
