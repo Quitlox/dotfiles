@@ -19,7 +19,7 @@ let g:coc_global_extensions = [
             \ 'coc-css', 'coc-eslint', 'coc-git',
             \ 'coc-html',
             \ 'coc-htmldjango', 'coc-html-css-support',
-            \ 'coc-json', 'coc-markdownlint',
+            \ 'coc-json',
             \ 'coc-marketplace', 'coc-prettier',
             \ 'coc-pyright', 'coc-pydocstring',
             \ 'coc-rls', 'coc-rust-analyzer', 'coc-sh',
@@ -62,6 +62,7 @@ endif
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
+nmap <F2> <Plug>(coc-rename)
 nmap <F5> <Plug>(coc-rename)
 "### HIGHTLIGHT CURRENT ################
 " Highlight the symbol and its references when holding the cursor.

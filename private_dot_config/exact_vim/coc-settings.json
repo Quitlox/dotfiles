@@ -2,5 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/neoclide/coc.nvim/master/data/schema.json",
   "diagnostic.checkCurrentLine": true,
   "tsserver.npm": "/usr/bin/npm",
-  "coc.preferences.formatOnSaveFiletypes": ["css", "typescript", "javascript"]
+  "coc.preferences.formatOnSaveFiletypes": ["css", "typescript", "javascript"],
+  "rust-analyzer.server.path": "/usr/bin/rust-analyzer"
 }
