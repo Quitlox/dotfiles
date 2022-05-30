@@ -281,3 +281,13 @@ ssh-add ~/.ssh/key_quitlox
 if (cd ~/.local/share/chezmoi && git remote set-url origin git@github.com:Quitlox/dotfiles.git); then
     success "Successfully updated the remote of ~/.local/share/chezmoi"
 fi
+
+# [Post] Theming
+binformation "Configuring theme..."
+if command -v "flavours" &> /dev/null; then
+    information "Updating flavours..."
+    flavours update all
+    information "Setting theme..."
+    zsh ~/.config/dotfiles/themes/astronaut/set.sh
+fi
+
