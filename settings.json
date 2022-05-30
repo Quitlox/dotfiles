@@ -452,7 +452,7 @@
   "editor.guides.bracketPairs": true,
   "window.zoomLevel": 1,
   "workbench.editor.labelFormat": "short",
-  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrap": "on",
   "files.exclude": {
     "**/__pycache__": true,
     "**/.venv": true
@@ -463,5 +463,9 @@
   "editor.stablePeek": true,
   "editor.stickyTabStops": true,
   "update.mode": "manual",
-  "emmet.showAbbreviationSuggestions": false
+  "emmet.showAbbreviationSuggestions": false,
+  "gitlens.views.commits.showBranchComparison": false,
+  "gitlens.views.commits.pullRequests.showForBranches": false,
+  "gitlens.views.commits.pullRequests.enabled": false,
+  "ilspy.defaultOutputLanguage": "C#"
 }
