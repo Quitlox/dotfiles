@@ -272,3 +272,12 @@ if ! command -v "atuin" &> /dev/null; then
     key=$(bw get item "Atuin: Login" --pretty --raw | grep '"name": "key"' -A 1 | awk '/value/ { gsub(/ /,""); split($0,a,":"); print a[2] }' | cut -c 2- | rev | cut -c 3- | rev)
     atuin login -u quitlox -p $(bw get password "Atuin: Login") -k $key
 fi
+
+# [Post] Change URL chezmoi repo (from http to ssh)
+binformation "Changing git repo origin of chezmoi"
+
+eval $(ssh-agent)
+ssh-add ~/.ssh/key_quitlox
+if (cd ~/.local/share/chezmoi && git remote set-url origin git@github.com:Quitlox/dotfiles.git); then
+    success "Successfully updated the remote of ~/.local/share/chezmoi"
+fi
