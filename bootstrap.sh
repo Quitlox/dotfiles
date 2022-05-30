@@ -133,6 +133,14 @@ if ! command -v "age" &> /dev/null; then
     fi
 fi
 
+# [BOOTSTRAPPING - yay]
+if [[ $(uname -r) == *"MANJARO"* ]] || [[ $(uname -r) == *"arch"* ]]; then
+    if ! command -v "yay" &> /dev/null; then
+	    binformation "yay not installed!"
+	    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git ~/.local/src/yay && (cd ~/.local/src/yay && makepkg -si)
+    fi
+fi
+
 # [BOOTSTRAPPING - BITWARDEN]
 if ! command -v bw &> /dev/null
 then
