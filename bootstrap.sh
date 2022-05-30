@@ -112,10 +112,22 @@ fi
 # [BOOTSTRAPPING - 7zip]
 if ! command -v "unzip" &> /dev/null &&! command -v "7z" &> /dev/null && ! command -v "p7zip" &> /dev/null; then
     binformation "Neither unzip or p7zip is installed!"
-    if [[ $(uname -r) == *"MANJARO"* ]]; then
+    if [[ $(uname -r) == *"MANJARO"* ]] || [[ $(uname -r) == *"arch"* ]]; then
 	    sudo pacman -S p7zip
     elif [[ $(uname -v) == *"Debian"* ]]; then
 	    sudo apt install p7zip-full
+    else
+	    exit
+    fi
+fi
+
+# [BOOTSTRAPPING - age]
+if ! command -v "age" &> /dev/null; then
+    binformation "age not is installed (encryption needed by chezmoi)!"
+    if [[ $(uname -r) == *"MANJARO"* ]] || [[ $(uname -r) == *"arch"* ]]; then
+	    sudo pacman -S age
+    elif [[ $(uname -v) == *"Debian"* ]]; then
+	    sudo apt install age
     else
 	    exit
     fi
