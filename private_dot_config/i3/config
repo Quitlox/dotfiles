@@ -513,7 +513,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [title="Picture-in-Picture"] sticky enable
 
 # Assigning windows to specific workspaces
-for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9; workspace $ws9
+for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9; workspace --no-auto-back-and-forth $ws9
 assign [class="discord"] number $ws8
 
 # > script: add_i3_rule
