@@ -249,7 +249,7 @@ if [[ -e "$HOME/.local/share/chezmoi" ]]; then
     bwarning "Chezmoi is already installed, removing..."
     rm -r -f ~/.local/share/chezmoi
 fi
-    
+
 # [CHEZMOI] Download
 binformation "Downloading chezmoi..."
 export BINDIR="$HOME/.local/bin"
@@ -265,10 +265,10 @@ bw --nointeraction get attachment "chezmoi_encryption_key.txt" --itemid b33b9474
 # [CHEZMOI] Apply
 chezmoi apply
 
-# [ATUIN] TODO
-# Ohno what did I do xD
+# [Post] Setup Atuin
 if ! command -v "atuin" &> /dev/null; then
     binformation "Logging in to Atuin..."
+    # Ohno what did I do xD
     key=$(bw get item "Atuin: Login" --pretty --raw | grep '"name": "key"' -A 1 | awk '/value/ { gsub(/ /,""); split($0,a,":"); print a[2] }' | cut -c 2- | rev | cut -c 3- | rev)
     atuin login -u quitlox -p $(bw get password "Atuin: Login") -k $key
 fi

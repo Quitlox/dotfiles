@@ -33,6 +33,7 @@ fi
 
 # Packages you probably want on any system
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
+# TODO: This check is broken on Arch
 sudo pacman -S --needed -q zsh git gvim zsh unzip exa bat tree make openssh chezmoi fzf
 {{- else if eq .chezmoi.osRelease.id "debian" }}
 sudo apt install zsh git gvim zsh rubygems unzip exa bat tree make openssh chezmoi fzf
@@ -58,6 +59,9 @@ sudo apt install neovim python3-pynvim
 {{- if eq .environment "desktop" }}
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
 binformation "Arch/Manjaro detected"
+
+# Install basics
+sudo pacman -S --needed -q xorg lightdm
 
 # Exit if informant check fails
 # Informant is a script that keeps track
