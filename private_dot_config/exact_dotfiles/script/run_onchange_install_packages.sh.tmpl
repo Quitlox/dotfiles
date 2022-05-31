@@ -238,6 +238,14 @@ sudo pacman -S --needed -q rlwrap
 sudo pacman -S --needed -q nftables
 sudo systemctl enable --now nftables.service
 
+### CPU FREQUENCY SCALING ##############
+sudo pacman -S --needed -q cpupower
+sudo systemctl enable --now cpupower.service
+install_yay cpupower-gui
+
+### TIME SYNCHRONIZATION ###############
+sudo systemctl enable --now systemd-timesyncd.service
+
 ### LAPTOP POWER MANAGEMENT ############
 {{- if (eq .chassistype "laptop") }}
 sudo pacman -S --needed -q ethtool tlp tlp-rdw

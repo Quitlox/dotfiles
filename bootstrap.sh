@@ -291,3 +291,8 @@ if command -v "flavours" &> /dev/null; then
     zsh ~/.config/dotfiles/themes/astronaut/set.sh
 fi
 
+# TODO
+# LightDM: Set greeter to lightdm-webkit2-greeter
+# LightDM: Wait for graphics
+# Enable multilib
+
