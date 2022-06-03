@@ -424,7 +424,12 @@ call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
 " Link: https://github.com/sillybun/vim-repl
 " Official Description: Best REPL environment for Vim
 "call dein#add('sillybun/vim-repl')
-" Note: Binds keys that can't be disabled? (<leader>w)
+call dein#add('sillybun/vim-repl')
+
+" Plugin: vim-repl
+" Link: https://github.com/hkupty/iron.nvim
+" Official Description: Interactive Repl Over Neovim
+call dein#add('hkupty/iron.nvim')
 
 """""""""""""""""""""""""""""
 " => Languages
@@ -632,22 +637,29 @@ source ~/.config/vim/settings/keybindings.vim
 source ~/.config/vim/settings/undo_swap_backup.vim
 source ~/.config/vim/settings/wildmenu.vim
 
+source ~/.config/vim/settings/plugins/which_key.vim
+source ~/.config/vim/settings/plugins/which_key.n.vim
+source ~/.config/vim/settings/plugins/telescope.n.vim
+
 source ~/.config/vim/settings/plugins/async_run.vim
 source ~/.config/vim/settings/plugins/coc.vim
 source ~/.config/vim/settings/plugins/comment.vim
+source ~/.config/vim/settings/plugins/ctrlp.vim
 source ~/.config/vim/settings/plugins/devicons.n.vim
-source ~/.config/vim/settings/plugins/find.vim
 source ~/.config/vim/settings/plugins/find.n.vim
+source ~/.config/vim/settings/plugins/find.vim
 source ~/.config/vim/settings/plugins/indent_line.vim
+source ~/.config/vim/settings/plugins/localvimrc.vim
+source ~/.config/vim/settings/plugins/markdown.vim
 source ~/.config/vim/settings/plugins/nerdtree.vim
 source ~/.config/vim/settings/plugins/pencil.vim
 source ~/.config/vim/settings/plugins/rainbow_parentheses.vim
+source ~/.config/vim/settings/plugins/repl.vim
+source ~/.config/vim/settings/plugins/repl.n.vim
 source ~/.config/vim/settings/plugins/statusline.vim
 source ~/.config/vim/settings/plugins/tagbar.vim
+source ~/.config/vim/settings/plugins/test.vim
 source ~/.config/vim/settings/plugins/vimtex.vim
-source ~/.config/vim/settings/plugins/which_key.vim
 source ~/.config/vim/settings/plugins/whitespace.vim
 
-source ~/.config/vim/settings/plugins/which_key.n.vim
 
-source ~/.config/vim/settings/plugins/test.vim
