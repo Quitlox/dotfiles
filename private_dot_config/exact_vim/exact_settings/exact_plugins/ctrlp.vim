@@ -20,13 +20,3 @@ let g:ctrlp_show_hidden = 1
 " Make new files replace the current window
 let g:ctrlp_open_new_file = 'r'
 
-"#######################################
-"### KEYBINDINGS                     ###
-"#######################################
-
-" Extra mappings: [o]pen
-noremap <C-o> :NERDTreeClose\|CtrlP<cr>
-noremap <leader>of :NERDTreeClose\|CtrlP<cr>
-noremap <leader>ob :NERDTreeClose\|CtrlPBuffer<cr>
-noremap <leader>or :NERDTreeClose\|CtrlPMRU<cr>
-
