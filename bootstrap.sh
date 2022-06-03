@@ -112,12 +112,32 @@ fi
 # [BOOTSTRAPPING - 7zip]
 if ! command -v "unzip" &> /dev/null &&! command -v "7z" &> /dev/null && ! command -v "p7zip" &> /dev/null; then
     binformation "Neither unzip or p7zip is installed!"
-    if [[ $(uname -r) == *"MANJARO"* ]]; then
+    if [[ $(uname -r) == *"MANJARO"* ]] || [[ $(uname -r) == *"arch"* ]]; then
 	    sudo pacman -S p7zip
     elif [[ $(uname -v) == *"Debian"* ]]; then
 	    sudo apt install p7zip-full
     else
 	    exit
+    fi
+fi
+
+# [BOOTSTRAPPING - age]
+if ! command -v "age" &> /dev/null; then
+    binformation "age not is installed (encryption needed by chezmoi)!"
+    if [[ $(uname -r) == *"MANJARO"* ]] || [[ $(uname -r) == *"arch"* ]]; then
+	    sudo pacman -S age
+    elif [[ $(uname -v) == *"Debian"* ]]; then
+	    sudo apt install age
+    else
+	    exit
+    fi
+fi
+
+# [BOOTSTRAPPING - yay]
+if [[ $(uname -r) == *"MANJARO"* ]] || [[ $(uname -r) == *"arch"* ]]; then
+    if ! command -v "yay" &> /dev/null; then
+	    binformation "yay not installed!"
+	    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git ~/.local/src/yay && (cd ~/.local/src/yay && makepkg -si)
     fi
 fi
 
@@ -229,7 +249,7 @@ if [[ -e "$HOME/.local/share/chezmoi" ]]; then
     bwarning "Chezmoi is already installed, removing..."
     rm -r -f ~/.local/share/chezmoi
 fi
-    
+
 # [CHEZMOI] Download
 binformation "Downloading chezmoi..."
 export BINDIR="$HOME/.local/bin"
@@ -245,7 +265,34 @@ bw --nointeraction get attachment "chezmoi_encryption_key.txt" --itemid b33b9474
 # [CHEZMOI] Apply
 chezmoi apply
 
-# [ATUIN] TODO
-# Ohno what did I do xD
-# key=$(bw get item "Atuin: Login" --pretty --raw | grep '"name": "key"' -A 1 | awk '/value/ { gsub(/ /,""); split($0,a,":"); print a[2] }' | cut -c 2- | rev | cut -c 3- | rev)
-# atuin login -u quitlox -p $(bw get password "Atuin: Login") -k $key
+# [Post] Setup Atuin
+if ! command -v "atuin" &> /dev/null; then
+    binformation "Logging in to Atuin..."
+    # Ohno what did I do xD
+    key=$(bw get item "Atuin: Login" --pretty --raw | grep '"name": "key"' -A 1 | awk '/value/ { gsub(/ /,""); split($0,a,":"); print a[2] }' | cut -c 2- | rev | cut -c 3- | rev)
+    atuin login -u quitlox -p $(bw get password "Atuin: Login") -k $key
+fi
+
+# [Post] Change URL chezmoi repo (from http to ssh)
+binformation "Changing git repo origin of chezmoi"
+
+eval $(ssh-agent)
+ssh-add ~/.ssh/key_quitlox
+if (cd ~/.local/share/chezmoi && git remote set-url origin git@github.com:Quitlox/dotfiles.git); then
+    success "Successfully updated the remote of ~/.local/share/chezmoi"
+fi
+
+# [Post] Theming
+binformation "Configuring theme..."
+if command -v "flavours" &> /dev/null; then
+    information "Updating flavours..."
+    flavours update all
+    information "Setting theme..."
+    zsh ~/.config/dotfiles/themes/astronaut/set.sh
+fi
+
+# TODO
+# LightDM: Set greeter to lightdm-webkit2-greeter
+# LightDM: Wait for graphics
+# Enable multilib
+
