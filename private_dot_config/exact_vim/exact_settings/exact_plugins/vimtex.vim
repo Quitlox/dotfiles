@@ -10,8 +10,19 @@
 " Backends
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_view_method = 'zathura'
-" Doc
+
+" Quickfix
+"let g:vimtex_quickfix_autojump = 1
+"let g:vimtex_quickfix_mode = 1
+" Documentation
 let g:vimtex_doc_handlers = ['vimtex#doc#handlers#texdoc']
+" Indent
+let g:vimtex_indent_conditionals = {
+      \ 'open': '\v%(%(\\newif)@<!\\if%(f>|field|name|numequal|thenelse)@!)|%(\\pcfor>)',
+      \ 'else': '\\else\>',
+      \ 'close': '%(\\fi\>)|%(\\pcendfor\>)',
+      \}
+
 " Conceal
 let g:vimtex_syntax_conceal = {
             \ 'accents': 1,
