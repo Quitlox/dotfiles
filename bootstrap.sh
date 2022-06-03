@@ -94,6 +94,9 @@ function success () {
 function bsuccess () {
     cecho -c 'bgreen' "=> ✅ $@";
 }
+function log () {
+    cecho -c 'white' "=> $@";
+}
 
 # VARIABLES
 BW_BIN="$HOME/.local/bin/bw"
@@ -294,5 +297,22 @@ fi
 # TODO
 # LightDM: Set greeter to lightdm-webkit2-greeter
 # LightDM: Wait for graphics
-# Enable multilib
+# Graphic drivers
 
+# [Post] Multilib
+binformation "Enable 'multilib' repositories"
+information "\tuncomment the following lines in '/etc/pacman.conf'"
+log "\t\t[multilib]"
+log "\t\tInclude = /etc/pacman.d/mirrorlist"
+
+# [Post] Numlock
+binformation "To activate numlock on startup:"
+information "\tyay -S mkinitcpio-numlock"
+information "\tadd 'numlock' to 'HOOKS' in '/etc/mkinitcpio.conf' (after 'encrypt')"
+information "\tregenerate initial ramdisk: 'mkinitcpio -p linux'"
+
+# [Post] SSD - Trim
+bwarning "Do not to forget to enable TRIM for your SSD if supported"
+warning "run 'lsblk --discard'; non-zero values for both DISC-GRAN and DISC-MAX indicate TRIM support. Then:"
+warning "sudo pacman -S util-linux"
+warning "sudo systemctl enable --now fstrim.timer"

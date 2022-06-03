@@ -60,8 +60,8 @@ sudo apt install neovim python3-pynvim
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
 binformation "Arch/Manjaro detected"
 
-# Install basics
-sudo pacman -S --needed -q xorg lightdm
+# Install Xorg + Display Manager
+sudo pacman -S --needed -q xorg lightdm lightdm-webkit2-greeter
 
 # Exit if informant check fails
 # Informant is a script that keeps track
@@ -256,6 +256,7 @@ sudo pacman -S --needed -q acpi_call
 
 ### BUILD PERFORMANCE ##################
 sudo pacman -S --needed -q pigz pbzip2
+information "Change the compression algs used in '/etc/makepkg.conf' to utilize these packages"
 
 ############################################################
 ### Desktop Applications                                 ###
