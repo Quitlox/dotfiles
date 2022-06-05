@@ -28,7 +28,7 @@ fi
 
 
 ############################################################
-### essential packages                                   ###
+### Essential Packages                                   ###
 ############################################################
 
 # Packages you probably want on any system
@@ -257,6 +257,9 @@ sudo pacman -S --needed -q acpi_call
 ### BUILD PERFORMANCE ##################
 sudo pacman -S --needed -q pigz pbzip2
 information "Change the compression algs used in '/etc/makepkg.conf' to utilize these packages"
+
+### NETWORK MOUNT ######################
+sudo pacman -S --needed -q sshfs
 
 ############################################################
 ### Desktop Applications                                 ###
