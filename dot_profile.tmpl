@@ -104,5 +104,14 @@ export TEXMFHOME=$XDG_DATA_HOME/texmf
 export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 
+########################################
+### Applications
+########################################
+# Environment variables for random applications
+
 # OCAML
 export OPAMROOT=$XDG_DATA_HOME/opam
+# Benerator
+# https://github.com/rapiddweller/rapiddweller-benerator-ce
+export BENERATOR_HOME=$HOME/.local/src/benerator
+export PATH="$PATH:$BENERATOR_HOME/bin"
