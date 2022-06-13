@@ -28,7 +28,7 @@ fi
 
 
 ############################################################
-### essential packages                                   ###
+### Essential Packages                                   ###
 ############################################################
 
 # Packages you probably want on any system
@@ -137,7 +137,7 @@ sudo pacman -S --needed -q bluez-utils
 
 ### AUDIO ###############################
 # Low level multimedia framework
-sudo pacman -S --needed -q pipewire
+sudo pacman -S --needed -q pipewire pipewire-alse pipewire-pulse
 # PipeWire Session Manager
 # Note: Replaces the default pipewire-media-session
 sudo pacman -S --needed -q wireplumber
@@ -257,6 +257,9 @@ sudo pacman -S --needed -q acpi_call
 ### BUILD PERFORMANCE ##################
 sudo pacman -S --needed -q pigz pbzip2
 information "Change the compression algs used in '/etc/makepkg.conf' to utilize these packages"
+
+### NETWORK MOUNT ######################
+sudo pacman -S --needed -q sshfs
 
 ############################################################
 ### Desktop Applications                                 ###
@@ -398,8 +401,8 @@ sudo pacman -S --needed -q nodejs
 sudo pacman -S --needed -q npm
 ### JAVA ##############################
 sudo pacman -S --needed -q \
-	jre11-openjdk jdk11-openjdk \
-	jre8-openjdk jdk8-openjdk
+	jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src \
+	jre8-openjdk jdk8-openjdk openjdk8-doc openjdk8-src
 ### PYTHON ############################
 sudo pacman -S --needed -q python-pip python-pipx
 sudo pacman -S --needed -q python-virtualenv python-wheel
