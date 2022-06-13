@@ -272,6 +272,7 @@ wk.register({
   mode = "n",
   silent = true,
 })
+
 wk.register({
   g = {
     name = "go",
@@ -280,7 +281,7 @@ wk.register({
     i = { "<Plug>(coc-implementation)", "implementation" },
     r = { "<Plug>(coc-references)", "references" },
     f = { ":call CocAction('format')<cr>", "format" },
-    a = { "<Plug>(coc-codeaction)", "code-action" },
+    a = { "<Plug>(coc-codeaction-cursor)", "code-action-cursor" },
     ["<enter>"] = { "<Plug>(coc-fix-current)", "fix-current" },
     h = { ":call CocAction('doHover')<cr>", "hover" },
     o = { ":call CocAction('runCommand', 'editor.action.organizeImport')<cr>", "organise imports" },

@@ -263,6 +263,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gf :call CocAction('format')<cr>
 nmap <silent> ga  <Plug>(coc-codeaction)
+xmap <silent> ga  <Plug>(coc-codeaction)
 nmap <silent> g<enter>  <Plug>(coc-fix-current)
 nmap <silent> gh :call CocAction('doHover')<cr>
 nmap <silent> go :call CocAction('runCommand', 'editor.action.organizeImport')<cr>
