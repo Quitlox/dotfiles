@@ -19,14 +19,14 @@ export MOZ_USE_XINPUT2=1
 # the window stays halfscreen even if the window is fullscreen.
 # https://wiki.archlinux.org/title/Firefox#Firefox_window_does_not_repaint_after_disabling_or_enabling_compositing
 # Update: It didn't
-unset MOZ_X11_EGL
+#unset MOZ_X11_EGL
 
 ########################################
 ### Configurations
 ########################################
 
+# PATH
 export PATH="$PATH:/sbin"
-
 export PATH="$PATH:$HOME/.local/bin"
 # Add go to PATH
 export PATH="$PATH:$HOME/.local/share/go/bin"
@@ -35,6 +35,10 @@ export PATH="$PATH:$HOME/.local/share/npm/bin"
 # Add scripts to PATH
 export PATH="$PATH:$HOME/.config/dotfiles/script"
 
+# XDG_BASE spec
+XDG_CACHE_HOME="$HOME/.cache"
+XDG_DATA_HOME="$HOME/.local/share"
+XDG_CONFIG_HOME="$HOME/.config"
 # Load XDG_BASE_DIR configuration
 source ~/.config/user-dirs.dirs
 
@@ -60,9 +64,6 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export DOT_SAGE="$XDG_CONFIG_HOME"/sage
-{{- if (not (eq .environment "headless")) }}
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-{{- end }}
 
 # XDG_DATA_HOME
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
@@ -107,3 +108,21 @@ export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 # Nvm
 export NVM_DIR="$HOME/.local/share/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Java
+{{- if (not (eq .environment "headless")) }}
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+# Shouldn't be necessary, but some terminal applications rely on it
+export JAVA_HOME=/usr/lib/jvm/default
+{{- end }}
+
+########################################
+### Applications
+########################################
+# Environment variables for random applications
+
+# OCAML
+export OPAMROOT=$XDG_DATA_HOME/opam
+# Benerator
+# https://github.com/rapiddweller/rapiddweller-benerator-ce
+export BENERATOR_HOME=$HOME/.local/bin/benerator

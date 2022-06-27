@@ -3,6 +3,10 @@ bootstrap.sh
 settings.json
 keybindings.json
 
+.config/vim/settings/colorscheme.vim
+#.config/vim/settings/environments/chezmoi.vim
+.config/zsh/theme.sh
+
 {{ if (eq .environment "headless") }}
 */**.* # Default to ignore all (whitelist instead of blacklist)
 

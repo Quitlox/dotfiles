@@ -1,7 +1,5 @@
 [pulumi]
 disabled=true
-[directory]
-fish_style_pwd_dir_length=1
 [git_state]
 disabled=true
 [git_status]

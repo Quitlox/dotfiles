@@ -28,11 +28,12 @@ fi
 
 
 ############################################################
-### essential packages                                   ###
+### Essential Packages                                   ###
 ############################################################
 
 # Packages you probably want on any system
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
+# TODO: This check is broken on Arch
 sudo pacman -S --needed -q zsh git gvim zsh unzip exa bat tree make openssh chezmoi fzf
 {{- else if eq .chezmoi.osRelease.id "debian" }}
 sudo apt install zsh git gvim zsh rubygems unzip exa bat tree make openssh chezmoi fzf
@@ -58,6 +59,9 @@ sudo apt install neovim python3-pynvim
 {{- if eq .environment "desktop" }}
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
 binformation "Arch/Manjaro detected"
+
+# Install Xorg + Display Manager
+sudo pacman -S --needed -q lightdm lightdm-webkit2-greeter
 
 # Exit if informant check fails
 # Informant is a script that keeps track
@@ -87,7 +91,7 @@ sudo pacman -S --needed -q i3-gaps
 # > Note: Waiting for the experimental backend "glx"
 # to merge becuase of blur feature
 # https://github.com/yshui/picom/pull/382
-install_yay picom-git
+sudo pacman -S --needed -q picom
 ### LOCKSCREEN #########################
 # xautolock rewrite in Rust, we a few extra features
 # Note: The application responsible for activating
@@ -113,6 +117,8 @@ sudo pacman -S --needed -q feh
 ### STATUS BAR #########################
 # A fast and easy-to-use status bar
 install_yay polybar
+### THEMING ############################
+install_yay flavours
 
 ########################################
 ### Main Features & Functionalities  ###
@@ -131,7 +137,7 @@ sudo pacman -S --needed -q bluez-utils
 
 ### AUDIO ###############################
 # Low level multimedia framework
-sudo pacman -S --needed -q pipewire
+sudo pacman -S --needed -q pipewire pipewire-alse pipewire-pulse
 # PipeWire Session Manager
 # Note: Replaces the default pipewire-media-session
 sudo pacman -S --needed -q wireplumber
@@ -232,6 +238,14 @@ sudo pacman -S --needed -q rlwrap
 sudo pacman -S --needed -q nftables
 sudo systemctl enable --now nftables.service
 
+### CPU FREQUENCY SCALING ##############
+sudo pacman -S --needed -q cpupower
+sudo systemctl enable --now cpupower.service
+install_yay cpupower-gui
+
+### TIME SYNCHRONIZATION ###############
+sudo systemctl enable --now systemd-timesyncd.service
+
 ### LAPTOP POWER MANAGEMENT ############
 {{- if (eq .chassistype "laptop") }}
 sudo pacman -S --needed -q ethtool tlp tlp-rdw
@@ -242,6 +256,10 @@ sudo pacman -S --needed -q acpi_call
 
 ### BUILD PERFORMANCE ##################
 sudo pacman -S --needed -q pigz pbzip2
+information "Change the compression algs used in '/etc/makepkg.conf' to utilize these packages"
+
+### NETWORK MOUNT ######################
+sudo pacman -S --needed -q sshfs
 
 ############################################################
 ### Desktop Applications                                 ###
@@ -280,6 +298,8 @@ install_yay spotify-tui
 install_yay spotify
 
 ### VSCODE #############################
+# Keyring manager needed in some use-cases
+sudo pacman -S --needed -q gnome-keyring libsecret
 # Language Agnostic (so probably always desired)
 install_yay visual-studio-code-bin
 code --install-extension ms-azuretools.vscode-docker
@@ -381,8 +401,8 @@ sudo pacman -S --needed -q nodejs
 sudo pacman -S --needed -q npm
 ### JAVA ##############################
 sudo pacman -S --needed -q \
-	jre11-openjdk jdk11-openjdk \
-	jre8-openjdk jdk8-openjdk
+	jre11-openjdk jdk11-openjdk openjdk11-doc openjdk11-src \
+	jre8-openjdk jdk8-openjdk openjdk8-doc openjdk8-src
 ### PYTHON ############################
 sudo pacman -S --needed -q python-pip python-pipx
 sudo pacman -S --needed -q python-virtualenv python-wheel
@@ -403,6 +423,8 @@ install_yay watchman-bin
 
 sudo pacman -S --needed -q nmap sqlmap wireshark-qt
 sudo usermod -aG wireshark quitlox
+
+sudo pacman -S --needed -q ascii
 
 {{- end }} # Desktop (not headless)
 {{- end }} # Arch / Manjaro

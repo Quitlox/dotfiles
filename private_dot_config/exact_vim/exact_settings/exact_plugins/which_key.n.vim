@@ -82,19 +82,19 @@ wk.register({
 -- KEYBINDINGS: TAB
 ----------------------------------------
 wk.register({
-  ["<localleader>"] = {
-    t = {
-      name = "tab",
-      t = { ":tabnew<cr>", "[t]ab :new" },
-      o = { ":tabonly<cr>", "[t]ab [o]nly" },
-      d = { ":tabclose<cr>", "[t]ab [d]elete" },
-      n = { ":tabnext<cr>", "[t]ab [n]next" },
-      p = { ":tabprevious<cr>", "[t]ab [p]revious" },
-      l = { ":exe \"tabn \".g:lasttab<CR>", "[t]ab [l]ast" },
+  ["<leader>"] = {
+    T = {
+      name = "Tab",
+      t = { ":tabnew<cr>", "[T]ab :new" },
+      o = { ":tabonly<cr>", "[T]ab [o]nly" },
+      d = { ":tabclose<cr>", "[T]ab [d]elete" },
+      n = { ":tabnext<cr>", "[T]ab [n]next" },
+      p = { ":tabprevious<cr>", "[T]ab [p]revious" },
+      l = { ":exe \"tabn \".g:lasttab<CR>", "[T]ab [l]ast" },
       m = {
         name = "move",
-        h = { ":-tabmove<cr>", "[t]ab [m]ove left" },
-        l = { ":+tabmove<cr>", "[t]ab [m]ove right" },
+        h = { ":-tabmove<cr>", "[T]ab [m]ove left" },
+        l = { ":+tabmove<cr>", "[T]ab [m]ove right" },
       },
     },
   },
@@ -105,7 +105,7 @@ wk.register({
 ----------------------------------------
 wk.register({
   ["<leader>"] = {
-    t = {
+    T = {
       name = "toggle",
       f = { ":NERDTreeMirror<cr>:NERDTreeToggle<cr>", "[t]oggle [f]iletree" },
       s = { ":TagbarToggle<cr>", "[t]oggle [s]ymbols" },
@@ -127,10 +127,10 @@ wk.register({
       name = "find",
       l = { ":NERDTreeFind<CR>", "[f]ind [l]ocate" },
       a = { "<cmd>Telescope live_grep theme=dropdown<cr>", "[f]ind [a]ll" },
-      f = { "<cmd>Telescope live_grep theme=dropdown<cr>", "[f]ind" },
-      m = { "<cmd>Telescope marks theme=dropdown<cr>", "[o]pen [m]arks" },
-      j = { "<cmd>Telescope jumplist theme=dropdown<cr>", "[o]pen [j]umplist" },
-      b = { "<cmd>Telescope buffer theme=dropdown<cr>", "[o]pen [b]uffers" },
+      -- f = { "<cmd>Telescope live_grep theme=dropdown<cr>", "[f]ind" },
+      -- m = { "<cmd>Telescope marks theme=dropdown<cr>", "[f]ind [m]arks" },
+      -- j = { "<cmd>Telescope jumplist theme=dropdown<cr>", "[f]ind [j]umplist" },
+      -- b = { "<cmd>Telescope buffer theme=dropdown<cr>", "[f]ind [b]uffers" },
     },
   }
 })
@@ -220,51 +220,6 @@ wk.register({
   },
 })
 
-
-----------------------------------------
--- PLUGIN: COC (IDE)
-----------------------------------------
-wk.register({
-  ["<leader>"] = {
-    i = {
-      name = "IDE",
-      d = { ":<C-u>CocList diagnostics<cr>",    "[i]pen [d]iagnostics" },
-      e = { ":<C-u>CocList extensions<cr>",     "[i]pen [e]xtensions" },
-      o = { ":<C-u>CocList outline<cr>",        "[i]pen [o]utline" },
-      s = { ":<C-u>CocList -I symbols<cr>",     "[i]pen [s]ymbols" },
-      l = { ":<C-u>CocList<cr>",                "[i]pen [l]ist" },
-      m = { ":<C-u>CocList marketplace<cr>",    "[i]pen [m]arketplace" },
-      c = { ":<C-u>CocList commands<cr>",       "[i]pen [c]ommands" },
-    },
-  },
-  g = {
-    name = "go",
-    d = { "<Plug>(coc-definition)", "definition" },
-    y = { "<Plug>(coc-type-definition)", "type definition" },
-    i = { "<Plug>(coc-implementation)", "implementation" },
-    r = { "<Plug>(coc-references)", "references" },
-    f = { ":call CocAction('format')<cr>", "format" },
-    a = { "<Plug>(coc-codeaction)", "code-action" },
-    ["<enter>"] = { "<Plug>(coc-fix-current)", "fix-current" },
-    h = { ":call CocAction('doHover')<cr>", "hover" },
-    o = { ":call CocAction('runCommand', 'editor.action.organizeImport')<cr>", "organise imports" },
-    s = { ":wa<cr>", "save" },
-
-    w = { ":StripWhitespace<cr>", "strip-whitespace" },
-
-    ["0"] = "which_key_ignore",
-    ["$"] = "which_key_ignore",
-    j = "which_key_ignore",
-    k = "which_key_ignore",
-    x = "which_key_ignore",
-    e = "which_key_ignore",
-    g = "which_key_ignore",
-  },
-}, {
-  mode = "n",
-  silent = true,
-})
-
 ----------------------------------------
 -- PLUGIN: VIMTEX (LATEX)
 ----------------------------------------
@@ -294,6 +249,53 @@ wk.register({
       X = "reload state",
       x = "reload",
     },
+  },
+})
+
+----------------------------------------
+-- PLUGIN: COC (IDE)
+----------------------------------------
+wk.register({
+  ["<leader>"] = {
+    i = {
+      name = "IDE",
+      d = { ":<C-u>CocList diagnostics<cr>",    "[i]pen [d]iagnostics" },
+      e = { ":<C-u>CocList extensions<cr>",     "[i]pen [e]xtensions" },
+      o = { ":<C-u>CocList outline<cr>",        "[i]pen [o]utline" },
+      s = { ":<C-u>CocList -I symbols<cr>",     "[i]pen [s]ymbols" },
+      l = { ":<C-u>CocList<cr>",                "[i]pen [l]ist" },
+      m = { ":<C-u>CocList marketplace<cr>",    "[i]pen [m]arketplace" },
+      c = { ":<C-u>CocList commands<cr>",       "[i]pen [c]ommands" },
+    },
+  },
+}, {
+  mode = "n",
+  silent = true,
+})
+
+wk.register({
+  g = {
+    name = "go",
+    d = { "<Plug>(coc-definition)", "definition" },
+    y = { "<Plug>(coc-type-definition)", "type definition" },
+    i = { "<Plug>(coc-implementation)", "implementation" },
+    r = { "<Plug>(coc-references)", "references" },
+    f = { ":call CocAction('format')<cr>", "format" },
+    a = { "<Plug>(coc-codeaction-cursor)", "code-action-cursor" },
+    ["<enter>"] = { "<Plug>(coc-fix-current)", "fix-current" },
+    h = { ":call CocAction('doHover')<cr>", "hover" },
+    o = { ":call CocAction('runCommand', 'editor.action.organizeImport')<cr>", "organise imports" },
+
+    w = { ":StripWhitespace<cr>", "strip-whitespace" },
+
+    ["0"] = "which_key_ignore",
+    ["$"] = "which_key_ignore",
+    ["%"] = "which_key_ignore",
+    ["j"] = "which_key_ignore",
+    ["k"] = "which_key_ignore",
+    ["x"] = "which_key_ignore",
+    ["e"] = "which_key_ignore",
+    ["g"] = "which_key_ignore"
   },
 })
 

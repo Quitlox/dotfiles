@@ -9,8 +9,9 @@ if vim --version | grep -q '\+clientserver'; then
 	alias vim='vim --servername vim'
 fi
 
-# Override davidde/git aliasses
+# Git (override davidde/git aliasses, fzf)
 alias gs='git_status_short'
+alias gfa='git add $(git ls-files --modified --others --exclude-standard | fzf -m)'
 
 # Needed for kitty terminal
 alias ssh='kitty +kitten ssh'
@@ -44,7 +45,6 @@ bw-login() {
 		export BW_SESSION=$(\bw unlock --raw)
 	fi
 }
-alias bw="bw-login;bw"
 
 # XDG_BASE_DIR
 alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""

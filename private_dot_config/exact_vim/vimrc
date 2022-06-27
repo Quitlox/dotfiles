@@ -10,7 +10,12 @@ if &compatible
 endif
 
 " Required:
-let deinbasepath=$HOME . '/.local/share/vim/bundle'
+if has('nvim')
+  let deinbasepath=$HOME . '/.local/share/nvim/bundle'
+else
+  let deinbasepath=$HOME . '/.local/share/vim/bundle'
+endif
+
 let deininstallpath=deinbasepath . '/repos/github.com/Shougo/dein.vim'
 exe 'set rtp+=' . deininstallpath
 
@@ -167,6 +172,16 @@ call dein#add('junegunn/goyo.vim')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => IDE - Integrated Development Environment
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""
+" => IDE: Unit Testing
+"""""""""""""""""""""""""""""
+
+call dein#add("roxma/nvim-yarp", { 'if': "!has('nvim')" } )
+call dein#add("roxma/vim-hug-neovim-rpc", { 'if': "!has('nvim')" })
+
+call dein#add("vim-test/vim-test")
+call dein#add("rcarriga/vim-ultest")
 
 """""""""""""""""""""""""""""
 " => IDE: Async Tasks
@@ -409,7 +424,12 @@ call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
 " Link: https://github.com/sillybun/vim-repl
 " Official Description: Best REPL environment for Vim
 "call dein#add('sillybun/vim-repl')
-" Note: Binds keys that can't be disabled? (<leader>w)
+call dein#add('sillybun/vim-repl')
+
+" Plugin: vim-repl
+" Link: https://github.com/hkupty/iron.nvim
+" Official Description: Interactive Repl Over Neovim
+call dein#add('hkupty/iron.nvim')
 
 """""""""""""""""""""""""""""
 " => Languages
@@ -558,6 +578,7 @@ endif
 call dein#add('vim-scripts/AfterColors.vim')
 
 call dein#add('tomasiser/vim-code-dark')
+call dein#add('altercation/vim-colors-solarized')
 
 """""""""""""""""""""""  dein.vim  """""""""""""""""""""""""
 
@@ -584,25 +605,14 @@ set runtimepath+=~/.config/vim
 " => Theme
 """"""""""""""""""""""""""""""
 
-" Set colorscheme (managed by Base16 Universal Manager)
-try
-  " let base16colorspace=256
-  " colorscheme base16_theme
+if !empty(glob("~/.config/vim/settings/colorscheme.vim"))
+  source ~/.config/vim/settings/colorscheme.vim
+else
+  echo "colorscheme.vim not found"
+
   colorscheme codedark
-catch
-endtry
-
-" Set Airline Theme
-" let g:airline_theme='base16'
-let g:airline_theme='codedark'
-
-" Transparent background
-" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-" autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
-" autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
-
-" Fix for conceal (used alot in vimtex)
-" autocmd vimenter * hi Conceal guifg=#aeaeae ctermfg=7
+  let g:airline_theme='codedark'
+endif
 
 """"""""""""""""""""""""""""""
 " => Environment Specific
@@ -627,18 +637,29 @@ source ~/.config/vim/settings/keybindings.vim
 source ~/.config/vim/settings/undo_swap_backup.vim
 source ~/.config/vim/settings/wildmenu.vim
 
+source ~/.config/vim/settings/plugins/which_key.vim
+source ~/.config/vim/settings/plugins/which_key.n.vim
+source ~/.config/vim/settings/plugins/telescope.n.vim
+
 source ~/.config/vim/settings/plugins/async_run.vim
 source ~/.config/vim/settings/plugins/coc.vim
 source ~/.config/vim/settings/plugins/comment.vim
+source ~/.config/vim/settings/plugins/ctrlp.vim
 source ~/.config/vim/settings/plugins/devicons.n.vim
-source ~/.config/vim/settings/plugins/find.vim
 source ~/.config/vim/settings/plugins/find.n.vim
+source ~/.config/vim/settings/plugins/find.vim
 source ~/.config/vim/settings/plugins/indent_line.vim
+source ~/.config/vim/settings/plugins/localvimrc.vim
+source ~/.config/vim/settings/plugins/markdown.vim
 source ~/.config/vim/settings/plugins/nerdtree.vim
 source ~/.config/vim/settings/plugins/pencil.vim
 source ~/.config/vim/settings/plugins/rainbow_parentheses.vim
+source ~/.config/vim/settings/plugins/repl.vim
+source ~/.config/vim/settings/plugins/repl.n.vim
 source ~/.config/vim/settings/plugins/statusline.vim
 source ~/.config/vim/settings/plugins/tagbar.vim
+source ~/.config/vim/settings/plugins/test.vim
 source ~/.config/vim/settings/plugins/vimtex.vim
-source ~/.config/vim/settings/plugins/which_key.n.vim
-source ~/.config/vim/settings/plugins/which_key.vim
+source ~/.config/vim/settings/plugins/whitespace.vim
+
+

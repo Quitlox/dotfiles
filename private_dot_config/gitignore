@@ -1,0 +1,3 @@
+# Global .gitignore (configured in ~/.gitconfig)
+
+.lvimrc

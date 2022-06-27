@@ -117,7 +117,7 @@ font-1 = Iosevka Nerd Font:size=10;2
 padding = 2
 module-margin = 2
 
-modules-left = network
+modules-left = ip_wlp3s0 ip_enp4s0
 modules-center =
 modules-right = memory filesystem
 
@@ -151,11 +151,6 @@ bar-used-empty = ▐
 bar-used-empty-foreground = ${colors.base03}
 
 
-[module/ip]
-type = internal/network
-interface = wlp3s0
-label-connected =  %local_ip%
-label-disconnected =  disconnected
 
 [module/workspaces]
 type = internal/i3
@@ -303,28 +298,6 @@ interface = wlp3s0
 ; Default: 1
 interval = 2.0
 
-; Test connectivity every Nth update
-; A value of 0 disables the feature
-; NOTE: Experimental (needs more testing)
-; Default: 0
-;ping-interval = 3
-
-; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
-; Minimum output width of upload/download rate
-; Default: 3
-;udspeed-minwidth = 5
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-;accumulate-stats = true
-
-; Consider an `UNKNOWN` interface state as up.
-; Some devices like USB network adapters have 
-; an unknown state, even when they're running
-; Default: false
-;unknown-as-up = true
-
 ; Available tags:
 ;   <label-connected> (default)
 ;   <ramp-signal>
@@ -377,6 +350,14 @@ animation-packetloss-1 = 📶
 animation-packetloss-1-foreground = #000000
 ; Framerate in milliseconds
 animation-packetloss-framerate = 500
+
+
+[module/ip_wlp3s0]
+inherit = module/network
+interface = wlp3s0
+[module/ip_enp4s0]
+inherit = module/network
+interface = enp4s0
 
 [module/title]
 type = internal/xwindow

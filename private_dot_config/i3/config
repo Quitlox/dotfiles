@@ -88,7 +88,7 @@ bindsym $mod+ctrl+x --release exec --no-startup-id xkill
 
 # Screenshot
 bindsym Print exec --no-startup-id maim -o ~/Pictures/Screenshots/$(date +%Y-%M-%d-%s).png
-bindsym shift+Print exec --no-startup-id maim -s -o | tee ~/Pictures/Screenshots/$(date +%Y-%M-%d-%s).png | xclip -selection clipboard -t image/png
+bindsym shift+Print exec --no-startup-id maim -s -o | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d-%s).png | xclip -selection clipboard -t image/png
 
 # Common Application Launcher Menu
 set $mode_launcher Launch: [f]irefox [t]hunderbird [e]xplorer [d]iscord [s]potify [b]menu
@@ -122,6 +122,8 @@ exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 60
 # 	- It also restarts the monitor dependen UI elements:
 # 		- Nitrogen is reloaded
 # 		- Polybars are started
+exec_always --no-startup-id \
+    ~/.config/polybar/new_multi_launch.sh
 exec_always --no-startup-id \
     autorandr --change --force --default default
 exec_always --no-startup-id \
@@ -479,6 +481,8 @@ for_window [class="Xfburn"] floating enable
 for_window [class="Xfce4-power-manager-settings"] floating enable
 
 # Custom
+for_window [class="arandr|Arandr"] floating enable
+for_window [class="bitwarden|Bitwarden"] floating enable
 for_window [class="jetbrains-idea" title="Data Sharing"] floating enable
 for_window [class="jetbrains-.*" title="win0"] floating enable border none
 for_window [class="Steam" title="Steam Guard - Computer Authorization Required"] floating enable
@@ -511,7 +515,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [title="Picture-in-Picture"] sticky enable
 
 # Assigning windows to specific workspaces
-for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9; workspace $ws9
+for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws9; workspace --no-auto-back-and-forth $ws9
 assign [class="discord"] number $ws8
 
 # > script: add_i3_rule

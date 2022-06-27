@@ -1,39 +1,87 @@
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
+" => IDEA
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nnoremap <SPACE> <Nop>
-nnoremap , <Nop>
-map g <Nop>
+""""""""""""""""""""""""""""""""""""""""
+" => General
+""""""""""""""""""""""""""""""""""""""""
+
+" leader
 let mapleader = " "
 let localleader = ","
 
-set ignorecase smartcase
-set hlsearch " highlight search occurrences
-set incsearch " show search results while typing
+" IDEA specific options
 set showmode
-set scrolloff=7 sidescrolloff=10
-set number
-set wrapscan
+set ideamarks
+set lookupkeys=<Tab>,<Down>,<Up>,Left>,<Right>,<C-Down>,<C-Up>,<PageUp>,<PageDown>,<C-J>,<C-K>,<C-Q>
 set clipboard=unnamedplus,unnamed,ideaput " integrate with system clipboard
+" No beep
+set visualbell
+set noerrorbells
+
+""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+""""""""""""""""""""""""""""""""""""""""
+
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'machakann/vim-highlightedyank'
+set which-key
+
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'kana/vim-textobj-entire'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Keybindings: Navigation
+" => basic.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Remap 0 to first non-blank character"
-map 0 ^
+" Cursor
+set scrolloff=7      " Leave 7 lines around the cursor when moving vertically using j/k
+set sidescrolloff=10 " Leave 10 characters around the cursor when moving horizontally using h/l
+" Searching
+set ignorecase       " Ignore case when searching
+set smartcase        " When searching try to be smart about cases
+set hlsearch         " Highlight search results
+set incsearch        " Makes search act like search in modern browsers
+set wrapscan         " Searches wrap around the end of the file
+" Layout
+set number           " Enable line-numbering
+" Misc
+"set timeoutlen=800
+set notimeout
+set history=500      " Sets how many lines of history VIM has to remember
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => keybindings.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Remap 0 to first non-blank character
+noremap 0 ^
+noremap ^ 0
 
 " Fix code navigation with softwrapping
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
+noremap j gj
+noremap gj j
+noremap k gk
+noremap gk k
 
-" Easier line-wise movement
-noremap gh g^
-noremap gl g$
+noremap 0 g0
+noremap g0 0
+noremap $ g$
+noremap g$ $
+
+" Yank from cursor position to end-of-line
+nnoremap Y y$
+" Make paste reselect yank
+xnoremap p pgvy
+
+" Keep cursor centered when jumping
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
 
 " Re-select blocks after indenting in visual/select mode
 xnoremap < <gv
@@ -41,15 +89,23 @@ xnoremap > >gv|
 vnoremap = =gv
 
 " Disable highlight when <leader><cr> is pressed
-noremap <leader><cr> :noh<cr>
+map <silent> <leader><cr> :noh<cr>
 
-" Move a line of text using ALT
-nnoremap <M-j> :m .+1<cr>==
-nnoremap <M-k> :m .-2<cr>==
-inoremap <M-j> <esc>:m .+1<cr>==gi
-inoremap <M-k> <esc>:m .-2<cr>==gi
-vnoremap <M-j> :m '>+1<cr>gv=gv
-vnoremap <M-k> :m '<-2<cr>gv=gv
+" Source: https://vim.fandom.com/wiki/Moving_lines_up_or_down
+" Move a line of text using ALT+[jk]
+" NOTE: Some terminals (e.g. URxvt) are not by default
+"       compatible with <M-X> mappings. See
+"       'terminal_specific.vim' for work-around.
+nnoremap <M-j> :m .+1<CR>==
+nnoremap <M-k> :m .-2<CR>==
+inoremap <M-j> <Esc>:m .+1<CR>==gi
+inoremap <M-k> <Esc>:m .-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: Navigation
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " unimpaired mappings
 nnoremap [<space> O<esc>j
@@ -61,64 +117,63 @@ nnoremap ]m :action MethodDown<cr>
 nnoremap [c :action VcsShowPrevChangeMarker<cr>
 nnoremap ]c :action VcsShowNextChangeMarker<cr>
 
+nnoremap [e :action GotoPreviousError<cr>
+nnoremap ]e :action GotoNextError<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Keybindings: IDEA
+" => Keybindings: IDE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-noremap gg :action ScrollPane-scrollHome<cr>
-" [g]o [f]ormat
-nnoremap gf :action ReformatCode<cr>
-" [g]o [o]ptimize
-nnoremap go :action OptimizeImports<cr>
-" [g]o ge[n]erate
-nnoremap gn :action Generate<cr>
-" [g]o [r]efactor
-nnoremap gr :action Refactorings.QuickListPopupAction<cr>
-" [g]o [i]mplementations
-nnoremap gi :action GotoImplementations<cr>
+nnoremap <leader>s :wa<cr>
+
+""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: Shared (coc.nvim)
+""""""""""""""""""""""""""""""""""""""""
+
 " [g]o [d]ecleration
 nnoremap gd :action GotoDeclaration<cr>
-" [g]o [u]sages
-nnoremap gu :action ShowUsages<cr>
-" [g]o Find [U]sages
-nnoremap gU :action FindUsages<cr>
+" [g]o type definition"
+nnoremap gy :action GotoTypeDeclaration<cr>
+" [g]o [i]mplementations
+nnoremap gi :action GotoImplementations<cr>
+" [g]o [r]eferences
+nnoremap gr :action ShowUsages<cr>
+" [g]o [f]ormat
+nnoremap gf :action ReformatCode<cr>
+" [g]o [a]ction
+nnoremap ga :action ShowIntentionActions<cr>
+" [g]o intent
+nnoremap g<cr> :action ShowIntentionActions<cr>
+" [g]o [h]over
+nnoremap gh :action ShowErrorDescription<cr>
+" [g]o [o]ptimize
+nnoremap go :action OptimizeImports<cr>
+
+let g:WhichKeyDesc_leader_g_d = "<leader>gd declaration"
+let g:WhichKeyDesc_leader_g_y = "<leader>gy type declaration"
+let g:WhichKeyDesc_leader_g_i = "<leader>gi implementations"
+let g:WhichKeyDesc_leader_g_r = "<leader>gr references"
+let g:WhichKeyDesc_leader_g_f = "<leader>gf format"
+let g:WhichKeyDesc_leader_g_a = "<leader>ga action"
+let g:WhichKeyDesc_leader_g_enter = "<leader>g<enter> intent"
+let g:WhichKeyDesc_leader_g_h = "<leader>gh hover"
+let g:WhichKeyDesc_leader_g_o = "<leader>go imports"
+
+""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: IDEA-only
+""""""""""""""""""""""""""""""""""""""""
+
+" [g]o ge[n]erate
+nnoremap gn :action Generate<cr>
+"nnoremap gr :action Refactorings.QuickListPopupAction<cr>
 " [g]o [s]ymbol
 nnoremap gs :action GotoSymbol<cr>
 " [g]o [t]est
 nnoremap gt :action GotoTest<cr>
-" [g]o [e]rror
-nnoremap ge :action ShowErrorDescription<cr>
-" [g]o intent
-nnoremap g<cr> :action ShowIntentionActions<cr>
-" [g]o [b]uild
-nnoremap gb :action Maven.RunBuild<cr>
-" [g]o [e]xecute
-nnoremap ge :action Run<cr>
 
-
-" [o]pen [f]ile
-noremap <leader>of :action SearchEverywhere<cr>
-" [o]pen [a]ctions
-"noremap <leader>oa :action SearchEverywhereActions<cr>
-
-" [t]oggle [c]tags
-nnoremap <leader>tc :action FileStructurePopup<cr> "ActivateStructureToolWindow<cr>
-" [t]oggle [f]iletree
-nnoremap <leader>tf :action ActivateProjectToolWindow<cr>
-" [t]oggle [w]hitespace
-nnoremap <leader>tw :action EditorToggleShowWhitespaces<cr>
-" [t]oggle [s]witcher
-nnoremap <leader>ts :action Switcher<cr>
-" [t]oggle [t]erminal
-nnoremap <leader>tt :action ActivateTerminalToolWindow<cr>
-" [t]oggle [d]ocumentation
-nnoremap <leader>td :action QuickJavaDoc<cr>
-
-" EditorToggleShowBreadcrumbs
-" EditorToggleShowGutterIcons
-" EditorToggleShowIndentLines
-" EditorToggleShowLineNumbers
+let g:WhichKeyDesc_g_n = "gn generate"
+let g:WhichKeyDesc_g_s = "gs symbol"
+let g:WhichKeyDesc_g_t = "gt test"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Keybindings: Windows and Buffers
@@ -131,62 +186,103 @@ noremap <leader>wl <C-W>l
 
 noremap <leader>wv :action SplitHorizontally<cr>
 noremap <leader>wb :action SplitVertically<cr>
-noremap <leader>wd :action CloseEditorsGroup<cr>
-noremap <leader>wo :action HideAllWindows<cr>
+noremap <leader>wd :action CloseAllEditors<cr>
+noremap <leader>wo :action HideSideWindows<cr>
 
 noremap <leader>bd :action CloseEditor<cr>
 noremap <leader>bn :action NextTab<cr>
 noremap <leader>bp :action PreviousTab<cr>
 noremap <leader>bo :action CloseAllEditorsButActive<cr>
 
+let g:WhichKeyDesc_leader_w_v = "<leader>wb split horizontally"
+let g:WhichKeyDesc_leader_w_b = "<leader>wb split vertically"
+let g:WhichKeyDesc_leader_w_d = "<leader>wd delete"
+let g:WhichKeyDesc_leader_w_o = "<leader>wo only"
+
+let g:WhichKeyDesc_leader_b_d = "<leader>bd delete"
+let g:WhichKeyDesc_leader_b_n = "<leader>bn next"
+let g:WhichKeyDesc_leader_b_p = "<leader>bp previous"
+let g:WhichKeyDesc_leader_b_o = "<leader>bo only"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: TOGGLE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" [T]oggle [c]tags
+nnoremap <leader>Tc :action FileStructurePopup<cr> "ActivateStructureToolWindow<cr>
+" [T]oggle [f]iletree
+nnoremap <leader>Tf :action ActivateProjectToolWindow<cr>
+" [T]oggle [w]hitespace
+nnoremap <leader>Tw :action EditorToggleShowWhitespaces<cr>
+" [T]oggle [s]witcher
+nnoremap <leader>Ts :action Switcher<cr>
+" [T]oggle [t]erminal
+nnoremap <leader>Tt :action ActivateTerminalToolWindow<cr>
+" [T]oggle [d]ocumentation
+nnoremap <leader>Td :action QuickJavaDoc<cr>
+
+" EditorToggleShowBreadcrumbs
+" EditorToggleShowGutterIcons
+" EditorToggleShowIndentLines
+" EditorToggleShowLineNumbers
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: FIND
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" [f]ind [l]ocate
+noremap <leader>fl :NERDTreeFocus<cr>
+" [f]ind [a]ll
+noremap <leader>fa :action FindInPath<cr>
+noremap <leader>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: OPEN
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" [o]pen [f]ile
+noremap <leader>of :action GotoFile<cr>
+" [o]pen [c]ommand
+noremap <leader>oc :action GotoAction<cr>
+"        [a]ctions
+noremap <leader>oa :action GotoAction<cr>
+" [o]pen [m]arks
+noremap <leader>om :action ShowBookmarks<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Keybindings: Miscellaneous
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim config
-nnoremap <leader>vs :source "/home/quitlox/.ideavimrc" <cr>
+nnoremap <leader>vs :action IdeaVim.ReloadVimRc.reload<cr>
 nnoremap <leader>ve :e "/home/quitlox/.ideavimrc" <cr>
-
-" vim annoyances
-nnoremap Y y$ " Yank from cursor position to end-of-line
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Keybindings: Bookmarks
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap mA :action ToggleBookmarkA
-nnoremap mB :action ToggleBookmarkB
-nnoremap mC :action ToggleBookmarkC
-nnoremap mD :action ToggleBookmarkD
-nnoremap mE :action ToggleBookmarkE
-nnoremap mF :action ToggleBookmarkF
-nnoremap mG :action ToggleBookmarkG
-nnoremap mH :action ToggleBookmarkH
-nnoremap mI :action ToggleBookmarkI
-nnoremap mJ :action ToggleBookmarkJ
-nnoremap mK :action ToggleBookmarkK
-nnoremap mL :action ToggleBookmarkL
-nnoremap mM :action ToggleBookmarkM
-nnoremap mN :action ToggleBookmarkN
-nnoremap mO :action ToggleBookmarkO
-nnoremap mP :action ToggleBookmarkP
-nnoremap mQ :action ToggleBookmarkQ
-nnoremap mR :action ToggleBookmarkR
-nnoremap mS :action ToggleBookmarkS
-nnoremap mT :action ToggleBookmarkT
-nnoremap mU :action ToggleBookmarkU
-nnoremap mV :action ToggleBookmarkV
-nnoremap mW :action ToggleBookmarkW
-nnoremap mX :action ToggleBookmarkX
-nnoremap mY :action ToggleBookmarkY
-nnoremap mZ :action ToggleBookmarkZ
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'easymotion/vim-easymotion'
-Plug 'preservim/nerdtree'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'machakann/vim-highlightedyank'
+"nnoremap mA :action ToggleBookmarkA
+"nnoremap mB :action ToggleBookmarkB
+"nnoremap mC :action ToggleBookmarkC
+"nnoremap mD :action ToggleBookmarkD
+"nnoremap mE :action ToggleBookmarkE
+"nnoremap mF :action ToggleBookmarkF
+"nnoremap mG :action ToggleBookmarkG
+"nnoremap mH :action ToggleBookmarkH
+"nnoremap mI :action ToggleBookmarkI
+"nnoremap mJ :action ToggleBookmarkJ
+"nnoremap mK :action ToggleBookmarkK
+"nnoremap mL :action ToggleBookmarkL
+"nnoremap mM :action ToggleBookmarkM
+"nnoremap mN :action ToggleBookmarkN
+"nnoremap mO :action ToggleBookmarkO
+"nnoremap mP :action ToggleBookmarkP
+"nnoremap mQ :action ToggleBookmarkQ
+"nnoremap mR :action ToggleBookmarkR
+"nnoremap mS :action ToggleBookmarkS
+"nnoremap mT :action ToggleBookmarkT
+"nnoremap mU :action ToggleBookmarkU
+"nnoremap mV :action ToggleBookmarkV
+"nnoremap mW :action ToggleBookmarkW
+"nnoremap mX :action ToggleBookmarkX
+"nnoremap mY :action ToggleBookmarkY
+"nnoremap mZ :action ToggleBookmarkZ
