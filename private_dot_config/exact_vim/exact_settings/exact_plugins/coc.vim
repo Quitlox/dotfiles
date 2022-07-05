@@ -21,7 +21,7 @@ let g:coc_global_extensions = [
             \ 'coc-htmldjango', 'coc-html-css-support',
             \ 'coc-json',
             \ 'coc-marketplace', 'coc-prettier',
-            \ 'coc-pyright', 'coc-pydocstring',
+            \ 'coc-pyright',
             \ 'coc-rls', 'coc-rust-analyzer', 'coc-sh',
             \ 'coc-snippets',
             \ 'coc-tailwindcss', 'coc-tsserver',

@@ -3,5 +3,6 @@
   "diagnostic.checkCurrentLine": true,
   "tsserver.npm": "/usr/bin/npm",
   "coc.preferences.formatOnSaveFiletypes": ["css", "typescript", "javascript"],
-  "rust-analyzer.server.path": "/usr/bin/rust-analyzer"
+  "rust-analyzer.server.path": "/usr/bin/rust-analyzer", 
+  "python.formatting.autopep8Args": ["--max-line-length", "79"]
 }

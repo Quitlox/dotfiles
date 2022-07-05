@@ -5,10 +5,8 @@ if !(dein#is_available(['nerdtree'])) | finish | endif
 "#######################################
 
 let NERDTreeShowHidden=1
-"let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
 let g:NERDTreeHighlightCursorline=0
-let g:NERDTreeRespectWildIgnore=1
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeCustomOpenArgs={
       \ 'file': {
@@ -17,6 +15,9 @@ let g:NERDTreeCustomOpenArgs={
       \ },
       \ 'dir': {}
       \ }
+
+" Ignore using Wildignore
+let g:NERDTreeRespectWildIgnore=1
 
 "#######################################
 "### Interface                       ###

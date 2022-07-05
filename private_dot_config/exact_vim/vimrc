@@ -18,6 +18,7 @@ endif
 
 let deininstallpath=deinbasepath . '/repos/github.com/Shougo/dein.vim'
 exe 'set rtp+=' . deininstallpath
+let &rtp=$HOME . '/.config/vim' . ',' . &rtp
 
 " Required:
 call dein#begin(deinbasepath)
@@ -346,6 +347,8 @@ call dein#add('preservim/nerdcommenter')
 " Official Description: Generate proper code documentation
 " skeletons with a single keypress.
 call dein#add('kkoomen/vim-doge' )
+let g:doge_doc_standard_python = 'google'
+let g:doge_enable_mappings = 1
 
 """""""""""""""""""""""""""""
 " => Editor: Auto-configuration
@@ -420,16 +423,26 @@ call dein#add('reedes/vim-pencil')
 call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
 
 
-" Plugin: vim-repl
-" Link: https://github.com/sillybun/vim-repl
-" Official Description: Best REPL environment for Vim
-"call dein#add('sillybun/vim-repl')
-call dein#add('sillybun/vim-repl')
+if !has('nvim')
+  " Plugin: vim-repl
+  " Link: https://github.com/sillybun/vim-repl
+  " Official Description: Best REPL environment for Vim
+  "call dein#add('sillybun/vim-repl')
+  call dein#add('sillybun/vim-repl')
+else
+  " Plugin: vim-repl
+  " Link: https://github.com/hkupty/iron.nvim
+  " Official Description: Interactive Repl Over Neovim
+  call dein#add('hkupty/iron.nvim')
+endif
 
-" Plugin: vim-repl
-" Link: https://github.com/hkupty/iron.nvim
-" Official Description: Interactive Repl Over Neovim
-call dein#add('hkupty/iron.nvim')
+" Plugin: vim-pydocstring
+" Link: https://github.com/heavenshell/vim-pydocstring
+" Official Description: Generate Python docstring to your 
+" Python source code.
+call dein#add('heavenshell/vim-pydocstring')
+let g:pydocstring_formatter = 'google'
+let g:pydocstring_doq_path = "/home/quitlox/.local/bin/doq"
 
 """""""""""""""""""""""""""""
 " => Languages
