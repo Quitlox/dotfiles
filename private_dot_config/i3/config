@@ -483,7 +483,8 @@ for_window [class="Xfce4-power-manager-settings"] floating enable
 # Custom
 for_window [class="arandr|Arandr"] floating enable
 for_window [class="bitwarden|Bitwarden"] floating enable
-for_window [class="jetbrains-idea" title="Data Sharing"] floating enable
+for_window [class="jetbrains-.*" title="Data Sharing"] floating enable
+for_window [class="jetbrains-.*" title="Welcome to .*"] floating enable
 for_window [class="jetbrains-.*" title="win0"] floating enable border none
 for_window [class="Steam" title="Steam Guard - Computer Authorization Required"] floating enable
 for_window [class="Steam" title="Friends List"] floating enable
