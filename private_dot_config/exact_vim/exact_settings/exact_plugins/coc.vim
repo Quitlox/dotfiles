@@ -30,6 +30,8 @@ let g:coc_global_extensions = [
             \ 'coc-yank', 'coc-xml'
             \]
 
+let g:coc_default_semantic_highlight_groups = 1
+
 "#######################################
 "### COMPLETION TRIGGER              ###
 "#######################################
