@@ -178,11 +178,14 @@ call dein#add('junegunn/goyo.vim')
 " => IDE: Unit Testing
 """""""""""""""""""""""""""""
 
-call dein#add("roxma/nvim-yarp", { 'if': "!has('nvim')" } )
-call dein#add("roxma/vim-hug-neovim-rpc", { 'if': "!has('nvim')" })
-
-call dein#add("vim-test/vim-test")
-call dein#add("rcarriga/vim-ultest")
+" vim-ultest is now deprecated
+" vim-hug-neovim-rpc is a bitch to get working on remote systems,
+" so we should have that in our vimrc
+" call dein#add("roxma/nvim-yarp", { 'if': "!has('nvim')" } )
+" call dein#add("roxma/vim-hug-neovim-rpc", { 'if': "!has('nvim')" })
+"
+" call dein#add("vim-test/vim-test")
+" call dein#add("rcarriga/vim-ultest")
 
 """""""""""""""""""""""""""""
 " => IDE: Async Tasks
@@ -438,7 +441,7 @@ endif
 
 " Plugin: vim-pydocstring
 " Link: https://github.com/heavenshell/vim-pydocstring
-" Official Description: Generate Python docstring to your 
+" Official Description: Generate Python docstring to your
 " Python source code.
 call dein#add('heavenshell/vim-pydocstring')
 let g:pydocstring_formatter = 'google'
@@ -624,7 +627,9 @@ else
   colorscheme codedark
   let g:airline_theme='codedark'
 
-  set fillchars=eob:\ ,
+  if has('nvim')
+    set fillchars=eob:\ ,
+  endif
 
   hi Normal ctermfg=None ctermbg=None
   hi EndOfBuffer ctermfg=None ctermbg=None
