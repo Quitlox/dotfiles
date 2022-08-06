@@ -1,25 +1,43 @@
 {
-  "editor.columnSelection": false,
+  "update.mode": "manual",
+  // Editor: User Interface
+  "editor.cursorStyle": "line",
+  "editor.lineNumbers": "on",
+  "editor.wordWrap": "on",
   "editor.cursorSurroundingLines": 10,
   "editor.minimap.enabled": false,
   "editor.rulers": [80],
-  "editor.suggestSelection": "first",
   "editor.wordWrapColumn": 80,
-  "editor.wrappingIndent": "deepIndent",
+  // Editor User Interface: Hints
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
 
-  "editor.acceptSuggestionOnEnter": "on",
-  "editor.cursorStyle": "line",
-  "editor.lineNumbers": "on",
+  // Editor Behaviour: IDE-related UI and functionality
+  "editor.gotoLocation.multipleDeclarations": "goto",
   "editor.gotoLocation.multipleTypeDefinitions": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.gotoLocation.multipleImplementations": "goto",
   "editor.gotoLocation.multipleReferences": "goto",
+  "editor.stablePeek": false,
+  "references.preferredLocation": "view",
+  // Editor Behaviour: While typing/navigating
+  "editor.stickyTabStops": true,
+  "editor.comments.ignoreEmptyLines": true,
+  "editor.wrappingIndent": "deepIndent",
+  "editor.columnSelection": false,
+  // Editor Behaviour: Completion
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.suggestSelection": "first",
+  "emmet.showAbbreviationSuggestions": false,
+  // Editor Behaviour: Miscelleneous
+  "editor.copyWithSyntaxHighlighting": false,
 
   // VSCode UI
   "breadcrumbs.enabled": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "window.menuBarVisibility": "compact",
+  "workbench.editor.labelFormat": "short",
 
   // Miscellaneous
   "keyboard.dispatch": "keyCode",
@@ -73,6 +91,10 @@
     {
       "before": ["g", "d"],
       "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.revealDeclaration"]
     },
     {
       "before": ["g", "r"],
@@ -159,7 +181,6 @@
       "before": ["<leader>", "f", "l"],
       "commands": ["workbench.files.action.showActiveFileInExplorer"]
     },
-    //    All
     {
       "before": ["<leader>", "f", "a"],
       "commands": ["workbench.action.findInFiles"]
@@ -176,23 +197,23 @@
     },
     // Vim: Toggles (IDE)
     {
-      "before": ["<leader>", "t", "f"],
+      "before": ["<leader>", "T", "F"],
       "commands": ["workbench.action.toggleFullScreen"]
     },
     {
-      "before": ["<leader>", "t", "f"],
+      "before": ["<leader>", "T", "f"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
-      "before": ["<leader>", "t", "a"],
+      "before": ["<leader>", "T", "a"],
       "commands": ["workbench.action.toggleActivityBarVisibility"]
     },
     {
-      "before": ["<leader>", "t", "o"],
+      "before": ["<leader>", "T", "o"],
       "commands": ["outline.focus"]
     },
     {
-      "before": ["<leader>", "t", "t"],
+      "before": ["<leader>", "T", "t"],
       "commands": ["workbench.action.terminal.focus"]
     },
 
@@ -202,11 +223,11 @@
       "commands": ["workbench.actions.view.problems"]
     },
     {
-      "before": ["]", "e"],
+      "before": ["]", "d"],
       "commands": ["editor.action.marker.next"]
     },
     {
-      "before": ["[", "e"],
+      "before": ["[", "d"],
       "commands": ["editor.action.marker.prev"]
     },
     // Vim: Bookmarks
@@ -308,14 +329,6 @@
       "before": ["<leader>", "j"],
       "after": ["J"]
     },
-    // {
-    //   "before": ["g", "h"],
-    //   "after": ["_"]
-    // },
-    {
-      "before": ["g", "l"],
-      "after": ["$"]
-    }
   ],
 
   // Vim: Visual Mode
@@ -341,13 +354,13 @@
   // Vim: Ctrl Keys
   "vim.handleKeys": {
     "<C-d>": true,
+    "<C-u>": true,
+    "<C-o>": true,
+    "<C-i>": true,
     "<C-h>": true,
     "<C-l>": true,
     "<C-p>": false,
     "<C-r>": false,
-    "<C-u>": true,
-    "<C-o>": true,
-    "<C-i>": true,
     "<C-w>": false
   },
 
@@ -406,14 +419,13 @@
 
   "jupyter.interactiveWindowMode": "perFile",
   "jupyter.disableJupyterAutoStart": true,
-  "jupyter.alwaysTrustNotebooks": true,
   "jupyter.enableAutoMoveToNextCell": false,
   "jupyter.sendSelectionToInteractiveWindow": true,
-  "jupyter.alwaysScrollOnNewCell": true,
   "jupyter.experiments.enabled": false,
+  "interactiveWindow.alwaysScrollOnNewCell": true,
 
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "*.ipynb": "jupyter-notebook"
   },
 
   // Languages: Other
@@ -447,23 +459,10 @@
   },
 
   // Miscellaneous
-  "references.preferredLocation": "view",
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true,
-  "window.zoomLevel": 1,
-  "workbench.editor.labelFormat": "short",
-  "editor.wordWrap": "on",
   "files.exclude": {
     "**/__pycache__": true,
     "**/.venv": true
   },
-  "editor.comments.ignoreEmptyLines": false,
-  "editor.copyWithSyntaxHighlighting": false,
-  "editor.gotoLocation.multipleDeclarations": "goto",
-  "editor.stablePeek": true,
-  "editor.stickyTabStops": true,
-  "update.mode": "manual",
-  "emmet.showAbbreviationSuggestions": false,
   "gitlens.views.commits.showBranchComparison": false,
   "gitlens.views.commits.pullRequests.showForBranches": false,
   "gitlens.views.commits.pullRequests.enabled": false,

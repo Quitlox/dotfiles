@@ -15,11 +15,11 @@
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "!editorTextFocus && !renameInputVisible"
   },
-  {
-    "key": "escape",
-    "command": "workbench.action.focusFirstEditorGroup",
-    "when": "jupyter.isinteractiveactive"
-  },
+  // {
+  //   "key": "escape",
+  //   "command": "workbench.action.focusFirstEditorGroup",
+  //   "when": "jupyter.isinteractiveactive"
+  // },
   {
     "key": "escape",
     "command": "workbench.action.closePanel",
@@ -131,14 +131,6 @@
     "when": "!editorIsOpen && !multipleEditorGroups"
   },
   {
-    "key": "ctrl+shift+w",
-    "command": "-workbench.action.closeWindow"
-  },
-  {
-    "key": "ctrl+`",
-    "command": "-workbench.action.selectTheme"
-  },
-  {
     "key": "ctrl+shift+b",
     "command": "-editor.action.goToTypeDefinition",
     "when": "editorHasDefinitionProvider && editorTextFocus"
@@ -155,10 +147,6 @@
     "key": "ctrl+w",
     "command": "-workbench.action.closeGroup",
     "when": "activeEditorGroupEmpty && multipleEditorGroups"
-  },
-  {
-    "key": "ctrl+r",
-    "command": "-workbench.action.openRecent"
   },
   {
     "key": "ctrl+p",
@@ -185,14 +173,7 @@
     "command": "-workbench.action.interactivePlayground.arrowUp",
     "when": "interactivePlaygroundFocus && !editorTextFocus"
   },
-  {
-    "key": "ctrl+p",
-    "command": "-workbench.action.quickOpen"
-  },
-  {
-    "key": "ctrl+shift+p",
-    "command": "-workbench.action.showCommands"
-  },
+  // Disable default Ctrl+_ Shortcuts
   {
     "key": "ctrl+e",
     "command": "-workbench.action.quickOpen"
@@ -205,5 +186,17 @@
   {
     "key": "ctrl+n",
     "command": "-workbench.action.files.newUntitledFile"
-  }
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.openRecent"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "-workbench.action.closeWindow"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "-workbench.action.selectTheme"
+  },
 ]
