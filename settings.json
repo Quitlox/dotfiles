@@ -26,7 +26,7 @@
   "editor.wrappingIndent": "deepIndent",
   "editor.columnSelection": false,
   // Editor Behaviour: Completion
-  "editor.acceptSuggestionOnEnter": "off",
+  "editor.acceptSuggestionOnEnter": "on",
   "editor.suggestSelection": "first",
   "emmet.showAbbreviationSuggestions": false,
   // Editor Behaviour: Miscelleneous
@@ -410,12 +410,12 @@
   "java.semanticHighlighting.enabled": true,
 
   // Language: Python
-  "python.showStartPage": false,
-  "python.analysis.memory.keepLibraryAst": true,
   "python.diagnostics.sourceMapsEnabled": true,
-  "python.autoComplete.addBrackets": true,
   "python.languageServer": "Pylance",
   "python.analysis.completeFunctionParens": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+  },
 
   "jupyter.interactiveWindowMode": "perFile",
   "jupyter.disableJupyterAutoStart": true,

@@ -138,10 +138,10 @@ zinit load sharkdp/bat
 # A command-line fuzzy finder.
 export FZF_COMPLETION_TRIGGER=''
 function __bind_fzf_keys() {
-  source /usr/share/fzf/completion.zsh
-  source /usr/share/fzf/key-bindings.zsh
-  bindkey "^T" fzf-completion
-  bindkey "^I" $fzf_default_completion
+  [[ -e /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+  [[ -e /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+  [[ -e /usr/share/fzf/completion.zsh ]] && bindkey "^T" fzf-completion
+  [[ -e /usr/share/fzf/key-bindings.zsh ]] && bindkey "^I" $fzf_default_completion
 }
 if [[ -n "$commands[fzf]" ]]; then
   __bind_fzf_keys
