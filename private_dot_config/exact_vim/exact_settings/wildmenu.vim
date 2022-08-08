@@ -13,7 +13,7 @@ if has('wildmenu')
 	" Version Control
 	set wildignore+=.git,.hg,.svn,.stversions,*.spl,
 	" Temp files
-	set wildignore+=*.o,*.out,*~,%*
+	set wildignore+=*.o,*.out,*~,%*,Session.vim,
 	" Misc. files
 	set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store
 	" Web Dev

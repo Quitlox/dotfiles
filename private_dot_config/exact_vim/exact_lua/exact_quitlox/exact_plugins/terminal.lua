@@ -1,0 +1,49 @@
+----------------------------------------
+-- Settings
+----------------------------------------
+
+local config = function(x, width)
+	require("FTerm").setup({
+		winblend = 0,
+		dimensions = { x = x, width = width },
+	})
+end
+
+----------------------------------------
+-- Logic
+----------------------------------------
+
+local explorer_view = require("nvim-tree.view")
+local explorer_api = require("nvim-tree.api")
+local Event = require("nvim-tree.api").events.Event
+
+-- Center the terminal in the editor area
+open_state_config = function()
+	-- Account for the nvim-tree if it is open
+	config(0.7, 0.7)
+end
+closed_state_config = function()
+	config(0.5, 0.8)
+end
+
+-- Set the config according to the nvim-tree state
+local explorer_open = explorer_view.is_visible()
+if explorer_open then
+	open_state_config()
+else
+	closed_state_config()
+end
+
+-- Update the config if the nvim-tree state changes
+explorer_api.events.subscribe(Event.TreeOpen, open_state_config)
+explorer_api.events.subscribe(Event.TreeClose, closed_state_config)
+
+----------------------------------------
+-- Keybindings
+----------------------------------------
+
+local wk = require("which-key")
+
+wk.register({
+	t = { "<cmd>lua require('FTerm').toggle()<cr>", "Toggle Terminal" },
+}, { prefix = "<leader>T" })

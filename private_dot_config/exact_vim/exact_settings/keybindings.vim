@@ -108,6 +108,20 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Debugging
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+imap <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+map <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+cmap <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -130,33 +144,4 @@ function! VisualSelection(direction, extra_filter) range
 
     let @/ = l:pattern
     let @" = l:saved_reg
-endfunction
-
-" Switch buffer as expected (skip special buffers)
-" https://vi.stackexchange.com/a/37045
-function! Bswitch_normal(count, direction)
-    " This function switches to the previous or next normal buffer excluding
-    " all special buffers like quickfix or terminals
-    " Modified version of https://vi.stackexchange.com/a/16710/37509
-    let l:count = a:count
-    let l:cmd = (a:direction ==# 'previous') ? 'bprevious' : 'bnext'
-    let l:start_buffer = bufnr('%')
-    while 1
-        execute 'keepalt ' . l:cmd
-        if &buftype == ''
-            let l:count -= 1
-            if l:count <= 0
-                break
-            endif
-        endif
-        " Prevent infinite loops if no buffer is a normal buffer
-        if bufnr('%') == l:start_buffer && l:count == a:count
-            break
-        endif
-    endwhile
-    if bufnr('%') != l:start_buffer
-        " Jump back to the start buffer once to set the alternate buffer
-        execute 'buffer ' . l:start_buffer
-        buffer #
-    endif
 endfunction

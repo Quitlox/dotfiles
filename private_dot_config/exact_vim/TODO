@@ -1,0 +1,13 @@
+
+Ctrl Backspace in Rename popup
+Frecency end of filename is cut of while searching
+
+Bugs:
+- Broken highlighting in Telescope Frecency
+
+Features:
+- Highlight background current file in Tree
+
+Plugins:
+    - mini.cursorword / vim-cursorword for highlighting the current word
+    - mini.indentscope: instead of indentline, includes text object for indent

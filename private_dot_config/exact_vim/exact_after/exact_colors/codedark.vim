@@ -1,3 +1,5 @@
+if has('nvim') | finish | endif
+
 " https://vim.fandom.com/wiki/Create_a_color_scheme_based_on_another
 
 """"""""""""""""""""""""""""""""""""""""
@@ -98,7 +100,7 @@ let s:cdDiffRedLightLight = {'gui': '#FB0101', 'cterm': s:cterm08, 'cterm256': '
 let s:cdDiffGreenDark = {'gui': '#373D29', 'cterm': s:cterm0B, 'cterm256': '237'}
 let s:cdDiffGreenLight = {'gui': '#4B5632', 'cterm': s:cterm09, 'cterm256': '58'}
 
-let s:cdSearchCurrent = {'gui': '#4B5632', 'cterm': s:cterm09, 'cterm256': '58'} 
+let s:cdSearchCurrent = {'gui': '#4B5632', 'cterm': s:cterm09, 'cterm256': '58'}
 let s:cdSearch = {'gui': '#264F78', 'cterm': s:cterm03, 'cterm256': '24'}
 
 " Syntax colors:
@@ -150,3 +152,4 @@ call <sid>hi('EndOfBuffer', s:cdNone, s:cdNone, 'none', {})
 call <sid>hi('LineNr', s:cdNone, s:cdNone, 'none', {})
 call <sid>hi('SignColumn', s:cdNone, s:cdNone, 'none', {})
 call <sid>hi('Directory', s:cdBlue, s:cdNone, 'none', {})
+call <sid>hi('WhichKeyFloat', s:cdNone, s:cdNone, 'none', {})
