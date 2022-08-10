@@ -1,8 +1,13 @@
+local status_ok, dressing = require("quitlox.util").load_module("dressing")
+if not status_ok then
+	return
+end
+
 ----------------------------------------
 -- Language Support: User Interface
 ----------------------------------------
 
-require("dressing").setup({
+dressing.setup({
 	input = {
 		-- Default prompt string
 		default_prompt = "Input:",

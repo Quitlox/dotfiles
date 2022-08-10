@@ -1,4 +1,9 @@
-require("nvim-tree").setup({
+local status_ok, nvim_tree = require("quitlox.util").load_module("nvim-tree")
+if not status_ok then
+	return
+end
+
+nvim_tree.setup({
 	disable_netrw = true,
 	open_on_setup = true,
 	open_on_setup_file = true,
@@ -44,7 +49,10 @@ require("nvim-tree").setup({
 -- KEYBINDINGS: FIND
 ----------------------------------------
 
-local wk = require("which-key")
+local status_ok, wk = require("quitlox.util").load_module("which-key")
+if not status_ok then
+	return
+end
 
 wk.register({
 	["<leader>"] = {

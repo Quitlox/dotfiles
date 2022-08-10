@@ -1,11 +1,19 @@
-local c = require("vscode.colors")
+local status_ok, bufferline = require("quitlox.util").load_module("bufferline")
+if not status_ok then
+	return
+end
+local status_ok, c = require("quitlox.util").load_module("vscode.colors")
+if not status_ok then
+	return
+end
 
 ----------------------------------------
 -- SETTINGS: BUFFERLINE
 ----------------------------------------
 
 vim.opt.termguicolors = true
-require("bufferline").setup({
+
+bufferline.setup({
 	options = {
 		mode = "buffers",
 		themable = true,
@@ -88,7 +96,10 @@ require("bufferline").setup({
 -- KEYBINDINGS: BUFFER
 ----------------------------------------
 
-local wk = require("which-key")
+local status_ok, wk = require("quitlox.util").load_module("which-key")
+if not status_ok then
+	return
+end
 
 wk.register({
 	["<leader>"] = {

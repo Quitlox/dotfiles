@@ -1,8 +1,15 @@
 vim.o.background = "dark"
 
-local c = require("vscode.colors")
+local status_ok, c = require("quitlox.util").load_module("vscode.colors")
+if not status_ok then
+	return
+end
+local status_ok, vscode = require("quitlox.util").load_module("vscode")
+if not status_ok then
+	return
+end
 
-require("vscode").setup({
+vscode.setup({
 	transparent = false,
 	italic_comments = true,
 	disable_nvimtree_bg = false,

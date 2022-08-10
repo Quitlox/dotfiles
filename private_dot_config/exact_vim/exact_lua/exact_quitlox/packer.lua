@@ -67,7 +67,7 @@ require("packer").startup(function(use)
 	use("tpope/vim-repeat")
 
 	-- Commenting
-	use("tomtom/tcomment_vim")
+	use("terrortylor/nvim-comment")
 	-- Indent Object: Great for Python
 	use("michaeljsmith/vim-indent-object")
 	-- Improve default f,t,F,T (search across lines)
@@ -190,6 +190,9 @@ require("packer").startup(function(use)
 	-- Language Support
 	----------------------------------------
 
+	-- Lua REPL for easy development of config/plugins
+	use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
+
 	----------------------------------------
 	-- Language Support: LSP (Completion)
 	----------------------------------------
@@ -308,6 +311,7 @@ require("quitlox.plugins.bufferline")
 -- ORDER MATTERS
 require("quitlox.plugins.which_key")
 
+require("quitlox.plugins.comment")
 require("quitlox.plugins.completion")
 require("quitlox.plugins.nvim_tree")
 require("quitlox.plugins.indent_line")

@@ -91,8 +91,6 @@ set whichwrap+=<,>,h,l
 set noerrorbells
 set novisualbell
 " Misc
-set spell
-set spelllang = "en"
 set formatoptions+=1 " Don't break lines after a one-letter word
 set timeoutlen=800
 set history=1000      " Sets how many lines of history VIM has to remember
