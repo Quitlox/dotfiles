@@ -250,6 +250,12 @@ noremap <leader>oa :action GotoAction<cr>
 noremap <leader>om :action ShowBookmarks<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keybindings: Commentary
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+noremap <leader>cc :action CommentByLineComment<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Keybindings: Miscellaneous
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
