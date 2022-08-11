@@ -42,7 +42,15 @@ dressing.setup({
 		},
 
 		-- see :help dressing_get_config
-		get_config = nil,
+		get_config = function(opts)
+            -- We use the default input for renaming files, as its more convient for longer inputs
+            if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
+                -- https://github.com/stevearc/dressing.nvim/issues/29
+                return {enabled=false}
+            end
+
+			return opts
+		end,
 	},
 	select = {
 		-- Trim trailing `:` from prompt

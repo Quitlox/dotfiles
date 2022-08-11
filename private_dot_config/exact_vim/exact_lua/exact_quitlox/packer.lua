@@ -29,6 +29,9 @@ require("packer").startup(function(use)
 	-- Devicons
 	use({ "kyazdani42/nvim-web-devicons" })
 
+	-- Pretty Print: Nice for debugging
+	use_rocks("inspect")
+
 	----------------------------------------
 	-- Colorschemes
 	----------------------------------------
