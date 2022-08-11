@@ -17,6 +17,9 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Highlight lua in viml
 let g:vimsyn_embed = 'l'
 
+" Never insert comments when pressing o or O
+autocmd FileType * setlocal formatoptions-=o
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Options [Vim Compatibility]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
