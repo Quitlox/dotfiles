@@ -2,7 +2,10 @@
 -- Keybindings
 ----------------------------------------
 
-local wk = require("which-key")
+local status_ok, wk = require("quitlox.util").load_module("which-key")
+if not status_ok then
+	return
+end
 
 wk.register({
 	m = {

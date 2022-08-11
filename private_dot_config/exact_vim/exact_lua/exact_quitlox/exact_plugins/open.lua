@@ -1,10 +1,18 @@
+
+local status_ok, telescope = require("quitlox.util").load_module("telescope")
+if not status_ok then
+	return
+end
+local status_ok, actions = require("quitlox.util").load_module("telescope.actions")
+if not status_ok then
+	return
+end
+
 ----------------------------------------
 -- Setup
 ----------------------------------------
 
-local actions = require("telescope.actions")
-
-require("telescope").setup({
+telescope.setup({
 	defaults = {
 		path_display = { "smart", "truncate" },
 		mappings = {
@@ -36,14 +44,17 @@ require("telescope").setup({
 })
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("frecency")
+telescope.load_extension("fzf")
+telescope.load_extension("frecency")
 
 ----------------------------------------
 -- KEYBINDING: OPEN
 ----------------------------------------
 
-local wk = require("which-key")
+local status_ok, wk = require("quitlox.util").load_module("which-key")
+if not status_ok then
+	return
+end
 
 wk.register({
 	["<leader>"] = {
@@ -77,8 +88,6 @@ wk.register({
 ----------------------------------------
 -- KEYBINDINGS: FIND
 ----------------------------------------
-
-local wk = require("which-key")
 
 wk.register({
 	["<leader>"] = {

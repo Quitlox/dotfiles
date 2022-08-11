@@ -17,6 +17,9 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Highlight lua in viml
 let g:vimsyn_embed = 'l'
 
+" Never insert comments when pressing o or O
+autocmd FileType * setlocal formatoptions-=o
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Options [Vim Compatibility]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -91,8 +94,6 @@ set whichwrap+=<,>,h,l
 set noerrorbells
 set novisualbell
 " Misc
-set spell
-set spelllang = "en"
 set formatoptions+=1 " Don't break lines after a one-letter word
 set timeoutlen=800
 set history=1000      " Sets how many lines of history VIM has to remember

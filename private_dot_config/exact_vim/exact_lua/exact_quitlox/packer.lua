@@ -1,9 +1,3 @@
--- REPL: iron.nvim
-
--- TODO
--- telescope-bibtex
--- nvim-telescope/telescope-file-browser.nvim
-
 vim.o.termguicolors = true
 
 ----------------------------------------
@@ -28,6 +22,9 @@ require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
 	-- Devicons
 	use({ "kyazdani42/nvim-web-devicons" })
+
+	-- Pretty Print: Nice for debugging
+	use_rocks("inspect")
 
 	----------------------------------------
 	-- Colorschemes
@@ -67,11 +64,14 @@ require("packer").startup(function(use)
 	use("tpope/vim-repeat")
 
 	-- Commenting
-	use("tomtom/tcomment_vim")
+	use("terrortylor/nvim-comment")
 	-- Indent Object: Great for Python
 	use("michaeljsmith/vim-indent-object")
 	-- Improve default f,t,F,T (search across lines)
 	use("rhysd/clever-f.vim") -- VIM
+
+	-- Text Objects based on Treesitter
+	use("nvim-treesitter/nvim-treesitter-textobjects")
 
 	----------------------------------------
 	-- UI (User Interface)
@@ -190,6 +190,9 @@ require("packer").startup(function(use)
 	-- Language Support
 	----------------------------------------
 
+	-- Lua REPL for easy development of config/plugins
+	use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
+
 	----------------------------------------
 	-- Language Support: LSP (Completion)
 	----------------------------------------
@@ -249,7 +252,7 @@ require("packer").startup(function(use)
 	--	Custom UI for LSP Actions
 	-- use({ "RishabhRD/nvim-lsputils", requires = "RishabhRD/popfix" })
 	-- User Interface Plugin for LSP
-	use({ "kkharji/lspsaga.nvim" })
+	use({ "kkharji/lspsaga.nvim", branch = "main" })
 
 	-- Show progress of LSP Server
 	use("j-hui/fidget.nvim")
@@ -308,6 +311,7 @@ require("quitlox.plugins.bufferline")
 -- ORDER MATTERS
 require("quitlox.plugins.which_key")
 
+require("quitlox.plugins.comment")
 require("quitlox.plugins.completion")
 require("quitlox.plugins.nvim_tree")
 require("quitlox.plugins.indent_line")

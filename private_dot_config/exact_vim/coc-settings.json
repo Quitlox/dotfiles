@@ -6,16 +6,16 @@
   "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
   "python.formatting.autopep8Args": ["--max-line-length", "79"],
   "pydocstring.formatter": "google",
-  "suggest.disableMenu": true,
   "suggest.languageSourcePriority": 99,
   "suggest.removeDuplicateItems": true,
   "suggest.acceptSuggestionOnCommitCharacter": true,
   "suggest.fixInsertedWord": false,
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
   "suggest.floatConfig": {
     "winblend": 100,
-    "border": true,
-    "rounded": true,
-    "focusable": true
+    "border": false,
+    "rounded": false,
   },
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",

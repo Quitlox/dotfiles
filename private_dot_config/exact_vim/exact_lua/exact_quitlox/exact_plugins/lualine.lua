@@ -10,7 +10,7 @@ require("lualine").setup({
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = {
 			statusline = {},
-			winbar = {},
+			-- winbar = {},
 		},
 		ignore_focus = {},
 		always_divide_middle = true,
@@ -18,7 +18,7 @@ require("lualine").setup({
 		refresh = {
 			statusline = 1000,
 			tabline = 1000,
-			winbar = 1000,
+			-- winbar = 1000,
 		},
 	},
 	sections = {
@@ -38,23 +38,23 @@ require("lualine").setup({
 		lualine_z = {},
 	},
 
-	winbar = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = {},
-		lualine_y = {},
-		lualine_z = {},
-	},
+	-- winbar = {
+	-- 	lualine_a = {},
+	-- 	lualine_b = {},
+	-- 	lualine_c = { "filename" },
+	-- 	lualine_x = {},
+	-- 	lualine_y = {},
+	-- 	lualine_z = {},
+	-- },
 
-	inactive_winbar = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = {},
-		lualine_y = {},
-		lualine_z = {},
-	},
+	-- inactive_winbar = {
+	-- 	lualine_a = {},
+	-- 	lualine_b = {},
+	-- 	lualine_c = { "filename" },
+	-- 	lualine_x = {},
+	-- 	lualine_y = {},
+	-- 	lualine_z = {},
+	-- },
 
 	extensions = {},
 })
