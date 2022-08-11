@@ -1,3 +1,4 @@
 # Global .gitignore (configured in ~/.gitconfig)
 
 .lvimrc
+Session.vim
