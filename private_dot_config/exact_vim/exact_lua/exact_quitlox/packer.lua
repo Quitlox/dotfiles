@@ -85,12 +85,13 @@ require("packer").startup(function(use)
 	use({ "nvim-lualine/lualine.nvim" })
 	-- UI: Bufferline
 	use("akinsho/bufferline.nvim")
+	-- UI: Diagnostics
+	use({ "folke/trouble.nvim" })
 
 	-- Modes (TODO: think of better name)
 
 	-- UI: Zen Mode
 	use("folke/zen-mode.nvim")
-
 	-- UI: Twilight - Dim inactive portions of the code
 	--		TODO: Switch back to folke/ once
 	--		https://github.com/folke/twilight.nvim/issues/15
@@ -283,7 +284,7 @@ require("spellsitter").setup({ enable = true })
 -- Editor: Hints
 require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
 vim.o.termguicolors = true
-require("colorizer").setup({DEFAULT_OPTIONS= {RGB=false, rgb_fn=true,hsl_fn=true} })
+require("colorizer").setup({ DEFAULT_OPTIONS = { RGB = false, rgb_fn = true, hsl_fn = true } })
 require("range-highlight").setup({})
 require("gitsigns").setup()
 
@@ -314,5 +315,6 @@ require("quitlox.plugins.marks")
 require("quitlox.plugins.open")
 require("quitlox.plugins.terminal")
 require("quitlox.plugins.treesitter")
+require("quitlox.plugins.trouble")
 require("quitlox.plugins.ui")
 require("quitlox.plugins.zen")

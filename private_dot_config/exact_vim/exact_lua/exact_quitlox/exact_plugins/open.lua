@@ -1,4 +1,3 @@
-
 local status_ok, telescope = require("quitlox.util").load_module("telescope")
 if not status_ok then
 	return
@@ -62,12 +61,9 @@ wk.register({
 			name = "Open",
 			f = { "<cmd>Telescope frecency theme=dropdown<cr>", "Open File" },
 			b = { "<cmd>Telescope buffers<cr>", "Open Buffer" },
-			s = {
-				function(query)
-					require("telescope.builtin").lsp_dynamic_workspace_symbols({ ignore_symbols = { "variable" } })
-				end,
-				"Open Symbols",
-			},
+		},
+		f = {
+            name = "Find",
 			r = { "<cmd>Telescope lsp_references<cr>", "Open References" },
 			d = { "<cmd>Telescope diagnostics<cr>", "Open Diagnostics" },
 			i = { "<cmd>Telescope lsp_implementations<cr>", "Open Implementations" },
@@ -75,6 +71,12 @@ wk.register({
 			t = { "<cmd>Telescope tags<cr>", "Open type definitions" },
 			m = { "<cmd>Telescope man_pages theme=dropdown <cr>", "Open Manpage" },
 			h = { "<cmd>Telescope help_tags theme=dropdown<cr>", "Open Help" },
+			s = {
+				function(query)
+					require("telescope.builtin").lsp_dynamic_workspace_symbols({ ignore_symbols = { "variable" } })
+				end,
+				"Open Symbols",
+			},
 
 			g = {
 				name = "Git",
