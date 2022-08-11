@@ -1,9 +1,3 @@
--- REPL: iron.nvim
-
--- TODO
--- telescope-bibtex
--- nvim-telescope/telescope-file-browser.nvim
-
 vim.o.termguicolors = true
 
 ----------------------------------------
@@ -75,6 +69,9 @@ require("packer").startup(function(use)
 	use("michaeljsmith/vim-indent-object")
 	-- Improve default f,t,F,T (search across lines)
 	use("rhysd/clever-f.vim") -- VIM
+
+	-- Text Objects based on Treesitter
+	use("nvim-treesitter/nvim-treesitter-textobjects")
 
 	----------------------------------------
 	-- UI (User Interface)
@@ -255,7 +252,7 @@ require("packer").startup(function(use)
 	--	Custom UI for LSP Actions
 	-- use({ "RishabhRD/nvim-lsputils", requires = "RishabhRD/popfix" })
 	-- User Interface Plugin for LSP
-	use({ "kkharji/lspsaga.nvim" })
+	use({ "kkharji/lspsaga.nvim", branch = "main" })
 
 	-- Show progress of LSP Server
 	use("j-hui/fidget.nvim")

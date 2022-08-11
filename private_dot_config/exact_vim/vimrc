@@ -55,14 +55,13 @@ source ~/.config/vim/settings/terminals/kitty.vim
 
 " Load vim-specific configuration
 if !has('nvim')
+  " Need to be sourced first
   source ~/.config/vim/settings/plugins/vim/colorscheme.vim
   source ~/.config/vim/settings/plugins/vim/which_key.vim
 
-  source ~/.config/vim/settings/plugins/vim/completion.vim
-  source ~/.config/vim/settings/plugins/vim/explorer.vim
-  source ~/.config/vim/settings/plugins/vim/git.vim
-  source ~/.config/vim/settings/plugins/vim/open.vim
-  source ~/.config/vim/settings/plugins/vim/statusline.vim
+  for f in split(glob('~/.config/vim/settings/plugins/vim/[!colorscheme|which_key]*.vim'), '\n')
+      exe 'source' f
+  endfor
 endif
 
 " Load neovim-specific configutation

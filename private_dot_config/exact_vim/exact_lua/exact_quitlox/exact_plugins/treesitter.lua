@@ -1,5 +1,4 @@
 require("nvim-treesitter.configs").setup({
-	-- A list of parser names, or "all"
 	ensure_installed = {
 		-- Main Languages
 		"c",
@@ -35,13 +34,10 @@ require("nvim-treesitter.configs").setup({
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
-
 	-- Automatically install missing parsers when entering buffer
 	auto_install = true,
 
-	-- List of parsers to ignore installing (for "all")
-	ignore_install = { "javascript" },
-
+	----- Highlight -----
 	highlight = {
 		-- `false` will disable the whole extension
 		enable = true,
@@ -51,37 +47,64 @@ require("nvim-treesitter.configs").setup({
 		-- Instead of true it can also be a list of languages
 		additional_vim_regex_highlighting = false,
 	},
-	-- Rainbow Parantheses
-	-- courtesy of p00f/nvim-ts-rainbow
+
+	----- Rainbow -----
+	-- with: p00f/nvim-ts-rainbow
 	rainbow = {
 		enable = true,
-		-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-		max_file_lines = 10000, -- Do not enable for files with more than n lines, int
+		extended_mode = false,
+		max_file_lines = 20000,
+		-- disable = { "jsx", "cpp" }
 	},
+
+	----- Indenting -----
 	indent = {
 		enable = true,
+		-- See yati below
 		disable = { "python" },
 	},
-})
-
--- vim.opt.foldmethod     = 'expr'
--- vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
----WORKAROUND
--- vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
--- 	group = vim.api.nvim_create_augroup("TS_FOLD_WORKAROUND", {}),
--- 	callback = function()
--- 		vim.opt.foldmethod = "expr"
--- 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- 	end,
--- })
----ENDWORKAROUND
-
-----------------------------------------
--- Temp
-----------------------------------------
--- Temporary plugin for Python indentation since the default treesitter implementation sucks.
-
-require("nvim-treesitter.configs").setup({
+	-- Temporary plugin for Python indentation
+	-- since the default treesitter implementation sucks.
 	yati = { enable = true },
+
+	----- Text Objects -----
+	-- with: nvim-treesitter/nvim-treesitter-textobjects
+	textobjects = {
+		move = {
+			goto_next_start = {
+				["]f"] = "@function.outer",
+				["]]"] = "@class.outer",
+			},
+			goto_next_end = {
+				["]F"] = "@function.outer",
+				["]["] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[f"] = "@function.outer",
+				["[["] = "@class.outer",
+			},
+			goto_previous_end = {
+				["[F"] = "@function.outer",
+				["[]"] = "@class.outer",
+			},
+		},
+		select = {
+			enable = true,
+			lookahead = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+				["aa"] = "@parameter.outer",
+				["ia"] = "@parameter.inner",
+			},
+			-- You can choose the select mode (default is charwise 'v')
+			selection_modes = {
+				["@parameter.outer"] = "v", -- charwise
+				["@function.outer"] = "V", -- linewise
+				["@class.outer"] = "<c-v>", -- blockwise
+			},
+		},
+	},
 })
