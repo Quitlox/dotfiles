@@ -25,6 +25,11 @@
   "editor.comments.ignoreEmptyLines": true,
   "editor.wrappingIndent": "deepIndent",
   "editor.columnSelection": false,
+  
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingOvertype": "always",
+  "editor.autoClosingDelete": "always",
+  "editor.autoClosingQuotes": "always",
   // Editor Behaviour: Completion
   "editor.acceptSuggestionOnEnter": "on",
   "editor.suggestSelection": "first",
@@ -421,6 +426,8 @@
   "jupyter.disableJupyterAutoStart": true,
   "jupyter.enableAutoMoveToNextCell": false,
   "jupyter.sendSelectionToInteractiveWindow": true,
+  "jupyter.themeMatplotlibPlots": true,
+  "jupyter.newCellOnRunLast": true,
   "jupyter.experiments.enabled": false,
   "interactiveWindow.alwaysScrollOnNewCell": true,
 
