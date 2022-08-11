@@ -221,6 +221,12 @@ call dein#add('michaeljsmith/vim-indent-object')
 " Official Description: Extended f, F, t, and T key mappings for Vim.
 call dein#add('rhysd/clever-f.vim')
 
+" Plugin: vim match-up
+" Link: https://github.com/andymass/vim-matchup
+" Official Description: Even better % Navigate and highlight matching words
+" Modern matchit and matchparen
+call dein#add('andymass/vim-matchup')
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editor
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""

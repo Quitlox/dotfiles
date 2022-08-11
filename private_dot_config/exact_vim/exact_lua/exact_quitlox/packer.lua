@@ -73,7 +73,8 @@ require("packer").startup(function(use)
 	use("michaeljsmith/vim-indent-object")
 	-- Improve default f,t,F,T (search across lines)
 	use("rhysd/clever-f.vim") -- VIM
-
+	-- Matchup: Better %
+	use("andymass/vim-matchup")
 	-- Text Objects based on Treesitter
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 
@@ -81,8 +82,7 @@ require("packer").startup(function(use)
 	-- UI (User Interface)
 	----------------------------------------
 
-	-- Components
-
+	----- Components -----
 	-- UI: Explorer
 	use("kyazdani42/nvim-tree.lua")
 	-- UI: Statusline
@@ -92,8 +92,15 @@ require("packer").startup(function(use)
 	-- UI: Diagnostics
 	use({ "folke/trouble.nvim" })
 
-	-- Modes (TODO: think of better name)
+	----- Widgets -----
+	-- UI: Implements vim.ui.select and vim.ui.input
+	use("stevearc/dressing.nvim")
+	-- UI: Implements notifications
+	use("rcarriga/nvim-notify")
+	-- UI: Icon Picker
+	use({ "ziontee113/icon-picker.nvim", requires = { "stevearc/dressing.nvim" } })
 
+	----- Modes -----
 	-- UI: Zen Mode
 	use("folke/zen-mode.nvim")
 	-- UI: Twilight - Dim inactive portions of the code
@@ -101,15 +108,6 @@ require("packer").startup(function(use)
 	--		https://github.com/folke/twilight.nvim/issues/15
 	--		is sorted
 	use("benstockil/twilight.nvim")
-
-	-- Widgets
-
-	-- UI: Implements vim.ui.select and vim.ui.input
-	use("stevearc/dressing.nvim")
-	-- UI: Implements notifications
-	use("rcarriga/nvim-notify")
-	-- UI: Icon Picker
-	use({ "ziontee113/icon-picker.nvim", requires = { "stevearc/dressing.nvim" } })
 
 	----------------------------------------
 	-- IDE (Integrated Development Environment)
@@ -171,6 +169,8 @@ require("packer").startup(function(use)
 	use("RRethy/vim-illuminate") -- VIM
 	-- Git Gutter
 	use("lewis6991/gitsigns.nvim")
+	-- Display context on scroll
+	use("nvim-treesitter/nvim-treesitter-context")
 
 	----------------------------------------
 	-- Editor: Auto-Configuration
@@ -212,6 +212,8 @@ require("packer").startup(function(use)
 	-- Completion Snippet Engine
 	use("L3MON4D3/LuaSnip")
 	use("saadparwaiz1/cmp_luasnip")
+	-- Completion Sorter: underscore first (python)
+	use("lukas-reineke/cmp-under-comparator")
 
 	-- Completion Signature Help
 	use("ray-x/lsp_signature.nvim")
@@ -279,6 +281,9 @@ import("icon-picker", function(module)
 	module.setup({ disable_legacy_commands = true })
 end)
 -- Editor
+import("treesitter-context", function(context)
+	context.setup({ mode = "topline" })
+end)
 import("spellsitter", function(module)
 	module.setup({ enable = true })
 end)
@@ -322,9 +327,9 @@ require("quitlox.plugins.which_key")
 require("quitlox.plugins.comment")
 require("quitlox.plugins.completion")
 require("quitlox.plugins.nvim_tree")
-require("quitlox.plugins.indent_line")
 require("quitlox.plugins.lsp")
 require("quitlox.plugins.lualine")
+require("quitlox.plugins.luasnip")
 require("quitlox.plugins.marks")
 require("quitlox.plugins.find")
 require("quitlox.plugins.hop")

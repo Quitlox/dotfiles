@@ -25,8 +25,8 @@ import("lualine", function(lualine)
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff", "diagnostics", "gutentags#statusline" },
-			lualine_c = { "filename" },
-			lualine_x = { "encoding", "fileformat", "filetype" },
+			lualine_c = { "filename", "nvim-treesitter#statusline(90)" },
+			lualine_x = { "filetype" },
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
 		},

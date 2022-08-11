@@ -73,6 +73,7 @@ import("which-key", function(wk)
 			o = {
 				name = "Open",
 				f = { "<cmd>Telescope frecency theme=dropdown<cr>", "Open File" },
+				b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
 				s = {
 					function()
 						require("telescope.builtin").lsp_dynamic_workspace_symbols({ ignore_symbols = { "variable" } })

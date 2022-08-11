@@ -20,6 +20,16 @@ let g:vimsyn_embed = 'l'
 " Never insert comments when pressing o or O
 autocmd FileType * setlocal formatoptions-=o
 
+" Remove some default mappings
+map K <Nop>
+map [f <Nop>
+map ]f <Nop>
+
+if has('nvim')
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
+end
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Options [Vim Compatibility]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -72,6 +82,8 @@ set sidescrolloff=10 " Leave 10 characters around the cursor when moving horizon
 set ruler            " Always show current position
 set mat=2            " How many tenths of a second to blink when matching brackets
 set showmatch        " Show matching brackets when text indicator is over them
+set cursorline
+set culopt=number
 set concealcursor=c
 set conceallevel=2
 " Searching

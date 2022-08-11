@@ -13,9 +13,6 @@ end)
 
 -- Mappings.
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
--- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
--- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
 vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
 vim.keymap.set("n", "[e", function()
@@ -29,7 +26,9 @@ end, opts)
 -- Keybindings
 ----------------------------------------
 
-local function key_map(bufopts)
+local function key_map(bufnr)
+	local bufopts = { silent = true, noremap = true, buffer = bufnr }
+
 	import("which-key", function(wk)
 		wk.register({
 			["<leader>"] = {
@@ -109,8 +108,7 @@ local on_attach = function(client, bufnr)
 	require("illuminate").on_attach(client)
 
 	-- Default Mappings
-	local bufopts = { silent = true, noremap = true }
-	key_map(bufopts)
+	key_map(bufnr)
 
 	-- TODO: What this?
 	vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
@@ -125,24 +123,9 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 -- Null-LS (Code Actions)
 ----------------------------------------
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require("null-ls")
 
 null_ls.setup({
-	-- you can reuse a shared lspconfig on_attach callback here
-	-- on_attach = function(client, bufnr)
-	-- 	if client.supports_method("textDocument/formatting") then
-	-- 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-	-- 		vim.api.nvim_create_autocmd("BufWritePre", {
-	-- 			group = augroup,
-	-- 			buffer = bufnr,
-	-- 			callback = function()
-	-- 				-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-	-- 				vim.lsp.buf.formatting_sync()
-	-- 			end,
-	-- 		})
-	-- 	end
-	-- end,
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.shfmt,
@@ -168,7 +151,7 @@ null_ls.setup({
 
 -- Python
 require("lspconfig")["pyright"].setup({
-	-- capabilities = capabilities,
+	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
 		-- NOT SUPPORTED require("virtualtypes").on_attach(client, bufnr)

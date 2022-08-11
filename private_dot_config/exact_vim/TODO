@@ -6,7 +6,8 @@ Bugs:
     - Error when ctags not installed, should be a kind notification
 
 Features:
-    - Highlight background current file in Tree
+    - add <leader>bh mapping that closes all non-visible buffers
+    - make <leader>wo not close tree (depending on width?)
 
 Plugins:
     - mini.cursorword / vim-cursorword for highlighting the current word

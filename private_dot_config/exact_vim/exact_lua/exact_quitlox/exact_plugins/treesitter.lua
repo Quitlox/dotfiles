@@ -57,7 +57,7 @@ import("nvim-treesitter.configs", function(treesitter)
 		-- with: p00f/nvim-ts-rainbow
 		rainbow = {
 			enable = true,
-			extended_mode = false,
+			extended_mode = true,
 			max_file_lines = 20000,
 			-- disable = { "jsx", "cpp" }
 		},
@@ -76,21 +76,34 @@ import("nvim-treesitter.configs", function(treesitter)
 		-- with: nvim-treesitter/nvim-treesitter-textobjects
 		textobjects = {
 			move = {
+                enable=true,
 				goto_next_start = {
 					["]f"] = "@function.outer",
-					["]]"] = "@class.outer",
+					["]c"] = "@class.outer",
+					["]a"] = "@parameter.inner",
+					["]b"] = "@parameter.block",
+					["]l"] = "@parameter.loop",
 				},
 				goto_next_end = {
 					["]F"] = "@function.outer",
-					["]["] = "@class.outer",
+					["]C"] = "@class.outer",
+					["]A"] = "@parameter.outer",
+					["]B"] = "@parameter.block",
+					["]L"] = "@parameter.loop",
 				},
 				goto_previous_start = {
 					["[f"] = "@function.outer",
-					["[["] = "@class.outer",
+					["[c"] = "@class.outer",
+					["[a"] = "@parameter.inner",
+					["[b"] = "@parameter.block",
+					["[l"] = "@parameter.loop",
 				},
 				goto_previous_end = {
 					["[F"] = "@function.outer",
-					["[]"] = "@class.outer",
+					["[C"] = "@class.outer",
+					["[A"] = "@parameter.outer",
+					["[B"] = "@parameter.block",
+					["[L"] = "@parameter.loop",
 				},
 			},
 			select = {
