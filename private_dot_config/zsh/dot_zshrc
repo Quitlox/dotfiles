@@ -274,7 +274,7 @@ export ATUIN_NOBIND="true"
 function __bind_atuin_keys() {
   bindkey '^r' _atuin_search_widget
 }
-zinit ice atload'__bind_atuin_keys'
+zinit ice wait'0c' if'[[ -n "$commands[atuin]" ]]' atload'__bind_atuin_keys'
 zinit load ellie/atuin
 
 
