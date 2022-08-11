@@ -1,9 +1,12 @@
-
 Ctrl Backspace in Rename popup
 Frecency end of filename is cut of while searching
 
 Bugs:
 - Broken highlighting in Telescope Frecency
+- Open Git Status errors if not git repo
+- Error when ctags not installed, should be a kind notification
+-- Open Git Status errors if not git repo
+-- Error when ctags not installed, should be a kind notification
 
 Features:
 - Highlight background current file in Tree
@@ -11,9 +14,3 @@ Features:
 Plugins:
     - mini.cursorword / vim-cursorword for highlighting the current word
     - mini.indentscope: instead of indentline, includes text object for indent
-    - telescope-bibtex
-    - nvim-telescope/telescope-file-browser.nvim
-    - iron.nvim
-
-Maybe:
-    - miversen33/import.nvim: Alternative to my own quitlox.util.missing_plugins_notify

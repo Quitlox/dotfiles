@@ -208,7 +208,6 @@ require("packer").startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("dmitmel/cmp-cmdline-history")
-	use("f3fora/cmp-spell")
 	use("petertriho/cmp-git")
 	-- Completion Engine
 	use("hrsh7th/nvim-cmp")
@@ -285,12 +284,12 @@ require("nvim-web-devicons").setup({
 -- User Interface
 require("icon-picker").setup({ disable_legacy_commands = true })
 -- Editor
---require("spellsitter").setup({ enable = false })
+require("spellsitter").setup({ enable = true })
 --DIED^?
 -- Editor: Hints
 require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
 vim.o.termguicolors = true
-require("colorizer").setup()
+require("colorizer").setup({DEFAULT_OPTIONS= {RGB=false, rgb_fn=true,hsl_fn=true} })
 require("range-highlight").setup({})
 require("gitsigns").setup()
 

@@ -30,7 +30,7 @@ end, opts)
 local function key_map(bufopts)
 	wk.register({
 		["<leader>"] = { h = {
-			d = { "<cmd>Lspsaga preview_definition" },
+			d = { "<cmd>Lspsaga preview_definition<cr>" },
 		} },
 		g = {
 			name = "go",
