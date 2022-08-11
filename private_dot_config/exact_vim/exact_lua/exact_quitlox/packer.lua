@@ -23,6 +23,8 @@ require("packer").startup(function(use)
 	-- Devicons
 	use({ "kyazdani42/nvim-web-devicons" })
 
+	-- Import: Makes sure requires don't break the entire fucking config
+	use("miversen33/import.nvim")
 	-- Pretty Print: Nice for debugging
 	use_rocks("inspect")
 
@@ -43,8 +45,9 @@ require("packer").startup(function(use)
 
 	-- Marks
 	use("chentoast/marks.nvim")
-	-- Buffers: Commands to manage buffers
-	-- use"Asheq/close-buffers.vim"
+
+	-- Session
+	use("rmagatti/auto-session")
 
 	----------------------------------------
 	-- Vim: Commands
@@ -59,7 +62,8 @@ require("packer").startup(function(use)
 	-- Vim: Verbs, Motions
 	----------------------------------------
 
-	use("easymotion/vim-easymotion")
+	-- Hop is the Neo Easymotion :D
+	use({ "phaazon/hop.nvim", branch = "v2" })
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
 
@@ -146,6 +150,9 @@ require("packer").startup(function(use)
 	-- Editor: Actions
 	----------------------------------------
 
+	-- DoGe: Documentation Generator
+	use({ "kkoomen/vim-doge" })
+
 	----------------------------------------
 	-- Editor: Hints
 	----------------------------------------
@@ -171,21 +178,9 @@ require("packer").startup(function(use)
 
 	-- Automatically set the tabwidth
 	-- use("tpope/vim-sleuth")
-	-- Intelligently reopn files at your last edit position in vim
-	use("farmergreg/vim-lastplace")
 
 	-- Automatically set 'commentstring' in files with nested languages
-	use({
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				context_commentstring = {
-					enable = true,
-				},
-			})
-		end,
-		requires = "nvim-treesitter/nvim-treesitter",
-	})
+	use({ "JoosepAlviste/nvim-ts-context-commentstring", requires = "nvim-treesitter/nvim-treesitter" })
 
 	----------------------------------------
 	-- Language Support
@@ -230,8 +225,6 @@ require("packer").startup(function(use)
 
 	-- Treesitter (syntx highlighting, static analysis)
 	use({ "nvim-treesitter/nvim-treesitter" })
-	-- DoGe: Documentation Generator
-	use({ "kkoomen/vim-doge" })
 	-- Treesitter based indentation
 	-- TODO: This should be superceded by standard treesitter, but currently indentation in Python is too shit and needs a different solution
 	use({ "yioneko/nvim-yati", ft = { "python" } })
@@ -252,6 +245,8 @@ require("packer").startup(function(use)
 	use("j-hui/fidget.nvim")
 	-- Display Virtual Types after functions
 	use("jubnzv/virtual-types.nvim")
+	-- Display LSP lines below code instead of next
+	use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 
 	----------------------------------------
 	-- Language Support: Environment
@@ -271,28 +266,48 @@ end)
 -- Basic Plugin Configuration
 ----------------------------------------
 
+require("import")
+
 -- Dependencies
-require("nvim-treesitter.install").update({ with_sync = true })
-require("nvim-web-devicons").setup({
-	default = true,
-})
+import("nvim-web-devicons", function(devicons)
+	devicons.setup({
+		default = true,
+	})
+end)
 -- User Interface
-require("icon-picker").setup({ disable_legacy_commands = true })
+import("icon-picker", function(module)
+	module.setup({ disable_legacy_commands = true })
+end)
 -- Editor
-require("spellsitter").setup({ enable = true })
---DIED^?
+import("spellsitter", function(module)
+	module.setup({ enable = true })
+end)
 -- Editor: Hints
-require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
+import("nvim-lightbulb", function(module)
+	module.setup({ autocmd = { enabled = true } })
+end)
 vim.o.termguicolors = true
-require("colorizer").setup({ DEFAULT_OPTIONS = { RGB = false, rgb_fn = true, hsl_fn = true } })
-require("range-highlight").setup({})
-require("gitsigns").setup()
+import("colorizer", function(module)
+	module.setup({ { RGB = false, rgb_fn = true, hsl_fn = true } })
+end)
+import("range-highlight", function(module)
+	module.setup()
+end)
+import("gitsigns", function(module)
+	module.setup()
+end)
 
 -- Language Support: LSP (Completion)
-require("lsp_signature").setup({})
-require("nvim-autopairs").setup({})
+import("nvim-autopairs", function(module)
+	module.setup()
+end)
 -- Language Support: User Interface
-require("fidget").setup({ window = { windblend = 100 } })
+import("lsp_lines", function(module)
+	module.setup()
+end)
+import("fidget", function(module)
+	module.setup({ window = { windblend = 100 } })
+end)
 
 ----------------------------------------
 -- Advanced Plugin Configuration
@@ -301,7 +316,6 @@ require("fidget").setup({ window = { windblend = 100 } })
 -- ORDER MATTERS
 require("quitlox.plugins.colorscheme")
 require("quitlox.plugins.bufferline")
-
 -- ORDER MATTERS
 require("quitlox.plugins.which_key")
 
@@ -312,7 +326,9 @@ require("quitlox.plugins.indent_line")
 require("quitlox.plugins.lsp")
 require("quitlox.plugins.lualine")
 require("quitlox.plugins.marks")
-require("quitlox.plugins.open")
+require("quitlox.plugins.find")
+require("quitlox.plugins.hop")
+require("quitlox.plugins.session")
 require("quitlox.plugins.terminal")
 require("quitlox.plugins.treesitter")
 require("quitlox.plugins.trouble")

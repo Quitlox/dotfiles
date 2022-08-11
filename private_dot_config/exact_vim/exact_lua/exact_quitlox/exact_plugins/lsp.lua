@@ -1,9 +1,11 @@
-require("mason").setup()
-require("mason-lspconfig").setup({
-	automatic_installation = true,
-})
-
-local wk = require("which-key")
+import("mason", function(mason)
+	mason.setup()
+end)
+import("mason-lspconfig", function(module)
+	module.setup({
+		automatic_installation = true,
+	})
+end)
 
 ----------------------------------------
 -- General Configuration
@@ -28,24 +30,29 @@ end, opts)
 ----------------------------------------
 
 local function key_map(bufopts)
-	wk.register({
-		["<leader>"] = { h = {
-			d = { "<cmd>Lspsaga preview_definition<cr>" },
-		} },
-		g = {
-			name = "go",
-			D = { vim.lsp.buf.declaration, "declaration" },
-			d = { vim.lsp.buf.definition, "definition" },
-			i = { vim.lsp.buf.implementation, "implementation" },
-			s = { vim.lsp.buf.signature_help, "signature" },
-			t = { vim.lsp.buf.type_definition, "type definition" },
-			r = { "<cmd>Lspsaga lsp_finder<cr>", "references" },
-			e = { "<cmd>Lspsaga show_line_diagnostics<cr>" },
-			h = { "<cmd>Lspsaga hover_doc<cr>" },
-			f = { vim.lsp.buf.formatting, "format" },
-			a = { "<cmd>Lspsaga code_action<cr>", "action" },
-		},
-	}, bufopts)
+	import("which-key", function(wk)
+		wk.register({
+			["<leader>"] = {
+				h = {
+					name = "Hover",
+					d = { "<cmd>Lspsaga preview_definition<cr>", "Definition" },
+					e = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Error" },
+				},
+			},
+			g = {
+				name = "go",
+				D = { vim.lsp.buf.declaration, "Declaration" },
+				d = { vim.lsp.buf.definition, "Definition" },
+				i = { vim.lsp.buf.implementation, "Implementation" },
+				s = { vim.lsp.buf.signature_help, "Signature" },
+				t = { vim.lsp.buf.type_definition, "type Definition" },
+				r = { "<cmd>Lspsaga lsp_finder<cr>", "References" },
+				h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
+				f = { vim.lsp.buf.formatting, "Format" },
+				a = { "<cmd>Lspsaga code_action<cr>", "Action" },
+			},
+		}, bufopts)
+	end)
 
 	vim.keymap.set("x", "ga", ":<c-u>Lspsaga range_code_action<cr>", bufopts)
 	vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
@@ -58,31 +65,32 @@ end
 -- LSP User Interface
 ----------------------------------------
 
-local lspsaga = require("lspsaga")
-lspsaga.setup({
-	max_preview_lines = 20,
-	finder_action_keys = {
-		open = "<cr>",
-		vsplit = "b",
-		split = "v",
-		quit = "<esc>",
-		scroll_down = "<C-d>",
-		scroll_up = "<C-u>",
-	},
-	code_action_keys = {
-		quit = "<esc>",
-		exec = "<CR>",
-	},
-	rename_action_keys = {
-		quit = "<esc>",
-		exec = "<CR>",
-	},
-	rename_prompt_prefix = "➤",
-	rename_output_qflist = {
-		enable = false,
-		auto_open_qflist = false,
-	},
-})
+import("lspsaga", function(lspsaga)
+	lspsaga.setup({
+		max_preview_lines = 20,
+		finder_action_keys = {
+			open = "<cr>",
+			vsplit = "b",
+			split = "v",
+			quit = "<esc>",
+			scroll_down = "<C-d>",
+			scroll_up = "<C-u>",
+		},
+		code_action_keys = {
+			quit = "<esc>",
+			exec = "<CR>",
+		},
+		rename_action_keys = {
+			quit = "<esc>",
+			exec = "<CR>",
+		},
+		rename_prompt_prefix = "➤",
+		rename_output_qflist = {
+			enable = false,
+			auto_open_qflist = false,
+		},
+	})
+end)
 
 ----------------------------------------
 -- General Server Settings (e.g. Keybindings)

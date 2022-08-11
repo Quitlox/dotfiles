@@ -18,7 +18,7 @@
 " Leader
 nnoremap <Space> <Nop>
 let g:mapleader = " "
-let g:maplocalleader = ","
+let g:maplocalleader = "\\"
 
 " Ctrl+Backspace deletes word
 noremap! <C-BS> <C-w>

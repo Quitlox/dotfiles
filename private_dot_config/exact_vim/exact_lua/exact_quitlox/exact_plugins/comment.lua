@@ -1,8 +1,9 @@
-local status_ok, comment = require("quitlox.util").load_module("nvim_comment")
-if not status_ok then
-	return
-end
+----------------------------------------
+-- Comment: Setup
+----------------------------------------
 
-comment.setup({
-	comment_empty = false,
-})
+import("nvim_comment", function(comment)
+	comment.setup({
+		comment_empty = false,
+	})
+end)

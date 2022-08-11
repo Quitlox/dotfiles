@@ -1,28 +1,35 @@
-vim.o.background = "dark"
-
 local status_ok, c = require("quitlox.util").load_module("vscode.colors")
 if not status_ok then
 	return
 end
-local status_ok, vscode = require("quitlox.util").load_module("vscode")
-if not status_ok then
-	return
-end
 
-vscode.setup({
-	transparent = false,
-	italic_comments = true,
-	disable_nvimtree_bg = false,
+----------------------------------------
+-- Colorscheme: Vim Options
+----------------------------------------
 
-	-- group_overrides = {
-	-- 	-- WhichKeyFloat = { bg = c.vscNone, fg = c.vscNone },
-	-- 	-- NormalFloat = { bg = c.vscNone, fg = c.vscNone },
-	--
-	-- 	-- Normal = { bg = c.vscNone, fg = c.vscNone },
-	-- 	-- BufferLineSeparator = { bg = c.vscNone, fg = c.vscNone },
-	-- 	-- BufferLineBackground = { bg = c.vscNone, fg = c.vscNone },
-	-- },
-})
+-- Vim Options
+vim.o.background = "dark"
+
+----------------------------------------
+-- Colorscheme: Setup
+----------------------------------------
+
+import("vscode", function(vscode)
+	vscode.setup({
+		transparent = false,
+		italic_comments = true,
+		disable_nvimtree_bg = false,
+
+		-- group_overrides = {
+		-- 	-- WhichKeyFloat = { bg = c.vscNone, fg = c.vscNone },
+		-- 	-- NormalFloat = { bg = c.vscNone, fg = c.vscNone },
+		--
+		-- 	-- Normal = { bg = c.vscNone, fg = c.vscNone },
+		-- 	-- BufferLineSeparator = { bg = c.vscNone, fg = c.vscNone },
+		-- 	-- BufferLineBackground = { bg = c.vscNone, fg = c.vscNone },
+		-- },
+	})
+end)
 
 -- require("transparent").setup({
 -- 	enable = false,

@@ -42,7 +42,7 @@ set wildmenu
 set magic
 " What to save for views and sessions:
 set viewoptions=folds,cursor,curdir,slash,unix
-set sessionoptions=buffers,folds,curdir,help,tabpages,winsize,globals
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,globals
 " globals -> used by BufferLine to store the order of buffers
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""

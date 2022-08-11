@@ -1,32 +1,25 @@
-local status_ok, zen_mode = require("quitlox.util").load_module("zen-mode")
-if not status_ok then
-	return
-end
-local status_ok, twilight = require("quitlox.util").load_module("twilight")
-if not status_ok then
-	return
-end
-local status_ok, wk = require("quitlox.util").load_module("which-key")
-if not status_ok then
-	return
-end
+import("zen-mode", function(zen_mode)
+	zen_mode.setup({
+		kitty = {
+			enabled = true,
+			font = "+2",
+		},
+	})
+end)
 
-zen_mode.setup({
-	kitty = {
-		enabled = true,
-		font = "+2",
-	},
-})
+import("twilight", function(twilight)
+	twilight.setup({
+		dimming = {
+			alpha = 0.5,
+		},
+		exclude = {},
+	})
+end)
 
-twilight.setup({
-	dimming = {
-		alpha = 0.5,
-	},
-	exclude = {},
-})
+import("which-key", function(wk)
+	wk.register({
+		name = "Toggle",
 
-wk.register({
-	name = "Toggle",
-
-	z = { "<cmd>ZenMode<cr>", "Toggle Zenmode" },
-}, { prefix = "<leader>T" })
+		z = { "<cmd>ZenMode<cr>", "Toggle Zenmode" },
+	}, { prefix = "<leader>T" })
+end)

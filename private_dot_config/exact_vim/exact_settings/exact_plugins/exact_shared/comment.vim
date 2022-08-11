@@ -38,6 +38,7 @@ wk.register({
         ["<"] = { name = "Explicit Uncomment", c = "Uncomment current line", b = "Uncomment current block" },
         [">"] = { name = "Explicit Comment", c = "Comment current line", b = "Comment current block" },
         c = "Toggle comment",
+
     },
 }, { noremap = true })
 EOF
