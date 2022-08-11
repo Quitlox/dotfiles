@@ -230,13 +230,7 @@ require("packer").startup(function(use)
 	-- Treesitter (syntx highlighting, static analysis)
 	use({ "nvim-treesitter/nvim-treesitter" })
 	-- DoGe: Documentation Generator
-	use({
-		"kkoomen/vim-doge",
-		config = function()
-			vim.g.doge_doc_standard_python = "google"
-			vim.cmd([[call doge#install()]])
-		end,
-	})
+	use({ "kkoomen/vim-doge" })
 	-- Treesitter based indentation
 	-- TODO: This should be superceded by standard treesitter, but currently indentation in Python is too shit and needs a different solution
 	use({ "yioneko/nvim-yati", ft = { "python" } })
