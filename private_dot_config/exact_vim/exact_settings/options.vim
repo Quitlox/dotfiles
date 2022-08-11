@@ -56,7 +56,9 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 " Buffer
-set switchbuf=uselast
+if has('nvim')
+    set switchbuf=uselast
+endif
 set hidden           " Allow changed buffers to be hidden
 " Wrapping
 set autoindent 		" Auto indent
