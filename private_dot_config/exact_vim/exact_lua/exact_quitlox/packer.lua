@@ -114,7 +114,7 @@ require("packer").startup(function(use)
 	----------------------------------------
 
 	-- IDE: Tags
-	use("ludovicchabant/vim-gutentags")
+	--use("ludovicchabant/vim-gutentags")
 	-- IDE: Better Session management
 	use("tpope/vim-obsession")
 	-- IDE: WhichKey
@@ -124,6 +124,7 @@ require("packer").startup(function(use)
 	use({
 		"nvim-telescope/telescope-frecency.nvim",
 		requires = { "tami5/sqlite.lua", "nvim-telescope/telescope.nvim" },
+		commit = "68ac8cfe6754bb656b4f84d6c3dafa421b6f9697",
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", requires = { "nvim-telescope/telescope.nvim" } })
 

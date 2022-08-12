@@ -44,7 +44,9 @@ cmp.setup({
 	snippet = {
 		-- Set the Snippet Engine
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			import("luasnip", function(ls)
+				ls.lsp_expand(args.body)
+			end)
 		end,
 	},
 	-- Enable border around completion
