@@ -1,4 +1,7 @@
 {
+  // Tab Completion: Microsoft pl0x wtf
+  // https://github.com/microsoft/vscode/issues/70532
+
   "update.mode": "manual",
   // Editor: User Interface
   "editor.cursorStyle": "line",
@@ -25,13 +28,13 @@
   "editor.comments.ignoreEmptyLines": true,
   "editor.wrappingIndent": "deepIndent",
   "editor.columnSelection": false,
-  
+
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingOvertype": "always",
   "editor.autoClosingDelete": "always",
   "editor.autoClosingQuotes": "always",
   // Editor Behaviour: Completion
-  "editor.acceptSuggestionOnEnter": "on",
+  "editor.acceptSuggestionOnEnter": "smart",
   "editor.suggestSelection": "first",
   "emmet.showAbbreviationSuggestions": false,
   // Editor Behaviour: Miscelleneous
@@ -333,7 +336,7 @@
     {
       "before": ["<leader>", "j"],
       "after": ["J"]
-    },
+    }
   ],
 
   // Vim: Visual Mode
@@ -371,7 +374,6 @@
 
   // Extensions: Formatters & Linters
   "prettier.jsxBracketSameLine": true,
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 
   "[typescriptreact]": {
     "editor.tabSize": 2,
@@ -417,9 +419,8 @@
   // Language: Python
   "python.diagnostics.sourceMapsEnabled": true,
   "python.languageServer": "Pylance",
-  "python.analysis.completeFunctionParens": true,
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.defaultFormatter": "ms-python.python"
   },
 
   "jupyter.interactiveWindowMode": "perFile",
@@ -441,6 +442,16 @@
   },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+
+  // Extension: Path Autocomplete
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "path-intellisense.autoTriggerNextSuggestion": true,
+  "path-intellisense.mappings": {
+    "./": "${workspaceFolder}",
+    "/": "/",
+    "~": "/home/quitlox"
   },
 
   // Extension: Material Theme
@@ -473,5 +484,9 @@
   "gitlens.views.commits.showBranchComparison": false,
   "gitlens.views.commits.pullRequests.showForBranches": false,
   "gitlens.views.commits.pullRequests.enabled": false,
-  "ilspy.defaultOutputLanguage": "C#"
+  "ilspy.defaultOutputLanguage": "C#",
+  "editor.suggest.preview": true,
+  "editor.tabCompletion": "on",
+  "editor.experimental.stickyScroll.enabled": true,
+  "extensions.ignoreRecommendations": true
 }

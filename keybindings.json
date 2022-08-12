@@ -32,16 +32,16 @@
     "when": "terminal.active && terminalFocus"
   },
   // Completion
-  {
-    "key": "tab",
-    "command": "selectNextSuggestion",
-    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
-  },
-  {
-    "key": "shift+tab",
-    "command": "selectPrevSuggestion",
-    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
-  },
+ // {
+  //   "key": "tab",
+  //   "command": "selectNextSuggestion",
+  //   "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  // },
+  // {
+  //   "key": "shift+tab",
+  //   "command": "selectPrevSuggestion",
+  //   "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  // },
   // Window Placement
   {
     "key": "ctrl+w down",
