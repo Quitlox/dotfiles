@@ -43,7 +43,12 @@ local function key_map(bufnr)
 				D = { vim.lsp.buf.declaration, "Declaration" },
 				d = { vim.lsp.buf.definition, "Definition" },
 				i = { vim.lsp.buf.implementation, "Implementation" },
-				s = { vim.lsp.buf.signature_help, "Signature" },
+				s = {
+					function()
+						require("telescope.builtin").lsp_dynamic_workspace_symbols({ ignore_symbols = { "variable" } })
+					end,
+					"Signature",
+				},
 				t = { vim.lsp.buf.type_definition, "type Definition" },
 				r = { "<cmd>Lspsaga lsp_finder<cr>", "References" },
 				h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
@@ -55,6 +60,7 @@ local function key_map(bufnr)
 
 	vim.keymap.set("x", "ga", ":<c-u>Lspsaga range_code_action<cr>", bufopts)
 	vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
+	vim.keymap.set("i", "<C-p>", vim.lsp.buf.signature_help)
 
 	vim.keymap.set("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", bufopts)
 	vim.keymap.set("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", bufopts)
