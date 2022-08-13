@@ -63,8 +63,6 @@ vim.cmd([[hi SpellBad guifg=None gui=undercurl guisp=]] .. c.vscContextCurrent)
 -- Highlighting Yank is now built into Neovim!
 
 vim.cmd([[
-    augroup highlight_yank
-        autocmd!
-        autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
-    augroup END
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
 ]])
+

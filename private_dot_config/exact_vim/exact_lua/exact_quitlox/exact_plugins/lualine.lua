@@ -1,14 +1,39 @@
 ----------------------------------------
--- Statusline: Bufferline
+-- Statusline: Custom VSCode Colorscheme
+----------------------------------------
+local vscode = require('lualine.themes.vscode')
+vscode.normal.a.fg = 'white'
+vscode.normal.b.fg = 'white'
+vscode.normal.c.fg = 'white'
+
+----------------------------------------
+-- Statusline: Custom Modules
+----------------------------------------
+
+-- Override 'encoding': Don't display if encoding is UTF-8.
+local encoding = function()
+  local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
+  return ret
+end
+-- fileformat: Don't display if &ff is unix.
+local fileformat = function()
+  local ret, _ = vim.bo.fileformat:gsub("^unix$", "")
+  return ret
+end
+
+----------------------------------------
+-- Statusline: Setup
 ----------------------------------------
 
 import("lualine", function(lualine)
 	lualine.setup({
 		options = {
+			theme = vscode,
 			icons_enabled = true,
-			theme = "vscode",
-			component_separators = { left = "", right = "" },
-			section_separators = { left = "", right = "" },
+
+			component_separators = "|",
+			section_separators = { left = "", right = "" },
+
 			disabled_filetypes = {
 				statusline = {},
 				-- winbar = {},
@@ -23,11 +48,25 @@ import("lualine", function(lualine)
 			},
 		},
 		sections = {
-			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff", "diagnostics", "gutentags#statusline" },
+			lualine_a = {
+				{
+					"mode",
+					separator = { left = ""},
+                    padding = {right = 1},
+					fmt = function(str)
+						return str:sub(1, 1)
+					end,
+				},
+			},
+			lualine_b = {
+				{ "branch", icon = { "", color = { fg = "white" } } },
+				"diff",
+				"diagnostics",
+				"gutentags#statusline",
+			},
 			lualine_c = { "filename", "nvim-treesitter#statusline(90)" },
-			lualine_x = { "filetype" },
-			lualine_y = { "progress" },
+			lualine_x = { encoding, fileformat, "filetype" },
+			lualine_y = { },
 			lualine_z = { "location" },
 		},
 		inactive_sections = {
