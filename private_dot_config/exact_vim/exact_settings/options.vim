@@ -18,17 +18,60 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 let g:vimsyn_embed = 'l'
 
 " Never insert comments when pressing o or O
+" The standard ftplugin usually overwrite this,
+" so it has to be an autocmd.
 autocmd FileType * setlocal formatoptions-=o
 
-" Remove some default mappings
+" Remove some default mappings that conflict
 map K <Nop>
 map [f <Nop>
 map ]f <Nop>
 
+" Enable fold using treesitter
 if has('nvim')
     set foldmethod=expr
     set foldexpr=nvim_treesitter#foldexpr()
 end
+
+" Automatically resize Windows when resizing the terminal
+autocmd VimResized * wincmd =
+
+" Delete all non-visible buffers
+func BufOnly()
+    " Gather all listed buffers
+    let buflist = []
+    for i in range(tabpagenr('$'))
+        call extend(buflist, tabpagebuflist(i + 1))
+    endfor
+
+    " Close all unmodified listed buffers
+    let count = 0
+    let l:blist = getbufinfo()
+    for l:item in l:blist
+        if index(buflist, l:item.bufnr) == -1 && l:item.listed && !l:item.changed
+            let count = count + 1
+            exe 'bd ' . l:item.bufnr
+        endif
+    endfor
+
+    if count > 0
+        echo 'Deleted ' . count . ' buffers!'
+    endif
+endfunc
+:command BufOnly :call BufOnly()
+
+" Delete all junk buffers
+func BufJunk()
+    " All existing buffers
+    let l:blist = getbufinfo()
+    for l:item in l:blist
+        if l:item.linecount == 1 
+            echo 'Deleting ' . l:item.bufnr
+            exe 'bwipeout ' . l:item.bufnr
+        endif
+    endfor
+endfunc
+:command BufJunk :call BufJunk()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Options [Vim Compatibility]

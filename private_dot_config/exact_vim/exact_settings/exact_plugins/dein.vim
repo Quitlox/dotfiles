@@ -66,6 +66,11 @@ call dein#add('haya14busa/dein-command.vim')
 " => User Interface
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Plugin: vim-maximizer
+" Link: https://github.com/szw/vim-maximizer
+" Official Description: Maximizes and restores the current window in Vim.
+call dein#add('szw/vim-maximizer')
+
 """""""""""""""""""""""""""""
 " => User Interface: WhichKey
 """""""""""""""""""""""""""""
@@ -166,10 +171,6 @@ call dein#add('ctrlpvim/ctrlp.vim')
 """""""""""""""""""""""""""""
 " => Vim: Commands
 """""""""""""""""""""""""""""
-
-" Plugin: BufOnly
-" Link: https://github.com/vim-scripts/BufOnly.vim
-call dein#add('vim-scripts/BufOnly.vim/')
 
 " Plugin: Bbye (Buffer Bye) for Vim
 " Link: https://github.com/moll/vim-bbye

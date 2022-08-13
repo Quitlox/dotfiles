@@ -38,12 +38,13 @@ noremap gj j
 noremap k gk
 noremap gk k
 
-noremap 0 g0
-noremap g0 0
-noremap $ g$
-noremap g$ $
+" noremap 0 g0
+" noremap g0 0
+" noremap $ g$
+" noremap g$ $
 
 " Yank from cursor position to end-of-line
+" This is default in Neovi
 nnoremap Y y$
 " Make paste reselect yank
 xnoremap p pgvy

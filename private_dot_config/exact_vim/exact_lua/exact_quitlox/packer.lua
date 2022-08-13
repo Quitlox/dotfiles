@@ -55,8 +55,6 @@ require("packer").startup(function(use)
 
 	-- Proper Buffer Delete command, which does not mess with your window layout
 	use("moll/vim-bbye")
-	-- Command to close all other buffers
-	use("vim-scripts/BufOnly.vim")
 
 	----------------------------------------
 	-- Vim: Verbs, Motions
@@ -108,6 +106,8 @@ require("packer").startup(function(use)
 	--		https://github.com/folke/twilight.nvim/issues/15
 	--		is sorted
 	use("benstockil/twilight.nvim")
+	-- UI: Fullscreen mode, maximizes a single window
+	use("szw/vim-maximizer")
 
 	----------------------------------------
 	-- IDE (Integrated Development Environment)
@@ -189,6 +189,8 @@ require("packer").startup(function(use)
 
 	-- Lua REPL for easy development of config/plugins
 	use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
+	-- LuaDev for Neovim config/plugin support
+	use("folke/lua-dev.nvim")
 
 	----------------------------------------
 	-- Language Support: LSP (Completion)

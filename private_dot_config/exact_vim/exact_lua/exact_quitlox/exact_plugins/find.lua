@@ -33,8 +33,9 @@ import("telescope", function(telescope)
 				theme = "dropdown",
 				db_safe_mode = false,
 				default_workspace = "CWD",
-				show_unindexed = false,
-				-- show_scores=true,
+				show_unindexed = true,
+				show_filter_column = false,
+				show_scores=true,
 			},
 		},
 	})

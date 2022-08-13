@@ -1,21 +1,7 @@
 
 Bugs:
-    - Frecency end of filename is cut of while searching
-    - Broken highlighting in Telescope Frecency
     - Open Git Status errors if not git repo
     - Error when ctags not installed, should be a kind notification
 
-SHOUD:
-    - Make Hop work in Visual Mode
-    - What about CWD?
 COULD:
-    - Auto Resize Windows on terminal resize
     - More intuitive keys for resizing windows
-
-Features:
-    - add <leader>bh mapping that closes all non-visible buffers
-    - make <leader>wo not close tree (depending on width?)
-
-Plugins:
-    - mini.cursorword / vim-cursorword for highlighting the current word
-    - mini.indentscope: instead of indentline, includes text object for indent

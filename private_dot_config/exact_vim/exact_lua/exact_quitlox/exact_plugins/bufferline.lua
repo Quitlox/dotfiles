@@ -82,13 +82,13 @@ import("bufferline", function(bufferline)
 		-- Until https://github.com/akinsho/bufferline.nvim/issues/382 is resolved
 		highlights = {
 			separator = {
-				guifg = "#252526",
+				fg = "#252526",
 			},
 			separator_selected = {
-				guifg = "#252526",
+				fg = "#252526",
 			},
 			separator_visible = {
-				guifg = "#252526",
+				fg = "#252526",
 			},
 		},
 	})

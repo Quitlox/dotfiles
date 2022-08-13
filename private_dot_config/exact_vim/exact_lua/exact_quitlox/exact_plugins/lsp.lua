@@ -180,30 +180,56 @@ require("lspconfig")["vimls"].setup({
 -- Config: Lua
 ----------------------------------------
 
-require("lspconfig").sumneko_lua.setup({
-	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
-	end,
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim" },
-			},
-			workspace = {
-				checkThirdParty = false,
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-})
+local lua_lsp_config = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim" },
+            },
+            workspace = {
+                checkThirdParty = false,
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}
+
+local function configure_lua_server()
+	-- Enable the Neovim Devkit if in vim config folder
+	-- if vim.fn.getcwd() == '/home/quitlox/.config/vim' then
+	-- 	import("notify", function(notify)
+	-- 		notify(
+	-- 			"Neovim detected that you entered your configuration directory, so I have kindly enabled the LuaDev plugin :)",
+	-- 			"info",
+	-- 			{ timeout = 500, title = "LuaDev kit enabled!" }
+	-- 		)
+	-- 	end)
+
+	-- 	import("lua-dev", function(luadev)
+	-- 		luadev.setup({
+	-- 			lspconfig = lua_lsp_config,
+	-- 		})
+	-- 		import("lspconfig", function(lspconfig)
+	-- 			lspconfig.sumneko_lua.setup(luadev)
+	-- 		end)
+	-- 	end)
+	-- else
+		import("lspconfig", function(lspconfig)
+            lspconfig.sumneko_lua.setup(lua_lsp_config)
+		end)
+	-- end
+end
+
+configure_lua_server()
