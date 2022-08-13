@@ -64,9 +64,9 @@ import("lualine", function(lualine)
 				"diagnostics",
 				"gutentags#statusline",
 			},
-			lualine_c = { "filename", "nvim-treesitter#statusline(90)" },
+			lualine_c = { "filename", "nvim-treesitter#statusline" },
 			lualine_x = { encoding, fileformat, "filetype" },
-			lualine_y = { },
+			lualine_y = {},
 			lualine_z = { "location" },
 		},
 		inactive_sections = {

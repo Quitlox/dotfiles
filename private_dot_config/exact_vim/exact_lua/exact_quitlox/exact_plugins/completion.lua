@@ -128,9 +128,9 @@ cmp.setup.cmdline("/", {
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
+		{ name = "cmdline_history", max_item_count = 15 },
 		{ name = "path", max_item_count = 15 },
 	}, {
-		{ name = "cmdline", max_item_count = 15 },
-		{ name = "cmdline_history", max_item_count = 15 },
+		{ name = "cmdline", max_item_count = 10 },
 	}),
 })

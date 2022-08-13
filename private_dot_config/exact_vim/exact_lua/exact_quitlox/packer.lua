@@ -86,7 +86,7 @@ require("packer").startup(function(use)
 	-- UI: Statusline
 	use({ "nvim-lualine/lualine.nvim" })
 	-- UI: Bufferline
-	use("akinsho/bufferline.nvim")
+	use({ "akinsho/bufferline.nvim", tag = "v2.6.0" })
 	-- UI: Diagnostics
 	use({ "folke/trouble.nvim" })
 
@@ -94,7 +94,7 @@ require("packer").startup(function(use)
 	-- UI: Implements vim.ui.select and vim.ui.input
 	use("stevearc/dressing.nvim")
 	-- UI: Implements notifications
-	use("rcarriga/nvim-notify")
+	use({ "rcarriga/nvim-notify", tag='v3.2.1' })
 	-- UI: Icon Picker
 	use({ "ziontee113/icon-picker.nvim", requires = { "stevearc/dressing.nvim" } })
 
@@ -115,8 +115,6 @@ require("packer").startup(function(use)
 
 	-- IDE: Tags
 	--use("ludovicchabant/vim-gutentags")
-	-- IDE: Better Session management
-	use("tpope/vim-obsession")
 	-- IDE: WhichKey
 	use("folke/which-key.nvim")
 
@@ -191,16 +189,29 @@ require("packer").startup(function(use)
 	-- Language Support: Language Specific
 	----------------------------------------
 
-	-- Lua REPL for easy development of config/plugins
+	-- Lua: REPL for easy development of config/plugins
 	use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
-	-- LuaDev for Neovim config/plugin support
+	-- Lua: LuaDev for Neovim config/plugin support
 	use("folke/lua-dev.nvim")
 
-	-- Vimtex
+	-- Tex: Vimtex
 	use("lervag/vimtex")
 
 	----------------------------------------
-	-- Language Support: LSP (Completion)
+	-- Language Support: DAP
+	----------------------------------------
+
+	-- General
+	use("mfussenegger/nvim-dap")
+	use({ "rcarriga/nvim-dap-ui", tag = "v1.1.2", requires = { "mfussenegger/nvim-dap" } })
+	use("theHamsta/nvim-dap-virtual-text")
+	use("nvim-telescope/telescope-dap.nvim")
+
+	-- Python
+	use("mfussenegger/nvim-dap-python")
+
+	----------------------------------------
+	-- Language Support: LSP
 	----------------------------------------
 
 	-- Language Server Protocol + LSP Config + Mason (auto-install servers)
@@ -225,12 +236,6 @@ require("packer").startup(function(use)
 	-- Completion Sorter: underscore first (python)
 	use("lukas-reineke/cmp-under-comparator")
 
-	-- Completion Signature Help
-	use("ray-x/lsp_signature.nvim")
-
-	-- Auto Pairs
-	use({ "windwp/nvim-autopairs" })
-
 	----------------------------------------
 	-- Language Support: Tree Sitter
 	----------------------------------------
@@ -241,15 +246,15 @@ require("packer").startup(function(use)
 	-- TODO: This should be superceded by standard treesitter, but currently indentation in Python is too shit and needs a different solution
 	use({ "yioneko/nvim-yati", ft = { "python" } })
 
+	-- Auto Pairs
+	use({ "windwp/nvim-autopairs" })
+	-- Endwise (autopairs for lua)
+	use("RRethy/nvim-treesitter-endwise")
+
 	----------------------------------------
 	-- Language Support: User Interface
 	----------------------------------------
-	-- These are User Inteface plugins specifically for LSP functionality
 
-	--	Rename: Cosmic UI - Fancy replacements for default vim functionality (rename, code-action)
-	-- use({ "CosmicNvim/cosmic-ui", requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" } })
-	--	Custom UI for LSP Actions
-	-- use({ "RishabhRD/nvim-lsputils", requires = "RishabhRD/popfix" })
 	-- User Interface Plugin for LSP
 	use({ "kkharji/lspsaga.nvim", branch = "main" })
 
@@ -274,11 +279,40 @@ require("packer").startup(function(use)
 	end
 end)
 
+require("import")
+
+----------------------------------------
+-- Advanced Plugin Configuration
+----------------------------------------
+
+-- ORDER MATTERS
+require("quitlox.plugins.colorscheme")
+require("quitlox.plugins.bufferline")
+-- ORDER MATTERS
+require("quitlox.plugins.notify")
+-- ORDER MATTERS
+require("quitlox.plugins.which_key")
+
+require("quitlox.plugins.comment")
+require("quitlox.plugins.completion")
+require("quitlox.plugins.dap")
+require("quitlox.plugins.nvim_tree")
+require("quitlox.plugins.lsp")
+require("quitlox.plugins.lualine")
+require("quitlox.plugins.luasnip")
+require("quitlox.plugins.marks")
+require("quitlox.plugins.find")
+require("quitlox.plugins.hop")
+require("quitlox.plugins.session")
+require("quitlox.plugins.terminal")
+require("quitlox.plugins.treesitter")
+require("quitlox.plugins.trouble")
+require("quitlox.plugins.ui")
+require("quitlox.plugins.zen")
+
 ----------------------------------------
 -- Basic Plugin Configuration
 ----------------------------------------
-
-require("import")
 
 -- Dependencies
 import("nvim-web-devicons", function(devicons)
@@ -324,28 +358,3 @@ import("fidget", function(module)
 	module.setup({ window = { windblend = 100 } })
 end)
 
-----------------------------------------
--- Advanced Plugin Configuration
-----------------------------------------
-
--- ORDER MATTERS
-require("quitlox.plugins.colorscheme")
-require("quitlox.plugins.bufferline")
--- ORDER MATTERS
-require("quitlox.plugins.which_key")
-
-require("quitlox.plugins.comment")
-require("quitlox.plugins.completion")
-require("quitlox.plugins.nvim_tree")
-require("quitlox.plugins.lsp")
-require("quitlox.plugins.lualine")
-require("quitlox.plugins.luasnip")
-require("quitlox.plugins.marks")
-require("quitlox.plugins.find")
-require("quitlox.plugins.hop")
-require("quitlox.plugins.session")
-require("quitlox.plugins.terminal")
-require("quitlox.plugins.treesitter")
-require("quitlox.plugins.trouble")
-require("quitlox.plugins.ui")
-require("quitlox.plugins.zen")

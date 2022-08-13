@@ -1,5 +1,9 @@
 import("mason", function(mason)
-	mason.setup()
+	mason.setup({
+		ui = {
+			border = "single",
+		},
+	})
 end)
 import("mason-lspconfig", function(module)
 	module.setup({
@@ -39,18 +43,19 @@ local function key_map(bufnr)
 				},
 			},
 			g = {
-				name = "go",
-				D = { vim.lsp.buf.declaration, "Declaration" },
-				d = { vim.lsp.buf.definition, "Definition" },
-				i = { vim.lsp.buf.implementation, "Implementation" },
+				name = "Go",
+				D = { vim.lsp.buf.declaration, "Go Declaration" },
+				d = { vim.lsp.buf.definition, "Go Definition" },
+				i = { vim.lsp.buf.implementation, "Go Implementation" },
 				s = {
 					function()
 						require("telescope.builtin").lsp_dynamic_workspace_symbols({ ignore_symbols = { "variable" } })
 					end,
-					"Signature",
+					"Symbols",
 				},
 				t = { vim.lsp.buf.type_definition, "type Definition" },
-				r = { "<cmd>Lspsaga lsp_finder<cr>", "References" },
+				R = { vim.lsp.buf.rename, "Go Rename" },
+				r = { "<cmd>Lspsaga lsp_finder<cr>", "Go References" },
 				h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
 				f = { vim.lsp.buf.formatting, "Format" },
 				a = { "<cmd>Lspsaga code_action<cr>", "Action" },
@@ -154,6 +159,8 @@ null_ls.setup({
 		null_ls.builtins.formatting.trim_whitespace.with({
 			disabled_filetypes = { "rust" }, -- use rustfmt
 		}),
+        -- Json
+        null_ls.builtins.diagnostics.jsonlint,
 	},
 })
 
@@ -181,29 +188,29 @@ require("lspconfig")["vimls"].setup({
 ----------------------------------------
 
 local lua_lsp_config = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = "LuaJIT",
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { "vim" },
-            },
-            workspace = {
-                checkThirdParty = false,
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim" },
+			},
+			workspace = {
+				checkThirdParty = false,
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
 }
 
 local function configure_lua_server()
@@ -226,9 +233,9 @@ local function configure_lua_server()
 	-- 		end)
 	-- 	end)
 	-- else
-		import("lspconfig", function(lspconfig)
-            lspconfig.sumneko_lua.setup(lua_lsp_config)
-		end)
+	import("lspconfig", function(lspconfig)
+		lspconfig.sumneko_lua.setup(lua_lsp_config)
+	end)
 	-- end
 end
 

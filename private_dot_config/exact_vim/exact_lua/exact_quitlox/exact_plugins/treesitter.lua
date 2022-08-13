@@ -72,11 +72,17 @@ import("nvim-treesitter.configs", function(treesitter)
 		-- since the default treesitter implementation sucks.
 		yati = { enable = true },
 
+		----- Endwise -----
+		-- The autopairs for languages like lua (i.e. using 'end')
+		endwise = {
+			enable = true,
+		},
+
 		----- Text Objects -----
 		-- with: nvim-treesitter/nvim-treesitter-textobjects
 		textobjects = {
 			move = {
-                enable=true,
+				enable = true,
 				goto_next_start = {
 					["]f"] = "@function.outer",
 					["]c"] = "@class.outer",

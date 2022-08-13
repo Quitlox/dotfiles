@@ -1,4 +1,4 @@
-local status_ok, c = require("quitlox.util").load_module("vscode.colors")
+local status_ok, c = require("quitlox.util.missing").load_module("vscode.colors")
 if not status_ok then
 	return
 end

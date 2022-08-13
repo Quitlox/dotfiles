@@ -1,4 +1,9 @@
 
+TODO:
+    - DAP: Close NvimTree when opening DAP UI
+    - DAP: Turn of gitsigns when DAP UI open
+    - DAP: Change breakpoint symbol to icon and highlight red (contrib?)
+
 Bugs:
     - Open Git Status errors if not git repo
     - Error when ctags not installed, should be a kind notification
