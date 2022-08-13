@@ -14,6 +14,7 @@ import("telescope", function(telescope)
 			mappings = {
 				i = {
 					["<esc>"] = actions.close,
+					["<C-BS>"] = actions.close,
 					["<C-j>"] = actions.move_selection_next,
 					["<C-k>"] = actions.move_selection_previous,
 					["<C-v>"] = actions.select_horizontal,
@@ -33,7 +34,7 @@ import("telescope", function(telescope)
 				theme = "dropdown",
 				db_safe_mode = false,
 				default_workspace = "CWD",
-				show_unindexed = true,
+				show_unindexed = false,
 				show_filter_column = false,
 				show_scores=true,
 			},

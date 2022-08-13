@@ -83,6 +83,9 @@ if &compatible
   set nocompatible " Be iMproved
 endif
 
+filetype plugin indent on
+syntax enable
+
 " No audible bell in TUI mode
 set t_vb=
 " Make backspace behave sanely

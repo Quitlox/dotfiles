@@ -187,10 +187,17 @@ require("packer").startup(function(use)
 	-- Language Support
 	----------------------------------------
 
+	----------------------------------------
+	-- Language Support: Language Specific
+	----------------------------------------
+
 	-- Lua REPL for easy development of config/plugins
 	use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
 	-- LuaDev for Neovim config/plugin support
 	use("folke/lua-dev.nvim")
+
+	-- Vimtex
+	use("lervag/vimtex")
 
 	----------------------------------------
 	-- Language Support: LSP (Completion)
