@@ -195,7 +195,7 @@ require("packer").startup(function(use)
 	use("folke/lua-dev.nvim")
 
 	-- Tex: Vimtex
-	use({ "lervag/vimtex", ft = "tex" })
+	use({ "lervag/vimtex" })
 
 	-- Rust: rust-tools / LSP
 	use("simrat39/rust-tools.nvim")
@@ -283,6 +283,7 @@ require("packer").startup(function(use)
 	use("hrsh7th/cmp-cmdline")
 	use("dmitmel/cmp-cmdline-history")
 	use("petertriho/cmp-git")
+	use("hrsh7th/cmp-omni")
 	-- Completion Engine
 	use("hrsh7th/nvim-cmp")
 	-- Completion Icons

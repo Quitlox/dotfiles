@@ -7,6 +7,12 @@
 " => Settings
 """"""""""""""""""""""""""""""""""""""""
 
+" In Neovim, we use the lsp
+if !has('nvim')
+    let g:vimtex_syntax_enabled=0
+    let g:vimtex_complete_enabled=0
+endif
+
 " Backends
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_view_method = 'zathura'
@@ -14,6 +20,9 @@ let g:vimtex_view_method = 'zathura'
 " Quickfix
 "let g:vimtex_quickfix_autojump = 1
 "let g:vimtex_quickfix_mode = 1
+
+" Editor
+let g:matchup_override_vimtex = 1
 " Documentation
 let g:vimtex_doc_handlers = ['vimtex#doc#handlers#texdoc']
 " Indent

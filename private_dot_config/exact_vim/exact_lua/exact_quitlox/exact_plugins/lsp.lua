@@ -161,6 +161,11 @@ null_ls.setup({
 		}),
 		-- Json
 		null_ls.builtins.diagnostics.jsonlint,
+		-- LaTeX
+		null_ls.builtins.diagnostics.chktex.with({
+            extra_args = {"-n8"},
+        }),
+        null_ls.builtins.code_actions.proselint
 	},
 })
 
@@ -264,3 +269,9 @@ import("rust-tools", function(rt)
 		},
 	})
 end)
+
+----------------------------------------
+-- Config: LaTeX
+----------------------------------------
+
+require("lspconfig").texlab.setup({})
