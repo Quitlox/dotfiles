@@ -35,6 +35,22 @@ local vscode_format = lspkind.cmp_format({
 	},
 })
 
+-- Hover Documentation
+local function show_documentation()
+	local filetype = vim.bo.filetype
+	if vim.tbl_contains({ "vim", "help" }, filetype) then
+		vim.cmd("h " .. vim.fn.expand("<cword>"))
+	elseif vim.tbl_contains({ "man" }, filetype) then
+		vim.cmd("Man " .. vim.fn.expand("<cword>"))
+	elseif vim.fn.expand("%:t") == "Cargo.toml" then
+        -- Plugin: Saecki/crates.nvim
+		require("crates").show_popup()
+	else
+		vim.lsp.buf.hover()
+	end
+end
+vim.keymap.set("n", "K", show_documentation, { noremap = true, silent = true })
+
 -- Setup completion
 cmp.setup({
 	enabled = disable_inside_comment,
@@ -88,6 +104,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 	}, {
+		{ name = "path" },
 		{ name = "buffer" },
 	}),
 })

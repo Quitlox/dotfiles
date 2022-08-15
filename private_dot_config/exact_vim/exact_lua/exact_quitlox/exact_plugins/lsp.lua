@@ -159,8 +159,8 @@ null_ls.setup({
 		null_ls.builtins.formatting.trim_whitespace.with({
 			disabled_filetypes = { "rust" }, -- use rustfmt
 		}),
-        -- Json
-        null_ls.builtins.diagnostics.jsonlint,
+		-- Json
+		null_ls.builtins.diagnostics.jsonlint,
 	},
 })
 
@@ -240,3 +240,27 @@ local function configure_lua_server()
 end
 
 configure_lua_server()
+
+----------------------------------------
+-- Config: Rust
+----------------------------------------
+
+-- The rust language server is configured by the rust-tools plugin,
+-- instead of manually via lspconfig
+import("rust-tools", function(rt)
+	rt.setup({
+		server = {
+			on_attach = function(_, bufnr)
+				key_map(bufnr)
+
+				-- Overwrite Join Keys keybinding
+				vim.keymap.set("n", "J", rt.join_lines.join_lines, { noremap = true, buffer = bufnr })
+
+				-- Hover actions
+				vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { noremap = true, buffer = bufnr })
+				-- Code action groups
+				vim.keymap.set("n", "ga", rt.code_action_group.code_action_group, { noremap = true, buffer = bufnr })
+			end,
+		},
+	})
+end)

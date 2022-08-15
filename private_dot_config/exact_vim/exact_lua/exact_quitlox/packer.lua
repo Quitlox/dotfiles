@@ -94,7 +94,7 @@ require("packer").startup(function(use)
 	-- UI: Implements vim.ui.select and vim.ui.input
 	use("stevearc/dressing.nvim")
 	-- UI: Implements notifications
-	use({ "rcarriga/nvim-notify", tag='v3.2.1' })
+	use({ "rcarriga/nvim-notify", tag = "v3.2.1" })
 	-- UI: Icon Picker
 	use({ "ziontee113/icon-picker.nvim", requires = { "stevearc/dressing.nvim" } })
 
@@ -195,7 +195,64 @@ require("packer").startup(function(use)
 	use("folke/lua-dev.nvim")
 
 	-- Tex: Vimtex
-	use("lervag/vimtex")
+	use({ "lervag/vimtex", ft = "tex" })
+
+	-- Rust: rust-tools / LSP
+	use("simrat39/rust-tools.nvim")
+	-- Rust: crates.nvim
+	use({
+		"Saecki/crates.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			-- Add code actions via null-ls
+			local crates = require("crates")
+			crates.setup({
+				null_ls = {
+					enabled = true,
+					name = "crates.nvim",
+				},
+			})
+
+			-- Inject crates as completion source
+			import("cmp", function(cmp)
+				vim.api.nvim_create_autocmd("BufRead", {
+					group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+					pattern = "Cargo.toml",
+					callback = function()
+						cmp.setup.buffer({ sources = { { name = "crates" } } })
+					end,
+				})
+			end)
+
+			-- Set mappings
+			import("which-key", function(wk)
+				wk.register({
+					["<localleader>"] = {
+						c = {
+							name = "Crates",
+							t = { crates.toggle, "Crates Toggle" },
+							r = { crates.reload, "Crates Reload" },
+							--
+							v = { crates.show_versions_popup, "Crate Version" },
+							f = { crates.show_features_popup, "Crate show Features" },
+							d = { crates.show_dependencies_popup, "Crate show Dependencies" },
+							--
+							u = { crates.update_crate, "Crate Update" },
+							U = { crates.update_all_creates, "Crate Upgrade" },
+							a = { crates.update_all_crates, "Crate update All" },
+							A = { crates.update_all_creates, "Crate Upgrade all" },
+							--
+							H = { crates.open_homepage, "Crate open Homepage" },
+							R = { crates.open_repository, "Crate open Repository" },
+							D = { crates.open_documentation, "Crate open Documentation" },
+							C = { crates.open_crates_io, "Crate open CratesIO" },
+						},
+					},
+				})
+			end)
+		end,
+	})
 
 	----------------------------------------
 	-- Language Support: DAP
@@ -357,4 +414,3 @@ end)
 import("fidget", function(module)
 	module.setup({ window = { windblend = 100 } })
 end)
-
