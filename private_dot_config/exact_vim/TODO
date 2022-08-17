@@ -7,6 +7,10 @@ TODO:
 Bugs:
     - Open Git Status errors if not git repo
     - Error when ctags not installed, should be a kind notification
+    - Python autosnippets should not activate in comments
+    - Bufferline should no color devicons
+    - Signature help is broken?
+    - Only show errors / warnings in nvim-tree, not hints/info
 
 COULD:
     - More intuitive keys for resizing windows

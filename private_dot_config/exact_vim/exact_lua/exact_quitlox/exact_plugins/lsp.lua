@@ -188,6 +188,12 @@ require("lspconfig")["vimls"].setup({
 	on_attach = on_attach,
 })
 
+-- LaTeX
+require("lspconfig").texlab.setup({})
+
+-- Bash
+require("lspconfig").bashls.setup({})
+
 ----------------------------------------
 -- Config: Lua
 ----------------------------------------
@@ -269,9 +275,3 @@ import("rust-tools", function(rt)
 		},
 	})
 end)
-
-----------------------------------------
--- Config: LaTeX
-----------------------------------------
-
-require("lspconfig").texlab.setup({})
