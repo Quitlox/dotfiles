@@ -13,6 +13,10 @@ import("nvim-tree", function(nvim_tree)
 
 		diagnostics = {
 			enable = true,
+            icons = {
+                hint = " ",
+                info = " ",
+            }
 		},
 
 		view = {

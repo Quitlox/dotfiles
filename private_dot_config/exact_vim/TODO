@@ -1,16 +1,22 @@
+HARD:
+    - [ ] DAP: Turn of gitsigns when DAP UI open
+    - [ ] Create confirmation dialog on quit if terminal still running
 
 TODO:
-    - DAP: Close NvimTree when opening DAP UI
-    - DAP: Turn of gitsigns when DAP UI open
+    - [x] DAP: Close NvimTree when opening DAP UI
     - DAP: Change breakpoint symbol to icon and highlight red (contrib?)
+    - Auto Indent!!!
 
 Bugs:
     - Open Git Status errors if not git repo
     - Error when ctags not installed, should be a kind notification
     - Python autosnippets should not activate in comments
-    - Bufferline should no color devicons
+    - Bufferline should not color devicons
     - Signature help is broken?
-    - Only show errors / warnings in nvim-tree, not hints/info
+    - [x] Only show errors / warnings in nvim-tree, not hints/info
+    - [ ] Select jsonls as formatter for json files
+    - [x] Automatically recognize launch.json as jsonc filetype 
+    - [x] Automatically reload launch when edited
 
 COULD:
     - More intuitive keys for resizing windows

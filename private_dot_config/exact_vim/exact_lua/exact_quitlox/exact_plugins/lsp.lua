@@ -114,6 +114,10 @@ local on_attach = function(client, bufnr)
 		-- We ignore the built-in formatter of sumneko_lua, and use stylua provided via null-ls
 		client.resolved_capabilities.document_formatting = false
 	end
+	if client.name == "sumneko_lua" then
+		-- We ignore the built-in formatter of sumneko_lua, and use stylua provided via null-ls
+		client.resolved_capabilities.document_formatting = false
+	end
 
 	-- Cursor Highlight
 	require("illuminate").on_attach(client)
@@ -135,6 +139,7 @@ end
 
 -- Completion Capabilities
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 ----------------------------------------
 -- Null-LS (Code Actions)
@@ -147,7 +152,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.prettier.with({
-			filetypes = { "html", "css", "yaml", "markdown", "json" },
+			filetypes = { "html", "css", "yaml", "markdown" },
 		}),
 		-- Python
 		null_ls.builtins.formatting.black,
@@ -163,9 +168,11 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.jsonlint,
 		-- LaTeX
 		null_ls.builtins.diagnostics.chktex.with({
-            extra_args = {"-n8"},
-        }),
-        null_ls.builtins.code_actions.proselint
+			extra_args = { "-n8" },
+		}),
+		null_ls.builtins.code_actions.proselint,
+        -- Git
+        null_ls.builtins.code_actions.gitsigns,
 	},
 })
 
@@ -189,10 +196,28 @@ require("lspconfig")["vimls"].setup({
 })
 
 -- LaTeX
-require("lspconfig").texlab.setup({})
-
+require("lspconfig").texlab.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 -- Bash
-require("lspconfig").bashls.setup({})
+require("lspconfig").bashls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+-- JSON
+import("schemastore", function(schemastore)
+	require("lspconfig").jsonls.setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+		settings = {
+			json = {
+				schemas = schemastore.json.schemas(),
+				validate = { enable = true },
+			},
+		},
+	})
+end)
 
 ----------------------------------------
 -- Config: Lua

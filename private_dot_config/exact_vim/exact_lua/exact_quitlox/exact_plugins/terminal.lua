@@ -49,3 +49,6 @@ import("which-key", function(wk)
 		t = { "<cmd>lua require('FTerm').toggle()<cr>", "Toggle Terminal" },
 	}, { prefix = "<leader>T" })
 end)
+
+vim.keymap.set("t", "`", '<C-\\><C-n><cmd>lua require("FTerm").toggle()<cr>', { noremap = true })
+vim.keymap.set("n", "`", '<cmd>lua require("FTerm").toggle()<cr>', { noremap = true })

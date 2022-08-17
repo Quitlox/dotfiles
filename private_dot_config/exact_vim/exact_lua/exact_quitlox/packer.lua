@@ -197,6 +197,9 @@ require("packer").startup(function(use)
 	-- Tex: Vimtex
 	use({ "lervag/vimtex" })
 
+	-- Json: Provide access to the SchemaStore
+	use("b0o/SchemaStore.nvim")
+
 	-- Rust: rust-tools / LSP
 	use("simrat39/rust-tools.nvim")
 	-- Rust: crates.nvim
@@ -299,7 +302,7 @@ require("packer").startup(function(use)
 	----------------------------------------
 
 	-- Treesitter (syntx highlighting, static analysis)
-	use({ "nvim-treesitter/nvim-treesitter" })
+	use({ "nvim-treesitter/nvim-treesitter", commit="826c951825e94dd57decfbb2dd85781ff4dfc712" })
 	-- Treesitter based indentation
 	-- TODO: This should be superceded by standard treesitter, but currently indentation in Python is too shit and needs a different solution
 	use({ "yioneko/nvim-yati", ft = { "python" } })
@@ -360,6 +363,7 @@ require("quitlox.plugins.lualine")
 require("quitlox.plugins.luasnip")
 require("quitlox.plugins.marks")
 require("quitlox.plugins.find")
+require("quitlox.plugins.gitsigns")
 require("quitlox.plugins.hop")
 require("quitlox.plugins.session")
 require("quitlox.plugins.terminal")
@@ -398,9 +402,6 @@ import("colorizer", function(module)
 	module.setup({ { RGB = false, rgb_fn = true, hsl_fn = true } })
 end)
 import("range-highlight", function(module)
-	module.setup()
-end)
-import("gitsigns", function(module)
 	module.setup()
 end)
 
