@@ -17,9 +17,11 @@ Bugs:
     - [ ] Select jsonls as formatter for json files
     - [x] Automatically recognize launch.json as jsonc filetype 
     - [x] Automatically reload launch when edited
+    - Center cursor on jumping to definition
 
 COULD:
     - More intuitive keys for resizing windows
+    - Choice node for tex snippet \beg (for adding [])
 
 Contribute:
     - Add 'jsonlint' installer to Mason

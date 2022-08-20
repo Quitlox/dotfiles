@@ -105,7 +105,8 @@ import("which-key", function(wk)
 				name = "Buffer",
 				n = { "<cmd>BufferLineCycleNext<cr>", "Buffer Next" },
 				p = { "<cmd>BufferLineCyclePrev<cr>", "Buffer Prev" },
-				b = { "<cmd>BufferLinePick<cr>", "Buffer pick" },
+				b = { "<cmd>BufferLinePick<cr>", "Buffer Pick" },
+				f = { "<cmd>Telescope buffers<cr>", "Buffer Find" },
 				d = { ":Bdelete<cr>", "Buffer Delete" },
 				o = { ":BufOnly<cr>", "Buffer Only" },
 				m = {

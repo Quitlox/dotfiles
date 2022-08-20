@@ -168,7 +168,7 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.jsonlint,
 		-- LaTeX
 		null_ls.builtins.diagnostics.chktex.with({
-			extra_args = { "-n8" },
+			extra_args = { "-n8", "-n1" },
 		}),
 		null_ls.builtins.code_actions.proselint,
         -- Git

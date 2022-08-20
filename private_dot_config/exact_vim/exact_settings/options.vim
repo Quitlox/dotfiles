@@ -36,6 +36,12 @@ end
 " Automatically resize Windows when resizing the terminal
 autocmd VimResized * wincmd =
 
+" Set quickfix buffers as unlisted
+augroup HideQuickFix
+    autocmd!
+    autocmd FileType qf set nobuflisted
+augroup END
+
 " Delete all non-visible buffers
 func BufOnly()
     " Gather all listed buffers
