@@ -5,7 +5,7 @@
 
 # Enable vim server by default
 # Usefull for synctex + live updating color scheme
-if vim --version | grep -q '\+clientserver'; then
+if vim --version | grep -q '+clientserver'; then
 	alias vim='vim --servername vim'
 fi
 
