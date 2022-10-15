@@ -18,6 +18,7 @@ Bugs:
     - [x] Automatically recognize launch.json as jsonc filetype 
     - [x] Automatically reload launch when edited
     - Center cursor on jumping to definition
+    - Do not highlight under cursor in NvimTree buffer
 
 COULD:
     - More intuitive keys for resizing windows
