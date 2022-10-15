@@ -8,29 +8,29 @@ function cleanup {
 }
 trap cleanup INT QUIT TERM
 
+declare -A colors;
+colors=(\
+    ['black']='\033[0;30m'\
+    ['red']='\033[0;31m'\
+    ['green']='\033[0;32m'\
+    ['yellow']='\033[0;33m'\
+    ['blue']='\033[0;34m'\
+    ['magenta']='\033[0;35m'\
+    ['cyan']='\033[0;36m'\
+    ['white']='\033[0;37m'\
+
+    ['bbloack']='\033[1;30m'\
+    ['bred']='\033[1;31m'\
+    ['bgreen']='\033[1;32m'\
+    ['byellow']='\033[1;33m'\
+    ['bblue']='\033[1;34m'\
+    ['bmagenta']='\033[1;35m'\
+    ['bcyan']='\033[1;36m'\
+    ['bwhite']='\033[1;37m'\
+);
+
 # Dependencies
 cecho () {
-
-    declare -A colors;
-    colors=(\
-        ['black']='\033[0;47m'\
-        ['red']='\033[0;31m'\
-        ['green']='\033[0;32m'\
-        ['yellow']='\033[0;33m'\
-        ['blue']='\033[0;34m'\
-        ['magenta']='\033[0;35m'\
-        ['cyan']='\033[0;36m'\
-        ['white']='\033[1;37m'\
-        ['bblack']='\033[1;47m'\
-        ['bred']='\033[1;31m'\
-        ['bgreen']='\033[1;32m'\
-        ['byellow']='\033[1;33m'\
-        ['bblue']='\033[1;34m'\
-        ['bmagenta']='\033[1;35m'\
-        ['bcyan']='\033[1;36m'\
-        ['bwhite']='\033[1;37m'\
-    );
-
     local defaultMSG="No message passed.";
     local defaultColor="black";
     local defaultNewLine=true;
@@ -98,6 +98,28 @@ function log () {
     cecho -c 'white' "=> $@";
 }
 
+function install () {
+    command=$1
+    package=$2
+
+    warning "Installing $package..."
+    if eval "$command $package"; then
+        success "Installed $package! Continuing..."
+    else
+        berror "Failed to install $package! Aborting."
+        exit -1
+    fi
+}
+
+function install_apt () {
+    package=$1
+    install "sudo apt install -y" $package
+}
+function install_pacman () {
+    package=$1
+    install "sudo pacman -S --needed" $package
+}
+
 # VARIABLES
 BW_BIN="$HOME/.local/bin/bw"
 
@@ -114,25 +136,26 @@ fi
 
 # [BOOTSTRAPPING - 7zip]
 if ! command -v "unzip" &> /dev/null &&! command -v "7z" &> /dev/null && ! command -v "p7zip" &> /dev/null; then
-    binformation "Neither unzip or p7zip is installed!"
-    if [[ $(uname -r) == *"MANJARO"* ]] || [[ $(uname -r) == *"arch"* ]]; then
-	    sudo pacman -S p7zip
-    elif [[ $(uname -v) == *"Debian"* ]]; then
-	    sudo apt install p7zip-full
+    # bwarning "Neither unzip or p7zip is installed!"
+    if command -v "pacman" &> /dev/null; then
+        install_pacman p7zip
+    elif command -v "apt" &> /dev/null; then
+        install_apt p7zip-full
     else
-	    exit
+        berror "No package manager found. Aborting."
+	    exit -1
     fi
 fi
 
 # [BOOTSTRAPPING - age]
 if ! command -v "age" &> /dev/null; then
-    binformation "age not is installed (encryption needed by chezmoi)!"
-    if [[ $(uname -r) == *"MANJARO"* ]] || [[ $(uname -r) == *"arch"* ]]; then
-	    sudo pacman -S age
-    elif [[ $(uname -v) == *"Debian"* ]]; then
-	    sudo apt install age
+    if command -v "pacman" &> /dev/null; then
+        install_pacman age
+    elif command -v "apt" &> /dev/null; then
+        install_apt age
     else
-	    exit
+        berror "No package manager found. Aborting."
+	    exit -1
     fi
 fi
 
