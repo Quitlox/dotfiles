@@ -487,6 +487,6 @@
   "ilspy.defaultOutputLanguage": "C#",
   "editor.suggest.preview": true,
   "editor.tabCompletion": "on",
-  "editor.experimental.stickyScroll.enabled": true,
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "editor.stickyScroll.enabled": true
 }
