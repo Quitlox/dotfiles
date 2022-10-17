@@ -76,6 +76,9 @@ require("packer").startup(function(use)
 	-- Text Objects based on Treesitter
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 
+	-- Smart Yank
+	use({ "ibhagwan/smartyank.nvim" })
+
 	----------------------------------------
 	-- UI (User Interface)
 	----------------------------------------
@@ -86,7 +89,7 @@ require("packer").startup(function(use)
 	-- UI: Statusline
 	use({ "nvim-lualine/lualine.nvim" })
 	-- UI: Bufferline
-	use({ "akinsho/bufferline.nvim", tag = "v2.6.0" })
+	use({ "akinsho/bufferline.nvim", tag = "v2.12.0" })
 	-- UI: Diagnostics
 	use({ "folke/trouble.nvim" })
 
@@ -94,7 +97,7 @@ require("packer").startup(function(use)
 	-- UI: Implements vim.ui.select and vim.ui.input
 	use("stevearc/dressing.nvim")
 	-- UI: Implements notifications
-	use({ "rcarriga/nvim-notify", tag = "v3.2.1" })
+	use({ "rcarriga/nvim-notify", tag = "v3.6.0" })
 	-- UI: Icon Picker
 	use({ "ziontee113/icon-picker.nvim", requires = { "stevearc/dressing.nvim" } })
 
@@ -196,6 +199,14 @@ require("packer").startup(function(use)
 
 	-- Tex: Vimtex
 	use({ "lervag/vimtex" })
+	-- Tex: Math Equation
+	use({
+		"jbyuki/nabla.nvim",
+		requires = "nvim-treesitter/nvim-treesitter",
+		config = function()
+			vim.keymap.set("n", "<leader>hl", "<cmd>lua require('nabla').popup()<cr>", { noremap = true })
+		end,
+	})
 
 	-- Json: Provide access to the SchemaStore
 	use("b0o/SchemaStore.nvim")
@@ -263,7 +274,7 @@ require("packer").startup(function(use)
 
 	-- General
 	use("mfussenegger/nvim-dap")
-	use({ "rcarriga/nvim-dap-ui", tag = "v1.1.2", requires = { "mfussenegger/nvim-dap" } })
+	use({ "rcarriga/nvim-dap-ui", tag = "v2.1.0", requires = { "mfussenegger/nvim-dap" } })
 	use("theHamsta/nvim-dap-virtual-text")
 	use("nvim-telescope/telescope-dap.nvim")
 
@@ -302,7 +313,12 @@ require("packer").startup(function(use)
 	----------------------------------------
 
 	-- Treesitter (syntx highlighting, static analysis)
-	use({ "nvim-treesitter/nvim-treesitter" })
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			require("nvim-treesitter.install").update({ with_sync = true })
+		end,
+	})
 	-- Treesitter based indentation
 	-- TODO: This should be superceded by standard treesitter, but currently indentation in Python is too shit and needs a different solution
 	use({ "yioneko/nvim-yati", ft = { "python" } })
@@ -381,6 +397,10 @@ import("nvim-web-devicons", function(devicons)
 	devicons.setup({
 		default = true,
 	})
+end)
+-- Vim: Verbs, Motions
+import("smartyank", function(module)
+	module.setup({})
 end)
 -- User Interface
 import("icon-picker", function(module)

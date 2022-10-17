@@ -138,7 +138,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Completion Capabilities
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 ----------------------------------------
@@ -200,11 +200,13 @@ require("lspconfig").texlab.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
+
 -- Bash
 require("lspconfig").bashls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
+
 -- JSON
 import("schemastore", function(schemastore)
 	require("lspconfig").jsonls.setup({
@@ -218,6 +220,9 @@ import("schemastore", function(schemastore)
 		},
 	})
 end)
+
+-- Docker
+require'lspconfig'.dockerls.setup{}
 
 ----------------------------------------
 -- Config: Lua

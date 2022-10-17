@@ -44,7 +44,9 @@ import("bufferline", function(bufferline)
 
 			buffer_close_icon = "",
 			close_icon = "",
-			indicator_icon = " ",
+			indicator = {
+				style = "underline",
+			},
 			left_trunc_marker = "",
 			modified_icon = "●",
 			right_trunc_marker = "",
@@ -89,6 +91,37 @@ import("bufferline", function(bufferline)
 			},
 			separator_visible = {
 				fg = "#252526",
+			},
+			warning = {
+				bg = {
+					attribute = "bg",
+					highlight = "Normal",
+				},
+				fg = {
+					attribute = "fg",
+					highlight = "Normal",
+				},
+			},
+			warning_visible = {
+
+				bg = {
+					attribute = "bg",
+					highlight = "Normal",
+				},
+				fg = {
+					attribute = "fg",
+					highlight = "Normal",
+				},
+			},
+			warning_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Normal",
+				},
+				fg = {
+					attribute = "fg",
+					highlight = "Normal",
+				},
 			},
 		},
 	})
