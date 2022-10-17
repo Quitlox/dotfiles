@@ -247,7 +247,7 @@ install_yay cpupower-gui
 sudo systemctl enable --now systemd-timesyncd.service
 
 ### LAPTOP POWER MANAGEMENT ############
-{{- if (eq .chassistype "laptop") }}
+{{- if (eq .chassisType "laptop") }}
 sudo pacman -S --needed -q ethtool tlp tlp-rdw
 {{- if (eq .chezmoi.hostname "quitlox-LenovoT14") }}
 sudo pacman -S --needed -q acpi_call
