@@ -141,7 +141,8 @@ exec_always --no-startup-id \
 #exec --no-startup-id blueman-applet             # Bluetooth Manager
 #exec --no-startup-id clipit                     # Clipboard Helper
 #exec --no-startup-id pa-applet --disable-notifications
-exec --no-startup-id ibus-daemon -drxR          # Keyboard
+#exec --no-startup-id ibus-daemon -drxR          # Input Manager
+exec --no-startup-id fcitx5 -d                  # Input Manager
 exec --no-startup-id copyq                      # Clipboard Manager
 
 # Autostart utilities
@@ -504,6 +505,7 @@ for_window [class="PlayOnLinux"] floating disable
 for_window [class="Thunderbird"] floating enable
 for_window [class="Thunderbird" instance="^Mail$"] floating disable
 for_window [class="Zotero" title="Advanced Search"] floating enable
+for_window [class="fcitx5-config-qt"] floating enable
 
 for_window [class="zenity"] floating enable border none
 for_window [class="Zenity"] floating enable border none
