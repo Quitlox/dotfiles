@@ -302,7 +302,7 @@ require("packer").startup(function(use)
 	----------------------------------------
 
 	-- Treesitter (syntx highlighting, static analysis)
-	use({ "nvim-treesitter/nvim-treesitter", commit="826c951825e94dd57decfbb2dd85781ff4dfc712" })
+	use({ "nvim-treesitter/nvim-treesitter" })
 	-- Treesitter based indentation
 	-- TODO: This should be superceded by standard treesitter, but currently indentation in Python is too shit and needs a different solution
 	use({ "yioneko/nvim-yati", ft = { "python" } })
