@@ -10,6 +10,9 @@ import("which-key", function(wk)
 				z = true,
 				g = false,
 			},
+            spelling = {
+                enabled = true,
+            }
 		},
 		key_labels = {
 			["<space>"] = "SPC",

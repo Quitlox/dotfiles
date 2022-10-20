@@ -78,6 +78,9 @@ require("packer").startup(function(use)
     ----------------------------------------
     -- UI (User Interface)
     ----------------------------------------
+    -- Keep cursor centered
+    use "arnamak/stay-centered.nvim"
+
     ----- Components -----
     -- Explorer
     use("kyazdani42/nvim-tree.lua")

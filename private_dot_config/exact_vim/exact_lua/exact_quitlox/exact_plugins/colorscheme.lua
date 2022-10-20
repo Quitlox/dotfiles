@@ -50,7 +50,8 @@ import("vscode", function(vscode)
     -- Explorer
     vim.cmd([[hi NvimTreeOpenedFile guifg=]] .. c.vscMediumBlue)
     -- Spellcheck
-    vim.cmd([[hi SpellBad guifg=None gui=undercurl guisp=]] .. c.vscContextCurrent)
+    -- TODO order is wrong
+    -- vim.cmd([[hi SpellBad guifg=None guibg=None gui=undercurl guisp=None]] .. c.vscContextCurrent)
 
     ----------------------------------------
     -- Highlighted Yank

@@ -44,7 +44,9 @@ endif
 " contain work-arounds to make the general configurations
 " compatible.
 
-source ~/.config/vim/settings/environments/chezmoi.vim
+for f in split(glob('~/.config/vim/settings/environments/*.vim'), '\n')
+    exe 'source' f
+endfor
 source ~/.config/vim/settings/terminals/kitty.vim
 
 """"""""""""""""""""""""""""""

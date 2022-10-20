@@ -8,10 +8,10 @@
 """"""""""""""""""""""""""""""""""""""""
 
 " In Neovim, we use the lsp
-if !has('nvim')
-    let g:vimtex_syntax_enabled=0
-    let g:vimtex_complete_enabled=0
-endif
+" if has('nvim')
+"     let g:vimtex_syntax_enabled=0
+"     let g:vimtex_complete_enabled=0
+" endif
 
 " Backends
 let g:vimtex_quickfix_method = 'pplatex'
@@ -36,7 +36,7 @@ let g:vimtex_indent_conditionals = {
 let g:vimtex_syntax_conceal = {
             \ 'accents': 1,
             \ 'cites': 1,
-            \ 'fancy': 0,
+            \ 'fancy': 1,
             \ 'greek': 1,
             \ 'math_bounds': 1,
             \ 'math_delimiters': 1,
@@ -83,10 +83,27 @@ let g:indentLine_setColors = 0
 au FileType tex let b:delimitMate_matchpairs = "[:],{:},<:>"
 
 " (Fail to) conceal kets and bras
-au FileType tex syntax match texMathSymbol '\\bra{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=' contained conceal cchar=<
-au FileType tex syntax match texMathSymbol '\%(\\bra{[^{]*{[^}]*}[^}]*}\|[^}]*\)\@<=}' contained conceal cchar=|
-au FileType tex syntax match texMathSymbol '\\ket{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=' contained conceal cchar=|
-au FileType tex syntax match texMathSymbol '\%(\\ket{[^{]*{[^}]*}[^}]*}\|[^}]*\)\@<=}' contained conceal cchar=>
-au FileType tex syntax match texMathSymbol /\\braket{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=/ contained conceal cchar=<
-au FileType tex syntax match texMathSymbol /\%(\\braket{[^{]*{[^}]*}[^}]*}\|[^}]*\)\@<=}/ contained conceal cchar=>
+" au FileType tex syntax match texMathSymbol '\\bra{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=' contained conceal cchar=<
+" au FileType tex syntax match texMathSymbol '\%(\\bra{[^{]*{[^}]*}[^}]*}\|[^}]*\)\@<=}' contained conceal cchar=|
+" au FileType tex syntax match texMathSymbol '\\ket{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=' contained conceal cchar=|
+" au FileType tex syntax match texMathSymbol '\%(\\ket{[^{]*{[^}]*}[^}]*}\|[^}]*\)\@<=}' contained conceal cchar=>
+" au FileType tex syntax match texMathSymbol /\\braket{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=/ contained conceal cchar=<
+" au FileType tex syntax match texMathSymbol /\%(\\braket{[^{]*{[^}]*}[^}]*}\|[^}]*\)\@<=}/ contained conceal cchar=>
 
+
+syntax match texMathSymbol /\\bra{\%([^}]*}\)\@=/ conceal cchar=<
+syntax match texMathSymbol /\%(\\bra{[^}]*\)\@<=}/ conceal cchar=|
+syntax match texMathSymbol /\\ket{\%([^}]*}\)\@=/ conceal cchar=|
+syntax match texMathSymbol /\%(\\ket{[^}]*\)\@<=}/ conceal cchar=>
+syntax match texMathSymbol /\\braket{\%([^}]*}\)\@=/ conceal cchar=<
+syntax match texMathSymbol /\%(\\braket{[^}]*\)\@<=}/ conceal cchar=>
+
+au FileType tex syntax match texMathSymbol /\\secret{\%([^}]*}\)\@=/ conceal cchar=
+au FileType tex syntax match texMathSymbol /\%(\\secret{[^}]*\)\@<=}/ conceal cchar=
+" au FileType tex syntax match texMathSymbol '\\secret{\%([^{]*{[^}]*}[^}]*}\|[^}]*}\)\@=' contained conceal cchar=
+" au FileType tex syntax match texMathSymbol '\%(\\secret{[^{]*{[^}]*}[^}]*}\|[^}]*\)\@<=}' contained conceal cchar=
+
+let g:vimtex_syntax_custom_cmds = [
+      \ {'name': 'State', 'mathmode': 0, 'concealchar': ''},
+      \ {'name': 'assign', 'mathmode': 1, 'concealchar': ''},
+      \]
