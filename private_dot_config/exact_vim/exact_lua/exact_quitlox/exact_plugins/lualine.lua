@@ -1,10 +1,13 @@
+
 ----------------------------------------
 -- Statusline: Custom VSCode Colorscheme
 ----------------------------------------
-local vscode = require('lualine.themes.vscode')
-vscode.normal.a.fg = 'white'
-vscode.normal.b.fg = 'white'
-vscode.normal.c.fg = 'white'
+
+import("lualine.themes.vscode", function(vscode)
+    vscode.normal.a.fg = 'white'
+    vscode.normal.b.fg = 'white'
+    vscode.normal.c.fg = 'white'
+end)
 
 ----------------------------------------
 -- Statusline: Custom Modules
@@ -78,23 +81,22 @@ import("lualine", function(lualine)
 			lualine_z = {},
 		},
 
-		-- winbar = {
-		-- 	lualine_a = {},
-		-- 	lualine_b = {},
-		-- 	lualine_c = { "filename" },
-		-- 	lualine_x = {},
-		-- 	lualine_y = {},
-		-- 	lualine_z = {},
-		-- },
-
-		-- inactive_winbar = {
-		-- 	lualine_a = {},
-		-- 	lualine_b = {},
-		-- 	lualine_c = { "filename" },
-		-- 	lualine_x = {},
-		-- 	lualine_y = {},
-		-- 	lualine_z = {},
-		-- },
+		winbar = {
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = { "filename" },
+			lualine_x = {},
+			lualine_y = {},
+			lualine_z = {},
+		},
+		inactive_winbar = {
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = { "filename" },
+			lualine_x = {},
+			lualine_y = {},
+			lualine_z = {},
+		},
 
 		extensions = {},
 	})

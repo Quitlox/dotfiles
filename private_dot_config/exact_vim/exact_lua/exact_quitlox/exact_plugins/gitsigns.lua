@@ -8,9 +8,9 @@ local function on_attach(bufnr)
 		end
 
 		-- Navigation
-		map("n", "]c", function()
+		map("n", "]g", function()
 			if vim.wo.diff then
-				return "]c"
+				return "]g"
 			end
 			vim.schedule(function()
 				gs.next_hunk()
@@ -18,9 +18,9 @@ local function on_attach(bufnr)
 			return "<Ignore>"
 		end, { expr = true })
 
-		map("n", "[c", function()
+		map("n", "[g", function()
 			if vim.wo.diff then
-				return "[c"
+				return "[g"
 			end
 			vim.schedule(function()
 				gs.prev_hunk()

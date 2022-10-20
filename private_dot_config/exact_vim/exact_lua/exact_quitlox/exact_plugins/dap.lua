@@ -1,16 +1,9 @@
 local path = require("quitlox.util.path")
 
-local status_ok, dapui, tree_view, tree_api
-status_ok, dapui = require("quitlox.util.missing").load_module("dapui")
-if not status_ok then
-	return
-end
-status_ok, tree_view = require("quitlox.util.missing").load_module("nvim-tree.view")
-if not status_ok then
-	return
-end
-status_ok, tree_api = require("quitlox.util.missing").load_module("nvim-tree.api")
-if not status_ok then
+local ok_dapui, dapui = pcall(require, 'dapui')
+local ok_tree_view, tree_view = pcall(require, 'nvim-tree.view')
+local ok_tree_api, tree_api = pcall(require, 'nvim-tree.api')
+if not (ok_dapui and ok_tree_api and ok_tree_view) then
 	return
 end
 

@@ -1,7 +1,3 @@
-local status_ok, c = require("quitlox.util.missing").load_module("vscode.colors")
-if not status_ok then
-	return
-end
 
 ----------------------------------------
 -- Bufferline: Options

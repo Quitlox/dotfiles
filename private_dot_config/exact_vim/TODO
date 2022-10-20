@@ -17,12 +17,13 @@ Bugs:
     - [ ] Select jsonls as formatter for json files
     - [x] Automatically recognize launch.json as jsonc filetype 
     - [x] Automatically reload launch when edited
-    - Center cursor on jumping to definition
-    - Do not highlight under cursor in NvimTree buffer
+    - [ ] Center cursor on jumping to definition
+    - [x] Do not highlight under cursor in NvimTree buffer
 
 COULD:
     - More intuitive keys for resizing windows
     - Choice node for tex snippet \beg (for adding [])
+    - Enable virtual-type for languages
 
 Contribute:
     - Add 'jsonlint' installer to Mason

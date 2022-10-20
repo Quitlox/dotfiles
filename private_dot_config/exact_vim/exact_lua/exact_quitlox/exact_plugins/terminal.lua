@@ -1,3 +1,8 @@
+local status_ok, actions = pcall(require, "FTerm")
+if not status_ok then
+	return
+end
+
 ----------------------------------------
 -- Settings
 ----------------------------------------

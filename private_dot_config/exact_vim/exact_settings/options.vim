@@ -115,9 +115,6 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 " Buffer
-if has('nvim')
-    set switchbuf=uselast
-endif
 set hidden           " Allow changed buffers to be hidden
 " Wrapping
 set autoindent 		" Auto indent
@@ -165,6 +162,11 @@ set history=1000      " Sets how many lines of history VIM has to remember
 if has('nvim')
 	let g:loaded_python_provider = 0
 	let g:python3_host_prog = '/usr/bin/python3'
+
+    " Buffer
+    set switchbuf=uselast
+    " Spell check
+    set spell
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""

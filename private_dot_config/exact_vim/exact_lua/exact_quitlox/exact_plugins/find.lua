@@ -1,4 +1,4 @@
-local status_ok, actions = require("quitlox.util.missing").load_module("telescope.actions")
+local status_ok, actions = pcall(require, "telescope.actions")
 if not status_ok then
 	return
 end

@@ -57,7 +57,7 @@ local function key_map(bufnr)
 				R = { vim.lsp.buf.rename, "Go Rename" },
 				r = { "<cmd>Lspsaga lsp_finder<cr>", "Go References" },
 				h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
-				f = { vim.lsp.buf.formatting, "Format" },
+				f = { vim.lsp.buf.format, "Format" },
 				a = { "<cmd>Lspsaga code_action<cr>", "Action" },
 			},
 		}, bufopts)
@@ -138,7 +138,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Completion Capabilities
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 ----------------------------------------

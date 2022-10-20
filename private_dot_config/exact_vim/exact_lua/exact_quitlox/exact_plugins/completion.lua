@@ -1,10 +1,13 @@
 ---@diagnostic disable: need-check-nil
 
-vim.o.completeopt = "menu,menuone,noselect"
+local ok_cmp, cmp = pcall(require, 'cmp')
+local ok_lspkind, lspkind = pcall(require, 'lspkind')
+local ok_luasnip, luasnip = pcall(require, 'luasnip')
+if not (ok_cmp and ok_lspkind and ok_luasnip) then
+    return
+end
 
-local cmp = require("cmp")
-local lspkind = require("lspkind")
-local luasnip = require("luasnip")
+vim.o.completeopt = "menu,menuone,noselect"
 
 -- Disable completion when typing comments
 local disable_inside_comment = function()

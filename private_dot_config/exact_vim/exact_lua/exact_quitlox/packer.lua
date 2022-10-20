@@ -6,354 +6,260 @@ vim.o.termguicolors = true
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap =
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-	vim.cmd([[packadd packer.nvim]])
+    packer_bootstrap =
+    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    vim.cmd([[packadd packer.nvim]])
 end
 
 require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
+    use("wbthomason/packer.nvim")
 
-	----------------------------------------
-	-- Dependencies
-	----------------------------------------
+    ----------------------------------------
+    -- Dependencies
+    ----------------------------------------
+    -- Plenary
+    use("nvim-lua/plenary.nvim")
+    -- Telescope
+    use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 
-	-- Telescope / Plenary
-	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
-	-- Devicons
-	use({ "kyazdani42/nvim-web-devicons" })
+    -- DeviIcons
+    use({ "kyazdani42/nvim-web-devicons" })
+    -- Make sure requires don't break the entire fucking config
+    use("miversen33/import.nvim")
+    -- Pretty printing for nice debugging of lua
+    use_rocks("inspect")
 
-	-- Import: Makes sure requires don't break the entire fucking config
-	use("miversen33/import.nvim")
-	-- Pretty Print: Nice for debugging
-	use_rocks("inspect")
+    ----------------------------------------
+    -- Colorschemes
+    ----------------------------------------
+    use("xiyaowong/nvim-transparent")
+    use("Mofiqul/vscode.nvim")
+    -- Adds missing highlight group
+    use("folke/lsp-colors.nvim")
 
-	----------------------------------------
-	-- Colorschemes
-	----------------------------------------
+    ----------------------------------------
+    -- Vim
+    ----------------------------------------
+    -- Marks
+    use("chentoast/marks.nvim")
+    -- Session
+    use("rmagatti/auto-session")
 
-	-- Transparency
-	use("xiyaowong/nvim-transparent")
-	-- VSCode
-	use("Mofiqul/vscode.nvim")
-	-- Diagnostic Colors
-	use("folke/lsp-colors.nvim")
+    ----------------------------------------
+    -- Vim: Commands
+    ----------------------------------------
+    -- Proper Buffer Delete command, which does not mess with your window layout
+    use("moll/vim-bbye")
 
-	----------------------------------------
-	-- Vim
-	----------------------------------------
+    ----------------------------------------
+    -- Vim: Verbs, Motions
+    ----------------------------------------
+    use("tpope/vim-surround")
+    use("tpope/vim-repeat")
+    use("phaazon/hop.nvim")
 
-	-- Marks
-	use("chentoast/marks.nvim")
+    ----- Comment -----
+    use("terrortylor/nvim-comment")
+    -- Automatically set 'commentstring' in files with nested languages
+    use("JoosepAlviste/nvim-ts-context-commentstring")
 
-	-- Session
-	use("rmagatti/auto-session")
+    ----- Default Functionality Improved -----
+    -- Matchup - Better %
+    use("andymass/vim-matchup")
+    -- CleverF - Better f,t,F,T (SHARED WITH VIM)
+    use("rhysd/clever-f.vim")
 
-	----------------------------------------
-	-- Vim: Commands
-	----------------------------------------
+    ----- Text Objects -----
+    -- Text Objects --
+    use("nvim-treesitter/nvim-treesitter-textobjects")
+    -- Indent Text Object (for Python)
+    use("michaeljsmith/vim-indent-object")
 
-	-- Proper Buffer Delete command, which does not mess with your window layout
-	use("moll/vim-bbye")
+    ----------------------------------------
+    -- UI (User Interface)
+    ----------------------------------------
+    ----- Components -----
+    -- Explorer
+    use("kyazdani42/nvim-tree.lua")
+    -- Statusline
+    use("nvim-lualine/lualine.nvim")
+    -- Bufferline
+    use({ "akinsho/bufferline.nvim", tag = "v3.0.0" })
+    -- Diagnostics
+    use("folke/trouble.nvim")
 
-	----------------------------------------
-	-- Vim: Verbs, Motions
-	----------------------------------------
+    ----- Widgets -----
+    -- Implements vim.ui.select and vim.ui.input
+    use("stevearc/dressing.nvim")
+    -- Implements notifications
+    use({ "rcarriga/nvim-notify", tag = "v3.7.2" })
+    -- Icon Picker
+    use({ "ziontee113/icon-picker.nvim", requires = { "stevearc/dressing.nvim" } })
 
-	-- Hop is the Neo Easymotion :D
-	use({ "phaazon/hop.nvim", branch = "v2" })
-	use("tpope/vim-surround")
-	use("tpope/vim-repeat")
+    ----- Modes -----
+    -- Zen Mode
+    use("folke/zen-mode.nvim")
+    -- Twilight - Dim inactive portions of the code
+    use("folke/twilight.nvim")
+    -- Fullscreen mode, maximizes a single window
+    use("szw/vim-maximizer")
 
-	-- Commenting
-	use("terrortylor/nvim-comment")
-	-- Indent Object: Great for Python
-	use("michaeljsmith/vim-indent-object")
-	-- Improve default f,t,F,T (search across lines)
-	use("rhysd/clever-f.vim") -- VIM
-	-- Matchup: Better %
-	use("andymass/vim-matchup")
-	-- Text Objects based on Treesitter
-	use("nvim-treesitter/nvim-treesitter-textobjects")
+    ----------------------------------------
+    -- IDE (Integrated Development Environment)
+    ----------------------------------------
+    -- Tags
+    use({ "ludovicchabant/vim-gutentags", disable = true })
+    -- Open / Search
+    use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+    -- Terminal
+    use("numToStr/FTerm.nvim")
+    -- WhichKey
+    use("folke/which-key.nvim")
+    -- Tools - Integrations with linters, formatters, etc...
+    use("jose-elias-alvarez/null-ls.nvim")
 
-	-- Smart Yank
-	use({ "ibhagwan/smartyank.nvim" })
+    ----------------------------------------
+    -- Editor
+    ----------------------------------------
 
-	----------------------------------------
-	-- UI (User Interface)
-	----------------------------------------
+    ----- Editor Actions -----
+    -- DoGe - Documentation Generator
+    use({ "kkoomen/vim-doge" })
 
-	----- Components -----
-	-- UI: Explorer
-	use("kyazdani42/nvim-tree.lua")
-	-- UI: Statusline
-	use({ "nvim-lualine/lualine.nvim" })
-	-- UI: Bufferline
-	use({ "akinsho/bufferline.nvim", tag = "v2.12.0" })
-	-- UI: Diagnostics
-	use({ "folke/trouble.nvim" })
+    ----- Editor Hints -----
+    -- Lightbulb - for Code Actions
+    use({ "kosayoda/nvim-lightbulb", requires = "antoinemadec/FixCursorHold.nvim" })
+    -- Indent lines
+    use("lukas-reineke/indent-blankline.nvim")
+    -- Colorizer - display color of hex-values
+    use("norcalli/nvim-colorizer.lua")
+    -- Range Highlight in command mode - Display range visually while typing in command mode
+    use({ "winston0410/range-highlight.nvim", requires = "winston0410/cmd-parser.nvim" })
+    -- Rainbow parenthesis (treesitter module)
+    use("p00f/nvim-ts-rainbow")
+    -- Highlight word under cursor
+    use("RRethy/vim-illuminate")
+    -- Git Gutter
+    use("lewis6991/gitsigns.nvim")
+    -- Display Context at top of Window
+    use("nvim-treesitter/nvim-treesitter-context")
 
-	----- Widgets -----
-	-- UI: Implements vim.ui.select and vim.ui.input
-	use("stevearc/dressing.nvim")
-	-- UI: Implements notifications
-	use({ "rcarriga/nvim-notify", tag = "v3.6.0" })
-	-- UI: Icon Picker
-	use({ "ziontee113/icon-picker.nvim", requires = { "stevearc/dressing.nvim" } })
+    ----------------------------------------
+    -- Language Support
+    ----------------------------------------
 
-	----- Modes -----
-	-- UI: Zen Mode
-	use("folke/zen-mode.nvim")
-	-- UI: Twilight - Dim inactive portions of the code
-	--		TODO: Switch back to folke/ once
-	--		https://github.com/folke/twilight.nvim/issues/15
-	--		is sorted
-	use("benstockil/twilight.nvim")
-	-- UI: Fullscreen mode, maximizes a single window
-	use("szw/vim-maximizer")
+    ----- Lua -----
+    -- REPL for easy development of config/plugins
+    use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
+    -- LuaDev for Neovim config/plugin support
+    use("folke/lua-dev.nvim")
 
-	----------------------------------------
-	-- IDE (Integrated Development Environment)
-	----------------------------------------
+    ----- Tex -----
+    use({ "lervag/vimtex" })
+    -- Display Math Equations
+    use({
+        "jbyuki/nabla.nvim",
+        config = function()
+            vim.keymap.set("n", "<leader>hl", "<cmd>lua require('nabla').popup()<cr>", { noremap = true })
+        end,
+    })
 
-	-- IDE: Tags
-	--use("ludovicchabant/vim-gutentags")
-	-- IDE: WhichKey
-	use("folke/which-key.nvim")
+    ----- Json -----
+    -- Autocompletion based on remote SchemaStore
+    use("b0o/SchemaStore.nvim")
+    ----- Rust -----
+    use("simrat39/rust-tools.nvim")
+    -- Autocompletion in project.toml
+    use({ "Saecki/crates.nvim", event = { "BufRead Cargo.toml" } })
 
-	-- IDE: Open / Search
-	use({
-		"nvim-telescope/telescope-frecency.nvim",
-		requires = { "tami5/sqlite.lua", "nvim-telescope/telescope.nvim" },
-		commit = "68ac8cfe6754bb656b4f84d6c3dafa421b6f9697",
-	})
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", requires = { "nvim-telescope/telescope.nvim" } })
+    ----------------------------------------
+    -- Language Support: DAP
+    ----------------------------------------
 
-	-- IDE: Terminal
-	use("numToStr/FTerm.nvim")
+    -- General
+    use("mfussenegger/nvim-dap")
+    use({ "rcarriga/nvim-dap-ui", tag = "v2.1.0", requires = { "mfussenegger/nvim-dap" } })
+    use("theHamsta/nvim-dap-virtual-text")
+    use("nvim-telescope/telescope-dap.nvim")
 
-	----------------------------------------
-	-- IDE: Code Actions
-	----------------------------------------
+    -- Python
+    use("mfussenegger/nvim-dap-python")
 
-	-- Provides integration with external tools such as formatters and linters
-	use("jose-elias-alvarez/null-ls.nvim")
+    ----------------------------------------
+    -- Language Support: LSP
+    ----------------------------------------
 
-	----------------------------------------
-	-- Editor
-	----------------------------------------
+    -- Language Server Protocol + LSP Config + Mason (auto-install servers)
+    use({ "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "neovim/nvim-lspconfig" })
 
-	-- Spell check in comments
-	use({ "lewis6991/spellsitter.nvim" })
+    -- Completion Sources
+    use("hrsh7th/cmp-nvim-lsp")
+    use("hrsh7th/cmp-nvim-lsp-document-symbol")
+    use("hrsh7th/cmp-nvim-lsp-signature-help")
+    use("hrsh7th/cmp-buffer")
+    use("hrsh7th/cmp-path")
+    use("hrsh7th/cmp-cmdline")
+    use("dmitmel/cmp-cmdline-history")
+    use("petertriho/cmp-git")
+    use("hrsh7th/cmp-omni")
+    -- Completion Engine
+    use("hrsh7th/nvim-cmp")
+    -- Completion Icons
+    use("onsails/lspkind.nvim")
+    -- Completion Snippet Engine
+    use("L3MON4D3/LuaSnip")
+    use("saadparwaiz1/cmp_luasnip")
+    -- Completion Sorter: underscore first (python)
+    use("lukas-reineke/cmp-under-comparator")
 
-	----------------------------------------
-	-- Editor: Actions
-	----------------------------------------
+    ----------------------------------------
+    -- Language Support: Tree Sitter
+    ----------------------------------------
 
-	-- DoGe: Documentation Generator
-	use({ "kkoomen/vim-doge" })
+    -- Treesitter (syntx highlighting, static analysis)
+    use({
+        "nvim-treesitter/nvim-treesitter",
+        run = function()
+            require("nvim-treesitter.install").update({ with_sync = true })
+        end,
+    })
+    -- Treesitter based indentation
+    -- TODO: This should be superceded by standard treesitter, but currently indentation in Python is too shit and needs a different solution
+    use({ "yioneko/nvim-yati", ft = { "python" } })
 
-	----------------------------------------
-	-- Editor: Hints
-	----------------------------------------
+    -- Auto Pairs
+    use({ "windwp/nvim-autopairs" })
+    -- Endwise (autopairs for lua)
+    use("RRethy/nvim-treesitter-endwise")
 
-	-- Lightbulb for Code Actions
-	use({ "kosayoda/nvim-lightbulb", requires = "antoinemadec/FixCursorHold.nvim" })
-	-- Indent lines
-	use({ "lukas-reineke/indent-blankline.nvim" })
-	-- Display Hex-based Colors
-	use({ "norcalli/nvim-colorizer.lua" })
-	-- Display range visually while typing in command mode
-	use({ "winston0410/range-highlight.nvim", requires = "winston0410/cmd-parser.nvim" })
-	-- Rainbow paranthesis (treesitter module)
-	use("p00f/nvim-ts-rainbow")
-	-- Cursor line: underline current word
-	use("RRethy/vim-illuminate") -- VIM
-	-- Git Gutter
-	use("lewis6991/gitsigns.nvim")
-	-- Display context on scroll
-	use("nvim-treesitter/nvim-treesitter-context")
+    ----------------------------------------
+    -- Language Support: User Interface
+    ----------------------------------------
 
-	----------------------------------------
-	-- Editor: Auto-Configuration
-	----------------------------------------
+    -- User Interface Plugin for LSP
+    use({ "kkharji/lspsaga.nvim", branch = "main" })
 
-	-- Automatically set the tabwidth
-	-- use("tpope/vim-sleuth")
+    -- Show progress of LSP Server
+    -- TODO: Enable after https://github.com/j-hui/fidget.nvim/issues/93
+    use({ "j-hui/fidget.nvim", disable=true })
+    -- Display Virtual Types after functions
+    use("jubnzv/virtual-types.nvim")
+    -- Display LSP lines below code instead of next
+    use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 
-	-- Automatically set 'commentstring' in files with nested languages
-	use({ "JoosepAlviste/nvim-ts-context-commentstring", requires = "nvim-treesitter/nvim-treesitter" })
+    ----------------------------------------
+    -- Language Support: Environment
+    ----------------------------------------
 
-	----------------------------------------
-	-- Language Support
-	----------------------------------------
-
-	----------------------------------------
-	-- Language Support: Language Specific
-	----------------------------------------
-
-	-- Lua: REPL for easy development of config/plugins
-	use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
-	-- Lua: LuaDev for Neovim config/plugin support
-	use("folke/lua-dev.nvim")
-
-	-- Tex: Vimtex
-	use({ "lervag/vimtex" })
-	-- Tex: Math Equation
-	use({
-		"jbyuki/nabla.nvim",
-		requires = "nvim-treesitter/nvim-treesitter",
-		config = function()
-			vim.keymap.set("n", "<leader>hl", "<cmd>lua require('nabla').popup()<cr>", { noremap = true })
-		end,
-	})
-
-	-- Json: Provide access to the SchemaStore
-	use("b0o/SchemaStore.nvim")
-
-	-- Rust: rust-tools / LSP
-	use("simrat39/rust-tools.nvim")
-	-- Rust: crates.nvim
-	use({
-		"Saecki/crates.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		event = { "BufRead Cargo.toml" },
-		config = function()
-			-- Add code actions via null-ls
-			local crates = require("crates")
-			crates.setup({
-				null_ls = {
-					enabled = true,
-					name = "crates.nvim",
-				},
-			})
-
-			-- Inject crates as completion source
-			import("cmp", function(cmp)
-				vim.api.nvim_create_autocmd("BufRead", {
-					group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
-					pattern = "Cargo.toml",
-					callback = function()
-						cmp.setup.buffer({ sources = { { name = "crates" } } })
-					end,
-				})
-			end)
-
-			-- Set mappings
-			import("which-key", function(wk)
-				wk.register({
-					["<localleader>"] = {
-						c = {
-							name = "Crates",
-							t = { crates.toggle, "Crates Toggle" },
-							r = { crates.reload, "Crates Reload" },
-							--
-							v = { crates.show_versions_popup, "Crate Version" },
-							f = { crates.show_features_popup, "Crate show Features" },
-							d = { crates.show_dependencies_popup, "Crate show Dependencies" },
-							--
-							u = { crates.update_crate, "Crate Update" },
-							U = { crates.update_all_creates, "Crate Upgrade" },
-							a = { crates.update_all_crates, "Crate update All" },
-							A = { crates.update_all_creates, "Crate Upgrade all" },
-							--
-							H = { crates.open_homepage, "Crate open Homepage" },
-							R = { crates.open_repository, "Crate open Repository" },
-							D = { crates.open_documentation, "Crate open Documentation" },
-							C = { crates.open_crates_io, "Crate open CratesIO" },
-						},
-					},
-				})
-			end)
-		end,
-	})
-
-	----------------------------------------
-	-- Language Support: DAP
-	----------------------------------------
-
-	-- General
-	use("mfussenegger/nvim-dap")
-	use({ "rcarriga/nvim-dap-ui", tag = "v2.1.0", requires = { "mfussenegger/nvim-dap" } })
-	use("theHamsta/nvim-dap-virtual-text")
-	use("nvim-telescope/telescope-dap.nvim")
-
-	-- Python
-	use("mfussenegger/nvim-dap-python")
-
-	----------------------------------------
-	-- Language Support: LSP
-	----------------------------------------
-
-	-- Language Server Protocol + LSP Config + Mason (auto-install servers)
-	use({ "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "neovim/nvim-lspconfig" })
-
-	-- Completion Sources
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lsp-document-symbol")
-	use("hrsh7th/cmp-nvim-lsp-signature-help")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-cmdline")
-	use("dmitmel/cmp-cmdline-history")
-	use("petertriho/cmp-git")
-	use("hrsh7th/cmp-omni")
-	-- Completion Engine
-	use("hrsh7th/nvim-cmp")
-	-- Completion Icons
-	use("onsails/lspkind.nvim")
-	-- Completion Snippet Engine
-	use("L3MON4D3/LuaSnip")
-	use("saadparwaiz1/cmp_luasnip")
-	-- Completion Sorter: underscore first (python)
-	use("lukas-reineke/cmp-under-comparator")
-
-	----------------------------------------
-	-- Language Support: Tree Sitter
-	----------------------------------------
-
-	-- Treesitter (syntx highlighting, static analysis)
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			require("nvim-treesitter.install").update({ with_sync = true })
-		end,
-	})
-	-- Treesitter based indentation
-	-- TODO: This should be superceded by standard treesitter, but currently indentation in Python is too shit and needs a different solution
-	use({ "yioneko/nvim-yati", ft = { "python" } })
-
-	-- Auto Pairs
-	use({ "windwp/nvim-autopairs" })
-	-- Endwise (autopairs for lua)
-	use("RRethy/nvim-treesitter-endwise")
-
-	----------------------------------------
-	-- Language Support: User Interface
-	----------------------------------------
-
-	-- User Interface Plugin for LSP
-	use({ "kkharji/lspsaga.nvim", branch = "main" })
-
-	-- Show progress of LSP Server
-	use("j-hui/fidget.nvim")
-	-- Display Virtual Types after functions
-	use("jubnzv/virtual-types.nvim")
-	-- Display LSP lines below code instead of next
-	use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
-
-	----------------------------------------
-	-- Language Support: Environment
-	----------------------------------------
-
-	----------------------------------------
-	-- Packer Bootstrapping
-	----------------------------------------
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if packer_bootstrap then
-		require("packer").sync()
-	end
+    ----------------------------------------
+    -- Packer Bootstrapping
+    ----------------------------------------
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if packer_bootstrap then
+        require("packer").sync()
+    end
 end)
 
 require("import")
@@ -388,51 +294,50 @@ require("quitlox.plugins.trouble")
 require("quitlox.plugins.ui")
 require("quitlox.plugins.zen")
 
+require("quitlox.lang.rust")
+
 ----------------------------------------
 -- Basic Plugin Configuration
 ----------------------------------------
 
 -- Dependencies
 import("nvim-web-devicons", function(devicons)
-	devicons.setup({
-		default = true,
-	})
+    devicons.setup({
+        default = true,
+    })
 end)
 -- Vim: Verbs, Motions
 import("smartyank", function(module)
-	module.setup({})
+    module.setup({})
 end)
 -- User Interface
 import("icon-picker", function(module)
-	module.setup({ disable_legacy_commands = true })
+    module.setup({ disable_legacy_commands = true })
 end)
 -- Editor
 import("treesitter-context", function(context)
-	context.setup({ mode = "topline" })
-end)
-import("spellsitter", function(module)
-	module.setup({ enable = true })
+    context.setup({ mode = "topline" })
 end)
 -- Editor: Hints
 import("nvim-lightbulb", function(module)
-	module.setup({ autocmd = { enabled = true } })
+    module.setup({ autocmd = { enabled = true } })
 end)
 vim.o.termguicolors = true
 import("colorizer", function(module)
-	module.setup({ { RGB = false, rgb_fn = true, hsl_fn = true } })
+    module.setup({ { RGB = false, rgb_fn = true, hsl_fn = true } })
 end)
 import("range-highlight", function(module)
-	module.setup()
+    module.setup()
 end)
 
 -- Language Support: LSP (Completion)
 import("nvim-autopairs", function(module)
-	module.setup()
+    module.setup()
 end)
 -- Language Support: User Interface
 -- import("lsp_lines", function(module)
 -- 	module.setup()
 -- end)
 import("fidget", function(module)
-	module.setup({ window = { windblend = 100 } })
+    module.setup({ window = { windblend = 100 } })
 end)
