@@ -33,7 +33,18 @@ if [[ -z $pad ]]; then
 	exit 0
 fi
 
-xsetwacom set $stylus MapToOutput 1920x1080+0+0
+# Retrieve resolution of first monitor
+resolution=$(xrandr | grep ' connected' | head -1 | awk '{print $3}')
+screen_width=$(xrandr | grep ' connected' | head -1 | sed -r 's/.* connected ([0-9]+)x([0-9]+).*/\1/')
+screen_height=$(xrandr | grep ' connected' | head -1 | sed -r 's/.* connected ([0-9]+)x([0-9]+).*/\2/')
+
+# Map the tablet to the first display
+xsetwacom set $stylus MapToOutput $resolution
+# Update the tablet area according to screen aspect ratio
+xsetwacom set $stylus ResetArea
+tablet_width=$(xsetwacom get $stylus Area | awk '{print $3}')
+xsetwacom set $stylus Area "0" "0" "$tablet_width" "$(($tablet_width * $screen_height / $screen_width))"
+# My tablets pressure is kinda broken :c
 xsetwacom set $stylus Threshold 700
 
 # Setup Tablet
