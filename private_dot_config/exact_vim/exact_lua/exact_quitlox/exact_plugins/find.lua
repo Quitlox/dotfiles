@@ -62,7 +62,8 @@ import("which-key", function(wk)
 				d = { "<cmd>Telescope diagnostics<cr>", "Find Diagnostics" },
 				i = { "<cmd>Telescope lsp_implementations<cr>", "Find Implementations" },
 				y = { "<cmd>Telescope lsp_type_definitions<cr>", "Find type definitions" },
-				t = { "<cmd>Telescope tags<cr>", "Find type definitions" },
+				t = { "<cmd>Telescope tags<cr>", "Find Tags" },
+				n = { "<cmd>TodoTelescope<cr>", "Find Notes" },
 				m = { "<cmd>Telescope man_pages theme=dropdown <cr>", "Find Manpage" },
 				h = { "<cmd>Telescope help_tags theme=dropdown<cr>", "Find Help" },
 				s = {

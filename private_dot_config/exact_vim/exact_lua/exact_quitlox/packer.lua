@@ -42,6 +42,8 @@ require("packer").startup(function(use)
     ----------------------------------------
     -- Marks
     use("chentoast/marks.nvim")
+    -- Harpoon Marks
+    use("ThePrimeagen/harpoon")
     -- Session
     use("rmagatti/auto-session")
 
@@ -57,6 +59,7 @@ require("packer").startup(function(use)
     use("tpope/vim-surround")
     use("tpope/vim-repeat")
     use("phaazon/hop.nvim")
+    use("ggandor/leap.nvim")
 
     ----- Comment -----
     use("terrortylor/nvim-comment")
@@ -79,7 +82,7 @@ require("packer").startup(function(use)
     -- UI (User Interface)
     ----------------------------------------
     -- Keep cursor centered
-    use "arnamak/stay-centered.nvim"
+    use("arnamak/stay-centered.nvim")
 
     ----- Components -----
     -- Explorer
@@ -118,7 +121,7 @@ require("packer").startup(function(use)
     -- Terminal
     use("numToStr/FTerm.nvim")
     -- WhichKey
-    use("folke/which-key.nvim")
+    use({ "folke/which-key.nvim", commit = "6885b669523ff4238de99a7c653d47b081b5506d" })
     -- Tools - Integrations with linters, formatters, etc...
     use("jose-elias-alvarez/null-ls.nvim")
 
@@ -147,6 +150,8 @@ require("packer").startup(function(use)
     use("lewis6991/gitsigns.nvim")
     -- Display Context at top of Window
     use("nvim-treesitter/nvim-treesitter-context")
+    -- Todo Comments
+    use("folke/todo-comments.nvim")
 
     ----------------------------------------
     -- Language Support
@@ -175,6 +180,10 @@ require("packer").startup(function(use)
     use("simrat39/rust-tools.nvim")
     -- Autocompletion in project.toml
     use({ "Saecki/crates.nvim", event = { "BufRead Cargo.toml" } })
+
+    ----- Yuck -----
+    -- the filetype used by ewww
+    use("elkowar/yuck.vim")
 
     ----------------------------------------
     -- Language Support: DAP
@@ -245,7 +254,7 @@ require("packer").startup(function(use)
 
     -- Show progress of LSP Server
     -- TODO: Enable after https://github.com/j-hui/fidget.nvim/issues/93
-    use({ "j-hui/fidget.nvim", disable=true })
+    use({ "j-hui/fidget.nvim", disable = true })
     -- Display Virtual Types after functions
     use("jubnzv/virtual-types.nvim")
     -- Display LSP lines below code instead of next
@@ -289,7 +298,7 @@ require("quitlox.plugins.luasnip")
 require("quitlox.plugins.marks")
 require("quitlox.plugins.find")
 require("quitlox.plugins.gitsigns")
-require("quitlox.plugins.hop")
+require("quitlox.plugins.motion")
 require("quitlox.plugins.session")
 require("quitlox.plugins.terminal")
 require("quitlox.plugins.treesitter")
@@ -332,15 +341,15 @@ end)
 import("range-highlight", function(module)
     module.setup()
 end)
+import("todo-comments", function(module)
+    module.setup({})
+end)
 
 -- Language Support: LSP (Completion)
 import("nvim-autopairs", function(module)
     module.setup()
 end)
 -- Language Support: User Interface
--- import("lsp_lines", function(module)
--- 	module.setup()
--- end)
 import("fidget", function(module)
     module.setup({ window = { windblend = 100 } })
 end)
