@@ -62,7 +62,9 @@ require("packer").startup(function(use)
     use("ggandor/leap.nvim")
 
     ----- Comment -----
-    use("terrortylor/nvim-comment")
+    use("numToStr/Comment.nvim")
+    -- Annotation Generator
+    use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" })
     -- Insert Comment Frame/Header
     use "s1n7ax/nvim-comment-frame"
     -- Automatically set 'commentstring' in files with nested languages
