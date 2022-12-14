@@ -138,8 +138,6 @@ require("packer").startup(function(use)
     use({ "kkoomen/vim-doge" })
 
     ----- Editor Hints -----
-    -- Lightbulb - for Code Actions
-    use({ "kosayoda/nvim-lightbulb", requires = "antoinemadec/FixCursorHold.nvim" })
     -- Indent lines
     use("lukas-reineke/indent-blankline.nvim")
     -- Colorizer - display color of hex-values
@@ -335,9 +333,6 @@ import("treesitter-context", function(context)
     context.setup({ mode = "topline" })
 end)
 -- Editor: Hints
-import("nvim-lightbulb", function(module)
-    module.setup({ autocmd = { enabled = true } })
-end)
 vim.o.termguicolors = true
 import("colorizer", function(module)
     module.setup({ { RGB = false, rgb_fn = true, hsl_fn = true } })
