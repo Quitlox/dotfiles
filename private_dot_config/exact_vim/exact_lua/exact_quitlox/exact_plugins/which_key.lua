@@ -1,4 +1,10 @@
 import("which-key", function(wk)
+    -- local presets = require('which-key.plugins.presets')
+    -- presets.text_objects['<M-i>'] = nil
+    -- presets.objects['<M-i>'] = nil
+    -- resets.objects['<a-i>'] = nil
+
+
     wk.setup({
         operators = { gc = "Comments" },
         plugins = {
@@ -21,6 +27,7 @@ import("which-key", function(wk)
             ["<cr>"] = "RET",
             ["<tab>"] = "TAB",
         },
+        ignore_missing = true,
         icons = { group = "", separator = "ﰲ" },
         layout = {
             align = "center",
@@ -39,15 +46,15 @@ import("which-key", function(wk)
         ["<leader>"] = {
             s = { ":wa<cr>", "save" },
         },
-        g = {
-
-            ["0"] = "which_key_ignore",
-            j = "which_key_ignore",
-            k = "which_key_ignore",
-            ["`"] = "which_key_ignore",
-            ["%"] = "which_key_ignore",
-            ["$"] = "which_key_ignore",
-        },
+        -- g = {
+        --
+        --     ["0"] = "which_key_ignore",
+        --     j = "which_key_ignore",
+        --     k = "which_key_ignore",
+        --     ["`"] = "which_key_ignore",
+        --     ["%"] = "which_key_ignore",
+        --     ["$"] = "which_key_ignore",
+        -- },
     })
 
     ----------------------------------------
@@ -88,15 +95,15 @@ import("which-key", function(wk)
         ["<leader>"] = {
             t = {
                 name = "Tab",
-                t = { ":tabnew<cr>", "[T]ab :new" },
-                o = { ":tabonly<cr>", "[T]ab [o]nly" },
-                d = { ":tabclose<cr>", "[T]ab [d]elete" },
-                n = { ":tabnext<cr>", "[T]ab [n]next" },
-                p = { ":tabprevious<cr>", "[T]ab [p]revious" },
+                t = { ":tabnew<cr>", "Tab new" },
+                o = { ":tabonly<cr>", "Tab Only" },
+                d = { ":tabclose<cr>", "Tab Delete" },
+                n = { ":tabnext<cr>", "Tab Next" },
+                p = { ":tabprevious<cr>", "Tab Prev" },
                 m = {
-                    name = "move",
-                    h = { ":-tabmove<cr>", "[T]ab [m]ove left" },
-                    l = { ":+tabmove<cr>", "[T]ab [m]ove right" },
+                    name = "Move",
+                    h = { ":-tabmove<cr>", "Tab Move left" },
+                    l = { ":+tabmove<cr>", "Tab Move right" },
                 },
             },
         },
@@ -108,9 +115,7 @@ import("which-key", function(wk)
 
     wk.register({
         ["<leader>"] = {
-            ["<leader>"] = {
-                i = { "<cmd>IconPickerNormal alt_font symbols nerd_font emoji<cr>", "Icon Picker" },
-            },
+            i = { "<cmd>IconPickerNormal alt_font symbols nerd_font emoji<cr>", "Icon Picker" },
         },
     }, { noremap = true, silent = true })
 
@@ -131,8 +136,8 @@ import("which-key", function(wk)
                     h = { "<cmd>Telescope highlights theme=dropdown<cr>", "Vim List Highlights" },
                 },
             },
-            ["<space>"] = "which_key_ignore", -- EasyMotion
-            ["<enter>"] = "which_key_ignore", -- NoHighlight
+            -- ["<space>"] = "which_key_ignore", -- EasyMotion
+            -- ["<enter>"] = "which_key_ignore", -- NoHighlight
         },
     })
 
