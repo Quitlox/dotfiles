@@ -63,6 +63,8 @@ require("packer").startup(function(use)
 
     ----- Comment -----
     use("terrortylor/nvim-comment")
+    -- Insert Comment Frame/Header
+    use "s1n7ax/nvim-comment-frame"
     -- Automatically set 'commentstring' in files with nested languages
     use("JoosepAlviste/nvim-ts-context-commentstring")
 
