@@ -19,7 +19,7 @@ let g:vimtex_view_method = 'zathura'
 
 " Quickfix
 "let g:vimtex_quickfix_autojump = 1
-"let g:vimtex_quickfix_mode = 1
+let g:vimtex_quickfix_mode = 0
 
 " Editor
 let g:matchup_override_vimtex = 1

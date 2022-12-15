@@ -29,8 +29,8 @@ noremap! <C-h> <C-w>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remap 0 to first non-blank character
-noremap 0 ^
-noremap ^ 0
+" noremap 0 ^
+" noremap ^ 0
 
 " Fix code navigation with softwrapping
 noremap j gj
@@ -90,8 +90,8 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+" vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+" vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 vnoremap : :<C-U>
 
@@ -110,20 +110,6 @@ cnoremap <C-K>		<C-U>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Debugging
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-imap <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-map <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-cmap <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

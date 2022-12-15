@@ -26,6 +26,7 @@ highlight link NotifyTRACEBody Normal
 
 import("notify", function(notify)
 	notify.setup({
+        top_down=false,
 		max_width = function()
 			return math.floor(math.max(vim.o.columns / 2, 30))
 		end,

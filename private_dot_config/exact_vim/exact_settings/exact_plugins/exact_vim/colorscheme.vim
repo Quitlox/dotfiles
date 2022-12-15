@@ -6,10 +6,10 @@ else
 
   "set fillchars=eob:\ ,
 
-  hi Normal ctermfg=None ctermbg=None
-  hi EndOfBuffer ctermfg=None ctermbg=None
-  hi LineNr ctermfg=None ctermbg=None
-  hi SignColumn ctermfg=None ctermbg=None
-  hi Directory ctermfg=None ctermbg=None
-  hi WhichKeyFloat ctermfg=None ctermbg=None
+  " hi Normal ctermfg=None ctermbg=None
+  " hi EndOfBuffer ctermfg=None ctermbg=None
+  " hi LineNr ctermfg=None ctermbg=None
+  " hi SignColumn ctermfg=None ctermbg=None
+  " hi Directory ctermfg=None ctermbg=None
+  " hi WhichKeyFloat ctermfg=None ctermbg=None
 endif

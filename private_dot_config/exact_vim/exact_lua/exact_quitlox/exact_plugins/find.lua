@@ -36,7 +36,7 @@ import("telescope", function(telescope)
 				default_workspace = "CWD",
 				show_unindexed = false,
 				show_filter_column = false,
-				show_scores=true,
+				show_scores=false,
 			},
 		},
 	})

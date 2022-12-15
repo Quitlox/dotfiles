@@ -1,4 +1,3 @@
-
 ----------------------------------------
 -- Colorscheme: Vim Options
 ----------------------------------------
@@ -11,6 +10,8 @@ vim.o.background = "dark"
 ----------------------------------------
 
 import("vscode", function(vscode)
+    local c = require("vscode.colors")
+
     vscode.setup({
         transparent = false,
         italic_comments = true,
@@ -57,7 +58,6 @@ import("vscode", function(vscode)
     -- Highlighted Yank
     ----------------------------------------
     -- Highlighting Yank is now built into Neovim!
-
     vim.cmd([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
 ]]   )

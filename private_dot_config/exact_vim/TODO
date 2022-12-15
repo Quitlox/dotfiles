@@ -1,29 +1,40 @@
-HARD:
-    - [ ] DAP: Turn of gitsigns when DAP UI open
-    - [ ] Create confirmation dialog on quit if terminal still running
-
 TODO:
-    - [x] DAP: Close NvimTree when opening DAP UI
-    - DAP: Change breakpoint symbol to icon and highlight red (contrib?)
-    - Auto Indent!!!
+    - Create confirmation dialog on quit if terminal still running
+    - sequence "ci)" => should change inside next parathesis (instead of the
+    current, which is kinda the previous)
 
-Bugs:
+FIX:
     - Open Git Status errors if not git repo
     - Error when ctags not installed, should be a kind notification
     - Python autosnippets should not activate in comments
-    - Bufferline should not color devicons
-    - Signature help is broken?
-    - [x] Only show errors / warnings in nvim-tree, not hints/info
-    - [ ] Select jsonls as formatter for json files
-    - [x] Automatically recognize launch.json as jsonc filetype 
-    - [x] Automatically reload launch when edited
-    - [ ] Center cursor on jumping to definition
-    - [x] Do not highlight under cursor in NvimTree buffer
+
+    - [ ] Autocomplete in DAP-UI REPL: cmp-dap
+    - [ ] Resize NvimTree on DapUI close (too wide)
+    - [ ] DapUI Highlight current line when paused
 
 COULD:
     - More intuitive keys for resizing windows
     - Choice node for tex snippet \beg (for adding [])
     - Enable virtual-type for languages
+    - Replace WhichKey spell correction with completion-type menu
+
+    - Update highlights related to completion menu
+        ```https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance```
+
+
+PLUGINS:
+    - dial.nvim / boole.nvim: Increment / Decrement move stuff with <Ctrl-A> / <Ctrl-X>
+    - noice.nvim: Pretty UI
+
+    - dirbuf.nvim: Use vim to edit files and directories
+    - mini.nvim or targets.nvim as alternative to nvim-treesitter-textobjects
+    - neotest
+    - hydra.nvim ?
+    - conjure: REPL!
 
 Contribute:
-    - Add 'jsonlint' installer to Mason
+    - swenv: Add support for poetry
+
+Plugins: Which might come in handy later
+    - yaml-companion.nvim: Get, set and autodetect YAML schemas in your buffers
+    - Leap + Spooky seems nicer than Hop

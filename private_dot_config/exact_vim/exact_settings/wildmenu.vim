@@ -19,7 +19,7 @@ if has('wildmenu')
 	" Web Dev
 	set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*,*.lock
 	" Python
-	set wildignore+=__pycache__,*.egg-info,.pytest_cache,.mypy_cache/**,*.pyc,
+	set wildignore+=__pycache__,*.egg-info,.pytest_cache,.mypy_cache/**,*.pyc,*.lock,
 	" Latex
 	set wildignore+=*.aux,*.bbl,*.bcf,*.blg,*.fls,*.log,*.run*.xml,*.synctex*.gz,*.fdb_latexmk,*.glg,*.glo,*.gls,*.ist,*.toc,*.glsdefs,*.tikzstyles
 endif

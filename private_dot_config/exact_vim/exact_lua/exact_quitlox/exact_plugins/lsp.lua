@@ -1,14 +1,29 @@
-import("mason", function(mason)
-	mason.setup({
+-- Configure Mason
+-- Includes automatic setup of Debuggers (with DAP) and Formatters/Linters (with NullLs)
+
+import({ "mason", "mason-lspconfig", "mason-nvim-dap", "mason-null-ls" }, function(modules)
+	modules.mason.setup({
 		ui = {
 			border = "single",
 		},
 	})
-end)
-import("mason-lspconfig", function(module)
-	module.setup({
-		automatic_installation = true,
+	modules["mason-lspconfig"].setup({
+		automatic_installation = false,
 	})
+	modules["mason-nvim-dap"].setup({
+		automatic_setup = true,
+	})
+    modules["mason-nvim-dap"].setup_handlers()
+	modules["mason-null-ls"].setup({
+		ensure_installed = nil,
+		automatic_installation = true,
+		automatic_setup = true,
+	})
+end)
+
+-- Needs to be loaded before lspconfig
+import("neodev", function(module)
+	module.setup({})
 end)
 
 ----------------------------------------
@@ -29,6 +44,19 @@ end, opts)
 ----------------------------------------
 -- Keybindings
 ----------------------------------------
+
+-- Custom format function to support disabling servers
+local lsp_format = function(bufnr)
+	vim.lsp.buf.format({
+		filter = function(client)
+			if client.name == "sumneko_lua" then
+				return false
+			end
+			return true
+		end,
+		bufnr = bufnr,
+	})
+end
 
 local function key_map(bufnr)
 	local bufopts = { silent = true, noremap = true, buffer = bufnr }
@@ -57,7 +85,7 @@ local function key_map(bufnr)
 				R = { vim.lsp.buf.rename, "Go Rename" },
 				r = { "<cmd>Lspsaga lsp_finder<cr>", "Go References" },
 				h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
-				f = { vim.lsp.buf.format, "Format" },
+				f = { lsp_format, "Format" },
 				a = { "<cmd>Lspsaga code_action<cr>", "Action" },
 			},
 		}, bufopts)
@@ -109,16 +137,6 @@ end)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-	-- Server specific workarounds
-	if client.name == "sumneko_lua" then
-		-- We ignore the built-in formatter of sumneko_lua, and use stylua provided via null-ls
-		client.server_capabilities.document_formatting = false
-	end
-	if client.name == "sumneko_lua" then
-		-- We ignore the built-in formatter of sumneko_lua, and use stylua provided via null-ls
-		client.server_capabilities.document_formatting = false
-	end
-
 	-- Cursor Highlight
 	require("illuminate").on_attach(client)
 
@@ -148,6 +166,9 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 local null_ls = require("null-ls")
 
 null_ls.setup({
+	should_attach = function(bufnr)
+		return vim.bo.filetype ~= "cpp"
+	end,
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.shfmt,
@@ -159,10 +180,10 @@ null_ls.setup({
 		null_ls.builtins.formatting.isort,
 		-- Rust
 		null_ls.builtins.formatting.trim_newlines.with({
-			disabled_filetypes = { "rust" }, -- use rustfmt
+			filetypes = { "lua", "python" }, -- use rustfmt
 		}),
 		null_ls.builtins.formatting.trim_whitespace.with({
-			disabled_filetypes = { "rust" }, -- use rustfmt
+			filetypes = { "lua", "python" }, -- use rustfmt
 		}),
 		-- Json
 		null_ls.builtins.diagnostics.jsonlint,
@@ -171,8 +192,8 @@ null_ls.setup({
 			extra_args = { "-n8", "-n1" },
 		}),
 		null_ls.builtins.code_actions.proselint,
-        -- Git
-        null_ls.builtins.code_actions.gitsigns,
+		-- Git
+		null_ls.builtins.code_actions.gitsigns,
 	},
 })
 
@@ -208,8 +229,11 @@ require("lspconfig").bashls.setup({
 })
 
 -- JSON
-import("schemastore", function(schemastore)
-	require("lspconfig").jsonls.setup({
+import({ "schemastore", "lspconfig" }, function(modules)
+	local schemastore = modules.schemastore
+	local lspconfig = modules.lspconfig
+
+	lspconfig.jsonls.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
 		settings = {
@@ -222,7 +246,21 @@ import("schemastore", function(schemastore)
 end)
 
 -- Docker
-require'lspconfig'.dockerls.setup{}
+require("lspconfig").dockerls.setup({
+
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- C Family
+-- require("lspconfig").ccls.setup({})
+local clang_capabilities = vim.lsp.protocol.make_client_capabilities()
+-- TODO: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+clang_capabilities.offsetEncoding = { "utf-16" }
+require("lspconfig").clangd.setup({
+	capabilities = clang_capabilities,
+	on_attach = on_attach,
+})
 
 ----------------------------------------
 -- Config: Lua
@@ -254,33 +292,7 @@ local lua_lsp_config = {
 	},
 }
 
-local function configure_lua_server()
-	-- Enable the Neovim Devkit if in vim config folder
-	-- if vim.fn.getcwd() == '/home/quitlox/.config/vim' then
-	-- 	import("notify", function(notify)
-	-- 		notify(
-	-- 			"Neovim detected that you entered your configuration directory, so I have kindly enabled the LuaDev plugin :)",
-	-- 			"info",
-	-- 			{ timeout = 500, title = "LuaDev kit enabled!" }
-	-- 		)
-	-- 	end)
-
-	-- 	import("lua-dev", function(luadev)
-	-- 		luadev.setup({
-	-- 			lspconfig = lua_lsp_config,
-	-- 		})
-	-- 		import("lspconfig", function(lspconfig)
-	-- 			lspconfig.sumneko_lua.setup(luadev)
-	-- 		end)
-	-- 	end)
-	-- else
-	import("lspconfig", function(lspconfig)
-		lspconfig.sumneko_lua.setup(lua_lsp_config)
-	end)
-	-- end
-end
-
-configure_lua_server()
+require("lspconfig").sumneko_lua.setup(lua_lsp_config)
 
 ----------------------------------------
 -- Config: Rust
@@ -291,6 +303,11 @@ configure_lua_server()
 import("rust-tools", function(rt)
 	rt.setup({
 		server = {
+			opts = {
+				tools = {
+					hover_actions = { auto_focus = true },
+				},
+			},
 			on_attach = function(_, bufnr)
 				key_map(bufnr)
 

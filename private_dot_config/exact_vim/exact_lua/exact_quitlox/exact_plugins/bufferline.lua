@@ -1,4 +1,3 @@
-
 ----------------------------------------
 -- Bufferline: Options
 ----------------------------------------
@@ -10,142 +9,177 @@ vim.opt.termguicolors = true
 ----------------------------------------
 
 import("bufferline", function(bufferline)
-	bufferline.setup({
-		options = {
-			mode = "buffers",
-			themable = true,
-			diagnostics = "nvim_lsp",
-			--- count is an integer representing total count of errors
-			--- level is a string "error" | "warning"
-			--- diagnostics_dict is a dictionary from error level ("error", "warning"
-			--- or "info")to number of errors for each level.
-			--- this should return a string
-			--- Don't get too fancy as this function will be executed a lot
-			diagnostics_indicator = function(count, level, diagnostics_dict, context)
-				local icon = level:match("error") and " " or " "
-				return " " .. icon .. count
-			end,
+    local lazy = require("bufferline.lazy")
+    local colors = lazy.require("bufferline.colors")
 
-			offsets = {
-				{
-					filetype = "NvimTree",
-					text = "File Explorer",
-					highlight = "Directory",
-					text_align = "left",
-				},
-			},
+    local hex = colors.get_color
+    local shade = colors.shade_color
 
-			show_buffer_default_icon = true,
-			separator_style = "slant",
+    local normal_bg = hex({ name = "Normal", attribute = "bg" })
 
-			buffer_close_icon = "",
-			close_icon = "",
-			indicator = {
-				style = "underline",
-			},
-			left_trunc_marker = "",
-			modified_icon = "●",
-			right_trunc_marker = "",
-			show_close_icon = false,
-			show_tab_indicators = true,
+    local is_bright_background = colors.color_is_bright(normal_bg)
+    local separator_shading = is_bright_background and -20 or -45
+    local background_shading = is_bright_background and -12 or -25
 
-			custom_areas = {
-				right = function()
-					local result = {}
-					local seve = vim.diagnostic.severity
-					local error = vim.diagnostic.get(0, { severity = seve.ERROR })
-					local warning = vim.diagnostic.get(0, { severity = seve.WARN })
-					local info = vim.diagnostic.get(0, { severity = seve.INFO })
-					local hint = vim.diagnostic.get(0, { severity = seve.HINT })
+    local visible_bg = shade(normal_bg, -8)
+    local separator_background_color = shade(normal_bg, separator_shading)
+    local background_color = shade(normal_bg, background_shading)
 
-					if error ~= 0 then
-						table.insert(result, { text = "  " .. error, guifg = c.vscRed })
-					end
+    bufferline.setup({
+        options = {
+            mode = "buffers",
+            themable = true,
+            diagnostics = "nvim_lsp",
+            --- count is an integer representing total count of errors
+            --- level is a string "error" | "warning"
+            --- diagnostics_dict is a dictionary from error level ("error", "warning"
+            --- or "info")to number of errors for each level.
+            --- this should return a string
+            --- Don't get too fancy as this function will be executed a lot
+            diagnostics_indicator = function(count, level, diagnostics_dict, context)
+                local icon = "  "
+                icon = level:match("warning") and "  " or icon
+                icon = level:match("error") and "  " or icon
+                return " " .. icon .. count
+            end,
 
-					if warning ~= 0 then
-						table.insert(result, { text = "  " .. warning, guifg = c.vscYellowOrange })
-					end
+            offsets = {
+                {
+                    filetype = "NvimTree",
+                    text = "File Explorer",
+                    text_align = "left",
+                },
+            },
 
-					if hint ~= 0 then
-						table.insert(result, { text = "  " .. hint, guifg = c.vscGreen })
-					end
+            color_icons = false,
+            show_buffer_default_icon = true,
+            separator_style = "slant",
 
-					if info ~= 0 then
-						table.insert(result, { text = "  " .. info, guifg = c.vscLightBlue })
-					end
-					return result
-				end,
-			},
-		},
-		-- Until https://github.com/akinsho/bufferline.nvim/issues/382 is resolved
-		highlights = {
-			separator = {
-				fg = "#252526",
-			},
-			separator_selected = {
-				fg = "#252526",
-			},
-			separator_visible = {
-				fg = "#252526",
-			},
-			warning = {
-				bg = {
-					attribute = "bg",
-					highlight = "Normal",
-				},
-				fg = {
-					attribute = "fg",
-					highlight = "Normal",
-				},
-			},
-			warning_visible = {
+            buffer_close_icon = "",
+            close_icon = "",
+            indicator = {
+                style = "underline",
+            },
+            left_trunc_marker = "",
+            modified_icon = "●",
+            right_trunc_marker = "",
+            show_close_icon = false,
+            show_tab_indicators = true,
 
-				bg = {
-					attribute = "bg",
-					highlight = "Normal",
-				},
-				fg = {
-					attribute = "fg",
-					highlight = "Normal",
-				},
-			},
-			warning_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Normal",
-				},
-				fg = {
-					attribute = "fg",
-					highlight = "Normal",
-				},
-			},
-		},
-	})
+            custom_areas = {
+                right = function()
+                    local result = {}
+                    local seve = vim.diagnostic.severity
+                    local error = vim.diagnostic.get(0, { severity = seve.ERROR })
+                    local warning = vim.diagnostic.get(0, { severity = seve.WARN })
+                    local info = vim.diagnostic.get(0, { severity = seve.INFO })
+                    local hint = vim.diagnostic.get(0, { severity = seve.HINT })
+
+                    if error ~= 0 then
+                        table.insert(result, { text = "  " .. error, fg = c.vscRed })
+                    end
+
+                    if warning ~= 0 then
+                        table.insert(result, { text = "  " .. warning, fg = c.vscYellowOrange })
+                    end
+
+                    if hint ~= 0 then
+                        table.insert(result, { text = "  " .. hint, fg = c.vscGreen })
+                    end
+
+                    if info ~= 0 then
+                        table.insert(result, { text = "  " .. info, fg = c.vscLightBlue })
+                    end
+                    return result
+                end,
+            },
+        },
+        -- Until https://github.com/akinsho/bufferline.nvim/issues/382 is resolved
+        highlights = {
+            separator = {
+                fg = { attribute = "bg", highlight = "StatusLineNC" },
+                bg = background_color,
+            },
+            separator_selected = {
+                fg = { attribute = "bg", highlight = "StatusLineNC" },
+                bg = visible_bg,
+            },
+            separator_visible = {
+                fg = { attribute = "bg", highlight = "StatusLineNC" },
+                bg = background_color,
+            },
+
+            buffer = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            buffer_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            buffer_selected = { fg = { attribute = "fg", highlight = "Normal" } },
+
+            close_button = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            close_button_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+
+            diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+
+            error = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            error_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            error_selected = { fg = { attribute = "fg", highlight = "Normal" } },
+            error_diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            error_diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+
+            warning = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            warning_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            warning_selected = { fg = { attribute = "fg", highlight = "Normal" } },
+            warning_diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            warning_diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+
+            info = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            info_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            info_selected = { fg = { attribute = "fg", highlight = "Normal" } },
+            info_diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            info_diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+
+            hint = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            hint_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            hint_selected = { fg = { attribute = "fg", highlight = "Normal" } },
+            hint_diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+            hint_diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
+        },
+    })
 end)
 
 ----------------------------------------
 -- Bufferline: Keybindings - Buffer
 ----------------------------------------
 
+function close_all_but_current()
+    local current = vim.api.nvim_get_current_buf()
+    local buffers = require("bufferline.utils").get_valid_buffers()
+    for _, bufnr in pairs(buffers) do
+        if bufnr ~= current then
+            -- require("bufferline.commands").handle_close(bufnr)
+            pcall(vim.cmd, string.format("bd %d", bufnr))
+        end
+    end
+end
+
 import("which-key", function(wk)
-	wk.register({
-		["<leader>"] = {
-			b = {
-				name = "Buffer",
-				n = { "<cmd>BufferLineCycleNext<cr>", "Buffer Next" },
-				p = { "<cmd>BufferLineCyclePrev<cr>", "Buffer Prev" },
-				b = { "<cmd>BufferLinePick<cr>", "Buffer Pick" },
-				f = { "<cmd>Telescope buffers<cr>", "Buffer Find" },
-				d = { ":Bdelete<cr>", "Buffer Delete" },
-				o = { ":BufOnly<cr>", "Buffer Only" },
-				m = {
-					name = "Move",
-					n = { "<cmd>BufferLineMoveNext<cr>", "Buffer Move Next" },
-					p = { "<cmd>BufferLineMovePrev<cr>", "Buffer Move Prev" },
-				},
-			},
-		},
-	}, { silent = true })
+    wk.register({
+        ["<leader>"] = {
+            b = {
+                name = "Buffer",
+                n = { "<cmd>BufferLineCycleNext<cr>", "Buffer Next" },
+                p = { "<cmd>BufferLineCyclePrev<cr>", "Buffer Prev" },
+                b = { "<cmd>BufferLinePick<cr>", "Buffer Pick" },
+                f = { "<cmd>Telescope buffers<cr>", "Buffer Find" },
+                d = { ":Bdelete<cr>", "Buffer Delete" },
+                o = { close_all_but_current, "Buffer Only" },
+                m = {
+                    name = "Move",
+                    n = { "<cmd>BufferLineMoveNext<cr>", "Buffer Move Next" },
+                    p = { "<cmd>BufferLineMovePrev<cr>", "Buffer Move Prev" },
+                },
+            },
+        },
+    }, { silent = true })
 end)
 
 -- vim.cmd([[hi BufferLineSeparator guifg=c.c.vscFoldBackground]])

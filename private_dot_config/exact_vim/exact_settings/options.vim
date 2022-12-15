@@ -101,8 +101,7 @@ set wildmenu
 set magic
 " What to save for views and sessions:
 set viewoptions=folds,cursor,curdir,slash,unix
-set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,globals
-" globals -> used by BufferLine to store the order of buffers
+set sessionoptions+=winpos,terminal,folds
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Options
@@ -167,6 +166,15 @@ if has('nvim')
     set switchbuf=uselast
     " Spell check
     set spell
+    set spelllang=en_us
+
+    " Disable spell for certain buffers
+    augroup CustomDisableSpell
+        autocmd!
+        autocmd FileType dap-repl setlocal nospell
+        autocmd FileType dapui_* setlocal nospell
+        autocmd TermOpen * setlocal nospell
+    augroup END
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""

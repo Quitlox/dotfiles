@@ -12,6 +12,7 @@ import("nvim-treesitter.configs", function(treesitter)
             "rust",
             "python",
             "java",
+            "lua",
             -- Shell
             "vim",
             "bash",
@@ -35,10 +36,13 @@ import("nvim-treesitter.configs", function(treesitter)
             "scss",
             "tsx",
             "typescript",
+            -- Dependencies
+            "regex",
+            "markdown_inline"
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
-        sync_install = false,
+        sync_install = true,
         -- Automatically install missing parsers when entering buffer
         auto_install = true,
 
@@ -147,4 +151,8 @@ import("nvim-treesitter.configs", function(treesitter)
     })
 end)
 
+-- Spelling Highlight
 vim.cmd([[hi SpellBad guifg=None guibg=None gui=undercurl]])
+vim.cmd([[hi SpellCap guifg=None guibg=None gui=undercurl]])
+vim.cmd([[hi SpellRare guifg=None guibg=None gui=undercurl]])
+vim.cmd([[hi SpellLocal guifg=None guibg=None gui=undercurl]])

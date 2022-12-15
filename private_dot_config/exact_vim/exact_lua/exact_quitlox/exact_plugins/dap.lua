@@ -1,8 +1,8 @@
 local path = require("quitlox.util.path")
 
-local ok_dapui, dapui = pcall(require, 'dapui')
-local ok_tree_view, tree_view = pcall(require, 'nvim-tree.view')
-local ok_tree_api, tree_api = pcall(require, 'nvim-tree.api')
+local ok_dapui, dapui = pcall(require, "dapui")
+local ok_tree_view, tree_view = pcall(require, "nvim-tree.view")
+local ok_tree_api, tree_api = pcall(require, "nvim-tree.api")
 if not (ok_dapui and ok_tree_api and ok_tree_view) then
 	return
 end
@@ -20,15 +20,18 @@ local function on_open()
 	nvim_tree_enabled = tree_view.is_visible()
 	-- Close the explorer
 	tree_api.tree.close()
+	-- Deattach gitsigns
+	require("gitsigns").toggle_signs(false)
 	-- Open the DAP UI
-	dapui.open()
+	dapui.open({})
 end
 
 local function on_close()
 	if nvim_tree_enabled then
 		tree_api.tree.open()
 	end
-	dapui.close()
+	dapui.close({})
+	require("gitsigns").toggle_signs(true)
 end
 
 -- Configure DAP
@@ -36,7 +39,9 @@ import("dap", function(dap)
 	-- Set log level
 	dap.set_log_level("TRACE")
 
-	dapui.setup({})
+	dapui.setup({
+		expand_lines = vim.fn.has("nvim-0.7") == 1,
+	})
 
 	-- Autmatically open/close DAP UI and Nvim-Tree
 	dap.listeners.after.event_initialized["dapui_config"] = on_open
@@ -66,7 +71,7 @@ import("dap", function(dap)
 					name = "Debug",
 					o = { dapui.open, "Debug UI Open" },
 					c = { dapui.close, "Debug UI Close" },
-					t = { dapui.toggle, "Debug UI Toggle" },
+					-- t = { dapui.toggle, "Debug UI Toggle" },
 					e = { evaluate, "Evaluate Expression" },
 					d = { dap.continue, "Debugger Launch/Continue" },
 					r = { "<cmd>DapToggleRepl<cr>", "Open REPL" },
@@ -76,7 +81,18 @@ import("dap", function(dap)
 						u = { "<cmd>DapStepOut<cr>", "Step Out (Shift+F8)" },
 						i = { "<cmd>DapStepIn<cr>", "Step Into (F7)" },
 					},
-					b = { "<cmd>DapToggleBreakpoint<cr>", "Breakpoint Toggle" },
+					t = { "<cmd>DapToggleBreakpoint<cr>", "Breakpoint Toggle" },
+					b = {
+						name = "Breakpoint",
+						c = {
+							'<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
+							"Breakpoint Condition",
+						},
+						m = {
+							'<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
+							"Breakpoint Message",
+						},
+					},
 					l = {
 						name = "List",
 						c = { "<cmd>Telescope dap commands<cr>", "List Debug Commands" },
@@ -141,9 +157,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- DAP: Python
 ----------------------------------------
 
-local path = require("quitlox.util.path")
+import({ "dap-python", "notify", "which-key" }, function(modules)
+	local pythondap = modules["dap-python"]
+	local notify = modules.notify
+	local wk = modules["which-key"]
 
-import("dap-python", function(pythondap)
 	local debugpy_path =
 		path.concat({ vim.fn.stdpath("data"), "mason", "packages", "debugpy", "venv", "bin", "python" })
 	if path.exists(debugpy_path) then
@@ -153,25 +171,30 @@ import("dap-python", function(pythondap)
 		pythondap.rest_runner = "pytest"
 
 		-- Set keymaps specifically for python
-		import("which-key", function(wk)
-			wk.register({
-				["<localleader>"] = {
-					d = {
-						name = "Debug",
-						c = { pythondap.test_class, "Debug Class" },
-						m = { pythondap.test_method, "Debug Method" },
-						--s = { pythondap.debug_selection, "Debug Selection" },
-					},
+		wk.register({
+			["<localleader>"] = {
+				d = {
+					name = "Debug",
+					x = { pythondap.test_class, "Debug Class" },
+					y = { pythondap.test_method, "Debug Method" },
+					--s = { pythondap.debug_selection, "Debug Selection" },
 				},
-			})
-		end)
+			},
+		})
 	else
-		import("notify", function(notify)
-			notify(
-				'For Python debugging, install debugpy using: ":MasonInstall debugpy"',
-				"WARN",
-				{ title = "No Python Debugging", timeout = 1000 }
-			)
-		end)
+		notify(
+			'For Python debugging, install debugpy using: ":MasonInstall debugpy"',
+			"WARN",
+			{ title = "No Python Debugging", timeout = 1000 }
+		)
 	end
+end)
+
+-- Signs
+vim.fn.sign_define("DapBreakpoint", { text = "•", texthl = "ErrorMsg", linehl = "", numhl = "" })
+-- Persistent Breakpoints
+import("persistent-breakpoints", function(module)
+	module.setup({
+		load_breakpoints_event = { "BufReadPost" },
+	})
 end)

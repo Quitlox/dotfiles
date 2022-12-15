@@ -11,6 +11,14 @@ import("nvim-tree", function(nvim_tree)
 			enable = true,
 		},
 
+        actions = {
+            open_file = {
+                -- Ensure that when nvim-tree.api.tree.open is called, the tree
+                -- is not resized (happens when exiting DapUI)
+                resize_window = true,
+            }
+        },
+
 		diagnostics = {
 			enable = true,
             icons = {
@@ -31,12 +39,13 @@ import("nvim-tree", function(nvim_tree)
 			group_empty = true,
 			icons = { webdev_colors = false, git_placement = "after" },
 			indent_markers = {
-				enable = true,
+				enable = false,
 			},
 			highlight_opened_files = "all",
 		},
 		filters = {
 			dotfiles = true,
+            custom = { "*.lock" }
 		},
 
 		live_filter = {
