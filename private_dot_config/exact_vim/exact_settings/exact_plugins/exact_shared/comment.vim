@@ -27,19 +27,4 @@ let g:which_key_map.g = {
             \ 'c>c': 'comment current line',
             \ 'c>b': 'comment region as block',
             \ }
-else
-""""""""""""""""""""""""""""""""""""""""
-""" NEOVIM
-""""""""""""""""""""""""""""""""""""""""
-lua << EOF
-local wk = require('which-key')
-wk.register({
-    g = {
-        ["<"] = { name = "Explicit Uncomment", c = "Uncomment current line", b = "Uncomment current block" },
-        [">"] = { name = "Explicit Comment", c = "Comment current line", b = "Comment current block" },
-        c = "Toggle comment",
-
-    },
-}, { noremap = true })
-EOF
 endif

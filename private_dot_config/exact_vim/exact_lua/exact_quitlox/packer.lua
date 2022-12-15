@@ -61,10 +61,14 @@ require("packer").startup(function(use)
 	use({ "phaazon/hop.nvim", commit = "caaccee814afefa8cb5ba4cca4d1e22013c4b489" })
 	use("ggandor/leap.nvim")
 
-	----- Comment -----
-	use("terrortylor/nvim-comment")
-	-- Automatically set 'commentstring' in files with nested languages
-	use("JoosepAlviste/nvim-ts-context-commentstring")
+    ----- Comment -----
+    use("numToStr/Comment.nvim")
+    -- Annotation Generator
+    use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" })
+    -- Insert Comment Frame/Header
+    use "s1n7ax/nvim-comment-frame"
+    -- Automatically set 'commentstring' in files with nested languages
+    use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	----- Default Functionality Improved -----
 	-- Matchup - Better %
@@ -137,25 +141,23 @@ require("packer").startup(function(use)
 	-- DoGe - Documentation Generator
 	use({ "kkoomen/vim-doge" })
 
-	----- Editor Hints -----
-	-- Lightbulb - for Code Actions
-	use({ "kosayoda/nvim-lightbulb", requires = "antoinemadec/FixCursorHold.nvim" })
-	-- Indent lines
-	use("lukas-reineke/indent-blankline.nvim")
-	-- Colorizer - display color of hex-values
-	use("norcalli/nvim-colorizer.lua")
-	-- Range Highlight in command mode - Display range visually while typing in command mode
-	use({ "winston0410/range-highlight.nvim", requires = "winston0410/cmd-parser.nvim" })
-	-- Rainbow parenthesis (treesitter module)
-	use("p00f/nvim-ts-rainbow")
-	-- Highlight word under cursor
-	use("RRethy/vim-illuminate")
-	-- Git Gutter
-	use("lewis6991/gitsigns.nvim")
-	-- Display Context at top of Window
-	use("nvim-treesitter/nvim-treesitter-context")
-	-- Todo Comments
-	use("folke/todo-comments.nvim")
+    ----- Editor Hints -----
+    -- Indent lines
+    use("lukas-reineke/indent-blankline.nvim")
+    -- Colorizer - display color of hex-values
+    use("norcalli/nvim-colorizer.lua")
+    -- Range Highlight in command mode - Display range visually while typing in command mode
+    use({ "winston0410/range-highlight.nvim", requires = "winston0410/cmd-parser.nvim" })
+    -- Rainbow parenthesis (treesitter module)
+    use("p00f/nvim-ts-rainbow")
+    -- Highlight word under cursor
+    use("RRethy/vim-illuminate")
+    -- Git Gutter
+    use("lewis6991/gitsigns.nvim")
+    -- Display Context at top of Window
+    use("nvim-treesitter/nvim-treesitter-context")
+    -- Todo Comments
+    use("folke/todo-comments.nvim")
 
 	----------------------------------------
 	-- Language Support
@@ -348,9 +350,6 @@ import("treesitter-context", function(context)
 	context.setup({ mode = "topline" })
 end)
 -- Editor: Hints
-import("nvim-lightbulb", function(module)
-	module.setup({ autocmd = { enabled = true } })
-end)
 vim.o.termguicolors = true
 import("colorizer", function(module)
 	module.setup({ { RRGGBBAA = true, RGB = false, rgb_fn = true, hsl_fn = true } })
