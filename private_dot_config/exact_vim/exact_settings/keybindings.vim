@@ -50,12 +50,14 @@ nnoremap Y y$
 xnoremap p pgvy
 
 " Keep cursor centered when jumping
-if !has('nvim')
-    " Under neovim we use the plugin "arnamak/stay-centered.nvim"
-    nnoremap n nzzzv
-    nnoremap N Nzzzv
-    nnoremap J mzJ`z
-endif
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+nnoremap j jzz
+nnoremap k kzz
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+" LspsagaCodeAction
 
 " Undo breakpoints
 inoremap , ,<c-g>u

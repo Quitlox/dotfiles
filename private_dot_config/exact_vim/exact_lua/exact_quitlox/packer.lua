@@ -85,8 +85,6 @@ require("packer").startup(function(use)
 	----------------------------------------
 	-- UI (User Interface)
 	----------------------------------------
-	-- Keep cursor centered
-	use("arnamak/stay-centered.nvim")
 	-- Pretty Folds
 	use("anuvyklack/pretty-fold.nvim")
 
@@ -132,6 +130,9 @@ require("packer").startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim")
 	-- Workspace / Project / Session Manager
 	use("GnikDroy/projections.nvim")
+
+	-- Git: DiffView
+	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
 	----------------------------------------
 	-- Editor
@@ -335,7 +336,6 @@ import("nvim-web-devicons", function(devicons)
 end)
 -- Vim: Verbs, Motions
 -- User Interface
-import("stay-centered")
 import("pretty-fold", function(module)
 	module.setup({
 		fill_char = "-",

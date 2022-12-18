@@ -1,58 +1,98 @@
 local function on_attach(bufnr)
 	-- Only do something if gitsigns is available
-	import("gitsigns", function(gs)
-		local function map(mode, l, r, opts)
-			opts = opts or {}
-			opts.buffer = bufnr
-			vim.keymap.set(mode, l, r, opts)
+	import({ "gitsigns", "which-key" }, function(modules)
+		local gs = modules.gitsigns
+		local wk = modules["which-key"]
+
+		local function map(mode, lhs, rhs, opts)
+			opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
+			vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
 		end
 
-		-- Navigation
-		map("n", "]g", function()
-			if vim.wo.diff then
-				return "]g"
-			end
-			vim.schedule(function()
-				gs.next_hunk()
-			end)
-			return "<Ignore>"
-		end, { expr = true })
+		-- Git Hunk Navigation
+		map("n", "]g", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
+		map("n", "[g", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
 
-		map("n", "[g", function()
-			if vim.wo.diff then
-				return "[g"
-			end
-			vim.schedule(function()
-				gs.prev_hunk()
-			end)
-			return "<Ignore>"
-		end, { expr = true })
+		-- Git Blame
+		wk.register({
+			b = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle git Blame" },
+		}, { prefix = "<leader>T" })
 
-        -- TODO (with whichkey)
-		-- -- Actions
-		-- map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
-		-- map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
-		-- map("n", "<leader>hS", gs.stage_buffer)
-		-- map("n", "<leader>hu", gs.undo_stage_hunk)
-		-- map("n", "<leader>hR", gs.reset_buffer)
-		-- map("n", "<leader>hp", gs.preview_hunk)
-		-- map("n", "<leader>hb", function()
-		-- 	gs.blame_line({ full = true })
-		-- end)
-		-- map("n", "<leader>tb", gs.toggle_current_line_blame)
-		-- map("n", "<leader>hd", gs.diffthis)
-		-- map("n", "<leader>hD", function()
-		-- 	gs.diffthis("~")
-		-- end)
-		-- map("n", "<leader>td", gs.toggle_deleted)
+		-- Git List
+		wk.register({
+			g = {
+				name = "Git",
+				l = { "<cmd>Gitsigns setqflist<cr>", "Git List Changes" },
+			},
+		}, { prefix = "<leader>" })
+
+		-- Hunk Actions
+		wk.register({
+			h = {
+				name = "Hunk",
+				s = { "<cmd>Gitsigns stage_hunk<cr>", "Hunk Stage" },
+				r = { "<cmd>Gitsigns reset_hunk<cr>", "Hunk Reset" },
+			},
+		}, { prefix = "<leader>", mode = "nv" })
+		-- Hunk Actions
+		wk.register({
+			h = {
+				name = "Hunk",
+				S = { gs.stage_buffer, "Hunk Stage Buffer" },
+				u = { gs.undo_stage_hunk, "Hunk Reset" },
+				R = { gs.reset_buffer, "Hunk Reset Buffer" },
+				p = { gs.preview_hunk, "Hunk Preview" },
+				b = {
+					function()
+						gs.blame_line({ full = true })
+					end,
+					"Hunk Blame",
+				},
+				d = { gs.diffthis, "Hunk Diff" },
+				D = {
+					function()
+						gs.diffthis("~")
+					end,
+					"Hunk Diff Buffer",
+				},
+				t = {
+					name = "Toggle",
+					d = { gs.toggle_deleted, "Hunk Toggle Deleted" },
+				},
+			},
+		}, { prefix = "<leader>", mode = "n" })
 
 		-- -- Text object
 		-- map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end)
 end
 
-import("gitsigns", function(gs)
+import({ "gitsigns" }, function(gs)
 	gs.setup({
 		on_attach = on_attach,
 	})
+end)
+
+import({ "diffview", "diffview.actions", "which-key" }, function(modules)
+	local diffview = modules["diffview"]
+	local actions = modules["diffview.actions"]
+	local wk = modules["which-key"]
+
+	diffview.setup({})
+
+	wk.register({
+		g = {
+			name = "Git",
+			d = {
+				name = "Diff",
+                h = {"<cmd>DiffviewFileHistory<cr>", "Git Diff History"},
+                f = {"<cmd>DiffviewFileHistory %<cr>", "Git Diff File history"},
+                o = {"<cmd>DiffviewOpen<cr>", "Git Diff Open (compare against current index)"},
+                c = {"<cmd>DiffviewClose<cr>", "Git Diff Close"},
+                t = {"<cmd>DiffviewToggleFiles<cr>", "Git Diff Toggle files"},
+                l = {"<cmd>DiffviewFocusFiles<cr>", "Git Diff Locate (focus) files"},
+                r = {"<cmd>DiffviewRefresh<cr>", "Git Diff Refresh"},
+			},
+		},
+	}, { prefix = "<leader>" })
 end)

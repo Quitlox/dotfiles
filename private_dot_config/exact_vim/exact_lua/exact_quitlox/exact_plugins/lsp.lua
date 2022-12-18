@@ -13,7 +13,7 @@ import({ "mason", "mason-lspconfig", "mason-nvim-dap", "mason-null-ls" }, functi
 	modules["mason-nvim-dap"].setup({
 		automatic_setup = true,
 	})
-    modules["mason-nvim-dap"].setup_handlers()
+	modules["mason-nvim-dap"].setup_handlers()
 	modules["mason-null-ls"].setup({
 		ensure_installed = nil,
 		automatic_installation = true,
@@ -63,13 +63,13 @@ local function key_map(bufnr)
 
 	import("which-key", function(wk)
 		wk.register({
-			["<leader>"] = {
-				h = {
-					name = "Hover",
-					d = { "<cmd>Lspsaga preview_definition<cr>", "Definition" },
-					e = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Error" },
-				},
-			},
+			-- ["<leader>"] = {
+			-- 	h = {
+			-- 		name = "Hover",
+			-- 		d = { "<cmd>Lspsaga preview_definition<cr>", "Definition" },
+			-- 		e = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Error" },
+			-- 	},
+			-- },
 			g = {
 				name = "Go",
 				D = { vim.lsp.buf.declaration, "Go Declaration" },
@@ -104,7 +104,7 @@ end
 ----------------------------------------
 
 import("lspsaga", function(lspsaga)
-	lspsaga.setup({
+	lspsaga.init_lsp_saga({
 		max_preview_lines = 20,
 		finder_action_keys = {
 			open = "<cr>",

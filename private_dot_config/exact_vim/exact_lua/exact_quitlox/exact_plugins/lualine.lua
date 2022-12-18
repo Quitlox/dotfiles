@@ -71,7 +71,7 @@ import("lualine", function(lualine)
 			lualine_a = {
 				{
 					"mode",
-					separator = { left = "" },
+					separator = { left = "█" }, -- alt: 
 					padding = { right = 1 },
 					fmt = function(str)
 						return str:sub(1, 1)
@@ -85,7 +85,7 @@ import("lualine", function(lualine)
 			},
 			lualine_c = { filename, "nvim-treesitter#statusline" },
 			lualine_x = { encoding, fileformat, "filetype" },
-			lualine_y = { { "branch", icon = { "", color = { fg = "white" } } } },
+			lualine_y = { { "b:gitsigns_head", color = { fg = "white" }, icon = { "", color = { fg = "white" } } } },
 			lualine_z = { "location" },
 		},
 		inactive_sections = {

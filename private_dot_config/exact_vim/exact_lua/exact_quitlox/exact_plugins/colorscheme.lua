@@ -41,15 +41,18 @@ import("vscode", function(vscode)
     -- 	exclude = {},
     -- })
 
-    -- Fix fidget background
-    -- vim.cmd([[hi! link FidgetTask Normal]])
-
     ----------------------------------------
     -- Customization
     ----------------------------------------
 
+    -- Fix fidget background
+    vim.cmd([[hi! link FidgetTask Normal]])
     -- Explorer
     vim.cmd([[hi NvimTreeOpenedFile guifg=]] .. c.vscMediumBlue)
+    -- Trouble
+    vim.cmd([[hi! link TroubleCode @field]])
+    vim.cmd([[hi! link TroubleSource @field]])
+
     -- Spellcheck
     -- TODO order is wrong
     -- vim.cmd([[hi SpellBad guifg=None guibg=None gui=undercurl guisp=None]] .. c.vscContextCurrent)
