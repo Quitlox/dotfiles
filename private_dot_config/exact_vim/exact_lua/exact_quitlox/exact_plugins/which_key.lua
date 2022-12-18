@@ -9,9 +9,9 @@ import("which-key", function(wk)
         operators = { gc = "Comments" },
         plugins = {
             presets = {
-                operators = true,
-                motions = true,
-                text_objects = true,
+                operators = false,
+                motions = false,
+                text_objects = false,
                 windows = false,
                 nav = false,
                 z = true,

@@ -21,29 +21,37 @@ import({ "mason", "mason-lspconfig", "mason-nvim-dap", "mason-null-ls" }, functi
 	})
 end)
 
+-- Developer support for Neovim configuration and Neovim plugin development
 -- Needs to be loaded before lspconfig
 import("neodev", function(module)
 	module.setup({})
 end)
 
 ----------------------------------------
--- General Configuration
-----------------------------------------
-
--- Mappings.
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
-vim.keymap.set("n", "[e", function()
-	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end, opts)
-vim.keymap.set("n", "]e", function()
-	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-end, opts)
-
-----------------------------------------
 -- Keybindings
 ----------------------------------------
+
+-- Mappings
+-- Add [e and ]e for navigating to Error Diagnostics
+-- Add [d and ]d for navigating to any Diagnostics
+import("which-key", function(wk)
+	wk.register({
+		["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Prev Diagnostic" },
+		["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Prev Diagnostic" },
+		["[e"] = {
+			function()
+				vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+			end,
+			"Prev Error",
+		},
+		["]e"] = {
+			function()
+				vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+			end,
+			"Prev Error",
+		},
+	})
+end)
 
 -- Custom format function to support disabling servers
 local lsp_format = function(bufnr)
@@ -95,10 +103,28 @@ local function key_map(bufnr)
 	vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("i", "<C-p>", vim.lsp.buf.signature_help)
 
-	vim.keymap.set("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", bufopts)
-	vim.keymap.set("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", bufopts)
+	-- vim.keymap.set("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", bufopts)
+	-- vim.keymap.set("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", bufopts)
 end
 
+----------------------------------------
+-- LSPSaga: Winbar
+----------------------------------------
+
+-- local events = { "BufEnter", "BufWinEnter", "CursorMoved" }
+--
+-- vim.api.nvim_create_autocmd(events, {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("User", {
+-- 	pattern = "LspsagaUpdateSymbol",
+-- 	callback = function()
+-- 	end,
+-- })
+--
 ----------------------------------------
 -- LSP User Interface
 ----------------------------------------
@@ -126,6 +152,11 @@ import("lspsaga", function(lspsaga)
 		rename_output_qflist = {
 			enable = false,
 			auto_open_qflist = false,
+		},
+		symbol_in_winbar = {
+            in_custom=true,
+			-- enable = true,
+            -- show_file=true,
 		},
 	})
 end)
@@ -202,7 +233,7 @@ null_ls.setup({
 ----------------------------------------
 
 -- Python
-require("lspconfig")["pyright"].setup({
+require("lspconfig").pyright.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
@@ -211,7 +242,7 @@ require("lspconfig")["pyright"].setup({
 })
 
 -- Vim
-require("lspconfig")["vimls"].setup({
+require("lspconfig").vimls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
@@ -253,7 +284,6 @@ require("lspconfig").dockerls.setup({
 })
 
 -- C Family
--- require("lspconfig").ccls.setup({})
 local clang_capabilities = vim.lsp.protocol.make_client_capabilities()
 -- TODO: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
 clang_capabilities.offsetEncoding = { "utf-16" }

@@ -1,12 +1,3 @@
-----------------------------------------
--- Statusline: Custom VSCode Colorscheme
-----------------------------------------
-
-import("lualine.themes.vscode", function(vscode)
-	vscode.normal.a.fg = "white"
-	vscode.normal.b.fg = "white"
-	vscode.normal.c.fg = "white"
-end)
 
 ----------------------------------------
 -- Statusline: Custom Modules
@@ -37,7 +28,16 @@ local filename = {
 -- Statusline: Setup
 ----------------------------------------
 
-import("lualine", function(lualine)
+import({"lualine","lualine.themes.vscode","lspsaga", "lspsaga.symbolwinbar"}, function(modules)
+    local lualine = modules.lualine
+    local vscode = modules['lualine.themes.vscode']
+    local lspsaga = modules['lspsaga.symbolwinbar']
+
+    -- Custom Colors for Lualine
+	vscode.normal.a.fg = "white"
+	vscode.normal.b.fg = "white"
+	vscode.normal.c.fg = "white"
+
 	lualine.setup({
 		options = {
 			theme = vscode,
@@ -64,7 +64,7 @@ import("lualine", function(lualine)
 			refresh = {
 				statusline = 1000,
 				tabline = 1000,
-				winbar = 1000,
+				-- winbar = 1000,
 			},
 		},
 		sections = {
@@ -100,7 +100,7 @@ import("lualine", function(lualine)
 		winbar = {
 			lualine_a = {},
 			lualine_b = {},
-			lualine_c = {},
+			lualine_c = {lspsaga.get_symbol_node},
 			lualine_x = {},
 			lualine_y = {},
 			lualine_z = {},
@@ -108,7 +108,7 @@ import("lualine", function(lualine)
 		inactive_winbar = {
 			lualine_a = {},
 			lualine_b = {},
-			lualine_c = { filename },
+			lualine_c = {},
 			lualine_x = {},
 			lualine_y = {},
 			lualine_z = {},

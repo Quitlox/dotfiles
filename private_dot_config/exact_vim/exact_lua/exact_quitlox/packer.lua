@@ -266,7 +266,7 @@ require("packer").startup(function(use)
 	----------------------------------------
 
 	-- User Interface Plugin for LSP
-	use({ "kkharji/lspsaga.nvim", branch = "main" })
+	use({ "glepnir/lspsaga.nvim", branch = "main" })
 
 	-- Show progress of LSP Server
 	-- TODO: Enable after https://github.com/j-hui/fidget.nvim/issues/93
@@ -313,7 +313,7 @@ require("quitlox.plugins.lualine")
 require("quitlox.plugins.luasnip")
 -- require("quitlox.plugins.marks")
 require("quitlox.plugins.find")
-require("quitlox.plugins.gitsigns")
+require("quitlox.plugins.git")
 require("quitlox.plugins.motion")
 require("quitlox.plugins.session")
 require("quitlox.plugins.terminal")
