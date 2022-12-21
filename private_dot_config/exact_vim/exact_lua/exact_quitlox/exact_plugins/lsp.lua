@@ -96,6 +96,7 @@ local function key_map(bufnr)
 				f = { lsp_format, "Format" },
 				a = { "<cmd>Lspsaga code_action<cr>", "Action" },
 			},
+				K = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
 		}, bufopts)
 	end)
 
