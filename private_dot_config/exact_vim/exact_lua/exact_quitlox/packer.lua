@@ -58,8 +58,11 @@ require("packer").startup(function(use)
 	----------------------------------------
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
-	use({ "phaazon/hop.nvim", commit = "caaccee814afefa8cb5ba4cca4d1e22013c4b489" })
+
+    -- Motion
 	use("ggandor/leap.nvim")
+    use({"ggandor/flit.nvim", requires="ggandor/leap.nvim"})
+    use({"ggandor/leap-spooky.nvim", requires="ggandor/leap.nvim"})
 
     ----- Comment -----
     use("numToStr/Comment.nvim")
@@ -73,8 +76,6 @@ require("packer").startup(function(use)
 	----- Default Functionality Improved -----
 	-- Matchup - Better %
 	use("andymass/vim-matchup")
-	-- CleverF - Better f,t,F,T (SHARED WITH VIM)
-	use("rhysd/clever-f.vim")
 
 	----- Text Objects -----
 	-- Text Objects --
@@ -94,7 +95,7 @@ require("packer").startup(function(use)
 	-- Statusline
 	use("nvim-lualine/lualine.nvim")
 	-- Bufferline
-	use({ "akinsho/bufferline.nvim", tag = "v3.0.0" })
+	use({ "akinsho/bufferline.nvim", tag = "v3.1.0" })
 	-- Diagnostics
 	use("folke/trouble.nvim")
 
@@ -133,6 +134,8 @@ require("packer").startup(function(use)
 
 	-- Git: DiffView
 	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+    -- Git: Neogit (UI)
+    use({"TimUntersberger/neogit", requires={ "nvim-lua/plenary.nvim" ,"sindrets/diffview.nvim"}})
 
 	----------------------------------------
 	-- Editor
@@ -236,7 +239,7 @@ require("packer").startup(function(use)
 	-- Completion Icons
 	use("onsails/lspkind.nvim")
 	-- Completion Snippet Engine
-	use("L3MON4D3/LuaSnip")
+	use({"L3MON4D3/LuaSnip", tag="v1.1.*"})
 	use("saadparwaiz1/cmp_luasnip")
 	-- Completion Sorter: underscore first (python)
 	use("lukas-reineke/cmp-under-comparator")

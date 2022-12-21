@@ -22,16 +22,20 @@ end
 
 
 local function restore_nvim_tree()
+    -- Refresh NvimTree on Restore
 	local tree = require("nvim-tree.api").tree
 	tree.change_root(vim.fn.getcwd())
     vim.cmd("NvimTreeRefresh")
-    tree.focus()
+    tree.open()
 end
 
 local function store_hook() 
+    -- Close DapUI on Store
     import("dapui", function(module)
         module.close({})
     end)
+    -- TODO: Close Neogit on Store
+    -- TODO: Close GitDiff on Store
 end
 
 -- import("auto-session", function(autosession)

@@ -7,6 +7,7 @@ end
 -- Setup
 ----------------------------------------
 
+-- TODO: Make FZF ignore ignored files
 import("telescope", function(telescope)
 	telescope.setup({
 		defaults = {

@@ -1,7 +1,5 @@
 -- Dependencies
-import("nvim-treesitter.install", function(treesitter)
-    treesitter.update({ with_sync = true })
-end)
+import("nvim-treesitter.install", function(treesitter) treesitter.update({ with_sync = true }) end)
 
 import("nvim-treesitter.configs", function(treesitter)
     treesitter.setup({
@@ -38,7 +36,7 @@ import("nvim-treesitter.configs", function(treesitter)
             "typescript",
             -- Dependencies
             "regex",
-            "markdown_inline"
+            "markdown_inline",
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -55,7 +53,7 @@ import("nvim-treesitter.configs", function(treesitter)
             -- Using this option may slow down your editor, and you may see some duplicate highlights.
             -- Instead of true it can also be a list of languages
 
-            additional_vim_regex_highlighting = {'latex'},
+            additional_vim_regex_highlighting = { "latex" },
             disable = { "latex" },
         },
 
@@ -65,7 +63,7 @@ import("nvim-treesitter.configs", function(treesitter)
             enable = true,
             extended_mode = true,
             max_file_lines = 20000,
-            disable = {"latex"},
+            disable = { "latex" },
         },
 
         ----- Indenting -----
@@ -137,7 +135,7 @@ import("nvim-treesitter.configs", function(treesitter)
                 -- You can choose the select mode (default is charwise 'v')
                 selection_modes = {
                     ["@parameter.outer"] = "v", -- charwise
-                    ["@function.outer"] = "V", -- linewise
+                    ["@function.outer"] = "v", -- linewise
                     ["@class.outer"] = "<c-v>", -- blockwise
                 },
             },

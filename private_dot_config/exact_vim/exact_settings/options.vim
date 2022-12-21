@@ -177,6 +177,7 @@ if has('nvim')
     augroup CustomDisableSpell
         autocmd!
         autocmd FileType checkhealth setlocal nospell
+        autocmd FileType NeogitStatus setlocal nospell
         autocmd FileType dap-repl setlocal nospell
         autocmd FileType dapui_* setlocal nospell
         autocmd TermOpen * setlocal nospell

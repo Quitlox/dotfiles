@@ -1,6 +1,8 @@
 ----------------------------------------------------------------------
 --                             Gitsigns                             --
 ----------------------------------------------------------------------
+-- Shows git signs for line additions, changes and deletions in the gutter (next
+-- to the line number column)
 
 import({ "gitsigns", "which-key" }, function(modules)
 	local gs = modules.gitsigns
@@ -8,19 +10,29 @@ import({ "gitsigns", "which-key" }, function(modules)
 
 	gs.setup({
 		on_attach = function(bufnr)
-			local function map(mode, lhs, rhs, opts)
-				opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
-				vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-			end
 
 			-- Git Hunk Navigation
-			map("n", "]g", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
-			map("n", "[g", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
+            local function next_hunk()
+                if vim.wo.diff then return ']c' end
+                vim.schedule(function() gs.next_hunk() end)
+                return '<Ignore>'
+            end
+            local function prev_hunk()
+                if vim.wo.diff then return '[c' end
+                vim.schedule(function() gs.prev_hunk() end)
+                return '<Ignore>'
+            end
+            vim.keymap.set('n', ']c',next_hunk,{expr=true, buffer=bufnr})
+            vim.keymap.set('n', '[c',prev_hunk,{expr=true, buffer=bufnr})
+            wk.register({
+                ["[c"] = {  "Next Change" },
+                ["]c"] = {  "Prev Change" },
+            } )
 
 			-- Git Blame
 			wk.register({
 				b = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle git Blame" },
-			}, { prefix = "<leader>T" })
+			}, { prefix = "<leader>T", buffer=bufnr })
 
 			-- Git List
 			wk.register({
@@ -28,7 +40,7 @@ import({ "gitsigns", "which-key" }, function(modules)
 					name = "Git",
 					l = { "<cmd>Gitsigns setqflist<cr>", "Git List Changes" },
 				},
-			}, { prefix = "<leader>" })
+			}, { prefix = "<leader>",buffer=bufnr })
 
 			-- Hunk Actions
 			wk.register({
@@ -37,7 +49,7 @@ import({ "gitsigns", "which-key" }, function(modules)
 					s = { "<cmd>Gitsigns stage_hunk<cr>", "Hunk Stage" },
 					r = { "<cmd>Gitsigns reset_hunk<cr>", "Hunk Reset" },
 				},
-			}, { prefix = "<leader>", mode = "nv" })
+			}, { prefix = "<leader>", mode = "nv", buffer=bufnr })
 			-- Hunk Actions
 			wk.register({
 				h = {
@@ -46,28 +58,17 @@ import({ "gitsigns", "which-key" }, function(modules)
 					u = { gs.undo_stage_hunk, "Hunk Reset" },
 					R = { gs.reset_buffer, "Hunk Reset Buffer" },
 					p = { gs.preview_hunk, "Hunk Preview" },
-					b = {
-						function()
-							gs.blame_line({ full = true })
-						end,
-						"Hunk Blame",
-					},
+					b = { function() gs.blame_line({ full = true }) end, "Hunk Blame", },
 					d = { gs.diffthis, "Hunk Diff" },
-					D = {
-						function()
-							gs.diffthis("~")
-						end,
-						"Hunk Diff Buffer",
-					},
-					t = {
-						name = "Toggle",
-						d = { gs.toggle_deleted, "Hunk Toggle Deleted" },
-					},
+					D = { function() gs.diffthis("~") end, "Hunk Diff Buffer", },
+					t = { name = "Toggle", d = { gs.toggle_deleted, "Hunk Toggle Deleted" }, },
 				},
-			}, { prefix = "<leader>", mode = "n" })
+			}, { prefix = "<leader>", mode = "n", buffer=bufnr })
 
-			-- -- Text object
-			-- map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+			-- Text object
+            -- wk.register({
+            --     ["ih"] = {":<C-U>Gitsigns select_hunk<CR>","Text Object: Hunk"},
+            -- },{mode="ox", })
 		end,
 	})
 end)
@@ -75,6 +76,7 @@ end)
 ----------------------------------------------------------------------
 --                             DiffView                             --
 ----------------------------------------------------------------------
+-- Improves the standard vimdiff mode, adding better highlighting and shortcuts.
 
 import({ "diffview", "diffview.actions", "which-key" }, function(modules)
 	local diffview = modules["diffview"]
@@ -96,6 +98,29 @@ import({ "diffview", "diffview.actions", "which-key" }, function(modules)
 				l = { "<cmd>DiffviewFocusFiles<cr>", "Git Diff Locate (focus) files" },
 				r = { "<cmd>DiffviewRefresh<cr>", "Git Diff Refresh" },
 			},
+		},
+	}, { prefix = "<leader>" })
+end)
+
+----------------------------------------------------------------------
+--                              Neogit                              --
+----------------------------------------------------------------------
+
+import({ "neogit","which-key" }, function(modules)
+	local neogit = modules["neogit"]
+	local wk = modules["which-key"]
+
+	neogit.setup({
+        integrations = {
+            diffview=true,
+        }
+    })
+
+	wk.register({
+		g = {
+			name = "Git",
+			o = { neogit.open, "Git Open" },
+			c = { function() neogit.open({ "commit" }) end, "Git Commit", },
 		},
 	}, { prefix = "<leader>" })
 end)
