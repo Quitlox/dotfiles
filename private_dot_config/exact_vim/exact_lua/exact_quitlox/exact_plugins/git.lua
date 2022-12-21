@@ -13,20 +13,20 @@ import({ "gitsigns", "which-key" }, function(modules)
 
 			-- Git Hunk Navigation
             local function next_hunk()
-                if vim.wo.diff then return ']c' end
+                if vim.wo.diff then return ']h' end
                 vim.schedule(function() gs.next_hunk() end)
                 return '<Ignore>'
             end
             local function prev_hunk()
-                if vim.wo.diff then return '[c' end
+                if vim.wo.diff then return '[h' end
                 vim.schedule(function() gs.prev_hunk() end)
                 return '<Ignore>'
             end
-            vim.keymap.set('n', ']c',next_hunk,{expr=true, buffer=bufnr})
-            vim.keymap.set('n', '[c',prev_hunk,{expr=true, buffer=bufnr})
+            vim.keymap.set('n', ']h',next_hunk,{expr=true, buffer=bufnr})
+            vim.keymap.set('n', '[h',prev_hunk,{expr=true, buffer=bufnr})
             wk.register({
-                ["[c"] = {  "Next Change" },
-                ["]c"] = {  "Prev Change" },
+                ["[h"] = {  "Next Change" },
+                ["]h"] = {  "Prev Change" },
             } )
 
 			-- Git Blame
