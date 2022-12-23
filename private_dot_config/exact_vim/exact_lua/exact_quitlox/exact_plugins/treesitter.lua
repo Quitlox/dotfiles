@@ -82,6 +82,12 @@ import("nvim-treesitter.configs", function(treesitter)
             enable = true,
         },
 
+        ----- AutoTag -----
+        -- The autopairs for languages like html
+        autotag = {
+            enable = true,
+        },
+
         ----- Text Objects -----
         -- with: nvim-treesitter/nvim-treesitter-textobjects
         textobjects = {
@@ -150,7 +156,8 @@ import("nvim-treesitter.configs", function(treesitter)
 end)
 
 -- Spelling Highlight
-vim.cmd([[hi SpellBad guifg=None guibg=None gui=undercurl]])
-vim.cmd([[hi SpellCap guifg=None guibg=None gui=undercurl]])
-vim.cmd([[hi SpellRare guifg=None guibg=None gui=undercurl]])
-vim.cmd([[hi SpellLocal guifg=None guibg=None gui=undercurl]])
+-- xtermcolors: https://www.ditig.com/256-colors-cheat-sheet
+vim.cmd([[hi SpellBad guifg=None guibg=None guisp='DarkOliveGreen3' gui=undercurl]])
+vim.cmd([[hi SpellCap guifg=None guibg=None guisp='Olive' gui=undercurl]])
+vim.cmd([[hi SpellRare guifg=None guibg=None guisp='Olive' gui=undercurl]])
+vim.cmd([[hi SpellLocal guifg=None guibg=None guisp='Olive' gui=undercurl]])

@@ -172,6 +172,11 @@ if has('nvim')
     " Spell check
     set spell
     set spelllang=en_us
+    " augroup CustomEnableSpell
+    "     autocmd!
+    "     autocmd FileType markdown,txt setlocal spell
+    "     autocmd FileType markdown,txt setlocal spelllang=en_us
+    " augroup END
 
     " Disable spell for certain buffers
     augroup CustomDisableSpell

@@ -263,6 +263,8 @@ require("packer").startup(function(use)
 	use({ "windwp/nvim-autopairs" })
 	-- Endwise (autopairs for lua)
 	use("RRethy/nvim-treesitter-endwise")
+    -- AutoTag (autopairs for html/jsx/etc)
+    use("windwp/nvim-ts-autotag")
 
 	----------------------------------------
 	-- Language Support: User Interface
