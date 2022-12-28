@@ -32,12 +32,6 @@ noremap! <C-h> <C-w>
 " noremap 0 ^
 " noremap ^ 0
 
-" Fix code navigation with softwrapping
-noremap j gj
-noremap gj j
-noremap k gk
-noremap gk k
-
 " noremap 0 g0
 " noremap g0 0
 " noremap $ g$
@@ -58,6 +52,12 @@ nnoremap k kzz
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 " LspsagaCodeAction
+
+" Fix code navigation with softwrapping
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
 
 " Undo breakpoints
 inoremap , ,<c-g>u

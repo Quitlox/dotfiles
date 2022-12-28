@@ -203,7 +203,9 @@ null_ls.setup({
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.shfmt,
         -- WEB DEVELOPMENT
-        null_ls.builtins.formatting.prettier.with({}),
+        null_ls.builtins.formatting.prettier.with({
+            extra_filteypes={},
+        }),
         null_ls.builtins.formatting.eslint_d,
         -- Python
         null_ls.builtins.formatting.black,

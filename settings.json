@@ -488,5 +488,7 @@
   "editor.suggest.preview": true,
   "editor.tabCompletion": "on",
   "extensions.ignoreRecommendations": true,
-  "editor.stickyScroll.enabled": true
+  "editor.stickyScroll.enabled": true,
+  "svelte.enable-ts-plugin": true,
+  "svelte.plugin.svelte.note-new-transformation": false
 }

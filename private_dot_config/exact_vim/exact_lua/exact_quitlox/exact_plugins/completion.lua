@@ -3,9 +3,7 @@
 local ok_cmp, cmp = pcall(require, "cmp")
 local ok_lspkind, lspkind = pcall(require, "lspkind")
 local ok_luasnip, luasnip = pcall(require, "luasnip")
-if not (ok_cmp and ok_lspkind and ok_luasnip) then
-    return
-end
+if not (ok_cmp and ok_lspkind and ok_luasnip) then return end
 
 vim.o.completeopt = "menu,menuone,noselect"
 
@@ -96,9 +94,7 @@ cmp.setup({
     snippet = {
         -- Set the Snippet Engine
         expand = function(args)
-            import("luasnip", function(ls)
-                ls.lsp_expand(args.body)
-            end)
+            import("luasnip", function(ls) ls.lsp_expand(args.body) end)
         end,
     },
     -- Enable border around completion
@@ -125,7 +121,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
-        { name = "luasnip", option={show_autosnippets=true} },
+        { name = "luasnip", option = { show_autosnippets = true } },
     }, {
         -- This introduces a new group, meaning that only if the group above has
         -- no completion items, this group is used.
@@ -135,9 +131,7 @@ cmp.setup({
             name = "spell",
             option = {
                 keep_all_entries = false,
-                enable_in_context = function()
-                    return require("cmp.config.context").in_treesitter_capture("spell")
-                end,
+                enable_in_context = function() return require("cmp.config.context").in_treesitter_capture("spell") end,
             },
         },
     }),
@@ -180,9 +174,9 @@ cmp.setup.cmdline("/", {
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = "cmdline"},
-        { name = "cmdline_history"},
-        { name = "path"},
+        { name = "cmdline" },
+        { name = "cmdline_history" },
+        { name = "path" },
     }),
 })
 
@@ -195,33 +189,39 @@ cmp.setup.cmdline(":", {
 ---@diagnostic disable: undefined-global, unused-local
 
 import("luasnip", function(ls)
-	local s = ls.snippet
-	local sn = ls.snippet_node
-	local t = ls.text_node
-	local i = ls.insert_node
-	local f = ls.function_node
-	local c = ls.choice_node
-	local d = ls.dynamic_node
+    local s = ls.snippet
+    local sn = ls.snippet_node
+    local t = ls.text_node
+    local i = ls.insert_node
+    local f = ls.function_node
+    local c = ls.choice_node
+    local d = ls.dynamic_node
 
-	local r = ls.restore_node
+    local r = ls.restore_node
 
-	vim.keymap.set("i", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
-	vim.keymap.set("s", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
-	vim.keymap.set("i", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
-	vim.keymap.set("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+    vim.keymap.set("i", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+    vim.keymap.set("s", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+    vim.keymap.set("i", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+    vim.keymap.set("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 
-    ls.config.setup({enable_autosnippets=true})
-	ls.add_snippets("lua", {
-		s("fn", {
-			t("function("),
-			i(1, "arg"),
-			t(") "),
-			i(2),
-			t(" end"),
-		}),
-	})
+    ls.config.setup({ enable_autosnippets = true })
+    ls.add_snippets("lua", {
+        s("fn", {
+            t("function("),
+            i(1, "arg"),
+            t(") "),
+            i(2),
+            t(" end"),
+        }),
+    })
 end)
 
-import("luasnip.loaders.from_snipmate", function(loader)
-	loader.lazy_load()
-end)
+import("luasnip.loaders.from_snipmate", function(loader) loader.lazy_load() end)
+
+----------------------------------------------------------------------
+--                          Github Copilot                          --
+----------------------------------------------------------------------
+
+-- Github Copilot
+vim.g.copilot_no_tab_map=true
+vim.cmd[[imap <silent><script><expr> <c-a> copilot#Accept("")]]
