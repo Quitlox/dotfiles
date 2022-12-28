@@ -106,58 +106,104 @@ local function key_map(bufnr)
 end
 
 ----------------------------------------
--- LSPSaga: Winbar
-----------------------------------------
-
--- local events = { "BufEnter", "BufWinEnter", "CursorMoved" }
---
--- vim.api.nvim_create_autocmd(events, {
--- 	pattern = "*",
--- 	callback = function()
--- 	end,
--- })
---
--- vim.api.nvim_create_autocmd("User", {
--- 	pattern = "LspsagaUpdateSymbol",
--- 	callback = function()
--- 	end,
--- })
---
-----------------------------------------
 -- LSP User Interface
 ----------------------------------------
 
-import("lspsaga", function(lspsaga)
-    lspsaga.init_lsp_saga({
-        max_preview_lines = 20,
-        finder_action_keys = {
-            open = "<cr>",
-            vsplit = "b",
-            split = "v",
-            quit = "<ESC>",
-            scroll_down = "<C-d>",
-            scroll_up = "<C-u>",
-        },
-        code_action_keys = {
-            quit = "<ESC>",
-            exec = "<CR>",
-        },
-        definition_action_keys = {
-            quit = "<ESC>",
-        },
-        rename_action_keys = {
-            quit = "<ESC>",
-            exec = "<CR>",
-        },
-        rename_prompt_prefix = "➤",
-        rename_output_qflist = {
-            enable = false,
-            auto_open_qflist = false,
-        },
-        symbol_in_winbar = {
-            in_custom = true,
-            -- enable = true,
-            -- show_file=true,
+import(
+    "lspsaga",
+    function(lspsaga)
+        lspsaga.init_lsp_saga({
+            max_preview_lines = 20,
+            finder_action_keys = {
+                open = "<cr>",
+                vsplit = "b",
+                split = "v",
+                quit = "<ESC>",
+                scroll_down = "<C-d>",
+                scroll_up = "<C-u>",
+            },
+            code_action_keys = {
+                quit = "<ESC>",
+                exec = "<CR>",
+            },
+            definition_action_keys = {
+                quit = "<ESC>",
+            },
+            rename_action_keys = {
+                quit = "<ESC>",
+                exec = "<CR>",
+            },
+            rename_prompt_prefix = "➤",
+            rename_output_qflist = {
+                enable = false,
+                auto_open_qflist = false,
+            },
+        })
+    end
+)
+
+-- Breadcrumbs
+import("nvim-navic", function(navic)
+    -- Highlight groups
+    vim.api.nvim_set_hl(0, "NavicIconsFile", {link="CmpItemKindFile"})
+    vim.api.nvim_set_hl(0, "NavicIconsModule", {link="CmpItemKindModule"})
+    vim.api.nvim_set_hl(0, "NavicIconsNamespace", {link="CmpItemKindNamespace"})
+    vim.api.nvim_set_hl(0, "NavicIconsPackage", {link="CmpItemKindPackage"})
+    vim.api.nvim_set_hl(0, "NavicIconsClass", {link="CmpItemKindClass"})
+    vim.api.nvim_set_hl(0, "NavicIconsMethod", {link="CmpItemKindMethod"})
+    vim.api.nvim_set_hl(0, "NavicIconsProperty", {link="CmpItemKindProperty"})
+    vim.api.nvim_set_hl(0, "NavicIconsField", {link="CmpItemKindField"})
+    vim.api.nvim_set_hl(0, "NavicIconsConstructor", {link="CmpItemKindConstructor"})
+    vim.api.nvim_set_hl(0, "NavicIconsEnum", {link="CmpItemKindEnum"})
+    vim.api.nvim_set_hl(0, "NavicIconsInterface", {link="CmpItemKindInterface"})
+    vim.api.nvim_set_hl(0, "NavicIconsFunction", {link="CmpItemKindFunction"})
+    vim.api.nvim_set_hl(0, "NavicIconsVariable", {link="CmpItemKindVariable"})
+    vim.api.nvim_set_hl(0, "NavicIconsConstant", {link="CmpItemKindConstant"})
+    vim.api.nvim_set_hl(0, "NavicIconsString", {link="CmpItemKindString"})
+    vim.api.nvim_set_hl(0, "NavicIconsNumber", {link="CmpItemKindNumber"})
+    vim.api.nvim_set_hl(0, "NavicIconsBoolean", {link="CmpItemKindBoolean"})
+    vim.api.nvim_set_hl(0, "NavicIconsArray", {link="CmpItemKindArray"})
+    vim.api.nvim_set_hl(0, "NavicIconsObject", {link="CmpItemKindObject"})
+    vim.api.nvim_set_hl(0, "NavicIconsKey", {link="CmpItemKindKey"})
+    vim.api.nvim_set_hl(0, "NavicIconsNull", {link="CmpItemKindNull"})
+    vim.api.nvim_set_hl(0, "NavicIconsEnumMember", {link="CmpItemKindEnumMember"})
+    vim.api.nvim_set_hl(0, "NavicIconsStruct", {link="CmpItemKindStruct"})
+    vim.api.nvim_set_hl(0, "NavicIconsEvent", {link="CmpItemKindEvent"})
+    vim.api.nvim_set_hl(0, "NavicIconsOperator", {link="CmpItemKindOperator"})
+    vim.api.nvim_set_hl(0, "NavicIconsTypeParameter", {link="CmpItemKindTypeParameter"})
+    vim.api.nvim_set_hl(0, "NavicText", {link="CmpItemKindText"})
+    vim.api.nvim_set_hl(0, "NavicSeparator", {link="CmpItemKindSeparator"})
+
+    -- Setup function
+    navic.setup({
+        highlight = true,
+        icons = {
+            File = " ",
+            Module = " ",
+            Namespace = " ",
+            Package = " ",
+            Class = " ",
+            Method = " ",
+            Property = " ",
+            Field = " ",
+            Constructor = " ",
+            Enum = " ",
+            Interface = " ",
+            Function = " ",
+            Variable = " ",
+            Constant = " ",
+            String = " ",
+            Number = " ",
+            Boolean = " ",
+            Array = " ",
+            Object = " ",
+            Key = " ",
+            Null = " ",
+            EnumMember = " ",
+            Struct = " ",
+            Event = " ",
+            Operator = " ",
+            TypeParameter = " ",
         },
     })
 end)
@@ -185,6 +231,11 @@ local on_attach = function(client, bufnr)
         -- Disable virtual_text
         virtual_text = false,
     })
+
+    -- Breadcrumbs
+    import("nvim-navic", function(navic)
+        if client.server_capabilities.documentSymbolProvider then navic.attach(client, bufnr) end
+    end)
 end
 
 -- Completion Capabilities
@@ -204,7 +255,7 @@ null_ls.setup({
         null_ls.builtins.formatting.shfmt,
         -- WEB DEVELOPMENT
         null_ls.builtins.formatting.prettier.with({
-            extra_filteypes={},
+            extra_filteypes = {},
         }),
         null_ls.builtins.formatting.eslint_d,
         -- Python

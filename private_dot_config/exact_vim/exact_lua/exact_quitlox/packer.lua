@@ -124,7 +124,8 @@ require("packer").startup(function(use)
     use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     -- Terminal
-    use("numToStr/FTerm.nvim")
+    use({"numToStr/FTerm.nvim",disable=true})
+    use({ "akinsho/toggleterm.nvim", tag = "*" })
     -- WhichKey
     use({ "folke/which-key.nvim", commit = "6885b669523ff4238de99a7c653d47b081b5506d" })
     -- Tools - Integrations with linters, formatters, etc...
@@ -156,12 +157,13 @@ require("packer").startup(function(use)
     use("p00f/nvim-ts-rainbow")
     -- Highlight word under cursor
     use("RRethy/vim-illuminate")
-    -- Git Gutter
-    use("lewis6991/gitsigns.nvim")
-    -- Display Context at top of Window
-    use("nvim-treesitter/nvim-treesitter-context")
     -- Todo Comments
     use("folke/todo-comments.nvim")
+
+    -- Git Gutter
+    use("lewis6991/gitsigns.nvim")
+    -- Breadcrumbs
+    use({ "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" })
 
     ----------------------------------------
     -- Language Support
@@ -320,6 +322,7 @@ require("quitlox.plugins.motion")
 require("quitlox.plugins.nvim_tree")
 require("quitlox.plugins.session")
 require("quitlox.plugins.terminal")
+require("quitlox.plugins.terminal2")
 require("quitlox.plugins.treesitter")
 require("quitlox.plugins.trouble")
 require("quitlox.plugins.ui")
@@ -346,8 +349,6 @@ import("pretty-fold", function(module)
 end)
 import("icon-picker", function(module) module.setup({ disable_legacy_commands = true }) end)
 -- IDE
--- Editor
-import("treesitter-context", function(context) context.setup({ mode = "topline" }) end)
 -- Editor: Hints
 vim.o.termguicolors = true
 import(
