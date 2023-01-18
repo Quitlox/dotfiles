@@ -235,8 +235,10 @@ sudo pacman -S --needed -q rlwrap
 ############################################################
 
 ### FIREWALL ###########################
-sudo pacman -S --needed -q nftables
-sudo systemctl enable --now nftables.service
+# NFTables gives issues with docker and requires some setup.
+# We'll use the default iptables, should work just as well
+## sudo pacman -S --needed -q nftables
+## sudo systemctl enable --now nftables.service
 
 ### CPU FREQUENCY SCALING ##############
 sudo pacman -S --needed -q cpupower
