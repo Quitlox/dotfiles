@@ -111,6 +111,7 @@ import({ "neogit","which-key" }, function(modules)
 	local wk = modules["which-key"]
 
 	neogit.setup({
+        kind="split",
         integrations = {
             diffview=true,
         }

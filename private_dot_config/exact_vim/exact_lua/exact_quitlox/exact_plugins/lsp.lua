@@ -254,7 +254,7 @@ null_ls.setup({
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.shfmt,
         -- WEB DEVELOPMENT
-        null_ls.builtins.formatting.prettier.with({
+        null_ls.builtins.formatting.prettierd.with({
             extra_filteypes = {},
         }),
         null_ls.builtins.formatting.eslint_d,
@@ -338,10 +338,14 @@ import({ "schemastore", "lspconfig" }, function(modules)
         },
     })
 end)
+-- YAML
+require("lspconfig").yamlls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
 
 -- Docker
 require("lspconfig").dockerls.setup({
-
     capabilities = capabilities,
     on_attach = on_attach,
 })

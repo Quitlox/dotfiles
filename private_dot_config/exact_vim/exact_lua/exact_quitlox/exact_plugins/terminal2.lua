@@ -7,6 +7,8 @@ if not status_ok then return end
 
 toggleterm.setup({
     open_mapping = [[`]],
+    -- insert_mappings=true,
+    -- terminal_mappings=true,
     persist_mode=true,
     direction = "float",
     size = function(term)
@@ -24,7 +26,7 @@ toggleterm.setup({
 
 function _G.set_terminal_keymaps()
     local opts = { buffer = 0 }
-    vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+    -- vim.keymap.set("t", "<esc>", [[<cmd>call feedkeys("<C-\><C-n>")<cr>]], opts)
     vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
     vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
     vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
@@ -54,6 +56,6 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 -- Workaround for exiting neovim
 -- https://github.com/neovim/neovim/issues/14061
 vim.cmd([[
-    command Z w | qa
+    command Z wa | qa
     cabbrev xa Z
 ]])

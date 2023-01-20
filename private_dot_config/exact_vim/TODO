@@ -12,6 +12,11 @@ FIX:
     - [ ] Resize NvimTree on DapUI close (too wide)
     - [ ] DapUI Highlight current line when paused
 
+    - [ ] Vi keys do not work well with floating terminal
+    - [ ] Add mapping for Neogit
+    - [ ] Add Git Blame plugin
+    - [ ] Add JSON Navigator plugin
+
 COULD:
     - More intuitive keys for resizing windows
     - Choice node for tex snippet \beg (for adding [])
