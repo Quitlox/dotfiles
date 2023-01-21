@@ -112,7 +112,7 @@ end
 import(
     "lspsaga",
     function(lspsaga)
-        lspsaga.init_lsp_saga({
+        lspsaga.setup({
             max_preview_lines = 20,
             finder_action_keys = {
                 open = "<cr>",
