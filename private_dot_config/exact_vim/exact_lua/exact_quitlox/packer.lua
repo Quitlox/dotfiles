@@ -44,8 +44,6 @@ require("packer").startup(function(use)
     use("chentoast/marks.nvim")
     -- Harpoon Marks
     use("ThePrimeagen/harpoon")
-    -- Session
-    use({ "rmagatti/auto-session", disable = true }) -- Deprecated in favour of projections.nvim
 
     ----------------------------------------
     -- Vim: Commands
@@ -124,7 +122,7 @@ require("packer").startup(function(use)
     use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     -- Terminal
-    use({"numToStr/FTerm.nvim",disable=true})
+    use({ "numToStr/FTerm.nvim", disable = true })
     use({ "akinsho/toggleterm.nvim", tag = "*" })
     -- WhichKey
     use({ "folke/which-key.nvim", commit = "6885b669523ff4238de99a7c653d47b081b5506d" })
@@ -185,6 +183,16 @@ require("packer").startup(function(use)
         end,
     })
 
+    ----- YAML -----
+    use({
+        "someone-stole-my-name/yaml-companion.nvim",
+        requires = {
+            { "neovim/nvim-lspconfig" },
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope.nvim" },
+        },
+        config = function() require("telescope").load_extension("yaml_schema") end,
+    })
     ----- Json -----
     -- Autocompletion based on remote SchemaStore
     use("b0o/SchemaStore.nvim")
@@ -322,7 +330,6 @@ require("quitlox.plugins.motion")
 require("quitlox.plugins.nvim_tree")
 require("quitlox.plugins.session")
 require("quitlox.plugins.terminal")
-require("quitlox.plugins.terminal2")
 require("quitlox.plugins.treesitter")
 require("quitlox.plugins.trouble")
 require("quitlox.plugins.ui")

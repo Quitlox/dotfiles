@@ -75,21 +75,13 @@ import("bufferline", function(bufferline)
                     local info = vim.diagnostic.get(0, { severity = seve.INFO })
                     local hint = vim.diagnostic.get(0, { severity = seve.HINT })
 
-                    if error ~= 0 then
-                        table.insert(result, { text = "  " .. error, fg = c.vscRed })
-                    end
+                    if error ~= 0 then table.insert(result, { text = "  " .. error, fg = c.vscRed }) end
 
-                    if warning ~= 0 then
-                        table.insert(result, { text = "  " .. warning, fg = c.vscYellowOrange })
-                    end
+                    if warning ~= 0 then table.insert(result, { text = "  " .. warning, fg = c.vscYellowOrange }) end
 
-                    if hint ~= 0 then
-                        table.insert(result, { text = "  " .. hint, fg = c.vscGreen })
-                    end
+                    if hint ~= 0 then table.insert(result, { text = "  " .. hint, fg = c.vscGreen }) end
 
-                    if info ~= 0 then
-                        table.insert(result, { text = "  " .. info, fg = c.vscLightBlue })
-                    end
+                    if info ~= 0 then table.insert(result, { text = "  " .. info, fg = c.vscLightBlue }) end
                     return result
                 end,
             },
@@ -154,33 +146,49 @@ function close_all_but_current()
     local current = vim.api.nvim_get_current_buf()
     local buffers = require("bufferline.utils").get_valid_buffers()
     for _, bufnr in pairs(buffers) do
-        if bufnr ~= current then
-            -- require("bufferline.commands").handle_close(bufnr)
-            pcall(vim.cmd, string.format("bd %d", bufnr))
+        -- We leave the current buffer open
+        if bufnr == current then
+            goto continue
         end
+
+        -- We leave buffers that are visible in a window
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+            if vim.api.nvim_win_get_buf(win) == bufnr then
+                goto continue
+            end
+        end
+
+        -- Delete the buffer
+        -- require("bufferline.commands").handle_close(bufnr)
+        pcall(vim.cmd, string.format("bd %d", bufnr))
+
+        ::continue::
     end
 end
 
-import("which-key", function(wk)
-    wk.register({
-        ["<leader>"] = {
-            b = {
-                name = "Buffer",
-                n = { "<cmd>BufferLineCycleNext<cr>", "Buffer Next" },
-                p = { "<cmd>BufferLineCyclePrev<cr>", "Buffer Prev" },
-                b = { "<cmd>BufferLinePick<cr>", "Buffer Pick" },
-                f = { "<cmd>Telescope buffers<cr>", "Buffer Find" },
-                d = { ":Bdelete<cr>", "Buffer Delete" },
-                o = { close_all_but_current, "Buffer Only" },
-                m = {
-                    name = "Move",
-                    n = { "<cmd>BufferLineMoveNext<cr>", "Buffer Move Next" },
-                    p = { "<cmd>BufferLineMovePrev<cr>", "Buffer Move Prev" },
+import(
+    "which-key",
+    function(wk)
+        wk.register({
+            ["<leader>"] = {
+                b = {
+                    name = "Buffer",
+                    n = { "<cmd>BufferLineCycleNext<cr>", "Buffer Next" },
+                    p = { "<cmd>BufferLineCyclePrev<cr>", "Buffer Prev" },
+                    b = { "<cmd>BufferLinePick<cr>", "Buffer Pick" },
+                    f = { "<cmd>Telescope buffers<cr>", "Buffer Find" },
+                    d = { ":Bdelete<cr>", "Buffer Delete" },
+                    o = { close_all_but_current, "Buffer Only" },
+                    m = {
+                        name = "Move",
+                        n = { "<cmd>BufferLineMoveNext<cr>", "Buffer Move Next" },
+                        p = { "<cmd>BufferLineMovePrev<cr>", "Buffer Move Prev" },
+                    },
                 },
             },
-        },
-    }, { silent = true })
-end)
+        }, { silent = true })
+    end
+)
 
 -- vim.cmd([[hi BufferLineSeparator guifg=c.c.vscFoldBackground]])
 -- vim.cmd([[hi BufferLineSeparatorSelected guifg=c.vscFoldBackground]])

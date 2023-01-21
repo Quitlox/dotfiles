@@ -84,11 +84,6 @@ import("which-key", function(wk)
 					end,
 					"Open Symbols",
 				},
-				g = {
-					name = "Git",
-					b = { "<cmd>Telescope git_branches<cr>", "Open Git Branches" },
-					s = { "<cmd>Telescope git_status<cr>", "Open Git Status" },
-				},
 			},
 		},
 	})

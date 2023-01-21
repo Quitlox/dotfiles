@@ -339,10 +339,17 @@ import({ "schemastore", "lspconfig" }, function(modules)
     })
 end)
 -- YAML
-require("lspconfig").yamlls.setup({
+-- TODO: Add keybinding for :Telescope yaml_schema
+-- TODO: For fancyness, I should check whether a schema is found upon opening
+-- a yaml file. If not, a popup should appear to hint the user to open
+-- :Telescope yaml_schema to select a schema.
+local cfg = require("yaml-companion").setup({
+  lspconfig = {
     capabilities = capabilities,
     on_attach = on_attach,
+  },
 })
+require("lspconfig").yamlls.setup(cfg)
 
 -- Docker
 require("lspconfig").dockerls.setup({

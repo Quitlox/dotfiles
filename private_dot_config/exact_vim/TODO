@@ -1,45 +1,37 @@
-TODO:
-    - Create confirmation dialog on quit if terminal still running
-    - sequence "ci)" => should change inside next parathesis (instead of the
-    current, which is kinda the previous)
-
 FIX:
-    - Open Git Status errors if not git repo
+    - sequence "ci)" => should change inside next parathesis (instead of the current, which is kinda the previous)
     - Error when ctags not installed, should be a kind notification
     - Python autosnippets should not activate in comments
 
-    - [ ] Autocomplete in DAP-UI REPL: cmp-dap
-    - [ ] Resize NvimTree on DapUI close (too wide)
-    - [ ] DapUI Highlight current line when paused
+    - Autocomplete in DAP-UI REPL: cmp-dap
+    - Resize NvimTree on DapUI close (too wide)
+    - DapUI Highlight current line when paused
 
-    - [ ] Vi keys do not work well with floating terminal
-    - [ ] Add mapping for Neogit
-    - [ ] Add Git Blame plugin
-    - [ ] Add JSON Navigator plugin
+    - Add lazygit
+    - Add Git Blame plugin
 
 COULD:
     - More intuitive keys for resizing windows
     - Choice node for tex snippet \beg (for adding [])
     - Enable virtual-type for languages
-    - Replace WhichKey spell correction with completion-type menu
 
     - Update highlights related to completion menu
         ```https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance```
 
+    - Spooky (plugin for Leap)
+
+BLOCKED:
+    - Neogit leaves emtpy window when Neogit is called inside a non-git
+    directory. No clue how to fix
+
 
 PLUGINS:
     - dial.nvim / boole.nvim: Increment / Decrement move stuff with <Ctrl-A> / <Ctrl-X>
-    - noice.nvim: Pretty UI
-
-    - dirbuf.nvim: Use vim to edit files and directories
+    - dirbuf.nvim: Use vim to edit files and directories ALT: oil.nvim
     - mini.nvim or targets.nvim as alternative to nvim-treesitter-textobjects
     - neotest
     - hydra.nvim ?
     - conjure: REPL!
 
-Contribute:
-    - swenv: Add support for poetry
-
-Plugins: Which might come in handy later
-    - yaml-companion.nvim: Get, set and autodetect YAML schemas in your buffers
-    - Leap + Spooky seems nicer than Hop
+    - Replace packer with lazy
+    - noice.nvim: Pretty UI

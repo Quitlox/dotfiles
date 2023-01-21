@@ -1,13 +1,15 @@
 ----------------------------------------
--- Statusline: Custom Modules
+-- [Module] Encoding
 ----------------------------------------
-
--- Override 'encoding': Don't display if encoding is UTF-8.
+-- Don't display if encoding is UTF-8.
 local encoding = function()
     local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
     return ret
 end
--- fileformat: Don't display if &ff is unix.
+----------------------------------------
+-- [Module] Fileformat
+----------------------------------------
+-- Don't display if &ff is unix.
 local fileformat = function()
     local ret, _ = vim.bo.fileformat:gsub("^unix$", "")
     return ret
@@ -23,13 +25,43 @@ local filename = {
     },
 }
 
-local breadcrumbs = function()
-	local status_ok, navic = pcall(require, "nvim-navic")
-	if not status_ok then
-		return ""
-	end
-    return { navic.get_location, cond = navic.is_available, separator = { left = "", right = "" } }
+----------------------------------------
+-- [Module] Breadcrumbs (Navic)
+----------------------------------------
+-- Retain the breadcrumbs even while buffer is inactive
+
+local breadcrumbs = function(highlight)
+    -- Import Navic
+    local status_ok, navic = pcall(require, "nvim-navic")
+    if not status_ok then return "" end
+
+    -- Wrapper around navic to remember last value
+    vim.b.navic_last = ""
+    local function get_location()
+        if navic.is_available() then vim.b.navic_last = navic.get_location({ highlight = highlight }) end
+        if vim.b.navic_last == nil then return "" end
+        return vim.b.navic_last
+    end
+
+    return { get_location, separator = { left = "", right = "" } }
 end
+
+----------------------------------------
+-- [Module] YAML Schema (yaml-companion)
+----------------------------------------
+function yaml_schema()
+    -- Import yaml-companion
+    local status_ok, yaml = pcall(require, "yaml-companion")
+    if not status_ok then return "" end
+
+    local schema = yaml.get_buf_schema(0)
+    if schema then return schema.result[1].name end
+    return ""
+end
+
+----------------------------------------
+-- [Module] Terminal
+----------------------------------------
 local toggleterm = {
     '%{&ft == "toggleterm" ? "terminal (".b:toggle_number.")" : ""}',
     cond = function() return vim.bo.filetype == "toggleterm" end,
@@ -44,10 +76,15 @@ import({ "lualine", "lualine.themes.vscode", "lspsaga", "nvim-navic" }, function
     local vscode = modules["lualine.themes.vscode"]
     local navic = modules["nvim-navic"]
 
+    local c = require("vscode.colors").get_colors()
+
     -- Custom Colors for Lualine
     vscode.normal.a.fg = "white"
     vscode.normal.b.fg = "white"
     vscode.normal.c.fg = "white"
+    -- Custom highlighting for the winbar breadcrumbs
+    vscode.inactive.b.bg = c.vscBack
+    vscode.inactive.b.fg = c.vscCursorLight
 
     lualine.setup({
         options = {
@@ -93,7 +130,7 @@ import({ "lualine", "lualine.themes.vscode", "lspsaga", "nvim-navic" }, function
                 "gutentags#statusline",
             },
             lualine_c = { filename, "nvim-treesitter#statusline" },
-            lualine_x = { encoding, fileformat, "filetype" },
+            lualine_x = { encoding, fileformat, yaml_schema, "filetype" },
             lualine_y = { { "b:gitsigns_head", color = { fg = "white" }, icon = { "", color = { fg = "white" } } } },
             lualine_z = { "location" },
         },
@@ -108,7 +145,7 @@ import({ "lualine", "lualine.themes.vscode", "lspsaga", "nvim-navic" }, function
 
         winbar = {
             lualine_a = {},
-            lualine_b = { breadcrumbs(), toggleterm, },
+            lualine_b = { breadcrumbs(true), toggleterm },
             lualine_c = {},
             lualine_x = {},
             lualine_y = {},
@@ -116,7 +153,7 @@ import({ "lualine", "lualine.themes.vscode", "lspsaga", "nvim-navic" }, function
         },
         inactive_winbar = {
             lualine_a = {},
-            lualine_b = {  toggleterm, },
+            lualine_b = { breadcrumbs(false), toggleterm },
             lualine_c = {},
             lualine_x = {},
             lualine_y = {},

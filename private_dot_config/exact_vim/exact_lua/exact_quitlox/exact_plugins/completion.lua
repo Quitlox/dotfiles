@@ -5,6 +5,9 @@ local ok_lspkind, lspkind = pcall(require, "lspkind")
 local ok_luasnip, luasnip = pcall(require, "luasnip")
 if not (ok_cmp and ok_lspkind and ok_luasnip) then return end
 
+-- Hack for completion
+cmp = require("cmp")
+
 vim.o.completeopt = "menu,menuone,noselect"
 
 local completion_enabled = function()
@@ -52,9 +55,9 @@ end
 
 vim.keymap.set("n", "K", show_documentation, { noremap = true, silent = true })
 
-function select_next_completion_item(fallback)
+local function select_next_completion_item(fallback, count)
     if cmp.visible() then
-        cmp.select_next_item()
+        cmp.select_next_item({ count = count or 1 })
     elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
         -- Note: This is in the default config, but breaks <tab> when positioned at the end of a word in insert mode
@@ -65,13 +68,35 @@ function select_next_completion_item(fallback)
     end
 end
 
-function select_prev_completion_item(fallback)
+local function select_prev_completion_item(fallback)
     if cmp.visible() then
         cmp.select_prev_item()
     elseif luasnip.jumpable(-1) then
         luasnip.jump(-1)
     else
         fallback()
+    end
+end
+
+local function scroll_completion_down()
+    if cmp.core.view.docs_view:visible() then cmp.core.view:scroll_docs(4) end
+
+    if cmp.core.view.custom_entries_view:visible() then
+        -- attributes: border_info, col, height, inner_height, inner_width, row, scrollabe, scrollbar_offset, width
+        local window_info = cmp.core.view.custom_entries_view:info()
+        local height = window_info.height
+        cmp.select_next_item({ count = math.floor(height / 2) })
+    end
+end
+
+local function scroll_completion_up()
+    if cmp.core.view.docs_view:visible() then cmp.core.view:scroll_docs(-4) end
+
+    if cmp.core.view.custom_entries_view:visible() then
+        -- attributes: border_info, col, height, inner_height, inner_width, row, scrollabe, scrollbar_offset, width
+        local window_info = cmp.core.view.custom_entries_view:info()
+        local height = window_info.height
+        cmp.select_prev_item({ count = math.floor(height / 2) })
     end
 end
 
@@ -109,13 +134,12 @@ cmp.setup({
         ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(select_next_completion_item, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(select_prev_completion_item, { "i", "s" }),
-        ["<C-j>"] = cmp.mapping(select_next_completion_item, { "i", "s" }),
-        ["<C-k>"] = cmp.mapping(select_prev_completion_item, { "i", "s" }),
-
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-j>"] = cmp.mapping(select_next_completion_item, { "i", "s", "c" }),
+        ["<C-k>"] = cmp.mapping(select_prev_completion_item, { "i", "s", "c" }),
+        ["<C-b>"] = cmp.mapping(scroll_completion_up, { "i", "s", "c" }),
+        ["<C-f>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
+        ["<C-u>"] = cmp.mapping(scroll_completion_up, { "i", "s", "c" }),
+        ["<C-d>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
         ["<C-space>"] = cmp.mapping.complete(),
     }),
     sources = cmp.config.sources({
@@ -223,5 +247,15 @@ import("luasnip.loaders.from_snipmate", function(loader) loader.lazy_load() end)
 ----------------------------------------------------------------------
 
 -- Github Copilot
-vim.g.copilot_no_tab_map=true
-vim.cmd[[imap <silent><script><expr> <c-a> copilot#Accept("")]]
+vim.g.copilot_no_tab_map = true
+vim.cmd([[imap <silent><script><expr> <c-a> copilot#Accept("")]])
+
+----------------------------------------------------------------------
+--           Parenthesis after Accept Function Completion           --
+----------------------------------------------------------------------
+
+import({ "nvim-autopairs.completion.cmp" }, function(modules)
+    local cmp_autopairs = modules["nvim-autopairs.completion.cmp"]
+
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+end)

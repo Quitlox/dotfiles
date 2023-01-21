@@ -1,19 +1,6 @@
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 -- globals -> used by BufferLine to store the order of buffers
 
--- Workaround
--- https://github.com/rmagatti/auto-session/issues/64
-if not vim.fn.has("nvim-0.8.1") == 1 then
-    function _G.close_all_floating_wins()
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-            local config = vim.api.nvim_win_get_config(win)
-            if config.relative ~= "" then vim.api.nvim_win_close(win, false) end
-        end
-    end
-else
-    function _G.close_all_floating_wins() end
-end
-
 ----------------------------------------
 -- Session Manager: auto-session
 ----------------------------------------
@@ -29,28 +16,31 @@ end
 local function store_hook()
     -- Close DapUI on Store
     import("dapui", function(module) module.close({}) end)
-    -- TODO: Close Neogit on Store
+
+    -- Close Neogit on Store
+    import("neogit.status", function(neogit_status)
+        neogit_status.close()
+    end)
+
+    -- Close terminals on Store
+    import({"toggleterm.terminal"}, function(terminal)
+        local terminals = terminal.get_all(true)
+        for _, term in pairs(terminals) do
+            term:close()
+        end
+    end)
+
     -- TODO: Close GitDiff on Store
 end
-
--- import("auto-session", function(autosession)
--- 	autosession.setup({
--- 		log_level = "warn",
--- 		auto_session_suppress_dirs = { "~/", "~/Downloads", "~/Documents", "/tmp" },
--- 		pre_save_cmds = { _G.close_all_floating_wins },
--- 		post_restore_cmds = { restore_nvim_tree },
--- 		auto_save_enabled = true,
--- 		auto_restore_enabled = true,
--- 	})
--- end)
 
 ----------------------------------------
 -- Project Manager: projections
 ----------------------------------------
 
-import({ "projections", "telescope" }, function(modules)
+import({ "projections", "telescope", "which-key" }, function(modules)
     local projections = modules.projections
     local telescope = modules.telescope
+    local wk = modules["which-key"]
 
     -- Setup projections.nvim plugin
     projections.setup({
@@ -70,12 +60,15 @@ import({ "projections", "telescope" }, function(modules)
 
     -- Bind telescope keybinding for browsing projects
     telescope.load_extension("projections")
-    -- vim.keymap.set("n", "<leader>op", function()
-    -- 	vim.cmd("Telescope projections")
-    -- end)
-    require("which-key").register({
-        p = { "<cmd>Telescope projections<cr>", "Open Projects" },
-    }, { prefix = "<leader>o" })
+    -- TODO: Open Telescope with a prettier, smaller UI
+    -- See porjections.nvim for inspiration
+    wk.register({ p = { "<cmd>Telescope projections<cr>", "Open Projects" } }, { prefix = "<leader>o" })
+    wk.register({ o = { "<cmd>Telescope projections<cr>", "Project Open" } }, { prefix = "<leader>p" })
+
+    -- Command for adding additional projects to workspace
+    local Workspace = require("projections.workspace")
+    vim.api.nvim_create_user_command("AddWorkspace", function() Workspace.add(vim.loop.cwd()) end, {})
+    wk.register({ a = { "<cmd>AddWorkspace<cr>", "Project Add" } }, { prefix = "<leader>p" })
 
     -- Autostore session on VimExit
     local session = require("projections.session")
@@ -91,3 +84,18 @@ import({ "projections", "telescope" }, function(modules)
         end,
     })
 end)
+
+----------------------------------------
+-- Workaround
+----------------------------------------
+-- https://github.com/rmagatti/auto-session/issues/64
+if not vim.fn.has("nvim-0.8.1") == 1 then
+    function _G.close_all_floating_wins()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local config = vim.api.nvim_win_get_config(win)
+            if config.relative ~= "" then vim.api.nvim_win_close(win, false) end
+        end
+    end
+else
+    function _G.close_all_floating_wins() end
+end

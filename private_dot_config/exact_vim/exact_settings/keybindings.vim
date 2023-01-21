@@ -22,7 +22,7 @@ let g:maplocalleader = "\\"
 
 " Ctrl+Backspace deletes word
 noremap! <C-BS> <C-w>
-noremap! <C-h> <C-w>
+" noremap! <C-h> <C-w>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Editing and Navigation
@@ -75,6 +75,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+vnoremap <C-h> <C-w>h
+vnoremap <C-j> <C-w>j
+vnoremap <C-k> <C-w>k
+vnoremap <C-l> <C-w>l
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
