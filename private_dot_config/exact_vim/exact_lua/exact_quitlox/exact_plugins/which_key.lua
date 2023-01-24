@@ -4,7 +4,6 @@ import("which-key", function(wk)
     -- presets.objects['<M-i>'] = nil
     -- resets.objects['<a-i>'] = nil
 
-
     wk.setup({
         operators = { gc = "Comments" },
         plugins = {
@@ -19,7 +18,7 @@ import("which-key", function(wk)
             },
             spelling = {
                 enabled = true,
-            }
+            },
         },
         key_labels = {
             ["<space>"] = "SPC",
@@ -68,7 +67,21 @@ import("which-key", function(wk)
                 k = { "<C-W>k", "which_key_ignore" },
                 h = { "<C-W>h", "which_key_ignore" },
                 l = { "<C-W>l", "which_key_ignore" },
-                o = { "<C-W>o", "Window Only" },
+                o = {
+                    function()
+                        -- Close the window if it is not the current window and
+                        -- the filetype is not equals to 'NvimTree'
+                        for _, win in ipairs(vim.api.nvim_list_wins()) do
+                            if
+                                win ~= vim.api.nvim_get_current_win()
+                                and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), 'filetype') ~= "NvimTree"
+                            then
+                                vim.api.nvim_win_close(win, false)
+                            end
+                        end
+                    end,
+                    "Window Only",
+                },
                 v = { "<C-W>s", "Window vSplit" },
                 b = { "<C-W>v", "Window Split" },
                 d = { "<C-W>q", "Window Delete" },

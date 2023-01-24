@@ -1,33 +1,10 @@
--- import("hop", function(hop)
---     -- local directions = require('hop.hint').HintDirection
---
--- 	hop.setup({})
---
---     vim.keymap.set('n', '<leader><leader>h', '<cmd>HopChar1<cr>', {noremap=true,silent=true})
---     vim.keymap.set('n', '<leader><leader>l', '<cmd>HopChar1<cr>', {noremap=true,silent=true})
---     vim.keymap.set('n', '<leader><leader>w', '<cmd>HopWord<cr>', {noremap=true,silent=true})
---     vim.keymap.set('n', '<leader><leader>j', '<cmd>HopLineStartAC<cr>', {noremap=true,silent=true})
---     vim.keymap.set('n', '<leader><leader>k', '<cmd>HopLineStartBC<cr>', {noremap=true,silent=true})
---     vim.keymap.set('v', '<leader><leader>j', '<cmd>HopLineStartAC<cr>', {noremap=true,silent=true})
---     vim.keymap.set('v', '<leader><leader>k', '<cmd>HopLineStartBC<cr>', {noremap=true,silent=true})
---
---     -- vim.keymap.set('', 'f', function()
---     --   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
---     -- end, {remap=true})
---     -- vim.keymap.set('', 'F', function()
---     --   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
---     -- end, {remap=true})
---     -- vim.keymap.set('', 't', function()
---     --   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false, hint_offset = -1 })
---     -- end, {remap=true})
---     -- vim.keymap.set('', 'T', function()
---     --   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false, hint_offset = 1 })
---     -- end, {remap=true})
--- end)
-
 ----------------------------------------------------------------------
 --                      Leap: Custom Functions                      --
 ----------------------------------------------------------------------
+
+-- Require Leap
+local leap_ok, leap = pcall(require, "leap")
+if not leap_ok then return end
 
 --- Generate targets for jumping to a line (like EasyMotion/Hop line-jump)
 ---@param winid The window id of the window for which to generate the targets
@@ -71,15 +48,15 @@ end
 
 local function leap_to_line_forward()
     local winid = vim.api.nvim_get_current_win()
-    require("leap").leap({
+    leap.leap({
         safe_labels = {},
         target_windows = { winid },
         targets = get_line_starts(winid),
     })
 end
 local function leap_to_line_backward()
-    winid = vim.api.nvim_get_current_win()
-    require("leap").leap({
+    local winid = vim.api.nvim_get_current_win()
+    leap.leap({
         safe_labels = {},
         target_windows = { winid },
         targets = get_line_starts(winid, true),
@@ -98,14 +75,9 @@ import({ "leap", "which-key" }, function(modules)
     leap.add_default_mappings()
     local winid = vim.api.nvim_get_current_win()
 
-    wk.register({
-        ["<leader>"] = {
-            ["<leader>"] = {
-                j = { leap_to_line_forward, "Jump Line Down" },
-                k = { leap_to_line_backward, "Jump Line Down" },
-            },
-        },
-    })
+    local _mapping = { j = { leap_to_line_forward, "Jump Line Down" }, k = { leap_to_line_backward, "Jump Line Down" } }
+    wk.register( _mapping, { prefix = "<leader><leader>", mode = "n" })
+    wk.register( _mapping, { prefix = "<leader><leader>", mode = "v" })
 
     -- Highlights
     -- Colors taken from Hop.nvim

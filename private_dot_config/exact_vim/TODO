@@ -1,15 +1,5 @@
 FIX:
     - sequence "ci)" => should change inside next parathesis (instead of the current, which is kinda the previous)
-    - Error when ctags not installed, should be a kind notification
-
-    - Autocomplete in DAP-UI REPL: cmp-dap
-    - Resize NvimTree on DapUI close (too wide)
-    - DapUI Highlight current line when paused
-
-    - Add Git Blame plugin
-
-    LOW PRIORITY
-    - Python autosnippets should not activate in comments
 
 COULD:
     - More intuitive keys for resizing windows
@@ -20,10 +10,12 @@ COULD:
         ```https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance```
 
     - Spooky (plugin for Leap)
+    - Python autosnippets should not activate in comments
 
 BLOCKED:
     - Neogit leaves empty window when Neogit is called inside a non-git
     directory. No clue how to fix
+    - DapUI Highlight current line when paused. No clue how.
 
 PLUGINS:
     - dial.nvim / boole.nvim: Increment / Decrement move stuff with <Ctrl-A> / <Ctrl-X>

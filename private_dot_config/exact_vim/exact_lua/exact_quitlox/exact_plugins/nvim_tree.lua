@@ -64,7 +64,12 @@ import("which-key", function(wk)
 		["<leader>"] = {
 			f = {
 				name = "Find",
-				l = { ":NvimTreeFindFile<cr>", "Find Location" },
+				l = { function()
+                    local api = require('nvim-tree.api')
+				    api.tree.find_file(vim.api.nvim_buf_get_name(0))
+                    -- Guarantee that if file not found, the tree still opens
+                    api.tree.open()
+				end, "Find Location" },
 			},
 		},
 	})

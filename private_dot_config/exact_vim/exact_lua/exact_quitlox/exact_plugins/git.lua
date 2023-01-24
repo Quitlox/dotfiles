@@ -42,13 +42,15 @@ import({ "gitsigns", "which-key" }, function(modules)
             }, { prefix = "<leader>", buffer = bufnr })
 
             -- Hunk Actions
-            wk.register({
+            local _mapping = {
                 h = {
                     name = "Hunk",
                     s = { "<cmd>Gitsigns stage_hunk<cr>", "Hunk Stage" },
                     r = { "<cmd>Gitsigns reset_hunk<cr>", "Hunk Reset" },
                 },
-            }, { prefix = "<leader>", mode = "nv", buffer = bufnr })
+            }
+            wk.register(_mapping, { prefix = "<leader>", mode = "n", buffer = bufnr })
+            wk.register(_mapping, { prefix = "<leader>", mode = "v", buffer = bufnr })
             -- Hunk Actions
             wk.register({
                 h = {

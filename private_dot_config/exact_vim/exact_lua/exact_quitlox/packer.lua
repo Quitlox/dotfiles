@@ -116,8 +116,6 @@ require("packer").startup(function(use)
     ----------------------------------------
     -- IDE (Integrated Development Environment)
     ----------------------------------------
-    -- Tags
-    use({ "ludovicchabant/vim-gutentags", disable = true })
     -- Open / Search
     -- use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
     use({
@@ -260,6 +258,7 @@ require("packer").startup(function(use)
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-path")
     use("hrsh7th/cmp-cmdline")
+    use("rcarriga/cmp-dap")
     use("dmitmel/cmp-cmdline-history")
     use("petertriho/cmp-git")
     use("hrsh7th/cmp-omni")
@@ -339,7 +338,7 @@ require("quitlox.plugins.completion")
 require("quitlox.plugins.dap")
 require("quitlox.plugins.git")
 require("quitlox.plugins.lsp")
-require("quitlox.plugins.lualine")
+require('quitlox.plugins.statusline')
 -- require("quitlox.plugins.marks")
 require("quitlox.plugins.find")
 require("quitlox.plugins.motion")
@@ -350,8 +349,6 @@ require("quitlox.plugins.treesitter")
 require("quitlox.plugins.trouble")
 require("quitlox.plugins.ui")
 require("quitlox.plugins.zen")
-
-require("quitlox.lang.rust")
 
 ----------------------------------------
 -- Basic Plugin Configuration

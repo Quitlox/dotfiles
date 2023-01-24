@@ -27,13 +27,14 @@ local function on_attach(bufnr)
 		}, { prefix = "<leader>" })
 
 		-- Hunk Actions
-		wk.register({
-			h = {
+        local _mapping = {
 				name = "Hunk",
 				s = { "<cmd>Gitsigns stage_hunk<cr>", "Hunk Stage" },
 				r = { "<cmd>Gitsigns reset_hunk<cr>", "Hunk Reset" },
-			},
-		}, { prefix = "<leader>", mode = "nv" })
+			}
+		wk.register(_mapping, { prefix = "<leader>", mode = "n" })
+		wk.register(_mapping, { prefix = "<leader>", mode = "v" })
+
 		-- Hunk Actions
 		wk.register({
 			h = {
