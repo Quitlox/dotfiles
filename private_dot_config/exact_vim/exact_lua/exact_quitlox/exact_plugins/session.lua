@@ -18,12 +18,10 @@ local function store_hook()
     import("dapui", function(module) module.close({}) end)
 
     -- Close Neogit on Store
-    import("neogit.status", function(neogit_status)
-        neogit_status.close()
-    end)
+    import("neogit.status", function(neogit_status) neogit_status.close() end)
 
     -- Close terminals on Store
-    import({"toggleterm.terminal"}, function(terminal)
+    import({ "toggleterm.terminal" }, function(terminal)
         local terminals = terminal.get_all(true)
         for _, term in pairs(terminals) do
             term:close()
@@ -61,28 +59,52 @@ import({ "projections", "telescope", "which-key" }, function(modules)
     -- Bind telescope keybinding for browsing projects
     telescope.load_extension("projections")
     -- TODO: Open Telescope with a prettier, smaller UI
-    -- See porjections.nvim for inspiration
-    wk.register({ p = { "<cmd>Telescope projections<cr>", "Open Projects" } }, { prefix = "<leader>o" })
-    wk.register({ o = { "<cmd>Telescope projections<cr>", "Project Open" } }, { prefix = "<leader>p" })
+    -- See projections.nvim for inspiration
 
     -- Command for adding additional projects to workspace
     local Workspace = require("projections.workspace")
     vim.api.nvim_create_user_command("AddWorkspace", function() Workspace.add(vim.loop.cwd()) end, {})
-    wk.register({ a = { "<cmd>AddWorkspace<cr>", "Project Add" } }, { prefix = "<leader>p" })
 
     -- Autostore session on VimExit
+    local augroup = vim.api.nvim_create_augroup("Projections", { clear = true })
     local session = require("projections.session")
     vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
         callback = function() session.store(vim.loop.cwd()) end,
+        group = augroup,
     })
 
     -- Switch to project if vim was started in a project dir
     local switcher = require("projections.switcher")
     vim.api.nvim_create_autocmd({ "VimEnter" }, {
+        group = augroup,
         callback = function()
             if vim.fn.argc() == 0 then switcher.switch(vim.loop.cwd()) end
         end,
     })
+
+    -- Function for deleting session
+    function delete_session()
+        local Session = require("projections.session")
+        local info = Session.info(vim.fn.getcwd())
+        if vim.fn.delete(info.path.path) == 0 then
+            -- Delete the AutoCommand group to prevent the same
+            -- Session file from being recreated
+            vim.api.nvim_del_augroup_by_id(augroup)
+            vim.notify("Successfully deleted session!\nSession file: " .. info.path.path, vim.log.levels.INFO)
+        else
+            vim.notify("Could not delete session\nSession file: " .. info.path.path, vim.log.levels.ERROR)
+        end
+    end
+
+    -- Keybindings
+    wk.register({
+        p = {
+            name = "Project",
+            a = { "<cmd>AddWorkspace<cr>", "Project Add" },
+            o = { "<cmd>Telescope projections<cr>", "Project Open" },
+            s = { name = "Session", d = { delete_session, "Project Session Delete" } },
+        },
+    }, { prefix = "<leader>" })
 end)
 
 ----------------------------------------

@@ -21,6 +21,7 @@ local completion_enabled = function()
 end
 
 -- VSCode-like completion formatting
+-- TODO: Fix color of completion menu
 local vscode_format = lspkind.cmp_format({
     mode = "symbol_text",
     preset = "codicons",
@@ -36,6 +37,14 @@ local vscode_format = lspkind.cmp_format({
         latex_symbols = "[Latex]",
         cmdline_history = "[History]",
     },
+    before = function(entry, vim_item)
+        -- Tailwind Colorizer
+        -- TODO: Improve formatting
+        -- https://github.com/roobert/tailwindcss-colorizer-cmp.nvim/issues/4
+        local status_ok, tw_colorizer = pcall(require, "tailwindcss-colorizer-cmp")
+        if status_ok then vim_item = tw_colorizer.formatter(entry, vim_item) end
+        return vim_item
+    end,
 })
 
 -- Hover Documentation
@@ -52,8 +61,6 @@ local function show_documentation()
         vim.lsp.buf.hover()
     end
 end
-
-vim.keymap.set("n", "K", show_documentation, { noremap = true, silent = true })
 
 local function select_next_completion_item(fallback, count)
     if cmp.visible() then
@@ -79,8 +86,13 @@ local function select_prev_completion_item(fallback)
 end
 
 local function scroll_completion_down()
-    if cmp.core.view.docs_view:visible() then cmp.core.view:scroll_docs(4) end
+    -- If the Documentation View is visible, scroll the documentation
+    if cmp.core.view.docs_view:visible() then
+        cmp.core.view:scroll_docs(4)
+        return
+    end
 
+    -- Otherwise, jump through half of the visible entries
     if cmp.core.view.custom_entries_view:visible() then
         -- attributes: border_info, col, height, inner_height, inner_width, row, scrollabe, scrollbar_offset, width
         local window_info = cmp.core.view.custom_entries_view:info()
@@ -90,8 +102,13 @@ local function scroll_completion_down()
 end
 
 local function scroll_completion_up()
-    if cmp.core.view.docs_view:visible() then cmp.core.view:scroll_docs(-4) end
+    -- If the Documentation View is visible, scroll the documentation
+    if cmp.core.view.docs_view:visible() then
+        cmp.core.view:scroll_docs(-4)
+        return
+    end
 
+    -- Otherwise, jump through half of the visible entries
     if cmp.core.view.custom_entries_view:visible() then
         -- attributes: border_info, col, height, inner_height, inner_width, row, scrollabe, scrollbar_offset, width
         local window_info = cmp.core.view.custom_entries_view:info()
@@ -100,18 +117,20 @@ local function scroll_completion_up()
     end
 end
 
+vim.keymap.set("n", "K", show_documentation, { noremap = true, silent = true })
 -- Setup completion
 local types = require("cmp.types")
 cmp.setup({
     enabled = completion_enabled,
     preselect = types.cmp.PreselectMode.None,
     formatting = {
-        fields = { "kind", "abbr", "menu" },
+        fields = { cmp.ItemField.Kind, cmp.ItemField.Abbr, cmp.ItemField.Menu },
         format = function(entry, vim_item)
+            -- VSCode Kind
             local kind = vscode_format(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. strings[1] .. " "
-            kind.menu = "    (" .. strings[2] .. ")"
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
 
             return kind
         end,

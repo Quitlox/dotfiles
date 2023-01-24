@@ -98,7 +98,7 @@ end
 
 wk.register({
     g = {
-        l = { lazygit_toggle, "Open Lazygit" },
+        l = { lazygit_toggle, "Git Lazy" },
     },
     o = {
         t = {

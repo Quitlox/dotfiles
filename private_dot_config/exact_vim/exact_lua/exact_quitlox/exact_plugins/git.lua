@@ -37,7 +37,7 @@ import({ "gitsigns", "which-key" }, function(modules)
             wk.register({
                 g = {
                     name = "Git",
-                    l = { "<cmd>Gitsigns setqflist<cr>", "Git List Changes" },
+                    c = { "<cmd>Gitsigns setqflist<cr>", "Git list Changes" },
                 },
             }, { prefix = "<leader>", buffer = bufnr })
 

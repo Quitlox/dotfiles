@@ -119,7 +119,13 @@ require("packer").startup(function(use)
     -- Tags
     use({ "ludovicchabant/vim-gutentags", disable = true })
     -- Open / Search
-    use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
+    -- use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
+    use({
+        "danielfalk/smart-open.nvim",
+        branch = "0.1.x",
+        config = function() require("telescope").load_extension("smart_open") end,
+        requires = { "kkharji/sqlite.lua", "nvim-telescope/telescope.nvim" },
+    })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     -- Terminal
     use({ "numToStr/FTerm.nvim", disable = true })
@@ -135,6 +141,10 @@ require("packer").startup(function(use)
     use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
     -- Git: Neogit (UI)
     use({ "TimUntersberger/neogit", requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" } })
+    -- Git: Blame
+    use({ "f-person/git-blame.nvim", config=function()
+        vim.g.gitblame_highlight_group = '@tag.delimiter'
+    end})
 
     ----------------------------------------
     -- Editor
@@ -143,6 +153,8 @@ require("packer").startup(function(use)
     ----- Editor Actions -----
     -- DoGe - Documentation Generator
     use({ "kkoomen/vim-doge" })
+    -- Move - Move around text using ALT
+    use({ "echasnovski/mini.move" })
 
     ----- Editor Hints -----
     -- Indent lines
@@ -204,6 +216,10 @@ require("packer").startup(function(use)
     ----- Yuck -----
     -- the filetype used by ewww
     use("elkowar/yuck.vim")
+
+    ----- Tailwind -----
+    -- Add colorizer to completion menu for tailwind colors
+    use({ "roobert/tailwindcss-colorizer-cmp.nvim" })
 
     ----------------------------------------
     -- Language Support: DAP
@@ -341,22 +357,10 @@ require("quitlox.lang.rust")
 -- Basic Plugin Configuration
 ----------------------------------------
 
--- Dependencies
-import("nvim-web-devicons", function(devicons)
-    devicons.setup({
-        default = true,
-    })
-end)
--- Vim: Verbs, Motions
--- User Interface
-import("pretty-fold", function(module)
-    module.setup({
-        fill_char = "-",
-    })
-end)
+import("nvim-web-devicons", function(devicons) devicons.setup({ default = true }) end)
+import("pretty-fold", function(module) module.setup({ fill_char = "-" }) end)
 import("icon-picker", function(module) module.setup({ disable_legacy_commands = true }) end)
--- IDE
--- Editor: Hints
+import("mini.move", function(move) move.setup() end)
 vim.o.termguicolors = true
 import(
     "colorizer",
@@ -384,11 +388,10 @@ import(
         })
     end
 )
-
--- Language Support: LSP (Completion)
 import("nvim-autopairs", function(module) module.setup() end)
--- Language Support: User Interface
--- import("lsp_lines", function(module)
--- 	module.setup()
--- end)
 import("fidget", function(module) module.setup({ window = { windblend = 100 } }) end)
+import("tailwindcss-colorizer-cmp", function(module)
+    module.setup({
+        color_square_width = 2,
+    })
+end)

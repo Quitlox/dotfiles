@@ -63,7 +63,7 @@ import("which-key", function(wk)
 	wk.register({
 		["<leader>"] = {
 			f = {
-				name = "find",
+				name = "Find",
 				l = { ":NvimTreeFindFile<cr>", "Find Location" },
 			},
 		},

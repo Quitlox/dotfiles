@@ -88,12 +88,14 @@ map <silent> <leader><cr> :noh<cr>
 " NOTE: Some terminals (e.g. URxvt) are not by default
 "       compatible with <M-X> mappings. See
 "       'terminal_specific.vim' for work-around.
-nnoremap <M-j> :m .+1<CR>==
-nnoremap <M-k> :m .-2<CR>==
-inoremap <M-j> <Esc>:m .+1<CR>==gi
-inoremap <M-k> <Esc>:m .-2<CR>==gi
-vnoremap <M-j> :m '>+1<CR>gv=gv
-vnoremap <M-k> :m '<-2<CR>gv=gv
+if !has('nvim')
+    nnoremap <M-j> :m .+1<CR>==
+    nnoremap <M-k> :m .-2<CR>==
+    inoremap <M-j> <Esc>:m .+1<CR>==gi
+    inoremap <M-k> <Esc>:m .-2<CR>==gi
+    vnoremap <M-j> :m '>+1<CR>gv=gv
+    vnoremap <M-k> :m '<-2<CR>gv=gv
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual Mode

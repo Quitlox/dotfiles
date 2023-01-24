@@ -18,14 +18,13 @@ import(
         wk.register({
             ["<leader>"] = {
                 o = {
-                    name = "Diagnostics",
                     d = {
-                        name = "Open",
+                        name = "Diagnostics",
                         x = { "<cmd>TroubleToggle<cr>", "Open Trouble" },
                         d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Open Diagnostics Document " },
                         w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Open Diagnostics Workspace " },
                         q = { "<cmd>TroubleToggle quickfix_diagnostics<cr>", "Open Quickfix" },
-                        n = {"<cmd>TodoTrouble<cr>", "Open Notes"}
+                        n = { "<cmd>TodoTrouble<cr>", "Open Notes" },
                     },
                 },
             },
