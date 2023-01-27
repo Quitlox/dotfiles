@@ -1,67 +1,44 @@
-----------------------------------------
--- Colorscheme: Vim Options
-----------------------------------------
-
 -- Vim Options
 vim.o.background = "dark"
 
-----------------------------------------
--- Colorscheme: Setup
-----------------------------------------
+return {
+    "Mofiqul/vscode.nvim",
+    priority = 1000,
+    config = function()
+        local c = require("vscode.colors").get_colors()
+        require("vscode").setup({
+            transparent = false,
+            italic_comments = true,
+            disable_nvimtree_bg = false,
+        })
 
-import("vscode", function(vscode)
-    local c = require("vscode.colors")
+        vim.cmd([[colorscheme vscode]])
 
-    vscode.setup({
-        transparent = false,
-        italic_comments = true,
-        disable_nvimtree_bg = false,
+        ----------------------------------------
+        -- Customization
+        ----------------------------------------
 
-        -- group_overrides = {
-        -- 	-- WhichKeyFloat = { bg = c.vscNone, fg = c.vscNone },
-        -- 	-- NormalFloat = { bg = c.vscNone, fg = c.vscNone },
-        --
-        -- 	-- Normal = { bg = c.vscNone, fg = c.vscNone },
-        -- 	-- BufferLineSeparator = { bg = c.vscNone, fg = c.vscNone },
-        -- 	-- BufferLineBackground = { bg = c.vscNone, fg = c.vscNone },
-        -- },
-    })
+        -- Fix fidget background
+        vim.cmd([[hi! link FidgetTask Normal]])
+        -- Explorer
+        vim.cmd([[hi NvimTreeOpenedFile guifg=]] .. c.vscMediumBlue)
+        -- Trouble
+        vim.cmd([[hi! link TroubleCode @field]])
+        vim.cmd([[hi! link TroubleSource @field]])
 
-    -- require("transparent").setup({
-    -- 	enable = false,
-    -- 	extra_groups = {
-    -- 		-- example of akinsho/nvim-bufferline.lua
-    -- 		-- "BufferLineTabClose",
-    -- 		-- "BufferlineBufferSelected",
-    -- 		-- "BufferLineFill",
-    -- 		-- "BufferLineBackground",
-    -- 		-- "BufferLineSeparator",
-    -- 		-- "BufferLineIndicatorSelected",
-    -- 	},
-    -- 	exclude = {},
-    -- })
+        -- Spelling Highlight
+        -- xtermcolors: https://www.ditig.com/256-colors-cheat-sheet
+        vim.cmd([[hi SpellBad guifg=None guibg=None guisp='DarkOliveGreen3' gui=undercurl]])
+        vim.cmd([[hi SpellCap guifg=None guibg=None guisp='Olive' gui=undercurl]])
+        vim.cmd([[hi SpellRare guifg=None guibg=None guisp='Olive' gui=undercurl]])
+        vim.cmd([[hi SpellLocal guifg=None guibg=None guisp='Olive' gui=undercurl]])
 
-    ----------------------------------------
-    -- Customization
-    ----------------------------------------
-
-    -- Fix fidget background
-    vim.cmd([[hi! link FidgetTask Normal]])
-    -- Explorer
-    vim.cmd([[hi NvimTreeOpenedFile guifg=]] .. c.vscMediumBlue)
-    -- Trouble
-    vim.cmd([[hi! link TroubleCode @field]])
-    vim.cmd([[hi! link TroubleSource @field]])
-
-    -- Spellcheck
-    -- TODO order is wrong
-    -- vim.cmd([[hi SpellBad guifg=None guibg=None gui=undercurl guisp=None]] .. c.vscContextCurrent)
-
-    ----------------------------------------
-    -- Highlighted Yank
-    ----------------------------------------
-    -- Highlighting Yank is now built into Neovim!
-    vim.cmd([[
+        ----------------------------------------
+        -- Highlighted Yank
+        ----------------------------------------
+        -- Highlighting Yank is now built into Neovim!
+        vim.cmd([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
-]]   )
-end)
+]])
+    end,
+}

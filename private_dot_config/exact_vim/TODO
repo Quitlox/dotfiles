@@ -1,31 +1,31 @@
 FIX:
-    - sequence "ci)" => should change inside next parathesis (instead of the current, which is kinda the previous)
-
-COULD:
-    - More intuitive keys for resizing windows
-    - Choice node for tex snippet \beg (for adding [])
-    - Enable virtual-type for languages
-
+    - disable targets.nvim arg and enable text-objects
     - Update highlights related to completion menu
         ```https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance```
 
-    - Spooky (plugin for Leap)
+COULD:
     - Python autosnippets should not activate in comments
+    - More intuitive keys for resizing windows
 
 BLOCKED:
     - Neogit leaves empty window when Neogit is called inside a non-git
     directory. No clue how to fix
     - DapUI Highlight current line when paused. No clue how.
+    - flit.nvim does not support , and ;
 
 PLUGINS:
-    - dial.nvim / boole.nvim: Increment / Decrement move stuff with <Ctrl-A> / <Ctrl-X>
     - dirbuf.nvim: Use vim to edit files and directories ALT: oil.nvim
-    - mini.nvim or targets.nvim as alternative to nvim-treesitter-textobjects
     - neotest
     - hydra.nvim ?
-    - conjure: REPL!
-    - Replace packer with lazy
     - noice.nvim: Pretty UI
+
+    -- nable.nvim: Render Math Equations in LaTeX as ASCII
+    -- lsplines
+
+OPTIONAL PLUGINS: (might come in handy later)
+    -- harpoon.nvim / grapple.nvim
+    -- neoconf.nvim
+    -- buffer_manager.nvim
 
 NEOVIM 0.9:
     - statuscol.nvim

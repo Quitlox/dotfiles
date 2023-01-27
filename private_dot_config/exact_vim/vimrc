@@ -30,7 +30,7 @@ set runtimepath+=~/.config/vim
 if !has('nvim')
   source ~/.config/vim/settings/plugins/dein.vim
 else
-  luafile ~/.config/vim/lua/quitlox/packer.lua
+  luafile ~/.config/vim/lua/quitlox/lazy.lua
 endif
 
 """"""""""""""""""""""""""""""

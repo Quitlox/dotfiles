@@ -28,10 +28,11 @@ map [f <Nop>
 map ]f <Nop>
 
 " Enable fold using treesitter
-if has('nvim')
-    set foldmethod=expr
-    set foldexpr=nvim_treesitter#foldexpr()
-end
+" TODO: Deprecated by ufo fold?
+" if has('nvim')
+"     set foldmethod=expr
+"     set foldexpr=nvim_treesitter#foldexpr()
+" end
 
 " Automatically resize Windows when resizing the terminal
 autocmd VimResized * wincmd =
