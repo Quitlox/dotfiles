@@ -1,7 +1,7 @@
 return {
     "akinsho/toggleterm.nvim",
-    keys = { "`", "<leader>ogl", "<leader>ot" },
-
+    -- TODO: "`" break the key
+   -- keys = { "`", "<leader>ogl", "<leader>ot" },
     opts = {
         {
             persist_mode = true,
