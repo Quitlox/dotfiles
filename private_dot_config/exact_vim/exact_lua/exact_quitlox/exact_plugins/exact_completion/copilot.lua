@@ -1,6 +1,6 @@
 return {
     "github/copilot.vim",
-    event = "InsertEnter",
+    -- event = "InsertEnter",
     init = function()
         vim.g.copilot_filetypes = { Telescope = false }
         vim.g.copilot_no_tab_map = true
