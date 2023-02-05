@@ -3,8 +3,6 @@ return {
     config = function()
         require("nvim-tree").setup({
             disable_netrw = true,
-            open_on_setup = true,
-            open_on_setup_file = true,
             hijack_cursor = true,
             sync_root_with_cwd = true,
 
@@ -53,6 +51,13 @@ return {
                 always_show_folders = false,
             },
         })
+
+        -- Startup behavior
+        local function open_nvim_tree()
+            require('nvim-tree.api').tree.open()
+        end
+
+        vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
     end,
     init = function()
         require("which-key").register({
