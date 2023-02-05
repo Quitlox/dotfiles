@@ -37,7 +37,8 @@ local function store_hook()
     -- Close DapUI on Store
     require("dapui").close({})
     -- Close Neogit on Store
-    require("neogit.status").close()
+    -- TODO: This doesn't work
+    -- require("neogit.status").close()
     -- Close ToggleTerm on Store
     for _, term in pairs(require("toggleterm.terminal").get_all(true)) do
         term:close()
@@ -89,6 +90,15 @@ return {
         -- Command for adding additional projects to workspace
         local Workspace = require("projections.workspace")
         vim.api.nvim_create_user_command("AddWorkspace", function() Workspace.add(vim.loop.cwd()) end, {})
+        -- Command for Storing Session
+        local Session = require("projections.session")
+        vim.api.nvim_create_user_command("StoreProjectSession", function()
+            Session.store(vim.loop.cwd())
+        end, {})
+        -- Command for Restoring Session
+        vim.api.nvim_create_user_command("RestoreProjectSession", function()
+            Session.restore(vim.loop.cwd())
+        end, {})
 
         -- Autostore session on VimExit
         local session = require("projections.session")
