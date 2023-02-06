@@ -1,5 +1,6 @@
 bootstrap.sh
 README.md
+debian.Dockerfile
 
 settings.json
 keybindings.json
@@ -8,25 +9,36 @@ keybindings.json
 .config/zsh/theme.sh
 
 {{ if (eq .chezmoi.os "windows") }}
-* # Default to ignore all (whitelist instead of blacklist)
+** # Default to ignore all (whitelist instead of blacklist)
+
 !.gitconfig
 !.ideavimrc
 
 !.ssh
+!.ssh/**
 
+!.cache
 !.cache/vim
+!.cache/vim/**
+!.local
+!.local/share
 !.local/share/texmf
+!.local/share/texmf/**
 
+!.config
 !.config/Code
+!.config/Code/**
 !.config/vim
+!.config/vim/**
 !.config/zathura
+!.config/zathura/**
 
 !.config/pythonrc
 !.config/starship.toml
 {{ end }}
 
 {{ if (eq .environment "headless") }}
-* # Default to ignore all (whitelist instead of blacklist)
+** # Default to ignore all (whitelist instead of blacklist)
 
 !.gitconfig
 !.profile
@@ -35,13 +47,21 @@ keybindings.json
 !.Xresources
 
 !.cache/
+!.cache/**
 !.ssh/
+!.ssh/**
 
+!.config
 !.config/base16-universal-manager
+!.config/base16-universal-manager/**
 !.config/dotfiles
+!.config/dotfiles/**
 !.config/systemd
+!.config/systemd/**
 !.config/vim
+!.config/vim/**
 !.config/zsh
+!.config/zsh/**
 
 !.config/pythonrc
 !.config/user-dirs.dirs
