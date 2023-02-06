@@ -1,14 +1,17 @@
 bootstrap.sh
+README.md
 
 settings.json
 keybindings.json
 
 .config/vim/settings/colorscheme.vim
-#.config/vim/settings/environments/chezmoi.vim
 .config/zsh/theme.sh
 
-{{ if (eq .chezmoi.os "Windows") }}
-*/**.* # Default to ignore all (whitelist instead of blacklist)
+{{ if (eq .chezmoi.os "windows") }}
+* # Default to ignore all (whitelist instead of blacklist)
+!.gitconfig
+!.ideavimrc
+
 !.ssh
 
 !.cache/vim
@@ -23,7 +26,7 @@ keybindings.json
 {{ end }}
 
 {{ if (eq .environment "headless") }}
-*/**.* # Default to ignore all (whitelist instead of blacklist)
+* # Default to ignore all (whitelist instead of blacklist)
 
 !.gitconfig
 !.profile
