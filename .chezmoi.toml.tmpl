@@ -62,6 +62,6 @@ encryption = "age"
     chassisType = {{ $chassisType | quote }}
 
 [age]
-    identity = "{{ joinPath .chezmoi.sourceDir "private_dot_ssh/.chezmoi_encryption_key.txt" }}"
-    recipient = "{{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_recipient_key.value }}"
+    identity = {{ joinPath .chezmoi.sourceDir "private_dot_ssh/.chezmoi_encryption_key.txt" | quote }}
+    recipient = {{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_recipient_key.value | quote }}
 
