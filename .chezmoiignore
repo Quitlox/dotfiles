@@ -7,6 +7,21 @@ keybindings.json
 #.config/vim/settings/environments/chezmoi.vim
 .config/zsh/theme.sh
 
+{{ if (eq .chezmoi.os "Windows") }}
+*/**.* # Default to ignore all (whitelist instead of blacklist)
+!.ssh
+
+!.cache/vim
+!.local/share/texmf
+
+!.config/Code
+!.config/vim
+!.config/zathura
+
+!.config/pythonrc
+!.config/starship.toml
+{{ end }}
+
 {{ if (eq .environment "headless") }}
 */**.* # Default to ignore all (whitelist instead of blacklist)
 
@@ -24,6 +39,8 @@ keybindings.json
 !.config/systemd
 !.config/vim
 !.config/zsh
+
 !.config/pythonrc
 !.config/user-dirs.dirs
+!.config/starship.toml
 {{ end }}
