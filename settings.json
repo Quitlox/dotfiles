@@ -44,7 +44,6 @@
   "breadcrumbs.enabled": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "window.menuBarVisibility": "compact",
   "workbench.editor.labelFormat": "short",
 
   // Miscellaneous
@@ -463,9 +462,6 @@
   "liveshare.allowGuestTaskControl": true,
   "liveshare.languages.allowGuestCommandControl": true,
   "liveshare.notebooks.allowGuestExecuteCells": true,
-
-  // Extension: Gitlens
-  "gitlens.statusBar.enabled": false,
   "gitlens.hovers.enabled": false,
 
   // Extension: Beautify (for django-html)
@@ -490,5 +486,7 @@
   "extensions.ignoreRecommendations": true,
   "editor.stickyScroll.enabled": true,
   "svelte.enable-ts-plugin": true,
-  "svelte.plugin.svelte.note-new-transformation": false
+  "svelte.plugin.svelte.note-new-transformation": false,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.statusBar.enabled": false
 }

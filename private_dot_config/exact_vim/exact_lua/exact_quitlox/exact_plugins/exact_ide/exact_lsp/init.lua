@@ -56,7 +56,7 @@ return {
                     name = "Python",
                     s = { "<cmd>lua require('swenv.api').pick_env()<cr>", "Python Switch env" },
                 },
-            }, { prefix = "<leader>" })
+            }, { prefix = "<localleader>" })
         end,
     },
 }

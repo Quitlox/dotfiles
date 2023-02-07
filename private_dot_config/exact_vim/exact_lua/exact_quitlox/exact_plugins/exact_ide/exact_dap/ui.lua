@@ -15,12 +15,12 @@ local function on_open()
     -- Detach gitsigns
     require("gitsigns").toggle_signs(false)
     -- Open the DAP UI
-    require("dapui").open({})
+    require("dapui").open()
 end
 
 local function on_close()
     if nvim_tree_enabled then require("nvim-tree.api").tree.open() end
-    require("dapui").close({})
+    require("dapui").close()
     require("gitsigns").toggle_signs(true)
 end
 
@@ -54,7 +54,7 @@ return {
             ["<F8>"] = "<cmd>DapStepOver<cr>",
             ["<S-F8>"] = "<cmd>DapStepOut<cr>",
             ["<F7>"] = "<cmd>DapStepIn<cr>",
-            ["<leader>"] = {
+            ["<localleader>"] = {
                 d = {
                     name = "Debug",
                     o = { "<cmd>require('dapui').open()<cr>", "Debug UI Open" },
