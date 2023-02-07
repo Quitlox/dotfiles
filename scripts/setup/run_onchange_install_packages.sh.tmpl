@@ -56,7 +56,7 @@ sudo apt install neovim python3-pynvim
 ############################################################
 
 # Packages only needed on desktop
-{{- if eq .environment "desktop" }}
+{{- if (and (eq .chassisType "desktop") (eq .environment "local")) }}
 {{- if (or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.name "Arch Linux"))  }}
 binformation "Arch/Manjaro detected"
 
