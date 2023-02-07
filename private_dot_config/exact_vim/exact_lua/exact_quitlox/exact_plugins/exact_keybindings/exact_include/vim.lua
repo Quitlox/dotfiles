@@ -6,7 +6,6 @@ require("which-key").register({
     ["<leader>"] = {
         v = {
             name = "Vim",
-            s = { ":source ~/.config/vim/vimrc<cr>", "[v]im [s]ource vimrc" },
             l = {
                 name = "list",
                 f = { "<cmd>Telescope filetypes theme=dropdown<cr>", "Vim List Filetypes" },
