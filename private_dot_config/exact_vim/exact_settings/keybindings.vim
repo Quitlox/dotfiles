@@ -22,7 +22,7 @@ let g:maplocalleader = "\\"
 
 " Ctrl+Backspace deletes word
 noremap! <C-BS> <C-w>
-" noremap! <C-h> <C-w>
+noremap! <C-h> <C-w>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Editing and Navigation
@@ -31,11 +31,6 @@ noremap! <C-BS> <C-w>
 " Remap 0 to first non-blank character
 " noremap 0 ^
 " noremap ^ 0
-
-" noremap 0 g0
-" noremap g0 0
-" noremap $ g$
-" noremap g$ $
 
 " Yank from cursor position to end-of-line
 " This is default in Neovi
@@ -47,17 +42,20 @@ xnoremap p pgvy
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
-nnoremap j jzz
-nnoremap k kzz
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
-" LspsagaCodeAction
 
-" Fix code navigation with softwrapping
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
+" ... and fix code navigation with softwrapping
+
+nnoremap j gjzz
+nnoremap gj jzz
+nnoremap k gkzz
+nnoremap gk kzz
+
+" noremap 0 g0
+" noremap g0 0
+" noremap $ g$
+" noremap g$ $
 
 " Undo breakpoints
 inoremap , ,<c-g>u

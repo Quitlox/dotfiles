@@ -1,3 +1,3 @@
 return {
-    { import = "quitlox.plugins.ide" },
+    import = "quitlox.plugins.ide",
 }

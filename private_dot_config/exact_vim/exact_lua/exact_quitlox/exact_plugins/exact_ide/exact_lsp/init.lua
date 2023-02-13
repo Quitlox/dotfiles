@@ -1,5 +1,5 @@
 return {
-    { "neovim/nvim-lspconfig" },
+    { "neovim/nvim-lspconfig", dependencies={"folke/neodev.nvim", "folke/neoconf.nvim"} },
     require("quitlox.plugins.ide.lsp.mason"),
     require("quitlox.plugins.ide.lsp.ui"),
 
@@ -12,7 +12,8 @@ return {
 
     ----- LuaDev -----
     -- see languages/lua.lua
-    { "folke/neodev.nvim", lazy = true },
+    -- before: lspconfig
+    { "folke/neodev.nvim", config=true },
     ----- YAML -----
     -- see languages/yaml.lua
     { "someone-stole-my-name/yaml-companion.nvim", lazy = true },
@@ -56,7 +57,7 @@ return {
                     name = "Python",
                     s = { "<cmd>lua require('swenv.api').pick_env()<cr>", "Python Switch env" },
                 },
-            }, { prefix = "<leader>" })
+            }, { prefix = "<localleader>" })
         end,
     },
 }

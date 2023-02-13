@@ -9,6 +9,13 @@
 {{-   $email = promptString "E-Mail (git)" }}
 {{- end }}
 
+{{- $environment := "" }}
+{{- if (hasKey . "environment") }}
+{{-   $environment = .environment }}
+{{- else }}
+{{-   $environment = promptString "Environment (headless/local)" }}
+{{- end }}
+
 # Priviliged (whether to install packages)
 {{- $priviliged := "" }}
 {{- if (hasKey . "priviliged") }}
@@ -21,20 +28,9 @@
 ### CALCULATED PROPERTIES            ###
 ########################################
 
-# Environment (desktop or headless)
-{{- $environment := "" }}
-{{- if (hasKey . "environment") }}
-{{-   $environment = .environment }}
-{{- else }}
-{{- if (eq (expandenv "$SSH_TTY$SSH_CLIENT") "") }}
-{{-   $environment = "desktop" }}
-{{- else }}
-{{-   $environment = "headless" }}
-{{- end }}
-{{- end }}
-
 # Set chassis type (desktop or laptop)
 {{- $chassisType := "desktop" }}
+{{- if (eq $environment "local") }}
 {{- if (eq .chezmoi.os "darwin") }}
 {{-   if contains "MacBook" (output "sysctl" "-n" "hw.model") }}
 {{-     $chassisType = "laptop" }}
@@ -50,6 +46,7 @@
 {{-   end }}
 {{- else if (eq .chezmoi.os "windows") }}
 {{-   $chassisType = (output "powershell.exe" "-noprofile" "-command" "if (Get-WmiObject -Class win32_battery -ComputerName localhost) { echo laptop } else { echo desktop }") }}
+{{- end }}
 {{- end }}
 
 ########################################

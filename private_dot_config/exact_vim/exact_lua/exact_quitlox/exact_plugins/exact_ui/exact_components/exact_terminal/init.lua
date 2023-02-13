@@ -27,7 +27,7 @@ return {
         require("which-key").register({
             g = {
                 -- TODO: Does this work?
-                l = { lazygit_toggle, "Git Lazy" },
+                g = { lazygit_toggle, "Git Lazy" },
             },
             t = {
                 name = "Terminal",

@@ -25,3 +25,6 @@ mason_lspconfig.setup_handlers({
     ["yamlls"] = function() require("quitlox.plugins.ide.lsp.languages.yaml") end,
     ["tsserver"] = function() require("quitlox.plugins.ide.lsp.languages.typescript") end,
 })
+
+-- Custom Language specific code
+require("quitlox.plugins.ide.lsp.languages.python")

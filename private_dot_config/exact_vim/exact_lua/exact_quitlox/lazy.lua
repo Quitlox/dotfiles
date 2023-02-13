@@ -24,7 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_config = {
     default = {
         lazy = false,
-        version = "*",
+        version = "",
     },
     ui = {
         border = "single",

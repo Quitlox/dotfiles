@@ -20,6 +20,11 @@ return {
                 },
             },
         },
+        init = function()
+            require('which-key').register({
+                m = {"<cmd>Mason<cr>", "Mason"},
+            }, {prefix="<leader>v"})
+        end
     },
     {
 
