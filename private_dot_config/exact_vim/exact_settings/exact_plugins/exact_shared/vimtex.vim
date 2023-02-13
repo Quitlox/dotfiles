@@ -14,8 +14,15 @@
 " endif
 
 " Backends
-let g:vimtex_quickfix_method = 'pplatex'
-let g:vimtex_view_method = 'zathura'
+if has("unix")
+  let g:vimtex_quickfix_method = 'pplatex'
+  let g:vimtex_view_method = 'zathura'
+endif
+if has('win32') || has('win64')
+  let g:vimtex_view_method = 'sioyek'
+  " Be sure to add sioyek to PATH. The method below doesn't work for some reason
+  " let g:vimtex_view_sioyek_exe = "C:\Users\witloxkhd\Applications\sioyek\sioyek.exe"
+endif
 
 " Quickfix
 "let g:vimtex_quickfix_autojump = 1
