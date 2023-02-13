@@ -3,6 +3,9 @@ FIX:
     - Update highlights related to completion menu
         ```https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance```
 
+    - Add keybinding for LspOutline
+    - Ensure LspOutline does not resize when switching buffers
+
 COULD:
     - Python autosnippets should not activate in comments
     - More intuitive keys for resizing windows
