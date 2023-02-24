@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        "--branch=v9.7.0", -- latest stable release
         lazypath,
     })
 end
@@ -54,6 +54,7 @@ local plugins = {
     { "kyazdani42/nvim-web-devicons", opts = { default = true }, config = true },
     -- Adds missing highlight group
     { "folke/lsp-colors.nvim" },
+    {"folke/which-key.nvim"},
 
     ----------------------------------------
     -- Vim

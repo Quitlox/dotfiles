@@ -57,8 +57,8 @@ return {
             ["<localleader>"] = {
                 d = {
                     name = "Debug",
-                    o = { "<cmd>require('dapui').open()<cr>", "Debug UI Open" },
-                    c = { "<cmd>require('dapui').close()<cr>", "Debug UI Close" },
+                    o = { "<cmd>lua require('dapui').open()<cr>", "Debug UI Open" },
+                    c = { "<cmd>lua require('dapui').close()<cr>", "Debug UI Close" },
                     e = { evaluate, "Evaluate Expression" },
                     d = { "<cmd>lua require('dap').continue()<cr>", "Debugger Launch/Continue" },
                     r = { "<cmd>DapToggleRepl<cr>", "Open REPL" },

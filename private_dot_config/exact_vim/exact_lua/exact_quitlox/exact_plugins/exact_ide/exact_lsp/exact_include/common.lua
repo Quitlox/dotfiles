@@ -29,8 +29,9 @@ end
 
 -- Completion Capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
--- Folding capabilities supplied by UFO
+-- Snippet support provided by LuaSnip
+capabilities.textDocument.completion.completionItem.snippetSupport = true 
+-- Folding capabilities provided by UFO
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,

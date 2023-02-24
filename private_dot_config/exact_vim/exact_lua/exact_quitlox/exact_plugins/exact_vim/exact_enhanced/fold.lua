@@ -10,5 +10,7 @@ return {
         -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
         vim.keymap.set("n", "zR", "<cmd> lua require('ufo').openAllFolds()<cr>")
         vim.keymap.set("n", "zM", "<cmd> lua require('ufo').closeAllFolds()<cr>")
+
+        require('ufo').setup()
     end,
 }

@@ -9,6 +9,7 @@ return {
     config = function()
         local null_ls = require("null-ls")
         require("null-ls").setup({
+            debug=true,
             -- Do not attach to C++ files (see c.lua)
             should_attach = function(bufnr) return vim.bo.filetype ~= "cpp" end,
             sources = {
@@ -26,6 +27,8 @@ return {
                 -- Python
                 null_ls.builtins.formatting.black,
                 null_ls.builtins.formatting.isort,
+                null_ls.builtins.diagnostics.mypy,
+                null_ls.builtins.diagnostics.pylint,
                 -- Rust
                 null_ls.builtins.formatting.trim_newlines.with({
                     filetypes = { "lua", "python" }, -- use rustfmt

@@ -1,5 +1,5 @@
 return {
-    { "neovim/nvim-lspconfig", dependencies={"folke/neodev.nvim", "folke/neoconf.nvim"} },
+    { "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim", "folke/neoconf.nvim" } },
     require("quitlox.plugins.ide.lsp.mason"),
     require("quitlox.plugins.ide.lsp.ui"),
 
@@ -13,7 +13,14 @@ return {
     ----- LuaDev -----
     -- see languages/lua.lua
     -- before: lspconfig
-    { "folke/neodev.nvim", config=true },
+    {
+        "folke/neodev.nvim",
+        config = function()
+            require("neodev").setup({
+                library = { plugins = { "nvim-dap-ui" }, types = true },
+            })
+        end,
+    },
     ----- YAML -----
     -- see languages/yaml.lua
     { "someone-stole-my-name/yaml-companion.nvim", lazy = true },

@@ -4,7 +4,7 @@
 
 let g:clever_f_smart_case=1
 
-if dein#is_available(['clever-f.vim']))
+if dein#is_available(['clever-f.vim'])
     map ; <Plug>(clever-f-repeat-forward)
     map , <Plug>(clever-f-repeat-back)
 end

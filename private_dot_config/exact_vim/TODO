@@ -6,8 +6,12 @@ FIX:
     - Add keybinding for LspOutline
     - Ensure LspOutline does not resize when switching buffers
 
+    - Go references not opened in LspSaga
+    - Center cursor on "Go definition", etc.
+    - ]f in python should not go to decorator
+
 COULD:
-    - Python autosnippets should not activate in comments
+    - Add shortcut for closing "other" windows (like jumplist)
     - More intuitive keys for resizing windows
 
 BLOCKED:
@@ -27,9 +31,19 @@ PLUGINS:
 
 OPTIONAL PLUGINS: (might come in handy later)
     -- harpoon.nvim / grapple.nvim
-    -- neoconf.nvim
     -- buffer_manager.nvim
 
 NEOVIM 0.9:
     - statuscol.nvim
     https://github.com/luukvbaal/statuscol.nvim
+
+Contribute (My Ideas):
+    - Plugin for a custom outline
+      This custom outline starts empty, and allows you to add LSP objects with
+      a keyboard shortcut
+      Its basically a custom LSP jumplist/shortlist of important methods
+      Very usefull when refactoring something in a new codebase / jumping around
+      in a new codebase
+    - Python:
+        - Code action for generating test from function using pytest
+        - Import thing under cursor
