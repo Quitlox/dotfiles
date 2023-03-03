@@ -20,7 +20,7 @@ return {
                 -- Web Development
                 null_ls.builtins.formatting.eslint_d,
                 null_ls.builtins.formatting.prettierd.with({
-                    extra_filteypes = {},
+                    extra_filteypes = {"svelte"},
                 }),
                 -- Typescript
                 require("typescript.extensions.null-ls.code-actions"),
