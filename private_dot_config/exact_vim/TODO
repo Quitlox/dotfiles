@@ -1,5 +1,4 @@
 FIX:
-    - disable targets.nvim arg and enable text-objects
     - Update highlights related to completion menu
         ```https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance```
 
@@ -13,6 +12,9 @@ FIX:
 COULD:
     - Add shortcut for closing "other" windows (like jumplist)
     - More intuitive keys for resizing windows
+    - Add more options for bracket navigation: mini.bracketed
+    - Setup automatic installation of dap
+    - Switch over from NvimTree to NeoTree
 
 BLOCKED:
     - Neogit leaves empty window when Neogit is called inside a non-git
@@ -47,3 +49,6 @@ Contribute (My Ideas):
     - Python:
         - Code action for generating test from function using pytest
         - Import thing under cursor
+        - Proper environment switcher, supporting poetry, venv, virtualenv
+    - LspSaga
+        - Show References window does not work well on halfscreen

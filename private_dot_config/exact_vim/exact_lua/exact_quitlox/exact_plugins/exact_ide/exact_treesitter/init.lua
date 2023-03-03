@@ -16,45 +16,16 @@ return {
         config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
         opts = {
             ensure_installed = {
-                -- Main Languages
-                "c",
-                "lua",
-                "rust",
-                "python",
-                "java",
-                "lua",
-                -- Shell
-                "vim",
-                "bash",
-                "cpp",
-                -- Latex
-                "latex",
-                "bibtex",
-                -- Build Environment
-                "make",
-                "cmake",
-                "dockerfile",
-                -- Supplemenatry Files
-                "json",
-                "jsonc",
-                "markdown",
-                "toml",
-                "yaml",
-                -- Web Development
-                "graphql",
-                "html",
-                "scss",
-                "tsx",
-                "typescript",
                 -- Dependencies
                 "regex",
-                "markdown_inline",
+                "markdown", -- Used by LspSaga
+                "markdown_inline", -- Used by LspSaga
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
             -- Automatically install missing parsers when entering buffer
-            auto_install = false,
+            auto_install = true,
 
             ----- Highlight -----
             highlight = {
@@ -81,7 +52,6 @@ return {
                         ["]c"] = "@class.outer",
                         ["]a"] = "@parameter.inner",
                         ["]b"] = "@block.outer",
-                        -- ["]s"] = "@statement.outer",
                     },
                     goto_next_end = {
                         ["]F"] = "@function.outer",
@@ -89,7 +59,6 @@ return {
                         ["]A"] = "@parameter.outer",
                         ["]B"] = "@block.outer",
                         ["]L"] = "@loop.outer",
-                        -- ["]S"] = "@statement.outer",
                     },
                     goto_previous_start = {
                         ["[f"] = "@function.outer",
@@ -97,7 +66,6 @@ return {
                         ["[a"] = "@parameter.inner",
                         ["[b"] = "@block.outer",
                         ["[l"] = "@loop.outer",
-                        -- ["[s"] = "@statement.outer",
                     },
                     goto_previous_end = {
                         ["[F"] = "@function.outer",
@@ -105,7 +73,6 @@ return {
                         ["[A"] = "@parameter.outer",
                         ["[B"] = "@block.outer",
                         ["[L"] = "@loop.outer",
-                        -- ["[S"] = "@statement.outer",
                     },
                 },
                 select = {
@@ -116,11 +83,6 @@ return {
                         ["if"] = "@function.inner",
                         ["ac"] = "@class.outer",
                         ["ic"] = "@class.inner",
-                        -- Defined by targets.nvim
-                        -- ["aa"] = "@parameter.outer",
-                        -- ["ia"] = "@parameter.inner", 
-                        -- ["as"] = "@statement.outer",
-                        -- ["is"] = "@statement.inner",
                     },
                     -- You can choose the select mode (default is charwise 'v')
                     selection_modes = {

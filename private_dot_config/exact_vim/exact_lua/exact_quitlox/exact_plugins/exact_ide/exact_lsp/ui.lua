@@ -6,6 +6,9 @@ return {
     "glepnir/lspsaga.nvim",
     config = true,
     opts = {
+        lightbulb = {
+            enable = false,
+        },
         max_preview_lines = 20,
         finder_action_keys = {
             open = "<CR>",
