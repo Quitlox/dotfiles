@@ -46,6 +46,7 @@ local lazy_config = {
         },
         rtp = {
             paths = {"/home/quitlox/.config/vim"},
+            paths = {"C:\\Users\\witloxkhd\\.config\\vim"},
         }
     }
 }
