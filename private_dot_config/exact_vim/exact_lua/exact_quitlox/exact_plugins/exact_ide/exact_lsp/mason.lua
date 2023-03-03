@@ -21,10 +21,10 @@ return {
             },
         },
         init = function()
-            require('which-key').register({
-                m = {"<cmd>Mason<cr>", "Mason"},
-            }, {prefix="<leader>v"})
-        end
+            require("which-key").register({
+                m = { "<cmd>Mason<cr>", "Mason" },
+            }, { prefix = "<leader>v" })
+        end,
     },
     {
 
@@ -32,9 +32,39 @@ return {
         -- navic used in quitlox.plugins.lsp.include.common
         dependencies = { "SmiteshP/nvim-navic" },
         config = function(_, opts)
-            require("mason-lspconfig").setup(opts)
+            local mason_lspconfig = require("mason-lspconfig")
+            mason_lspconfig.setup(opts)
+
             -- Attach handlers for all languages
-            require("quitlox.plugins.ide.lsp.languages")
+
+            -- Require LspConfig
+            local lspconfig = require("lspconfig")
+
+            -- Configuration
+            local capabilities = require("quitlox.plugins.ide.lsp.include.common").capabilities
+            local on_attach = require("quitlox.plugins.ide.lsp.include.common").on_attach
+
+            -- Automatic setup of all LSPs
+            mason_lspconfig.setup_handlers({
+                function(server_name)
+                    lspconfig[server_name].setup({
+                        on_attach = on_attach,
+                        capabilities = capabilities,
+                    })
+                end,
+                -- Manually configured servers
+                ["clangd"] = function() require("quitlox.plugins.ide.lsp.languages.c") end,
+                ["jsonls"] = function() require("quitlox.plugins.ide.lsp.languages.json") end,
+                ["sumneko_lua"] = function() require("quitlox.plugins.ide.lsp.languages.lua") end,
+                -- NOTE: Thanks to rust_analyzer, lazy loading DAP and all related plugins
+                -- is not possible
+                ["rust_analyzer"] = function() require("quitlox.plugins.ide.lsp.languages.rust") end,
+                ["yamlls"] = function() require("quitlox.plugins.ide.lsp.languages.yaml") end,
+                ["tsserver"] = function() require("quitlox.plugins.ide.lsp.languages.typescript") end,
+            })
+
+            -- Custom Language specific code
+            require("quitlox.plugins.ide.lsp.languages.python")
         end,
         opts = {
             automatic_installation = false,

@@ -40,6 +40,14 @@ local lazy_config = {
         enabled = true,
         notify=false,
     },
+    performance = {
+        cache = {
+            enabled = true,
+        },
+        rtp = {
+            paths = {"/home/quitlox/.config/vim"},
+        }
+    }
 }
 
 ----------------------------------------------------------------------
@@ -105,8 +113,6 @@ local plugins = {
 
 ----------------------------------------------------------------------
 
-local Util = require("lazy.core.util")
-Util.lsmod("plugins", function(modname, modpath) print(modname .. ": " .. modpath) end)
 require("lazy").setup(plugins, lazy_config)
 
 -- Keybinding

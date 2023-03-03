@@ -1,7 +1,6 @@
 return {
     { "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim", "folke/neoconf.nvim" } },
-    require("quitlox.plugins.ide.lsp.mason"),
-    require("quitlox.plugins.ide.lsp.ui"),
+    { import = "quitlox.plugins.ide.lsp" },
 
     { "jubnzv/virtual-types.nvim" },
 
