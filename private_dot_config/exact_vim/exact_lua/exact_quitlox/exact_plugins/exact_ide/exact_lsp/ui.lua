@@ -38,4 +38,16 @@ return {
             enable = false,
         },
     },
+    {
+        "zbirenbaum/neodim",
+        opts = {
+            hide = {
+                signs = false,
+                virtual_text = false,
+                underline = true,
+            },
+        },
+        config = true,
+        event = "LspAttach",
+    },
 }

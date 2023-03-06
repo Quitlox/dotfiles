@@ -24,7 +24,7 @@ return {
     init = function()
         require("quitlox.plugins.ui.components.terminal.include.keybindings")
 
-        require("which-key").register({
+        require("quitlox.util.which_key").register({
             g = {
                 -- TODO: Does this work?
                 g = { lazygit_toggle, "Git Lazy" },

@@ -29,7 +29,7 @@ return {
         "NeogitHelp",
     },
     init = function()
-        require("which-key").register({
+        require("quitlox.util.which_key").register({
             s = { "<cmd>Neogit<cr>", "Git Status" },
             c = { "<cmd>Neogit commit<cr>", "Git Commit" },
             -- Misc Telescope stuff

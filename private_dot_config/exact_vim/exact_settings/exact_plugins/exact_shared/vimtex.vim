@@ -8,10 +8,16 @@
 """"""""""""""""""""""""""""""""""""""""
 
 " In Neovim, we use the lsp
-" if has('nvim')
-"     let g:vimtex_syntax_enabled=0
-"     let g:vimtex_complete_enabled=0
-" endif
+if has('nvim')
+    let g:vimtex_syntax_enabled=0
+    let g:vimtex_complete_enabled=0
+    let g:vimtex_format_enabled=0
+    let g:vimtex_indent_enabled=0 " Should be arranged by treesitter?
+    let g:vimtex_indent_bib_enabled=0
+    let g:vimtex_matchparen_enabled=0
+    let g:vimtex_quickfix_enabled=0
+    let g:vimtex_syntax_enabled=1
+endif
 
 " Backends
 if has("unix")

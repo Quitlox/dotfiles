@@ -2,8 +2,6 @@ return {
     { "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim", "folke/neoconf.nvim" } },
     { import = "quitlox.plugins.ide.lsp" },
 
-    { "jubnzv/virtual-types.nvim" },
-
     ----------------------------------------
     -- Language Support: LSP-based Plugins
     ----------------------------------------
@@ -33,7 +31,7 @@ return {
     -- Autocompletion in project.toml
     { "Saecki/crates.nvim", lazy = true },
     ----- Typescript -----
-    { "jose-elias-alvarez/typescript.nvim", lazy = true },
+    { "jose-elias-alvarez/typescript.nvim", lazy = false },
 
     ----------------------------------------
     -- Language Support: standalone vim plugins
@@ -50,20 +48,5 @@ return {
         build = "sh install.sh yarn",
         ft = "js,ts,tsx,jsx",
         config = true,
-    },
-    ----- Python -----
-    -- Switch Environment
-    {
-        "AckslD/swenv.nvim",
-        ft = "python",
-        config = true,
-        init = function()
-            require("which-key").register({
-                p = {
-                    name = "Python",
-                    s = { "<cmd>lua require('swenv.api').pick_env()<cr>", "Python Switch env" },
-                },
-            }, { prefix = "<localleader>" })
-        end,
     },
 }

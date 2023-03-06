@@ -38,16 +38,16 @@ local lazy_config = {
     },
     checker = {
         enabled = true,
-        notify=false,
+        notify = false,
     },
     performance = {
         cache = {
             enabled = true,
         },
         rtp = {
-            paths = {"/home/quitlox/.config/vim"},
-        }
-    }
+            paths = { "/home/quitlox/.config/vim" },
+        },
+    },
 }
 
 ----------------------------------------------------------------------
@@ -62,7 +62,7 @@ local plugins = {
     { "kyazdani42/nvim-web-devicons", opts = { default = true }, config = true },
     -- Adds missing highlight group
     { "folke/lsp-colors.nvim" },
-    {"folke/which-key.nvim"},
+    { "folke/which-key.nvim" },
 
     ----------------------------------------
     -- Vim
@@ -98,7 +98,7 @@ local plugins = {
         end,
     },
     -- Auto Enable/Disable hlsearch
-    { "asiryk/auto-hlsearch.nvim", config = true },
+    { "asiryk/auto-hlsearch.nvim",       config = true },
 
     ---------- Text Objects ----------
     -- Indent Text Object (for Python)

@@ -10,8 +10,11 @@ return {
         "ofirgall/goto-breakpoints.nvim",
         keys = { "[b", "]b" },
         init = function()
-            vim.keymap.set("n", "[b", "<cmd>lua require('goto-breakpoints').prev()<cr>", { noremap = true })
-            vim.keymap.set("n", "]b", "<cmd>lua require('goto-breakpoints').next()<cr>", { noremap = true })
+            require("quitlox.util.which_key").register({
+                ["[b"] = { "<cmd>lua require('goto-breakpoints').prev()<cr>", "Previous Breakpoint" },
+                ["]b"] = { "<cmd>lua require('goto-breakpoints').next()<cr>", "Next Breakpoint" },
+            }, {noremap=true}
+            )
         end,
     },
 }

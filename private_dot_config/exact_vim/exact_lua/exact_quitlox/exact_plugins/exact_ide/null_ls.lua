@@ -9,7 +9,6 @@ return {
     config = function()
         local null_ls = require("null-ls")
         require("null-ls").setup({
-            debug=true,
             -- Do not attach to C++ files (see c.lua)
             should_attach = function(bufnr) return vim.bo.filetype ~= "cpp" end,
             sources = {
