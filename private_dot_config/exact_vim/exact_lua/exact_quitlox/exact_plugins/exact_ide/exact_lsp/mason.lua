@@ -21,7 +21,7 @@ return {
             },
         },
         init = function()
-            require("which-key").register({
+            require("quitlox.util.which_key").register({
                 m = { "<cmd>Mason<cr>", "Mason" },
             }, { prefix = "<leader>v" })
         end,
@@ -53,18 +53,18 @@ return {
                     })
                 end,
                 -- Manually configured servers
-                ["clangd"] = function() require("quitlox.plugins.ide.lsp.languages.c") end,
-                ["jsonls"] = function() require("quitlox.plugins.ide.lsp.languages.json") end,
-                ["sumneko_lua"] = function() require("quitlox.plugins.ide.lsp.languages.lua") end,
+                ["clangd"] = function() require("quitlox.plugins.ide.lsp.servers.c") end,
+                ["jsonls"] = function() require("quitlox.plugins.ide.lsp.servers.json") end,
+                ["lua_ls"] = function() require("quitlox.plugins.ide.lsp.servers.lua") end,
                 -- NOTE: Thanks to rust_analyzer, lazy loading DAP and all related plugins
                 -- is not possible
-                ["rust_analyzer"] = function() require("quitlox.plugins.ide.lsp.languages.rust") end,
-                ["yamlls"] = function() require("quitlox.plugins.ide.lsp.languages.yaml") end,
-                ["tsserver"] = function() require("quitlox.plugins.ide.lsp.languages.typescript") end,
+                ["rust_analyzer"] = function() require("quitlox.plugins.ide.lsp.servers.rust") end,
+                ["yamlls"] = function() require("quitlox.plugins.ide.lsp.servers.yaml") end,
+                ["tsserver"] = function() require("quitlox.plugins.ide.lsp.servers.typescript") end,
             })
 
             -- Custom Language specific code
-            require("quitlox.plugins.ide.lsp.languages.python")
+            require("quitlox.plugins.ide.lsp.include.python")
         end,
         opts = {
             automatic_installation = false,
@@ -87,7 +87,7 @@ return {
         config = true,
         opts = {
             ensure_installed = nil,
-            automatic_installation = true,
+            automatic_installation = false,
             automatic_setup = false,
         },
     },

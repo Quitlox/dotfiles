@@ -2,7 +2,7 @@ return {
     "folke/neoconf.nvim",
     config = true,
     init = function()
-        require('which-key').register({
+        require('quitlox.util.which_key').register({
             n = {
                 name = "Neoconf",
                 e = {"<cmd>Neoconf<cr>", "Neoconf Edit"},

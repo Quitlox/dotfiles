@@ -39,7 +39,7 @@ return {
         end,
 
         init = function()
-            require("which-key").register({
+            require("quitlox.util.which_key").register({
                 f = {
                     name = "Find",
                     a = { "<cmd>Telescope live_grep theme=dropdown<cr>", "Find All" },

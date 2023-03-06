@@ -10,7 +10,7 @@ return {
         "IconPickerYank",
     },
     init = function()
-        require("which-key").register({
+        require("quitlox.util.which_key").register({
             i = { "<cmd>IconPickerNormal alt_font symbols nerd_font emoji<cr>", "Icon Picker" },
         }, { prefix = "<leader>" })
     end,

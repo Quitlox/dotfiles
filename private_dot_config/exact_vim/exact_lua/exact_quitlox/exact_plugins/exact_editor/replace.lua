@@ -1,7 +1,7 @@
 return {
     "nvim-pack/nvim-spectre",
     init = function()
-        require('which-key').register({
+        require('quitlox.util.which_key').register({
             R = {"<cmd>lua require('spectre').open()<CR>", "Replace"},
             r = {
                 name="Replace",
@@ -10,7 +10,7 @@ return {
             }
         },{prefix="<leader>"})
 
-        require('which-key').register({
+        require('quitlox.util.which_key').register({
                 R = {"<cmd>lua require('spectre').open_visual()<CR>", "Replace Visual"},
         }, {prefix="<leader>", mode="v"})
     end

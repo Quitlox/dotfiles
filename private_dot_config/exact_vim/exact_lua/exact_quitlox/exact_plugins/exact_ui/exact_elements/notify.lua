@@ -15,7 +15,7 @@ return {
         require("telescope").load_extension("notify")
     end,
     init = function()
-        require("which-key").register({
+        require("quitlox.util.which_key").register({
             v = {
                 name = "Vim",
                 l = {

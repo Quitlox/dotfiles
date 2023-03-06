@@ -54,7 +54,6 @@ return {
                         icon = level:match("error") and "  " or icon
                         return " " .. icon .. count
                     end,
-
                     offsets = {
                         {
                             filetype = "NvimTree",
@@ -62,11 +61,9 @@ return {
                             text_align = "left",
                         },
                     },
-
                     color_icons = false,
                     show_buffer_default_icon = true,
                     separator_style = "slant",
-
                     buffer_close_icon = "",
                     close_icon = "",
                     indicator = {
@@ -77,7 +74,6 @@ return {
                     right_trunc_marker = "",
                     show_close_icon = false,
                     show_tab_indicators = true,
-
                     custom_areas = {
                         right = function()
                             local result = {}
@@ -112,35 +108,28 @@ return {
                         fg = { attribute = "bg", highlight = "StatusLineNC" },
                         bg = background_color,
                     },
-
                     buffer = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     buffer_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     buffer_selected = { fg = { attribute = "fg", highlight = "Normal" } },
-
                     close_button = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     close_button_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
-
                     diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
-
                     error = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     error_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     error_selected = { fg = { attribute = "fg", highlight = "Normal" } },
                     error_diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     error_diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
-
                     warning = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     warning_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     warning_selected = { fg = { attribute = "fg", highlight = "Normal" } },
                     warning_diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     warning_diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
-
                     info = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     info_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     info_selected = { fg = { attribute = "fg", highlight = "Normal" } },
                     info_diagnostic = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     info_diagnostic_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
-
                     hint = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     hint_visible = { fg = { attribute = "fg", highlight = "@tag.delimiter" } },
                     hint_selected = { fg = { attribute = "fg", highlight = "Normal" } },
@@ -150,7 +139,7 @@ return {
             })
         end,
         init = function()
-            require("which-key").register({
+            require("quitlox.util.which_key").register({
                 b = {
                     name = "Buffer",
                     n = { "<cmd>BufferLineCycleNext<cr>", "Buffer Next" },
@@ -180,9 +169,9 @@ return {
             })
         end,
         init = function()
-            require("which-key").register({
-                    n = { "<cmd>BufferLineCycleWindowlessNext<cr>", "Buffer Next" },
-                    p = { "<cmd>BufferLineCycleWindowlessPrev<cr>", "Buffer Prev" },
+            require("quitlox.util.which_key").register({
+                n = { "<cmd>BufferLineCycleWindowlessNext<cr>", "Buffer Next" },
+                p = { "<cmd>BufferLineCycleWindowlessPrev<cr>", "Buffer Prev" },
             }, { prefix = "<leader>b" })
         end,
     },

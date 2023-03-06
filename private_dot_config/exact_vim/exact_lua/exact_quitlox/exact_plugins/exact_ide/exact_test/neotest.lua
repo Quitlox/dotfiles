@@ -11,18 +11,12 @@ return {
         })
     end,
     init = function()
-        vim.api.nvim_set_keymap(
-            "n",
-            "[n",
-            '<cmd>lua require("neotest").jump.prev({ status = "failed" })<CR>',
-            { noremap = true, silent = true }
-        )
-        vim.api.nvim_set_keymap(
-            "n",
-            "]n",
-            '<cmd>lua require("neotest").jump.next({ status = "failed" })<CR>',
-            { noremap = true, silent = true }
-        )
+        require("quitlox.util.which_key").register({
+            ["[T"] = { "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>", "Previous Failed Test" },
+            ["]T"] = { "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>", "Next Failed Test" },
+            ["[t"] = { "<cmd>lua require('neotest').jump.prev()<cr>", "Previous Test" },
+            ["]t"] = { "<cmd>lua require('neotest').jump.next()<cr>", "Next Test" },
+        })
 
         require("which-key").register({
             name = "Test",
@@ -34,7 +28,6 @@ return {
                 s = { "<cmd>lua require('neotest').run.stop()<cr>", "Test Runner Stop closest" },
                 a = { "<cmd>lua require('neotest').run.attach()<cr>", "Test Runner Attach closest" },
             },
-
             o = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "Test Output" },
             s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary toggle" },
         }, { prefix = "<localleader>t" })

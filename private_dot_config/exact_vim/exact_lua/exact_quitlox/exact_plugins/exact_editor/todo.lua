@@ -13,7 +13,7 @@ return {
     },
     cmd = { "TodoTrouble" },
     init = function()
-        require("which-key").register({
+        require("quitlox.util.which_key").register({
             d = {
                 name = "Diagnostics",
                 n = { "<cmd>TodoTrouble<cr>", "Open Notes" },

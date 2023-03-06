@@ -24,7 +24,6 @@ BLOCKED:
 
 PLUGINS:
     - dirbuf.nvim: Use vim to edit files and directories ALT: oil.nvim
-    - neotest
     - hydra.nvim ?
     - noice.nvim: Pretty UI
 
@@ -52,3 +51,7 @@ Contribute (My Ideas):
         - Proper environment switcher, supporting poetry, venv, virtualenv
     - LspSaga
         - Show References window does not work well on halfscreen
+    - UI frames library
+        - Let user designed where NvimTree, symbol outline etc goes
+        - Let user decide when these windows close, their precedence
+        - Let user decide when visible (min widht)

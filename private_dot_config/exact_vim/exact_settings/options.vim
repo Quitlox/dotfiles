@@ -186,6 +186,7 @@ if has('nvim')
         autocmd FileType NeogitStatus setlocal nospell
         autocmd FileType dap-repl setlocal nospell
         autocmd FileType dapui_* setlocal nospell
+        autocmd FileType Outline setlocal nospell
         autocmd TermOpen * setlocal nospell
     augroup END
 endif
