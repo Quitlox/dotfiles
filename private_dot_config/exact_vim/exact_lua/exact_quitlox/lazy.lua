@@ -22,7 +22,7 @@ vim.opt.rtp:prepend(lazypath)
 ----------------------------------------------------------------------
 
 local lazy_config = {
-    default = {
+    defaults = {
         lazy = false,
         version = "",
     },
@@ -45,10 +45,9 @@ local lazy_config = {
             enabled = true,
         },
         rtp = {
-            paths = {"/home/quitlox/.config/vim"},
-            paths = {"C:\\Users\\witloxkhd\\.config\\vim"},
-        }
-    }
+            paths = { "/home/quitlox/.config/vim" },
+        },
+    },
 }
 
 ----------------------------------------------------------------------
@@ -73,7 +72,6 @@ local plugins = {
     {
         "echasnovski/mini.move",
         config = function() require("mini.move").setup() end,
-        version = false,
     },
     ---------- Commands ----------
     -- Proper Buffer Delete command, which does not mess with your window layout

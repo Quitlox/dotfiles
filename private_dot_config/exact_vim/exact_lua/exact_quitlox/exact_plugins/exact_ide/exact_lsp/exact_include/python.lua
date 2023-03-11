@@ -20,6 +20,11 @@ local function filter_diagnostics(diagnostic)
 		return false
 	end
 
+    -- Just disable 'is not accessed' altogether
+	if string.match(diagnostic.message, '".+" is not accessed') then
+		return false
+	end
+
 	return true
 end
 

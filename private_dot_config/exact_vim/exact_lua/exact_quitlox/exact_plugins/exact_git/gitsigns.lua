@@ -32,8 +32,8 @@ return {
             vim.keymap.set("n", "[h", prev_hunk, { expr = true, buffer = bufnr })
 
             wk.register({
-                ["[h"] = { "Next Change" },
-                ["]h"] = { "Prev Change" },
+                    ["[h"] = { "Next Change" },
+                    ["]h"] = { "Prev Change" },
             })
 
             ----------------------------------------

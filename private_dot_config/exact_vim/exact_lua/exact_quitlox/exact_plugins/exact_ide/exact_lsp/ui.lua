@@ -5,6 +5,8 @@
 return {
     "glepnir/lspsaga.nvim",
     config = true,
+    version = nil,
+    commit = "438b54cba00fca27d280ae4d9242615282045bcb",
     opts = {
         lightbulb = {
             enable = false,
