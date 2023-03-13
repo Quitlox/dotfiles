@@ -12,17 +12,11 @@ return {
             -- Do not attach to C++ files (see c.lua)
             should_attach = function(bufnr) return vim.bo.filetype ~= "cpp" end,
             sources = {
-                -- Lua
-                null_ls.builtins.formatting.stylua,
                 -- Shell
                 null_ls.builtins.formatting.shfmt,
-                -- Web Development
-                null_ls.builtins.formatting.eslint_d,
-                null_ls.builtins.formatting.prettierd.with({
-                    extra_filteypes = {"svelte"},
-                }),
-                -- Typescript
-                require("typescript.extensions.null-ls.code-actions"),
+
+                -- Lua
+                null_ls.builtins.formatting.stylua,
                 -- Python
                 null_ls.builtins.formatting.black,
                 null_ls.builtins.formatting.isort,
@@ -35,11 +29,24 @@ return {
                 null_ls.builtins.formatting.trim_whitespace.with({
                     filetypes = { "lua", "python" }, -- use rustfmt
                 }),
+
+                -- Web Development
+                null_ls.builtins.formatting.eslint_d,
+                null_ls.builtins.formatting.prettierd.with({
+                    extra_filteypes = {"svelte"},
+                }),
+                -- Typescript
+                require("typescript.extensions.null-ls.code-actions"),
+
+                -- Solidity
+                null_ls.builtins.diagnostics.solhint,
+
                 -- LaTeX
                 null_ls.builtins.diagnostics.chktex.with({
                     extra_args = { "-n8", "-n1" },
                 }),
                 null_ls.builtins.code_actions.proselint,
+
                 -- Json
                 null_ls.builtins.diagnostics.jsonlint,
                 -- Git

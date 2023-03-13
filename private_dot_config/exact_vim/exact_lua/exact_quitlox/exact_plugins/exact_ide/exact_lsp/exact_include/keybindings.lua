@@ -35,12 +35,12 @@ local function set_keybindings(bufnr)
         -- Add Go mappings for LSP Symbol navigation
         g = {
             name = "Go",
-            D = { vim.lsp.buf.declaration, "Go Declaration" },
-            d = { vim.lsp.buf.definition, "Go Definition" },
+            D = { "<cmd>Lspsaga peek_definition<cr>", "Go Declaration" },
+            d = { "<cmd>Lspsaga goto_definition<cr>", "Go Definition" },
             i = { vim.lsp.buf.implementation, "Go Implementation" },
             s = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols='variable'<cr>", "Symbols" },
-            t = { vim.lsp.buf.type_definition, "type Definition" },
-            R = { vim.lsp.buf.rename, "Go Rename" },
+            t = { "<cmd>Lspsaga peek_type_definition<cr>", "type Definition" },
+            R = { "<cmd>Lspsaga rename ++project<cr>", "Go Rename" },
             r = { "<cmd>Lspsaga lsp_finder<cr>", "Go References" },
             h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
             f = { lsp_format, "Format" },

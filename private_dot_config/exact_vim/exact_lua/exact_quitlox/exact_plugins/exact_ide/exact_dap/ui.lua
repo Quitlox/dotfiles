@@ -68,7 +68,7 @@ return {
                         u = { "<cmd>DapStepOut<cr>", "Step Out (Shift+F8)" },
                         i = { "<cmd>DapStepIn<cr>", "Step Into (F7)" },
                     },
-                    t = { "<cmd>DapToggleBreakpoint<cr>", "Breakpoint Toggle" },
+                    t = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Breakpoint Toggle" },
                     b = {
                         name = "Breakpoint",
                         c = {

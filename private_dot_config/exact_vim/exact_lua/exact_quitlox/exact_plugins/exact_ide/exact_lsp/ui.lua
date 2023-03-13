@@ -3,10 +3,16 @@
 ----------------------------------------------------------------------
 
 return {
+    {
     "glepnir/lspsaga.nvim",
-    config = true,
-    version = nil,
-    commit = "438b54cba00fca27d280ae4d9242615282045bcb",
+    dependencies = {
+      -- {"nvim-tree/nvim-web-devicons"},
+      --Please make sure you install markdown and markdown_inline parser
+      {"nvim-treesitter/nvim-treesitter"}
+    },
+    config = function(_, opts)
+        require("lspsaga").setup(opts)
+    end,
     opts = {
         lightbulb = {
             enable = false,
@@ -40,6 +46,7 @@ return {
             enable = false,
         },
     },
+},
     {
         "zbirenbaum/neodim",
         opts = {
