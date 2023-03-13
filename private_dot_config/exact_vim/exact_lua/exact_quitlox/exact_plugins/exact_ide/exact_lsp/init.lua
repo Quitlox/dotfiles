@@ -12,6 +12,7 @@ return {
     -- before: lspconfig
     {
         "folke/neodev.nvim",
+        priority = 500,
         config = function()
             require("neodev").setup({
                 library = { plugins = { "nvim-dap-ui" }, types = true },
