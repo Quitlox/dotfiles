@@ -15,7 +15,7 @@ if has('nvim')
     let g:vimtex_indent_enabled=0 " Should be arranged by treesitter?
     let g:vimtex_indent_bib_enabled=0
     let g:vimtex_matchparen_enabled=0
-    let g:vimtex_quickfix_enabled=0
+    let g:vimtex_quickfix_enabled=1
     let g:vimtex_syntax_enabled=1
 endif
 

@@ -6,7 +6,7 @@
 local lsp_format = function(bufnr)
     vim.lsp.buf.format({
         filter = function(client)
-            if client.name == "sumneko_lua" then return false end
+            if client.name == "lua_ls" then return false end
             return true
         end,
         bufnr = bufnr,

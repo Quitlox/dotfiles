@@ -82,6 +82,7 @@ return {
                                 if diagnostic.source ~= "Pyright" then
                                     return true
                                 end
+
                                 -- Just disable 'is not accessed' altogether
                                 if string.match(diagnostic.message, '".+" is not accessed') then
                                     return false
