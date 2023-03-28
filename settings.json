@@ -488,5 +488,9 @@
   "svelte.enable-ts-plugin": true,
   "svelte.plugin.svelte.note-new-transformation": false,
   "gitlens.codeLens.enabled": false,
-  "gitlens.statusBar.enabled": false
+  "gitlens.statusBar.enabled": false,
+  "jupyter.interactiveWindow.creationMode": "perFile",
+  "jupyter.interactiveWindow.textEditor.executeSelection": true,
+  "jupyter.interactiveWindow.textEditor.autoMoveToNextCell": false,
+  "jupyter.interactiveWindow.textEditor.autoAddNewCell": true
 }
