@@ -10,10 +10,12 @@ return {
                 do_binding = false,
             },
         })
-        require("which-key").register({
-            l = {
-                l = { "<cmd>Legendary<cr>", "Vim List Legendary" },
-            },
+        require("quitlox.util.which_key").register({
+            k = { "<cmd>Legendary<cr>", "Vim Keymap" },
         }, { prefix = "<leader>v" })
     end,
+    extensions = {
+        nvim_tree=true,
+        diffview=true,
+    }
 }

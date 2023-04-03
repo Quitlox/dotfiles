@@ -21,7 +21,7 @@ return {
             v = {
                 name = "Vim",
                 l = {
-                    name = "list",
+                    name = "List",
                     n = { "<cmd>Telescope notify<cr>", "Vim List Notifications" },
                 },
             },

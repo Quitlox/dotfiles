@@ -30,6 +30,8 @@ local filename = require("quitlox.plugins.ui.components.statusline.modules.filen
 local breadcrumbs = require("quitlox.plugins.ui.components.statusline.modules.breadcrumbs")
 local yaml_schema = require("quitlox.plugins.ui.components.statusline.modules.yaml_schema")
 local toggleterm = require("quitlox.plugins.ui.components.statusline.modules.terminal")
+local diff = require("quitlox.plugins.ui.components.statusline.modules.diff")
+local mixed_indent = require("quitlox.plugins.ui.components.statusline.modules.mixed_indent")
 
 ----------------------------------------
 -- Adapted Theme VSCode
@@ -71,12 +73,14 @@ local diagnostics = {
     sources = { "nvim_diagnostic" },
 }
 
-local gitsigns = {
-    "b:gitsigns_status",
-    -- color = { fg = "white" },
-    -- icon = { "", color = { fg = "white" } },
-    icon = { "" },
+local keymap = {
+    function()
+        if vim.opt.iminsert:get() > 0 and vim.b.keymap_name then return "⌨ " .. vim.b.keymap_name end
+        return ""
+    end,
 }
+
+local branch = { "b:gitsigns_head", icon = "" }
 
 local lazy = {
     require("lazy.status").updates,
@@ -111,9 +115,9 @@ lualine.setup({
     sections = {
         lualine_a = { mode },
         lualine_b = { "branch", "swenv" },
-        lualine_c = { filename, "man", "nvim-dap-ui", "man" },
-        lualine_x = { encoding, fileformat, yaml_schema, "filetype" },
-        lualine_y = { lazy, gitsigns, diagnostics },
+        lualine_c = { "man", filename, "nvim-dap-ui", "lsp_progress" },
+        lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
+        lualine_y = { lazy, diff, diagnostics },
         lualine_z = { "searchcount", "location" },
     },
     inactive_sections = {

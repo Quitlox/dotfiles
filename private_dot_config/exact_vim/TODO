@@ -2,10 +2,6 @@ FIX:
     - Update highlights related to completion menu
         ```https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance```
 
-    - Add keybinding for LspOutline
-    - Ensure LspOutline does not resize when switching buffers
-
-    - Go references not opened in LspSaga
     - Center cursor on "Go definition", etc.
     - ]f in python should not go to decorator
 
@@ -15,6 +11,7 @@ COULD:
     - Add more options for bracket navigation: mini.bracketed
     - Setup automatic installation of dap
     - Switch over from NvimTree to NeoTree
+    - Switch over from nvm-cmp to coq
 
 BLOCKED:
     - Neogit leaves empty window when Neogit is called inside a non-git
@@ -27,8 +24,8 @@ PLUGINS:
     - hydra.nvim ?
     - noice.nvim: Pretty UI
 
-    -- nable.nvim: Render Math Equations in LaTeX as ASCII
-    -- lsplines
+    - nable.nvim: Render Math Equations in LaTeX as ASCII
+    - lsplines
 
 OPTIONAL PLUGINS: (might come in handy later)
     -- harpoon.nvim / grapple.nvim
@@ -58,13 +55,5 @@ Contribute (My Ideas):
 
 TODO:
 - update which_key register in keybindings folder
-- add shortcut for legendary
-- fix grouping of legendary keymaps
-- check if rust-tools still shit
-- configure lspsaga outline
-- replace nvim tree?
-- replace code completion
-- swap out fidget for statusline loading of lsp
-- check statusline components
-- check colors of vscode
+- fix grouping of legendary keymaps (add plugin prefix to each description)
 

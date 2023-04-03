@@ -7,7 +7,7 @@ require("which-key").register({
         v = {
             name = "Vim",
             l = {
-                name = "list",
+                name = "List",
                 f = { "<cmd>Telescope filetypes theme=dropdown<cr>", "Vim List Filetypes" },
                 r = { "<cmd>Telescope registers theme=dropdown<cr>", "Vim List Registers" },
                 o = { "<cmd>Telescope vim_options theme=dropdown<cr>", "Vim List Options" },
