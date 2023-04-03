@@ -55,3 +55,16 @@ Contribute (My Ideas):
         - Let user designed where NvimTree, symbol outline etc goes
         - Let user decide when these windows close, their precedence
         - Let user decide when visible (min widht)
+
+TODO:
+- update which_key register in keybindings folder
+- add shortcut for legendary
+- fix grouping of legendary keymaps
+- check if rust-tools still shit
+- configure lspsaga outline
+- replace nvim tree?
+- replace code completion
+- swap out fidget for statusline loading of lsp
+- check statusline components
+- check colors of vscode
+

@@ -1,5 +1,6 @@
 return {
     "rcarriga/nvim-notify",
+    version = "",
     priority = 800,
     config = function()
         -- Set up notify

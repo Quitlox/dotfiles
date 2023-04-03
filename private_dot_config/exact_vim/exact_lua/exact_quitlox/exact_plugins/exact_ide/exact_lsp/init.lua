@@ -1,5 +1,11 @@
 return {
-    { "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim", "folke/neoconf.nvim" } },
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "folke/neodev.nvim",
+            "folke/neoconf.nvim",
+        },
+    },
     { import = "quitlox.plugins.ide.lsp" },
 
     ----------------------------------------
@@ -13,6 +19,7 @@ return {
     {
         "folke/neodev.nvim",
         priority = 500,
+        version = "",
         config = function()
             require("neodev").setup({
                 library = { plugins = { "nvim-dap-ui" }, types = true },
@@ -21,7 +28,7 @@ return {
     },
     ----- YAML -----
     -- see languages/yaml.lua
-    { "someone-stole-my-name/yaml-companion.nvim", lazy = true },
+    { "someone-stole-my-name/yaml-companion.nvim", lazy = true, version = "" },
     ----- Json -----
     -- Autocompletion based on remote SchemaStore
     -- see languages/json.lua
@@ -30,7 +37,7 @@ return {
     -- See languages/rust.lua
     { "simrat39/rust-tools.nvim", lazy = true },
     -- Autocompletion in project.toml
-    { "Saecki/crates.nvim", lazy = true },
+    { "Saecki/crates.nvim", lazy = true, version = "" },
     ----- Typescript -----
     { "jose-elias-alvarez/typescript.nvim", lazy = false },
 
@@ -39,7 +46,7 @@ return {
     ----------------------------------------
 
     ----- Tex -----
-    "lervag/vimtex",
+    { "lervag/vimtex", version = "" },
     ----- Yuck -----
     -- the filetype used by ewww
     "elkowar/yuck.vim",

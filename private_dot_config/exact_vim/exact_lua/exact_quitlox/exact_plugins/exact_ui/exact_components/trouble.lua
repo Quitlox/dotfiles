@@ -6,6 +6,7 @@
 
 return {
     "folke/trouble.nvim",
+    version="",
     opts = {
         action_keys = {
             close = "q",

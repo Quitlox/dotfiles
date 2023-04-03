@@ -5,6 +5,7 @@
 
 return {
     "folke/todo-comments.nvim",
+    version = "",
     config = true,
     opts = {
         highlight = {

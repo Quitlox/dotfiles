@@ -4,6 +4,7 @@
 
 return {
     "folke/which-key.nvim",
+    version = "",
     priority = 800, -- Should be after Legendary
     config = function(_, opts)
         require("which-key").setup(opts)

@@ -1,5 +1,6 @@
 return {
     "nvim-neotest/neotest",
+    version = "",
     dependencies = { "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python" },
     config = function()
         require("neotest").setup({

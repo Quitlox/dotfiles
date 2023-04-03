@@ -6,6 +6,7 @@
 
 return {
     "yioneko/nvim-yati",
+    cond = false,
     ft = { "python" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()

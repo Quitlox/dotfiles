@@ -12,7 +12,7 @@ return {
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
-        tag = "v0.8.5.2", -- TODO: Update
+        version = "",
         build = ":TSUpdate",
         config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
         opts = {

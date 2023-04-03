@@ -1,5 +1,6 @@
 return {
     "folke/zen-mode.nvim",
+    version = "",
     config = true,
     cmd = { "ZenMode" },
     dependencies = {

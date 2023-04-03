@@ -29,6 +29,7 @@ end
 return {
     {
         "akinsho/bufferline.nvim",
+        version = "",
         config = function()
             local lazy = require("bufferline.lazy")
             local colors = lazy.require("bufferline.colors")

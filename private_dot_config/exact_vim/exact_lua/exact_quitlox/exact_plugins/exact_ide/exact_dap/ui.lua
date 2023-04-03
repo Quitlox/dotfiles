@@ -31,6 +31,7 @@ end
 
 return {
     "rcarriga/nvim-dap-ui",
+    version = "",
     config = function()
         local dap = require("dap")
         require("dapui").setup({ expand_lines = vim.fn.has("nvim-0.7") == 1 })

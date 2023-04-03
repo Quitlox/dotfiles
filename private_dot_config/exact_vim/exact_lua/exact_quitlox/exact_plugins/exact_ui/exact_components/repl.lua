@@ -1,5 +1,6 @@
 return {
     "Olical/conjure",
+    version = "",
     keys = "<localleader>r",
     dependencies = {
         {

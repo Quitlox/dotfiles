@@ -1,3 +1,4 @@
 return {
-    "wellle/targets.vim"
+    "wellle/targets.vim",
+    version = "",
 }

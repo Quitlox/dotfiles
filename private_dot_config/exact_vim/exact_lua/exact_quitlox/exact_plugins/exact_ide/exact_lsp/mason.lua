@@ -61,8 +61,8 @@ return {
                 ["rust_analyzer"] = function() require("quitlox.plugins.ide.lsp.servers.rust") end,
                 ["yamlls"] = function() require("quitlox.plugins.ide.lsp.servers.yaml") end,
                 ["tsserver"] = function() require("quitlox.plugins.ide.lsp.servers.typescript") end,
-                ["pyright"]=function()
-                    function filter(arr, func)
+                ["pyright"] = function()
+                    local function filter(arr, func)
                         -- Filter in place
                         -- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace
                         local new_index = 1
@@ -73,20 +73,18 @@ return {
                                 new_index = new_index + 1
                             end
                         end
-                        for i = new_index, size_orig do arr[i] = nil end
+                        for i = new_index, size_orig do
+                            arr[i] = nil
+                        end
                     end
 
                     require("lspconfig").pyright.setup({
                         on_attach = function(client, bufnr)
                             local function filter_diagnostics(diagnostic)
-                                if diagnostic.source ~= "Pyright" then
-                                    return true
-                                end
+                                if diagnostic.source ~= "Pyright" then return true end
 
                                 -- Just disable 'is not accessed' altogether
-                                if string.match(diagnostic.message, '".+" is not accessed') then
-                                    return false
-                                end
+                                if string.match(diagnostic.message, '".+" is not accessed') then return false end
 
                                 return true
                             end
@@ -96,17 +94,14 @@ return {
                                 vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
                             end
 
-                            client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with( custom_on_publish_diagnostics , { })
+                            client.handlers["textDocument/publishDiagnostics"] =
+                                vim.lsp.with(custom_on_publish_diagnostics, {})
                             on_attach(client, bufnr)
                         end,
                         capabilities = capabilities,
                     })
-
-                end
+                end,
             })
-
-            -- Custom Language specific code
-            require("quitlox.plugins.ide.lsp.include.python")
         end,
         opts = {
             automatic_installation = false,
@@ -114,6 +109,7 @@ return {
     },
     {
         "jay-babu/mason-nvim-dap.nvim",
+        version = "",
         dependencies = { "williamboman/mason.nvim" },
         keys = "<localleader>d",
         config = function(_, opts)
@@ -126,6 +122,8 @@ return {
     },
     {
         "jay-babu/mason-null-ls.nvim",
+        version = "",
+        event = { "BufReadPre", "BufNewFile" },
         config = true,
         opts = {
             ensure_installed = nil,

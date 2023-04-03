@@ -6,6 +6,7 @@
 
 return {
     "lewis6991/gitsigns.nvim",
+    version = "",
     -- TODO: On LSP attach lazyload
     config = function()
         local function on_attach(bufnr)

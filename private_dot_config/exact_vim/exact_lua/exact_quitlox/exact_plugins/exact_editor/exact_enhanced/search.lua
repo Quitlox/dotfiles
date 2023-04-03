@@ -1,9 +1,9 @@
 return {
     "kevinhwang91/nvim-hlslens",
     config = true,
+    version = "",
     lazy = true,
     init = function()
-
         ----------------------------------------
         -- Scrollbar Integration
         ----------------------------------------

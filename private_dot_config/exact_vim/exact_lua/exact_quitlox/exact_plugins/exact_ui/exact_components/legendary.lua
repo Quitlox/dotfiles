@@ -1,5 +1,6 @@
 return {
     "mrjones2014/legendary.nvim",
+    version = "",
     dependencies = { "kkharji/sqlite.lua" },
     priority = 900, -- Should be earlier than which-key
     config = function()

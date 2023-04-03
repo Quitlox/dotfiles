@@ -31,7 +31,6 @@ return {
     init = function()
         require("quitlox.util.which_key").register({
             s = { "<cmd>Neogit<cr>", "Git Status" },
-            c = { "<cmd>Neogit commit<cr>", "Git Commit" },
             -- Misc Telescope stuff
             b = { "<cmd>Telescope git_branches<cr>", "Open Git Branches" },
         }, { prefix = "<leader>g" })

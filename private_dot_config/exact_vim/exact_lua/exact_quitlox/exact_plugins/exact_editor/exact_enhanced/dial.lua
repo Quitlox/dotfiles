@@ -6,6 +6,7 @@ return {
     -- Enhanced increment/decrement
     {
         "monaqa/dial.nvim",
+        version = "",
         keys = {
             { "<C-x>", mode = "v" },
             { "<C-a>", mode = "v" },
