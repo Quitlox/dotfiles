@@ -24,14 +24,8 @@ local function set_keybindings(bufnr)
         -- Add [d and ]d for navigating to any Diagnostics
         ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Prev Diagnostic" },
         ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Prev Diagnostic" },
-        ["[e"] = {
-            function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end,
-            "Prev Error",
-        },
-        ["]e"] = {
-            function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end,
-            "Prev Error",
-        },
+        ["[e"] = {"<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })<cr>", "Prev Error"},
+        ["]e"] = {"<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>", "Prev Error"},
         -- Add Go mappings for LSP Symbol navigation
         g = {
             name = "Go",
