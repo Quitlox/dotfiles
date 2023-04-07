@@ -97,7 +97,7 @@ local plugins = {
         end,
     },
     -- Auto Enable/Disable hlsearch
-    { "asiryk/auto-hlsearch.nvim",       config = true },
+    { "asiryk/auto-hlsearch.nvim", config = true },
 
     ---------- Text Objects ----------
     -- Indent Text Object (for Python)
@@ -118,3 +118,8 @@ require("lazy").setup(plugins, lazy_config)
 require("which-key").register({
     p = { "Vim Plugins", "<cmd>Lazy<cr>" },
 }, { prefix = "<leader>v" })
+
+require("quitlox.plugins.keybindings.include.window")
+require("quitlox.plugins.keybindings.include.vim")
+require("quitlox.plugins.keybindings.include.tab")
+require("quitlox.plugins.keybindings.include.misc")

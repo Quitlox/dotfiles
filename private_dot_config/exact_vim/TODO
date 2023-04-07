@@ -54,6 +54,6 @@ Contribute (My Ideas):
         - Let user decide when visible (min widht)
 
 TODO:
-- update which_key register in keybindings folder
 - fix grouping of legendary keymaps (add plugin prefix to each description)
+- cursor not in original location when switching tabs
 

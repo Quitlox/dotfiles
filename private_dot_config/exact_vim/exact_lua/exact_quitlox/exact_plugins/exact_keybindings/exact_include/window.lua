@@ -15,7 +15,7 @@ local function window_only()
     end
 end
 
-require("which-key").register({
+require("quitlox.util.which_key").register({
     ["<leader>"] = {
         w = {
             name = "Window",

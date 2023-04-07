@@ -9,10 +9,6 @@ return {
     config = function(_, opts)
         require("which-key").setup(opts)
 
-        require("quitlox.plugins.keybindings.include.window")
-        require("quitlox.plugins.keybindings.include.vim")
-        require("quitlox.plugins.keybindings.include.tab")
-        require("quitlox.plugins.keybindings.include.misc")
     end,
     opts = {
         operators = { gc = "Comments" },

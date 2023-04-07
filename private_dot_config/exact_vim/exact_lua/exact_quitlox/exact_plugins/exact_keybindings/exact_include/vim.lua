@@ -2,7 +2,7 @@
 --                         Keybindings: Vim                         --
 ----------------------------------------------------------------------
 
-require("which-key").register({
+require("quitlox.util.which_key").register({
     ["<leader>"] = {
         v = {
             name = "Vim",

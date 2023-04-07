@@ -10,7 +10,7 @@ return {
                 do_binding = false,
             },
         })
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             k = { "<cmd>Legendary<cr>", "Vim Keymap" },
         }, { prefix = "<leader>v" })
     end,
