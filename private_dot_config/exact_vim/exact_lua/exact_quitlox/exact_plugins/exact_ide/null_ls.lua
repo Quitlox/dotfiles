@@ -11,47 +11,37 @@ return {
         require("null-ls").setup({
             -- Do not attach to C++ files (see c.lua)
             should_attach = function(bufnr) return vim.bo.filetype ~= "cpp" end,
-            sources = {
-                -- Shell
-                null_ls.builtins.formatting.shfmt,
-
-                -- Lua
-                null_ls.builtins.formatting.stylua,
-                -- Python
-                null_ls.builtins.formatting.black,
-                null_ls.builtins.formatting.isort,
-                null_ls.builtins.diagnostics.mypy,
-                null_ls.builtins.diagnostics.pylint,
-                -- Rust
-                null_ls.builtins.formatting.trim_newlines.with({
-                    filetypes = { "lua", "python" }, -- use rustfmt
-                }),
-                null_ls.builtins.formatting.trim_whitespace.with({
-                    filetypes = { "lua", "python" }, -- use rustfmt
-                }),
-
-                -- Web Development
-                null_ls.builtins.formatting.eslint_d,
-                null_ls.builtins.formatting.prettierd.with({
-                    extra_filteypes = {"svelte"},
-                }),
-                -- Typescript
-                require("typescript.extensions.null-ls.code-actions"),
-
-                -- Solidity
-                null_ls.builtins.diagnostics.solhint,
-
-                -- LaTeX
-                null_ls.builtins.diagnostics.chktex.with({
-                    extra_args = { "-n8", "-n1" },
-                }),
-                null_ls.builtins.code_actions.proselint,
-
-                -- Json
-                null_ls.builtins.diagnostics.jsonlint,
-                -- Git
-                null_ls.builtins.code_actions.gitsigns,
-            },
         })
     end,
+    {
+        "jay-babu/mason-null-ls.nvim",
+        dependencies = { "jose-elias-alvarez/null-ls.nvim" },
+        version = "",
+        event = { "BufReadPre", "BufNewFile" },
+        config = true,
+        opts = {
+            ensure_installed = nil,
+            automatic_installation = false,
+            handlers = {
+                trim_newlines = function(source_name, methods)
+                    local null_ls = require("null_ls")
+                    null_ls.register(null_ls.builtins.formatting.trim_newlines.with({
+                        filetypes = { "lua", "python" },
+                    }))
+                end,
+                trim_whitespace = function(source_name, methods)
+                    local null_ls = require("null_ls")
+                    null_ls.register(null_ls.builtins.formatting.trim_whitespace.with({
+                        filetypes = { "lua", "python" },
+                    }))
+                end,
+                chktex = function(source_name, methods)
+                    local null_ls = require("null_ls")
+                    null_ls.register(null_ls.builtins.diagnostics.chktex.with({
+                        extra_args = { "-n8", "-n1" },
+                    }))
+                end,
+            },
+        },
+    },
 }

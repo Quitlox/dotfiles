@@ -107,28 +107,4 @@ return {
             automatic_installation = false,
         },
     },
-    {
-        "jay-babu/mason-nvim-dap.nvim",
-        version = "",
-        dependencies = { "williamboman/mason.nvim" },
-        keys = "<localleader>d",
-        config = function(_, opts)
-            require("mason-nvim-dap").setup(opts)
-            require("mason-nvim-dap").setup_handlers()
-        end,
-        opts = {
-            automatic_setup = true,
-        },
-    },
-    {
-        "jay-babu/mason-null-ls.nvim",
-        version = "",
-        event = { "BufReadPre", "BufNewFile" },
-        config = true,
-        opts = {
-            ensure_installed = nil,
-            automatic_installation = false,
-            automatic_setup = false,
-        },
-    },
 }

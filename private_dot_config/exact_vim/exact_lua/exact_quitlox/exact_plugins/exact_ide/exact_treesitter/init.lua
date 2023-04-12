@@ -12,7 +12,7 @@ return {
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
-        version = "",
+        -- version = "",
         build = ":TSUpdate",
         config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
         opts = {

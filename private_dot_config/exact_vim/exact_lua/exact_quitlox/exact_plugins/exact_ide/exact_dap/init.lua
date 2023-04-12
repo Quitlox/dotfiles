@@ -5,6 +5,12 @@
 
 return {
     { import = "quitlox.plugins.ide.dap" },
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        version = "",
+        dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+        keys = "<localleader>d",
+    },
     -- Cycle between breakpoints
     {
         "ofirgall/goto-breakpoints.nvim",
@@ -13,8 +19,7 @@ return {
             require("quitlox.util.which_key").register({
                 ["[b"] = { "<cmd>lua require('goto-breakpoints').prev()<cr>", "Previous Breakpoint" },
                 ["]b"] = { "<cmd>lua require('goto-breakpoints').next()<cr>", "Next Breakpoint" },
-            }, {noremap=true}
-            )
+            }, { noremap = true })
         end,
     },
 }
