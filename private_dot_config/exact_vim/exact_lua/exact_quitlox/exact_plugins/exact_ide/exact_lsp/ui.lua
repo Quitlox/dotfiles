@@ -5,7 +5,7 @@
 return {
     {
         "glepnir/lspsaga.nvim",
-        version = "",
+        -- version = "",
         event = "LspAttach",
         config = function(_, opts) require("lspsaga").setup(opts) end,
         dependencies = {
