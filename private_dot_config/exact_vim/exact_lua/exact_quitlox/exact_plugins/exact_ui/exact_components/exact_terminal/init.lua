@@ -29,13 +29,14 @@ return {
                 -- TODO: Does this work?
                 g = { lazygit_toggle, "Git Lazy" },
             },
-            t = {
-                name = "Terminal",
-                h = { '<cmd>exe v:count1 . "ToggleTerm size=18 direction=horizontal"<cr>', "Open Terminal Horizontal" },
-                v = { '<cmd>exe v:count1 . "ToggleTerm size=50 direction=vertical"<cr>', "Open Terminal Vertical" },
-                f = { '<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>', "Open Terminal Floating" },
-                t = { '<cmd>exe v:count1 . "ToggleTerm direction=tab"<cr>', "Open Terminal Tab" },
-            },
+            t = { '<cmd>exe v:count1 . "ToggleTerm"<cr>', "Open Terminal" },
+            -- t = {
+            --     name = "Terminal",
+            --     h = { '<cmd>exe v:count1 . "ToggleTerm size=18 direction=horizontal"<cr>', "Open Terminal Horizontal" },
+            --     v = { '<cmd>exe v:count1 . "ToggleTerm size=50 direction=vertical"<cr>', "Open Terminal Vertical" },
+            --     f = { '<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>', "Open Terminal Floating" },
+            --     t = { '<cmd>exe v:count1 . "ToggleTerm direction=tab"<cr>', "Open Terminal Tab" },
+            -- },
         }, { prefix = "<leader>o" })
     end,
 }

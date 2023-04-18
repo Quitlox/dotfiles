@@ -1,9 +1,7 @@
 FIX:
-    - Update highlights related to completion menu
-        ```https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance```
-
+    - vetur / tsserver not starting automatically
+    - <space>o<esc> should not perform o
     - Center cursor on "Go definition", etc.
-    - ]f in python should not go to decorator
 
 COULD:
     - Add shortcut for closing "other" windows (like jumplist)
@@ -18,6 +16,7 @@ BLOCKED:
     directory. No clue how to fix
     - DapUI Highlight current line when paused. No clue how.
     - flit.nvim does not support , and ;
+    - ]f in python should not go to decorator
 
 PLUGINS:
     - dirbuf.nvim: Use vim to edit files and directories ALT: oil.nvim

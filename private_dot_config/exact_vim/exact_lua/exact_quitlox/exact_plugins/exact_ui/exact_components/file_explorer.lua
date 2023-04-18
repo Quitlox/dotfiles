@@ -61,8 +61,13 @@ return {
     end,
     init = function()
         require("quitlox.util.which_key").register({
+            o = {
+                -- t = { "<cmd>NvimTreeToggle<cr>", "Open Tree" },
+                e = { "<cmd>NvimTreeToggle<cr>", "Open Explorer" },
+            },
             T = {
                 f = { "<cmd>NvimTreeToggle<cr>", "Toggle File explorer" },
+                e = { "<cmd>NvimTreeToggle<cr>", "Toggle Explorer" },
             },
             f = {
                 name = "Find",

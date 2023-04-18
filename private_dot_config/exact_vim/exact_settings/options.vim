@@ -109,10 +109,10 @@ set sessionoptions+=winpos,terminal,folds
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set ffs=unix,dos,mac	" Use Unix as the standard file type
-" Tabs
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+" Tabs (Set automatically by Sleuth)
+" set tabstop=4
+" set shiftwidth=4
+" set softtabstop=4
 set expandtab
 " Buffer
 set hidden           " Allow changed buffers to be hidden
@@ -122,7 +122,7 @@ set smartindent 	" Smart indent
 set nowrap 	    	" Wrap lines
 set linebreak		" Wrap lines at full words
 set nofoldenable	" Disable folding
-set textwidth=80
+" set textwidth=80
 " Cursor
 set scrolloff=7      " Leave 7 lines around the cursor when moving vertically using j/k
 set sidescrolloff=10 " Leave 10 characters around the cursor when moving horizontally using h/l

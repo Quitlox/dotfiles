@@ -77,6 +77,8 @@ return {
         -- Trouble
         vim.cmd([[hi! link TroubleCode @field]])
         vim.cmd([[hi! link TroubleSource @field]])
+        -- Git Blame
+        vim.cmd([[hi! link gitblame GitSignsCurrentLineBlame]])
 
         -- Spelling Highlight
         -- xtermcolors: https://www.ditig.com/256-colors-cheat-sheet
