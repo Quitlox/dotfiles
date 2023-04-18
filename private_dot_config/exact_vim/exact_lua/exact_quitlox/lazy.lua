@@ -11,7 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=v9.7.0", -- latest stable release
         lazypath,
     })
 end
@@ -85,6 +84,7 @@ local plugins = {
     -- Matchup - Better %
     {
         "andymass/vim-matchup",
+        version = "",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
@@ -116,7 +116,7 @@ require("lazy").setup(plugins, lazy_config)
 
 -- Keybinding
 require("which-key").register({
-    p = { "Vim Plugins", "<cmd>Lazy<cr>" },
+    p = { "<cmd>Lazy<cr>", "Vim Plugins" },
 }, { prefix = "<leader>v" })
 
 require("quitlox.plugins.keybindings.include.window")

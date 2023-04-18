@@ -91,7 +91,7 @@ return {
         -- Add colorizer to completion menu for tailwind colors
         { "roobert/tailwindcss-colorizer-cmp.nvim", opts = { color_square_width = 2 }, config = true },
         -- Snippet Engine
-        "L3MON4D3/LuaSnip",
+        { "L3MON4D3/LuaSnip", version = "" },
         -- Completion Sorter
         "lukas-reineke/cmp-under-comparator",
     },

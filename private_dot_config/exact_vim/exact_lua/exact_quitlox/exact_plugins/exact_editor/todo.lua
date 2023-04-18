@@ -12,7 +12,6 @@ return {
             keyword = "wide",
         },
     },
-    cmd = { "TodoTrouble" },
     init = function()
         require("quitlox.util.which_key").register({
             d = {
