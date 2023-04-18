@@ -1,11 +1,10 @@
 FIX:
     - vetur / tsserver not starting automatically
-    - <space>o<esc> should not perform o
     - Center cursor on "Go definition", etc.
 
 COULD:
     - Add shortcut for closing "other" windows (like jumplist)
-    - More intuitive keys for resizing windows
+    - More intuitive keys for resizing windows (and support resizing of nvim-tree)
     - Add more options for bracket navigation: mini.bracketed
     - Setup automatic installation of dap
     - Switch over from NvimTree to NeoTree
@@ -29,10 +28,6 @@ PLUGINS:
 OPTIONAL PLUGINS: (might come in handy later)
     -- harpoon.nvim / grapple.nvim
     -- buffer_manager.nvim
-
-NEOVIM 0.9:
-    - statuscol.nvim
-    https://github.com/luukvbaal/statuscol.nvim
 
 Contribute (My Ideas):
     - Plugin for a custom outline

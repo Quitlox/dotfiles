@@ -94,5 +94,15 @@ return {
         vim.cmd(
             [[ autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500} ]]
         )
+
+        ----------------------------------------
+        -- Cosmetics 🌈 
+        ----------------------------------------
+        vim.cmd([[
+            sign define DiagnosticSignError text= texthl=DiagnosticError linehl= numhl=
+            sign define DiagnosticSignWarn  text= texthl=DiagnosticWarn  linehl= numhl=
+            sign define DiagnosticSignInfo  text= texthl=DiagnosticInfo  linehl= numhl=
+            sign define DiagnosticSignHint  text= texthl=DiagnosticHint  linehl= numhl=
+        ]])
     end,
 }

@@ -34,7 +34,7 @@ return {
     version = "",
     config = function()
         local dap = require("dap")
-        require("dapui").setup({ expand_lines = vim.fn.has("nvim-0.7") == 1 })
+        require("dapui").setup({ expand_lines = true })
 
         -- Autmatically open/close DAP UI and Nvim-Tree
         dap.listeners.after.event_initialized["dapui_config"] = on_open

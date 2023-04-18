@@ -81,6 +81,6 @@ return {
                     "Find Location",
                 },
             },
-        }, { prefix = "<leader>" })
+        }, { prefix = "<leader>", nowait = true })
     end,
 }

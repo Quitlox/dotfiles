@@ -1,6 +1,5 @@
 return {
     "kevinhwang91/nvim-ufo",
-    version = "",
     dependencies = {
         { "kevinhwang91/promise-async", version = "" },
     },

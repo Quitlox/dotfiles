@@ -4,8 +4,9 @@ return {
     dependencies = {
         "MunifTanjim/nui.nvim",
         "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
     },
-    config = function() require("chatgpt").setup({}) end,
+    config = function() require("chatgpt").setup() end,
     init = function()
         require("quitlox.util.which_key").register({
             ["<leader>m"] = {
