@@ -3,11 +3,7 @@ FIX:
     - Center cursor on "Go definition", etc.
 
 COULD:
-    - Add shortcut for closing "other" windows (like jumplist)
-    - More intuitive keys for resizing windows (and support resizing of nvim-tree)
     - Add more options for bracket navigation: mini.bracketed
-    - Setup automatic installation of dap
-    - Switch over from NvimTree to NeoTree
     - Switch over from nvm-cmp to coq
 
 BLOCKED:
@@ -20,7 +16,6 @@ BLOCKED:
 PLUGINS:
     - dirbuf.nvim: Use vim to edit files and directories ALT: oil.nvim
     - hydra.nvim ?
-    - noice.nvim: Pretty UI
 
     - nable.nvim: Render Math Equations in LaTeX as ASCII
     - lsplines
@@ -49,5 +44,4 @@ Contribute (My Ideas):
 
 TODO:
 - fix grouping of legendary keymaps (add plugin prefix to each description)
-- cursor not in original location when switching tabs
 

@@ -68,10 +68,10 @@ local plugins = {
     ----------------------------------------
 
     -- Move - Move around text using ALT
-    {
-        "echasnovski/mini.move",
-        config = function() require("mini.move").setup() end,
-    },
+    -- {
+    --     "echasnovski/mini.move",
+    --     config = function() require("mini.move").setup() end,
+    -- },
     ---------- Commands ----------
     -- Proper Buffer Delete command, which does not mess with your window layout
     { "moll/vim-bbye" }, -- Add lazyload on command
