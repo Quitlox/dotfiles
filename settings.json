@@ -421,13 +421,8 @@
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
   },
-
-  "jupyter.interactiveWindowMode": "perFile",
   "jupyter.disableJupyterAutoStart": true,
-  "jupyter.enableAutoMoveToNextCell": false,
-  "jupyter.sendSelectionToInteractiveWindow": true,
   "jupyter.themeMatplotlibPlots": true,
-  "jupyter.newCellOnRunLast": true,
   "jupyter.experiments.enabled": false,
   "interactiveWindow.alwaysScrollOnNewCell": true,
 
@@ -492,5 +487,6 @@
   "jupyter.interactiveWindow.creationMode": "perFile",
   "jupyter.interactiveWindow.textEditor.executeSelection": true,
   "jupyter.interactiveWindow.textEditor.autoMoveToNextCell": false,
-  "jupyter.interactiveWindow.textEditor.autoAddNewCell": true
+  "jupyter.interactiveWindow.textEditor.autoAddNewCell": true,
+  "workbench.startupEditor": "none"
 }
