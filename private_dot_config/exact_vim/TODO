@@ -7,8 +7,10 @@ COULD:
     - Switch over from nvm-cmp to coq
 
 BLOCKED:
-    - Neogit leaves empty window when Neogit is called inside a non-git
-    directory. No clue how to fix
+    - Neogit leaves empty window when Neogit is called inside a non-git directory (PR Opened!)
+
+    - fix grouping of legendary keymaps (add plugin prefix to each description)
+    - autopairs does not work for rust angular brackets
     - DapUI Highlight current line when paused. No clue how.
     - flit.nvim does not support , and ;
     - ]f in python should not go to decorator
@@ -41,7 +43,3 @@ Contribute (My Ideas):
         - Let user designed where NvimTree, symbol outline etc goes
         - Let user decide when these windows close, their precedence
         - Let user decide when visible (min widht)
-
-TODO:
-- fix grouping of legendary keymaps (add plugin prefix to each description)
-
