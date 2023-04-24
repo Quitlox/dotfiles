@@ -2,6 +2,7 @@ import atexit
 import os
 import readline
 
+# Ensure history is stored conform XDG
 if 'PYTHONHISTFILE' in os.environ:
     history = os.path.expanduser(os.environ['PYTHONHISTFILE'])
 elif 'XDG_DATA_HOME' in os.environ:
@@ -15,7 +16,7 @@ _dir, _ = os.path.split(history)
 os.makedirs(_dir, exist_ok=True)
 
 
-print(history)
+print("[pythonrc] setting history path to", history)
 try:
     readline.read_history_file(history)
     # default history len is -1 (infinite), which may grow unruly
@@ -24,3 +25,12 @@ except FileNotFoundError:
     pass
 
 atexit.register(readline.write_history_file, history)
+
+# Use ptpython as default REPL
+import sys
+try:
+    from ptpython.repl import embed
+except ImportError:
+    print("ptpython is not available: falling back to standard prompt")
+else:
+    sys.exit(embed(globals(), locals()))
