@@ -182,8 +182,8 @@ zinit ice as"completion" blockf
 zinit snippet OMZP::docker/_docker
 
 ### Cargo
-zinit ice as"completion" blockf
-zinit snippet OMZP::cargo/cargo.plugin.zsh
+zinit ice lucid nocompile
+zinit load MenkeTechnologies/zsh-cargo-completion
 
 ### GIT
 zinit load davidde/git
