@@ -51,7 +51,7 @@ return {
 
     -- Keybindings
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             ["<F8>"] = "<cmd>DapStepOver<cr>",
             ["<S-F8>"] = "<cmd>DapStepOut<cr>",
             ["<F7>"] = "<cmd>DapStepIn<cr>",

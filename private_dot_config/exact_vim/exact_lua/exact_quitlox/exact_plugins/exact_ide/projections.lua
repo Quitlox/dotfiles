@@ -126,7 +126,7 @@ return {
     end,
     init = function()
         -- Keybindings
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             p = {
                 name = "Project",
                 a = { "<cmd>AddWorkspace<cr>", "Project Add" },

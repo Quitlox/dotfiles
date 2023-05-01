@@ -18,7 +18,7 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     config = true,
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             d = {
                 name = "Diagnostics",
                 x = { "<cmd>TroubleToggle<cr>", "Open Trouble" },

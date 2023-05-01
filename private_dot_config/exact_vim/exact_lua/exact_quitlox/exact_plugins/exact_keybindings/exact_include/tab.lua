@@ -2,7 +2,7 @@
 --                         Keybindings: Tab                         --
 ----------------------------------------------------------------------
 
-require("quitlox.util.which_key").register({
+require("which-key").register({
     ["<leader>"] = {
         t = {
             name = "Tab",

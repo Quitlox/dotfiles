@@ -187,6 +187,7 @@ if has('nvim')
         autocmd FileType dap-repl setlocal nospell
         autocmd FileType dapui_* setlocal nospell
         autocmd FileType Outline setlocal nospell
+        autocmd FileType spectre_panel setlocal nospell
         autocmd TermOpen * setlocal nospell
     augroup END
 endif

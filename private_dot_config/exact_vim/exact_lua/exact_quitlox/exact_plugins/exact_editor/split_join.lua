@@ -10,7 +10,7 @@ return {
         })
     end,
     init = function()
-        require('quitlox.util.which_key').register({
+        require('which-key').register({
             ["<C-s>"] = { "<cmd>TSJToggle<cr>", "Toggle Split/Join" },
         })
     end,

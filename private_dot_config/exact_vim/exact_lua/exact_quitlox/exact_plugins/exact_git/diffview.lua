@@ -15,7 +15,7 @@ return {
         "DiffviewRefresh",
     },
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             g = {
                 name = "Git",
                 d = {

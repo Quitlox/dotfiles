@@ -12,7 +12,7 @@ return {
         })
     end,
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             ["[T"] = { "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>", "Previous Failed Test" },
             ["]T"] = { "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>", "Next Failed Test" },
             ["[t"] = { "<cmd>lua require('neotest').jump.prev()<cr>", "Previous Test" },

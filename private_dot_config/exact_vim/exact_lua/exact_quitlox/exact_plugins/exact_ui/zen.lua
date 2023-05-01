@@ -19,7 +19,7 @@ return {
         },
     },
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             T = {
                 name = "Toggle",
                 z = { "<cmd>ZenMode<cr>", "Toggle Zen Mode" },
