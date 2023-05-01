@@ -12,7 +12,6 @@ FIX:
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
     - highlights in git hunk preview could be nicer
     - session still broken, very annoying
-    - 0 should be g0 and $ should be g$ when hardwrap
     - I need a plugin to preview markdown files, as I need to check whether or
     not I fucked up the formatting of a README file
 
