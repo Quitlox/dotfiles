@@ -1,7 +1,12 @@
-----------------------------------------------------------------------
---                       VimTex: Keybindings                        --
-----------------------------------------------------------------------
+-- Tex options
+vim.opt.formatoptions:remove("t")
+vim.opt.concealcursor = "c"
+vim.opt.foldexpr = "manual"
 
+-- Always SoftWrap
+require('wrapping').soft_wrap_mode()
+
+-- VimTex Keybindings
 require("which-key").register({
     ["<localleader>"] = {
         l = {
@@ -30,3 +35,4 @@ require("which-key").register({
         },
     },
 })
+
