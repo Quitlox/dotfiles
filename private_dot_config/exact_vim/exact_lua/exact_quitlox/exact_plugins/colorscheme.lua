@@ -74,6 +74,7 @@ return {
         vim.cmd([[hi! link FidgetTask Normal]])
         -- Explorer
         vim.cmd([[hi NvimTreeOpenedFile guifg=]] .. c.vscMediumBlue)
+        vim.cmd([[hi! link NvimTreeNormal Normal]])
         -- Trouble
         vim.cmd([[hi! link TroubleCode @field]])
         vim.cmd([[hi! link TroubleSource @field]])
