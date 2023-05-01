@@ -4,5 +4,11 @@
         "vim",
         "next_hunk",
         "last_seen"
+    ],
+    "workspace.library": [
+        "/home/quitlox/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/usr/share/nvim/runtime/lua",
+        "/home/quitlox/.config/vim/lua",
+        "${3rd}/luv/library"
     ]
 }

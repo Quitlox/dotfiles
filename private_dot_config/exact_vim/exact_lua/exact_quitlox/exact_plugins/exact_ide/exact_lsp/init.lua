@@ -18,14 +18,11 @@ return {
     -- before: lspconfig
     {
         "folke/neodev.nvim",
-        priority = 500,
         version = "",
-        config = function()
-            require("neodev").setup({
-                library = { plugins = { "nvim-dap-ui" }, types = true },
-            })
-        end,
+        config= false,
     },
+    ----- Ansible -----
+    {"mfussenegger/nvim-ansible"},
     ----- YAML -----
     -- see languages/yaml.lua
     { "someone-stole-my-name/yaml-companion.nvim", lazy = true, version = "" },
