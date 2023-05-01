@@ -4,7 +4,6 @@ FIX:
     - Latex files should always be softwrap    
         - but why does it not detect that latex like files should be softwrap?
     - telescope should respect excludes in gitignore (!)
-    - add ]n [n for navigating to notes
     - map <space>oe to vimtex outline in latex
     - chatgpt should work
     - yanklist / history
