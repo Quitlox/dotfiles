@@ -2,7 +2,7 @@ return {
     "LudoPinelli/comment-box.nvim",
     config = true,
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             g = {
                 b = {
                     b = { "<cmd>lua require('comment-box').llbox(10)<cr>", "Comment Box" },
@@ -13,7 +13,7 @@ return {
             },
         }, {mode = "n"})
          
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             g = {
                 b = {
                     b = { "<cmd>lua require('comment-box').llbox(10)<cr>", "Comment Box" },

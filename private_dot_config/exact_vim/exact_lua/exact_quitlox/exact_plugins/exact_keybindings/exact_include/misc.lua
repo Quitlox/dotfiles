@@ -2,7 +2,7 @@
 --                        Keybindings: Misc                         --
 ----------------------------------------------------------------------
 
-require("quitlox.util.which_key").register({
+require("which-key").register({
     ["<leader>"] = {
         s = { ":wa<cr>", "Save" },
     },
@@ -19,4 +19,4 @@ vim.cmd([[
     cabbrev xa Z
 ]])
 
-require("quitlox.util.which_key").register({ q = { "<cmd>wa | qa<cr>", "Quit" } }, { prefix = "<leader>" })
+require("which-key").register({ q = { "<cmd>wa | qa<cr>", "Quit" } }, { prefix = "<leader>" })

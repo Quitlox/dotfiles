@@ -60,7 +60,6 @@ local plugins = {
     { "kyazdani42/nvim-web-devicons", opts = { default = true }, config = true },
     -- Adds missing highlight group
     { "folke/lsp-colors.nvim" },
-    { "folke/which-key.nvim" },
 
     ----------------------------------------
     -- Vim

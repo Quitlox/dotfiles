@@ -9,7 +9,7 @@ return {
     config = true,
     cmd = { "Neogen" },
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             name = "Generate",
             a = { "<cmd>Neogen<cr>", "Generate Annotation" },
             f = { "<cmd>Neogen func<cr>", "Generate Function annotation" },

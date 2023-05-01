@@ -16,7 +16,7 @@ return {
         }
     },
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             m = { "<cmd>Mason<cr>", "Mason" },
         }, { prefix = "<leader>v" })
     end,

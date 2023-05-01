@@ -16,7 +16,7 @@ return {
         vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
         -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             z = {
                 name = "Folds",
                 R = { "<cmd> lua require('ufo').openAllFolds()<cr>", "Open All Folds" },

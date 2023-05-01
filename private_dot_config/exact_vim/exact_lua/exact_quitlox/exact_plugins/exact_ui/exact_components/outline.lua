@@ -35,7 +35,7 @@ return {
         },
     },
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
                 ["<leader>o"] = {
                     ["o"] = { "<cmd>SymbolsOutline<cr>", "Open Outline" },
             },

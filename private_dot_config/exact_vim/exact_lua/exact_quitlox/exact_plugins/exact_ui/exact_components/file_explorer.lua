@@ -71,7 +71,7 @@ return {
         vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
     end,
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             o = {
                 -- t = { "<cmd>NvimTreeToggle<cr>", "Open Tree" },
                 e = { "<cmd>NvimTreeToggle<cr>", "Open Explorer" },

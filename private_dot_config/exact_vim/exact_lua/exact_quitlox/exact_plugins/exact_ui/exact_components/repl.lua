@@ -22,7 +22,7 @@ return {
     },
     init = function()
         vim.g["conjure#mapping#prefix"] = "<localleader>r"
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             ["<localleader>"] = {
                 r = {
                     name = "REPL",

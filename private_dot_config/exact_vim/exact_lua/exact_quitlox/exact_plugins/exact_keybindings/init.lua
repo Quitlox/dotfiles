@@ -5,10 +5,9 @@
 return {
     "folke/which-key.nvim",
     version = "",
-    priority = 800, -- Should be after Legendary
+    dependencies = {"mrjones2014/legendary.nvim"},
     config = function(_, opts)
         require("which-key").setup(opts)
-
     end,
     opts = {
         operators = { gc = "Comments" },

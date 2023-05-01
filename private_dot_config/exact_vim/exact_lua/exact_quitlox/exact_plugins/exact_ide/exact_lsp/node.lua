@@ -3,7 +3,7 @@ return {
     config = true,
     dependencies = {"MunifTanjim/nui.nvim"},
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             name = "Node",
             s = { "<cmd>lua require('package-info').show()<cr>", "Package Info Show" },
             h = { "<cmd>lua require('package-info').hide()<cr>", "Package Info Hide" },

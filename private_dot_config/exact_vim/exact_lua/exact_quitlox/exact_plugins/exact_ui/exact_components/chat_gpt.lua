@@ -8,7 +8,7 @@ return {
     },
     config = function() require("chatgpt").setup() end,
     init = function()
-        require("quitlox.util.which_key").register({
+        require("which-key").register({
             ["<leader>m"] = {
                 name = "Misceallenous",
                 c = {
