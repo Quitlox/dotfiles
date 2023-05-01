@@ -23,7 +23,6 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_config = {
     defaults = {
         lazy = false,
-        -- version = "",
     },
     ui = {
         border = "single",
@@ -44,9 +43,8 @@ local lazy_config = {
             enabled = true,
         },
         rtp = {
-            paths = { "/home/quitlox/.config/vim" },
-            paths = { "C:/Users/witloxkhd/.config/vim" },
-        },
+            paths = { "/home/quitlox/.config/vim", "C:/Users/witloxkhd/.config/vim" },
+        }
     },
 }
 
