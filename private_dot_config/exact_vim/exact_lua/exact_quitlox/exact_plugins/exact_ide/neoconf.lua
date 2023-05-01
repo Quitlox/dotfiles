@@ -1,6 +1,11 @@
 return {
     "folke/neoconf.nvim",
-    version = "", 
+    version = "",
+    opts = {
+        import = {
+            coc= false,
+        }
+    },
     config = true,
     init = function()
         require('quitlox.util.which_key').register({

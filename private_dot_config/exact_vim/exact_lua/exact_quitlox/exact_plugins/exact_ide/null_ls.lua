@@ -6,25 +6,31 @@
 
 return {
     "jose-elias-alvarez/null-ls.nvim",
+        dependencies = { "jay-babu/mason-null-ls.nvim" },
     config = function()
-        local null_ls = require("null-ls")
-        require("null-ls").setup({
+        local null_ls = require("null_ls")
+        require("null_ls").setup({
             -- Do not attach to C++ files (see c.lua)
             should_attach = function(bufnr) return vim.bo.filetype ~= "cpp" end,
-            sources={}
+            sources = {},
         })
     end,
     {
         "jay-babu/mason-null-ls.nvim",
-        dependencies = {"williamboman/mason.nvim", "jose-elias-alvarez/null-ls.nvim" },
+        dependencies = { "williamboman/mason.nvim" },
         version = "",
-        event = { "BufReadPre", "BufNewFile" },
         config = true,
         opts = {
-            automatic_setup = true,
             ensure_installed = {},
+            automatic_setup = true,
             automatic_installation = false,
             handlers = {
+                stylua = function(source_name, methods)
+                    local null_ls = require("null_ls")
+                  null_ls.register(null_ls.builtins.formatting.stylua.with({
+                        filetypes = { "lua" },
+                    }))
+                end,
                 trim_newlines = function(source_name, methods)
                     local null_ls = require("null_ls")
                     null_ls.register(null_ls.builtins.formatting.trim_newlines.with({
@@ -54,7 +60,7 @@ return {
                     local null_ls = require("null_ls")
                     null_ls.register(null_ls.builtins.formatting.prettierd.with({
                         -- filetypes = { "javascript", "typescript", "json", "yaml", "markdown", "html", "css" },
-                        filetypes={"vue"}
+                        filetypes = { "vue" },
                     }))
                 end,
             },

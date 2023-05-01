@@ -1,5 +1,4 @@
 FIX:
-    - vetur / tsserver not starting automatically
     - Center cursor on "Go definition", etc.
     - on opening previous session, buffer is opened in nvimtree window
     - Latex files should always be softwrap    
@@ -11,16 +10,15 @@ FIX:
     - yanklist / history
     - vie (select inside environment) from vimtex should not select first line of env
     - nvim tree should not track COMMITMSG in .git directory
+    - investigate popup when ansible-language-server is installed via Mason and no config directory is present on the system
 
 COULD:
     - Add more options for bracket navigation: mini.bracketed
     - Switch over from nvm-cmp to coq
 
 BLOCKED:
-    - Neogit leaves empty window when Neogit is called inside a non-git directory (PR Opened!)
-
-    - fix grouping of legendary keymaps (add plugin prefix to each description)
-    - autopairs does not work for rust angular brackets
+    - Neogit leaves empty window when Neogit is called inside a non-git
+    directory. No clue how to fix
     - DapUI Highlight current line when paused. No clue how.
     - flit.nvim does not support , and ;
     - ]f in python should not go to decorator
@@ -57,3 +55,10 @@ Contribute (My Ideas):
         - Let user designed where NvimTree, symbol outline etc goes
         - Let user decide when these windows close, their precedence
         - Let user decide when visible (min widht)
+        - UI should be split in Main (editor) and Sidebars (left, right, bottom)
+    - Overleaf Plugin
+        - Including viewing of cursor
+
+TODO:
+- fix grouping of legendary keymaps (add plugin prefix to each description)
+
