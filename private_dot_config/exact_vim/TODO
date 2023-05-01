@@ -10,15 +10,30 @@ FIX:
     - yanklist / history
     - vie (select inside environment) from vimtex should not select first line of env
     - nvim tree should not track COMMITMSG in .git directory
-    - investigate popup when ansible-language-server is installed via Mason and no config directory is present on the system
+    - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
+    - legendary has double entries (is which-key integration fixed??)
+    - highlights in git hunk preview could be nicer
+    - session still broken, very annoying
+    - 0 should be g0 and $ should be g$ when hardwrap
+    - I need a plugin to preview markdown files, as I need to check whether or
+    not I fucked up the formatting of a README file
+
+    - make this an issue board on Github!
+
+    - streamline "special window" commands
+        - lazy and mason have different keybindings which is annoying
+        - vim notify notifications should be closable with q
+    - https://github.com/camdencheek/tree-sitter-dockerfile/issues/30
 
 COULD:
     - Add more options for bracket navigation: mini.bracketed
     - Switch over from nvm-cmp to coq
 
 BLOCKED:
-    - Neogit leaves empty window when Neogit is called inside a non-git
-    directory. No clue how to fix
+    - Neogit leaves empty window when Neogit is called inside a non-git directory (PR Opened!)
+
+    - fix grouping of legendary keymaps (add plugin prefix to each description)
+    - autopairs does not work for rust angular brackets
     - DapUI Highlight current line when paused. No clue how.
     - flit.nvim does not support , and ;
     - ]f in python should not go to decorator
@@ -38,6 +53,10 @@ OPTIONAL PLUGINS: (might come in handy later)
     -- harpoon.nvim / grapple.nvim
     -- buffer_manager.nvim
 
+Contribute (Existing projects):
+    - Neogit has no explanation whatsover on how to use rebase
+    - LspSaga
+        - Show References window does not work well on halfscreen
 Contribute (My Ideas):
     - Plugin for a custom outline
       This custom outline starts empty, and allows you to add LSP objects with
@@ -49,16 +68,7 @@ Contribute (My Ideas):
         - Code action for generating test from function using pytest
         - Import thing under cursor
         - Proper environment switcher, supporting poetry, venv, virtualenv
-    - LspSaga
-        - Show References window does not work well on halfscreen
     - UI frames library
         - Let user designed where NvimTree, symbol outline etc goes
         - Let user decide when these windows close, their precedence
         - Let user decide when visible (min widht)
-        - UI should be split in Main (editor) and Sidebars (left, right, bottom)
-    - Overleaf Plugin
-        - Including viewing of cursor
-
-TODO:
-- fix grouping of legendary keymaps (add plugin prefix to each description)
-
