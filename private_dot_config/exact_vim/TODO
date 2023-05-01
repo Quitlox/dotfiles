@@ -1,6 +1,16 @@
 FIX:
     - vetur / tsserver not starting automatically
     - Center cursor on "Go definition", etc.
+    - on opening previous session, buffer is opened in nvimtree window
+    - Latex files should always be softwrap    
+        - but why does it not detect that latex like files should be softwrap?
+    - telescope should respect excludes in gitignore (!)
+    - add ]n [n for navigating to notes
+    - map <space>oe to vimtex outline in latex
+    - chatgpt should work
+    - yanklist / history
+    - vie (select inside environment) from vimtex should not select first line of env
+    - nvim tree should not track COMMITMSG in .git directory
 
 COULD:
     - Add more options for bracket navigation: mini.bracketed
@@ -21,6 +31,10 @@ PLUGINS:
 
     - nable.nvim: Render Math Equations in LaTeX as ASCII
     - lsplines
+
+    - tsc.nvim: seamless async project-wide TypeScript
+    - neocomposer.nvim: simplifies macros enchaning productivity with harmony
+    - gitignore.nvim
 
 OPTIONAL PLUGINS: (might come in handy later)
     -- harpoon.nvim / grapple.nvim

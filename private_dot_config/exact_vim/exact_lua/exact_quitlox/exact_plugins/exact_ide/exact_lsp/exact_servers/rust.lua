@@ -20,7 +20,7 @@ rt.setup({
         capabilities = capabilities,
         on_attach = function(client, bufnr)
             -- Overwrite Join Keys keybinding
-            vim.keymap.set("n", "J", rt.join_lines.join_lines, { noremap = true, buffer = bufnr })
+            -- vim.keymap.set("n", "J", rt.join_lines.join_lines, { noremap = true, buffer = bufnr })
 
             -- Hover actions
             vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { noremap = true, buffer = bufnr })
