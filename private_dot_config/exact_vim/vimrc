@@ -4,10 +4,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Welcome to my config!
 "
-" My vim configuration is designed to work for both vim and neovim. Though at
-" this point, neovim and vim are sharing less and less, I still keep at least
-" a functioning vim configuration around in case I need it, e.g. on remote
-" machines.
+" This configuration is deprecated and no longer maintained. I keep it around
+" in case I ever need vim (on a remote machine for example), but I have switched
+" to Neovim.
 
 """"""""""""""""""""""""""""""
 " => General Configurations
@@ -17,37 +16,22 @@
 source ~/.config/vim/settings/options.vim
 source ~/.config/vim/settings/keybindings.vim
 source ~/.config/vim/settings/wildmenu.vim
-
-set runtimepath+=~/.config/vim
+source ~/.config/vim/settings/undo_swap_backup.vim
 
 """"""""""""""""""""""""""""""
 " => Plugin Manager
 """"""""""""""""""""""""""""""
-" To make matters confusing, I use a different plugin manager for vim and
-" neovim. Make sure that all plugins that should be shared (those
-" configured in the '/plugins/shared' folder), are loaded by both
-
-if !has('nvim')
-  source ~/.config/vim/settings/plugins/dein.vim
-else
-  luafile ~/.config/vim/lua/quitlox/lazy.lua
-endif
+source ~/.config/vim/settings/plugins/dein.vim
 
 """"""""""""""""""""""""""""""
 " => Environment Specific
-""""""""""""""""""""""""""""""
-
-" Please select the configurations that apply to your
-" environment.
-"
-" NOTE: These should be sourced first, as these files often
+" These should be sourced first, as these files often
 " contain work-arounds to make the general configurations
 " compatible.
 
 for f in split(glob('~/.config/vim/settings/environments/*.vim'), '\n')
     exe 'source' f
 endfor
-source ~/.config/vim/settings/terminals/kitty.vim
 
 """"""""""""""""""""""""""""""
 " => Plugin Configuration
@@ -55,25 +39,10 @@ source ~/.config/vim/settings/terminals/kitty.vim
 " Finally, the bulk of the configuration for the plugins loaded by the plugin
 " manager. These should be last.
 
-" Load vim-specific configuration
-if !has('nvim')
-  " Need to be sourced first
-  source ~/.config/vim/settings/plugins/vim/colorscheme.vim
-  source ~/.config/vim/settings/plugins/vim/which_key.vim
+" Need to be sourced first
+source ~/.config/vim/settings/plugins/colorscheme.vim
+source ~/.config/vim/settings/plugins/which_key.vim
 
-  for f in split(glob('~/.config/vim/settings/plugins/vim/[!colorscheme|which_key]*.vim'), '\n')
-      exe 'source' f
-  endfor
-endif
-
-" Load neovim-specific configutation
-if has('nvim')
-  for f in split(glob('~/.config/vim/settings/plugins/nvim/*.vim'), '\n')
-      exe 'source' f
-  endfor
-endif
-
-" Load shared configurations for both vim and neovim
-for f in split(glob('~/.config/vim/settings/plugins/shared/*.vim'), '\n')
+for f in split(glob('~/.config/vim/settings/plugins/[!colorscheme|which_key]*.vim'), '\n')
     exe 'source' f
 endfor

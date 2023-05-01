@@ -1,9 +1,0 @@
-" This file contains optional vim settings
-" set using a chezmoi template.
-" This file thus includes environment
-" specific configuration
-
-{{- if (contains "ctit" .chezmoi.hostname) }}
-autocmd vimenter * set term=xterm
-let g:coc_disable_startup_warning=1
-{{- end }}

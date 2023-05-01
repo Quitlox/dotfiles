@@ -1,0 +1,11 @@
+{
+    "workspace.library": [
+        "/home/quitlox/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/usr/share/nvim/runtime/lua",
+        "/home/quitlox/.local/share/nvim/lazy/nvim-dap-ui/lua",
+        "/home/quitlox/.local/share/nvim/lazy/neoconf.nvim/types",
+        "/home/quitlox/.local/share/nvim/lazy/neoconf.nvim/types/lua",
+        "/home/quitlox/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ]
+}
