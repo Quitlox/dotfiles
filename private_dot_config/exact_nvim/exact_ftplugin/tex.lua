@@ -34,5 +34,11 @@ require("which-key").register({
             x = "Reload",
         },
     },
+    ["<leader>"] = {
+        -- Override outline with toc
+        o = {
+            o = { "<cmd>VimtexTocToggle<cr>", "Open ToC" },
+        }
+    }
 })
 

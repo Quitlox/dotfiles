@@ -2,7 +2,6 @@ FIX:
     - Center cursor on "Go definition", etc.
     - on opening previous session, buffer is opened in nvimtree window
     - telescope should respect excludes in gitignore (!)
-    - map <space>oe to vimtex outline in latex
     - chatgpt should work
     - yanklist / history
     - vie (select inside environment) from vimtex should not select first line of env

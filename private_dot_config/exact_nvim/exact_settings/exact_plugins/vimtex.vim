@@ -33,6 +33,11 @@ endif
 " Quickfix
 "let g:vimtex_quickfix_autojump = 1
 let g:vimtex_quickfix_mode = 0
+" ToC
+let g:vimtex_toc_config = {
+            \ 'split_pos': 'vert rightbelow',
+            \}
+
 
 " Editor
 let g:matchup_override_vimtex = 1
