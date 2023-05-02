@@ -12,8 +12,7 @@ local function restore_hook() end
 
 local function store_hook()
     -- Close NvimTree
-    local tree = require("nvim-tree.api").tree
-    tree.close()
+    require("nvim-tree.api").tree.close()
     -- Close DapUI
     require("dapui").close()
     -- Close Neogit
@@ -71,7 +70,7 @@ return {
 
         -- Autostore session on VimExit
         vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
-            callback = function() require('projections.session').store(vim.loop.cwd()) end,
+            callback = function() require("projections.session").store(vim.loop.cwd()) end,
             group = augroup,
         })
 

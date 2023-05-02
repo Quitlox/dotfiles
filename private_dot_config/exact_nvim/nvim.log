@@ -46,3 +46,25 @@ ERR 2023-05-02T21:29:23.758 nvimsocket decor_provider_invoke:47: error in provid
 stack traceback:
 ERR 2023-05-02T21:29:34.227 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
 stack traceback:
+ERR 2023-05-02T21:55:37.886 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T22:22:22.424 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):line: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T22:22:22.424 nvimsocket decor_provider_invoke:47: error in provider telescope_multiselection:line: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T22:22:22.425 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):end: Error executing lua: ...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:450: attempt to concatenate local 'name' (a function value)
+stack traceback:
+	...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:450: in function 'colorscheme'
+	...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:31: in function <...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:30>
+ERR 2023-05-02T22:22:22.425 nvimsocket decor_provider_invoke:47: error in provider telescope_multiselection:end: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T22:22:34.374 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):line: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T22:22:34.374 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):line: Error executing lua: attempt to call a userdata value
+stack traceback:
+ERR 2023-05-02T22:22:34.374 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):end: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T22:22:34.374 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):end: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T22:22:34.374 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):end: Error executing lua: attempt to call a userdata value
+stack traceback:

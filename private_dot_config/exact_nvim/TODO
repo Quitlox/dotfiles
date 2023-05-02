@@ -1,20 +1,20 @@
 FIX:
     - Center cursor on "Go definition", etc.
     - telescope should respect excludes in gitignore (!)
-    - chatgpt should work
     - vie (select inside environment) from vimtex should not select first line of env
+        https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321 ? 
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
     - highlights in git hunk preview could be nicer
-    - I need a plugin to preview markdown files, as I need to check whether or
-    not I fucked up the formatting of a README file
     - neotest summary window should have keymap (or I need to manually map which-key)
     - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
     - output window of neotest should be closable with q
+    - dap ui should set nospell on all its buffers
 
-    - https://github.com/camdencheek/tree-sitter-dockerfile/issues/30
+    - further configure oil 
+        needs keybinding, should be lazy
+    - replace (spectre) should become command not keybinding
 
 COULD:
-    - Add more options for bracket navigation: mini.bracketed
     - Switch over from nvm-cmp to coq
 
 BLOCKED:

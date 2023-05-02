@@ -13,45 +13,55 @@ return {
     {
         "echasnovski/mini.indentscope",
         version = "*",
-        config = function(opts) require("mini.indentscope").setup({
-            -- Draw options
-            draw = {
-                -- Delay (in ms) between event and start of drawing scope indicator
-                delay = 100,
-                -- Symbol priority. Increase to display on top of more symbols.
-                priority = 2,
-            },
+        config = function(opts)
+            -- Disable indent scope for NvimTree and terminal buffers
+            vim.cmd([[
+                    augroup DisableIndentScope 
+                        autocmd!
+                        autocmd Filetype NvimTree lua vim.b.miniindentscope_disable = true 
+                        autocmd TermOpen * lua vim.b.miniindentscope_disable = true
+                    augroup END
+            ]])
 
-            -- Module mappings. Use `''` (empty string) to disable one.
-            mappings = {
-                -- Textobjects
-                object_scope = "ii",
-                object_scope_with_border = "ai",
+            require("mini.indentscope").setup({
+                -- Draw options
+                draw = {
+                    -- Delay (in ms) between event and start of drawing scope indicator
+                    delay = 100,
+                    -- Symbol priority. Increase to display on top of more symbols.
+                    priority = 2,
+                },
 
-                -- Motions (jump to respective border line; if not present - body line)
-                goto_top = "[i",
-                goto_bottom = "]i",
-            },
+                -- Module mappings. Use `''` (empty string) to disable one.
+                mappings = {
+                    -- Textobjects
+                    object_scope = "ii",
+                    object_scope_with_border = "ai",
 
-            -- Options which control scope computation
-            options = {
-                -- Type of scope's border: which line(s) with smaller indent to
-                -- categorize as border. Can be one of: 'both', 'top', 'bottom', 'none'.
-                border = "both",
+                    -- Motions (jump to respective border line; if not present - body line)
+                    goto_top = "[i",
+                    goto_bottom = "]i",
+                },
 
-                -- Whether to use cursor column when computing reference indent.
-                -- Useful to see incremental scopes with horizontal cursor movements.
-                indent_at_cursor = true,
+                -- Options which control scope computation
+                options = {
+                    -- Type of scope's border: which line(s) with smaller indent to
+                    -- categorize as border. Can be one of: 'both', 'top', 'bottom', 'none'.
+                    border = "both",
 
-                -- Whether to first check input line to be a border of adjacent scope.
-                -- Use it if you want to place cursor on function header to get scope of
-                -- its body.
-                try_as_border = false,
-            },
+                    -- Whether to use cursor column when computing reference indent.
+                    -- Useful to see incremental scopes with horizontal cursor movements.
+                    indent_at_cursor = true,
 
-            -- Which character to use for drawing scope indicator
-            symbol = "╎",
-        }
-        ) end,
+                    -- Whether to first check input line to be a border of adjacent scope.
+                    -- Use it if you want to place cursor on function header to get scope of
+                    -- its body.
+                    try_as_border = false,
+                },
+
+                -- Which character to use for drawing scope indicator
+                symbol = "╎",
+            })
+        end,
     },
 }

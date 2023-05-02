@@ -25,11 +25,11 @@ return {
         wk.register({
             ["]n"] = {
                 function() require("todo-comments").jump_next() end,
-                "Next note",
+                "Next Note",
             },
             ["[n"] = {
                 function() require("todo-comments").jump_prev() end,
-                "Previous note",
+                "Previous Note",
             },
         }, { mode = "n" })
     end,
