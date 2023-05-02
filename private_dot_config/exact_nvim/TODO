@@ -3,7 +3,6 @@ FIX:
     - on opening previous session, buffer is opened in nvimtree window
     - telescope should respect excludes in gitignore (!)
     - chatgpt should work
-    - yanklist / history
     - vie (select inside environment) from vimtex should not select first line of env
     - nvim tree should not track COMMITMSG in .git directory
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system

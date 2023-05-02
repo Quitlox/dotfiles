@@ -118,6 +118,7 @@
   "which-key.nvim": { "branch": "main", "commit": "94cb020ff33a1e0e22fac1c41663d2c439741f17" },
   "wrapping.nvim": { "branch": "master", "commit": "c04a7163dc692d80a2907d06a3af8df1fedffec2" },
   "yaml-companion.nvim": { "branch": "main", "commit": "03f66e5e9c8b26a35b14593f24697f9a3bc64e48" },
+  "yanky.nvim": { "branch": "main", "commit": "c4c794afd762a00ca543972e5b9e34ce9aa14a87" },
   "yuck.vim": { "branch": "master", "commit": "9b5e0370f70cc30383e1dabd6c215475915fe5c3" },
   "zen-mode.nvim": { "branch": "main", "commit": "6e6c963d70a8e47854fa656987666bfb863f9c4e" }
 }

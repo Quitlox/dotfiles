@@ -2,7 +2,7 @@
 -- Setup
 ----------------------------------------
 
-if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
     vim.g.sqlite_clib_path = vim.fn.expand("$HOME/.config/vim/sqlite3.dll")
 end
 
