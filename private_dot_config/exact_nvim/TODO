@@ -4,7 +4,6 @@ FIX:
     - telescope should respect excludes in gitignore (!)
     - chatgpt should work
     - vie (select inside environment) from vimtex should not select first line of env
-    - nvim tree should not track COMMITMSG in .git directory
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
     - highlights in git hunk preview could be nicer
     - session still broken, very annoying
