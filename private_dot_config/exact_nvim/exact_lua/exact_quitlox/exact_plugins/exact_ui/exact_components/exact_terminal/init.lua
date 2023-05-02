@@ -6,6 +6,7 @@ return {
         {
             persist_mode = true,
             direction = "horizontal",
+            auto_scroll = false,
 
             size = function(term)
                 if term.direction == "horizontal" then

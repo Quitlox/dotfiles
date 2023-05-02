@@ -40,21 +40,22 @@ return {
         dap.listeners.after.event_initialized["dapui_config"] = on_open
         dap.listeners.before.event_terminated["dapui_config"] = on_close
         dap.listeners.before.event_exited["dapui_config"] = on_close
-
-        -- Signs
-        vim.fn.sign_define("DapBreakpoint", { text = "•", texthl = "ErrorMsg", linehl = "", numhl = "" })
     end,
 
     -- Triggers
-    cmd = { "DapStepOver", "DapStepOut", "DapStepIn", "DapToggleRepl", "DapToggleBreakpoint" },
+    cmd = { "DapToggleRepl", "DapToggleBreakpoint" },
     keys = { "<localleader>d" },
 
     -- Keybindings
     init = function()
+        -- Signs
+        vim.fn.sign_define("DapBreakpoint", { text = "•", texthl = "ErrorMsg", linehl = "", numhl = "" })
+        -- Keybindings
         require("which-key").register({
-            ["<F8>"] = "<cmd>DapStepOver<cr>",
-            ["<S-F8>"] = "<cmd>DapStepOut<cr>",
-            ["<F7>"] = "<cmd>DapStepIn<cr>",
+            ["<F9>"] = {"<cmd>lua require('dap').continue()<cr>", "Debug Continue"},
+            ["<F8>"] = {"<cmd>lua require('dap').step_over()<cr>", "Debug Step Over"},
+            ["<S-F8>"] = {"<cmd>lua require('dap').step_out()<cr>", "Debug Step Out"},
+            ["<F7>"] = {"<cmd>lua require('dap').step_into()<cr>", "Debug Step Into"},
             ["<localleader>"] = {
                 d = {
                     name = "Debug",
@@ -65,9 +66,9 @@ return {
                     r = { "<cmd>DapToggleRepl<cr>", "Open REPL" },
                     s = {
                         name = "Step",
-                        o = { "<cmd>DapStepOver<cr>", "Step Over (F8)" },
-                        u = { "<cmd>DapStepOut<cr>", "Step Out (Shift+F8)" },
-                        i = { "<cmd>DapStepIn<cr>", "Step Into (F7)" },
+                        o = { "<cmd>lua require('dap').step_over()<cr>", "Step Over (F8)" },
+                        u = { "<cmd>lua require('dap').step_out()<cr>", "Step Out (Shift+F8)" },
+                        i = { "<cmd>lua require('dap').step_into()<cr>", "Step Into (F7)" },
                     },
                     t = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Breakpoint Toggle" },
                     b = {

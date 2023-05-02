@@ -10,6 +10,9 @@ FIX:
     - I need a plugin to preview markdown files, as I need to check whether or
     not I fucked up the formatting of a README file
     - neotest summary window should have keymap (or I need to manually map which-key)
+    - do not illuminate single chars ('-' in help is highlighted)
+    - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
+    - output window of neotest should be closable with q
 
     - https://github.com/camdencheek/tree-sitter-dockerfile/issues/30
 

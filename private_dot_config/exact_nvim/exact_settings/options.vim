@@ -184,10 +184,14 @@ if has('nvim')
         autocmd!
         autocmd FileType checkhealth setlocal nospell
         autocmd FileType NeogitStatus setlocal nospell
-        autocmd FileType dap-repl setlocal nospell
-        autocmd FileType dapui_* setlocal nospell
         autocmd FileType Outline setlocal nospell
         autocmd FileType spectre_panel setlocal nospell
+
+        autocmd BufReadPost dap-repl setlocal nospell
+        autocmd BufReadPost dapui_scopes setlocal nospell
+        autocmd BufReadPost dapui_breakpoints setlocal nospell
+        autocmd BufReadPost dapui_watches setlocal nospell
+
         autocmd TermOpen * setlocal nospell
     augroup END
 endif

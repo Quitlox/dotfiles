@@ -21,14 +21,11 @@ return {
 
         require("which-key").register({
             name = "Test",
-            r = {
-                name = "Test Run",
-                t = { "<cmd>lua require('neotest').run.run()<cr>", "Test Runner closest" },
-                d = { "<cmd>lua require('neotest').run.run({strategy='dap'})<cr>", "Test Runner Debug closest" },
-                f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Test Runner File" },
-                s = { "<cmd>lua require('neotest').run.stop()<cr>", "Test Runner Stop closest" },
-                a = { "<cmd>lua require('neotest').run.attach()<cr>", "Test Runner Attach closest" },
-            },
+            r = { "<cmd>lua require('neotest').run.run()<cr>", "Test Run" },
+            d = { "<cmd>lua require('neotest').run.run({strategy='dap'})<cr>", "Test Debug" },
+            f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Test File" },
+            x = { "<cmd>lua require('neotest').run.stop()<cr>", "Test Stop" },
+            a = { "<cmd>lua require('neotest').run.attach()<cr>", "Test Attach" },
             o = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "Test Output" },
             s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary toggle" },
         }, { prefix = "<localleader>t" })

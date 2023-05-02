@@ -85,5 +85,6 @@ return {
     end,
     opts = {
         automatic_installation = false,
+        ensure_installed = {'jsonls'} -- For Neoconf configuration file completion to work out of the box
     },
 }
