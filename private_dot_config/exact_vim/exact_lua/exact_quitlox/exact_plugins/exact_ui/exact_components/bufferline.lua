@@ -140,7 +140,7 @@ return {
             })
         end,
         init = function()
-            require("quitlox.util.which_key").register({
+            require("which-key").register({
                 b = {
                     name = "Buffer",
                     n = { "<cmd>BufferLineCycleNext<cr>", "Buffer Next" },
@@ -170,7 +170,7 @@ return {
             })
         end,
         init = function()
-            require("quitlox.util.which_key").register({
+            require("which-key").register({
                 n = { "<cmd>BufferLineCycleWindowlessNext<cr>", "Buffer Next" },
                 p = { "<cmd>BufferLineCycleWindowlessPrev<cr>", "Buffer Prev" },
             }, { prefix = "<leader>b" })
