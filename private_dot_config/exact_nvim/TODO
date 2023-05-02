@@ -1,16 +1,13 @@
 FIX:
     - Center cursor on "Go definition", etc.
-    - on opening previous session, buffer is opened in nvimtree window
     - telescope should respect excludes in gitignore (!)
     - chatgpt should work
     - vie (select inside environment) from vimtex should not select first line of env
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
     - highlights in git hunk preview could be nicer
-    - session still broken, very annoying
     - I need a plugin to preview markdown files, as I need to check whether or
     not I fucked up the formatting of a README file
     - neotest summary window should have keymap (or I need to manually map which-key)
-    - do not illuminate single chars ('-' in help is highlighted)
     - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
     - output window of neotest should be closable with q
 
@@ -21,7 +18,6 @@ COULD:
     - Switch over from nvm-cmp to coq
 
 BLOCKED:
-    - fix grouping of legendary keymaps (add plugin prefix to each description)
     - autopairs does not work for rust angular brackets
     - DapUI Highlight current line when paused. No clue how.
     - flit.nvim does not support , and ;
@@ -30,10 +26,6 @@ BLOCKED:
 PLUGINS:
     - dirbuf.nvim: Use vim to edit files and directories ALT: oil.nvim
     - hydra.nvim ?
-
-    - nable.nvim: Render Math Equations in LaTeX as ASCII
-    - lsplines
-
     - tsc.nvim: seamless async project-wide TypeScript
 
 OPTIONAL PLUGINS: (might come in handy later)
@@ -43,8 +35,6 @@ OPTIONAL PLUGINS: (might come in handy later)
 
 Contribute (Existing projects):
     - Neogit has no explanation whatsover on how to use rebase
-    - LspSaga
-        - Show References window does not work well on halfscreen
 Contribute (My Ideas):
     - Plugin for a custom outline
       This custom outline starts empty, and allows you to add LSP objects with

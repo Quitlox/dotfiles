@@ -1,62 +1,30 @@
-----------------------------------------
--- Workaround
-----------------------------------------
--- https://github.com/rmagatti/auto-session/issues/64
--- if not vim.fn.has("nvim-0.8.1") == 1 then
---     function _G.close_all_floating_wins()
---         for _, win in ipairs(vim.api.nvim_list_wins()) do
---             local config = vim.api.nvim_win_get_config(win)
---             if config.relative ~= "" then vim.api.nvim_win_close(win, false) end
---         end
---     end
--- else
---     function _G.close_all_floating_wins()
---     end
--- end
-
 ----------------------------------------------------------------------
 --          Sessions + Projects Manager: projections.nvim           --
 ----------------------------------------------------------------------
 
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
--- globals -> used by BufferLine to store the order of buffers
+-- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
+vim.opt.sessionoptions:append("localoptions")
 
 -- Autocmd group
 local augroup = vim.api.nvim_create_augroup("Projections", { clear = true })
 
--- Restore Hook
-local function restore_hook()
-end
+local function restore_hook() end
 
--- Store Hook
-local function close_nvim_tree()
+local function store_hook()
+    -- Close NvimTree
     local tree = require("nvim-tree.api").tree
     tree.close()
-end
-local function close_dap_ui()
+    -- Close DapUI
     require("dapui").close()
-end
-local function close_neogit()
-    -- Close all windows which have a buffer of filetype NeogitStatus
+    -- Close Neogit
     for _, win in ipairs(vim.api.nvim_list_wins()) do
         local buf = vim.api.nvim_win_get_buf(win)
-        if vim.bo[buf].filetype == "NeogitStatus" then
-            vim.api.nvim_win_close(win, true)
-        end
+        if vim.bo[buf].filetype == "NeogitStatus" then vim.api.nvim_win_close(win, true) end
     end
-end
-local function close_toggleterm()
+    -- Close ToggleTerm
     for _, term in pairs(require("toggleterm.terminal").get_all(true)) do
         term:close()
     end
-end
-
--- Hook to run when a session is stored
-local function store_hook()
-    close_nvim_tree()
-    close_dap_ui()
-    close_neogit()
-    close_toggleterm()
 
     -- TODO: Close GitDiff on Store
 end
@@ -80,13 +48,14 @@ return {
     opts = {
         workspaces = {
             "/home/quitlox/Workspace/job",
+            "/home/quitlox/Workspace/work",
             "/home/quitlox/Workspace/hobby",
             "/home/quitlox/Workspace/study",
             "/home/quitlox/Workspace/contrib",
             "/home/quitlox/Workspace/activism",
             "/home/quitlox/Workspace/activism/yorinf",
             "/home/quitlox/Workspace/overleaf",
-            { "/home/quitlox/.config", { "vimrc" } },
+            { "/home/quitlox/.config", { "init.lua", "vimrc" } },
         },
         store_hooks = { pre = store_hook },
         restore_hooks = { post = restore_hook },
@@ -100,19 +69,9 @@ return {
         -- TODO: Open Telescope with a prettier, smaller UI
         -- See projections.nvim for inspiration
 
-        -- Command for adding additional projects to workspace
-        local Workspace = require("projections.workspace")
-        vim.api.nvim_create_user_command("AddWorkspace", function() Workspace.add(vim.loop.cwd()) end, {})
-
-        -- Command for Storing Session
-        local Session = require("projections.session")
-        vim.api.nvim_create_user_command("StoreProjectSession", function() Session.store(vim.loop.cwd()) end, {})
-        -- Command for Restoring Session
-        vim.api.nvim_create_user_command("RestoreProjectSession", function() Session.restore(vim.loop.cwd()) end, {})
-
         -- Autostore session on VimExit
         vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
-            callback = function() Session.store(vim.loop.cwd()) end,
+            callback = function() require('projections.session').store(vim.loop.cwd()) end,
             group = augroup,
         })
 
@@ -125,14 +84,35 @@ return {
         })
     end,
     init = function()
-        -- Keybindings
-        require("which-key").register({
-            p = {
-                name = "Project",
-                a = { "<cmd>AddWorkspace<cr>", "Project Add" },
-                o = { "<cmd>Telescope projections<cr>", "Project Open" },
-                s = { name = "Session", d = { delete_session, "Project Session Delete" } },
-            },
-        }, { prefix = "<leader>" })
+        -- Command for switching projects
+        require("legendary").command({
+            ":SwitchProject",
+            "<cmd>Telescope projections<cr>",
+            description = "Switch Project",
+        })
+        -- Command for deleting session
+        require("legendary").command({
+            ":DeleteSession",
+            delete_session,
+            description = "Delete Session",
+        })
+        -- Command for adding additional projects to workspace
+        require("legendary").command({
+            ":AddWorkspace",
+            function() require("projections.workspace").add(vim.loop.cwd()) end,
+            description = "Add the pwd as Workspace",
+        })
+        -- Command for Storing Session
+        require("legendary").command({
+            ":StoreSession",
+            function() require("projections.session").store(vim.loop.cwd()) end,
+            description = "Store Session",
+        })
+        -- Command for Restoring Session
+        require("legendary").command({
+            ":RestoreSession",
+            function() require("projections.session").restore(vim.loop.cwd()) end,
+            description = "Restore Session",
+        })
     end,
 }

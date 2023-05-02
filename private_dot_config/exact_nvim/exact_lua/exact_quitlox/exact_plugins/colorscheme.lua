@@ -74,11 +74,14 @@ return {
         vim.cmd([[hi! link FidgetTask Normal]])
         -- Explorer
         vim.cmd([[hi NvimTreeOpenedFile guifg=]] .. c.vscMediumBlue)
+        vim.cmd([[hi! link NvimTreeNormal Normal]])
         -- Trouble
         vim.cmd([[hi! link TroubleCode @field]])
         vim.cmd([[hi! link TroubleSource @field]])
         -- Git Blame
         vim.cmd([[hi! link gitblame GitSignsCurrentLineBlame]])
+        -- Indent Line
+        vim.cmd([[hi! link MiniIndentscopeSymbol NvimTreeIndentMarker]])
 
         -- Spelling Highlight
         -- xtermcolors: https://www.ditig.com/256-colors-cheat-sheet

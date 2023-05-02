@@ -26,6 +26,10 @@ end
 -- Bufferline: Setup
 ----------------------------------------
 
+-- Set the sessionoptions to include globals
+-- Used to store the order of buffers
+vim.opt.sessionoptions:append("globals")
+
 return {
     {
         "akinsho/bufferline.nvim",

@@ -1,0 +1,48 @@
+ERR 2023-05-02T20:09:35.893 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T20:15:50.533 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T20:20:54.654 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T20:21:07.811 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T20:21:52.919 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T20:30:35.471 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:09:19.721 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:09:50.159 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:10:14.453 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:14:15.020 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:14:35.196 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:15:33.375 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:16:28.215 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:18:16.640 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:20:59.178 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:21:42.472 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:24:32.851 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:24:48.582 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:27:07.395 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:27:34.955 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:28:02.575 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:29:08.294 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:29:23.758 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
+ERR 2023-05-02T21:29:34.227 nvimsocket decor_provider_invoke:47: error in provider (UNKNOWN PLUGIN):buf: Error executing lua: attempt to call a nil value
+stack traceback:
