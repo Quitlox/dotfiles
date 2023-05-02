@@ -82,7 +82,6 @@ local plugins = {
     -- Matchup - Better %
     {
         "andymass/vim-matchup",
-        version = "",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },

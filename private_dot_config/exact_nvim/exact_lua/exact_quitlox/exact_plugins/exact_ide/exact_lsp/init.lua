@@ -19,10 +19,10 @@ return {
     {
         "folke/neodev.nvim",
         version = "",
-        config= false,
+        config = false,
     },
     ----- Ansible -----
-    {"mfussenegger/nvim-ansible"},
+    { "mfussenegger/nvim-ansible" },
     ----- YAML -----
     -- see languages/yaml.lua
     { "someone-stole-my-name/yaml-companion.nvim", lazy = true, version = "" },

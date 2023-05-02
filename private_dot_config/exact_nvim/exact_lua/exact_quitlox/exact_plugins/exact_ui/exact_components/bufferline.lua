@@ -63,7 +63,6 @@ return {
                         },
                     },
                     color_icons = false,
-                    show_buffer_default_icon = true,
                     separator_style = "slant",
                     buffer_close_icon = "",
                     close_icon = "",

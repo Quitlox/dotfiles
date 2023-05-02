@@ -28,8 +28,8 @@ lspconfig.lua_ls.setup({
     settings = {
         Lua = {
             completion = {
-        callSnippet = "Replace"
-      },
+                callSnippet = "Replace",
+            },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
                 enable = false,
