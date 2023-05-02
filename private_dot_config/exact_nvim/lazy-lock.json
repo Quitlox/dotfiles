@@ -28,6 +28,7 @@
   "dressing.nvim": { "branch": "master", "commit": "f5d7fa1fa5ce6bcebc8f07922f39b1eda4d01e37" },
   "flit.nvim": { "branch": "main", "commit": "f60e4b3d49bb5a5e97cfffe66f2e671eb422078e" },
   "git-blame.nvim": { "branch": "master", "commit": "06c20ea71a4519fc60caba9ac688f2f6404f03d5" },
+  "gitignore.nvim": { "branch": "master", "commit": "b61e4a50b78f9a3702a4ed168ab6c9ceba5f6299" },
   "gitsigns.nvim": { "branch": "main", "commit": "bb808fc7376ed7bac0fbe8f47b83d4bf01738167" },
   "goto-breakpoints.nvim": { "branch": "master", "commit": "e57cf63d152534db3a9177ae53abbff43fcab6c2" },
   "icon-picker.nvim": { "branch": "master", "commit": "e1add1aef33e296fe8c5143df612ab7ce528a094" },
