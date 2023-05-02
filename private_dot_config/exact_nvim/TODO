@@ -19,6 +19,7 @@ COULD:
 
 BLOCKED:
     - autopairs does not work for rust angular brackets
+    https://github.com/windwp/nvim-autopairs/blob/master/lua/nvim-autopairs/rules/basic.lua
     - DapUI Highlight current line when paused. No clue how.
     - flit.nvim does not support , and ;
     - ]f in python should not go to decorator
