@@ -113,7 +113,7 @@ require("lazy").setup(plugins, lazy_config)
 
 -- Keybinding
 require("which-key").register({
-    p = { "<cmd>Lazy<cr>", "Vim Plugins" },
+    p = { "<cmd>Lazy<cr>", "Plugins" },
 }, { prefix = "<leader>v" })
 
 require("quitlox.plugins.keybindings.include.window")

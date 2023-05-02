@@ -33,12 +33,12 @@ PLUGINS:
     - lsplines
 
     - tsc.nvim: seamless async project-wide TypeScript
-    - neocomposer.nvim: simplifies macros enchaning productivity with harmony
     - gitignore.nvim
 
 OPTIONAL PLUGINS: (might come in handy later)
-    -- harpoon.nvim / grapple.nvim
-    -- buffer_manager.nvim
+    - harpoon.nvim / grapple.nvim
+    - buffer_manager.nvim / JABS
+    - neocomposer.nvim: simplifies macros enchaning productivity with harmony
 
 Contribute (Existing projects):
     - Neogit has no explanation whatsover on how to use rebase
