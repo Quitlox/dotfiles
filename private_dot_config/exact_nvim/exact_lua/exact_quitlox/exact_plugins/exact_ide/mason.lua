@@ -9,11 +9,11 @@ return {
                 package_pending = "➜",
                 package_uninstalled = "✗",
             },
+            keymaps = {
+                uninstall_package = "x",
+                toggle_package_expand = "<tab>",
+            },
         },
-        keymaps = {
-            uninstall_package = "x",
-            toggle_package_expand = "<tab>",
-        }
     },
     init = function()
         require("which-key").register({

@@ -1,3 +1,11 @@
+function CloseNotification()
+    require('which-key').register({
+        q = { ":q<cr>", "Close Notification" },
+    },{mode="n",buffer = vim.api.nvim_get_current_buf()})
+end
+
+vim.cmd([[ autocmd FileType notify lua CloseNotification() ]])
+
 return {
     "rcarriga/nvim-notify",
     version = "",
@@ -11,7 +19,7 @@ return {
         })
 
         -- Set up as default notification handler
-        vim.notify=notify
+        vim.notify = notify
 
         -- Install telescope extension
         require("telescope").load_extension("notify")
@@ -26,5 +34,6 @@ return {
                 },
             },
         }, { prefix = "<leader>" })
+
     end,
 }

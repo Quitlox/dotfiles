@@ -12,11 +12,6 @@ FIX:
     - I need a plugin to preview markdown files, as I need to check whether or
     not I fucked up the formatting of a README file
 
-    - make this an issue board on Github!
-
-    - streamline "special window" commands
-        - lazy and mason have different keybindings which is annoying
-        - vim notify notifications should be closable with q
     - https://github.com/camdencheek/tree-sitter-dockerfile/issues/30
 
 COULD:
