@@ -23,7 +23,7 @@ return {
             name = "Test",
             r = {
                 name = "Test Run",
-                t = { "<cmd>lua require('neotest').run.run()<cr>", "Test Runnner closest" },
+                t = { "<cmd>lua require('neotest').run.run()<cr>", "Test Runner closest" },
                 d = { "<cmd>lua require('neotest').run.run({strategy='dap'})<cr>", "Test Runner Debug closest" },
                 f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Test Runner File" },
                 s = { "<cmd>lua require('neotest').run.stop()<cr>", "Test Runner Stop closest" },
