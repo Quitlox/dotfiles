@@ -5,12 +5,13 @@ FIX:
         https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321 ? 
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
     - highlights in git hunk preview could be nicer
-    - neotest summary window should have keymap (or I need to manually map which-key)
     - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
-    - output window of neotest should be closable with q
 
-    - further configure oil 
-        needs keybinding, should be lazy
+    - neotest
+        - output window should be closable with q
+        - g? should open keymap instructions for summary
+        - command for running the last ran test
+
     - replace (spectre) should become command not keybinding
 
 COULD:
