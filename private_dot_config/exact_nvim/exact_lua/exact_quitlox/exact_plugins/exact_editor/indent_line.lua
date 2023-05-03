@@ -19,6 +19,8 @@ return {
                     augroup DisableIndentScope 
                         autocmd!
                         autocmd Filetype NvimTree lua vim.b.miniindentscope_disable = true 
+                        autocmd Filetype lazy lua vim.b.miniindentscope_disable = true 
+                        autocmd Filetype mason lua vim.b.miniindentscope_disable = true 
                         autocmd TermOpen * lua vim.b.miniindentscope_disable = true
                     augroup END
             ]])
