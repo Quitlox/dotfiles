@@ -19,10 +19,6 @@ BLOCKED:
     https://github.com/windwp/nvim-autopairs/blob/master/lua/nvim-autopairs/rules/basic.lua
     - ]f in python should not go to decorator
 
-PLUGINS:
-    - hydra.nvim ?
-    - tsc.nvim: seamless async project-wide TypeScript
-
 OPTIONAL PLUGINS: (might come in handy later)
     - harpoon.nvim / grapple.nvim
     - buffer_manager.nvim / JABS

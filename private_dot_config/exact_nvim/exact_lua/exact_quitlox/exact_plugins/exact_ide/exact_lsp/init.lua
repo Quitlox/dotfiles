@@ -37,6 +37,17 @@ return {
     { "Saecki/crates.nvim", lazy = true, version = "" },
     ----- Typescript -----
     { "jose-elias-alvarez/typescript.nvim", lazy = false },
+    {
+        "dmmulroy/tsc.nvim",
+        lazy = false,
+        config = true,
+        init = function()
+            require("legendary").command({
+                ":TSC",
+                description = "Perform type checking on the current project",
+            })
+        end,
+    },
 
     ----------------------------------------
     -- Language Support: standalone vim plugins
