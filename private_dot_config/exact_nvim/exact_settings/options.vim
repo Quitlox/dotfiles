@@ -113,9 +113,11 @@ set ffs=unix,dos,mac	" Use Unix as the standard file type
 " set tabstop=4
 " set shiftwidth=4
 " set softtabstop=4
-set expandtab
+" set expandtab
 " Buffer
 set hidden           " Allow changed buffers to be hidden
+" Comments
+set comments+=:#
 " Wrapping
 set autoindent 		" Auto indent
 set smartindent 	" Smart indent

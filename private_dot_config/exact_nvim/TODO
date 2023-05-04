@@ -4,11 +4,9 @@ FIX:
     - vie (select inside environment) from vimtex should not select first line of env
         https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321 ? 
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
-    - highlights in git hunk preview could be nicer
     - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
 
     - neogen luasnip C-n should also work in normal mode (this will conflict with yank plugin)
-    - <C->> does not move comments in Python
 
     - neotest
         - output window should be closable with q
