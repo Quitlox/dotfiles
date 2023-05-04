@@ -58,7 +58,7 @@ return {
                     load_breakpoints_event = { "BufReadPost" },
                 },
             },
-            { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npm run compile" },
+            { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out", version = "v1.*" },
             "mxsdev/nvim-dap-vscode-js",
         },
     },
