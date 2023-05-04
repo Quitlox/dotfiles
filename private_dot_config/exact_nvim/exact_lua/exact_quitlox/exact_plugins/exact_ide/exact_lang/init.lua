@@ -1,5 +1,5 @@
 return {
-    { import = "quitlox.plugins.ide.lang_extra" },
+    { import = "quitlox.plugins.ide.lang" },
 
     ----------------------------------------
     -- Language Support: Non-LSP plugins
