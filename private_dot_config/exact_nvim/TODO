@@ -6,8 +6,6 @@ FIX:
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
     - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
 
-    - neogen luasnip C-n should also work in normal mode (this will conflict with yank plugin)
-
     - neotest
         - output window should be closable with q
         - g? should open keymap instructions for summary
@@ -19,7 +17,6 @@ COULD:
 BLOCKED:
     - autopairs does not work for rust angular brackets
     https://github.com/windwp/nvim-autopairs/blob/master/lua/nvim-autopairs/rules/basic.lua
-    - flit.nvim does not support , and ;
     - ]f in python should not go to decorator
 
 PLUGINS:
