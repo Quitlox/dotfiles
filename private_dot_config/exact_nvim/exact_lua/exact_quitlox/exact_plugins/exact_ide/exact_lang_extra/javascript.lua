@@ -1,4 +1,5 @@
 return {
+    -- package.json help 
     "vuki656/package-info.nvim",
     config = true,
     dependencies = {"MunifTanjim/nui.nvim"},
@@ -14,4 +15,11 @@ return {
             i = { "<cmd>lua require('package-info').install()<cr>", "Package Install" },
         }, { prefix = "<localleader>n", silent=true, noremap=true})
     end,
+    -- import cost
+    {
+        "barrett-ruth/import-cost.nvim",
+        build = "sh install.sh yarn",
+        ft = "js,ts,tsx,jsx",
+        config = true,
+    },
 }

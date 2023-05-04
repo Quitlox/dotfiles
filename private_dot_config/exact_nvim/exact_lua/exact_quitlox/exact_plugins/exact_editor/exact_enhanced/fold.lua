@@ -1,4 +1,7 @@
 return {
+    -- Pretty Folds
+    { "anuvyklack/pretty-fold.nvim", opts = { fill_char = "-" }, config = true, version = "" },
+    {
     "kevinhwang91/nvim-ufo",
     dependencies = {
         { "kevinhwang91/promise-async", version = "" },
@@ -24,4 +27,4 @@ return {
             },
         })
     end,
-}
+} }

@@ -3,14 +3,13 @@ return {
     opts = {
         default_file_explorer = false,
         keymaps = {
-
-        ["q"] = "actions.close",
+            ["q"] = "actions.close",
         },
     },
-    lazy=true,
+    lazy = true,
     init = function()
         require("which-key").register({
-            ["<leader>o"] = {
+            ["<leader>"] = {
                 ["d"] = { '<cmd>lua require("oil").open_float()<cr>', "Open Directory" },
             },
         })
