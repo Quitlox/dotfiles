@@ -1,0 +1,19 @@
+---
+- name: Ensure existance of default user
+  user:
+    name: "{{default_username}}"
+    password: "{{default_password | password_hash('sha512')}}"
+    groups: sudo
+    create_home: yes
+    shell: /bin/zsh # TODO: Ensure Zsh is installed
+    generate_ssh_key: yes
+    update_password: always
+    state: present
+
+- name: Ensure sudo group has sudo privileges without password
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: "^%sudo"
+    line: "%sudo ALL=(ALL) NOPASSWD:ALL"
+    validate: "/usr/sbin/visudo -cf %s"

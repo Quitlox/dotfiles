@@ -1,0 +1,23 @@
+---
+- name: Add VSCode repository (Debian)
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main"
+    state: present
+    filename: vscode
+    key: "https://packages.microsoft.com/keys/microsoft.asc"
+  when: ansible_os_family == "Debian"
+
+- name: Install VSCode (Debian)
+  ansible.builtin.apt:
+    name: code
+    state: present
+    update_cache: true
+
+- name: Install VSCode extensions
+  ansible.builtin.command:
+    cmd: "code --install-extension {{ item }} --force"
+  loop: "{{ vscode_extensions }}"
+  become_user: "{{ ansible_user }}"
+  environment:
+    DISPLAY: ":0"
+

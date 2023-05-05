@@ -1,0 +1,21 @@
+---
+- name: "Rust: Check if installed"
+  shell: command -v cargo
+  register: cargo_exists
+  ignore_errors: true
+
+- name: "Rust: Download Installer"
+  when: cargo_exists is failed
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/sh.rustup.rs
+    mode: '0755'
+    force: 'yes'
+  tags:
+    - rust
+
+- name: "Rust: Run install script"
+  when: cargo_exists is failed
+  shell: /tmp/sh.rustup.rs -y
+  tags:
+    - rust

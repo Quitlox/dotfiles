@@ -1,0 +1,18 @@
+---
+common_packages:
+  # Command Line
+  - zsh
+  - git
+  - vim
+
+  - exa
+  - bat
+  - fzf
+  - tree
+
+  - unzip
+
+  - make
+  - openssh
+  - chezmoi
+  - neovim

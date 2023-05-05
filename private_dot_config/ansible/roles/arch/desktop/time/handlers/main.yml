@@ -1,0 +1,4 @@
+- name: Restart NTP
+  ansible.posix.systemd:
+    name: ntpd.service
+    state: restarted

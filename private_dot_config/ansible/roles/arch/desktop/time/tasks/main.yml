@@ -1,0 +1,16 @@
+---
+# Timezone
+- name: Configure timezone
+  timezone:
+    name: "Europe/Amsterdam"
+
+# NTP
+- name: Install the NTP package
+  ansible.builtin.package:
+    name: ntp
+    state: present
+- name: Start the NTP service
+  ansible.posix.systemd:
+    name: ntpd.service
+    state: started
+    enabled: true

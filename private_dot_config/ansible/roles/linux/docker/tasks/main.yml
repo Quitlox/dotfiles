@@ -1,0 +1,12 @@
+---
+- name: Ensure group "docker" exists
+  ansible.posix.group:
+    name: docker
+    state: present
+
+- name: Ensure default user belongs also to docker group
+  ansible.posix.group.user:
+    name: "{{ default_username }}"
+    groups: docker
+    append: true
+
