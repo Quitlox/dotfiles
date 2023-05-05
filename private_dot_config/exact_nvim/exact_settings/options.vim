@@ -22,18 +22,6 @@ let g:vimsyn_embed = 'l'
 " so it has to be an autocmd.
 autocmd FileType * setlocal formatoptions-=o
 
-" Remove some default mappings that conflict
-map K <Nop>
-map [f <Nop>
-map ]f <Nop>
-
-" Enable fold using treesitter
-" TODO: Deprecated by ufo fold?
-" if has('nvim')
-"     set foldmethod=expr
-"     set foldexpr=nvim_treesitter#foldexpr()
-" end
-
 " Automatically resize Windows when resizing the terminal
 autocmd VimResized * wincmd =
 
@@ -42,43 +30,6 @@ augroup HideQuickFix
     autocmd!
     autocmd FileType qf set nobuflisted
 augroup END
-
-" Delete all non-visible buffers
-func BufOnly()
-    " Gather all listed buffers
-    let buflist = []
-    for i in range(tabpagenr('$'))
-        call extend(buflist, tabpagebuflist(i + 1))
-    endfor
-
-    " Close all unmodified listed buffers
-    let count = 0
-    let l:blist = getbufinfo()
-    for l:item in l:blist
-        if index(buflist, l:item.bufnr) == -1 && l:item.listed && !l:item.changed
-            let count = count + 1
-            exe 'bd ' . l:item.bufnr
-        endif
-    endfor
-
-    if count > 0
-        echo 'Deleted ' . count . ' buffers!'
-    endif
-endfunc
-:command BufOnly :call BufOnly()
-
-" Delete all junk buffers
-func BufJunk()
-    " All existing buffers
-    let l:blist = getbufinfo()
-    for l:item in l:blist
-        if l:item.linecount == 1 
-            echo 'Deleting ' . l:item.bufnr
-            exe 'bwipeout ' . l:item.bufnr
-        endif
-    endfor
-endfunc
-:command BufJunk :call BufJunk()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Options [Vim Compatibility]
@@ -90,41 +41,34 @@ if &compatible
   set nocompatible " Be iMproved
 endif
 
-" No audible bell in TUI mode
-set t_vb=
-" Make backspace behave sanely
-set backspace=eol,start,indent
-" Join commented lines properly
-set formatoptions=vtj
-" Completion
-set wildmenu
-" Will break plugins if off
-set magic
-" What to save for views and sessions:
-set viewoptions=folds,cursor,curdir,slash,unix
-set sessionoptions+=winpos,terminal,folds
+set t_vb=                                       " No audible bell in TUI mode
+set backspace=eol,start,indent                  " Make backspace behave sanely
+set formatoptions=vtj                           " join commented lines properly
+set wildmenu                                    " specifies how command line completion works
+set magic                                       " will break plugins if off
+set viewoptions=folds,cursor,curdir,slash,unix  " list of words that specifies what to save for :mkview
+set sessionoptions+=winpos,terminal,folds       " list of words that specifies what to put in a session file
+
+" Sane Defaults that Neovim already sets but Vim doesn't
+if has('vim-9.0.0667')
+    set splitkeep=screen " Not in stable yet currently?
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set ffs=unix,dos,mac	" Use Unix as the standard file type
-" Tabs (Set automatically by Sleuth)
-" set tabstop=4
-" set shiftwidth=4
-" set softtabstop=4
-" set expandtab
 " Buffer
-set hidden           " Allow changed buffers to be hidden
+set hidden              " Allow changed buffers to be hidden
+set switchbuf=uselast
 " Comments
 set comments+=:#
 " Wrapping
-set autoindent 		" Auto indent
-set smartindent 	" Smart indent
-set nowrap 	    	" Wrap lines
-set linebreak		" Wrap lines at full words
-set nofoldenable	" Disable folding
-" set textwidth=80
+set autoindent 		
+set smartindent 
+set nowrap 
+set linebreak		
 " Cursor
 set scrolloff=7      " Leave 7 lines around the cursor when moving vertically using j/k
 set sidescrolloff=10 " Leave 10 characters around the cursor when moving horizontally using h/l
@@ -136,11 +80,11 @@ set culopt=number
 set concealcursor=c
 set conceallevel=2
 " Searching
-set ignorecase       " Ignore case when searching
-set smartcase        " When searching try to be smart about cases
-set hlsearch         " Highlight search results
-set incsearch        " Makes search act like search in modern browsers
-set wrapscan         " Searches wrap around the end of the file
+set ignorecase      
+set smartcase      
+set hlsearch      
+set incsearch    
+set wrapscan    
 " Layout
 set signcolumn=yes     " Prevent the error gutter from moving the vertical seperator
 set mouse=nv         " Disable mouse in command-line mode
@@ -161,142 +105,29 @@ set formatoptions+=1 " Don't break lines after a one-letter word
 set timeoutlen=800
 set history=1000      " Sets how many lines of history VIM has to remember
 
-" Sane Defaults that Neovim already sets but Vim doesn't
-if has('vim-9.0.0667')
-    set splitkeep=screen " Not in stable yet currently?
-endif
-
-if has('nvim')
-	let g:loaded_python_provider = 0
-	let g:python3_host_prog = '/usr/bin/python3'
-
-    " Buffer
-    set switchbuf=uselast
-    " Spell check
-    set spell
-    set spelllang=en_us
-    " augroup CustomEnableSpell
-    "     autocmd!
-    "     autocmd FileType markdown,txt setlocal spell
-    "     autocmd FileType markdown,txt setlocal spelllang=en_us
-    " augroup END
-
-    " Disable spell for certain buffers
-    augroup CustomDisableSpell
-        autocmd!
-        autocmd FileType checkhealth setlocal nospell
-        autocmd FileType NeogitStatus setlocal nospell
-        autocmd FileType Outline setlocal nospell
-        autocmd FileType spectre_panel setlocal nospell
-
-        autocmd BufReadPost dap-repl setlocal nospell
-        autocmd BufReadPost dapui_scopes setlocal nospell
-        autocmd BufReadPost dapui_breakpoints setlocal nospell
-        autocmd BufReadPost dapui_watches setlocal nospell
-
-        autocmd TermOpen * setlocal nospell
-    augroup END
-endif
+let g:loaded_python_provider = 0
+let g:python3_host_prog = '/usr/bin/python3'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
+" => Spell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Enable Functionality
-set undofile swapfile backup
+" Spell check
+set spell
+set spelllang=en_us
 
-"Make backup before overwriting the current buffer
-set backupcopy=yes
+" Disable spell for certain buffers
+augroup CustomDisableSpell
+    autocmd!
+    autocmd FileType checkhealth setlocal nospell
+    autocmd FileType NeogitStatus setlocal nospell
+    autocmd FileType Outline setlocal nospell
+    autocmd FileType spectre_panel setlocal nospell
 
-"Meaningful backup name, ex: filename@2015-04-05.14:59
-if !has('win32') && !has('win64')
-    "This file format is illegal on Windows and requires manually doing :w!
-    au BufWritePre * let &bex = '@' . strftime("%F.%H:%M")
-endif
+    autocmd BufReadPost dap-repl setlocal nospell
+    autocmd BufReadPost dapui_scopes setlocal nospell
+    autocmd BufReadPost dapui_breakpoints setlocal nospell
+    autocmd BufReadPost dapui_watches setlocal nospell
 
-if has('nvim')
-    " Configure vim directories
-    let xdg_cache=$XDG_CACHE_HOME
-    let xdg_data=$XDG_DATA_HOME
-    let xdg_config=$XDG_CONFIG_HOME
-
-    if empty(xdg_cache)
-        let xdg_cache=$HOME . '/.cache'
-    endif
-    if empty(xdg_data)
-        let xdg_data=$HOME . '/.local/share'
-    endif
-    if empty(xdg_config)
-        let xdg_config=$HOME . '/.config'
-    endif
-
-    " Update runtimepath
-    exe 'set rtp^=' . xdg_config . '/nvim'
-    exe 'set rtp+=' . xdg_data . '/nvim'
-    exe 'set rtp+=' . xdg_config . '/nvim/after'
-
-    " Set directory locations
-    let g:netrw_home = xdg_data . '/nvim'
-    let &viewdir=xdg_data . '/nvim/view'
-    let &backupdir=xdg_cache . '/nvim/backup'
-    let &directory=xdg_cache . '/nvim/swap'
-    let &undodir=xdg_cache . '/nvim/undo'
-else
-    " Configure vim directories
-    let xdg_cache=$XDG_CACHE_HOME
-    let xdg_data=$XDG_DATA_HOME
-    let xdg_config=$XDG_CONFIG_HOME
-
-    if empty(xdg_cache)
-        let xdg_cache=$HOME . '/.cache'
-    endif
-    if empty(xdg_data)
-        let xdg_data=$HOME . '/.local/share'
-    endif
-    if empty(xdg_config)
-        let xdg_config=$HOME . '/.config'
-    endif
-
-    " Update runtimepath
-    exe 'set rtp^=' . xdg_config . '/vim'
-    exe 'set rtp+=' . xdg_data . '/vim'
-    exe 'set rtp+=' . xdg_config . '/vim/after'
-
-    " Set directory locations
-    let g:netrw_home = xdg_data . '/vim'
-    let &viewdir=xdg_data . '/vim/view'
-    let &backupdir=xdg_cache . '/vim/backup'
-    let &directory=xdg_cache . '/vim/swap'
-    let &undodir=xdg_cache . '/vim/undo'
-endif
-
-
-if !has('nvim')
-    set viminfo+=n~/.local/share/vim/viminfo
-endif
-
-" Disable undo on tmp files
-augroup user_persistent_undo
-	autocmd!
-	au BufWritePre /tmp/*          setlocal noundofile
-	au BufWritePre COMMIT_EDITMSG  setlocal noundofile
-	au BufWritePre MERGE_MSG       setlocal noundofile
-	au BufWritePre *.tmp           setlocal noundofile
-	au BufWritePre *.bak           setlocal noundofile
+    autocmd TermOpen * setlocal nospell
 augroup END
-
-" If sudo, disable vim swap/backup/undo/shada/viminfo writing
-if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
-		\ && $HOME !=# expand('~'.$USER, 1)
-		\ && $HOME ==# expand('~'.$SUDO_USER, 1)
-
-	set noswapfile
-	set nobackup
-	set nowritebackup
-	set noundofile
-	if has('nvim')
-		set shada="NONE"
-	else
-		set viminfo="NONE"
-	endif
-endif

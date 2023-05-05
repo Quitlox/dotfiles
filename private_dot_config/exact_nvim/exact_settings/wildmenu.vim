@@ -5,7 +5,7 @@
 
 " Wildmenu: Ignore compiled files
 if has('wildmenu')
-	if ! has('nvim')
+	if !has('nvim')
 		set nowildmenu
 		set wildmode=list:longest,full
 	endif

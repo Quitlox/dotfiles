@@ -26,13 +26,13 @@ local function set_keybindings(bufnr)
             name = "Go",
             D = { "<cmd>Lspsaga peek_definition<cr>", "Go Declaration" },
             d = { "<cmd>Lspsaga goto_definition<cr>", "Go Definition" },
-            i = { vim.lsp.buf.implementation, "Go Implementation" },
+            i = { function() vim.lsp.buf.implementation() end, "Go Implementation" },
             s = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols='variable'<cr>", "Symbols" },
             t = { "<cmd>Lspsaga peek_type_definition<cr>", "type Definition" },
             R = { "<cmd>Lspsaga rename ++project<cr>", "Go Rename" },
             r = { "<cmd>Lspsaga lsp_finder<cr>", "Go References" },
             h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
-            f = { lsp_format, "Format" },
+            f = { function() vim.lsp.buf.format({ bufnr = bufnr }) end, "Format" },
             a = { "<cmd>Lspsaga code_action<cr>", "Action" },
         },
         K = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
@@ -42,21 +42,6 @@ local function set_keybindings(bufnr)
     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
     -- Signature Help
     vim.keymap.set("i", "<C-p>", vim.lsp.buf.signature_help)
-end
-
---  +----------------------------------------------------------+
---  | Functions                                                |
---  +----------------------------------------------------------+
-
--- Custom formatting function to support disabling servers
-local lsp_format = function(bufnr)
-    vim.lsp.buf.format({
-        filter = function(client)
-            if client.name == "lua_ls" then return false end
-            return true
-        end,
-        bufnr = bufnr,
-    })
 end
 
 --  +----------------------------------------------------------+
@@ -86,10 +71,10 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 -- Snippet support provided by LuaSnip
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- Folding capabilities provided by UFO
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-}
+-- capabilities.textDocument.foldingRange = {
+--     dynamicRegistration = false,
+--     lineFoldingOnly = true,
+-- }
 
 ----------------------------------------------------------------------
 --                              Mason                               --
@@ -191,12 +176,14 @@ return {
                                 -- stylua: ignore
                                 -- vim.keymap.set("n", "J", rt.join_lines.join_lines, { noremap = true, buffer = bufnr })
 
-                                -- Hover actions 
+                                -- Hover actions
                                 -- stylua: ignore
-                                vim.keymap.set( "n", "<C-space>", rt.hover_actions.hover_actions, { noremap = true, buffer = bufnr })
-                                -- Code action groups 
+                                vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions,
+                                    { noremap = true, buffer = bufnr })
+                                -- Code action groups
                                 -- stylua: ignore
-                                vim.keymap.set( "n", "ga", rt.code_action_group.code_action_group, { noremap = true, buffer = bufnr })
+                                vim.keymap.set("n", "ga", rt.code_action_group.code_action_group,
+                                    { noremap = true, buffer = bufnr })
 
                                 return on_attach(client, bufnr)
                             end,
@@ -303,6 +290,4 @@ return {
             })
         end,
     },
-
-
 }

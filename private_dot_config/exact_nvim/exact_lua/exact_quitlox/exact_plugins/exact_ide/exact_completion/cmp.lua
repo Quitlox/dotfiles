@@ -75,7 +75,6 @@ return {
     end,
     dependencies = {
         -- Completion Sources
-        -- TODO: Check if all of these are still used
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lsp-document-symbol",
         "hrsh7th/cmp-nvim-lsp-signature-help",

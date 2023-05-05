@@ -6,7 +6,6 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
     vim.g.sqlite_clib_path = vim.fn.expand("$HOME/.config/vim/sqlite3.dll")
 end
 
--- TODO: Make FZF ignore ignored files
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -65,8 +64,6 @@ return {
     },
     {
         "danielfalk/smart-open.nvim",
-        -- TODO: This does not work??
-        -- keys = { "<space>of" },
         dependencies = {
             "kkharji/sqlite.lua",
             "nvim-telescope/telescope.nvim",

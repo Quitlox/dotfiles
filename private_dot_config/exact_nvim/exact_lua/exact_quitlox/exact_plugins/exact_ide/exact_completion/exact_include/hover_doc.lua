@@ -8,7 +8,6 @@ local function show_documentation()
         vim.cmd("Man " .. vim.fn.expand("<cword>"))
     elseif vim.fn.expand("%:t") == "Cargo.toml" then
         -- Plugin: Saecki/crates.nvim
-        -- TODO: Do not require crates if not filetype rust
         require("crates").show_popup()
     else
         vim.lsp.buf.hover()

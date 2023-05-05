@@ -17,7 +17,6 @@ local function load_launch_json()
 end
 
 -- Load launch.json on startup
--- TODO: Does this properly load on startup?
 load_launch_json()
 -- Load launch.json when edited
 local launch_group = vim.api.nvim_create_augroup("LaunchJson", { clear = true })

@@ -24,6 +24,11 @@ let g:maplocalleader = "\\"
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
 
+" Remove some default mappings that conflict
+map K <Nop>
+map [f <Nop>
+map ]f <Nop>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Editing and Navigation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""

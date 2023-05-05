@@ -41,6 +41,12 @@ return {
                 disable = { "latex" },
             },
 
+            ----- Comment -----
+            --context_commentstring = {
+            --    enable = true,
+            --    enable_autocmd = false,
+            --},
+
             ----- Text Objects -----
             -- with: nvim-treesitter/nvim-treesitter-textobjects
             textobjects = {
