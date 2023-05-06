@@ -1,0 +1,3 @@
+---
+- name: Activate numlock on bootup
+  yay: name=mkinitcpio-numlock state=present

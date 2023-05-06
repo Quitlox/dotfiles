@@ -1,0 +1,65 @@
+---
+- name: Perform full system upgrade
+  pacman:
+    update_cache: true
+    upgrade: true
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+
+- name: Install yay as aur helper
+  aur:
+    name: yay
+    user: "{{ user.name }}"
+    skip_pgp: true
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+
+- name: Enable Multilib
+  ini_file:
+    path: /etc/pacman.conf
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value | default(omit) }}"
+  loop:
+    - { section: "multilib", option: "Include", value: "/etc/pacman.d/mirrorlist" }
+  become: true
+
+- name: Enable VerbosePkgLists in /etc/pacman.conf
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: '^#VerbosePkgLists'
+    line: 'VerbosePkgLists'
+    state: present
+  become: yes
+- name: Enable ParallelDownloads in /etc/pacman.conf
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: '^#ParallelDownloads = 5'
+    line: 'ParallelDownloads = 5'
+    state: present
+  become: yes
+
+- name: (Mirrorlist) Install Reflector
+  community.general.pacman:
+    name: reflector
+- name: (Mirrorlist) Configure Reflector
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/reflector.conf"
+    dest: /etc/xdg/reflector/reflector.conf
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+- name: (Mirrorlist) Enable and start reflector service
+  ansible.builtin.systemd:
+    name: reflector
+    enabled: yes
+    state: started
+  become: yes
+
+# TODO: Add task for cleaning pacman cache (maybe as cron job?)
+# https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache

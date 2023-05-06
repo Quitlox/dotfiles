@@ -1,11 +1,16 @@
 ---
+- name: Install OpenSSH
+  ansible.builtin.package:
+    name: openssh
+    state: present
+
 - name: Disable SSH root login
   ansible.builtin.lineinfile:
     dest: /etc/ssh/sshd_config
     regexp: "^PermitRootLogin"
     line: "PermitRootLogin prohibit-password"
     state: present
-  notify: Restart SSH
+  notify: restart ssh
 
 - name: Disable password authentication
   ansible.builtin.lineinfile:
@@ -13,4 +18,4 @@
     regexp: "^#?PasswordAuthentication"
     line: "PasswordAuthentication no"
     state: present
-  notify: Restart SSH
+  notify: restart ssh

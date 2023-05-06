@@ -13,6 +13,4 @@ common_packages:
   - unzip
 
   - make
-  - openssh
   - chezmoi
-  - neovim

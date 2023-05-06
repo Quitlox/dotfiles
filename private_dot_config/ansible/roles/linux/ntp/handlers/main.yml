@@ -2,3 +2,4 @@
   ansible.posix.systemd:
     name: ntpd.service
     state: restarted
+  when: "'restart ntp' in ansible_notify"

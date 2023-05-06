@@ -1,0 +1,16 @@
+---
+
+- name: Install network tools
+  ansible.builtin.package:
+    name:
+      - networkmanager
+      - networkmanager-openvpn
+
+      - wpa_supplicant
+    state: present
+
+- name: Enable NetworkManager service
+  ansible.builtin.service:
+    name: NetworkManager
+    state: started
+    enabled: true

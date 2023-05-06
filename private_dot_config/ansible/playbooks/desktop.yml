@@ -1,0 +1,8 @@
+---
+- name: Setup my Home Desktop
+  hosts: desktop
+  roles:
+    - arch/system
+    - linux/user
+    - linux/ssh
+    - linux/docker

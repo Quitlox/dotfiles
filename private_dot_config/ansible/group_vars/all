@@ -1,0 +1,50 @@
+# User configuration
+# ==================
+user:
+    name: quitlox
+    shell: /bin/zsh
+
+# System configuration
+# ====================
+# processor type:
+#   Option: "intel" will install microcode updates and configure the bootloader accordingly
+#   Option: "amd" will do the same for amd
+# graphics_card type: 
+#   Option: "intel" will install intel graphics drivers
+#   Option: "amd" will install amd drivers
+#   Option: "nvidia" will install nouveau because i will NEVER EVER touch those filthy nvidia drivers
+#                    if you wan't proprietary drivers follow the steps documented in the arch wiki.
+system:
+    locale: en_US.UTF-8
+    timezone: Europe/Amsterdam
+    processor: amd
+    graphics_card: nvidia
+    headless: false
+
+# Connectivity configuration
+# ==========================
+ssh:
+    port: 22
+    enable_sshd: true
+
+# Base package configuration
+# ==========================
+base_packages:
+    - base-devel
+    - cronie
+    - openssh
+    - rkhunter
+    - zsh
+    - htop
+    - nmap
+    - curl
+    - tmux
+    - git
+    - rsync
+    - coreutils
+    - dateutils
+    - bc
+    - strace
+    - lsof
+    - sysstat
+    - tig

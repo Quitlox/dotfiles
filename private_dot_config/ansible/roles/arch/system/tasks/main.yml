@@ -1,37 +1,5 @@
 ---
-- name: Enable Multilib
-  ini_file:
-    path: /etc/pacman.conf
-    section: "{{ item.section }}"
-    option: "{{ item.option }}"
-    value: "{{ item.value | default(omit) }}"
-  loop:
-    - { section: "multilib", option: "Include", value: "/etc/pacman.d/mirrorlist" }
-  become: true
-
-
-- name: Install microcode updates for intel (if necessary)
-  pacman:
-    name: intel-ucode
-    state: present
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
-  notify:
-    - update grub
-    - update syslinux
-  when: system.processor == "intel"
-
-- name: Install microcode updates for amd (if necessary)
-  pacman:
-    name: amd-ucode
-    state: present
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
-  notify:
-    - update grub
-    - update syslinux
-  when: system.processor == "amd"
+- ansible.builtin.import_role: pacman.yml
+  name: pacman
+- ansible.builtin.import_role: cpu
+  name: cpu

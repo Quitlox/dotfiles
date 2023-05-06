@@ -130,4 +130,4 @@ export BENERATOR_HOME=$HOME/.local/bin/benerator
 # Added by Toolbox App
 export PATH="$PATH:/home/quitlox/.local/share/JetBrains/Toolbox/scripts"
 # Added by Cargo
-. "/home/quitlox/.local/share/cargo/env"
+[ -f "/home/quitlox/.local/share/cargo/env" ] && . "/home/quitlox/.local/share/cargo/env"

@@ -1,0 +1,16 @@
+---
+- ansible.builtin.import_role: numlock.yml
+  name: numlock
+- ansible.builtin.import_role: swap.yml
+  name: swap
+- ansible.builtin.import_role: hibernate.yml
+  name: hibernate
+
+- name: Configure mkinitcpio
+  ansible.builtin.lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: '^HOOKS=\(.*\)'
+    line: 'HOOKS=(base udev autodetect keyboard modconf block filesystems resume fsck numlock)'
+    state: present
+    notify: regenerate initramfs
+
