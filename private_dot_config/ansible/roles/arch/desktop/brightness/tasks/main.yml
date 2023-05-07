@@ -1,0 +1,5 @@
+---
+- name: Install brightness control
+  community.general.pacman:
+    # A program to read and control device brightness
+    name: brightnessctl

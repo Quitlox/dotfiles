@@ -1,0 +1,21 @@
+---
+- name: Create group "docker"
+  ansible.posix.group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  ansible.posix.group.user:
+    name: "{{ user.name }}"
+    groups: docker
+    append: true
+
+- name: Install docker
+  ansible.builtin.package:
+    name: docker docker-compose
+
+- name: Enable and start docker
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started

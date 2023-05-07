@@ -17,15 +17,12 @@ user:
 system:
     locale: en_US.UTF-8
     timezone: Europe/Amsterdam
+
     processor: amd
     graphics_card: nvidia
-    headless: false
+    ssd: false
 
-# Connectivity configuration
-# ==========================
-ssh:
-    port: 22
-    enable_sshd: true
+    headless: false
 
 # Base package configuration
 # ==========================

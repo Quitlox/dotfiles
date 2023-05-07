@@ -1,0 +1,10 @@
+---
+- name: Install default linux-firmware
+  community.general.pacman:
+    name: linux-firmware
+
+- name: Install extra linux-firmware (quitlox-desktop)
+  community.general.pacman:
+    name: linux-firmware-qlogic
+
+# TODO: Check required firmware for laptop

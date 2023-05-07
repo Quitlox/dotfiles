@@ -1,0 +1,6 @@
+---
+- name: Install atuin
+  community.general.pacman:
+    name: atuin
+
+

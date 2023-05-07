@@ -1,0 +1,12 @@
+---
+- name: Install interface appearance managers
+  community.general.pacman:
+    name:
+      # Graphical interface for setting GTK themes
+      - lxappearance
+      # Graphical interface for setting QT themes
+      - qt5ct
+
+- name: Install theming packages
+  community.general.pacman:
+    name: flavours

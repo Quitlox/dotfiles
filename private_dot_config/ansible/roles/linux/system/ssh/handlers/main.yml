@@ -1,0 +1,6 @@
+---
+- name: Restart SSH
+  ansible.posix.service:
+    name: ssh
+    state: restarted
+  listen: restart ssh

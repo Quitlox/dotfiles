@@ -1,0 +1,7 @@
+---
+- name: Restart Pipewire
+  ansible.builtin.systemd:
+    name: pipewire.service
+    state: restarted
+    scope: user
+  become_user: {{ user.name }}

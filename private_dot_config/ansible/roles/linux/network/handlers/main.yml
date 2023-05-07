@@ -1,5 +1,0 @@
----
-- name: restart networkmanager
-  ansible.builtin.service:
-  name: networkmanager.service
-  state: restarted

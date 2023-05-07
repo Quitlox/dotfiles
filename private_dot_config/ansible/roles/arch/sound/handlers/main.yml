@@ -1,8 +1,0 @@
----
-- name: Restart Pipewire
-  ansible.builtin.systemd:
-    name: pipewire.service
-    state: restarted
-    scope: user
-  remote_user: {{ user.name }}
-  become: no

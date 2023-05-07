@@ -1,0 +1,9 @@
+---
+- name: Generate the locale system.locale
+  community.general.locale_gen:
+    name: "{{ system.locale }}"
+
+- name: Set timezone to system.timezone
+  community.general.timezone:
+    name: "{{ system.locale }}"
+  notify: restart cron

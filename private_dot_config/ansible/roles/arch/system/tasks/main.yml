@@ -1,5 +1,0 @@
----
-- ansible.builtin.import_role: pacman.yml
-  name: pacman
-- ansible.builtin.import_role: cpu
-  name: cpu

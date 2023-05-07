@@ -1,0 +1,9 @@
+- name: Gather facts from local machine
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  tasks:
+  - name: Display product name
+    debug:
+      var: ansible_product_name
+

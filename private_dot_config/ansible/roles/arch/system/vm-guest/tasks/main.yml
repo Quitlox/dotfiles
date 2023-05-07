@@ -1,0 +1,17 @@
+---
+- name: As virtualbox guest, install guest additions NON-X version
+  pacman:
+    name:
+      - virtualbox-guest-utils-nox
+  when:
+    - ansible_facts['virtualization_role'] == 'guest'
+    - ansible_facts['virtualization_type'] == 'virtualbox'
+
+- name: As virtualbox guest, enable and start vboxservice
+  systemd:
+    name: vboxservice.service
+    enabled: yes
+    state: started
+  when:
+    - ansible_facts['virtualization_role'] == 'guest'
+    - ansible_facts['virtualization_type'] == 'virtualbox'

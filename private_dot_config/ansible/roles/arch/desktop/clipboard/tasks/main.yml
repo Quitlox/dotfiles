@@ -1,0 +1,5 @@
+---
+- name: Install clipboard manager
+  community.general.pacman:
+    # Clipboard manager with advanced features
+    name: copyq

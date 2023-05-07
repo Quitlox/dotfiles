@@ -1,0 +1,55 @@
+---
+- name: Configure acpi
+  block:
+    - name: Install acpi related packages
+      community.general.pacman:
+        name:
+          - acpi
+          - acpid
+          - acpi_call
+
+    - name: Enable and start acpid
+      ansible.builtin.systemd:
+        name: acpid.service
+        enabled: true
+        state: started
+
+- name: Configure TLP
+  block:
+    - name: Install TLP
+      community.general.pacman:
+        name:
+          - tlp
+          - tlp-rdw
+    - name: Enable and start tlp
+      ansible.builtin.systemd:
+        name: tlp.service
+        enabled: true
+        state: started
+    # Per the ArchWiki docs, to avoid conflicts and ensure proper operation of TLP's radio device switching options.
+    - name: Mask systemd-rfkill.service
+      ansible.builtin.systemd:
+        name: systemd-rfkill.service
+        masked: true
+        state: stopped
+    - name: Mask systemd-rfkill.socket
+      ansible.builtin.systemd:
+        name: systemd-rfkill.socket
+        masked: true
+        state: stopped
+    - name: Enable and start NetworkManager-dispatcher for tlp-rdw
+      ansible.builtin.systemd:
+        name: NetworkManager-dispatcher.service
+        enabled: true
+        state: started
+
+- name: Configure CPU scaling
+  block:
+    - name: Install cpupower
+      community.general.pacman:
+        name: cpupower
+    - name: Enable and start cpupower service
+      ansible.builtin.systemd:
+        name: cpupower.service
+        enabled: true
+        state: started

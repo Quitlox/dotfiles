@@ -1,0 +1,4 @@
+---
+- name: Install Wacom tablet driver
+  community.general.pacman:
+    name: xf86-input-wacom

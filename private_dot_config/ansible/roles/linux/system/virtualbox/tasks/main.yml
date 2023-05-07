@@ -1,0 +1,38 @@
+---
+- name: Check kernel version
+  ansible.builtin.command:
+    cmd: uname -r
+  register: kernel_version
+
+- name: Install virtualbox
+  community.general.pacman:
+    name: virtualbox virtualbox-host-dkms virtualbox-guest-iso
+  when: "'-lts' in kernel_version.stdout"
+
+- name: Uninstall wrong virtualbox module
+  community.general.pacman:
+    name: virtualbox-host-modules-arch
+    state: absent
+  when: "'-lts' in kernel_version.stdout"
+
+- name: Install virtualbox
+  community.general.pacman:
+    name: virtualbox virtualbox-host-modules-arch virtualbox-guest-iso
+  when: "'-lts' not in kernel_version.stdout"
+
+- name: Uninstall wrong virtualbox module
+  community.general.pacman:
+    name: virtualbox-host-dkms
+    state: absent
+  when: "'-lts' not in kernel_version.stdout"
+
+- name: Install oracle extension pack
+  aur:
+    name: virtualbox-ext-oracle
+
+- name: Add user to vboxusers group
+  ansible.builtin.user:
+    name: {{ user.name }}
+    groups: vboxusers
+    append: true
+     

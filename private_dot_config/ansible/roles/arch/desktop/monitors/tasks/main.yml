@@ -1,0 +1,10 @@
+---
+- name: Install packages for managing displays
+  community.general.pacman:
+    name:
+      # Auto-detect the connected display hardware and load the
+      # appropiate X11 setup using xrandr.
+      - autorandr
+      # ARandR is designed to provide a simple visual front end
+      # for XRandR.
+      - arandr

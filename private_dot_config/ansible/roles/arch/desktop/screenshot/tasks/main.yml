@@ -1,0 +1,6 @@
+---
+- name: Install screenshot utility
+  community.general.pacman:
+    # Simple screenshot utility (printscreen)
+    # > Used by ~/.config/i3/pixel_lockscreen.sh
+    name: maim

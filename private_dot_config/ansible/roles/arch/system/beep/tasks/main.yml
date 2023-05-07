@@ -1,0 +1,6 @@
+---
+- name: Disable computer speaker
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/nobeep.conf"
+    dest: /etc/modprobe.d/nobeep.conf
+    mode: 0440

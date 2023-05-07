@@ -1,0 +1,12 @@
+
+### PRINTING ###########################
+# Scanning
+# sudo pacman -S --needed -q sane sane-airscan 
+# Fort PullenStein EPSON XP 200 SERIES
+#	You might need to configure the printer as follows
+#	Find printer ip using: `sudo arp-scan -I wlp4s0 -l`
+#	Add line to /etc/sane.d/epkowa.conf:
+#		`net <IP>`
+# install_yay iscan iscan-plugin-network iscan-plugin-gt-s650
+# Frontend
+# sudo pacman -S --needed -q simple-scan

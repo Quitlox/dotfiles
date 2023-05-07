@@ -1,3 +1,6 @@
 [submodule "private_dot_config/ansible/library/yay"]
 	path = private_dot_config/ansible/library/yay
 	url = https://github.com/mnussbaum/ansible-yay.git
+[submodule "private_dot_config/ansible/library/aur"]
+	path = private_dot_config/ansible/library/aur
+	url = https://github.com/pigmonkey/ansible-aur.git

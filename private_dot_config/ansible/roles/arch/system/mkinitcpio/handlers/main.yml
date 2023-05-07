@@ -1,0 +1,9 @@
+---
+- name: Create initial ramdisk
+  ansible.builtin.command: /usr/bin/mkinitcpio -P
+  register: mkinitcpio_result
+  failed_when: mkinitcpio_result.rc != 0
+  changed_when: true
+  listen: regenerate initramfs
+  when:
+    - ansible_virtualization_type != "docker"
