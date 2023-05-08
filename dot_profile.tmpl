@@ -25,15 +25,13 @@ export MOZ_USE_XINPUT2=1
 ### Configurations
 ########################################
 
-# PATH
+# Add binary locations to PATH
 export PATH="$PATH:/sbin"
 export PATH="$PATH:$HOME/.local/bin"
 # Add go to PATH
 export PATH="$PATH:$HOME/.local/share/go/bin"
 # Add npm to PATH
 export PATH="$PATH:$HOME/.local/share/npm/bin"
-# Add scripts to PATH
-export PATH="$PATH:$HOME/scripts/user"
 
 # XDG_BASE spec
 XDG_CACHE_HOME="$HOME/.cache"
@@ -98,7 +96,7 @@ export GHCUP_USE_XDG_DIRS=1
 # Pyenv
 export PYENV_ROOT="$HOME/.local/src/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+[ -d "$PYENV/.local/src/pyenv" ] && eval "$(pyenv init --path)"
 
 # Tex Live
 export TEXMFHOME=$XDG_DATA_HOME/texmf
@@ -123,11 +121,10 @@ export JAVA_HOME=/usr/lib/jvm/default
 
 # OCAML
 export OPAMROOT=$XDG_DATA_HOME/opam
-# Benerator
-# https://github.com/rapiddweller/rapiddweller-benerator-ce
-export BENERATOR_HOME=$HOME/.local/bin/benerator
+[[ ! -r /home/quitlox/.local/share/opam/opam-init/init.zsh ]] || source /home/quitlox/.local/share/opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # Added by Toolbox App
 export PATH="$PATH:/home/quitlox/.local/share/JetBrains/Toolbox/scripts"
 # Added by Cargo
 [ -f "/home/quitlox/.local/share/cargo/env" ] && . "/home/quitlox/.local/share/cargo/env"
+
