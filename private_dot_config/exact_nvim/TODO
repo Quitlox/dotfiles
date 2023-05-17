@@ -6,10 +6,19 @@ FIX:
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
     - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
 
+    - notify
+        - stack notifications that are the same with a count
     - neotest
         - output window should be closable with q
         - g? should open keymap instructions for summary
         - command for running the last ran test
+	- collapse empty directories like explorer
+	- x in summary window should kill test
+	- don't open quickfix
+    - neotest python
+	- should show all variants of a test (all combinations of fixtures, see vscode)
+    - buffer_manager.nvim
+    	- interop with bufferline.nvim (order of buffer differs)
 
 COULD:
     - Switch over from nvm-cmp to coq
@@ -18,11 +27,22 @@ BLOCKED:
     - autopairs does not work for rust angular brackets
     https://github.com/windwp/nvim-autopairs/blob/master/lua/nvim-autopairs/rules/basic.lua
     - ]f in python should not go to decorator
+    - python identation nvim-autopairs
+    	- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
+	- https://www.reddit.com/r/neovim/comments/13d3hy5/different_autopair_indentation_on_cr_in_python/
 
 OPTIONAL PLUGINS: (might come in handy later)
-    - harpoon.nvim / grapple.nvim
-    - buffer_manager.nvim / JABS
-    - neocomposer.nvim: simplifies macros enchaning productivity with harmony
+    - Bookmarking
+    	harpoon.nvim / grapple.nvim
+    - Macros
+    	neocomposer.nvim: simplifies macros enchaning productivity with harmony
+    - Command
+        wilder.nvim (Customizable wildmenu, change completion and renderer)
+        live-command.nvim
+    - Tasks
+    	overseer.nvim
+    - Editing
+	substitute.nvim
 
 Contribute (Existing projects):
     - Neogit has no explanation whatsover on how to use rebase

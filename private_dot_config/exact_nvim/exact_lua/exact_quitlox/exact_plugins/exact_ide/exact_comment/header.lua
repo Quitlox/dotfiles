@@ -1,6 +1,7 @@
 return {
     "LudoPinelli/comment-box.nvim",
     config = true,
+    lazy = true,
     init = function()
         require("which-key").register({
             g = {
@@ -10,8 +11,8 @@ return {
                     m = { "<cmd>lua require('comment-box').catalog()<cr>", "Comment Box Catalog" },
                 },
             },
-        }, {mode = "n"})
-         
+        }, { mode = "n" })
+
         require("which-key").register({
             g = {
                 b = {
@@ -20,6 +21,6 @@ return {
                     m = { "<cmd>lua require('comment-box').catalog()<cr>", "Comment Box Catalog" },
                 },
             },
-        }, {mode = "v"})
-    end
+        }, { mode = "v" })
+    end,
 }

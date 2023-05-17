@@ -10,7 +10,7 @@ return {
     init = function()
         require("which-key").register({
             ["<leader>"] = {
-                ["d"] = { '<cmd>lua require("oil").open_float()<cr>', "Open Directory" },
+                ["d"] = { '<cmd>lua require("oil").open_float()<cr>', "Directory" },
             },
         })
     end,

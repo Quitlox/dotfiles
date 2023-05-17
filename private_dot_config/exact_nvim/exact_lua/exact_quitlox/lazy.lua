@@ -35,7 +35,7 @@ local lazy_config = {
         cmd = "diffview.nvim",
     },
     checker = {
-        enabled = true,
+        enabled = false,
         notify = false,
     },
     performance = {

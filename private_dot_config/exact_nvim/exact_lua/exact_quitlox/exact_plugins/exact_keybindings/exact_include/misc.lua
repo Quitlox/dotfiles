@@ -19,4 +19,4 @@ vim.cmd([[
     cabbrev xa Z
 ]])
 
-require("which-key").register({ q = { "<cmd>wa | qa<cr>", "Quit" } }, { prefix = "<leader>" })
+-- require("which-key").register({ q = { "<cmd>wa | qa<cr>", "Quit" } }, { prefix = "<leader>" })

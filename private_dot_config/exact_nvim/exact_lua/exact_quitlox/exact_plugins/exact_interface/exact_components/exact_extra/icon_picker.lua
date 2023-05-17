@@ -1,6 +1,6 @@
 return {
     "ziontee113/icon-picker.nvim",
-    config=true,
+    config = true,
     opts = {
         disable_legacy_commands = true,
     },
@@ -11,7 +11,10 @@ return {
     },
     init = function()
         require("which-key").register({
-            i = { "<cmd>IconPickerNormal alt_font symbols nerd_font emoji<cr>", "Icon Picker" },
+            l = {
+                name = "List",
+                i = { "<cmd>IconPickerNormal alt_font symbols nerd_font emoji<cr>", "Icon Picker" },
+            },
         }, { prefix = "<leader>" })
     end,
 }
