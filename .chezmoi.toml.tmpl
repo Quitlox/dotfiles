@@ -27,6 +27,6 @@ encryption = "age"
     headless = {{ $headless | quote }}
 
 [age]
-    identity = {{ joinPath .chezmoi.homeDir ".ssh/.age_public_key.txt" | quote }}
-    recipient = {{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_private_key.value | quote }}
+    identity = {{ joinPath .chezmoi.homeDir ".ssh/.age_private_key.txt" | quote }}
+    recipient = {{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_public_key.value | quote }}
 
