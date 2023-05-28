@@ -9,6 +9,13 @@
 {{-   $email = promptString "E-Mail (git)" }}
 {{- end }}
 
+{{- $headless := "" }}
+{{- if (hasKey . "environment") }}
+{{-   $headless = .headless }}
+{{- else }}
+{{-   $headless = promptBool "headless" }}
+{{- end }}
+
 ########################################
 ### DATA                             ###
 ########################################
@@ -17,6 +24,7 @@ encryption = "age"
 
 [data]
     email = {{ $email | quote }}
+    headless = {{ $headless | quote }}
 
 [age]
     identity = {{ joinPath .chezmoi.homeDir ".ssh/.chezmoi_encryption_key.txt" | quote }}
