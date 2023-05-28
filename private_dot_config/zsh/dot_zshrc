@@ -1,12 +1,6 @@
 
 # Source Base16 Theme
 [ -f "$HOME/.config/zsh/theme.sh" ] && . ~/.config/zsh/theme.sh
-# Source Pyenv
-[ -d "$PYENV/.local/src/pyenv" ] && eval "$(pyenv init -)"
-# opam configuration
-[[ ! -r /home/quitlox/.local/share/opam/opam-init/init.zsh ]] || source /home/quitlox/.local/share/opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-
 # Colors
 autoload colors && colors
 
