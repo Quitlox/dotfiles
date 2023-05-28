@@ -4,9 +4,7 @@
     update_cache: true
     upgrade: true
   register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
+  become: true
 
 - name: Enable Multilib
   community.general.ini_file:
@@ -14,6 +12,7 @@
     section: "{{ item.section }}"
     option: "{{ item.option }}"
     value: "{{ item.value | default(omit) }}"
+    mode: '0644'
   loop:
     - { section: "multilib", option: "Include", value: "/etc/pacman.d/mirrorlist" }
   become: true
@@ -47,42 +46,50 @@
     - name: Install pigz
       community.general.pacman:
         name: pigz
+      become: true
     - name: Replace GZ compression with pigz
       ansible.builtin.lineinfile:
         path: /etc/makepkg.conf
         regexp: '^COMPRESSGZ=(gzip -c -f -n)'
         line: "COMPRESSGZ=(pigz -c -f -n)"
+      become: true
     - name: Install pbzip2
       community.general.pacman:
         name: pbzip2
+      become: true
     - name: Replace BZ2 compression with pbzip2
       ansible.builtin.lineinfile:
         path: /etc/makepkg.conf
         regexp: '^COMPRESSBZ2=(bzip2 -c -f)'
         line: "COMPRESSBZ2=(pbzip2 -c -f)"
+      become: true
     - name: Enable XZ compression multi-threading
       ansible.builtin.lineinfile:
         path: /etc/makepkg.conf
         regexp: "^COMPRESSXZ=(xz -c -z -)"
         line: "COMPRESSXZ=(xz -c -z --threads=0 -)"
+      become: true
     - name: Enable ZST compression multi-threading
       ansible.builtin.lineinfile:
         path: /etc/makepkg.conf
         regexp: "^COMPRESSZST=(zstd -c -z -q -)"
         line: "COMPRESSZST=(zstd -c -z -q --threads=0 -)"
+      become: true
 
 - name: Configure Mirrorlist
   block:
     - name: Install Reflector
       community.general.pacman:
         name: reflector
+      register: reflector_installation
+      become: true
     - name: Configure Reflector
       ansible.builtin.copy:
         src: "{{ role_path }}/files/reflector.conf"
         dest: /etc/xdg/reflector/reflector.conf
         owner: root
         group: root
-        mode: 0644
+        mode: '0644'
       become: true
     - name: Enable and start reflector service
       ansible.builtin.systemd:
@@ -90,6 +97,8 @@
         enabled: true
         state: started
       become: true
+      when:
+        - not ansible_check_mode
 
 
 # TODO: Add task for cleaning pacman cache (maybe as cron job?)

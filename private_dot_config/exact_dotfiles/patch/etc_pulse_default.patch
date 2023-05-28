@@ -1,9 +1,0 @@
---- /etc/pulse/default.pa.bak	2021-03-24 22:59:11.694214006 +0100
-+++ /etc/pulse/default.pa	2021-03-24 22:51:23.696782116 +0100
-@@ -136,3 +136,6 @@
- ### Make some devices default
- #set-default-sink output
- #set-default-source input
-+
-+# CUSTOM:
-+load-module module-switch-on-connect

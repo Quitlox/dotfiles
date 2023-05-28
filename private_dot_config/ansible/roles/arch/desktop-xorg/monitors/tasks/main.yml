@@ -1,0 +1,20 @@
+---
+- name: Install arandr
+  community.general.pacman:
+    # ARandR is designed to provide a simple visual front end for XRandR.
+    name: arandr
+
+- name: Configure autorandr
+  block:
+    - name: Install autorandr
+      community.general.pacman:
+        name:
+          # Auto-detect the connected display hardware and load the
+          # appropiate X11 setup using xrandr.
+          - autorandr
+    - name: Enable and start autorandr
+      ansible.builtin.systemd:
+        name: autorandr
+        enabled: true
+        state: started
+      become: true

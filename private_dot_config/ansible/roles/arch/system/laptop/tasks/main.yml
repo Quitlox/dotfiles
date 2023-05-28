@@ -8,11 +8,11 @@
           - acpid
           - acpi_call
 
-    - name: Enable and start acpid
-      ansible.builtin.systemd:
-        name: acpid.service
-        enabled: true
-        state: started
+    # - name: Enable and start acpid
+    #   ansible.builtin.systemd:
+    #     name: acpid.service
+    #     enabled: true
+    #     state: started
 
 - name: Configure TLP
   block:
@@ -26,22 +26,26 @@
         name: tlp.service
         enabled: true
         state: started
+      become: true
     # Per the ArchWiki docs, to avoid conflicts and ensure proper operation of TLP's radio device switching options.
     - name: Mask systemd-rfkill.service
       ansible.builtin.systemd:
         name: systemd-rfkill.service
         masked: true
         state: stopped
+      become: true
     - name: Mask systemd-rfkill.socket
       ansible.builtin.systemd:
         name: systemd-rfkill.socket
         masked: true
         state: stopped
+      become: true
     - name: Enable and start NetworkManager-dispatcher for tlp-rdw
       ansible.builtin.systemd:
         name: NetworkManager-dispatcher.service
         enabled: true
         state: started
+      become: true
 
 - name: Configure CPU scaling
   block:
@@ -53,3 +57,4 @@
         name: cpupower.service
         enabled: true
         state: started
+      become: true

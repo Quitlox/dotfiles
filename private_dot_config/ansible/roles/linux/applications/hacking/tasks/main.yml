@@ -6,7 +6,7 @@
         name: wireshark-qt
     - name: Add user to wireshark group
       ansible.builtin.user:
-        user: { { user.name } }
+        user: "{{ user.name }}"
         groups: wireshark
         append: true
 

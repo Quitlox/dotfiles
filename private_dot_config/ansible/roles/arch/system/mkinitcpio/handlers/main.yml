@@ -5,5 +5,6 @@
   failed_when: mkinitcpio_result.rc != 0
   changed_when: true
   listen: regenerate initramfs
+  become: true
   when:
     - ansible_virtualization_type != "docker"

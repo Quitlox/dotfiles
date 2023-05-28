@@ -4,3 +4,6 @@
 [submodule "private_dot_config/ansible/library/aur"]
 	path = private_dot_config/ansible/library/aur
 	url = https://github.com/pigmonkey/ansible-aur.git
+[submodule "private_dot_config/ansible/roles/library/gantsign.visual-studio-code"]
+	path = private_dot_config/ansible/roles/library/gantsign.visual-studio-code
+	url = https://github.com/gantsign/ansible-role-visual-studio-code

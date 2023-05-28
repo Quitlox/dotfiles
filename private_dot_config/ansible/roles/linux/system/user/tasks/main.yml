@@ -2,10 +2,10 @@
 - name: Create default user
   ansible.builtin.user:
     name: "{{ user.name }}"
-    password: "{{ user.password | password_hash('sha512') }}"
+    password: "{{ user_password | password_hash('sha512') }}"
     shell: /bin/zsh # TODO: Ensure Zsh is installed
 
-    groups: sudo
+    groups: wheel
     append: true
 
     create_home: true

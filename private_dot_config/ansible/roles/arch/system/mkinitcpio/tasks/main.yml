@@ -3,7 +3,7 @@
   ansible.builtin.lineinfile:
     path: /etc/mkinitcpio.conf
     regexp: '^HOOKS=\(.*\)'
-    line: 'HOOKS=(base udev autodetect keyboard modconf block filesystems resume fsck numlock)'
+    line: "HOOKS=(base udev autodetect keyboard modconf block filesystems resume fsck numlock)"
     state: present
-    notify: regenerate initramfs
-
+  become: true
+  notify: regenerate initramfs

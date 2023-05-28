@@ -1,28 +1,15 @@
 ---
 - name: Install microcode updates for intel
-  pacman:
+  community.general.pacman:
     name: intel-ucode
     state: present
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
-  notify:
-    - update grub
-    - update syslinux
-  when: system.processor == "intel"
+  notify: regenerate grub
+  when: "'GenuineIntel' in ansible_processor"
 
 - name: Install microcode updates for amd
-  pacman:
+  community.general.pacman:
     name: amd-ucode
     state: present
   register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
-  notify:
-    - update grub
-    # TODO:
-    - update syslinux
-  when: system.processor == "amd"
-
+  notify: regenerate grub
+  when: "'AuthenticAMD' in ansible_processor"

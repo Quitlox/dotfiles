@@ -1,6 +1,6 @@
 ---
 - name: Install bluez and bluez-utils packages
-  pacman:
+  community.general.pacman:
     name:
       - bluez
       - bluez-libs
@@ -10,25 +10,25 @@
     - ansible_virtualization_role | lower != "guest"
     - ansible_facts['os_family'] == "Archlinux"
 
-- name: Load btusb kernel module
-  modprobe:
-    name: btusb
-    state: present
-  when:
-    - ansible_virtualization_role | lower != "guest"
-    - ansible_facts['os_family'] == "Archlinux"
+# - name: Load btusb kernel module
+#   community.general.modprobe:
+#     name: btusb
+#     state: present
+#   when:
+#     - ansible_virtualization_role | lower != "guest"
+#     - ansible_facts['os_family'] == "Archlinux"
 
-- name: Ensure btusb module is loaded at boot
-  lineinfile:
-    path: /etc/modules-load.d/btusb.conf
-    line: btusb
-    create: yes
-  when:
-    - ansible_virtualization_role | lower != "guest"
-    - ansible_facts['os_family'] == "Archlinux"
+# - name: Ensure btusb module is loaded at boot
+#   ansible.builtin.lineinfile:
+#     path: /etc/modules-load.d/btusb.conf
+#     line: btusb
+#     create: true
+#   when:
+#     - ansible_virtualization_role | lower != "guest"
+#     - ansible_facts['os_family'] == "Archlinux"
 
 - name: Start and enable bluetooth.service
-  systemd:
+  ansible.builtin.systemd:
     name: bluetooth.service
     state: started
     enabled: true

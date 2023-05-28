@@ -1,16 +1,19 @@
 ---
 - name: Install command-line tools
+  become: true
   ansible.builtin.package:
     name:
       - zsh
       - git
       - exa
       - bat
+      - fd
       - fzf
       - tree
       - unzip
 
 - name: Install command-line programs
+  become: true
   community.general.pacman:
     name:
       - btop
@@ -20,27 +23,30 @@
       # Alternative for default 'diff'
       # > Used by  ~/.config/zsh/zsh-config alias for 'diff'
       - colordiff
-      # Ripgrep recursively searches directories for a regex
-      # pattern while respecting your gitignore.
-      #	For telescope "Live Grep"
+      # Ripgrep recursively searches directories for a regex pattern while respecting your gitignore.
+      # For telescope Live Grep.
       - ripgrep
 
 - name: Configure Vim
   block:
     - name: Uninstall vim
+      become: true
       ansible.builtin.package:
         name: vim
         state: absent
     - name: Install gvim as default vim
+      become: true
       ansible.builtin.package:
         name: gvim
 
 - name: Configure NeoVim
   block:
     - name: Install NeoVim
+      become: true
       ansible.builtin.package:
         name: neovim
     - name: Install dependencies (pacman)
+      become: true
       ansible.builtin.package:
         name:
           - neovim
@@ -52,6 +58,8 @@
       aur:
         # > Used by: vim typescript language server
         name: watchman-bin
+        user: "{{ user.name }}"
     - name: Install VSCode codicons
       aur:
         name: vscode-codicons-git
+        user: "{{ user.name }}"

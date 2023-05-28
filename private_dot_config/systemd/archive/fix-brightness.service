@@ -1,9 +1,0 @@
-[Unit]
-Description=[CUSTOM] Dummy service for attempting to start the problematic amdgpu_bl0 service. This makes sure that the brightness of the backlight is not overwritten on boot.
-
-[Service]
-Type=simple
-ExecStart=systemctl start systemd-backlight@backlight:amdgpu_bl0
-
-[Install]
-WantedBy=multi-user.target

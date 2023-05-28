@@ -6,9 +6,6 @@ user:
 
 # System configuration
 # ====================
-# processor type:
-#   Option: "intel" will install microcode updates and configure the bootloader accordingly
-#   Option: "amd" will do the same for amd
 # graphics_card type: 
 #   Option: "intel" will install intel graphics drivers
 #   Option: "amd" will install amd drivers
@@ -18,30 +15,9 @@ system:
     locale: en_US.UTF-8
     timezone: Europe/Amsterdam
 
-    processor: amd
     graphics_card: nvidia
     ssd: false
 
     headless: false
 
-# Base package configuration
-# ==========================
-base_packages:
-    - base-devel
-    - cronie
-    - openssh
-    - rkhunter
-    - zsh
-    - htop
-    - nmap
-    - curl
-    - tmux
-    - git
-    - rsync
-    - coreutils
-    - dateutils
-    - bc
-    - strace
-    - lsof
-    - sysstat
-    - tig
+    swap_size_mb: 4097

@@ -5,5 +5,5 @@
 
 - name: Set timezone to system.timezone
   community.general.timezone:
-    name: "{{ system.locale }}"
+    name: "{{ system.timezone }}"
   notify: restart cron

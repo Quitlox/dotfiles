@@ -1,0 +1,4 @@
+---
+dependencies:
+  - arch/system/numlock
+  - arch/system/hibernate

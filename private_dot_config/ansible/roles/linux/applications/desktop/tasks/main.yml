@@ -1,38 +1,53 @@
 ---
 - name: Install mail client
+  become: true
   ansible.builtin.package:
     name: thunderbird
 - name: Install discord
+  become: true
   ansible.builtin.package:
     name: discord
 - name: Install browser
+  become: true
   ansible.builtin.package:
     name: firefox
 
-- name: Install qutebrowser
-  block:
-    - name: Install qutebrowser
-      community.general.pacman:
-        name: qutebrowser
-    - name: Install tldextract
-      aur:
-        # Dependency for password managers (bitwarden)
-        name: python-tldextract
+# - name: Install qutebrowser
+#   block:
+#     - name: Install qutebrowser
+#       community.general.pacman:
+#         name: qutebrowser
+#     - name: Install tldextract
+#       aur:
+#         # Dependency for password managers (bitwarden)
+#         name: python-tldextract
+#         user: "{{ user.name }}"
 
-- name: Install pdf application
-  community.general.pacman:
-    name:
-      # Zathura is a highly customizable and functional document viewer.
-      - zathura
-      # PDF support for Zathura
-      - zathura-pdf-mupdf
+- name: Install and configure zathura
+  block:
+  - name: Install zathura as pdf reader
+    become: true
+    community.general.pacman:
+      name:
+        # Zathura is a highly customizable and functional document viewer.
+        - zathura
+        # PDF support for Zathura
+        - zathura-pdf-mupdf
+
+  - name: Set zathura as default pdf reader
+    ansible.builtin.ini_file:
+      section: Default Applications
+      value: org.pwmt.zathura.desktop
+      option: x-scheme-handler/pdf
 
 - name: Install obsidian
+  become: true
   ansible.builtin.package:
     name: obsidian
 
 - name: Install spotify
   aur:
+    user: "{{ user.name }}"
     name:
       - spotify
     # Command-line Spotify client written in Rust
@@ -45,6 +60,7 @@
 - name: Install reference manager
   aur:
     name: zotero-bin
+    user: "{{ user.name }}"
 
 - name: Message concerning zotero
   ansible.builtin.debug:
@@ -53,6 +69,7 @@
 - name: Install LaTeX distribution and dependencies
   block:
     - name: Install TexLive
+      become: true
       community.general.pacman:
         name:
           # A modernized, complete, self-contained TeX/LaTeX engine,
@@ -66,4 +83,6 @@
       # Pretty-Print LaTeX: A tool to reformat the output of latex
       # and friends into readable messages.
       # > Used by ~/.config/vim/settings/plugins/vimtex.vim
-      aur: pplatex-git
+      aur: 
+        name: pplatex-git
+        user: "{{ user.name }}"

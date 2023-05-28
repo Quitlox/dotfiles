@@ -1,0 +1,29 @@
+---
+- name: Playbook for my cloud server on Hetzner
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  roles:
+    - name: Configure data partition
+      block:
+        - name: Add group for data
+          ansible.builtin.group:
+            name: data
+            system: true
+        - name: Add user to data group
+          ansible.builtin.user:
+            name: "{{ user.name }}"
+            groups:
+              - data
+            append: true
+        - name: Change group of /mnt/data to data
+          ansible.builtin.file:
+            name: /mnt/data
+            group: data
+            recurse: true
+            attributes: g+s
+
+# Example of mounting remote file system
+# root@162.55.47.225:/mnt/data /mnt/data fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/home/quitlox/.ssh/key_hetzner,allow_other,default_permissions,uid=1000,gid=1000,entry_timeout=1800,attr_timeout=1800,reconnect 0 0
+# _netdev => wait for network
+# allow_other => allow other users to use the filesystem (other than root)

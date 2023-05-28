@@ -1,23 +1,24 @@
 ---
-- name: Add VSCode repository
-  ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main"
-    state: present
-    filename: vscode
-    key: "https://packages.microsoft.com/keys/microsoft.asc"
-  when: ansible_facts['os_family'] == "Debian"
+- name: Install and Configure VSCode for Debian, Redhat, SUSE
+  ansible.builtin.include_role:
+    name: library/gantsign.visual-studio-code
+  vars:
+    visual_studio_code_extensions: "{{ vscode_extensions }}"
+  when: ansible_facts['os_family'] != "Archlinux"
 
 - name: Install VSCode
-  ansible.builtin.apt:
-    name: code
-    state: present
-    update_cache: true
+  aur:
+    name: visual-studio-code-bin
+    user: "{{ user.name }}"
+  become: true
+  when: ansible_facts['os_family'] == "Archlinux"
 
 - name: Install VSCode extensions
   ansible.builtin.command:
     cmd: "code --install-extension {{ item }} --force"
   loop: "{{ vscode_extensions }}"
-  become_user: "{{ ansible_user }}"
+  become_user: "{{ user.name }}"
   environment:
     DISPLAY: ":0"
+  when: ansible_facts['os_family'] == "Archlinux"
 

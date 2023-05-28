@@ -8,6 +8,7 @@
   ansible.builtin.shell: "du -m /swapfile | cut -f1"
   register: current_swap_size
   when: swapfile_stat.stat.exists
+  check_mode: false
 
 - name: Deactivate existing swap file if needed
   ansible.builtin.command: swapoff /swapfile
@@ -43,7 +44,7 @@
   ansible.builtin.lineinfile:
     path: /etc/fstab
     regexp: '^/swapfile\s+'
-    line: '/swapfile none swap sw 0 0'
+    line: '/swapfile none swap defaults 0 0'
     state: present
-  when: swap_size_mb != 0
+  when: system.swap_size_mb != 0
 

@@ -1,27 +1,36 @@
 ---
+- name: Create XDG Home directories
+  ansible.builtin.file:
+    path: /home/{{ user.name }}/{{ item }}
+    state: directory
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+  with_items:
+    - .local/src
+    - .local/bin
+
 - name: Install 7zip
+  become: true
   community.general.pacman:
     name: p7zip
   when: ansible_facts['os_family'] == "Archlinux"
 
 - name: Install 7zip
+  become: true
   ansible.builtin.apt:
     name: p7zip-full
   when: ansible_facts['os_family'] == "Debian"
 
-- name: Install age
-  ansible.builtin.package:
-    name: age
-
 - name: Install bitwarden-cli
+  become: true
   community.general.pacman:
     name: bitwarden-cli
 
 - name: Download bitwarden-cli
   ansible.builtin.get_url:
     url: https://vault.bitwarden.com/download/?app=cli&platform=linux
-    owner: { { user.name } }
-    group: { { user.name } }
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
     dest: /tmp/bw.zip
   when: ansible_facts['os_family'] != "Archlinux"
 
@@ -29,20 +38,28 @@
   ansible.builtin.unarchive:
     src: /tmp/bw.zip
     dest: /home/{{ user.name }}/.local/bin/
-    owner: { { user.name } }
-    group: { { user.name } }
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
     mode: 0755
   when: ansible_facts['os_family'] != "Archlinux"
 
-- name: Create XDG Home directories
-  ansible.builtin.file:
-    path: /home/{{ user.name }}/{{ item }}
-    state: directory
-    owner: { { user.name } }
-    group: { { user.name } }
-  with_items:
-    - .local/src
-    - .local/bin
+- name: Check if logged into bitwarden
+  ansible.builtin.command: bw login --apikey --check
+  register: bitwarden_status
+  environment:
+    BW_CLIENTID: "{{ bitwarden.client_id }}"
+    BW_CLIENTSECRET: "{{ bitwarden.client_id }}"
+- name: Login to bitwarden
+  ansible.builtin.command: bw login --apikey
+  environment:
+    BW_CLIENTID: "{{ bitwarden.client_id }}"
+    BW_CLIENTSECRET: "{{ bitwarden.client_id }}"
+  when: bitwarden_status.rc != 0
+
+- name: Unlock bitwarden vault
+  ansible.builtin.command: bw unlock {{ bitwarden.password }} --raw
+  become_user: "{{ user.name }}"
+  register: bitwarden_session
 
 - name: Install chezmoi
   ansible.builtin.package:
@@ -53,16 +70,26 @@
     path: /home/{{ user.name }}/.local/share/chezmoi/.chezmoi.toml.tmpl
   register: dotfiles_present
 
-- name: Configure chezmoi
+- name: Install and Configure chezmoi
   block:
     - name: Initialize chezmoi
       ansible.builtin.command: chezmoi init quitlox --ssh
+      become_user: "{{ user.name }}"
 
-    - name: Retrieve the age encryption_key from bitwarden
-      ansible.builtin.set_fact:
-        private_key_content: "{{ lookup('bitwarden', 'chezmoi_encryption_key.txt', itemid='b33b9474-c3ba-4961-abef-ade1010e1597', attachments=true, output='/home/{{ user.name }}/.ssh/.chezmoi_encryption_key.txt') }}"
+    - name: Place the age encryption key
+      ansible.builtin.copy:
+        content: "{{ chezmoi.age_public_key }}"
+        dest: "/home/{{ user.name }}/.local/share/chezmoi/private_dot_ssh/.chezmoi_encryption_key.txt"
+        decrypt: true
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
+        mode: 644
 
-    - name: Apply chezmoi
-      ansible.builtin.command: chezmoi apply
+    - name: Be sure to run `chezmoi apply` if needed
+      debug:
+        msg: Be sure to run `chezmoi apply` if needed
 
-  when: dotfiles_present.stat.exists and dotfiles_present.stat.isfile
+  environment:
+    BW_SESSION: "{{ bitwarden_session.stdout }}"
+
+  when: dotfiles_present.stat.exists

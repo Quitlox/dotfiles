@@ -13,4 +13,4 @@
 - name: Install yay
   aur:
     name: yay
-    user: {{ user.name }}
+    user: "{{ user.name }}"
