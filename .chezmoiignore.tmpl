@@ -37,7 +37,7 @@ keybindings.json
 !.config/starship.toml
 {{ end }}
 
-{{ if .headless) }}
+{{ if (eq .headless "true") }}
 ** # Default to ignore all (whitelist instead of blacklist)
 
 !.gitconfig
