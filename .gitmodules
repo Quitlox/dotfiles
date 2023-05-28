@@ -1,9 +1,12 @@
-[submodule "private_dot_config/ansible/library/yay"]
-	path = private_dot_config/ansible/library/yay
+[submodule "private_dot_config/exact_ansible/library/yay"]
+	path = private_dot_config/exact_ansible/library/yay
 	url = https://github.com/mnussbaum/ansible-yay.git
-[submodule "private_dot_config/ansible/library/aur"]
-	path = private_dot_config/ansible/library/aur
+[submodule "private_dot_config/exact_ansible/library/aur"]
+	path = private_dot_config/exact_ansible/library/aur
 	url = https://github.com/pigmonkey/ansible-aur.git
-[submodule "private_dot_config/ansible/roles/library/gantsign.visual-studio-code"]
-	path = private_dot_config/ansible/roles/library/gantsign.visual-studio-code
+[submodule "private_dot_config/exact_ansible/roles/library/gantsign.visual-studio-code"]
+	path = private_dot_config/exact_ansible/roles/library/gantsign.visual-studio-code
 	url = https://github.com/gantsign/ansible-role-visual-studio-code
+[submodule "private_dot_config/exact_ansible/roles/library/geerlingguy.docker"]
+	path = private_dot_config/exact_ansible/roles/library/geerlingguy.docker
+	url = https://github.com/geerlingguy/ansible-role-docker
