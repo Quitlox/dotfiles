@@ -9,46 +9,6 @@
 {{-   $email = promptString "E-Mail (git)" }}
 {{- end }}
 
-{{- $environment := "" }}
-{{- if (hasKey . "environment") }}
-{{-   $environment = .environment }}
-{{- else }}
-{{-   $environment = promptString "Environment (headless/local)" }}
-{{- end }}
-
-# Priviliged (whether to install packages)
-{{- $priviliged := "" }}
-{{- if (hasKey . "priviliged") }}
-{{-   $priviliged = .priviliged }}
-{{- else }}
-{{-   $priviliged = promptBool "Do you have sudo priviliges" }}
-{{- end }}
-
-########################################
-### CALCULATED PROPERTIES            ###
-########################################
-
-# Set chassis type (desktop or laptop)
-{{- $chassisType := "desktop" }}
-{{- if (eq $environment "local") }}
-{{- if (eq .chezmoi.os "darwin") }}
-{{-   if contains "MacBook" (output "sysctl" "-n" "hw.model") }}
-{{-     $chassisType = "laptop" }}
-{{-   else }}
-{{-     $chassisType = "desktop" }}
-{{-   end }}
-{{- else if (eq .chezmoi.os "linux") }}
-{{-   if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
-{{-     $chassisType = (output "sh" "-c" "hostnamectl | awk '/Chassis/ { gsub(/ /, \"\", $0); split($0,a,\":\"); print a[2]; }' | tr -d '\\n' ") }}
-{{-   else }}
-	# Apparently hostnamectl on Arch does not always set Chassis?
-{{-     $chassisType = (or ((output "hostnamectl" "--json=short" | mustFromJson).Chassis) ("desktop")) }}
-{{-   end }}
-{{- else if (eq .chezmoi.os "windows") }}
-{{-   $chassisType = (output "powershell.exe" "-noprofile" "-command" "if (Get-WmiObject -Class win32_battery -ComputerName localhost) { echo laptop } else { echo desktop }") }}
-{{- end }}
-{{- end }}
-
 ########################################
 ### DATA                             ###
 ########################################
@@ -57,9 +17,6 @@ encryption = "age"
 
 [data]
     email = {{ $email | quote }}
-    priviliged = {{ $priviliged }}
-    environment = {{ $environment | quote }}
-    chassisType = {{ $chassisType | quote }}
 
 [age]
     identity = {{ joinPath .chezmoi.homeDir ".ssh/.chezmoi_encryption_key.txt" | quote }}

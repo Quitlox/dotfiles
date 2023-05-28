@@ -48,12 +48,6 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 ### XDG_BASE_DIR: fucking conform
 ########################################
 
-{{ if (eq .environment "headless") }}
-# CHEZMOI: Some environment variables have been
-# removed, as they can conflict in
-# remote controlled environments.
-{{- end }}
-
 # NECESSARY
 # export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
@@ -75,13 +69,11 @@ export PKG_CACHE_PATH="$XDG_CACHE_HOME/pkg-cache"
 export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 
-{{- if (not (eq .environment "headless")) }}
 # Python
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/pythonrc"
 export PYTHONHISTFILE="$XDG_DATA_HOME/python_history"
 export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
-{{- end }}
 
 # Rust
 export PATH="$PATH:$HOME/.local/share/cargo/bin"
@@ -113,7 +105,7 @@ export NVM_DIR="$HOME/.local/share/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Java
-{{- if (not (eq .environment "headless")) }}
+{{- if (eq .chezmoi.osRelease.name "Arch Linux") }}
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 # Shouldn't be necessary, but some terminal applications rely on it
 export JAVA_HOME=/usr/lib/jvm/default
