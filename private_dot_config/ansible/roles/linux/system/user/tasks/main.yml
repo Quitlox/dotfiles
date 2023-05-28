@@ -1,4 +1,30 @@
 ---
+- name: Install sudo package
+  ansible.builtin.package:
+    name: sudo
+  become: true
+
+- name: Add wheel group
+  ansible.builtin.group:
+    name: wheel
+    system: true
+  become: true
+
+- name: Configure wheel group
+  ansible.builtin.lineinfile:
+    dest: /etc/sudoers
+    state: present
+    line: "%wheel ALL=(ALL) NOPASSWD:ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+  become: true
+
+- name: Add default user to wheel group
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    groups: wheel
+    append: true
+  become: true
+
 - name: Create default user
   ansible.builtin.user:
     name: "{{ user.name }}"
@@ -10,4 +36,6 @@
 
     create_home: true
     update_password: on_create
+  become: true
   when: user.name is defined
+

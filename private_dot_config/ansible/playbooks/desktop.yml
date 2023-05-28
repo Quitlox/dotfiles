@@ -12,7 +12,6 @@
 
   roles:
     - linux/system/user
-    - linux/system/sudo
 
     - arch/system/beep
     - arch/system/firmware
@@ -52,3 +51,4 @@
     - linux/system/ssh
     - linux/system/time
     # - linux/system/virtualbox
+

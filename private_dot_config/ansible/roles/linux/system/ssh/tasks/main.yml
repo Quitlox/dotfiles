@@ -1,8 +1,16 @@
 ---
-- name: Install OpenSSH
-  ansible.builtin.package:
+- name: Install SSH
+  community.general.pacman:
     name: openssh
   become: true
+  when: ansible_facts['os_family'] == "Archlinux"
+
+- name: Install SSH
+  ansible.builtin.apt:
+    name: ssh
+  become: true
+  when: ansible_facts['os_family'] == "Debian"
+
 
 - name: Install sshfs
   ansible.builtin.package:
