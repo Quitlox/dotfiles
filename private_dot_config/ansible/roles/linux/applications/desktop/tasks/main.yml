@@ -36,9 +36,12 @@
 
   - name: Set zathura as default pdf reader
     ansible.builtin.ini_file:
+      path: "/home/{{ user.name }}/.config/mimeapps.list"
       section: Default Applications
       value: org.pwmt.zathura.desktop
       option: x-scheme-handler/pdf
+      owner: "{{ user.name }}"
+      group: "{{ user.name }}"
 
 - name: Install obsidian
   become: true

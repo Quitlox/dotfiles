@@ -10,8 +10,6 @@
       - fzf
       - tree
       - unzip
-      # Used by zinit
-      - ruby-rubygems
       - make
 
 - name: Install command-line programs
@@ -21,6 +19,8 @@
       - fd
       - btop
       - ascii
+      # Used by zinit
+      - rubygems
       # GitHub's official command line tool
       - github-cli
       # Alternative for default 'diff'
@@ -37,6 +37,8 @@
       - fd-find
       - vim
       - ascii
+      # Used by zinit
+      - ruby-rubygems
       # Alternative for default 'diff'
       # > Used by  ~/.config/zsh/zsh-config alias for 'diff'
       - colordiff

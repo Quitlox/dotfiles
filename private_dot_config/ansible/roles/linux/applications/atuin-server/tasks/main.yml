@@ -1,0 +1,71 @@
+---
+
+- name: Create atuin system user
+  ansible.builtin.user:
+    name: atuin
+    system: true
+    create_home: false
+    groups:
+      - docker
+    append: true
+
+- name: Create atuin-server folder
+  ansible.builtin.file:
+    state: directory
+    path: /var/www/atuin-server
+    owner: atuin
+    group: atuin
+
+- name: Create configuration directory
+  ansible.builtin.file:
+    path: /var/www/atuin-server/config
+    state: directory
+    owner: atuin
+    group: atuin
+
+- name: Place atuin configuration file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/server.toml"
+    dest: /var/www/atuin-server/config/server.toml
+    owner: atuin
+    group: atuin
+
+- name: Place atuin env file
+  ansible.builtin.copy:
+    dest: /var/www/atuin-server/.env
+    content: |
+      ATUIN_DB_USERNAME="{{ atuin.user }}"
+      ATUIN_DB_PASSWORD="{{ atuin.password }}"
+      ATUIN_DB_URI="postgres://{{ atuin.user }}:{{ atuin.password }}@hostname/database"
+    owner: atuin
+    group: atuin
+
+- name: Place docker-compose file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/docker-compose.yml"
+    dest: /var/www/atuin-server/docker-compose.yml
+    owner: atuin
+    group: atuin
+
+- name: Place atuin-server.service file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/atuin-server.service"
+    dest: /etc/systemd/system/atuin-server.service
+    owner: root
+    group: root
+
+- name: Set port forwarding
+  command: sysctl net.ipv4.conf.all.forwarding=1
+  become: true
+
+- name: Configure port forwarding
+  command: iptables -P FORWARD ACCEPT
+  become: true
+
+- name: Enable and start atuin-server.service
+  ansible.builtin.systemd:
+    name: atuin-server.service
+    enabled: true
+    state: restarted
+    daemon_reload: true
+  become: true

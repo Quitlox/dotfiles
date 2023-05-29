@@ -7,15 +7,17 @@
     - ../vault.yml
 
   roles:
-    - linux/system/user
-
-    - linux/applications/cmd
-    - linux/applications/docker
-    - linux/applications/dotfiles
-
-    - linux/system/locale
-    - linux/system/ssh
-    - linux/system/time
+    # - linux/system/user
+    #
+    # - linux/system/locale
+    # - linux/system/ssh
+    # - linux/system/time
+    #
+    # - linux/applications/cmd
+    # - linux/applications/docker
+    # - linux/applications/dotfiles
+    #
+    - linux/applications/atuin-server
 
 # Example of mounting remote file system
 # root@162.55.47.225:/mnt/data /mnt/data fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/home/quitlox/.ssh/key_hetzner,allow_other,default_permissions,uid=1000,gid=1000,entry_timeout=1800,attr_timeout=1800,reconnect 0 0

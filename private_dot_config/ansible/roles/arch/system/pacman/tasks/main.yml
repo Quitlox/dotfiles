@@ -6,6 +6,13 @@
   register: task_result
   become: true
 
+- name: Setup cache cleaning
+  ansible.builtin.systemd:
+    name: paccache.timer
+    enabled: true
+    state: started
+  become: true
+
 - name: Enable Multilib
   community.general.ini_file:
     path: /etc/pacman.conf

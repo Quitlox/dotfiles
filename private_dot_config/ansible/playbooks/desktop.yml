@@ -11,6 +11,9 @@
     - include: ../handlers/main.yml
 
   roles:
+
+    - linux/applications/atuin-client
+
     - linux/system/user
 
     - arch/system/beep
