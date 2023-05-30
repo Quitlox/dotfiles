@@ -10,7 +10,7 @@
 {{- end }}
 
 {{- $headless := "" }}
-{{- if (hasKey . "environment") }}
+{{- if (hasKey . "headless") }}
 {{-   $headless = .headless }}
 {{- else }}
 {{-   $headless = promptBool "headless" }}
