@@ -20,6 +20,8 @@ FIX:
     - buffer_manager.nvim
     	- interop with bufferline.nvim (order of buffer differs)
 
+    - brackets don't auto align properly in lua
+
 COULD:
     - Switch over from nvm-cmp to coq
 

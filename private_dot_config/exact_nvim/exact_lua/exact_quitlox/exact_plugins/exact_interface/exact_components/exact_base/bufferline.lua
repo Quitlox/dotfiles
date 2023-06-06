@@ -70,14 +70,14 @@ return {
                     separator_style = "slant",
                     buffer_close_icon = "",
                     close_icon = "",
-                    indicator = {
-                        style = "underline",
-                    },
+                    indicator = { style = "underline" },
                     left_trunc_marker = "",
                     modified_icon = "●",
                     right_trunc_marker = "",
+
                     show_close_icon = false,
                     show_tab_indicators = true,
+
                     custom_areas = {
                         right = function()
                             local result = {}

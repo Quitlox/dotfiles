@@ -1,6 +1,6 @@
 local function dismissNotifications() require("notify").dismiss({ pending = true, silent = true }) end
 
-function deleteCacheFile(path)
+local function deleteCacheFile(path)
     local cache_dir = vim.fn.stdpath("cache")
     local file_path = cache_dir .. "/" .. path
 
@@ -14,37 +14,54 @@ function deleteCacheFile(path)
     end
 end
 
+--  +----------------------------------------------------------+
+--  | Commands                                                 |
+--  +----------------------------------------------------------+
+
+local commands = {
+    {
+        ":DismissNotifications",
+        dismissNotifications,
+        description = "Dismiss all notifications",
+    },
+    {
+        ":Gitignore",
+        description = "Create .gitignore file",
+    },
+}
+
+--  +----------------------------------------------------------+
+--  | Functions                                                |
+--  +----------------------------------------------------------+
+
+local functions = {
+    -- Log Files
+    { function() deleteCacheFile("null-ls.log") end, description = "Clear NullLS Log" },
+    { function() deleteCacheFile("dap.log") end, description = "Clear DAP Log" },
+    -- Telescope + Vim
+    { function() require("telescope.builtin").filetypes() end, description = "List Filetypes" },
+    { function() require("telescope.builtin").registers() end, description = "List Registers" },
+    { function() require("telescope.builtin").vim_options() end, description = "List Options" },
+    { function() require("telescope.builtin").autocommands() end, description = "List Autocommands" },
+    { function() require("telescope.builtin").highlights() end, description = "List Highlights" },
+    { function() require("telescope.builtin").commands() end, description = "List Commands" },
+    { function() require("telescope.builtin").undo() end, description = "List Undo" },
+}
+
 return {
     {
         "mrjones2014/legendary.nvim",
-        version = "",
+        -- version = "",
+        -- TODO: Re-enable when https://github.com/mrjones2014/legendary.nvim/pull/373 released
         dependencies = { "kkharji/sqlite.lua" },
         config = function()
             require("legendary").setup({
-                funcs = {
-                    {
-                        function() deleteCacheFile("null-ls.log") end,
-                        description = "Delete the NullLS Log file",
-                    },
-                    {
-                        function() deleteCacheFile("dap.log") end,
-                        description = "Delete the DAP Log file",
-                    },
-                },
-                commands = {
-                    {
-                        ":DismissNotifications",
-                        dismissNotifications,
-                        description = "Dismiss all notifications",
-                    },
-                    {
-                        ":Gitignore",
-                        description = "Create .gitignore file",
-                    },
-                },
+                funcs = functions,
+                commands = commands,
                 which_key = {
                     auto_register = true,
                     do_binding = false,
+                    use_groups = false,
                 },
             })
 

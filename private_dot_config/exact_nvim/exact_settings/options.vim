@@ -104,6 +104,7 @@ set novisualbell
 set formatoptions+=1 " Don't break lines after a one-letter word
 set timeoutlen=800
 set history=1000      " Sets how many lines of history VIM has to remember
+set confirm
 
 let g:loaded_python_provider = 0
 let g:python3_host_prog = '/usr/bin/python3'
