@@ -9,9 +9,31 @@ return {
     lazy = true,
     init = function()
         require("which-key").register({
-            ["<leader>"] = {
-                ["d"] = { '<cmd>lua require("oil").open_float()<cr>', "Directory" },
-            },
+            ["-"] = { '<cmd>lua require("oil").open_float()<cr>', "Directory" },
+        })
+
+        require("legendary").command({
+            ":Oil",
+            function()
+                require("oil").open_float(vim.fn.getcwd())
+            end,
+            description = "Oil: Open"
+        })
+
+        require("legendary").command({
+            ":OilRoot",
+            function()
+                require("oil").open_float(vim.fn.getcwd())
+            end,
+            description = "Oil: Open in project root"
+        })
+
+        require("legendary").command({
+            ":OilDiscard",
+            function()
+                require("oil").discard_all_changes()
+            end,
+            description = "Oil: Discard changes"
         })
     end,
 }

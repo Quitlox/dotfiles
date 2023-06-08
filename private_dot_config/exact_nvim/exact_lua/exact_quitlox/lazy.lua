@@ -57,7 +57,7 @@ local plugins = {
     -- Dependencies
     ----------------------------------------
     { "nvim-lua/plenary.nvim" },
-    { "kyazdani42/nvim-web-devicons", opts = { default = true }, config = true },
+    { "nvim-tree/nvim-web-devicons", opts = { default = true }, config = true },
     -- Adds missing highlight group
     { "folke/lsp-colors.nvim" },
 

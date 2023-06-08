@@ -25,15 +25,13 @@ return {
         require("telescope").load_extension("notify")
     end,
     init = function()
-        require("which-key").register({
-            v = {
-                name = "Vim",
-                l = {
-                    name = "List",
-                    n = { "<cmd>Telescope notify<cr>", "Vim List Notifications" },
-                },
-            },
-        }, { prefix = "<leader>" })
+        require('legendary').command({
+            ":ListNotifications",
+            function()
+                require('telescope').extensions.notify.notify()
+            end,
+            description = "List Notifications",
+        })
 
     end,
 }

@@ -15,7 +15,7 @@ return {
             toggle_fold = { "zA", "za", "o" },
         },
     },
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = true,
     init = function()
         require("which-key").register({

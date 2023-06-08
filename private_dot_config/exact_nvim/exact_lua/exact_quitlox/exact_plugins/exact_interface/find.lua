@@ -54,7 +54,6 @@ return {
                 o = {
                     name = "Open",
                     f = { "<cmd>Telescope smart_open cwd_only=true theme=dropdown<cr>", "Open File" },
-                    b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
                 },
             }, { prefix = "<leader>" })
 

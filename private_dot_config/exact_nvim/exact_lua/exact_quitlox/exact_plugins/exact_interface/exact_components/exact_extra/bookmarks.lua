@@ -1,6 +1,6 @@
 return {
     "crusj/bookmarks.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-tree/nvim-web-devicons" },
     config = function()
         require("bookmarks").setup()
         require("telescope").load_extension("bookmarks")

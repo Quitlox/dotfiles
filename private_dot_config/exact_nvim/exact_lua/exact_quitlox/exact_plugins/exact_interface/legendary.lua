@@ -1,5 +1,6 @@
 local function dismissNotifications() require("notify").dismiss({ pending = true, silent = true }) end
 
+
 local function deleteCacheFile(path)
     local cache_dir = vim.fn.stdpath("cache")
     local file_path = cache_dir .. "/" .. path

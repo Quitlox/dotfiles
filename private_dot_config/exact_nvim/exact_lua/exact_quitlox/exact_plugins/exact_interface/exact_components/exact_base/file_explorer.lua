@@ -15,90 +15,87 @@ local function on_attach(bufnr)
     vim.keymap.set("n", "<M-h>", ":NvimTreeResize -2<CR>", opts("Resize: -2"))
 end
 
-return {
-    {
-        "kyazdani42/nvim-tree.lua",
-        config = function()
-            require("nvim-tree").setup({
-                on_attach = on_attach,
-                disable_netrw = true,
-                hijack_cursor = true,
-                sync_root_with_cwd = true,
+return {}
 
-                tab = {
-                    sync = {
-                        open = true,
-                    },
-                },
-
-                update_focused_file = {
-                    enable = true,
-                    ignore_list = {'COMMITMSG'},
-                },
-
-                diagnostics = {
-                    enable = true,
-                    icons = {
-                        hint = " ",
-                        info = " ",
-                    },
-                },
-
-                renderer = {
-                    group_empty = true,
-                    icons = { webdev_colors = true, git_placement = "after" },
-                    indent_markers = {
-                        enable = false,
-                    },
-                    highlight_opened_files = "all",
-                },
-
-                filters = {
-                    custom = { "*.lock" },
-                },
-
-                live_filter = {
-                    prefix = " ",
-                    always_show_folders = false,
-                },
-            })
-
-            -- Startup behavior
-            -- local function open_nvim_tree() require("nvim-tree.api").tree.open() end
-            --
-            -- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-        end,
-        init = function()
-            require("which-key").register({
-                o = {
-                    -- t = { "<cmd>NvimTreeToggle<cr>", "Open Tree" },
-                    e = { "<cmd>NvimTreeToggle<cr>", "Open Explorer" },
-                },
-                T = {
-                    f = { "<cmd>NvimTreeToggle<cr>", "Toggle File explorer" },
-                    e = { "<cmd>NvimTreeToggle<cr>", "Toggle Explorer" },
-                },
-                f = {
-                    name = "Find",
-                    l = {
-                        function()
-                            local api = require("nvim-tree.api")
-                            api.tree.find_file(vim.api.nvim_buf_get_name(0))
-                            -- Guarantee that if file not found, the tree still opens
-                            api.tree.open()
-                        end,
-                        "Find Location",
-                    },
-                },
-            }, { prefix = "<leader>", nowait = true })
-        end,
-    },
-    {
-        "antosha417/nvim-lsp-file-operations",
-        config = function() require("lsp-file-operations").setup() end,
-        dependencies = {
-            { "nvim-lua/plenary.nvim" },
-            { "kyazdani42/nvim-tree.lua" },
-        },
-    },
-}
+-- return {
+--     {
+--         "kyazdani42/nvim-tree.lua",
+--         config = function()
+--             require("nvim-tree").setup({
+--                 on_attach = on_attach,
+--                 disable_netrw = true,
+--                 hijack_cursor = true,
+--                 sync_root_with_cwd = true,
+--
+--                 tab = {
+--                     sync = {
+--                         open = true,
+--                     },
+--                 },
+--
+--                 update_focused_file = {
+--                     enable = true,
+--                     ignore_list = {'COMMITMSG'},
+--                 },
+--
+--                 diagnostics = {
+--                     enable = true,
+--                     icons = {
+--                         hint = " ",
+--                         info = " ",
+--                     },
+--                 },
+--
+--                 renderer = {
+--                     group_empty = true,
+--                     icons = { webdev_colors = true, git_placement = "after" },
+--                     indent_markers = {
+--                         enable = false,
+--                     },
+--                     highlight_opened_files = "all",
+--                 },
+--
+--                 filters = {
+--                     custom = { "*.lock" },
+--                 },
+--
+--                 live_filter = {
+--                     prefix = " ",
+--                     always_show_folders = false,
+--                 },
+--             })
+--
+--             -- Startup behavior
+--             -- local function open_nvim_tree() require("nvim-tree.api").tree.open() end
+--             --
+--             -- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+--         end,
+--         init = function()
+--             require("which-key").register({
+--                 o = {
+--                     e = { "<cmd>NvimTreeToggle<cr>", "Open Explorer" },
+--                 },
+--                 f = {
+--                     name = "Find",
+--                     l = {
+--                         function()
+--                             local api = require("nvim-tree.api")
+--                             api.tree.find_file(vim.api.nvim_buf_get_name(0))
+--                             -- Guarantee that if file not found, the tree still opens
+--                             api.tree.open()
+--                         end,
+--                         "Find Location",
+--                     },
+--                 },
+--             }, { prefix = "<leader>", nowait = true })
+--         end,
+--     },
+--     {
+--         "antosha417/nvim-lsp-file-operations",
+--         config = function() require("lsp-file-operations").setup() end,
+--         dependencies = {
+--             { "nvim-lua/plenary.nvim" },
+--             { "kyazdani42/nvim-tree.lua" },
+--         },
+--     },
+-- }

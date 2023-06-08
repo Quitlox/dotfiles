@@ -9,9 +9,9 @@ local nvim_tree_enabled = false
 -- Logic
 local function on_open()
     -- Remember whether the explorer was open
-    nvim_tree_enabled = require("nvim-tree.view").is_visible()
+    -- TODO: Replace with NeoTree
     -- Close the explorer
-    require("nvim-tree.api").tree.close()
+    -- TODO: Replace with NeoTree
     -- Detach gitsigns
     require("gitsigns").toggle_signs(false)
     -- Open the DAP UI
@@ -19,7 +19,8 @@ local function on_open()
 end
 
 local function on_close()
-    if nvim_tree_enabled then require("nvim-tree.api").tree.open() end
+    -- Open the explorer
+    -- TODO: Replace with NeoTree
     require("dapui").close()
     require("gitsigns").toggle_signs(true)
 end

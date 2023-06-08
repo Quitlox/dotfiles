@@ -12,7 +12,7 @@ local function restore_hook() end
 
 local function store_hook()
     -- Close NvimTree
-    require("nvim-tree.api").tree.close()
+    -- TODO: Replace with NeoTree
     -- Close DapUI
     require("dapui").close()
     -- Close Neogit

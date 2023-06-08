@@ -13,13 +13,17 @@ return {
         },
     },
     init = function()
-        require("which-key").register({
-            w = {
-                name = "Wrap mode",
-                h = { "<cmd>HardWrapMode<cr>", "Hard wrap" },
-                s = { "<cmd>HardWrapMode<cr>", "Soft wrap" },
-                t = { "<cmd>HardWrapMode<cr>", "Toggle wrap" },
-            },
-        }, { prefix = "<leader>T" })
+        require('legendary').command({
+            ":HardWrapMode",
+            description = "Toggle hard wrap mode",
+        })
+        require('legendary').command({
+            ":SoftWrapMode",
+            description = "Toggle soft wrap mode",
+        })
+        require('legendary').command({
+            ":ToggleWrapMode",
+            description = "Toggle wrap mode",
+        })
     end,
 }
