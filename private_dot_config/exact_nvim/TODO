@@ -1,8 +1,8 @@
 FIX:
     - Center cursor on "Go definition", etc.
-    - telescope should respect excludes in gitignore (!)
     - vie (select inside environment) from vimtex should not select first line of env
         https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321 ? 
+
     - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
     - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
 
@@ -17,25 +17,25 @@ FIX:
 	- don't open quickfix
     - neotest python
 	- should show all variants of a test (all combinations of fixtures, see vscode)
-    - buffer_manager.nvim
-    	- interop with bufferline.nvim (order of buffer differs)
-
     - brackets don't auto align properly in lua
+    - diffview and floats should be closeable with q
+
+    - edgy.nvim
+    	- lualine overwrite window bar
+	- how to close all windows
+
+    - replace which-key.register with default nvim api
 
 COULD:
     - Switch over from nvm-cmp to coq
 
 BLOCKED:
-    - autopairs does not work for rust angular brackets
-    https://github.com/windwp/nvim-autopairs/blob/master/lua/nvim-autopairs/rules/basic.lua
     - ]f in python should not go to decorator
     - python identation nvim-autopairs
     	- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
 	- https://www.reddit.com/r/neovim/comments/13d3hy5/different_autopair_indentation_on_cr_in_python/
 
 OPTIONAL PLUGINS: (might come in handy later)
-    - Bookmarking
-    	harpoon.nvim / grapple.nvim
     - Macros
     	neocomposer.nvim: simplifies macros enchaning productivity with harmony
     - Command
@@ -45,6 +45,11 @@ OPTIONAL PLUGINS: (might come in handy later)
     	overseer.nvim
     - Editing
 	substitute.nvim
+
+    - Telescope:
+    	- telescope-docker
+	- session-lens
+	- telescope-repo
 
 Contribute (Existing projects):
     - Neogit has no explanation whatsover on how to use rebase
@@ -63,3 +68,7 @@ Contribute (My Ideas):
         - Let user designed where NvimTree, symbol outline etc goes
         - Let user decide when these windows close, their precedence
         - Let user decide when visible (min widht)
+
+
+Notes:
+    - git diffview has a great example of how to do a help menu through g?

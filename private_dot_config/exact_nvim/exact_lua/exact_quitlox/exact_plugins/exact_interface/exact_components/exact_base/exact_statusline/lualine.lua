@@ -9,6 +9,8 @@ local winbar_disabled_filetypes = {
     "dapui_stacks",
     "dapui_watches",
     "dapui_console",
+    "edgy",
+    "neo-tree",
 }
 
 ----------------------------------------
@@ -107,7 +109,7 @@ lualine.setup({
 
         disabled_filetypes = {
             -- statusline = { "NvimTree" },
-            winbar = winbar_disabled_filetypes,
+            winbar = {"neo-tree", "NvimTree", "dap-repl", "dapui_scopes", "dapui_breakpoints", "dapui_stacks", "dapui_watches", "dapui_console"},
         },
         always_divide_middle = true, -- default
         globalstatus = true,
@@ -129,22 +131,22 @@ lualine.setup({
         lualine_z = {},
     },
 
-    winbar = {
-        lualine_a = {},
-        lualine_b = { breadcrumbs(true), "toggleterm" },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = { filename },
-        lualine_z = {},
-    },
-    inactive_winbar = {
-        lualine_a = {},
-        lualine_b = { breadcrumbs(false), "toggleterm" },
-        lualine_c = {},
-        lualine_x = { filename },
-        lualine_y = {},
-        lualine_z = {},
-    },
+    -- winbar = {
+    --     lualine_a = {},
+    --     lualine_b = { breadcrumbs(true), "toggleterm" },
+    --     lualine_c = {},
+    --     lualine_x = {},
+    --     lualine_y = { filename },
+    --     lualine_z = {},
+    -- },
+    -- inactive_winbar = {
+    --     lualine_a = {},
+    --     lualine_b = { breadcrumbs(false), "toggleterm" },
+    --     lualine_c = {},
+    --     lualine_x = { filename },
+    --     lualine_y = {},
+    --     lualine_z = {},
+    -- },
 
     extensions = { "man", "nvim-dap-ui", "nvim-tree", "toggleterm" },
 })

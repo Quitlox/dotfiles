@@ -13,7 +13,7 @@ return {
             "nvim-lua/plenary.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
-        cmd = "Telescope",
+        lazy = false,
         config = function()
             require("telescope").setup({
                 defaults = {
@@ -43,17 +43,19 @@ return {
             require("which-key").register({
                 f = {
                     name = "Find",
-                    a = { "<cmd>Telescope live_grep theme=dropdown<cr>", "Find All" },
-                    b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
-                    d = { "<cmd>Telescope diagnostics<cr>", "Find Diagnostics" },
-                    -- t = { "<cmd>Telescope tags<cr>", "Find Tags" },
+                    a = { "<cmd>lua require('telescope.builtin').live_grep({ theme = 'dropdown' })<cr>", "Find All" },
+                    b = { "<cmd>lua require('telescope.builtin').buffers({ theme = 'dropdown' })<cr>", "Find Buffer" },
+                    d = {
+                        "<cmd>lua require('telescope.builtin').diagnostics({ theme='dropdown' })<cr>",
+                        "Find Diagnostics",
+                    },
                     n = { "<cmd>TodoTelescope<cr>", "Find Notes" },
-                    m = { "<cmd>Telescope man_pages theme=dropdown <cr>", "Find Manpage" },
-                    h = { "<cmd>Telescope help_tags theme=dropdown<cr>", "Find Help" },
+                    m = { "<cmd>lua require('telescope.builtin').man_pages({ theme = 'dropdown' })<cr>", "Find Manpage" },
+                    h = { "<cmd>lua require('telescope.builtin').help_tags({ theme = 'dropdown' })<cr>", "Find Help" },
                 },
                 o = {
                     name = "Open",
-                    f = { "<cmd>Telescope smart_open cwd_only=true theme=dropdown<cr>", "Open File" },
+                    f = { "<cmd>lua require('telescope').extensions.smart_open.smart_open({ theme = 'dropdown', cwd_only=true })<cr>", "Open File" },
                 },
             }, { prefix = "<leader>" })
 
@@ -95,6 +97,13 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
         },
+        lazy = true,
         config = function() require("telescope").load_extension("undo") end,
+        init = function()
+            require("legendary").func({
+                function() require("telescope").extensions.undo.undo() end,
+                description = "View Undo History",
+            })
+        end,
     },
 }

@@ -2,6 +2,20 @@ return {
     "nvim-neotest/neotest",
     version = "",
     dependencies = { "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python" },
+    lazy = true,
+    keys = {
+        "[T",
+        "]T",
+        "[t",
+        "]t",
+        "<localleader>tr",
+        "<localleader>td",
+        "<localleader>tf",
+        "<localleader>tx",
+        "<localleader>ta",
+        "<localleader>to",
+        "<localleader>ts",
+    },
     config = function()
         require("neotest").setup({
             adapters = {

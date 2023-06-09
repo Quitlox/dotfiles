@@ -282,6 +282,7 @@ return {
     {
         "dmmulroy/tsc.nvim",
         lazy = false,
+    dependencies = { "mrjones2014/legendary.nvim" },
         config = true,
         init = function()
             require("legendary").command({

@@ -1,6 +1,7 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
     version = "2.x",
+    lazy = false,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -11,14 +12,10 @@ return {
         vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
         -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-        vim.fn.sign_define("DiagnosticSignError",
-            { text = " ", texthl = "DiagnosticSignError" })
-        vim.fn.sign_define("DiagnosticSignWarn",
-            { text = " ", texthl = "DiagnosticSignWarn" })
-        vim.fn.sign_define("DiagnosticSignInfo",
-            { text = " ", texthl = "DiagnosticSignInfo" })
-        vim.fn.sign_define("DiagnosticSignHint",
-            { text = "", texthl = "DiagnosticSignHint" })
+        vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+        vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+        vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+        vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
         require("neo-tree").setup({
             close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -27,12 +24,12 @@ return {
             enable_git_status = true,
             enable_diagnostics = true,
 
-            open_files_do_not_replace_types = { "terminal", "trouble", "qf", "edgy" },
+            open_files_do_not_replace_types = { "terminal", "trouble", "qf", "edgy", "Neogit" },
             sort_case_insensitive = false, -- used when sorting files and directories in the tree
 
             default_component_configs = {
                 container = {
-                    enable_character_fade = true
+                    enable_character_fade = true,
                 },
                 indent = {
                     indent_size = 2,
@@ -60,17 +57,17 @@ return {
                 git_status = {
                     symbols = {
                         -- Change type
-                        added     = "",  -- or "✚", but this is redundant info if you use git_status_colors on the name
-                        modified  = "",  -- or "", but this is redundant info if you use git_status_colors on the name
-                        deleted   = "✖", -- this can only be used in the git_status source
-                        renamed   = "", -- this can only be used in the git_status source
+                        added = "",    -- or "✚", but this is redundant info if you use git_status_colors on the name
+                        modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+                        deleted = "✖", -- this can only be used in the git_status source
+                        renamed = "", -- this can only be used in the git_status source
                         -- Status type
                         untracked = "",
-                        ignored   = "",
-                        unstaged  = "",
-                        staged    = "",
-                        conflict  = "",
-                    }
+                        ignored = "",
+                        unstaged = "",
+                        staged = "",
+                        conflict = "",
+                    },
                 },
             },
             -- A list of functions, each representing a global custom command
@@ -87,33 +84,42 @@ return {
                 mappings = {
                     ["<space>"] = {
                         "toggle_node",
-                        nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+                        nowait = false,
                     },
+
                     ["<2-LeftMouse>"] = "open",
                     ["<cr>"] = "open",
+                    ["o"] = "open",
+
                     ["<esc>"] = "revert_preview",
                     ["P"] = { "toggle_preview", config = { use_float = true } },
+
                     ["l"] = "focus_preview",
-                    ["S"] = "open_split",
-                    ["s"] = "open_vsplit",
-                    -- ["S"] = "split_with_window_picker",
-                    -- ["s"] = "vsplit_with_window_picker",
+                    ["v"] = "open_split",
+                    ["b"] = "open_vsplit",
+                    -- ["v"] = "split_with_window_picker",
+                    -- ["b"] = "vsplit_with_window_picker",
+
                     ["t"] = "open_tabnew",
                     -- ["<cr>"] = "open_drop",
                     -- ["t"] = "open_tab_drop",
+
                     ["w"] = "open_with_window_picker",
                     --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
+
                     ["C"] = "close_node",
                     -- ['C'] = 'close_all_subnodes',
+
                     ["z"] = "close_all_nodes",
                     --["Z"] = "expand_all_nodes",
+
                     ["a"] = {
                         "add",
                         -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
                         -- some commands may take optional config options, see `:h neo-tree-mappings` for details
                         config = {
-                            show_path = "none" -- "none", "relative", "absolute"
-                        }
+                            show_path = "none", -- "none", "relative", "absolute"
+                        },
                     },
                     ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
                     ["d"] = "delete",
@@ -121,20 +127,16 @@ return {
                     ["y"] = "copy_to_clipboard",
                     ["x"] = "cut_to_clipboard",
                     ["p"] = "paste_from_clipboard",
-                    ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
-                    -- ["c"] = {
-                    --  "copy",
-                    --  config = {
-                    --    show_path = "none" -- "none", "relative", "absolute"
-                    --  }
-                    --}
-                    ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
+                    ["c"] = "copy",
+                    ["m"] = "move",
                     ["q"] = "close_window",
                     ["R"] = "refresh",
-                    ["?"] = "show_help",
+
                     ["<"] = "prev_source",
                     [">"] = "next_source",
-                }
+
+                    ["g?"] = "show_help",
+                },
             },
             nesting_rules = {},
 
@@ -190,7 +192,7 @@ return {
                     },
                 },
 
-                commands = {} -- Add a custom command or override a global one using the same function name
+                commands = {}, -- Add a custom command or override a global one using the same function name
             },
             buffers = {
                 follow_current_file = true, -- This will find and focus the file in the active buffer every
@@ -202,36 +204,56 @@ return {
                         ["bd"] = "buffer_delete",
                         ["<bs>"] = "navigate_up",
                         ["."] = "set_root",
-                    }
+                    },
                 },
             },
             git_status = {
                 window = {
                     position = "float",
                     mappings = {
-                        ["A"]  = "git_add_all",
+                        ["A"] = "git_add_all",
                         ["gu"] = "git_unstage_file",
                         ["ga"] = "git_add_file",
                         ["gr"] = "git_revert_file",
                         ["gc"] = "git_commit",
                         ["gp"] = "git_push",
                         ["gg"] = "git_commit_and_push",
-                    }
-                }
-            }
+                    },
+                },
+            },
+
+            source_selector = {
+                winbar = true,
+                statusline = false,
+                {
+                    source = "filesystem",
+                    display_name = "  Files ",
+                },
+                {
+                    source = "buffers",
+                    display_name = "  Buffers ",
+                },
+                {
+                    source = "git_status",
+                    display_name = "  Git ",
+                },
+                {
+                    source = "document_symbols",
+                    display_name = "  Outline ",
+                },
+            },
         })
 
         -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-        require('which-key').register({
+        require("which-key").register({
             ["<leader>"] = {
                 f = {
                     l = { "<cmd>Neotree source=filesystem reveal=true<cr>", "Find file" },
                 },
                 o = {
                     e = { "<cmd>Neotree source=filesystem reveal=false toggle=true<cr>", "Open Explorer" },
-                }
-            }
-
+                },
+            },
         })
     end,
 }

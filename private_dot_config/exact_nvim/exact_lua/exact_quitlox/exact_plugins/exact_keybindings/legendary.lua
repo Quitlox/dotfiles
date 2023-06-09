@@ -57,8 +57,8 @@ return {
         dependencies = { "kkharji/sqlite.lua" },
         config = function()
             require("legendary").setup({
-                funcs = functions,
-                commands = commands,
+                -- funcs = functions,
+                -- commands = commands,
                 which_key = {
                     auto_register = true,
                     do_binding = false,
@@ -72,7 +72,7 @@ return {
             }, { prefix = "<leader>v" })
         end,
         extensions = {
-            nvim_tree = true,
+            nvim_tree = false,
             smart_splits = true,
             diffview = true,
         },

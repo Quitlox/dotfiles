@@ -10,11 +10,9 @@ return {
         "IconPickerYank",
     },
     init = function()
-        require("which-key").register({
-            l = {
-                name = "List",
-                i = { "<cmd>IconPickerNormal alt_font symbols nerd_font emoji<cr>", "Icon Picker" },
-            },
-        }, { prefix = "<leader>" })
+        require("legendary").command({
+            ":IconPickerNormal alt_font symbols nerd_font emoji",
+            description = "Open Icon Picker",
+        })
     end,
 }

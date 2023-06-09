@@ -13,17 +13,19 @@ return {
         },
     },
     init = function()
-        require('legendary').command({
-            ":HardWrapMode",
-            description = "Toggle hard wrap mode",
-        })
-        require('legendary').command({
-            ":SoftWrapMode",
-            description = "Toggle soft wrap mode",
-        })
-        require('legendary').command({
-            ":ToggleWrapMode",
-            description = "Toggle wrap mode",
+        require("legendary").commands({
+            {
+                ":HardWrapMode",
+                description = "Toggle hard wrap mode",
+            },
+            {
+                ":SoftWrapMode",
+                description = "Toggle soft wrap mode",
+            },
+            {
+                ":ToggleWrapMode",
+                description = "Toggle wrap mode",
+            },
         })
     end,
 }

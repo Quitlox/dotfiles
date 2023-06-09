@@ -3,28 +3,28 @@ return {
     event = "VeryLazy",
     opts = {
         left = {
-            {
-                title = "Neo-Tree Buffers",
-                ft = "neo-tree",
-                filter = function(buf) return vim.b[buf].neo_tree_source == "buffers" end,
-                pinned = true,
-                open = "Neotree position=top buffers",
-                size = { height = 0.15 },
-            },
+            -- {
+            --     title = "Neo-Tree Buffers",
+            --     ft = "neo-tree",
+            --     filter = function(buf) return vim.b[buf].neo_tree_source == "buffers" end,
+            --     pinned = true,
+            --     open = "Neotree position=top buffers",
+            --     size = { height = 0.2 },
+            -- },
             {
                 title = "Neo-Tree",
                 ft = "neo-tree",
                 filter = function(buf) return vim.b[buf].neo_tree_source == "filesystem" end,
                 -- size = { height = 0.5 },
             },
-            {
-                title = "Neo-Tree Git",
-                ft = "neo-tree",
-                filter = function(buf) return vim.b[buf].neo_tree_source == "git_status" end,
-                pinned = true,
-                open = "Neotree position=right git_status",
-                size = { height = 0.2 },
-            },
+            -- {
+            --     title = "Neo-Tree Git",
+            --     ft = "neo-tree",
+            --     filter = function(buf) return vim.b[buf].neo_tree_source == "git_status" end,
+            --     pinned = true,
+            --     open = "Neotree position=right git_status",
+            --     size = { height = 0.2 },
+            -- },
         },
         -- Sidebar Right
         right = {
@@ -37,21 +37,22 @@ return {
             },
             {
                 ft = "neotest-summary",
-            }
+            },
         },
         -- Sidebar Bottom
         bottom = {
             -- Terminal
             {
                 ft = "toggleterm",
-                size = { height = 0.4 },
                 -- exclude floating windows
                 filter = function(buf, win) return vim.api.nvim_win_get_config(win).relative == "" end,
             },
+            -- Git
+            { ft = "NeogitStatus" },
             -- Diagnostics
-            "Trouble",
+            { ft = "Trouble" },
             -- Quickfix
-            { ft = "qf",            title = "QuickFix" },
+            { ft = "qf",          title = "QuickFix" },
             -- Help
             {
                 ft = "help",
@@ -61,6 +62,17 @@ return {
             { ft = "spectre_panel", size = { height = 0.4 } },
         },
 
+        options = {
+            bottom = { size = 0.4 },
+        },
+
+        wo = {
+            winbar = true,
+        },
+
         fix_win_height = vim.fn.has("nvim-0.10.0") == 0,
     },
+    config = function (opts)
+        require('edgy').setup(opts)
+    end
 }

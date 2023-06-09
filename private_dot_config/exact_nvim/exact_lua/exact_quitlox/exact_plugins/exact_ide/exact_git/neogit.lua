@@ -9,30 +9,21 @@ return {
     },
     cmd = {
         "Neogit",
-        "NeogitStatus",
-        "NeogitLog",
-        "NeogitCommit",
-        "NeogitBlame",
-        "NeogitPush",
-        "NeogitPull",
-        "NeogitFetch",
-        "NeogitCheckout",
-        "NeogitBranch",
-        "NeogitStash",
-        "NeogitReset",
-        "NeogitDiscard",
-        "NeogitMerge",
-        "NeogitRebase",
-        "NeogitCherryPick",
-        "NeogitRemote",
-        "NeogitGrep",
-        "NeogitHelp",
     },
     init = function()
         require("which-key").register({
-            s = { "<cmd>Neogit<cr>", "Git Status" },
-            -- Misc Telescope stuff
-            b = { "<cmd>Telescope git_branches<cr>", "Open Git Branches" },
-        }, { prefix = "<leader>g" })
+            g = { "<cmd>Neogit<cr>", "Git Status" },
+        }, { prefix = "<leader>o" })
+
+        require("legendary").commands({
+            {
+                ":Neogit",
+                description = "Open Neogit",
+            },
+            {
+                "<cmd>Telescope git_branches<cr>",
+                description = "View Git Branches",
+            },
+        })
     end,
 }

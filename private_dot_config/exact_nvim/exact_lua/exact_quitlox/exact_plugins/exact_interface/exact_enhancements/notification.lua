@@ -21,15 +21,11 @@ return {
         -- Set up as default notification handler
         vim.notify = notify
 
-        -- Install telescope extension
-        require("telescope").load_extension("notify")
     end,
     init = function()
         require('legendary').command({
             ":ListNotifications",
-            function()
-                require('telescope').extensions.notify.notify()
-            end,
+            "<cmd>lua require('telescope').extensions.notify.notify()<cr>",
             description = "List Notifications",
         })
 

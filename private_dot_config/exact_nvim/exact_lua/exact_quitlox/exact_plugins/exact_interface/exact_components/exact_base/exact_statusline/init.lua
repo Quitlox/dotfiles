@@ -1,6 +1,7 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
         dependencies = {
             -- Module: Breadcrumbs
             "SmiteshP/nvim-navic",
