@@ -6,7 +6,18 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
     },
-    config = function() require("chatgpt").setup() end,
+    config = function()
+        require("chatgpt").setup({
+            popup_input = {
+                submit = "<C-s>",
+            },
+            chat = {
+                keymaps = {
+                    close = "q",
+                },
+            },
+        })
+    end,
     init = function()
         require("legendary").command({
             ":ChatGPT",

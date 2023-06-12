@@ -11,7 +11,7 @@ return {
             presets = {
                 operators = false,
                 motions = false,
-                text_objects = false,
+                text_objects = true,
                 windows = false,
                 nav = false,
                 z = true,

@@ -6,6 +6,26 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
+        {
+            -- only needed if you want to use the commands with "_with_window_picker" suffix
+            "s1n7ax/nvim-window-picker",
+            version = "v1.*",
+            config = function()
+                require("window-picker").setup({
+                    autoselect_one = true,
+                    include_current = false,
+                    filter_rules = {
+                        bo = {
+                            -- if the file type is one of following, the window will be ignored
+                            filetype = { "neo-tree", "neo-tree-popup", "notify" },
+                            -- if the buffer type is one of following, the window will be ignored
+                            buftype = { "terminal", "quickfix" },
+                        },
+                    },
+                    -- other_win_hl_color = "#e35e4f",
+                })
+            end,
+        },
     },
     config = function()
         -- Unless you are still migrating, remove the deprecated commands from v1.x
@@ -149,7 +169,7 @@ return {
                         ".null-ls_*",
                     },
                 },
-                follow_current_file = false,            -- This will find and focus the file in the active buffer every
+                follow_current_file = false, -- This will find and focus the file in the active buffer every
                 -- time the current file is changed while the tree is open.
                 group_empty_dirs = true,
                 hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
@@ -182,7 +202,7 @@ return {
             buffers = {
                 follow_current_file = true, -- This will find and focus the file in the active buffer every
                 -- time the current file is changed while the tree is open.
-                group_empty_dirs = true,    -- when true, empty folders will be grouped together
+                group_empty_dirs = true, -- when true, empty folders will be grouped together
                 show_unloaded = true,
                 window = {
                     mappings = {
@@ -207,24 +227,32 @@ return {
                 },
             },
 
+            sources = {
+                "filesystem",
+                "buffers",
+                "git_status",
+                "document_symbols",
+            },
             source_selector = {
                 winbar = true,
                 statusline = false,
-                {
-                    source = "filesystem",
-                    display_name = "  Files ",
-                },
-                {
-                    source = "buffers",
-                    display_name = "  Buffers ",
-                },
-                {
-                    source = "git_status",
-                    display_name = "  Git ",
-                },
-                {
-                    source = "document_symbols",
-                    display_name = "  Outline ",
+                sources = {
+                    {
+                        source = "filesystem",
+                        display_name = "   Files ",
+                    },
+                    {
+                        source = "buffers",
+                        display_name = "   Buffers ",
+                    },
+                    {
+                        source = "git_status",
+                        display_name = "   Git ",
+                    },
+                    {
+                        source = "document_symbols",
+                        display_name = "   Outline ",
+                    },
                 },
             },
         })

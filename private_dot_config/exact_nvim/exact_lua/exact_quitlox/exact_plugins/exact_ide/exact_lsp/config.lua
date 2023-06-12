@@ -66,16 +66,14 @@ local on_attach = function(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then require("nvim-navic").attach(client, bufnr) end
 end
 
--- Completion Capabilities
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Snippet support provided by LuaSnip
-capabilities.textDocument.completion.completionItem.snippetSupport = true
--- Folding capabilities provided by UFO
--- capabilities.textDocument.foldingRange = {
---     dynamicRegistration = false,
---     lineFoldingOnly = true,
--- }
+local make_capabilities = function()
+    -- Completion Capabilities
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    -- Snippet support provided by LuaSnip
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+    return capabilities
+end
 ----------------------------------------------------------------------
 --                              Mason                               --
 ----------------------------------------------------------------------
@@ -109,6 +107,8 @@ return {
 
             local mason_lspconfig = require("mason-lspconfig")
             mason_lspconfig.setup(opts)
+
+            local capabilities = make_capabilities()
 
             -- Automatic setup of all LSPs
             mason_lspconfig.setup_handlers({
@@ -210,10 +210,12 @@ return {
                     lspconfig.yamlls.setup(cfg)
                 end,
                 ["tsserver"] = function()
+                    local typescript_capabilities = make_capabilities()
+                    typescript_capabilities.documentFormattingProvider = false
                     require("typescript").setup({
                         server = {
                             on_attach = on_attach,
-                            capabilities = capabilities,
+                            capabilities = typescript_capabilities,
                         },
                     })
                 end,
@@ -267,22 +269,22 @@ return {
     -- Lazy load language plugins when the corresponding is called
 
     ----- LuaDev -----
-    { "folke/neodev.nvim", version = "", config = false },
+    { "folke/neodev.nvim",                         version = "", config = false },
     ----- Ansible -----
     { "mfussenegger/nvim-ansible" },
     ----- YAML -----
-    { "someone-stole-my-name/yaml-companion.nvim", lazy = true, version = "" },
+    { "someone-stole-my-name/yaml-companion.nvim", lazy = true,  version = "" },
     ----- Json -----
     -- Autocompletion based on remote SchemaStore
-    { "b0o/SchemaStore.nvim", lazy = true },
+    { "b0o/SchemaStore.nvim",                      lazy = true },
     ----- Rust -----
-    { "simrat39/rust-tools.nvim", lazy = true },
+    { "simrat39/rust-tools.nvim",                  lazy = true },
     ----- Typescript -----
-    { "jose-elias-alvarez/typescript.nvim", lazy = false },
+    { "jose-elias-alvarez/typescript.nvim",        lazy = false },
     {
         "dmmulroy/tsc.nvim",
         lazy = false,
-    dependencies = { "mrjones2014/legendary.nvim" },
+        dependencies = { "mrjones2014/legendary.nvim" },
         config = true,
         init = function()
             require("legendary").command({

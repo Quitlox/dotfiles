@@ -21,7 +21,7 @@ return {
                     mappings = {
                         i = {
                             ["<ESC>"] = require("telescope.actions").close,
-                            ["<C-BS>"] = require("telescope.actions").close,
+                            -- ["<C-BS>"] = function() vim.cmd([[normal! bcw]]) end,
                             ["<C-j>"] = require("telescope.actions").move_selection_next,
                             ["<C-k>"] = require("telescope.actions").move_selection_previous,
                             ["<C-v>"] = require("telescope.actions").select_horizontal,
@@ -50,12 +50,18 @@ return {
                         "Find Diagnostics",
                     },
                     n = { "<cmd>TodoTelescope<cr>", "Find Notes" },
-                    m = { "<cmd>lua require('telescope.builtin').man_pages({ theme = 'dropdown' })<cr>", "Find Manpage" },
+                    m = {
+                        "<cmd>lua require('telescope.builtin').man_pages({ theme = 'dropdown' })<cr>",
+                        "Find Manpage",
+                    },
                     h = { "<cmd>lua require('telescope.builtin').help_tags({ theme = 'dropdown' })<cr>", "Find Help" },
                 },
                 o = {
                     name = "Open",
-                    f = { "<cmd>lua require('telescope').extensions.smart_open.smart_open({ theme = 'dropdown', cwd_only=true })<cr>", "Open File" },
+                    f = {
+                        "<cmd>lua require('telescope').extensions.smart_open.smart_open({ theme = 'dropdown', cwd_only=true })<cr>",
+                        "Open File",
+                    },
                 },
             }, { prefix = "<leader>" })
 
@@ -85,6 +91,7 @@ return {
     },
     {
         "danielfalk/smart-open.nvim",
+        branch = "0.2.x",
         dependencies = {
             "kkharji/sqlite.lua",
             "nvim-telescope/telescope.nvim",
