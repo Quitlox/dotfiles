@@ -50,13 +50,16 @@ return {
     -- Keybindings
     init = function()
         -- Signs
-        vim.fn.sign_define("DapBreakpoint", { text = "•", texthl = "ErrorMsg", linehl = "", numhl = "" })
+        local sign = vim.fn.sign_define
+        sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+        sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+        sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
         -- Keybindings
         require("which-key").register({
-            ["<F9>"] = {"<cmd>lua require('dap').continue()<cr>", "Debug Continue"},
-            ["<F8>"] = {"<cmd>lua require('dap').step_over()<cr>", "Debug Step Over"},
-            ["<S-F8>"] = {"<cmd>lua require('dap').step_out()<cr>", "Debug Step Out"},
-            ["<F7>"] = {"<cmd>lua require('dap').step_into()<cr>", "Debug Step Into"},
+            ["<F9>"] = { "<cmd>lua require('dap').continue()<cr>", "Debug Continue" },
+            ["<F8>"] = { "<cmd>lua require('dap').step_over()<cr>", "Debug Step Over" },
+            ["<S-F8>"] = { "<cmd>lua require('dap').step_out()<cr>", "Debug Step Out" },
+            ["<F7>"] = { "<cmd>lua require('dap').step_into()<cr>", "Debug Step Into" },
             ["<localleader>"] = {
                 d = {
                     name = "Debug",

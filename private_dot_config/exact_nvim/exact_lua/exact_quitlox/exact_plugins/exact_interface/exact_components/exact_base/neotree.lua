@@ -54,21 +54,6 @@ return {
                     use_git_status_colors = true,
                     highlight = "NeoTreeFileName",
                 },
-                git_status = {
-                    symbols = {
-                        -- Change type
-                        added = "",    -- or "✚", but this is redundant info if you use git_status_colors on the name
-                        modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-                        deleted = "✖", -- this can only be used in the git_status source
-                        renamed = "", -- this can only be used in the git_status source
-                        -- Status type
-                        untracked = "",
-                        ignored = "",
-                        unstaged = "",
-                        staged = "",
-                        conflict = "",
-                    },
-                },
             },
             -- A list of functions, each representing a global custom command
             -- that will be available in all sources (if not overridden in `opts[source_name].commands`)
@@ -166,7 +151,7 @@ return {
                 },
                 follow_current_file = false,            -- This will find and focus the file in the active buffer every
                 -- time the current file is changed while the tree is open.
-                group_empty_dirs = false,               -- when true, empty folders will be grouped together
+                group_empty_dirs = true,
                 hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
 
                 window = {
@@ -244,7 +229,6 @@ return {
             },
         })
 
-        -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
         require("which-key").register({
             ["<leader>"] = {
                 f = {

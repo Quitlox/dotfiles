@@ -21,7 +21,6 @@ FIX:
     - diffview and floats should be closeable with q
 
     - edgy.nvim
-    	- lualine overwrite window bar
 	- how to close all windows
 
     - replace which-key.register with default nvim api

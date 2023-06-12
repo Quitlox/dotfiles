@@ -62,6 +62,9 @@ return {
             { ft = "spectre_panel", size = { height = 0.4 } },
         },
 
+        animate = {
+            enabled=false,
+        },
         options = {
             bottom = { size = 0.4 },
         },
@@ -74,5 +77,13 @@ return {
     },
     config = function (opts)
         require('edgy').setup(opts)
+
+        require("which-key").register({
+            ["<leader>"] = {
+                o = {
+                    s = { "<cmd>lua require('edgy').toggle()<cr>", "Open Sidebar" },
+                },
+            },
+        })
     end
 }

@@ -2,7 +2,6 @@
 -- SETTINGS
 ----------------------------------------
 local winbar_disabled_filetypes = {
-    "NvimTree",
     "dap-repl",
     "dapui_scopes",
     "dapui_breakpoints",
@@ -18,34 +17,19 @@ local winbar_disabled_filetypes = {
 ----------------------------------------
 -- Require Lualine
 local lualine = require("lualine")
--- Dependency: VSCode Theme
-local colors = require("vscode.colors")
-local vscode_theme = require("lualine.themes.vscode")
 
 ----------------------------------------
 -- Import Modules
 ----------------------------------------
 
-local encoding = require("quitlox.plugins.ui.components.statusline.modules.encoding")
-local fileformat = require("quitlox.plugins.ui.components.statusline.modules.fileformat")
-local filename = require("quitlox.plugins.ui.components.statusline.modules.filename")
-local breadcrumbs = require("quitlox.plugins.ui.components.statusline.modules.breadcrumbs")
-local yaml_schema = require("quitlox.plugins.ui.components.statusline.modules.yaml_schema")
-local toggleterm = require("quitlox.plugins.ui.components.statusline.modules.terminal")
-local diff = require("quitlox.plugins.ui.components.statusline.modules.diff")
-local mixed_indent = require("quitlox.plugins.ui.components.statusline.modules.mixed_indent")
-
-----------------------------------------
--- Adapted Theme VSCode
-----------------------------------------
-
--- Custom Colors for Lualine
-vscode_theme.normal.a.fg = "white"
-vscode_theme.normal.b.fg = "white"
-vscode_theme.normal.c.fg = "white"
--- Custom highlighting for the winbar breadcrumbs
-vscode_theme.inactive.b.bg = colors.vscBack
-vscode_theme.inactive.b.fg = colors.vscCursorLight
+local encoding = require("quitlox.plugins.interface.components.base.statusline.modules.encoding")
+local fileformat = require("quitlox.plugins.interface.components.base.statusline.modules.fileformat")
+local filename = require("quitlox.plugins.interface.components.base.statusline.modules.filename")
+local breadcrumbs = require("quitlox.plugins.interface.components.base.statusline.modules.breadcrumbs")
+local yaml_schema = require("quitlox.plugins.interface.components.base.statusline.modules.yaml_schema")
+local toggleterm = require("quitlox.plugins.interface.components.base.statusline.modules.terminal")
+local diff = require("quitlox.plugins.interface.components.base.statusline.modules.diff")
+local mixed_indent = require("quitlox.plugins.interface.components.base.statusline.modules.mixed_indent")
 
 ----------------------------------------
 -- Modules
@@ -102,23 +86,27 @@ local swenv = {
 
 lualine.setup({
     options = {
-        theme = vscode_theme,
-
-        -- component_separators = "|",
-        section_separators = { left = "", right = "" },
+        theme = "catppuccin",
 
         disabled_filetypes = {
-            -- statusline = { "NvimTree" },
-            winbar = {"neo-tree", "NvimTree", "dap-repl", "dapui_scopes", "dapui_breakpoints", "dapui_stacks", "dapui_watches", "dapui_console"},
+            winbar = {
+                "neo-tree",
+                "NvimTree",
+                "dap-repl",
+                "dapui_scopes",
+                "dapui_breakpoints",
+                "dapui_stacks",
+                "dapui_watches",
+                "dapui_console",
+            },
         },
-        always_divide_middle = true, -- default
         globalstatus = true,
     },
     sections = {
         lualine_a = { mode },
         lualine_b = { "branch", "swenv" },
-        lualine_c = { "man", filename, macro, "nvim-dap-ui", "lsp_progress" },
-        lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
+        lualine_c = { "man", filename, "nvim-dap-ui", "lsp_progress" },
+        -- lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
         lualine_y = { lazy, diff, diagnostics },
         lualine_z = { "searchcount", "location" },
     },
@@ -131,22 +119,22 @@ lualine.setup({
         lualine_z = {},
     },
 
-    -- winbar = {
-    --     lualine_a = {},
-    --     lualine_b = { breadcrumbs(true), "toggleterm" },
-    --     lualine_c = {},
-    --     lualine_x = {},
-    --     lualine_y = { filename },
-    --     lualine_z = {},
-    -- },
-    -- inactive_winbar = {
-    --     lualine_a = {},
-    --     lualine_b = { breadcrumbs(false), "toggleterm" },
-    --     lualine_c = {},
-    --     lualine_x = { filename },
-    --     lualine_y = {},
-    --     lualine_z = {},
-    -- },
+    winbar = {
+        lualine_a = {},
+        lualine_b = { breadcrumbs(true), "toggleterm" },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = { filename },
+        lualine_z = {},
+    },
+    inactive_winbar = {
+        lualine_a = {},
+        lualine_b = { breadcrumbs(false), "toggleterm" },
+        lualine_c = {},
+        lualine_x = { filename },
+        lualine_y = {},
+        lualine_z = {},
+    },
 
     extensions = { "man", "nvim-dap-ui", "nvim-tree", "toggleterm" },
 })
