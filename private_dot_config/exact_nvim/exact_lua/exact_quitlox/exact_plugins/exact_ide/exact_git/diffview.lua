@@ -33,31 +33,31 @@ return {
 
         require('legendary').command({
             ":DiffviewFileHistory",
-            description = "Git Diff History",
+            description = "Diffview History",
         })
         require('legendary').command({
             ":DiffviewFileHistory %",
-            description = "Git Diff File history",
+            description = "Diffview File history",
         })
         require('legendary').command({
             ":DiffviewOpen",
-            description = "Git Diff Open (compare against current index)",
+            description = "Diffview Open (compare against current index)",
         })
         require('legendary').command({
             ":DiffviewClose",
-            description = "Git Diff Close",
+            description = "Diffview Close",
         })
         require('legendary').command({
             ":DiffviewToggleFiles",
-            description = "Git Diff Toggle files",
+            description = "Diffview Toggle files",
         })
         require('legendary').command({
             ":DiffviewFocusFiles",
-            description = "Git Diff Locate (focus) files",
+            description = "Diffview Locate (focus) files",
         })
         require('legendary').command({
             ":DiffviewRefresh",
-            description = "Git Diff Refresh",
+            description = "Diffview Refresh",
         })
 
     end,

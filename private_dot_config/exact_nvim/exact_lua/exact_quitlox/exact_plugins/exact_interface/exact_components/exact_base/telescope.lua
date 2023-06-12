@@ -21,7 +21,7 @@ return {
                     mappings = {
                         i = {
                             ["<ESC>"] = require("telescope.actions").close,
-                            -- ["<C-BS>"] = function() vim.cmd([[normal! bcw]]) end,
+                            ["<C-BS>"] = { "<C-S-w>", type = "command" },
                             ["<C-j>"] = require("telescope.actions").move_selection_next,
                             ["<C-k>"] = require("telescope.actions").move_selection_previous,
                             ["<C-v>"] = require("telescope.actions").select_horizontal,
@@ -55,6 +55,10 @@ return {
                         "Find Manpage",
                     },
                     h = { "<cmd>lua require('telescope.builtin').help_tags({ theme = 'dropdown' })<cr>", "Find Help" },
+                    ["r"] = {
+                        "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>",
+                        "Find Resume",
+                    },
                 },
                 o = {
                     name = "Open",
@@ -64,13 +68,6 @@ return {
                     },
                 },
             }, { prefix = "<leader>" })
-
-            require("which-key").register({
-                [";"] = {
-                    "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>",
-                    "Resume Telescope",
-                },
-            })
 
             -- NOTE: Telescope opens file in insert mode after neovim commit: d52cc66
             -- Ref: https://github.com/nvim-telescope/telescope.nvim/issues/2501#issuecomment-1541009573

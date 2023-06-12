@@ -11,6 +11,7 @@ return {
                     mappings = {
                         i = {
                             ["<ESC>"] = require("telescope.actions").close,
+                            ["<C-BS>"] = { "<C-S-w>", type = "command" },
                             ["<C-j>"] = require("telescope.actions").move_selection_next,
                             ["<C-k>"] = require("telescope.actions").move_selection_previous,
                             ["<C-v>"] = require("telescope.actions").select_horizontal,

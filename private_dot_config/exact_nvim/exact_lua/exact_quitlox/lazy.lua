@@ -86,8 +86,6 @@ local plugins = {
             })
         end,
     },
-    -- Auto Enable/Disable hlsearch
-    { "asiryk/auto-hlsearch.nvim",       config = true },
 
     ---------- Text Objects ----------
     -- Indent Text Object (for Python)

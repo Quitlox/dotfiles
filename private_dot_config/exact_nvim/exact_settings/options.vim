@@ -86,12 +86,12 @@ set hlsearch
 set incsearch    
 set wrapscan    
 " Layout
-set signcolumn=yes     " Prevent the error gutter from moving the vertical seperator
+set signcolumn=yes   " Prevent the error gutter from moving the vertical seperator
 set mouse=nv         " Disable mouse in command-line mode
 set number           " Enable line-numbering
 set showtabline=2
-set splitright		 " Open splits in the window to the right
-					 " For opening splits from NERDTree
+set splitright	     " Open splits in the window to the right
+		     " For opening splits from NERDTree
 set splitbelow       " Like vscode
 " Performance
 set lazyredraw       " Don't redraw while executing macros (good performance config)

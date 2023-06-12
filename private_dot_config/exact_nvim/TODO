@@ -25,13 +25,7 @@ FIX:
 
     - replace which-key.register with default nvim api
     
-    - make delete till (dt) repeatable
-    - when searching, <C-d> and <C-u> should not get rid of the search highlighting
-    - bind <C-_> to comment
-    - <C-backspace> should work in telescope
     - help is no longer centered with edgy.nvim
-
-    - remove which-key register and use built-in neovim descriptor
 
 
 COULD:
