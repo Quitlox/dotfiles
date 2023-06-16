@@ -105,7 +105,7 @@ export NVM_DIR="$HOME/.local/share/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Java
-{{- if (eq .chezmoi.osRelease.name "Arch Linux") }}
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.name "Arch Linux")) }}
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 # Shouldn't be necessary, but some terminal applications rely on it
 export JAVA_HOME=/usr/lib/jvm/default
