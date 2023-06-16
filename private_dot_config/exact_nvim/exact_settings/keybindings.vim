@@ -16,8 +16,8 @@ map <C-s> :w<CR>
 map <C-S> :wa<CR>
 
 " Ctrl+Backspace deletes word
-noremap! <C-BS> <C-w>
-" noremap! <C-h> <C-w>
+inoremap <C-BS> <C-w>
+inoremap <C-h> <C-w>
 
 " Remove some default mappings that conflict
 map K <Nop>
