@@ -56,8 +56,6 @@ local plugins = {
     ----------------------------------------
     -- Dependencies
     ----------------------------------------
-    { "nvim-lua/plenary.nvim" },
-    { "kyazdani42/nvim-web-devicons", opts = { default = true }, config = true },
     -- Adds missing highlight group
     { "folke/lsp-colors.nvim" },
 
@@ -65,17 +63,12 @@ local plugins = {
     -- Vim
     ----------------------------------------
 
-    -- Move - Move around text using ALT
-    -- {
-    --     "echasnovski/mini.move",
-    --     config = function() require("mini.move").setup() end,
-    -- },
     ---------- Commands ----------
     -- Proper Buffer Delete command, which does not mess with your window layout
     { "moll/vim-bbye" }, -- Add lazyload on command
     ---------- Verbs, Motions ----------
     -- { "tpope/vim-surround" },
-    { "kylechui/nvim-surround", config = true },
+    { "kylechui/nvim-surround",      config = true },
     { "tpope/vim-repeat" },
     ---------- Navigation ----------
     ---------- Improved Defaults ----------
@@ -93,8 +86,6 @@ local plugins = {
             })
         end,
     },
-    -- Auto Enable/Disable hlsearch
-    { "asiryk/auto-hlsearch.nvim", config = true },
 
     ---------- Text Objects ----------
     -- Indent Text Object (for Python)
@@ -117,6 +108,5 @@ require("which-key").register({
 }, { prefix = "<leader>v" })
 
 require("quitlox.plugins.keybindings.include.window")
-require("quitlox.plugins.keybindings.include.vim")
 require("quitlox.plugins.keybindings.include.tab")
 require("quitlox.plugins.keybindings.include.misc")

@@ -20,6 +20,10 @@ nnoremap <Space> <Nop>
 let g:mapleader = " "
 let g:maplocalleader = "\\"
 
+" Saving
+map <C-s> :w<CR>
+map <C-S> :wa<CR>
+
 " Ctrl+Backspace deletes word
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
@@ -42,6 +46,8 @@ map ]f <Nop>
 nnoremap Y y$
 " Make paste reselect yank
 xnoremap p pgvy
+" Ensure cursor stays in place when janking selection
+vnoremap y ygv<Esc>
 
 " Keep cursor centered when jumping
 nnoremap n nzzzv

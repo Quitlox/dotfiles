@@ -4,17 +4,16 @@
 -- Rainbow parenthesis (treesitter module)
 
 return {
-    "mrjones2014/nvim-ts-rainbow",
+    "HiPhish/nvim-ts-rainbow2",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
         require("nvim-treesitter.configs").setup({
-            ----- Rainbow -----
-            -- with: p00f/nvim-ts-rainbow
             rainbow = {
                 enable = true,
-                extended_mode = true,
-                max_file_lines = 20000,
-                disable = { "latex" },
+                -- Which query to use for finding delimiters
+                query = "rainbow-parens",
+                -- Highlight the entire buffer all at once
+                strategy = require("ts-rainbow").strategy.global,
             },
         })
     end,

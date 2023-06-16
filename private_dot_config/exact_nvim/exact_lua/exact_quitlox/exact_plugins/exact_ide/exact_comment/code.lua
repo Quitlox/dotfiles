@@ -1,7 +1,7 @@
 return {
     "numToStr/Comment.nvim",
     dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-    keys = { "gc", { "gc", mode = "v" } },
+    keys = { "gc", { "gc", mode = "v" }, "<C-/>", {"<C-/>", mode="i"} },
     version = "",
     opts = function()
         return {
@@ -47,5 +47,12 @@ return {
             ---Function to call after (un)comment
             post_hook = nil,
         }
+    end,
+    config = function(opts)
+        require("Comment").setup(opts)
+
+        -- VsCode-like keybindings
+        vim.api.nvim_set_keymap("n", "<C-/>", "gcc", {})
+        vim.api.nvim_set_keymap("i", "<C-/>", "<cmd>s/\\s\\+$//e<return><cmd>noh<return><escape>gcA", {})
     end,
 }

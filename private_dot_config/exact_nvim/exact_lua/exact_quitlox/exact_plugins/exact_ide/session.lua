@@ -11,10 +11,15 @@ local augroup = vim.api.nvim_create_augroup("Projections", { clear = true })
 local function restore_hook() end
 
 local function store_hook()
-    -- Close NvimTree
-    require("nvim-tree.api").tree.close()
-    -- Close DapUI
+    vim.cmd("NeoTreeClose")
+    vim.cmd("SymbolsOutlineClose")
+    require('neotest').output_panel.close()
+    require('neotest').summary.close()
+    require('edgy').close()
+
     require("dapui").close()
+    vim.cmd("DiffviewClose")
+
     -- Close Neogit
     for _, win in ipairs(vim.api.nvim_list_wins()) do
         local buf = vim.api.nvim_win_get_buf(win)
@@ -24,8 +29,6 @@ local function store_hook()
     for _, term in pairs(require("toggleterm.terminal").get_all(true)) do
         term:close()
     end
-
-    -- TODO: Close GitDiff on Store
 end
 
 -- Delete the current session

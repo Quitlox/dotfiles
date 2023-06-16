@@ -4,20 +4,32 @@ return {
     dependencies = {
         "MunifTanjim/nui.nvim",
         "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
+        "nvim-telescope/telescope.nvim",
     },
-    config = function() require("chatgpt").setup() end,
-    init = function()
-        require("which-key").register({
-            ["<leader>m"] = {
-                name = "Misceallenous",
-                c = {
-                    name = "ChatGPT",
-                    ["a"] = { "<cmd>ChatGPTActAs<cr>", "Act as" },
-                    ["c"] = { "<cmd>ChatGPT<cr>", "Chat" },
-                    ["e"] = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit with instructions" },
+    config = function()
+        require("chatgpt").setup({
+            popup_input = {
+                submit = "<C-s>",
+            },
+            chat = {
+                keymaps = {
+                    close = "q",
                 },
             },
+        })
+    end,
+    init = function()
+        require("legendary").command({
+            ":ChatGPT",
+            description = "ChatGPT: Chat",
+        })
+        require("legendary").command({
+            ":ChatGPTActAs",
+            description = "ChatGPT: Act as",
+        })
+        require("legendary").command({
+            ":ChatGPTEditWithInstructions",
+            description = "ChatGPT: Edit with instructions",
         })
     end,
 }

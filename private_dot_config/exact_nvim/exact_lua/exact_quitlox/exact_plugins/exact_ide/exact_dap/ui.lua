@@ -9,9 +9,9 @@ local nvim_tree_enabled = false
 -- Logic
 local function on_open()
     -- Remember whether the explorer was open
-    nvim_tree_enabled = require("nvim-tree.view").is_visible()
+    -- TODO: Replace with NeoTree
     -- Close the explorer
-    require("nvim-tree.api").tree.close()
+    -- TODO: Replace with NeoTree
     -- Detach gitsigns
     require("gitsigns").toggle_signs(false)
     -- Open the DAP UI
@@ -19,7 +19,8 @@ local function on_open()
 end
 
 local function on_close()
-    if nvim_tree_enabled then require("nvim-tree.api").tree.open() end
+    -- Open the explorer
+    -- TODO: Replace with NeoTree
     require("dapui").close()
     require("gitsigns").toggle_signs(true)
 end
@@ -49,13 +50,16 @@ return {
     -- Keybindings
     init = function()
         -- Signs
-        vim.fn.sign_define("DapBreakpoint", { text = "•", texthl = "ErrorMsg", linehl = "", numhl = "" })
+        local sign = vim.fn.sign_define
+        sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+        sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+        sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
         -- Keybindings
         require("which-key").register({
-            ["<F9>"] = {"<cmd>lua require('dap').continue()<cr>", "Debug Continue"},
-            ["<F8>"] = {"<cmd>lua require('dap').step_over()<cr>", "Debug Step Over"},
-            ["<S-F8>"] = {"<cmd>lua require('dap').step_out()<cr>", "Debug Step Out"},
-            ["<F7>"] = {"<cmd>lua require('dap').step_into()<cr>", "Debug Step Into"},
+            ["<F9>"] = { "<cmd>lua require('dap').continue()<cr>", "Debug Continue" },
+            ["<F8>"] = { "<cmd>lua require('dap').step_over()<cr>", "Debug Step Over" },
+            ["<S-F8>"] = { "<cmd>lua require('dap').step_out()<cr>", "Debug Step Out" },
+            ["<F7>"] = { "<cmd>lua require('dap').step_into()<cr>", "Debug Step Into" },
             ["<localleader>"] = {
                 d = {
                     name = "Debug",

@@ -7,7 +7,6 @@
 return {
     -- Modules
     { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" },
-    { "windwp/nvim-autopairs", config = true, dependencies = "nvim-treesitter/nvim-treesitter" },
     { import = "quitlox.plugins.ide.treesitter.modules" },
     -- Treesitter
     {

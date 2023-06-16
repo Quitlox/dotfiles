@@ -2,10 +2,10 @@
 vim.o.completeopt = "menu,menuone,noselect"
 
 -- Behaviour
-local select_next_completion_item = require("quitlox.plugins.completion.include.behaviour").select_next_completion_item
-local select_prev_completion_item = require("quitlox.plugins.completion.include.behaviour").select_prev_completion_item
-local scroll_completion_down = require("quitlox.plugins.completion.include.behaviour").scroll_completion_down
-local scroll_completion_up = require("quitlox.plugins.completion.include.behaviour").scroll_completion_up
+local select_next_completion_item = require("quitlox.plugins.ide.completion.include.behaviour").select_next_completion_item
+local select_prev_completion_item = require("quitlox.plugins.ide.completion.include.behaviour").select_prev_completion_item
+local scroll_completion_down = require("quitlox.plugins.ide.completion.include.behaviour").scroll_completion_down
+local scroll_completion_up = require("quitlox.plugins.ide.completion.include.behaviour").scroll_completion_up
 
 return {
     "hrsh7th/nvim-cmp",
@@ -14,7 +14,7 @@ return {
         local cmp = require("cmp")
         cmp.setup({
             preselect = require("cmp.types").cmp.PreselectMode.None,
-            formatting = require("quitlox.plugins.completion.include.format"),
+            formatting = require("quitlox.plugins.ide.completion.include.format"),
             snippet = {
                 -- Set the Snippet Engine
                 expand = function(args) require("luasnip").lsp_expand(args.body) end,
@@ -61,11 +61,11 @@ return {
         })
 
         -- Map documentation hover
-        require("quitlox.plugins.completion.include.hover_doc")
+        require("quitlox.plugins.ide.completion.include.hover_doc")
         -- Configure the snippet engine
-        require("quitlox.plugins.completion.include.luasnip")
+        require("quitlox.plugins.ide.completion.include.luasnip")
         -- Configure completion sources for different context
-        require("quitlox.plugins.completion.include.contexts")
+        require("quitlox.plugins.ide.completion.include.contexts")
 
         ----------------------------------------
         -- Parenthesis after Accept Function Completion

@@ -18,12 +18,21 @@ return {
     config = true,
     cmd = { "Neogen" },
     init = function()
-        require("which-key").register({
-            name = "Generate",
-            a = { "<cmd>Neogen<cr>", "Generate Annotation" },
-            f = { "<cmd>Neogen func<cr>", "Generate Function annotation" },
-            t = { "<cmd>Neogen type<cr>", "Comment Type annotation" },
-            c = { "<cmd>Neogen class<cr>", "Comment Class annotation" },
-        }, { prefix = "<leader>G" })
+        require('legendary').command({
+            ":Neogen",
+            description = "Generate Annotation",
+        })
+        require('legendary').command({
+            ":Neogen func",
+            description = "Generate Function Annotation",
+        })
+        require('legendary').command({
+            ":Neogen type",
+            description = "Generate Type Annotation",
+        })
+        require('legendary').command({
+            ":Neogen class",
+            description = "Generate Class Annotation",
+        })
     end,
 }

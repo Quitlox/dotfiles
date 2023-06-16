@@ -19,11 +19,9 @@ return {
         },
     },
     init = function()
-        require("which-key").register({
-            T = {
-                name = "Toggle",
-                z = { "<cmd>ZenMode<cr>", "Toggle Zen Mode" },
-            },
-        }, { prefix = "<leader>" })
+        require('legendary').command({
+            ":ZenMode",
+            description = "Toggle Zen Mode",
+        })
     end,
 }
