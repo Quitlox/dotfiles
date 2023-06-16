@@ -1,5 +1,6 @@
 return {
-    dir = "~/Workspace/contrib/neotest",
+    -- dir = "~/Workspace/contrib/neotest",
+    "nvim-neotest/neotest",
     version = "",
     dependencies = { "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python" },
     lazy = false,
