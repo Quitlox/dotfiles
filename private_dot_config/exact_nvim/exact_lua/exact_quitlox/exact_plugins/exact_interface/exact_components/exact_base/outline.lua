@@ -36,9 +36,12 @@ return {
     },
     init = function()
         require("which-key").register({
-            ["<leader>o"] = {
+            ["o"] = {
                 ["o"] = { "<cmd>SymbolsOutline<cr>", "Open Outline" },
             },
-        })
+            ["l"] = {
+                ["s"] = { "<cmd>SymbolsOutlineOpen<cr>", "Locate Symbol" },
+            },
+        }, {prefix = "<leader>"})
     end,
 }

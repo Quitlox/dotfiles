@@ -13,7 +13,7 @@ return {
     {
         "echasnovski/mini.indentscope",
         version = "*",
-        config = function(opts)
+        config = function(_, opts)
             -- Disable indent scope for NvimTree and terminal buffers
             vim.cmd([[
                     augroup DisableIndentScope 

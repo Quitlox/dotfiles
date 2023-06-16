@@ -1,7 +1,7 @@
 return {
     "numToStr/Comment.nvim",
     dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-    keys = { "gc", { "gc", mode = "v" }, "<C-/>", {"<C-/>", mode="i"} },
+    keys = { "gc", { "gc", mode = "v" }, "<C-/>", { "<C-/>", mode = "i" } },
     version = "",
     opts = function()
         return {
@@ -48,7 +48,7 @@ return {
             post_hook = nil,
         }
     end,
-    config = function(opts)
+    config = function(_, opts)
         require("Comment").setup(opts)
 
         -- VsCode-like keybindings

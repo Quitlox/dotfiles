@@ -12,10 +12,20 @@ local function restore_hook() end
 
 local function store_hook()
     vim.cmd("NeoTreeClose")
-    vim.cmd("SymbolsOutlineClose")
-    require('neotest').output_panel.close()
-    require('neotest').summary.close()
-    require('edgy').close()
+    -- Close all directory buffers
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.bo[buf].buftype == "dirvish" then vim.api.nvim_buf_delete(buf, { force = true }) end
+    end
+    -- Close SymbolsOutline if open
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.bo[buf].buftype == "Outline" then
+            -- vim.api.nvim_buf_delete(buf, { force = true })
+            vim.cmd("SymbolsOutlineClose")
+        end
+    end
+    require("neotest").output_panel.close()
+    require("neotest").summary.close()
+    require("edgy").close()
 
     require("dapui").close()
     vim.cmd("DiffviewClose")
@@ -47,6 +57,7 @@ end
 
 return {
     "GnikDroy/projections.nvim",
+    lazy = false,
     opts = {
         workspaces = {
             "/home/quitlox/Workspace/job",

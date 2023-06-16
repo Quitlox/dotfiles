@@ -59,6 +59,5 @@ return {
             ":DiffviewRefresh",
             description = "Diffview Refresh",
         })
-
     end,
 }

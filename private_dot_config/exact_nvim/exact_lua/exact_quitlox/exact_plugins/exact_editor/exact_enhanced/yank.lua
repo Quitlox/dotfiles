@@ -1,7 +1,7 @@
 return {
     "gbprod/yanky.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function(opts)
+    config = function(_, opts)
         require("yanky").setup({
             picker = {
                 select = {

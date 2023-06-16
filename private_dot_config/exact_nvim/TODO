@@ -1,32 +1,20 @@
 FIX:
-    - Center cursor on "Go definition", etc.
     - vie (select inside environment) from vimtex should not select first line of env
         https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321 ? 
-
-    - investigate pop-up when ansible-language-server is installed via Mason and no config dir is present on the system
-    - when navigating through completions, if the current completion item has doc and the next doesnt, and you go to the next, the doc of the prev remains visible
 
     - notify
         - stack notifications that are the same with a count
     - neotest
-        - output window should be closable with q
         - g? should open keymap instructions for summary
         - command for running the last ran test
 	- collapse empty directories like explorer
-	- x in summary window should kill test
-	- don't open quickfix
     - neotest python
 	- should show all variants of a test (all combinations of fixtures, see vscode)
-    - brackets don't auto align properly in lua
-    - diffview and floats should be closeable with q
-
     - edgy.nvim
 	- how to close all windows
 
     - replace which-key.register with default nvim api
-    
-    - help is no longer centered with edgy.nvim
-
+    - disable zz in neotree
 
 COULD:
     - Switch over from nvm-cmp to coq

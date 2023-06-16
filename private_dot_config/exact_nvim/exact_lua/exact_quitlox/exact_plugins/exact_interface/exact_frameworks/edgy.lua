@@ -14,7 +14,7 @@ return {
             {
                 title = "Neo-Tree",
                 ft = "neo-tree",
-                filter = function(buf) return vim.b[buf].neo_tree_source == "filesystem" end,
+                -- filter = function(buf) return vim.b[buf].neo_tree_source == "filesystem" end,
                 -- size = { height = 0.5 },
             },
             -- {
@@ -33,7 +33,6 @@ return {
                 ft = "Outline",
                 pinned = true,
                 open = "SymbolsOutline",
-                size = { width = 60 },
             },
             {
                 ft = "neotest-summary",
@@ -63,10 +62,12 @@ return {
         },
 
         animate = {
-            enabled=false,
+            enabled = false,
         },
         options = {
-            bottom = { size = 0.4 },
+            left = { size = 40 },
+            right = { size = 50 },
+            bottom = { size = 0.35 },
         },
 
         wo = {
@@ -75,8 +76,8 @@ return {
 
         fix_win_height = vim.fn.has("nvim-0.10.0") == 0,
     },
-    config = function (opts)
-        require('edgy').setup(opts)
+    config = function(_, opts)
+        require("edgy").setup(opts)
 
         require("which-key").register({
             ["<leader>"] = {
@@ -85,5 +86,5 @@ return {
                 },
             },
         })
-    end
+    end,
 }

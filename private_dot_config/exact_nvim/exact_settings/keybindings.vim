@@ -1,15 +1,6 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer:
-"       Kevin Witlox — @quitlox
-"
-" Sections:
-"    -> General
-"    -> Vim Editing and Navigation
-"    -> Visual Mode
-"    -> Command Mode
-"    -> Misc
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" This file is for keybindings to the vim editing experience itself, i.e.
+" those without the leader key.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -26,7 +17,7 @@ map <C-S> :wa<CR>
 
 " Ctrl+Backspace deletes word
 noremap! <C-BS> <C-w>
-noremap! <C-h> <C-w>
+" noremap! <C-h> <C-w>
 
 " Remove some default mappings that conflict
 map K <Nop>
@@ -57,16 +48,30 @@ nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 
 " ... and fix code navigation with softwrapping
-
 nnoremap j gjzz
 nnoremap gj jzz
 nnoremap k gkzz
 nnoremap gk kzz
 
-" noremap 0 g0
-" noremap g0 0
-" noremap $ g$
-" noremap g$ $
+" augroup center_cursor
+"     autocmd!
+"     autocmd FileType * nnoremap <buffer> <C-u> <C-u>zz
+"     autocmd FileType Neotree,Outline nnoremap <buffer> <C-u> <C-u>
+"
+"     autocmd FileType * nnoremap <buffer> <C-d> <C-d>zz
+"     autocmd FileType Neotree,Outline nnoremap <buffer> <C-d> <C-d>
+"
+"     " ... and fix code navigation with softwrapping
+"     autocmd FileType * nnoremap <buffer> j gjzz
+"     autocmd FileType Neotree,Outline nunmap <buffer> j | nnoremap <buffer> j gj
+"     autocmd FileType * nnoremap <buffer> gj jzz
+"     autocmd FileType Neotree,Outline nunmap <buffer> gj | nnoremap <buffer> gj jzz
+"     autocmd FileType * nnoremap <buffer> k gkzz
+"     autocmd FileType Neotree,Outline nunmap <buffer> k | nnoremap <buffer> k gk
+"     autocmd FileType * nnoremap <buffer> gk kzz
+"     autocmd FileType Neotree,Outline nunmap <buffer> gk | nnoremap <buffer> gk k
+" augroup 
+
 
 " Undo breakpoints
 inoremap , ,<c-g>u

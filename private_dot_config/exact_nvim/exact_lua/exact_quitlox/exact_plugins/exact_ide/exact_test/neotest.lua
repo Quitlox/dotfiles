@@ -1,5 +1,4 @@
 return {
-    -- "nvim-neotest/neotest",
     dir = "~/Workspace/contrib/neotest",
     version = "",
     dependencies = { "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python" },
@@ -18,12 +17,34 @@ return {
         "<localleader>ts",
     },
     config = function()
-        require("neotest").setup({
+        local neotest = require("neotest")
+        neotest.setup({
+            log_level = "trace",
             adapters = {
                 require("neotest-python")({
                     dap = { justMyCode = false },
                 }),
             },
+            window = {
+                mappings = {},
+            },
+            summary = {
+                mappings = {
+                    stop = "x",
+                    jumpto = { "i", "<cr>" },
+                },
+            },
+            quickfix = {
+                enabled = false,
+            },
+        })
+
+        -- Add autocommand for buffers with filetype "neotest-summary"
+        local neotestGroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+        vim.api.nvim_create_autocmd("FileType", {
+            group = neotestGroup,
+            pattern = { "neotest-summary", "neotest-outline" },
+            callback = function() vim.keymap.set("n", "q", neotest.summary.close, {}) end,
         })
     end,
     init = function()
@@ -32,6 +53,12 @@ return {
             ["]T"] = { "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>", "Next Failed Test" },
             ["[t"] = { "<cmd>lua require('neotest').jump.prev()<cr>", "Previous Test" },
             ["]t"] = { "<cmd>lua require('neotest').jump.next()<cr>", "Next Test" },
+        })
+
+        require("which-key").register({
+            l = {
+                t = { "<cmd>lua require('neotest').summary.open()<cr>", "Locate Test" },
+            }
         })
 
         require("which-key").register({
