@@ -54,6 +54,7 @@ return {
         sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
         sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
         sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+
         -- Keybindings
         require("which-key").register({
             ["<F9>"] = { "<cmd>lua require('dap').continue()<cr>", "Debug Continue" },

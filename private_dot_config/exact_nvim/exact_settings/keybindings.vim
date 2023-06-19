@@ -44,14 +44,18 @@ vnoremap y ygv<Esc>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
-nnoremap <C-u> <C-u>zz
-nnoremap <C-d> <C-d>zz
+" nnoremap <C-u> <C-u>zz
+" nnoremap <C-d> <C-d>zz
 
 " ... and fix code navigation with softwrapping
-nnoremap j gjzz
-nnoremap gj jzz
-nnoremap k gkzz
-nnoremap gk kzz
+" nnoremap j gjzz
+" nnoremap gj jzz
+" nnoremap k gkzz
+" nnoremap gk kzz
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
 
 " augroup center_cursor
 "     autocmd!

@@ -1,15 +1,20 @@
 return {
-    "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-    build = function() vim.fn["mkdp#util#install"]() end,
-    init = function()
-        require("which-key").register({
-            m = {
-                name = "Markdown",
-                ["o"] = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
-                ["b"] = { "<cmd>MarkdownPreviewStop<cr>", "Markdown Preview Stop" },
-                ["p"] = { "<cmd>MarkdownPreviewToggle<cr>", "Markdown Preview Toggle" },
+    {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            defaults = {
+                ["<localleader>m"] = "Markdown",
             },
-        }, { prefix = "<localleader>" })
-    end,
+        },
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        keys = {
+            { "<localleader>mo", "<cmd>MarkdownPreview<cr>",       desc = "Markdown Preview" },
+            { "<localleader>mb", "<cmd>MarkdownPreviewStop<cr>",   desc = "Markdown Preview Stop" },
+            { "<localleader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview Toggle" },
+        },
+        build = function() vim.fn["mkdp#util#install"]() end,
+    },
 }

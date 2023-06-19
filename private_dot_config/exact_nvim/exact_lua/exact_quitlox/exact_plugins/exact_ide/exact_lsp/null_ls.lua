@@ -34,7 +34,6 @@ return {
         "jay-babu/mason-null-ls.nvim",
         dependencies = { "williamboman/mason.nvim" },
         version = "",
-        config = true,
         opts = {
             ensure_installed = {},
             automatic_installation = false,

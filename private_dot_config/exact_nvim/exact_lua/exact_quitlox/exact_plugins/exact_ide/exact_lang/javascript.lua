@@ -1,25 +1,19 @@
 return {
-    -- package.json help 
+    {"folke/which-key.nvim",optional=true,opts={defaults={
+        ["<localleader>n" ]="Node",
+    }}},
+    {
+    -- package.json help
     "vuki656/package-info.nvim",
     config = true,
-    dependencies = {"MunifTanjim/nui.nvim"},
-    init = function()
-        require("which-key").register({
-            name = "Node",
-            s = { "<cmd>lua require('package-info').show()<cr>", "Package Info Show" },
-            h = { "<cmd>lua require('package-info').hide()<cr>", "Package Info Hide" },
-            t = { "<cmd>lua require('package-info').toggle()<cr>", "Package Info Toggle" },
-            u = { "<cmd>lua require('package-info').update()<cr>", "Package Update" },
-            d = { "<cmd>lua require('package-info').delete()<cr>", "Package Delete" },
-            c = { "<cmd>lua require('package-info').change_version()<cr>", "Package Change" },
-            i = { "<cmd>lua require('package-info').install()<cr>", "Package Install" },
-        }, { prefix = "<localleader>n", silent=true, noremap=true})
-    end,
-    -- import cost
-    {
-        "barrett-ruth/import-cost.nvim",
-        build = "sh install.sh yarn",
-        ft = "js,ts,tsx,jsx",
-        config = true,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    keys = {
+        { "<localleader>ns", function() require("package-info").show() end,           desc = "Package Info Show", silent = true },
+        { "<localleader>nh", function() require("package-info").hide() end,           desc = "Package Info Hide", silent = true },
+        { "<localleader>nt", function() require("package-info").toggle() end,         desc = "Package Info Toggle", silent = true },
+        { "<localleader>nu", function() require("package-info").update() end,         desc = "Package Update", silent = true },
+        { "<localleader>nd", function() require("package-info").delete() end,         desc = "Package Delete", silent = true },
+        { "<localleader>nc", function() require("package-info").change_version() end, desc = "Package Change", silent = true },
+        { "<localleader>ni", function() require("package-info").install() end,        desc = "Package Install", silent = true },
     },
-}
+} }

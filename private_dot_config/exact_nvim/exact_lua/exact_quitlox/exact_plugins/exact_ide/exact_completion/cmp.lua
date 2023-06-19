@@ -2,8 +2,10 @@
 vim.o.completeopt = "menu,menuone,noselect"
 
 -- Behaviour
-local select_next_completion_item = require("quitlox.plugins.ide.completion.include.behaviour").select_next_completion_item
-local select_prev_completion_item = require("quitlox.plugins.ide.completion.include.behaviour").select_prev_completion_item
+local select_next_completion_item =
+    require("quitlox.plugins.ide.completion.include.behaviour").select_next_completion_item
+local select_prev_completion_item =
+    require("quitlox.plugins.ide.completion.include.behaviour").select_prev_completion_item
 local scroll_completion_down = require("quitlox.plugins.ide.completion.include.behaviour").scroll_completion_down
 local scroll_completion_up = require("quitlox.plugins.ide.completion.include.behaviour").scroll_completion_up
 
@@ -67,17 +69,13 @@ return {
         -- Configure completion sources for different context
         require("quitlox.plugins.ide.completion.include.contexts")
 
-        ----------------------------------------
-        -- Parenthesis after Accept Function Completion
-        ----------------------------------------
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
     dependencies = {
         -- Completion Sources
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lsp-document-symbol",
-        "hrsh7th/cmp-nvim-lsp-signature-help",
+        -- "hrsh7th/cmp-nvim-lsp-document-symbol",
+        -- "hrsh7th/cmp-nvim-lsp-signature-help",
+        
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",

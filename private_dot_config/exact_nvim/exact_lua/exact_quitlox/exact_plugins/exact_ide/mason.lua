@@ -1,6 +1,7 @@
 return {
     "williamboman/mason.nvim",
-    config = true,
+    -- TODO:
+    -- keys = { "<leader>vm", function() vim.cmd[[Mason<cr>]] end, desc="Mason" },
     opts = {
         ui = {
             border = "single",
@@ -15,9 +16,4 @@ return {
             },
         },
     },
-    init = function()
-        require("which-key").register({
-            m = { "<cmd>Mason<cr>", "Mason" },
-        }, { prefix = "<leader>v" })
-    end,
 }

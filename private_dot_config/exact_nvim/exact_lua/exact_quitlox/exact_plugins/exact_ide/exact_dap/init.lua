@@ -14,12 +14,9 @@ return {
     -- Cycle between breakpoints
     {
         "ofirgall/goto-breakpoints.nvim",
-        keys = { "[b", "]b" },
-        init = function()
-            require("which-key").register({
-                ["[b"] = { "<cmd>lua require('goto-breakpoints').prev()<cr>", "Previous Breakpoint" },
-                ["]b"] = { "<cmd>lua require('goto-breakpoints').next()<cr>", "Next Breakpoint" },
-            }, { noremap = true })
-        end,
+        keys = {
+            {"[b" , function() require('goto-breakpoints').prev() end, desc = "Previous Breakpoint"},
+            {"]b" , function() require('goto-breakpoints').next() end, desc = "Next Breakpoint"},
+        },
     },
 }

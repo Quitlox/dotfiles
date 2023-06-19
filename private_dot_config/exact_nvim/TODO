@@ -13,11 +13,12 @@ FIX:
     - edgy.nvim
 	- how to close all windows
 
-    - replace which-key.register with default nvim api
-    - disable zz in neotree
+    - do nvim-surround.nvim and nvim-autotag conflict for html?
 
 COULD:
     - Switch over from nvm-cmp to coq
+    - Replace LSPSage with:
+    	- Code Action Menu: nvim-code-action-menu
 
 BLOCKED:
     - ]f in python should not go to decorator

@@ -1,20 +1,26 @@
 return {
-    "folke/neoconf.nvim",
-    version = "",
-    opts = {
-        import = {
-            coc = false,
+    {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            defaults = {
+                ["<leader>vn"] = "Neoconf",
+            },
         },
     },
-    config = true,
-    init = function()
-        require("which-key").register({
-            n = {
-                name = "Neoconf",
-                e = { "<cmd>Neoconf<cr>", "Neoconf Edit" },
-                s = { "<cmd>Neoconf show<cr>", "Neoconf Show" },
-                l = { "<cmd>Neoconf lsp<cr>", "Neoconf Lsp" },
+    {
+        "folke/neoconf.nvim",
+        version = "",
+        opts = {
+            import = {
+                coc = false,
             },
-        }, { prefix = "<leader>v" })
-    end,
+        },
+        lazy = false,
+        keys = {
+            { "<leader>vne", "<cmd>Neoconf<cr>",      desc = "Neoconf Edit" },
+            { "<leader>vns", "<cmd>Neoconf show<cr>", desc = "Neoconf Show" },
+            { "<leader>vnl", "<cmd>Neoconf lsp<cr>",  desc = "Neoconf Lsp" },
+        },
+    },
 }

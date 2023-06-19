@@ -74,15 +74,8 @@ return {
         local winid = vim.api.nvim_get_current_win()
 
         local _mapping =
-            { j = { leap_to_line_forward, "Jump Line Down" }, k = { leap_to_line_backward, "Jump Line Down" } }
+            { j = { leap_to_line_forward, "which_key_ignore" }, k = { leap_to_line_backward, "which_key_ignore" } }
         wk.register(_mapping, { prefix = "<leader><leader>", mode = "n" })
         wk.register(_mapping, { prefix = "<leader><leader>", mode = "v" })
-
-        -- Highlights
-        -- Colors taken from Hop.nvim
-        -- https://github.com/phaazon/hop.nvim/blob/5901f0e7928d8561800e3ca228c17618b686c532/lua/hop/highlight.lua
-        vim.api.nvim_set_hl(0, "LeapLabelPrimary", { fg = "#ff007c", bold = true })
-        vim.api.nvim_set_hl(0, "LeapLabelSecondary", { fg = "#00dfff", bold = true })
-        -- vim.api.nvim_set_hl(0, "LeapBackdrop", { bg = "Comment" })
     end,
 }

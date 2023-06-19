@@ -54,12 +54,6 @@ local lazy_config = {
 
 local plugins = {
     ----------------------------------------
-    -- Dependencies
-    ----------------------------------------
-    -- Adds missing highlight group
-    { "folke/lsp-colors.nvim" },
-
-    ----------------------------------------
     -- Vim
     ----------------------------------------
 
@@ -107,6 +101,4 @@ require("which-key").register({
     p = { "<cmd>Lazy<cr>", "Plugins" },
 }, { prefix = "<leader>v" })
 
-require("quitlox.plugins.keybindings.include.window")
-require("quitlox.plugins.keybindings.include.tab")
-require("quitlox.plugins.keybindings.include.misc")
+require("quitlox.plugins.config.include.keybindings")

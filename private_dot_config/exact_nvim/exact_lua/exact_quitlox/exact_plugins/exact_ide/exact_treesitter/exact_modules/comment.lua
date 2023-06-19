@@ -6,6 +6,7 @@
 
 return {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    ft = { "javascript", "typescript", "typescriptreact"},
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
         require("nvim-treesitter.configs").setup({

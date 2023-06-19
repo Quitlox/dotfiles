@@ -1,13 +1,19 @@
 return {
     "folke/which-key.nvim",
     version = "",
-    dependencies = {"mrjones2014/legendary.nvim"},
-    config = function(_, opts)
-        require("which-key").setup(opts)
-    end,
+    dependencies = { "mrjones2014/legendary.nvim" },
     opts = {
         operators = { gc = "Comments" },
+        defaults = {
+            ["<leader><cr>"] = "which_key_ignore",
+            ["<leader><leader>"] = "which_key_ignore",
+            ["<leader><tab>"] = "Tab",
+            ["<leader>v"] = "Vim",
+            ["<leader>T"] = "Toggle",
+        },
         plugins = {
+            marks = true,
+            registers = true,
             presets = {
                 operators = false,
                 motions = false,
@@ -27,7 +33,7 @@ return {
             ["<cr>"] = "RET",
             ["<tab>"] = "TAB",
         },
-        ignore_missing = true,
+        ignore_missing = false,
         icons = { group = "", separator = "ﰲ" },
         layout = {
             align = "center",
@@ -37,4 +43,9 @@ return {
             winblend = 0,
         },
     },
+    config = function(_, opts)
+        local wk = require("which-key")
+        wk.setup(opts)
+        wk.register(opts.defaults)
+    end,
 }

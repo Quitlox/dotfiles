@@ -2,12 +2,11 @@
 --                       Treesitter: Endwise                        --
 ----------------------------------------------------------------------
 -- Endwise (autopairs for lua)
--- TODO: Add all relevant filetypes
 
 return {
     "RRethy/nvim-treesitter-endwise",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     ft = "ruby,lua,vim,bash,elixir",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
         require("nvim-treesitter.configs").setup({
             ----- Endwise -----

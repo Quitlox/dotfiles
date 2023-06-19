@@ -23,5 +23,4 @@ return {
             ale = false,
         },
     },
-    config = true,
 }

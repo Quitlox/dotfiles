@@ -29,5 +29,11 @@ return {
             description = "List Notifications",
         })
 
+        require("which-key").register({
+            v = {
+                d = { "<cmd>lua require('notify').dismiss()<cr>", "Dismiss" },
+            },
+        })
+
     end,
 }

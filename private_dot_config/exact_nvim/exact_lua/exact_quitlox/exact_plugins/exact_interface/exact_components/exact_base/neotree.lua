@@ -44,7 +44,7 @@ return {
             enable_git_status = true,
             enable_diagnostics = true,
 
-            open_files_do_not_replace_types = { "terminal", "trouble", "qf", "edgy", "Neogit" },
+            open_files_do_not_replace_types = { "terminal", "trouble", "qf", "Neogit" },
             sort_case_insensitive = false, -- used when sorting files and directories in the tree
 
             default_component_configs = {

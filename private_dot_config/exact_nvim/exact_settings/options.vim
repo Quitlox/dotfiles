@@ -116,19 +116,3 @@ let g:python3_host_prog = '/usr/bin/python3'
 " Spell check
 set spell
 set spelllang=en_us
-
-" Disable spell for certain buffers
-augroup CustomDisableSpell
-    autocmd!
-    autocmd FileType checkhealth setlocal nospell
-    autocmd FileType NeogitStatus setlocal nospell
-    autocmd FileType Outline setlocal nospell
-    autocmd FileType spectre_panel setlocal nospell
-
-    autocmd BufReadPost dap-repl setlocal nospell
-    autocmd BufReadPost dapui_scopes setlocal nospell
-    autocmd BufReadPost dapui_breakpoints setlocal nospell
-    autocmd BufReadPost dapui_watches setlocal nospell
-
-    autocmd TermOpen * setlocal nospell
-augroup END

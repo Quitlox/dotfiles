@@ -1,14 +1,14 @@
 return {
     "numToStr/Comment.nvim",
     dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-    keys = { "gc", { "gc", mode = "v" }, "<C-/>", { "<C-/>", mode = "i" } },
+    keys = {
+        { "gc", mode = { "n", "v" } },
+        { "<C-/>", "gcc", mode = "n" },
+        { "<C-/>", "<cmd>s/\\s\\+$//e<return><cmd>noh<return><escape>gcA", mode = "i" },
+    },
     version = "",
     opts = function()
         return {
-            ---Add a space b/w comment and the line
-            padding = true,
-            ---Whether the cursor should stay at its position
-            sticky = true,
             ---Lines to be ignored while (un)comment
             ignore = nil,
             ---LHS of toggle mappings in NORMAL mode
@@ -47,12 +47,5 @@ return {
             ---Function to call after (un)comment
             post_hook = nil,
         }
-    end,
-    config = function(_, opts)
-        require("Comment").setup(opts)
-
-        -- VsCode-like keybindings
-        vim.api.nvim_set_keymap("n", "<C-/>", "gcc", {})
-        vim.api.nvim_set_keymap("i", "<C-/>", "<cmd>s/\\s\\+$//e<return><cmd>noh<return><escape>gcA", {})
     end,
 }
