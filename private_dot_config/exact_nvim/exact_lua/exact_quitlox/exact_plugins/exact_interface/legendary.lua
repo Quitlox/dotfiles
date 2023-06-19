@@ -38,6 +38,15 @@ local functions = {
     { function() require("telescope.builtin").highlights() end,              description = "List Highlights" },
     { function() require("telescope.builtin").commands() end,                description = "List Commands" },
     { function() require("telescope.builtin").undo() end,                    description = "List Undo" },
+    {
+        function()
+            local ft = vim.bo.filetype
+            local buf = vim.api.nvim_create_buf(false, true)
+            vim.api.nvim_buf_set_option(buf, "filetype", ft)
+            vim.api.nvim_win_set_buf(0, buf)
+        end,
+        description = "Scratch from current",
+    },
 }
 
 -- TODO: I think I should swap out using legendary for wilder.nvim

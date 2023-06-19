@@ -9,6 +9,7 @@ return {
                 ["<localleader>re"] = "Eval",
                 ["<localleader>rec"] = "Eval and Comment",
                 ["<localleader>rg"] = "Go",
+                ["<localleader>rc"] = "Client",
             },
         },
     },
@@ -36,8 +37,12 @@ return {
             { "<localleader>reb", desc = "Eval buffer" },
             { "<localleader>rgd", desc = "Go Definition" },
 
+            { "<localleader>rcs", desc = "Client Start" },
+            { "<localleader>rcS", desc = "Client Stop" },
+            { "<localleader>rei", desc = "Eval Interrupt" },
             { "<localleader>rE", desc = "Eval visual", mode = { "v" } },
         },
+        lazy = false,
         dependencies = {
             {
                 "PaterJason/cmp-conjure",
@@ -60,6 +65,8 @@ return {
             vim.g["conjure#mapping#prefix"] = "<localleader>r"
             vim.g["conjure#mapping#log_split"] = "lv"
             vim.g["conjure#mapping#log_vsplit"] = "lb"
+
+            vim.g["conjure#client_on_load"] = false
         end,
     },
 }
