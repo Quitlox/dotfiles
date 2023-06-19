@@ -2,8 +2,8 @@ return {
     "numToStr/Comment.nvim",
     dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     keys = {
-        { "gc", mode = { "n", "v" } },
-        { "<C-/>", "gcc", mode = "n" },
+        { "gc",    mode = { "n", "v" } },
+        { "<C-/>", "gcc",                                                  mode = { "n", "v" } },
         { "<C-/>", "<cmd>s/\\s\\+$//e<return><cmd>noh<return><escape>gcA", mode = "i" },
     },
     version = "",

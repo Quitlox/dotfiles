@@ -1,5 +1,6 @@
 vim.o.termguicolors = true
 
+
 ----------------------------------------------------------------------
 --                     Plugin Manager: Install                      --
 ----------------------------------------------------------------------
@@ -35,6 +36,10 @@ local lazy_config = {
         cmd = "diffview.nvim",
     },
     checker = {
+        enabled = true,
+        notify = false,
+    },
+    change_detection = {
         enabled = false,
         notify = false,
     },
@@ -81,10 +86,6 @@ local plugins = {
         end,
     },
 
-    ---------- Text Objects ----------
-    -- Indent Text Object (for Python)
-    { "michaeljsmith/vim-indent-object", ft = "python" },
-
     ----------------------------------------
     -- Import
     ----------------------------------------
@@ -95,10 +96,10 @@ local plugins = {
 ----------------------------------------------------------------------
 
 require("lazy").setup(plugins, lazy_config)
+require("quitlox.config")
 
 -- Keybinding
 require("which-key").register({
     p = { "<cmd>Lazy<cr>", "Plugins" },
 }, { prefix = "<leader>v" })
 
-require("quitlox.plugins.config.include.keybindings")

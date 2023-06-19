@@ -13,7 +13,9 @@ FIX:
     - edgy.nvim
 	- how to close all windows
 
+    - legendary mappings are broken
     - do nvim-surround.nvim and nvim-autotag conflict for html?
+    - use telescope git_files instead of find_files in git repo
 
 COULD:
     - Switch over from nvm-cmp to coq
@@ -41,6 +43,9 @@ OPTIONAL PLUGINS: (might come in handy later)
     	- telescope-docker
 	- session-lens
 	- telescope-repo
+    
+    - Otter.nvim
+    	- For lsp support of embedded languages in markdown files etc.
 
 Contribute (Existing projects):
     - Neogit has no explanation whatsover on how to use rebase
