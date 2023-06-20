@@ -5,27 +5,48 @@
 -- also useful for showing diagnostics.
 
 return {
-    "folke/trouble.nvim",
-    version="",
-    opts = {
-        action_keys = {
-            close = "q",
-            open_split = { "<c-v>" },
-            open_vsplit = { "<c-b>" },
-            toggle_fold = { "zA", "za", "o" },
+    {
+        "folke/trouble.nvim",
+        version = "",
+        opts = {
+            action_keys = {
+                close = "q",
+                open_split = { "<c-v>" },
+                open_vsplit = { "<c-b>" },
+                toggle_fold = { "zA", "za", "o" },
+            },
+        },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        cmd = { "TroubleToggle" },
+        keys = {
+            { "<leader>odx", "<cmd>TroubleToggle<cr>",                       desc = "Open Trouble" },
+            { "<leader>odd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Open Diagnostics Document" },
+            { "<leader>odw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Open Diagnostics Workspace" },
+            { "<leader>odq", "<cmd>TroubleToggle quickfix<cr>",              desc = "Open Quickfix" },
+            { "<leader>ow",  "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Open Workspace Diagnostics" },
+            { "<leader>oq",  "<cmd>TroubleToggle quickfix<cr>",              desc = "Open Quickfix" },
         },
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = true,
-    init = function()
-        require("which-key").register({
-            d = {
-                name = "Diagnostics",
-                x = { "<cmd>TroubleToggle<cr>", "Open Trouble" },
-                d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Open Diagnostics Document " },
-                w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Open Diagnostics Workspace " },
-                q = { "<cmd>TroubleToggle quickfix_diagnostics<cr>", "Open Quickfix" },
+    {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            defaults = {
+                ["<leader>od"] = { name = "Open Diagnostics" },
             },
-        }, { prefix = "<leader>o", noremap = true })
-    end,
+        },
+    },
+
+    --  +----------------------------------------------------------+
+    --  |     Add mappings for opening Trouble from Telescope      |
+    --  +----------------------------------------------------------+
+    {
+        "nvim-telescope/telescope.nvim",
+        optional = true,
+        opts = function(_, opts)
+            opts.defaults.mappings.i = vim.tbl_extend("keep", opts.defaults.mappings.i, {
+                ["<c-t>"] = function() require("trouble.providers.telescope").open_with_trouble() end,
+            })
+        end,
+    },
 }

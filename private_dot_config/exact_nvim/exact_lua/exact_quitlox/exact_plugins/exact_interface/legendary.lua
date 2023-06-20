@@ -72,7 +72,6 @@ return {
             include_builtin = false,
             include_legendary_cmd = true,
 
-            commands = {},
             funcs = functions,
 
             which_key = {

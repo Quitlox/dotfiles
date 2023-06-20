@@ -6,31 +6,17 @@
 return {
     "folke/todo-comments.nvim",
     version = "",
-    config = true,
+    lazy = false, -- To highlight notes
     opts = {
         highlight = {
             keyword = "wide",
         },
     },
-    init = function()
-        require("which-key").register({
-            d = {
-                name = "Diagnostics",
-                n = { "<cmd>TodoTrouble<cr>", "Open Notes" },
-            },
-        }, { prefix = "<leader>o", noremap = true })
-
-        local wk = require("which-key")
-
-        wk.register({
-            ["]n"] = {
-                function() require("todo-comments").jump_next() end,
-                "Next Note",
-            },
-            ["[n"] = {
-                function() require("todo-comments").jump_prev() end,
-                "Previous Note",
-            },
-        }, { mode = "n" })
-    end,
+    cmd = { "TodoTelescope", "TodoTrouble" },
+    keys = {
+        { "<leader>odn", "<cmd>TodoTrouble<cr>",                              desc = "Open Notes" },
+        { "<leader>fn",  "<cmd>TodoTelescope<cr>",                            desc = "Find Notes" },
+        { "[n",          function() require("todo-comments").jump_prev() end, desc = "Previous Note" },
+        { "]n",          function() require("todo-comments").jump_next() end, desc = "Next Note" },
+    },
 }

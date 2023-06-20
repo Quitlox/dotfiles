@@ -7,9 +7,9 @@ return {
         defaults = {
             ["<leader><cr>"] = "which_key_ignore",
             ["<leader><leader>"] = "which_key_ignore",
-            ["<leader><tab>"] = "Tab",
-            ["<leader>v"] = "Vim",
-            ["<leader>T"] = "Toggle",
+            ["<leader><tab>"] = { name = "Tab" },
+            ["<leader>v"] = { name = "Vim" },
+            ["<leader>T"] = { name = "Toggle" },
         },
         plugins = {
             marks = true,

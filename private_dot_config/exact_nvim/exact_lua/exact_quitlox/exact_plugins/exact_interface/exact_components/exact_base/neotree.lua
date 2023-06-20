@@ -259,9 +259,6 @@ return {
 
         require("which-key").register({
             ["<leader>"] = {
-                -- f = {
-                --     l = { "<cmd>Neotree source=filesystem reveal=true<cr>", "Find file" },
-                -- },
                 l = {
                     name = "Locate",
                     f = { "<cmd>Neotree source=filesystem reveal=true<cr>", "Locate File" },

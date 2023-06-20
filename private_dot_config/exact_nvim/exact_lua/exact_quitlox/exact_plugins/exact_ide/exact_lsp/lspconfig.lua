@@ -38,6 +38,8 @@ local function set_keybindings(bufnr)
         K = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
     }, bufopts)
 
+    -- Range formatting
+    vim.keymap.set("v", "gf", vim.lsp.buf.format, bufopts)
     -- Rename
     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
     -- Signature Help

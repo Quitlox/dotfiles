@@ -1,5 +1,6 @@
 return {
     "chentoast/marks.nvim",
+    -- FIXME: Should lazyload via keys
     init = function()
         require("which-key").register({
             d = {

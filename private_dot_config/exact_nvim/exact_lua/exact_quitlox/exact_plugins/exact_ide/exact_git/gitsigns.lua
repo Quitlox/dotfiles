@@ -7,7 +7,7 @@
 return {
     "lewis6991/gitsigns.nvim",
     version = "",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
         local function on_attach(bufnr)
             local gs = require("gitsigns")
@@ -33,8 +33,8 @@ return {
             vim.keymap.set("n", "[h", prev_hunk, { expr = true, buffer = bufnr })
 
             wk.register({
-                    ["[h"] = { "Next Change" },
-                    ["]h"] = { "Prev Change" },
+                ["[h"] = { "Next Change" },
+                ["]h"] = { "Prev Change" },
             })
 
             ----------------------------------------
@@ -76,7 +76,12 @@ return {
             }, { prefix = "<leader>", mode = "n", buffer = bufnr })
         end
 
-        require("gitsigns").setup({ on_attach = on_attach })
+        require("gitsigns").setup({
+            on_attach = on_attach,
+            -- FIXME: Gitsigns should lazyload Trouble
+            -- Enabling this causes trouble to be loaded on startup
+            trouble = false,
+        })
 
         ----------------------------------------
         -- Scrollbar integration

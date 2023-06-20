@@ -1,4 +1,7 @@
 
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
@@ -15,30 +18,19 @@ vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev se
 -- the filetype is not equals to 'NvimTree'
 local function window_only()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
-        if
-            win ~= vim.api.nvim_get_current_win()
-            and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree"
-        then
-            vim.api.nvim_win_close(win, false)
-        end
+        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then
+            vim.api.nvim_win_close(win, false) end
     end
 end
 
-require("which-key").register({
-    ["<leader>"] = {
-        w = {
-            name = "Window",
-            j = { "<C-W>j", "which_key_ignore" },
-            k = { "<C-W>k", "which_key_ignore" },
-            h = { "<C-W>h", "which_key_ignore" },
-            l = { "<C-W>l", "which_key_ignore" },
-            o = { window_only, "Window Only" },
-            v = { "<C-W>s", "Window vSplit" },
-            b = { "<C-W>v", "Window Split" },
-            d = { "<C-W>q", "Window Delete" },
-        },
-    },
-})
+vim.keymap.set("n", "<C-W>j", "<C-W>j", { desc = "Window Down" })
+vim.keymap.set("n", "<C-W>k", "<C-W>k", { desc = "Window Up" })
+vim.keymap.set("n", "<C-W>h", "<C-W>h", { desc = "Window Left" })
+vim.keymap.set("n", "<C-W>l", "<C-W>l", { desc = "Window Right" })
+vim.keymap.set("n", "<C-W>o", window_only, { desc = "Window Only" })
+vim.keymap.set("n", "<C-W>s", "<C-W>s", { desc = "Window vSplit" })
+vim.keymap.set("n", "<C-W>v", "<C-W>v", { desc = "Window Split" })
+vim.keymap.set("n", "<C-W>q", "<C-W>q", { desc = "Window Delete" })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
@@ -67,4 +59,3 @@ vim.cmd([[
     command Z wa | qa
     cabbrev xa Z
 ]])
-

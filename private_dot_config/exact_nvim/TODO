@@ -2,35 +2,33 @@ FIX:
     - vie (select inside environment) from vimtex should not select first line of env
         https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321 ? 
 
-    - notify
-        - stack notifications that are the same with a count
     - neotest
         - g? should open keymap instructions for summary
         - command for running the last ran test
 	- collapse empty directories like explorer
-    - neotest python
-	- should show all variants of a test (all combinations of fixtures, see vscode)
-    - edgy.nvim
-	- how to close all windows
 
     - legendary mappings are broken
     - do nvim-surround.nvim and nvim-autotag conflict for html?
     - use telescope git_files instead of find_files in git repo
 
 COULD:
-    - Switch over from nvm-cmp to coq
+    - Replace nvm-cmp with coq
     - Replace LSPSage with:
     	- Code Action Menu: nvim-code-action-menu
+    - Replace navic with dropdown.nvim
+    - Replace projections with persisted.nvim as session manager and conduct.nvim as project manager
+    - Add NeoComposer for better Macro experience
+    	Tried it: It would be a better UX, but there's bugs preventing me from using it
 
 BLOCKED:
     - ]f in python should not go to decorator
     - python identation nvim-autopairs
     	- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
 	- https://www.reddit.com/r/neovim/comments/13d3hy5/different_autopair_indentation_on_cr_in_python/
+    - edgy.nvim
+	- how to close all windows
 
 OPTIONAL PLUGINS: (might come in handy later)
-    - Macros
-    	neocomposer.nvim: simplifies macros enchaning productivity with harmony
     - Command
         wilder.nvim (Customizable wildmenu, change completion and renderer)
         live-command.nvim

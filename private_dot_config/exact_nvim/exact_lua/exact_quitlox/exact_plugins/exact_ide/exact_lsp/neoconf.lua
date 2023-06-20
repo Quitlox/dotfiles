@@ -4,7 +4,7 @@ return {
         optional = true,
         opts = {
             defaults = {
-                ["<leader>vn"] = "Neoconf",
+                ["<leader>vn"] = { name = "Neoconf" },
             },
         },
     },

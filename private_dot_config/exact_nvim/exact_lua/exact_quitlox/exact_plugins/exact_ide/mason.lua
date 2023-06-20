@@ -1,7 +1,7 @@
 return {
     "williamboman/mason.nvim",
-    -- TODO:
-    -- keys = { "<leader>vm", function() vim.cmd[[Mason<cr>]] end, desc="Mason" },
+    keys = { "<leader>vm", "<cmd>Mason<cr>", desc = "Mason" },
+    lazy = false,
     opts = {
         ui = {
             border = "single",

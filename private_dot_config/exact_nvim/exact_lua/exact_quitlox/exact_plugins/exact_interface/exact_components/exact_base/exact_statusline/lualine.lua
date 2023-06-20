@@ -27,25 +27,12 @@ local fileformat = require("quitlox.plugins.interface.components.base.statusline
 local filename = require("quitlox.plugins.interface.components.base.statusline.modules.filename")
 local breadcrumbs = require("quitlox.plugins.interface.components.base.statusline.modules.breadcrumbs")
 local yaml_schema = require("quitlox.plugins.interface.components.base.statusline.modules.yaml_schema")
-local toggleterm = require("quitlox.plugins.interface.components.base.statusline.modules.terminal")
 local diff = require("quitlox.plugins.interface.components.base.statusline.modules.diff")
 local mixed_indent = require("quitlox.plugins.interface.components.base.statusline.modules.mixed_indent")
 
 ----------------------------------------
 -- Modules
 ----------------------------------------
-
-local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
-    return function(str)
-        local win_width = vim.fn.winwidth(0)
-        if hide_width and win_width < hide_width then
-            return ""
-        elseif trunc_width and trunc_len and win_width < trunc_width and #str > trunc_len then
-            return str:sub(1, trunc_len) .. (no_ellipsis and "" or "...")
-        end
-        return str
-    end
-end
 
 local mode = {
     "mode",
@@ -66,18 +53,10 @@ local keymap = {
     end,
 }
 
-local branch = { "b:gitsigns_head", icon = "" }
-
 local lazy = {
     require("lazy.status").updates,
     cond = require("lazy.status").has_updates,
     color = { fg = "ff9e64" },
-}
-
--- TODO: Forces swenv to load, should only load on ft python
-local swenv = {
-    "swenv",
-    cond = function() return vim.bo.filetype == "python" end,
 }
 
 ----------------------------------------
@@ -104,9 +83,9 @@ lualine.setup({
     },
     sections = {
         lualine_a = { mode },
-        lualine_b = { "branch", "swenv" },
+        lualine_b = { "branch" },
         lualine_c = { "man", filename, "nvim-dap-ui", "lsp_progress" },
-        -- lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
+        lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
         lualine_y = { lazy, diff, diagnostics },
         lualine_z = { "searchcount", "location" },
     },
