@@ -173,7 +173,7 @@ zinit load ajeetdsouza/zoxide
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 zinit ice as"completion" blockf
-zinit snippet OMZP::docker/_docker
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 ### Cargo
 zinit ice lucid nocompile
