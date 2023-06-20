@@ -14,7 +14,7 @@ return {
             -- Keybindings
             ----------------------------------------
 
-            local kopts = { noremap = true, silent = true }
+            local kopts = { noremap = true, silent = true, desc = "which_key_ignore" }
 
             vim.api.nvim_set_keymap(
                 "n",
