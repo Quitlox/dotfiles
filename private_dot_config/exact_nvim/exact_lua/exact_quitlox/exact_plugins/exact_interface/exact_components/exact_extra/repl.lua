@@ -16,33 +16,67 @@ return {
     {
         "Olical/conjure",
         version = "",
-        cmd = { "ConjureEval", "ConjureSchool", "ConjureConnect", "ConjureClientState" },
-        keys = {
-            { "<localleader>rlv",  desc = "Log Split" },
-            { "<localleader>rlb",  desc = "Log Vertical split" },
-            { "<localleader>rlt",  desc = "Log Tab" },
-            { "<localleader>rlb",  desc = "Log Buffer" },
-            { "<localleader>rlg",  desc = "Log toggle" },
-            { "<localleader>rlr",  desc = "Log Reset soft" },
-            { "<localleader>rlR",  desc = "Log Reset hard" },
-            { "<localleader>rll",  desc = "Log jump Latest" },
-            { "<localleader>rlq",  desc = "Log close visible" },
-            { "<localleader>rec",  desc = "Eval and Comment" },
-            { "<localleader>recr", desc = "Eval Root and Comment" },
-            { "<localleader>recw", desc = "Eval Word and Comment" },
-            { "<localleader>rew",  desc = "Eval Word" },
-            { "<localleader>re!",  desc = "Eval and replace" },
-            { "<localleader>rem",  desc = "Eval Mark" },
-            { "<localleader>ref",  desc = "Eval File from disk" },
-            { "<localleader>reb",  desc = "Eval buffer" },
-            { "<localleader>rgd",  desc = "Go Definition" },
-
-            { "<localleader>rcs",  desc = "Client Start" },
-            { "<localleader>rcS",  desc = "Client Stop" },
-            { "<localleader>rei",  desc = "Eval Interrupt" },
-            { "<localleader>rE",   desc = "Eval visual",          mode = { "v" } },
+        cmd = {
+            "ConjureEval",
+            "ConjureSchool",
+            "ConjureConnect",
+            "ConjureClientState",
+            --
+            "ConjureLogSplit",
+            "ConjureLogVSplit",
+            "ConjureLogTab",
+            "ConjureLogBuf",
+            "ConjureLogToggle",
+            "ConjureLogResetSoft",
+            "ConjureLogResetHard",
+            "ConjureLogJumpToLatest",
+            "ConjureLogCloseVisible",
+            --
+            "ConjureEvalCurrentForm",
+            "ConjureEvalCommentCurrentForm",
+            "ConjureEvalRootForm",
+            "ConjureEvalCommentRootForm",
+            "ConjureEvalWord",
+            "ConjureEvalCommentWord",
+            "ConjureEvalReplaceForm",
+            "ConjureEvalMarkedForm",
+            "ConjureEvalCommentForm",
+            "ConjureEvalFile",
+            "ConjureEvalBuf",
+            "ConjureEvalMotion",
+            "ConjureEvalVisual",
         },
-        lazy = false,
+        keys = {
+            { "<localleader>rlv", desc = "Log Split" },
+            { "<localleader>rlb", desc = "Log Vertical split" },
+            { "<localleader>rlt", desc = "Log Tab" },
+            { "<localleader>rlb", desc = "Log Buffer" },
+            { "<localleader>rlg", desc = "Log toggle" },
+            { "<localleader>rlr", desc = "Log Reset soft" },
+            { "<localleader>rlR", desc = "Log Reset hard" },
+            { "<localleader>rll", desc = "Log jumpConjure Latest" },
+            { "<localleader>rlq", desc = "Log close visible" },
+            { "<localleader>ree", desc = "Eval" },
+            { "<localleader>rece", desc = "Eval and Comment" },
+            { "<localleader>rer", desc = "Eval Root" },
+            { "<localleader>recr", desc = "Eval Root and Comment" },
+            { "<localleader>rew", desc = "Eval Word" },
+            { "<localleader>recw", desc = "Eval Word and Comment" },
+            { "<localleader>re!", desc = "Eval and replace" },
+            { "<localleader>rem", desc = "Eval Mark" },
+            { "<localleader>rec", desc = "Eval Form and Comment" },
+            { "<localleader>ref", desc = "Eval File from disk" },
+            { "<localleader>reb", desc = "Eval buffer" },
+            { "<localleader>rE", desc = "Eval Motion", mode = { "n" } },
+            { "<localleader>rE", desc = "Eval Motion", mode = { "v" } },
+            --
+            { "<localleader>rgd", desc = "Go Definition" },
+            { "<localleader>rK", desc = "Look up doc" },
+            --
+            { "<localleader>rcs", desc = "Client Start" },
+            { "<localleader>rcS", desc = "Client Stop" },
+            { "<localleader>rei", desc = "Eval Interrupt" },
+        },
         dependencies = {
             {
                 "PaterJason/cmp-conjure",
@@ -61,10 +95,15 @@ return {
                 end,
             },
         },
+        config = function(_, opts)
+            require("conjure.main").main()
+            require("conjure.mapping")["on-filetype"]()
+        end,
         init = function()
             vim.g["conjure#mapping#prefix"] = "<localleader>r"
             vim.g["conjure#mapping#log_split"] = "lv"
             vim.g["conjure#mapping#log_vsplit"] = "lb"
+            vim.g["conjure#mapping#doc_word"] = "<localleader>rK"
 
             vim.g["conjure#client_on_load"] = false
         end,

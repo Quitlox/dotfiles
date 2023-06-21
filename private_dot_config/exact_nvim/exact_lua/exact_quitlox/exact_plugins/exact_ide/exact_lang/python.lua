@@ -40,7 +40,7 @@ return {
     --  |     Neotest                                              |
     --  +----------------------------------------------------------+
 
-    "nvim-neotest/neotest-python",
+    { "nvim-neotest/neotest-python",     lazy = true },
     {
         "nvim-neotest/neotest",
         optional = true,
@@ -84,11 +84,8 @@ return {
                 s = { pythondap.debug_selection, "Debug Selection" },
             }, { prefix = "<localleader>d", mode = "v" })
         else
-            require("notify")(
-                'For Python debugging, install debugpy using: ":MasonInstall debugpy"',
-                "WARN",
-                { title = "No Python Debugging", timeout = 3000 }
-            )
+            require("notify")('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN",
+                { title = "No Python Debugging", timeout = 3000 })
         end
     end,
 }

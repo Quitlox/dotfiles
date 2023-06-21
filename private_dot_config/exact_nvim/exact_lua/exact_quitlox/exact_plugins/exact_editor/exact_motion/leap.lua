@@ -62,16 +62,12 @@ end
 
 return {
     "ggandor/leap.nvim",
-    dependencies = {
-
-    },
     config = function()
         local leap = require("leap")
         local wk = require("which-key")
 
         leap.add_default_mappings()
         vim.api.nvim_del_keymap("n", "gs") -- Used by LspSaga for Workspace Symbols
-        local winid = vim.api.nvim_get_current_win()
 
         local _mapping =
             { j = { leap_to_line_forward, "which_key_ignore" }, k = { leap_to_line_backward, "which_key_ignore" } }
