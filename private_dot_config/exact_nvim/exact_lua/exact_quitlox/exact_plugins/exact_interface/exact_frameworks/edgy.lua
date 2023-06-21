@@ -1,43 +1,26 @@
 return {
     {
         "folke/edgy.nvim",
-        event = "VeryLazy",
+        ft = {
+            "neo-tree",
+            "Trouble",
+            "qf",
+            "Outline",
+            "spectre_panel",
+            "help",
+            "NeogitStatus",
+            "neotest-summary",
+            "toggleterm",
+        },
         opts = {
             left = {
-                -- {
-                --     title = "Neo-Tree Buffers",
-                --     ft = "neo-tree",
-                --     filter = function(buf) return vim.b[buf].neo_tree_source == "buffers" end,
-                --     pinned = true,
-                --     open = "Neotree position=top buffers",
-                --     size = { height = 0.2 },
-                -- },
-                {
-                    title = "Neo-Tree",
-                    ft = "neo-tree",
-                    -- filter = function(buf) return vim.b[buf].neo_tree_source == "filesystem" end,
-                    -- size = { height = 0.5 },
-                },
-                -- {
-                --     title = "Neo-Tree Git",
-                --     ft = "neo-tree",
-                --     filter = function(buf) return vim.b[buf].neo_tree_source == "git_status" end,
-                --     pinned = true,
-                --     open = "Neotree position=right git_status",
-                --     size = { height = 0.2 },
-                -- },
+                { title = "Neo-Tree", ft = "neo-tree" },
             },
             -- Sidebar Right
             right = {
                 -- Symbols Outline
-                {
-                    ft = "Outline",
-                    pinned = true,
-                    open = "SymbolsOutline",
-                },
-                {
-                    ft = "neotest-summary",
-                },
+                { ft = "Outline",        open = "SymbolsOutline" },
+                { ft = "neotest-summary" },
             },
             -- Sidebar Bottom
             bottom = {
@@ -52,7 +35,7 @@ return {
                 -- Diagnostics
                 { ft = "Trouble" },
                 -- Quickfix
-                { ft = "qf", title = "QuickFix" },
+                { ft = "qf",          title = "QuickFix" },
                 -- Help
                 {
                     ft = "help",
@@ -94,8 +77,8 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         optional = true,
         opts = function(_, opts)
-            opts.open_files_do_not_replace_types = opts.open_files_do_not_replace_types
-                or { "terminal", "Trouble", "qf", "Outline" }
+            opts.open_files_do_not_replace_types = opts.open_files_do_not_replace_types or
+            { "terminal", "Trouble", "qf", "Outline" }
             table.insert(opts.open_files_do_not_replace_types, "edgy")
         end,
     },

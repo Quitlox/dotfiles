@@ -28,9 +28,9 @@ vim.keymap.set("n", "<leader>wk", "<C-W>k", { desc = "Window Up" })
 vim.keymap.set("n", "<leader>wh", "<C-W>h", { desc = "Window Left" })
 vim.keymap.set("n", "<leader>wl", "<C-W>l", { desc = "Window Right" })
 vim.keymap.set("n", "<leader>wo", window_only, { desc = "Window Only" })
-vim.keymap.set("n", "<leader>ws", "<C-W>s", { desc = "Window vSplit" })
-vim.keymap.set("n", "<leader>wv", "<C-W>v", { desc = "Window Split" })
-vim.keymap.set("n", "<leader>wq", "<C-W>q", { desc = "Window Delete" })
+vim.keymap.set("n", "<leader>wv", "<C-W>s", { desc = "Window vSplit" })
+vim.keymap.set("n", "<leader>wb", "<C-W>v", { desc = "Window Split" })
+vim.keymap.set("n", "<leader>wd", "<C-W>q", { desc = "Window Delete" })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })

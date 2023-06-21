@@ -1,6 +1,6 @@
 return {
     -- Adds missing highlight group
-    { "folke/lsp-colors.nvim" },
+    -- { "folke/lsp-colors.nvim" },
     -- Colorscheme!
     {
         "catppuccin/nvim",

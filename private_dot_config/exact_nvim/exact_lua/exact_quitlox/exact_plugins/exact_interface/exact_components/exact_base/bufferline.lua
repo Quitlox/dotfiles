@@ -32,60 +32,49 @@ vim.opt.sessionoptions:append("globals")
 
 return {
     {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            defaults = {
+                ["<leader>bm"] = { name = "Buffer Move" },
+                ["<leader>b"] = { name = "Buffer" },
+            },
+        },
+    },
+    {
         "akinsho/bufferline.nvim",
+        event = "VeryLazy",
         version = "",
-        config = function()
-            local lazy = require("bufferline.lazy")
-
-            require("bufferline").setup({
-                options = {
-                    themable = true,
-                    diagnostics = "nvim_lsp",
-                    show_close_icon = false,
-                    show_tab_indicators = true,
-                },
-                highlights = require("catppuccin.groups.integrations.bufferline").get(),
-            })
-        end,
-        init = function()
-            require("which-key").register({
-                b = {
-                    name = "Buffer",
-                    n = { "<cmd>BufferLineCycleNext<cr>", "Buffer Next" },
-                    p = { "<cmd>BufferLineCyclePrev<cr>", "Buffer Prev" },
-                    b = { "<cmd>BufferLinePick<cr>", "Buffer Pick" },
-                    f = { "<cmd>Telescope buffers<cr>", "Buffer Find" },
-                    d = { ":Bdelete<cr>", "Buffer Delete" },
-                    o = { close_all_but_current, "Buffer Only" },
-                    m = {
-                        name = "Move",
-                        n = { "<cmd>BufferLineMoveNext<cr>", "Buffer Move Next" },
-                        p = { "<cmd>BufferLineMovePrev<cr>", "Buffer Move Prev" },
-                    },
-                },
-            }, { prefix = "<leader>" })
-        end,
+        keys = {
+            { "<leader>bn", "<cmd>BufferLineCycleNext<cr>", desc = "Buffer Next" },
+            { "<leader>bp", "<cmd>BufferLineCyclePrev<cr>", desc = "Buffer Prev" },
+            { "<leader>bb", "<cmd>BufferLinePick<cr>", desc = "Buffer Pick" },
+            { "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Buffer Find" },
+            { "<leader>bd", ":Bdelete<cr>", desc = "Buffer Delete" },
+            { "<leader>bo", close_all_but_current, desc = "Buffer Only" },
+            { "<leader>bmn", "<cmd>BufferLineMoveNext<cr>", desc = "Buffer Move Next" },
+            { "<leader>bmp", "<cmd>BufferLineMovePrev<cr>", desc = "Buffer Move Prev" },
+        },
+        opts = {
+            options = {
+                themable = true,
+                diagnostics = "nvim_lsp",
+                show_close_icon = false,
+                show_tab_indicators = true,
+            },
+            highlights = require("catppuccin.groups.integrations.bufferline").get(),
+        },
     },
     {
         "roobert/bufferline-cycle-windowless.nvim",
-        dependencies = {
-            { "akinsho/bufferline.nvim" },
+        cmd = { "BufferLineCycleWindowlessNext", "BufferLineCycleWindowlessPrev" },
+        keys = {
+            { "<leader>bn", "<cmd>BufferLineCycleWindowlessNext<cr>", desc = "Buffer Next" },
+            { "<leader>bp", "<cmd>BufferLineCycleWindowlessPrev<cr>", desc = "Buffer Prev" },
         },
-        config = function()
-            require("bufferline-cycle-windowless").setup({
-                -- whether to start in enabled or disabled mode
-                default_enabled = true,
-            })
-        end,
-        init = function()
-            require("which-key").register({
-                n = { "<cmd>BufferLineCycleWindowlessNext<cr>", "Buffer Next" },
-                p = { "<cmd>BufferLineCycleWindowlessPrev<cr>", "Buffer Prev" },
-            }, { prefix = "<leader>b" })
-        end,
+        opts = {
+            -- whether to start in enabled or disabled mode
+            default_enabled = true,
+        },
     },
 }
-
--- vim.cmd([[hi BufferLineSeparator guifg=c.c.vscFoldBackground]])
--- vim.cmd([[hi BufferLineSeparatorSelected guifg=c.vscFoldBackground]])
--- vim.cmd([[hi BufferLineSeparatorVisible guifg=c.vscFoldBackground]])

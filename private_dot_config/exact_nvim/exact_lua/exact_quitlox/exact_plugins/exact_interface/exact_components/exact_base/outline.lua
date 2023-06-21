@@ -1,6 +1,5 @@
 return {
     "simrat39/symbols-outline.nvim",
-    config = true,
     opts = {
         symbol_blacklist = { "Variable", "TypeParameter", "NULL", "Field" },
         symbols = {
@@ -34,14 +33,13 @@ return {
             Fragment = { icon = "", hl = "@constant" },
         },
     },
-    init = function()
-        require("which-key").register({
-            ["o"] = {
-                ["o"] = { "<cmd>SymbolsOutline<cr>", "Open Outline" },
-            },
-            ["l"] = {
-                ["s"] = { "<cmd>SymbolsOutlineOpen<cr>", "Locate Symbol" },
-            },
-        }, {prefix = "<leader>"})
-    end,
+    cmd = {
+        "SymbolsOutline",
+        "SymbolsOutlineOpen",
+    },
+    keys = {
+
+        { "<leader>oo", "<cmd>SymbolsOutline<cr>",     desc = "Open Outline" },
+        { "<leader>ls", "<cmd>SymbolsOutlineOpen<cr>", desc = "Locate Symbol" },
+    },
 }

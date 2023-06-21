@@ -1,20 +1,17 @@
 vim.o.termguicolors = true
 
-
 ----------------------------------------------------------------------
 --                     Plugin Manager: Install                      --
 ----------------------------------------------------------------------
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        lazypath,
-    })
-end
+if not vim.loop.fs_stat(lazypath) then vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+}) end
 vim.opt.rtp:prepend(lazypath)
 
 ----------------------------------------------------------------------
@@ -49,7 +46,7 @@ local lazy_config = {
         },
         rtp = {
             paths = { "/home/quitlox/.config/vim", "C:/Users/witloxkhd/.config/vim" },
-        }
+        },
     },
 }
 
@@ -67,7 +64,7 @@ local plugins = {
     { "moll/vim-bbye" }, -- Add lazyload on command
     ---------- Verbs, Motions ----------
     -- { "tpope/vim-surround" },
-    { "kylechui/nvim-surround",      config = true },
+    { "kylechui/nvim-surround", version = "*", event = "VeryLazy", config = true },
     { "tpope/vim-repeat" },
     ---------- Navigation ----------
     ---------- Improved Defaults ----------
@@ -102,4 +99,3 @@ require("quitlox.config")
 require("which-key").register({
     p = { "<cmd>Lazy<cr>", "Plugins" },
 }, { prefix = "<leader>v" })
-

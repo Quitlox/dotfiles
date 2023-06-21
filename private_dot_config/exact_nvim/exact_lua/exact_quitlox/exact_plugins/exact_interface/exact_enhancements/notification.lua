@@ -6,12 +6,13 @@ end
 
 vim.cmd([[ autocmd FileType notify lua CloseNotification() ]])
 
+-- Set up as default notification handler
+vim.notify = function(msg, level, opts) require("notify")(msg, level, opts) end
+
 return {
     {
         "rcarriga/nvim-notify",
         version = "",
-        priority = 800,
-        lazy = false,
         keys = {
             {
                 "<leader>vd",
@@ -19,16 +20,9 @@ return {
                 desc = "Dismiss Notifications",
             },
         },
-        config = function()
-            -- Set up notify
-            local notify = require("notify")
-            notify.setup({
-                top_down = false,
-            })
-
-            -- Set up as default notification handler
-            vim.notify = notify
-        end,
+        opts = {
+            top_down = false,
+        },
     },
     {
         "mrjones2014/legendary.nvim",

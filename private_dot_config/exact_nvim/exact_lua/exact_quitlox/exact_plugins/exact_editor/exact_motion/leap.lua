@@ -45,7 +45,7 @@ end
 
 local function leap_to_line_forward()
     local winid = vim.api.nvim_get_current_win()
-    require('leap').leap({
+    require("leap").leap({
         safe_labels = {},
         target_windows = { winid },
         targets = get_line_starts(winid),
@@ -53,7 +53,7 @@ local function leap_to_line_forward()
 end
 local function leap_to_line_backward()
     local winid = vim.api.nvim_get_current_win()
-    require('leap').leap({
+    require("leap").leap({
         safe_labels = {},
         target_windows = { winid },
         targets = get_line_starts(winid, true),
@@ -62,16 +62,10 @@ end
 
 return {
     "ggandor/leap.nvim",
-    config = function()
-        local leap = require("leap")
-        local wk = require("which-key")
-
-        leap.add_default_mappings()
-        vim.api.nvim_del_keymap("n", "gs") -- Used by LspSaga for Workspace Symbols
-
-        local _mapping =
-            { j = { leap_to_line_forward, "which_key_ignore" }, k = { leap_to_line_backward, "which_key_ignore" } }
-        wk.register(_mapping, { prefix = "<leader><leader>", mode = "n" })
-        wk.register(_mapping, { prefix = "<leader><leader>", mode = "v" })
-    end,
+    keys = {
+        { "s",                 "<Plug>(leap-forward-to)",    desc = "Leap forward" },
+        { "S",                 "<Plug>(leap-backward-to)",   desc = "Leap backward" },
+        { "<leader><leader>j", leap_to_line_forward,         desc = "which_key_ignore",  mode = { "n", "v" } },
+        { "<leader><leader>k", leap_to_line_backward,        desc = "which_key_ignore",  mode = { "n", "v" } },
+    },
 }

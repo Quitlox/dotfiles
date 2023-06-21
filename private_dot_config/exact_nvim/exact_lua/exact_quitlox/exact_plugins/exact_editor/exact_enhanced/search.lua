@@ -3,36 +3,44 @@ return {
         "kevinhwang91/nvim-hlslens",
         config = true,
         version = "",
-        lazy = true,
-        init = function()
-            ----------------------------------------
-            -- Scrollbar Integration
-            ----------------------------------------
-            require("scrollbar.handlers.search").setup({})
-
-            ----------------------------------------
-            -- Keybindings
-            ----------------------------------------
-
-            local kopts = { noremap = true, silent = true, desc = "which_key_ignore" }
-
-            vim.api.nvim_set_keymap(
+        keys = {
+            {
                 "n",
-                "n",
-                [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-                kopts
-            )
-            vim.api.nvim_set_keymap(
-                "n",
+                "<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr>",
+                silent = true,
+                desc = "which_key_ignore",
+            },
+            {
                 "N",
-                [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-                kopts
-            )
-            vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-            vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-            vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-            vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-        end,
+                "<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr>",
+                silent = true,
+                desc = "which_key_ignore",
+            },
+            {
+                "*",
+                "*<cmd>lua require('hlslens').start()<cr>",
+                silent = true,
+                desc = "which_key_ignore",
+            },
+            {
+                "#",
+                "#<cmd>lua require('hlslens').start()<cr>",
+                silent = true,
+                desc = "which_key_ignore",
+            },
+            {
+                "g*",
+                "g*<cmd>lua require('hlslens').start()<cr>",
+                silent = true,
+                desc = "which_key_ignore",
+            },
+            {
+                "g#",
+                "g#<cmd>lua require('hlslens').start()<cr>",
+                silent = true,
+                desc = "which_key_ignore",
+            },
+        },
     },
     -- Auto Enable/Disable hlsearch
     -- { "asiryk/auto-hlsearch.nvim", config = true },

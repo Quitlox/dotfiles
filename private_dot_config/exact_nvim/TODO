@@ -7,9 +7,8 @@ FIX:
         - command for running the last ran test
 	- collapse empty directories like explorer
 
-    - legendary mappings are broken
     - do nvim-surround.nvim and nvim-autotag conflict for html?
-    - use telescope git_files instead of find_files in git repo
+    - yank highlight
 
 COULD:
     - Replace nvm-cmp with coq

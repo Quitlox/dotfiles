@@ -1,7 +1,6 @@
 return {
     "akinsho/toggleterm.nvim",
-    -- TODO: "`" break the key
-   -- keys = { "`", "<leader>ogl", "<leader>ot" },
+    cmd = { "CustomToggleTerm", "ToggleTermToggleAll" },
     opts = {
         {
             persist_mode = true,
@@ -21,8 +20,5 @@ return {
         require("toggleterm").setup(opts)
         require("quitlox.plugins.interface.components.base.terminal.include.lazygit")
     end,
-
-    init = function()
-        require("quitlox.plugins.interface.components.base.terminal.include.keybindings")
-    end,
+    init = function() require("quitlox.plugins.interface.components.base.terminal.include.keybindings") end,
 }

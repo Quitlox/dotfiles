@@ -1,43 +1,23 @@
 return {
-    "nvim-neo-tree/neo-tree.nvim",
-    version = "2.x",
-    lazy = false,
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-        "MunifTanjim/nui.nvim",
-        {
-            -- only needed if you want to use the commands with "_with_window_picker" suffix
-            "s1n7ax/nvim-window-picker",
-            version = "v1.*",
-            config = function()
-                require("window-picker").setup({
-                    autoselect_one = true,
-                    include_current = false,
-                    filter_rules = {
-                        bo = {
-                            -- if the file type is one of following, the window will be ignored
-                            filetype = { "neo-tree", "neo-tree-popup", "notify" },
-                            -- if the buffer type is one of following, the window will be ignored
-                            buftype = { "terminal", "quickfix" },
-                        },
-                    },
-                    -- other_win_hl_color = "#e35e4f",
-                })
-            end,
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        version = "2.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
         },
-    },
-    config = function()
-        -- Unless you are still migrating, remove the deprecated commands from v1.x
-        vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+        init = function()
+            -- Unless you are still migrating, remove the deprecated commands from v1.x
+            vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
-        -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-        vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-        vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-        vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-        vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
-
-        require("neo-tree").setup({
+            -- If you want icons for diagnostic errors, you'll need to define them somewhere:
+            vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+            vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+            vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+            vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+        end,
+        opts = {
             close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
             popup_border_style = "rounded",
 
@@ -93,8 +73,8 @@ return {
                     },
 
                     ["<2-LeftMouse>"] = "open",
-                    ["<cr>"] = "open",
-                    ["o"] = "open",
+                    ["<cr>"] = "open_with_window_picker",
+                    ["o"] = "open_with_window_picker",
 
                     ["<esc>"] = "revert_preview",
                     ["P"] = { "toggle_preview", config = { use_float = true } },
@@ -102,8 +82,6 @@ return {
                     ["l"] = "focus_preview",
                     ["v"] = "open_split",
                     ["b"] = "open_vsplit",
-                    -- ["v"] = "split_with_window_picker",
-                    -- ["b"] = "vsplit_with_window_picker",
 
                     ["t"] = "open_tabnew",
                     -- ["<cr>"] = "open_drop",
@@ -255,18 +233,29 @@ return {
                     },
                 },
             },
-        })
-
-        require("which-key").register({
-            ["<leader>"] = {
-                l = {
-                    name = "Locate",
-                    f = { "<cmd>Neotree source=filesystem reveal=true<cr>", "Locate File" },
-                },
-                o = {
-                    e = { "<cmd>Neotree source=filesystem reveal=false toggle=true<cr>", "Open Explorer" },
+        },
+        keys = {
+            { "<leader>lf", "<cmd>Neotree source=filesystem reveal=true<cr>", desc = "Locate File" },
+            { "<leader>oe", "<cmd>Neotree source=filesystem reveal=false toggle=true<cr>", desc = "Open Explorer" },
+        },
+    },
+    {
+        -- only needed if you want to use the commands with "_with_window_picker" suffix
+        "s1n7ax/nvim-window-picker",
+        version = "v1.*",
+        lazy = true,
+        name = "window-picker",
+        opts = {
+            autoselect_one = true,
+            include_current = false,
+            filter_rules = {
+                bo = {
+                    -- if the file type is one of following, the window will be ignored
+                    filetype = { "neo-tree", "neo-tree-popup", "notify" },
+                    -- if the buffer type is one of following, the window will be ignored
+                    buftype = { "terminal", "quickfix" },
                 },
             },
-        })
-    end,
+        },
+    },
 }

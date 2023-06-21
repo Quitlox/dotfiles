@@ -10,6 +10,9 @@ return {
             ["<leader><tab>"] = { name = "Tab" },
             ["<leader>v"] = { name = "Vim" },
             ["<leader>T"] = { name = "Toggle" },
+            ["<leader>l"] = { name = "Locate" },
+            ["<leader>o"] = { name = "Open" },
+            ["<leader>w"] = { name = "Window" },
         },
         plugins = {
             marks = true,
