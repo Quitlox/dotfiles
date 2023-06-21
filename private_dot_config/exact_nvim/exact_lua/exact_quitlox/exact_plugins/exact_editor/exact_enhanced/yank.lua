@@ -1,8 +1,7 @@
 return {
     "gbprod/yanky.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function(_, opts)
-        require("yanky").setup({
+    opts = function(_, opts)
+        return {
             picker = {
                 select = {
                     action = nil,
@@ -24,33 +23,24 @@ return {
                 on_put = true,
                 on_yank = false,
             },
-        })
-        require("telescope").load_extension("yank_history")
+        }
     end,
-    init = function()
-        local wk = require("which-key")
-
-        wk.register({
-            ["p"] = { "<Plug>(YankyPutAfter)", "Yank Put After" },
-            ["P"] = { "<Plug>(YankyPutBefore)", "Yank Put Before" },
-            ["gp"] = { "<Plug>(YankyGPutAfter)", "Yank GPut After" },
-            ["gP"] = { "<Plug>(YankyGPutBefore)", "Yank GPut Before" },
-        }, { mode = "n" })
-
-        wk.register({
-            ["p"] = { "<Plug>(YankyPutAfter)", "Yank Put After" },
-            ["P"] = { "<Plug>(YankyPutBefore)", "Yank Put Before" },
-            ["gp"] = { "<Plug>(YankyGPutAfter)", "Yank GPut After" },
-            ["gP"] = { "<Plug>(YankyGPutBefore)", "Yank GPut Before" },
-        }, { mode = "x" })
-
-        wk.register({
-            ["<c-n>"] = { "<Plug>(YankyCycleForward)", "Yank Cycle Forward" },
-            ["<c-p>"] = { "<Plug>(YankyCycleBackward)", "Yank Cycle Backward" },
-        }, { mode = "n" })
-
-        wk.register({
-            y = { ":Telescope yank_history<cr>", "Yank History" },
-        }, { prefix = "<leader>" })
-    end,
+    keys = {
+        { "p", "<Plug>(YankyPutAfter)", desc = "Yank Put After", mode = { "n", "x" } },
+        { "P", "<Plug>(YankyPutBefore)", desc = "Yank Put Before", mode = { "n", "x" } },
+        { "gp", "<Plug>(YankyGPutAfter)", desc = "Yank GPut After", mode = { "n", "x" } },
+        { "gP", "<Plug>(YankyGPutBefore)", desc = "Yank GPut Before", mode = { "n", "x" } },
+        --
+        { "<c-n>", "<Plug>(YankyCycleForward)", desc = "Yank Cycle Forward" },
+        { "<c-p>", "<Plug>(YankyCycleBackward)", desc = "Yank Cycle Backward" },
+        --
+        {
+            "<leader>y",
+            function()
+                require("telescope").load_extension("yank_history")
+                vim.cmd([[Telescope yank_history]])
+            end,
+            desc = "Yank History",
+        },
+    },
 }

@@ -2,13 +2,10 @@
 --          Sessions + Projects Manager: projections.nvim           --
 ----------------------------------------------------------------------
 
--- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
+-- Set sessionoptions
 vim.opt.sessionoptions:append("localoptions")
-
 -- Autocmd group
 local augroup = vim.api.nvim_create_augroup("Projections", { clear = true })
-
-local function restore_hook() end
 
 local function store_hook()
     vim.cmd("NeoTreeClose")
@@ -23,6 +20,7 @@ local function store_hook()
             vim.cmd("SymbolsOutlineClose")
         end
     end
+    -- TODO: Only do these if the modules are loaded
     require("neotest").output_panel.close()
     require("neotest").summary.close()
     require("edgy").close()
@@ -46,8 +44,7 @@ local function delete_session()
     local Session = require("projections.session")
     local info = Session.info(vim.fn.getcwd())
     if vim.fn.delete(info.path.path) == 0 then
-        -- Delete the AutoCommand group to prevent the same
-        -- Session file from being recreated
+        -- Delete the AutoCommand group to prevent the same Session file from being recreated
         vim.api.nvim_del_augroup_by_id(augroup)
         vim.notify("Successfully deleted session!\nSession file: " .. info.path.path, vim.log.levels.INFO)
     else
@@ -71,16 +68,11 @@ return {
             { "/home/quitlox/.config", { "init.lua", "vimrc" } },
         },
         store_hooks = { pre = store_hook },
-        restore_hooks = { post = restore_hook },
+        -- restore_hooks = { post = restore_hook },
     },
     config = function(_, opts)
         -- Setup projections.nvim plugin
         require("projections").setup(opts)
-
-        -- Bind telescope keybinding for browsing projects
-        require("telescope").load_extension("projections")
-        -- TODO: Open Telescope with a prettier, smaller UI
-        -- See projections.nvim for inspiration
 
         -- Autostore session on VimExit
         vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
@@ -100,7 +92,11 @@ return {
         -- Command for switching projects
         require("legendary").command({
             ":SwitchProject",
-            "<cmd>Telescope projections<cr>",
+            function()
+                -- Bind telescope keybinding for browsing projects
+                require("telescope").load_extension("projections")
+                vim.cmd([[Telescope projections]])
+            end,
             description = "Switch Project",
         })
         -- Command for deleting session

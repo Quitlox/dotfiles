@@ -7,8 +7,8 @@ return {
     -- LSP plugins and LSP configs are in lsp/configs.lua
 
     ----- Tex -----
-    { "lervag/vimtex", version = "" },
+    { "lervag/vimtex",                    version = "" },
     ----- Yuck -----
     -- the filetype used by ewww
-    "elkowar/yuck.vim",
+    { "elkowar/yuck.vim" },
 }
