@@ -1,4 +1,8 @@
 return {
+    -- FIXME: Replace with new typescript-tools.nvim
+    -- https://github.com/pmizio/typescript-tools.nvim
+    -- Blocked by: https://github.com/pmizio/typescript-tools.nvim/issues/36
+
     ----- Typescript -----
     { "jose-elias-alvarez/typescript.nvim", lazy = false },
     {

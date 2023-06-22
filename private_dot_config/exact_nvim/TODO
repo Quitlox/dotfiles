@@ -12,12 +12,17 @@ FIX:
 
 COULD:
     - Replace nvm-cmp with coq
+    	- Should be faster
     - Replace LSPSage with:
     	- Code Action Menu: nvim-code-action-menu
     - Replace navic with dropdown.nvim
     - Replace projections with persisted.nvim as session manager and conduct.nvim as project manager
     - Add NeoComposer for better Macro experience
     	Tried it: It would be a better UX, but there's bugs preventing me from using it
+    - Add other.nvim for alternative files
+    	Use-case: Switching between test and file
+    - Add otter.nvim for snippet lsp support
+    	Use-case: Wanting completion in markdown etc.
 
 BLOCKED:
     - ]f in python should not go to decorator
@@ -33,16 +38,11 @@ OPTIONAL PLUGINS: (might come in handy later)
         live-command.nvim
     - Tasks
     	overseer.nvim
-    - Editing
-	substitute.nvim
 
     - Telescope:
     	- telescope-docker
 	- session-lens
 	- telescope-repo
-    
-    - Otter.nvim
-    	- For lsp support of embedded languages in markdown files etc.
 
 Contribute (Existing projects):
     - Neogit has no explanation whatsover on how to use rebase

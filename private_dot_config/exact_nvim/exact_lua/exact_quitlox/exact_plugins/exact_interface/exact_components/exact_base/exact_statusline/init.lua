@@ -5,13 +5,14 @@ return {
         dependencies = {
             -- Module: Breadcrumbs
             "SmiteshP/nvim-navic",
-            -- Module: yaml_schema
-            -- "someone-stole-my-name/yaml-companion.nvim",
+            --
+            "linrongbin16/lsp-progress.nvim",
         },
         config = function() require("quitlox.plugins.interface.components.base.statusline.lualine") end,
     },
     {
-        "arkav/lualine-lsp-progress",
-        event = "LspAttach",
+        "linrongbin16/lsp-progress.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function() require("lsp-progress").setup() end,
     },
 }
