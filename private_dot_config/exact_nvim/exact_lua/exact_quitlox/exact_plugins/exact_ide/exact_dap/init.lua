@@ -15,8 +15,15 @@ return {
     {
         "ofirgall/goto-breakpoints.nvim",
         keys = {
-            {"[b" , function() require('goto-breakpoints').prev() end, desc = "Previous Breakpoint"},
-            {"]b" , function() require('goto-breakpoints').next() end, desc = "Next Breakpoint"},
+            { "[b", function() require("goto-breakpoints").prev() end, desc = "Previous Breakpoint" },
+            { "]b", function() require("goto-breakpoints").next() end, desc = "Next Breakpoint" },
+        },
+    },
+    {
+        "Weissle/persistent-breakpoints.nvim",
+        config = true,
+        opts = {
+            load_breakpoints_event = { "BufReadPost" },
         },
     },
 }

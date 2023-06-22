@@ -45,11 +45,11 @@ return {
 
     -- Triggers
     cmd = { "DapToggleRepl", "DapToggleBreakpoint" },
-    keys = { "<localleader>d" },
+    keys = { "<leader>d" },
 
     -- Keybindings
     init = function()
-        -- Signs
+        -- Signs (required by Catppuccin)
         local sign = vim.fn.sign_define
         sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
         sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
@@ -61,7 +61,7 @@ return {
             ["<F8>"] = { "<cmd>lua require('dap').step_over()<cr>", "Debug Step Over" },
             ["<S-F8>"] = { "<cmd>lua require('dap').step_out()<cr>", "Debug Step Out" },
             ["<F7>"] = { "<cmd>lua require('dap').step_into()<cr>", "Debug Step Into" },
-            ["<localleader>"] = {
+            ["<leader>"] = {
                 d = {
                     name = "Debug",
                     o = { "<cmd>lua require('dapui').open()<cr>", "Debug UI Open" },

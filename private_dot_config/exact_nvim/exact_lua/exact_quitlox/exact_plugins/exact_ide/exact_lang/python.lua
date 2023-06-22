@@ -26,8 +26,7 @@ return {
                                 vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
                             end
 
-                            client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-                            custom_on_publish_diagnostics, {})
+                            client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
                         end,
                         capabilities = require("quitlox.util").make_capabilities(),
                     })
@@ -40,7 +39,7 @@ return {
     --  |     Neotest                                              |
     --  +----------------------------------------------------------+
 
-    { "nvim-neotest/neotest-python",     lazy = true },
+    { "nvim-neotest/neotest-python", lazy = true },
     {
         "nvim-neotest/neotest",
         optional = true,
@@ -48,7 +47,7 @@ return {
         opts = {
             adapters = {
                 ["neotest-python"] = {
-                    dap = { justMyCode = false },
+                    dap = { justMyCode = true },
                 },
             },
         },
@@ -62,13 +61,14 @@ return {
 
     {
         "mfussenegger/nvim-dap-python",
-        ft = "python",
+        -- FIXME: This is too late apparently
+        -- ft = "python",
+        lazy = false,
         config = function()
             local path = require("quitlox.util.path")
             local pythondap = require("dap-python")
 
-            local debugpy_path = path.concat({ vim.fn.stdpath("data"), "mason", "packages", "debugpy", "venv", "bin",
-                "python" })
+            local debugpy_path = path.concat({ vim.fn.stdpath("data"), "mason", "packages", "debugpy", "venv", "bin", "python" })
 
             if path.exists(debugpy_path) then
                 -- Setup Python DAP and point to debugpy
@@ -80,13 +80,12 @@ return {
                 require("which-key").register({
                     x = { pythondap.test_class, "Debug Class" },
                     y = { pythondap.test_method, "Debug Method" },
-                }, { prefix = "<localleader>d" })
+                }, { prefix = "<leader>d" })
                 require("which-key").register({
                     s = { pythondap.debug_selection, "Debug Selection" },
-                }, { prefix = "<localleader>d", mode = "v" })
+                }, { prefix = "<leader>d", mode = "v" })
             else
-                vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN",
-                    { title = "No Python Debugging", timeout = 3000 })
+                vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN", { title = "No Python Debugging", timeout = 3000 })
             end
         end,
     },

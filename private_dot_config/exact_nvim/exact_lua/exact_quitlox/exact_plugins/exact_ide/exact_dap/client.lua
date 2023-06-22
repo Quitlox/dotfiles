@@ -13,7 +13,14 @@ return {
             -- Set log level
             dap.set_log_level("TRACE")
 
-            -- Setup nvim-dap-vscode-js
+            -- Configure launch.json file handling
+            require("quitlox.plugins.ide.dap.include.launch_json")
+        end,
+    },
+    {
+        "mxsdev/nvim-dap-vscode-js",
+        ft = { "javascript", "typescript" },
+        config = function(_, opts)
             local path = require("quitlox.util.path")
             require("dap-vscode-js").setup({
                 -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
@@ -36,7 +43,7 @@ return {
                         -- port = 9229,
                         -- cwd = "${workspaceFolder}",
                         remoteRoot = "/app",
-                        websocketAddress="ws://localhost:9229/00831fe4-8d99-4f36-b617-b4501a6f5447",
+                        websocketAddress = "ws://localhost:9229/00831fe4-8d99-4f36-b617-b4501a6f5447",
                         resolveSourceMapLocations = {
                             "${workspaceFolder}/**",
                             -- "/app/**",
@@ -45,21 +52,10 @@ return {
                     },
                 }
             end
-
-            -- Configure launch.json file handling
-            require("quitlox.plugins.ide.dap.include.launch_json")
         end,
         dependencies = {
             -- Persistent breakpoints
-            {
-                "Weissle/persistent-breakpoints.nvim",
-                config = true,
-                opts = {
-                    load_breakpoints_event = { "BufReadPost" },
-                },
-            },
             { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out", version = "v1.*" },
-            "mxsdev/nvim-dap-vscode-js",
         },
     },
 }
