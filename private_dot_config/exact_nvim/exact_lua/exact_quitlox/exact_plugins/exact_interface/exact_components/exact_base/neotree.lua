@@ -217,7 +217,7 @@ return {
                 sources = {
                     {
                         source = "filesystem",
-                        display_name = "   Files ",
+                        display_name = " 󰉓  Files ",
                     },
                     {
                         source = "buffers",
@@ -225,11 +225,11 @@ return {
                     },
                     {
                         source = "git_status",
-                        display_name = "   Git ",
+                        display_name = " 󰊢  Git ",
                     },
                     {
                         source = "document_symbols",
-                        display_name = "   Outline ",
+                        display_name = "  Outline ",
                     },
                 },
             },
@@ -251,7 +251,7 @@ return {
             filter_rules = {
                 bo = {
                     -- if the file type is one of following, the window will be ignored
-                    filetype = { "neo-tree", "neo-tree-popup", "notify", "neotest-summary" },
+                    filetype = { "neo-tree", "neo-tree-popup", "notify", "neotest-summary", "NeogitStatus" },
                     -- if the buffer type is one of following, the window will be ignored
                     buftype = { "terminal", "quickfix" },
                 },

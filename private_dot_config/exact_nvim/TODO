@@ -10,6 +10,8 @@ FIX:
     - do nvim-surround.nvim and nvim-autotag conflict for html?
     - yank highlight
 
+    - typescript daf (delete around function) doesn't work
+
 COULD:
     - Replace nvm-cmp with coq
     	- Should be faster

@@ -10,6 +10,8 @@ return {
     },
     {
         "iamcco/markdown-preview.nvim",
+        ft = "markdown",
+        cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
         keys = {
             { "<localleader>mo", "<cmd>MarkdownPreview<cr>", desc = "Markdown Preview" },
             { "<localleader>mb", "<cmd>MarkdownPreviewStop<cr>", desc = "Markdown Preview Stop" },
