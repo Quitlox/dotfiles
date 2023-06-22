@@ -6,12 +6,11 @@ return {
             handlers = {
                 ["clangd"] = function()
                     -- TODO: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-                    local clang_capabilities = capabilities
+                    local clang_capabilities = require("quitlox.util").make_capabilities()
                     clang_capabilities.offsetEncoding = { "utf-16" }
 
-                    lspconfig.clangd.setup({
+                    require("lspconfig").clangd.setup({
                         capabilities = clang_capabilities,
-                        on_attach = on_attach,
                     })
                 end,
             },

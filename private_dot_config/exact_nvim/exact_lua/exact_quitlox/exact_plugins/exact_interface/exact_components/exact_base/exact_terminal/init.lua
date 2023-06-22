@@ -1,6 +1,6 @@
 return {
     "akinsho/toggleterm.nvim",
-    cmd = { "CustomToggleTerm", "ToggleTermToggleAll" },
+    lazy = false,
     opts = {
         {
             persist_mode = true,
