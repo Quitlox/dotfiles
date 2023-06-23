@@ -129,6 +129,7 @@ return {
                     border = "single",
                 },
                 hint_prefix = " ",
+                floating_window = false,
                 wrap = false,
             })
         end,

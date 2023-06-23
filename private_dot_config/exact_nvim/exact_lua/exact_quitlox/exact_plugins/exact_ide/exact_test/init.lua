@@ -10,6 +10,7 @@ return {
         optional = true,
         keys = {
             { "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Test Debug Nearest" },
+            { "<leader>tD", function() require("neotest").run.run(vim.fn.getcwd(0), { strategy = "dap" }) end, desc = "Test Debug All" },
         },
     },
     {

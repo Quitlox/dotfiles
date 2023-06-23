@@ -11,6 +11,8 @@ FIX:
     - yank highlight
 
     - typescript daf (delete around function) doesn't work
+    - neotest python support for live logging
+    - neotest enter should jump to test
     - neotest stacktace if process gets stuck
     no actually stop test just doesnt work while debugging
 E5108: Error executing lua: ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:95: Async task failed without callback: The coroutine failed with this message:
