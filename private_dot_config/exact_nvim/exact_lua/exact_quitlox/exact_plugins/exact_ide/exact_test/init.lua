@@ -18,7 +18,9 @@ return {
         version = "",
         dependencies = { "antoinemadec/FixCursorHold.nvim" },
         keys = {
-            { "[T", function() require("neotest").jump.prev({ status = "failed" }) end, desc = "Previous Failed Test", },
+            { "[T",         function() require("neotest").jump.prev({ status = "failed" }) end,
+                                                                                                    desc =
+                "Previous Failed Test" },
             { "]T",         function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next Failed Test" },
             { "[t",         function() require("neotest").jump.prev() end,                      desc = "Previous Test" },
             { "]t",         function() require("neotest").jump.next() end,                      desc = "Next Test" },
@@ -27,7 +29,8 @@ return {
             { "<leader>tx", function() require("neotest").run.stop() end,                       desc = "Test Stop" },
             { "<leader>ta", function() require("neotest").run.attach() end,                     desc = "Test Attach" },
             { "<leader>to", function() require("neotest").output.open({ enter = true }) end,    desc = "Test Output" },
-            { "<leader>ts", function() require("neotest").summary.toggle() end,                 desc = "Test Summary toggle" },
+            { "<leader>ts", function() require("neotest").summary.toggle() end,                 desc =
+            "Test Summary toggle" },
             { "<leader>lt", function() require("neotest").summary.open() end,                   desc = "Locate Test" },
         },
         config = function(_, opts)
@@ -68,6 +71,9 @@ return {
                     stop = "x",
                     jumpto = { "i", "<cr>" },
                 },
+            },
+            floating = {
+                max_width = 0.99,
             },
             quickfix = {
                 enabled = false,

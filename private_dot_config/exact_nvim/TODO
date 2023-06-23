@@ -11,6 +11,24 @@ FIX:
     - yank highlight
 
     - typescript daf (delete around function) doesn't work
+    - neotest stacktace if process gets stuck
+    no actually stop test just doesnt work while debugging
+E5108: Error executing lua: ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:95: Async task failed without callback: The coroutine failed with this message:
+...nvim/lazy/neotest/lua/neotest/client/strategies/init.lua:66: attempt to call field 'stop' (a nil value)
+stack traceback:
+        ...nvim/lazy/neotest/lua/neotest/client/strategies/init.lua: in function 'stop'
+        ...al/share/nvim/lazy/neotest/lua/neotest/client/runner.lua:204: in function 'stop'
+        ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:123: in function 'stop'
+        ...al/share/nvim/lazy/neotest/lua/neotest/consumers/run.lua:148: in function 'func'
+        ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:166: in function <...quitlox/.local/share/nvim/lazy/neotest/lua/nio/
+tasks.lua:165>
+stack traceback:
+        [C]: in function 'error'
+        ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:95: in function 'close_task'
+        ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:117: in function 'step'
+        ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:143: in function 'stop'
+        ...itlox/.config/nvim/lua/quitlox/plugins/ide/test/init.lua:27: in function <...itlox/.config/nvim/lua/quitlox/plugins/ide/test/
+init.lua:27>
 
 COULD:
     - Replace nvm-cmp with coq
