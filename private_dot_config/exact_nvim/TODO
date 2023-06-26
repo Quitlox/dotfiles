@@ -32,6 +32,17 @@ stack traceback:
         ...itlox/.config/nvim/lua/quitlox/plugins/ide/test/init.lua:27: in function <...itlox/.config/nvim/lua/quitlox/plugins/ide/test/
 init.lua:27>
 
+    - bug symbols-outline when calling :SymbolsOutline multiple teims while LSP is loading (i.e. SymbolsOutline can't open)
+    Error executing vim.schedule lua callback: ...m/lazy/symbols-outline.nvim/lua/symbols-outline/view.lua:39: Failed to rename buffer
+stack traceback:
+        [C]: in function 'nvim_buf_set_name'
+        ...m/lazy/symbols-outline.nvim/lua/symbols-outline/view.lua:39: in function 'setup_view'
+        ...e/nvim/lazy/symbols-outline.nvim/lua/symbols-outline.lua:285: in function 'on_symbols'
+        ...-outline.nvim/lua/symbols-outline/providers/nvim-lsp.lua:78: in function 'callback'
+        /usr/share/nvim/runtime/lua/vim/lsp.lua:2021: in function 'handler'
+        /usr/share/nvim/runtime/lua/vim/lsp.lua:1394: in function ''
+        vim/_editor.lua: in function <vim/_editor.lua:0>
+
 COULD:
     - Replace nvm-cmp with coq
     	- Should be faster
