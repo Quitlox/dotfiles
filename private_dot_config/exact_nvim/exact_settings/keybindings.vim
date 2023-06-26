@@ -52,10 +52,10 @@ nnoremap J mzJ`z
 " nnoremap gj jzz
 " nnoremap k gkzz
 " nnoremap gk kzz
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
+noremap j gj
+noremap gj j
+noremap k gk
+noremap gk k
 
 " augroup center_cursor
 "     autocmd!
