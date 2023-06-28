@@ -42,6 +42,17 @@ stack traceback:
         /usr/share/nvim/runtime/lua/vim/lsp.lua:2021: in function 'handler'
         /usr/share/nvim/runtime/lua/vim/lsp.lua:1394: in function ''
         vim/_editor.lua: in function <vim/_editor.lua:0>
+    - bug in neogit
+E5108: Error executing lua ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:18: The coroutine failed with this message: ...tlox/.local/share/nvim/lazy/neogit/lua/neogit/status.lua:596: attempt t
+o index local 'hunk' (a nil value)                                                                                                                                                                           
+stack traceback:                                                                                                                                                                                             
+        [C]: in function 'error'                                                                                                                                                                             
+        ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:18: in function 'callback_or_next'                                                                                                       
+        ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:45: in function 'step'                                                                                                                   
+        ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:48: in function 'execute'                                                                                                                
+        ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:118: in function <...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:117>                                                       
+        ...are/nvim/lazy/neogit/lua/neogit/lib/mappings_manager.lua:9: in function 'invoke'                                                                                                                  
+        [string ":lua"]:1: in main chunk                   
 
 COULD:
     - Replace nvm-cmp with coq
