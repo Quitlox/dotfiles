@@ -25,8 +25,8 @@ vim.api.nvim_create_user_command("CustomToggleTerm", function(opts)
             toggleterm.toggle_all({ bang = true })
             Terminal:new({ id = opts.count }):open()
         else
-            -- Destory it if it does
-            term:shutdown()
+            -- Open it if it does exist
+            term:toggle()
         end
 
         return
