@@ -251,7 +251,7 @@ return {
             filter_rules = {
                 bo = {
                     -- if the file type is one of following, the window will be ignored
-                    filetype = { "neo-tree", "neo-tree-popup", "notify", "neotest-summary", "NeogitStatus", "help" },
+                    filetype = { "neo-tree", "neo-tree-popup", "notify", "neotest-summary", "NeogitStatus", "help", "Outline" },
                     -- if the buffer type is one of following, the window will be ignored
                     buftype = { "terminal", "quickfix" },
                 },
