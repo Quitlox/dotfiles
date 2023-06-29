@@ -122,6 +122,9 @@ return {
     {
         "ray-x/lsp_signature.nvim",
         event = "VeryLazy",
+        -- Causes hiccups (especiialy when using tailwind)
+        -- BUG: https://github.com/hrsh7th/nvim-cmp/issues/1613
+        cond = false,
         config = function()
             require("lsp_signature").setup({
                 bind = true,

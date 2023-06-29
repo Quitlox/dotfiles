@@ -66,7 +66,8 @@ set switchbuf=uselast
 set comments+=:#
 " Wrapping
 set autoindent 		
-set smartindent 
+set nosmartindent    " This causes comments not to be moved while indenting
+set autoindent	     " This is the modern way, which fixes the above
 set nowrap 
 set linebreak		
 " Cursor
