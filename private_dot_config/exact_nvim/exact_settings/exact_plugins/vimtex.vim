@@ -19,15 +19,29 @@ if has('nvim')
     let g:vimtex_syntax_enabled=1
 endif
 
-" Backends
+" Unix
 if has("unix")
   let g:vimtex_quickfix_method = 'pplatex'
   let g:vimtex_view_method = 'zathura'
 endif
+
+" Windows
 if has('win32') || has('win64')
   let g:vimtex_view_method = 'sioyek'
   " Be sure to add sioyek to PATH. The method below doesn't work for some reason
   " let g:vimtex_view_sioyek_exe = "C:\Users\witloxkhd\Applications\sioyek\sioyek.exe"
+endif
+
+" Windows WSL
+if has('unix') && has('windows')
+  if executable('sioyek.exe')
+    lua vim.notify("Using sioyek.exe on Windows", "info")
+    let g:vimtex_view_method = 'sioyek'
+    let g:vimtex_view_sioyek_exe = 'sioyek.exe'
+    let g:vimtex_callback_progpath = 'wsl nvim'
+  else
+    lua vim.notify("sioyek.exe not found in PATH", "error"")
+  endif
 endif
 
 " Quickfix
