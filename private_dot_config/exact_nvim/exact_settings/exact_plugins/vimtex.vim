@@ -39,6 +39,26 @@ if has('unix') && has('windows')
     let g:vimtex_view_method = 'sioyek'
     let g:vimtex_view_sioyek_exe = 'sioyek.exe'
     let g:vimtex_callback_progpath = 'wsl nvim'
+
+    " On event VimtexEventCompileSuccess, execute "sioyek.exe --execute-command reload""
+    " For some reason, sioyek doesn't pick up file changes when using wsl nvim
+    function! s:sioyek_reload() abort
+        let l:cmd = ['sioyek.exe', '--execute-command', 'reload']
+        let job_id = jobstart(l:cmd, {
+                    \ 'on_exit': function('s:on_sioyek_exit'),
+                    \ })
+
+        if job_id = 0
+            call luaeval('vim.notify("Failed to reload sioyek", "error")')
+        endif
+    endfunction
+
+    function! s:on_sioyek_exit(job_id, exit_status, event) abort
+        echom 'Sioyek exited with code: ' . a:exit_status
+    endfunction
+
+    autocmd User VimtexEventCompileSuccess call s:sioyek_reload()
+
   else
     lua vim.notify("sioyek.exe not found in PATH", "error"")
   endif
