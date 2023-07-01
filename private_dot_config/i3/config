@@ -29,8 +29,7 @@ set $i3lockwall bash ~/.config/i3/pixel_lockscreen.sh
 exec_always --no-startup-id xmodmap -e "clear lock"
 exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
 exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
-#exec_always --no-startup-id setxkbmap -option caps:swapescape
-
+exec_always --no-startup-id setxkbmap -option caps:swapescape
 
 # Pulse Audio controls
 # pactl is native but increases volume past 100%
@@ -106,6 +105,9 @@ mode "$mode_launcher" {
 	bindsym Return mode "default"
 }
 
+# One-off window managing tasks
+bindsym $mod+Ctrl+r floating enable resize set width 1920 px height 1080 px
+
 ###########################################
 ### Autostart Applications              ###
 ###########################################
@@ -129,7 +131,7 @@ exec_always --no-startup-id \
 exec_always --no-startup-id \
     ~/.fehbg
 exec --no-startup-id \
-    picom -b --experimental-backends --backend glx
+    picom -b --backend glx
 exec --no-startup-id \
     deadd-notification-center
 exec_always --no-startup-id \
