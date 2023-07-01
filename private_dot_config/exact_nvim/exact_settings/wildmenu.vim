@@ -22,6 +22,8 @@ if has('wildmenu')
 	set wildignore+=__pycache__,*.egg-info,.pytest_cache,.mypy_cache/**,*.pyc,*.lock,
 	" Latex
 	set wildignore+=*.aux,*.bbl,*.bcf,*.blg,*.fls,*.log,*.run*.xml,*.synctex*.gz,*.fdb_latexmk,*.glg,*.glo,*.gls,*.ist,*.toc,*.glsdefs,*.tikzstyles
+	" Null LS
+	set wildignore+=*.null-ls*
 endif
 
 

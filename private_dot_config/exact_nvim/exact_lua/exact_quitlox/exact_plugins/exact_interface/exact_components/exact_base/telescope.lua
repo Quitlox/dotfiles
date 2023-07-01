@@ -81,6 +81,7 @@ return {
                 desc = "Find Resume",
             },
         },
+        cmd = { "Telescope" },
         init = function()
             -- NOTE: Telescope opens file in insert mode after neovim commit: d52cc66
             -- Ref: https://github.com/nvim-telescope/telescope.nvim/issues/2501#issuecomment-1541009573

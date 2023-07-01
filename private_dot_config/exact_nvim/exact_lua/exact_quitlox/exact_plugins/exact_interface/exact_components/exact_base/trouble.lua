@@ -30,8 +30,10 @@ return {
         "nvim-telescope/telescope.nvim",
         optional = true,
         opts = function(_, opts)
+            -- BUG: This works for find_all but not smart_open, the latter resulting in an error
+            local trouble = require("trouble.providers.telescope")
             opts.defaults.mappings.i = vim.tbl_extend("keep", opts.defaults.mappings.i, {
-                ["<c-t>"] = function() require("trouble.providers.telescope").open_with_trouble() end,
+                ["<c-t>"] = trouble.open_with_trouble,
             })
         end,
     },
