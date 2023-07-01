@@ -60,7 +60,7 @@ if has('unix') && has('windows')
     autocmd User VimtexEventCompileSuccess call s:sioyek_reload()
 
   else
-    lua vim.notify("sioyek.exe not found in PATH", "error"")
+    lua vim.notify("sioyek.exe not found in PATH", "error")
   endif
 endif
 

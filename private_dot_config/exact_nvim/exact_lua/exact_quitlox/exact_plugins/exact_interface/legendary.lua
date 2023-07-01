@@ -60,30 +60,27 @@ local functions = {
 --  +----------------------------------------------------------+
 
 return {
-    {
-        "mrjones2014/legendary.nvim",
-        -- version = "",
-        -- FIXME: Re-enable when https://github.com/mrjones2014/legendary.nvim/pull/373 released
-        dependencies = { "kkharji/sqlite.lua" },
-        keys = {
-            { "<leader>vk", "<cmd>Legendary<cr>", desc = "Keymap", mode = { "n", "v" } },
-        },
-        opts = {
-            include_builtin = false,
-            include_legendary_cmd = true,
+    "mrjones2014/legendary.nvim",
+    version = "",
+    dependencies = { "kkharji/sqlite.lua" },
+    keys = {
+        { "<leader>vk", "<cmd>Legendary<cr>", desc = "Keymap", mode = { "n", "v" } },
+    },
+    opts = {
+        include_builtin = false,
+        include_legendary_cmd = true,
 
-            funcs = functions,
+        funcs = functions,
 
-            which_key = {
-                auto_register = true,
-                do_binding = false,
-                use_groups = false,
-            },
+        which_key = {
+            auto_register = true,
+            do_binding = false,
+            use_groups = false,
         },
-        extensions = {
-            nvim_tree = false,
-            smart_splits = true,
-            diffview = true,
-        },
+    },
+    extensions = {
+        nvim_tree = false,
+        smart_splits = true,
+        diffview = true,
     },
 }

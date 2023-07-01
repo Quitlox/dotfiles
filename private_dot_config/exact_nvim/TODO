@@ -54,6 +54,8 @@ stack traceback:
         ...are/nvim/lazy/neogit/lua/neogit/lib/mappings_manager.lua:9: in function 'invoke'                                                                                                                  
         [string ":lua"]:1: in main chunk                   
 
+    - in lua (and ts/js I believe), when I do "ds{", surrounding commas should be deleted with as well
+
 COULD:
     - Replace nvm-cmp with coq
     	- Should be faster
