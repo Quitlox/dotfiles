@@ -1,6 +1,6 @@
 return {
     {
-        "TimUntersberger/neogit",
+        "NeogitOrg/neogit",
         opts = {
             kind = "split",
             integrations = {
@@ -10,6 +10,7 @@ return {
         cmd = { "Neogit" },
         keys = {
             { "<leader>og", "<cmd>Neogit<cr>", desc = "Open Git Status" },
+            { "<leader>gs", "<cmd>Neogit<cr>", desc = "Git Status" },
         },
     },
     {

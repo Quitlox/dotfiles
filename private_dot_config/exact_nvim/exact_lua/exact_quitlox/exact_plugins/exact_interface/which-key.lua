@@ -13,6 +13,8 @@ return {
             ["<leader>l"] = { name = "Locate" },
             ["<leader>o"] = { name = "Open" },
             ["<leader>w"] = { name = "Window" },
+            -- Plugins
+            ["<leader>g"] = { name = "Git" },
         },
         plugins = {
             marks = true,

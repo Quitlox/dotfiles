@@ -59,9 +59,18 @@ stack traceback:
 COULD:
     - Replace nvm-cmp with coq
     	- Should be faster
-    - Replace LSPSage with:
+    - Replace LSPSaga with:
     	- Code Action Menu: nvim-code-action-menu
     - Replace navic with dropdown.nvim
+    - Add overseer.nvim
+    	- For running tasks, supports vscode.json
+	- Could be use to launch and restart docker containers
+    - Add one-small-step-for-vimkind
+    	- Debugger for Neovim plugins, will be usefull for development of plugins
+    - Add alpha-nvim
+    	- As dashboard. But I should first settle on a "project"  solution
+    - Add hydra.nvim
+    	- Use: for navigating git changes and stashing them
     - Replace projections with persisted.nvim as session manager and conduct.nvim as project manager
     - Add NeoComposer for better Macro experience
     	Tried it: It would be a better UX, but there's bugs preventing me from using it
