@@ -5,3 +5,5 @@ require('nvim-autopairs').add_rules {
     :set_end_pair_length(2)
     :with_pair(ts_conds.is_ts_node 'text'),
 }
+
+

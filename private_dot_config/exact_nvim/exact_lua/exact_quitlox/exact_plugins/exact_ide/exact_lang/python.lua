@@ -48,6 +48,7 @@ return {
             adapters = {
                 ["neotest-python"] = {
                     dap = { justMyCode = true },
+		    args = {"--log-level", "DEBUG", "--log-cli-level", "DEBUG", "-v"},
                 },
             },
         },

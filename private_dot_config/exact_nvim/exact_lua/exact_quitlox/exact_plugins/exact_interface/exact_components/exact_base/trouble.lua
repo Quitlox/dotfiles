@@ -19,6 +19,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         cmd = { "TroubleToggle" },
         keys = {
+            { "<leader>od",  "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Open Document Diagnostics" },
             { "<leader>ow",  "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Open Workspace Diagnostics" },
             { "<leader>oq",  "<cmd>TroubleToggle quickfix<cr>",              desc = "Open Quickfix" },
         },

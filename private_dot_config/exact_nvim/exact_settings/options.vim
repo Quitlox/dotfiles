@@ -43,7 +43,8 @@ endif
 
 set t_vb=                                       " No audible bell in TUI mode
 set backspace=eol,start,indent                  " Make backspace behave sanely
-set formatoptions=vtj                           " join commented lines properly
+set formatoptions=vj                            " join commented lines properly
+set formatoptions-=t                            " auto-wrap comments using textwidth
 set wildmenu                                    " specifies how command line completion works
 set magic                                       " will break plugins if off
 set viewoptions=folds,cursor,curdir,slash,unix  " list of words that specifies what to save for :mkview

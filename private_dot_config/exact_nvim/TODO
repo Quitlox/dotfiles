@@ -6,13 +6,14 @@ FIX:
         - g? should open keymap instructions for summary
         - command for running the last ran test
 	- collapse empty directories like explorer
+    - neogit
+        - q should close popup windows
 
     - do nvim-surround.nvim and nvim-autotag conflict for html?
     - yank highlight
 
     - typescript daf (delete around function) doesn't work
     - neotest python support for live logging
-    - neotest enter should jump to test
     - neotest stacktace if process gets stuck
     no actually stop test just doesnt work while debugging
 E5108: Error executing lua: ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:95: Async task failed without callback: The coroutine failed with this message:
@@ -65,6 +66,8 @@ COULD:
     - Add overseer.nvim
     	- For running tasks, supports vscode.json
 	- Could be use to launch and restart docker containers
+    - nvim-projector
+	- Better project-specifc configs for nvim-dap with telescope!
     - Add one-small-step-for-vimkind
     	- Debugger for Neovim plugins, will be usefull for development of plugins
     - Add alpha-nvim
@@ -78,6 +81,11 @@ COULD:
     	Use-case: Switching between test and file
     - Add otter.nvim for snippet lsp support
     	Use-case: Wanting completion in markdown etc.
+    - Add vim-dadbod
+        Fugitive like solution for Databases from t-pope. If I every need to make changes to a database by hand
+    - spinhnx.nvim
+     	For sphinx support
+	Unfortunately it seems unmaintained
 
 BLOCKED:
     - ]f in python should not go to decorator

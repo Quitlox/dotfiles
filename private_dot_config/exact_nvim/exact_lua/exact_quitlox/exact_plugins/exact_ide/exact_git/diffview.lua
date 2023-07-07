@@ -7,18 +7,18 @@ return {
     {
         "sindrets/diffview.nvim",
         config = true,
-        lazy = true,
         keys = {
-            { "<leader>gd", "<cmd>DiffviewFileHistory<cr>", description = "Git Diff File History" },
+            { "<leader>gd", "<cmd>DiffviewFileHistory<cr>", desc = "Git Diff File History" },
         },
-        cmd = {
-            "DiffviewFileHistory",
-            "DiffviewOpen",
-            "DiffviewClose",
-            "DiffviewToggleFiles",
-            "DiffviewFocusFiles",
-            "DiffviewRefresh",
-        },
+        lazy = false,
+        -- cmd = {
+        --     "DiffviewFileHistory",
+        --     "DiffviewOpen",
+        --     "DiffviewClose",
+        --     "DiffviewToggleFiles",
+        --     "DiffviewFocusFiles",
+        --     "DiffviewRefresh",
+        -- },
     },
     {
         "mrjones2014/legendary.nvim",

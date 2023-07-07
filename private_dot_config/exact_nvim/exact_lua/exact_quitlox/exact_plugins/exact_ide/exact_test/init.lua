@@ -14,7 +14,7 @@ return {
         },
     },
     {
-        -- dir = "~/Workspace/contrib/neotest",
+        -- dir = "~/Workspace/neovim-plugins/neotest",
         "nvim-neotest/neotest",
         version = "",
         dependencies = { "antoinemadec/FixCursorHold.nvim" },
@@ -64,6 +64,7 @@ return {
             require("neotest").setup(opts)
         end,
         opts = {
+            log_level="trace",
             window = {
                 mappings = {},
             },
