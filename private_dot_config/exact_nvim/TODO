@@ -99,9 +99,6 @@ OPTIONAL PLUGINS: (might come in handy later)
     - Command
         wilder.nvim (Customizable wildmenu, change completion and renderer)
         live-command.nvim
-    - Tasks
-    	overseer.nvim
-
     - Telescope:
     	- telescope-docker
 	- session-lens

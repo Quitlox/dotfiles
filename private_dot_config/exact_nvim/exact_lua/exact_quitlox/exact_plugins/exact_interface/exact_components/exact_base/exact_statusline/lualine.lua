@@ -84,7 +84,7 @@ lualine.setup({
     sections = {
         lualine_a = { mode },
         lualine_b = { "branch" },
-        lualine_c = { "man", filename, "nvim-dap-ui", require('lsp-progress').progress },
+        lualine_c = { "man", filename, "nvim-dap-ui", require('lsp-progress').progress, "overseer" },
         lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
         lualine_y = { lazy, diff, diagnostics },
         lualine_z = { "searchcount", "location" },
@@ -92,7 +92,7 @@ lualine.setup({
     inactive_sections = {
         lualine_a = {},
         lualine_b = { "branch" },
-        lualine_c = { filename },
+        lualine_c = { filename, "overseer" },
         lualine_x = { "location" },
         lualine_y = { lazy },
         lualine_z = {},

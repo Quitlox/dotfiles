@@ -41,6 +41,16 @@ return {
                 additional_vim_regex_highlighting = { "latex" },
                 disable = { "latex" },
             },
+
+            ----- Incremental Selection -----
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<CR>",
+                    node_incremental = "<CR>",
+                    node_decremental = "<BS>",
+                },
+            },
         },
     },
 }
