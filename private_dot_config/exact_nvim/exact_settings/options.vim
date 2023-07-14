@@ -68,6 +68,7 @@ set comments+=:#
 " Wrapping
 set autoindent 		
 set nosmartindent    " This causes comments not to be moved while indenting
+set nocindent        " This causes comments to wrap weirdly with parenthesis
 set autoindent	     " This is the modern way, which fixes the above
 set nowrap 
 set linebreak		

@@ -17,15 +17,24 @@ return {
                     -- Python Sources
                     -- We do not use Mason for Python sources,
                     -- as these are best installed inside the virtual env
-                    null_ls.builtins.formatting.black,
-                    null_ls.builtins.formatting.isort,
-                    -- null_ls.builtins.formatting.autoflake,
-                    -- null_ls.builtins.formatting.autopep8,
-                    null_ls.builtins.diagnostics.pylint,
-                    -- null_ls.builtins.diagnostics.mypy,
-                    -- null_ls.builtins.diagnostics.flake8,
-                    null_ls.builtins.diagnostics.pydocstyle,
-                    -- null_ls.builtins.diagnostics.ruff,
+                    null_ls.builtins.formatting.black.with({
+                        condition = function() return vim.fn.executable("black") == 1 end,
+                    }),
+                    null_ls.builtins.formatting.isort.with({
+                        condition = function() return vim.fn.executable("isort") == 1 end,
+                    }),
+                    null_ls.builtins.diagnostics.pylint.with({
+                        condition = function() return vim.fn.executable("pylint") == 1 end,
+                    }),
+                    null_ls.builtins.diagnostics.mypy.with({
+                        condition = function() return vim.fn.executable("mypy") == 1 end,
+                    }),
+                    null_ls.builtins.diagnostics.pydocstyle.with({
+                        condition = function() return vim.fn.executable("pydocstyle") == 1 end,
+                    }),
+                    null_ls.builtins.diagnostics.ruff.with({
+                        condition = function() return vim.fn.executable("ruff") == 1 end,
+                    }),
                 },
             })
         end,
@@ -56,13 +65,6 @@ return {
                         extra_args = { "-n8", "-n1" },
                     }))
                 end,
-                -- eslint = function(source_name, methods)
-                --     local null_ls = require("null-ls")
-                --     null_ls.register(null_ls.builtins.formatting.prettierd.with({
-                --         -- filetypes = { "javascript", "typescript", "json", "yaml", "markdown", "html", "css" },
-                --         filetypes={"vue"}
-                --     }))
-                -- end,
                 prettier = function(source_name, methods)
                     local null_ls = require("null-ls")
                     null_ls.register(null_ls.builtins.formatting.prettierd.with({
@@ -73,4 +75,16 @@ return {
             },
         },
     },
+{
+        "mrjones2014/legendary.nvim",
+        optional = true,
+        opts = function(_, opts)
+            opts.commands = opts.commands or {}
+
+            vim.list_extend(opts.commands, {
+                { ":NullLsInfo", description = "NullLs: Info" },
+                { ":NullLsLog", description = "NullLs: Log" },
+            })
+        end,
+    }
 }

@@ -51,6 +51,29 @@ vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Tab Close" 
 vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Tab Previous" })
 
 ----------------------------------------------------------------------
+--                        Keybindings: Fold                         --
+----------------------------------------------------------------------
+
+-- Define the NextClosedFold function
+local function NextClosedFold(dir)
+    local cmd = 'norm!z'..dir
+    local view = vim.api.nvim_win_get_viewport(0)
+    local l0, l, open = 0, view[0], true
+    while l ~= l0 and open do
+        vim.api.nvim_exec(cmd, true)
+        l0, l = l, vim.api.nvim_win_get_cursor(0)[0]
+        open = vim.api.nvim_call_function('foldclosed', {l}) < 0
+    end
+    if open then
+        vim.api.nvim_win_set_viewport(0, unpack(view))
+    end
+end
+
+-- Map keys to the function
+vim.api.nvim_set_keymap('n', ']z', '<cmd>lua NextClosedFold("j")<cr>', {silent = true})
+vim.api.nvim_set_keymap('n', '[z', '<cmd>lua NextClosedFold("k")<cr>', {silent = true})
+
+----------------------------------------------------------------------
 --                        Keybindings: Misc                         --
 ----------------------------------------------------------------------
 -- Workaround for exiting neovim

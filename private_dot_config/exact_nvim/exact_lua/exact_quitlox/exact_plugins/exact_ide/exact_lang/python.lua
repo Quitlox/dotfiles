@@ -31,6 +31,19 @@ return {
                         capabilities = require("quitlox.util").make_capabilities(),
                     })
                 end,
+                ["pylsp"] = function()
+                    require("lspconfig").pylsp.setup({
+                        capabilities = require("quitlox.util").make_capabilities(),
+                        settings = {
+                            pylsp = {
+                                plugins = {
+                                    black = { enabled = true },
+                                    autopep8 = { enabled = false },
+                                },
+                            },
+                        },
+                    })
+                end,
             },
         },
     },
@@ -48,7 +61,7 @@ return {
             adapters = {
                 ["neotest-python"] = {
                     dap = { justMyCode = true },
-		    args = {"--log-level", "DEBUG", "--log-cli-level", "DEBUG", "-v"},
+                    args = { "--log-level", "DEBUG", "--log-cli-level", "DEBUG", "-v" },
                 },
             },
         },

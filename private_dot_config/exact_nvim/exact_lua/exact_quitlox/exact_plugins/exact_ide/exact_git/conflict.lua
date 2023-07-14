@@ -8,11 +8,11 @@ return {
             { "<leader>ct", "<Plug>(git-conflict-theirs)",        desc = "Choose theirs" },
             { "<leader>cb", "<Plug>(git-conflict-both)",          desc = "Choose both" },
             { "<leader>c0", "<Plug>(git-conflict-none)",          desc = "Choose none" },
-            { "]x",         "<Plug>(git-conflict-prev-conflict)", desc = "Previous conflict" },
-            { "[x",         "<Plug>(git-conflict-next-conflict)", desc = "Next conflict" },
+            { "]x",         "<Plug>(git-conflict-next-conflict)", desc = "Next conflict" },
+            { "[x",         "<Plug>(git-conflict-prev-conflict)", desc = "Previous conflict" },
         },
         opts = {
-            default_mappings = true,
+            default_mappings = false,
             default_command = true,
         },
     },
@@ -31,5 +31,14 @@ return {
                 { "GitConflictListQf",       description = "Get all conflict to quickfix" },
             })
         end,
+    },
+    {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            defaults = {
+                ["<leader>c"] = { name = "Conflict" },
+            },
+        },
     },
 }

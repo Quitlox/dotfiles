@@ -3,10 +3,9 @@ return {
     {
         "kevinhwang91/nvim-ufo",
         dependencies = {
-            { "anuvyklack/pretty-fold.nvim", opts = { fill_char = "-" }, config = true, version = "" },
             { "kevinhwang91/promise-async",  version = "" },
         },
-        name = "ufo",
+        config = function(_, opts) require("ufo").setup(opts) end,
         opts = {
             provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
         },
@@ -15,6 +14,7 @@ return {
             { "zM", function() require("ufo").closeAllFolds() end,        desc = "Close all folds" },
             { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Fold less" },
             { "zm", function() require("ufo").closeFoldsWith() end,       desc = "Fold more" },
+            { "z" },
         },
         init = function()
             vim.o.foldcolumn = "0"
