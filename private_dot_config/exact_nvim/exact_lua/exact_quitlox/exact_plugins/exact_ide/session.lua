@@ -124,6 +124,16 @@ return {
                 description = "Add the pwd as Workspace",
             })
             table.insert(opts.commands, {
+                ":AddParentAsWorkspace",
+                function()
+                    local cwd = vim.loop.cwd()
+                    local parent = cwd:match("(.*[/\\])")
+
+                    require("projections.workspace").add(parent)
+                end,
+                description = "Add the parent of the pwd as a Workspace",
+            })
+            table.insert(opts.commands, {
                 ":StoreSession",
                 function() require("projections.session").store(vim.loop.cwd()) end,
                 description = "Store Session",
