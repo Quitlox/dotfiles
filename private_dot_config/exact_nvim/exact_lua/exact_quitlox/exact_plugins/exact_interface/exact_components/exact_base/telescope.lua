@@ -57,6 +57,11 @@ return {
                 desc = "Find All",
             },
             {
+                "<leader>ff",
+                function() require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({search_dirs={vim.fn.expand('%')}})) end,
+                desc = "Find in File",
+            },
+            {
                 "<leader>fb",
                 function() require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({})) end,
                 desc = "Find Buffer",

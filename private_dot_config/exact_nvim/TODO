@@ -6,14 +6,13 @@ FIX:
         - g? should open keymap instructions for summary
         - command for running the last ran test
 	- collapse empty directories like explorer
-    - neogit
-        - q should close popup windows
 
     - do nvim-surround.nvim and nvim-autotag conflict for html?
     - yank highlight
 
     - typescript daf (delete around function) doesn't work
     - neotest python support for live logging
+
     - neotest stacktace if process gets stuck
     no actually stop test just doesnt work while debugging
 E5108: Error executing lua: ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:95: Async task failed without callback: The coroutine failed with this message:
@@ -43,17 +42,6 @@ stack traceback:
         /usr/share/nvim/runtime/lua/vim/lsp.lua:2021: in function 'handler'
         /usr/share/nvim/runtime/lua/vim/lsp.lua:1394: in function ''
         vim/_editor.lua: in function <vim/_editor.lua:0>
-    - bug in neogit
-E5108: Error executing lua ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:18: The coroutine failed with this message: ...tlox/.local/share/nvim/lazy/neogit/lua/neogit/status.lua:596: attempt t
-o index local 'hunk' (a nil value)                                                                                                                                                                           
-stack traceback:                                                                                                                                                                                             
-        [C]: in function 'error'                                                                                                                                                                             
-        ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:18: in function 'callback_or_next'                                                                                                       
-        ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:45: in function 'step'                                                                                                                   
-        ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:48: in function 'execute'                                                                                                                
-        ...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:118: in function <...share/nvim/lazy/plenary.nvim/lua/plenary/async/async.lua:117>                                                       
-        ...are/nvim/lazy/neogit/lua/neogit/lib/mappings_manager.lua:9: in function 'invoke'                                                                                                                  
-        [string ":lua"]:1: in main chunk                   
 
     - in lua (and ts/js I believe), when I do "ds{", surrounding commas should be deleted with as well
 
@@ -63,6 +51,13 @@ COULD:
     - Replace LSPSaga with:
     	- Code Action Menu: nvim-code-action-menu
     - Replace navic with dropdown.nvim
+    - Add Notebook Navigator
+    	- If I want to use VSCode Cell like functionality
+    - dap-utils.nvim
+    	- Once I figure out session management,
+	I should incorporate this
+    - Copilot.lua
+    	- Replacement of Copilot.nvim if it gets slow
     - Add overseer.nvim
     	- For running tasks, supports vscode.json
 	- Could be use to launch and restart docker containers
@@ -83,7 +78,7 @@ COULD:
     	Use-case: Wanting completion in markdown etc.
     - Add vim-dadbod
         Fugitive like solution for Databases from t-pope. If I every need to make changes to a database by hand
-    - spinhnx.nvim
+    - sphinx.nvim
      	For sphinx support
 	Unfortunately it seems unmaintained
 
@@ -104,8 +99,6 @@ OPTIONAL PLUGINS: (might come in handy later)
 	- session-lens
 	- telescope-repo
 
-Contribute (Existing projects):
-    - Neogit has no explanation whatsover on how to use rebase
 Contribute (My Ideas):
     - Plugin for a custom outline
       This custom outline starts empty, and allows you to add LSP objects with

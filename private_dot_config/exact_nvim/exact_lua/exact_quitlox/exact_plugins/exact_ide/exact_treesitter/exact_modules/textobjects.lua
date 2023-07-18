@@ -19,6 +19,7 @@ return {
                         ["]c"] = "@class.outer",
                         ["]a"] = "@parameter.inner",
                         ["]b"] = "@block.outer",
+                        ["]l"] = "@loop.outer",
                     },
                     goto_next_end = {
                         ["]F"] = "@function.outer",
@@ -50,12 +51,15 @@ return {
                         ["if"] = "@function.inner",
                         ["ac"] = "@class.outer",
                         ["ic"] = "@class.inner",
+                        ["ad"] = "@statement.outer",
+                        ["id"] = "@statement.inner", -- Not used by any language
                     },
                     -- You can choose the select mode (default is charwise 'v')
                     selection_modes = {
                         ["@parameter.outer"] = "v", -- charwise
                         ["@function.outer"] = "v", -- linewise
                         ["@class.outer"] = "<c-v>", -- blockwise
+                        ["@statement.outer"] = "v", -- blockwise
                     },
                 },
                 swap = {
