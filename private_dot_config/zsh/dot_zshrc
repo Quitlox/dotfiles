@@ -132,10 +132,15 @@ zinit load sharkdp/bat
 # A command-line fuzzy finder.
 export FZF_COMPLETION_TRIGGER=''
 function __bind_fzf_keys() {
-  [[ -e /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
-  [[ -e /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
-  [[ -e /usr/share/fzf/completion.zsh ]] && bindkey "^T" fzf-completion
-  [[ -e /usr/share/fzf/key-bindings.zsh ]] && bindkey "^I" $fzf_default_completion
+  function fzf_select_directory() {
+    local dir=$(find ~ -type d 2> /dev/null | fzf)
+    if [ -n "$dir" ]; then
+        cd "$dir"
+        zle reset-prompt
+    fi
+  }
+  zle -N fzf_select_directory
+  bindkey '^o' fzf_select_directory
 }
 if [[ -n "$commands[fzf]" ]]; then
   __bind_fzf_keys
@@ -174,6 +179,15 @@ zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 zinit ice as"completion" blockf
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+# docker compose
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+zinit ice as"completion" blockf
+zinit snippet OMZP::docker-compose/_docker-compose
+
+### Pylint
+zinit ice as"completion" blockf
+zinit snippet OMZP::pylint/_pylint
 
 ### Cargo
 zinit ice lucid nocompile
@@ -209,6 +223,18 @@ zinit load voronkovich/gitignore.plugin.zsh
 zinit ice wait"2" \
   trigger-load'!zhooks'
 zinit load agkozak/zhooks
+
+############################################################
+### Zinit: Plugins Extra				 ###
+############################################################
+
+# Python: Poetry
+zinit ice wait"3" as"completion" blockf
+zinit snippet OMZP::poetry/poetry.plugin.zsh
+
+# Rust
+zinit ice wait"3" as"completion" blockf
+zinit snippet OMZP::rust/rust.plugin.zsh
 
 ############################################################
 ### Zinit: Plugins 					 ###
