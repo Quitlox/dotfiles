@@ -33,8 +33,8 @@ return {
                 { "DiffviewFocusFiles", description = "Diffview Locate (focus) files" },
                 { "DiffviewRefresh", description = "Diffview Refresh" },
                 -- See https://github.com/sindrets/diffview.nvim/blob/main/USAGE.md 
-                { "DiffviewReviewPR", "<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>", description = "Diffview to review a Pull Request"},
-                { "DiffviewReviewPRByCommit", "<cmd>DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges<cr>", description = "Diffview to review a Pull Request"},
+                { "DiffviewReviewPR", "DiffviewOpen origin/HEAD...HEAD --imply-local", description = "Diffview to review a Pull Request"},
+                { "DiffviewReviewPRByCommit", "DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges", description = "Diffview to review a Pull Request"},
             })
         end,
     },
