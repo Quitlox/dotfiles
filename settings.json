@@ -488,5 +488,12 @@
   "jupyter.interactiveWindow.textEditor.executeSelection": true,
   "jupyter.interactiveWindow.textEditor.autoMoveToNextCell": false,
   "jupyter.interactiveWindow.textEditor.autoAddNewCell": true,
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": false,
+    "scminput": false
+  }
 }
