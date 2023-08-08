@@ -37,9 +37,9 @@ return {
         "SymbolsOutline",
         "SymbolsOutlineOpen",
     },
-    keys = {
-
-        { "<leader>oo", "<cmd>SymbolsOutline<cr>",     desc = "Open Outline" },
-        { "<leader>ls", "<cmd>SymbolsOutlineOpen<cr>", desc = "Locate Symbol" },
-    },
+    -- keys = {
+    --
+    --     { "<leader>oo", "<cmd>SymbolsOutline<cr>",     desc = "Open Outline" },
+    --     { "<leader>ls", "<cmd>SymbolsOutlineOpen<cr>", desc = "Locate Symbol" },
+    -- },
 }

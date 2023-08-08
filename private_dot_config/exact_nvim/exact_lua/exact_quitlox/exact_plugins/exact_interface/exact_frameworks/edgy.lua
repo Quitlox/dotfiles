@@ -14,13 +14,29 @@ return {
         },
         opts = {
             left = {
-                { title = "Neo-Tree", ft = "neo-tree" },
+                {
+                    title = "Neo-Tree",
+                    ft = "neo-tree",
+                    pinned = false,
+                    filter = function(buf)
+                        local source = vim.b[buf].neo_tree_source
+                        return source == "filesystem" or source == "git_status" or source == "buffers"
+                    end,
+                    open = "Neotree position=right",
+                },
             },
             -- Sidebar Right
             right = {
                 -- Symbols Outline
                 { ft = "Outline",        open = "SymbolsOutline" },
                 { ft = "neotest-summary" },
+                {
+                    title = "Neo-Tree Outline",
+                    pinned = false,
+                    ft = "neo-tree",
+                    filter = function(buf) return vim.b[buf].neo_tree_source == "document_symbols" end,
+                    open = "Neotree position=top document_symbols",
+                },
             },
             -- Sidebar Bottom
             bottom = {
@@ -55,7 +71,17 @@ return {
             },
 
             wo = {
-                winbar = true,
+                winbar = false,
+            },
+
+            keys = {
+                ["<M-l>"] = function(win) win:resize("width", 2) end,
+                -- decrease width
+                ["<M-h>"] = function(win) win:resize("width", -2) end,
+                -- increase height
+                ["<M-j>"] = function(win) win:resize("height", 2) end,
+                -- decrease height
+                ["<M-k>"] = function(win) win:resize("height", -2) end,
             },
 
             fix_win_height = vim.fn.has("nvim-0.10.0") == 0,

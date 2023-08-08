@@ -77,7 +77,7 @@ return {
                     ["o"] = "open_with_window_picker",
 
                     ["<esc>"] = "revert_preview",
-                    ["P"] = { "toggle_preview", config = { use_float = true } },
+                    ["P"] = { "toggle_preview" },
 
                     ["l"] = "focus_preview",
                     ["v"] = "open_split",
@@ -180,7 +180,7 @@ return {
             buffers = {
                 follow_current_file = true, -- This will find and focus the file in the active buffer every
                 -- time the current file is changed while the tree is open.
-                group_empty_dirs = true, -- when true, empty folders will be grouped together
+                group_empty_dirs = true,    -- when true, empty folders will be grouped together
                 show_unloaded = true,
                 window = {
                     mappings = {
@@ -201,6 +201,25 @@ return {
                         ["gc"] = "git_commit",
                         ["gp"] = "git_push",
                         ["gg"] = "git_commit_and_push",
+                    },
+                },
+            },
+            document_symbols = {
+                window = {
+                    mappings = {
+                        ["<cr>"] = "jump_to_symbol",
+                        ["o"] = "toggle_node",
+                        ["i"] = "jump_to_symbol",
+                        ["A"] = "noop",
+                        ["d"] = "noop",
+                        ["y"] = "noop",
+                        ["x"] = "noop",
+                        ["p"] = "noop",
+                        ["c"] = "noop",
+                        ["m"] = "noop",
+                        ["a"] = "noop",
+                        ["/"] = "filter",
+                        ["f"] = "filter_on_submit",
                     },
                 },
             },
@@ -227,16 +246,22 @@ return {
                         source = "git_status",
                         display_name = " 󰊢  Git ",
                     },
-                    {
-                        source = "document_symbols",
-                        display_name = "  Outline ",
-                    },
+                    -- {
+                    --     source = "document_symbols",
+                    --     display_name = "  Outline ",
+                    -- },
                 },
             },
         },
         keys = {
-            { "<leader>lf", "<cmd>Neotree source=filesystem reveal=true<cr>", desc = "Locate File" },
-            { "<leader>oe", "<cmd>Neotree source=filesystem reveal=false toggle=true<cr>", desc = "Open Explorer" },
+            { "<leader>lf", "<cmd>Neotree position=top source=filesystem reveal=true<cr>",  desc = "Locate File" },
+            {
+                "<leader>oe",
+                "<cmd>Neotree position=top source=filesystem reveal=false toggle=true<cr>",
+                desc = "Open Explorer",
+            },
+            { "<leader>oo", "<cmd>Neotree position=right document_symbols reveal=true<cr>", desc = "Open Outline" },
+            { "<leader>ls", "<cmd>Neotree position=right document_symbols reveal=true<cr>", desc = "Locate Symbol" },
         },
     },
     {
@@ -251,7 +276,8 @@ return {
             filter_rules = {
                 bo = {
                     -- if the file type is one of following, the window will be ignored
-                    filetype = { "neo-tree", "neo-tree-popup", "notify", "neotest-summary", "NeogitStatus", "help", "Outline" },
+                    filetype = { "neo-tree", "neo-tree-popup", "notify", "neotest-summary", "NeogitStatus", "help",
+                        "Outline" },
                     -- if the buffer type is one of following, the window will be ignored
                     buftype = { "terminal", "quickfix" },
                 },
