@@ -18,7 +18,7 @@
       "template": "Correct this to standard {{lang}}:\n\n{{input}}",
       "strategy": "replace",
       "params": {
-        "model": "gpt-3.5-turbo"
+        "model": "gpt-4"
       }
     },
     "args": {
@@ -35,7 +35,7 @@
       "template": "Translate this into {{lang}}:\n\n{{input}}",
       "strategy": "replace",
       "params": {
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-4",
         "temperature": 0.3
       }
     },
@@ -53,7 +53,7 @@
       "template": "Extract the main keywords from the following text.\n\n{{input}}",
       "strategy": "replace",
       "params": {
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-4",
         "temperature": 0.5,
         "frequency_penalty": 0.8
       }
@@ -141,7 +141,7 @@
       "template": "Insert a roxygen skeleton to document this R function:\n\n```{{filetype}}\n[insert]\n\n{{input}}\n\n```",
       "strategy": "prepend",
       "params": {
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-4",
         "temperature": 0.5,
         "max_tokens": 1024
       }

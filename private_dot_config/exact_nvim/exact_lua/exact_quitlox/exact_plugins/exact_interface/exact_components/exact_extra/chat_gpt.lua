@@ -1,6 +1,7 @@
 return {
     {
         "jackMort/ChatGPT.nvim",
+        commit = "24bcca7",
         cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTEditWithInstructions" },
         dependencies = {
             "MunifTanjim/nui.nvim",
@@ -14,7 +15,8 @@ return {
             },
             chat = {
                 keymaps = {
-                    close = "q",
+                    select_session = {"<cr>", "i"},
+                    -- close = "q",
                 },
             },
             openai_params = {
