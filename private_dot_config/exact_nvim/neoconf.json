@@ -2,17 +2,17 @@
 	"lspconfig": {
 		"pyright": {
 			"python.analysis.diagnosticMode": "openFilesOnly",
+			// "python.analysis.stubPath": "stubs"
 		},
 		"pylsp": {
 			"pylsp.plugins.autopep8.enabled": true,
 			"pylsp.plugins.black.enabled": true,
 			"pylsp.plugins.pylsp_black.enabled": true,
 			"pylsp.plugins.yapf.enabled": false,
-
-                        "pylsp.plugins.pylint.enabled": false,
-                        "pylsp.plugins.ruff.enabled": true,
-                        "pylsp.plugins.mypy.enabled": true,
-                        "pylsp.plugins.mypy.strict": true
+			"pylsp.plugins.pylint.enabled": false,
+			"pylsp.plugins.ruff.enabled": true,
+			"pylsp.plugins.mypy.enabled": true,
+			"pylsp.plugins.mypy.strict": true
 		}
 	}
 }

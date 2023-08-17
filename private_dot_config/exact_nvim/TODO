@@ -1,48 +1,8 @@
 FIX:
     - vie (select inside environment) from vimtex should not select first line of env
         https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321 ? 
-
-    - neotest
-        - g? should open keymap instructions for summary
-        - command for running the last ran test
-	- collapse empty directories like explorer
-
-    - do nvim-surround.nvim and nvim-autotag conflict for html?
-    - yank highlight
-
     - typescript daf (delete around function) doesn't work
     - neotest python support for live logging
-
-    - neotest stacktace if process gets stuck
-    no actually stop test just doesnt work while debugging
-E5108: Error executing lua: ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:95: Async task failed without callback: The coroutine failed with this message:
-...nvim/lazy/neotest/lua/neotest/client/strategies/init.lua:66: attempt to call field 'stop' (a nil value)
-stack traceback:
-        ...nvim/lazy/neotest/lua/neotest/client/strategies/init.lua: in function 'stop'
-        ...al/share/nvim/lazy/neotest/lua/neotest/client/runner.lua:204: in function 'stop'
-        ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:123: in function 'stop'
-        ...al/share/nvim/lazy/neotest/lua/neotest/consumers/run.lua:148: in function 'func'
-        ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:166: in function <...quitlox/.local/share/nvim/lazy/neotest/lua/nio/
-tasks.lua:165>
-stack traceback:
-        [C]: in function 'error'
-        ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:95: in function 'close_task'
-        ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:117: in function 'step'
-        ...quitlox/.local/share/nvim/lazy/neotest/lua/nio/tasks.lua:143: in function 'stop'
-        ...itlox/.config/nvim/lua/quitlox/plugins/ide/test/init.lua:27: in function <...itlox/.config/nvim/lua/quitlox/plugins/ide/test/
-init.lua:27>
-
-    - bug symbols-outline when calling :SymbolsOutline multiple teims while LSP is loading (i.e. SymbolsOutline can't open)
-    Error executing vim.schedule lua callback: ...m/lazy/symbols-outline.nvim/lua/symbols-outline/view.lua:39: Failed to rename buffer
-stack traceback:
-        [C]: in function 'nvim_buf_set_name'
-        ...m/lazy/symbols-outline.nvim/lua/symbols-outline/view.lua:39: in function 'setup_view'
-        ...e/nvim/lazy/symbols-outline.nvim/lua/symbols-outline.lua:285: in function 'on_symbols'
-        ...-outline.nvim/lua/symbols-outline/providers/nvim-lsp.lua:78: in function 'callback'
-        /usr/share/nvim/runtime/lua/vim/lsp.lua:2021: in function 'handler'
-        /usr/share/nvim/runtime/lua/vim/lsp.lua:1394: in function ''
-        vim/_editor.lua: in function <vim/_editor.lua:0>
-
     - in lua (and ts/js I believe), when I do "ds{", surrounding commas should be deleted with as well
 
 COULD:
