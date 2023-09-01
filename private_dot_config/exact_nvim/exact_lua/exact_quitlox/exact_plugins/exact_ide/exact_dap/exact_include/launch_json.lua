@@ -30,4 +30,4 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 require("which-key").register({
     name = "Debug",
     v = { load_launch_json, "Reload launch.json" },
-}, { prefix = "<localleader>d" })
+}, { prefix = "<leader>dv" })

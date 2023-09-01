@@ -53,6 +53,8 @@ return {
     },
     {
         "zbirenbaum/neodim",
+        -- FIXME: Enable when fixed
+        enabled = false,
         opts = {
             hide = {
                 signs = false,
@@ -60,7 +62,6 @@ return {
                 underline = true,
             },
         },
-        config = true,
         event = "LspAttach",
     },
 }

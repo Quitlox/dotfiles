@@ -82,8 +82,8 @@ return {
             opts.commands = opts.commands or {}
 
             vim.list_extend(opts.commands, {
-                { ":NullLsInfo", description = "NullLs: Info" },
-                { ":NullLsLog", description = "NullLs: Log" },
+                { "NullLsInfo", description = "NullLs: Info" },
+                { "NullLsLog", description = "NullLs: Log" },
             })
         end,
     }
