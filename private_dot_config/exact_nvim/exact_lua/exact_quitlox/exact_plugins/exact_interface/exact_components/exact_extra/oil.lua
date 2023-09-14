@@ -1,6 +1,7 @@
 return {
     {
         "stevearc/oil.nvim",
+        version = "",
         opts = {
             default_file_explorer = false,
             keymaps = {
