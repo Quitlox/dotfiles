@@ -9,6 +9,7 @@
 local navic = require('nvim-navic')
 
 -- Setup function
+-- TODO: We should not be initializing navic here
 navic.setup({
     highlight = true,
 })

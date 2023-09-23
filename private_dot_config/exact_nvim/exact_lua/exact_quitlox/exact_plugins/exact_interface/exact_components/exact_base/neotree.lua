@@ -1,16 +1,13 @@
 return {
     {
         "nvim-neo-tree/neo-tree.nvim",
-        version = "2.x",
+        version = "",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
         },
         init = function()
-            -- Unless you are still migrating, remove the deprecated commands from v1.x
-            vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
             -- If you want icons for diagnostic errors, you'll need to define them somewhere:
             vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
             vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
@@ -147,7 +144,9 @@ return {
                         ".null-ls_*",
                     },
                 },
-                follow_current_file = false, -- This will find and focus the file in the active buffer every
+                follow_current_file = {
+                    enabled = false, -- This will find and focus the file in the active buffer every
+                },
                 -- time the current file is changed while the tree is open.
                 group_empty_dirs = true,
                 hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
@@ -178,9 +177,11 @@ return {
                 commands = {}, -- Add a custom command or override a global one using the same function name
             },
             buffers = {
-                follow_current_file = true, -- This will find and focus the file in the active buffer every
+                follow_current_file = {
+                    enabled = true, -- This will find and focus the file in the active buffer every
+                },
                 -- time the current file is changed while the tree is open.
-                group_empty_dirs = true,    -- when true, empty folders will be grouped together
+                group_empty_dirs = true, -- when true, empty folders will be grouped together
                 show_unloaded = true,
                 window = {
                     mappings = {
@@ -216,8 +217,8 @@ return {
                         ["x"] = "noop",
                         ["p"] = "noop",
                         ["c"] = "noop",
-                        -- ["m"] = "noop",
-                        -- ["a"] = "noop",
+                        ["m"] = "noop",
+                        ["a"] = "noop",
                         ["/"] = "filter",
                         ["f"] = "filter_on_submit",
                     },
@@ -240,7 +241,7 @@ return {
                     },
                     {
                         source = "buffers",
-                        display_name = "   Buffers ",
+                        display_name = "   Buffers ",
                     },
                     {
                         source = "git_status",
@@ -254,10 +255,10 @@ return {
             },
         },
         keys = {
-            { "<leader>lf", "<cmd>Neotree position=top source=filesystem reveal=true<cr>",  desc = "Locate File" },
+            { "<leader>lf", "<cmd>Neotree source=filesystem reveal=true<cr>",  desc = "Locate File" },
             {
                 "<leader>oe",
-                "<cmd>Neotree position=top source=filesystem reveal=false toggle=true<cr>",
+                "<cmd>Neotree source=filesystem reveal=false toggle=true<cr>",
                 desc = "Open Explorer",
             },
             { "<leader>oo", "<cmd>Neotree position=right document_symbols reveal=true<cr>", desc = "Open Outline" },

@@ -4,8 +4,17 @@ FIX:
     - typescript daf (delete around function) doesn't work
     - neotest python support for live logging
     - in lua (and ts/js I believe), when I do "ds{", surrounding commas should be deleted with as well
+    - ]f in python should not go to decorator
+
+TODO:
+    - Add venv-selector to lualine
 
 COULD:
+    - Python
+    	- checkout: https://github.com/chrisgrieser/nvim-kickstart-python/blob/main/kickstart-python.lua
+      	- nvim-various-textobjs
+	- magma-nvim
+	- notebook-navigator
     - Replace nvm-cmp with coq
     	- Should be faster
     - Replace LSPSaga with:
@@ -42,14 +51,6 @@ COULD:
      	For sphinx support
 	Unfortunately it seems unmaintained
 
-BLOCKED:
-    - ]f in python should not go to decorator
-    - python identation nvim-autopairs
-    	- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
-	- https://www.reddit.com/r/neovim/comments/13d3hy5/different_autopair_indentation_on_cr_in_python/
-    - edgy.nvim
-	- how to close all windows
-
 OPTIONAL PLUGINS: (might come in handy later)
     - Command
         wilder.nvim (Customizable wildmenu, change completion and renderer)
@@ -69,12 +70,6 @@ Contribute (My Ideas):
     - Python:
         - Code action for generating test from function using pytest
         - Import thing under cursor
-        - Proper environment switcher, supporting poetry, venv, virtualenv
-    - UI frames library
-        - Let user designed where NvimTree, symbol outline etc goes
-        - Let user decide when these windows close, their precedence
-        - Let user decide when visible (min widht)
-
 
 Notes:
     - git diffview has a great example of how to do a help menu through g?

@@ -1,7 +1,22 @@
 return {
+    ---------- Indent ----------
+    -- Fix indentation after assignment / brackets
+    -- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
+    -- https://www.reddit.com/r/neovim/comments/13d3hy5/different_autopair_indentation_on_cr_in_python/
+    { "Vimjas/vim-python-pep8-indent" },
     ---------- Text Objects ----------
     -- Indent Text Object (for Python)
     { "michaeljsmith/vim-indent-object", ft = "python" },
+    ---------- Virtual Environment ----------
+    {
+        "linux-cultist/venv-selector.nvim",
+        dependencies = { "neovim/nvim-lspconfig" },
+        opts = {},
+        keys = {
+            { "<leader>mv", "<cmd>VenvSelect<cr>",       desc = "Open VenvSelector" },
+            { "<leader>mc", "<cmd>VenvSelectCached<cr>", desc = "Retrieve Venv from Cache" },
+        },
+    },
 
     --  +----------------------------------------------------------+
     --  |     LSP Config                                           |
@@ -26,7 +41,8 @@ return {
                                 vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
                             end
 
-                            client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
+                            client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+                            custom_on_publish_diagnostics, {})
                         end,
                         capabilities = require("quitlox.util").make_capabilities(),
                     })
@@ -82,7 +98,8 @@ return {
             local path = require("quitlox.util.path")
             local pythondap = require("dap-python")
 
-            local debugpy_path = path.concat({ vim.fn.stdpath("data"), "mason", "packages", "debugpy", "venv", "bin", "python" })
+            local debugpy_path = path.concat({ vim.fn.stdpath("data"), "mason", "packages", "debugpy", "venv", "bin",
+                "python" })
 
             if path.exists(debugpy_path) then
                 -- Setup Python DAP and point to debugpy
@@ -99,7 +116,8 @@ return {
                     s = { pythondap.debug_selection, "Debug Selection" },
                 }, { prefix = "<leader>d", mode = "v" })
             else
-                vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN", { title = "No Python Debugging", timeout = 3000 })
+                vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN",
+                    { title = "No Python Debugging", timeout = 3000 })
             end
         end,
     },

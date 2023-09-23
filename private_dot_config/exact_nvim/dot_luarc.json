@@ -6,6 +6,7 @@
         "/home/quitlox/.local/share/nvim/lazy/neoconf.nvim/types",
         "/home/quitlox/.local/share/nvim/lazy/neoconf.nvim/types/lua",
         "/home/quitlox/.config/nvim/lua",
+        "${3rd}/luv/library",
         "${3rd}/luv/library"
     ]
 }

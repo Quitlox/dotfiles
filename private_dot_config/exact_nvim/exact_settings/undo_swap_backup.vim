@@ -12,7 +12,7 @@ set backupcopy=yes
 "Meaningful backup name, ex: filename@2015-04-05.14:59
 if !has('win32') && !has('win64')
     "This file format is illegal on Windows and requires manually doing :w!
-    au BufWritePre * let &bex = '@' . strftime("%F.%H:%M")
+    " au BufWritePre * let &bex = '@' . strftime("%F.%H:%M")
 endif
 
 if has('nvim')
