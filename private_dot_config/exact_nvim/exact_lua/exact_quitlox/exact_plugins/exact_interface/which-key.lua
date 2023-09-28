@@ -40,7 +40,7 @@ return {
             ["<tab>"] = "TAB",
         },
         ignore_missing = false,
-        icons = { group = "", separator = "ﰲ" },
+        icons = { group = "", separator = " " },
         layout = {
             align = "center",
         },

@@ -5,6 +5,7 @@
 -- languages.
 
 return {
+    { import = "quitlox.plugins.ide.treesitter" },
     -- Modules
     { import = "quitlox.plugins.ide.treesitter.modules" },
     -- Treesitter

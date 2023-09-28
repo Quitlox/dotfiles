@@ -2,6 +2,7 @@ return {
     -- Pretty Folds
     {
         "kevinhwang91/nvim-ufo",
+        lazy = false,
         dependencies = {
             { "kevinhwang91/promise-async",  version = "" },
         },
@@ -14,7 +15,6 @@ return {
             { "zM", function() require("ufo").closeAllFolds() end,        desc = "Close all folds" },
             { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Fold less" },
             { "zm", function() require("ufo").closeFoldsWith() end,       desc = "Fold more" },
-            { "z" },
         },
         init = function()
             vim.o.foldcolumn = "0"
@@ -27,36 +27,20 @@ return {
     {
         "mrjones2014/legendary.nvim",
         optional = true,
-        opts = function(_, opts)
-            opts.commands = opts.commands or {}
-            table.insert(opts.commands, {
-                ":UfoEnable",
-                description = "Enable ufo",
-            })
-            table.insert(opts.commands, {
-                ":UfoDisable",
-                description = "Disable ufo",
-            })
-            table.insert(opts.commands, {
-                ":UfoInspect",
-                description = "Inspect current buffer information",
-            })
-            table.insert(opts.commands, {
-                ":UfoAttach",
-                description = "Attach current buffer to enable all features",
-            })
-            table.insert(opts.commands, {
-                ":UfoDetach",
-                description = "Detach current buffer to disable all features",
-            })
-            table.insert(opts.commands, {
-                ":UfoEnableFold",
-                description = "Enable to get folds and update them at once for current buffer",
-            })
-            table.insert(opts.commands, {
-                ":UfoDisableFold",
-                description = "Disable to get folds for current buffer",
-            })
-        end,
+	opts = function(_, opts)
+	    opts.commands = opts.commands or {}
+	    local commands = {
+		{":UfoEnable", "Enable ufo"},
+		{":UfoDisable", "Disable ufo"},
+		{":UfoInspect", "Inspect current buffer information"},
+		{":UfoAttach", "Attach current buffer to enable all features"},
+		{":UfoDetach", "Detach current buffer to disable all features"},
+		{":UfoEnableFold", "Enable to get folds and update them at once for current buffer"},
+		{":UfoDisableFold", "Disable to get folds for current buffer"},
+	    }
+	    for _, command in ipairs(commands) do
+		table.insert(opts.commands, {command[1], description = command[2]})
+	    end
+	end
     },
 }

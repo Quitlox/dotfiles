@@ -1,6 +1,5 @@
 return {
     "stevearc/dressing.nvim",
-    version = "",
     event = "VeryLazy",
     opts = {
         input = {
@@ -26,10 +25,6 @@ return {
             -- see :help dressing_get_config
             get_config = function(_, opts)
                 -- We use the default input for renaming files, as its more convient for longer inputs
-                if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
-                    -- https://github.com/stevearc/dressing.nvim/issues/29
-                    return { enabled = false }
-                end
                 if vim.api.nvim_buf_get_option(0, "filetype") == "neo-tree" then
                     -- https://github.com/stevearc/dressing.nvim/issues/29
                     return { enabled = false }
@@ -39,10 +34,8 @@ return {
             end,
         },
         select = {
-
             -- Options for built-in selector
             builtin = {
-
                 win_options = {
                     -- Window transparency (0-100)
                     winblend = 0,

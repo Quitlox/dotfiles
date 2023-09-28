@@ -1,24 +1,15 @@
 return {
     {
-        "folke/which-key.nvim",
-        optional = true,
-        opts = {
-            defaults = {
-                ["<leader>r"] = { name = "Replace" },
-            }
-        }
-    },
-    {
         "nvim-pack/nvim-spectre",
         keys = {
-            { "<leader>rr", function() require("spectre").open() end,                              desc = "Replace" },
-            { "<leader>rw", function() require("spectre").open_visual({ select_word = true }) end, desc = "Replace Word" },
-            { "<leader>rf", function() require("spectre").open_file_search() end,                  desc = "Replace File" },
+            { "<C-F>", function() require("spectre").open() end, desc = "Find & Replace" },
             {
-                "<leader>R",
-                function() require("spectre").open_visual() end,
-                desc = "Replace Visual",
-                mode = "v",
+                "<C-F>",
+                function() require("spectre").open_visual({ select_word = true }) end,
+                desc = "Find & Replace",
+                mode = {
+                    "v",
+                },
             },
         },
     },
@@ -30,22 +21,22 @@ return {
             table.insert(opts.commands, {
                 ":Replace",
                 function() require("spectre").open() end,
-                description = "Replace word under cursor in project",
+                description = "Find & Replace",
             })
             table.insert(opts.commands, {
                 ":ReplaceWord",
                 function() require("spectre").open_visual({ select_word = true }) end,
-                description = "Replace word under cursor in project",
+                description = "Replace & Replace under cursor",
             })
             table.insert(opts.commands, {
                 ":ReplaceFile",
                 function() require("spectre").open_file_search() end,
-                description = "Replace in file",
+                description = "Replace & Replace in file",
             })
             table.insert(opts.commands, {
                 ":ReplaceVisual",
                 function() require("spectre").open_visual() end,
-                description = "Replace visual selection",
+                description = "Replace & Replace visual selection",
             })
         end,
     },

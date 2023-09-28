@@ -25,11 +25,6 @@ COULD:
     - dap-utils.nvim
     	- Once I figure out session management,
 	I should incorporate this
-    - Copilot.lua
-    	- Replacement of Copilot.nvim if it gets slow
-    - Add overseer.nvim
-    	- For running tasks, supports vscode.json
-	- Could be use to launch and restart docker containers
     - nvim-projector
 	- Better project-specifc configs for nvim-dap with telescope!
     - Add one-small-step-for-vimkind
@@ -39,17 +34,12 @@ COULD:
     - Add hydra.nvim
     	- Use: for navigating git changes and stashing them
     - Replace projections with persisted.nvim as session manager and conduct.nvim as project manager
-    - Add NeoComposer for better Macro experience
-    	Tried it: It would be a better UX, but there's bugs preventing me from using it
     - Add other.nvim for alternative files
     	Use-case: Switching between test and file
     - Add otter.nvim for snippet lsp support
     	Use-case: Wanting completion in markdown etc.
     - Add vim-dadbod
         Fugitive like solution for Databases from t-pope. If I every need to make changes to a database by hand
-    - sphinx.nvim
-     	For sphinx support
-	Unfortunately it seems unmaintained
 
 OPTIONAL PLUGINS: (might come in handy later)
     - Command
