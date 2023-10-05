@@ -66,7 +66,6 @@ local lazy = {
 lualine.setup({
     options = {
         theme = "catppuccin",
-
         disabled_filetypes = {
             winbar = {
                 "neo-tree",
@@ -84,7 +83,8 @@ lualine.setup({
     sections = {
         lualine_a = { mode },
         lualine_b = { "branch" },
-        lualine_c = { "man", filename, "nvim-dap-ui", require('lsp-progress').progress, "overseer" },
+	-- lualine_c = { filename, require("lsp-progress").progress },
+        lualine_c = { filename },
         lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
         lualine_y = { lazy, diff, diagnostics },
         lualine_z = { "searchcount", "location" },
@@ -92,7 +92,7 @@ lualine.setup({
     inactive_sections = {
         lualine_a = {},
         lualine_b = { "branch" },
-        lualine_c = { filename, "overseer" },
+        lualine_c = { filename },
         lualine_x = { "location" },
         lualine_y = { lazy },
         lualine_z = {},
@@ -100,7 +100,7 @@ lualine.setup({
 
     winbar = {
         lualine_a = {},
-        lualine_b = { breadcrumbs(true), "toggleterm" },
+        lualine_b = { breadcrumbs(true) },
         lualine_c = {},
         lualine_x = {},
         lualine_y = { filename },
@@ -108,12 +108,12 @@ lualine.setup({
     },
     inactive_winbar = {
         lualine_a = {},
-        lualine_b = { breadcrumbs(false), "toggleterm" },
+        lualine_b = { breadcrumbs(false) },
         lualine_c = {},
         lualine_x = { filename },
         lualine_y = {},
         lualine_z = {},
     },
 
-    extensions = { "man", "nvim-dap-ui", "nvim-tree", "toggleterm" },
+    extensions = { "man", "nvim-dap-ui", "neo-tree", "toggleterm", "trouble", "overseer" },
 })
