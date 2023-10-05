@@ -210,6 +210,10 @@ zinit load MenkeTechnologies/zsh-cargo-completion
 
 ### GIT
 zinit load davidde/git
+alias grc='git rebase --continue'
+alias gca='git commit --amend'
+alias gcan='git commit --amend --no-edit'
+alias gpfl='git push --force-with-lease'
 
 ############################################################
 ### Zinit: Scripts 					 ###
