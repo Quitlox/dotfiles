@@ -1,4 +1,6 @@
 return {
+    ---------- Editing ----------
+    { "chrisgrieser/nvim-puppeteer",     dependencies = { "nvim-treesitter/nvim-treesitter" }, lazy = false },
     ---------- Indent ----------
     -- Fix indentation after assignment / brackets
     -- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
