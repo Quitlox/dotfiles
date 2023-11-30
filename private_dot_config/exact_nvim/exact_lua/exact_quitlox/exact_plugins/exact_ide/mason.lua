@@ -1,6 +1,7 @@
 return {
     "williamboman/mason.nvim",
     keys = { { "<leader>vm", "<cmd>Mason<cr>", desc = "Mason" } },
+    version = "",
     lazy = false,
     opts = {
         ui = {

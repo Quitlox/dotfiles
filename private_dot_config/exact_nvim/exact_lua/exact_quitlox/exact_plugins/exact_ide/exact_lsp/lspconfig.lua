@@ -91,6 +91,7 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
+        version = "",
 
         -- navic used in quitlox.plugins.lsp.include.common
         dependencies = { "SmiteshP/nvim-navic" },
