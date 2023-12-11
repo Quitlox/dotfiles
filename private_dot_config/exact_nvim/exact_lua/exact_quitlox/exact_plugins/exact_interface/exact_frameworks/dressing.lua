@@ -1,5 +1,6 @@
 return {
     "stevearc/dressing.nvim",
+    -- Note: Prerequisite by legendary.nvim
     event = "VeryLazy",
     opts = {
         input = {

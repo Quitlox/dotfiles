@@ -68,6 +68,7 @@ return {
                     c = { "<cmd>lua require('dapui').close()<cr>", "Debug UI Close" },
                     e = { evaluate, "Evaluate Expression" },
                     d = { "<cmd>lua require('dap').continue()<cr>", "Debugger Launch/Continue" },
+                    x = { "<cmd>lua require('dap').terminate()<cr>", "Debugger Terminate" },
                     r = { "<cmd>DapToggleRepl<cr>", "Open REPL" },
                     s = {
                         name = "Step",

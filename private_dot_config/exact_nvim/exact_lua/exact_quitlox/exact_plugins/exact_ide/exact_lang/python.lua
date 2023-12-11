@@ -111,7 +111,7 @@ return {
 
                 -- Set keymaps specifically for python
                 require("which-key").register({
-                    x = { pythondap.test_class, "Debug Class" },
+                    -- x = { pythondap.test_class, "Debug Class" },
                     y = { pythondap.test_method, "Debug Method" },
                 }, { prefix = "<leader>d" })
                 require("which-key").register({

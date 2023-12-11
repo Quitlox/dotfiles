@@ -9,7 +9,6 @@ return {
         "jay-babu/mason-nvim-dap.nvim",
         version = "",
         dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
-        keys = "<localleader>d",
     },
     -- Cycle between breakpoints
     {
