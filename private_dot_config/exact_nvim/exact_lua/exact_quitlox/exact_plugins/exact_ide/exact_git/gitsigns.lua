@@ -81,6 +81,7 @@ return {
             -- FIXME: Gitsigns should lazyload Trouble
             -- Enabling this causes trouble to be loaded on startup
             trouble = false,
+            _signs_staged_enable = true,
         })
 
         ----------------------------------------

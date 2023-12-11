@@ -9,6 +9,7 @@ return {
         "dmmulroy/tsc.nvim",
         cmd = "TSC",
         config = true,
+        version = "",
     },
     {
         "williamboman/mason-lspconfig.nvim",

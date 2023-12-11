@@ -9,8 +9,8 @@ vim.api.nvim_create_user_command("OverseerRestartLast", function()
 end, {})
 
 return {
-
     "stevearc/overseer.nvim",
+    version = "",
     opts = {
         -- strategy = { "toggleterm", hidden = true },
         bindings = {

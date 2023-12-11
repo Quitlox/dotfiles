@@ -1,5 +1,6 @@
 return {
     "gbprod/yanky.nvim",
+    version = "",
     opts = function(_, opts)
         return {
             picker = {
