@@ -1,6 +1,5 @@
 return {
     "tzachar/highlight-undo.nvim",
-    lazy = true,
-    keys = { "u", "<C-r>" },
+    lazy = false,
     config = function() require("highlight-undo").setup({}) end,
 }

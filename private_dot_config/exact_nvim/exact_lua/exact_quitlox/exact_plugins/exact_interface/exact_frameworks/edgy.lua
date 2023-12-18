@@ -19,7 +19,7 @@ return {
             -- Sidebar Right
             right = {
                 -- Symbols Outline
-                { ft = "Outline",        open = "SymbolsOutline" },
+                { ft = "Outline",        open = "Outline" },
                 { ft = "neotest-summary" },
             },
             -- Sidebar Bottom

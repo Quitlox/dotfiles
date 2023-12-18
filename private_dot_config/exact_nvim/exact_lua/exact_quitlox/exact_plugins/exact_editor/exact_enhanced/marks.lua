@@ -5,7 +5,7 @@ return {
         opts = {
             defaults = {
                 d = { name = "Delete" },
-                m = { name = "Mark" },
+                m = { name = "Marks" },
             },
         },
     },
@@ -26,10 +26,10 @@ return {
             "BookmarksQFListAll",
         },
         keys = {
-            { "m",         "<Plug>(Marks-set)",              desc = "Set a named mark" },
+            { "m",         "<Plug>(Marks-set)",              desc = "Set a named mark",                                   mode = "o" },
             { "m,",        "<Plug>(Marks-setnext)",          desc = "Set the next available alphabetical mark" },
             { "m;",        "<Plug>(Marks-toggle)",           desc = "Toggle a mark at the cursor." },
-            { "dm",        "<Plug>(Marks-delete)",           desc = "Delete a mark (will wait for input)" },
+            { "dm",        "<Plug>(Marks-delete)",           desc = "Delete a mark (will wait for input)"},
             { "dm-",       "<Plug>(Marks-deleteline)",       desc = "Delete the marks on the current line" },
             { "dm<space>", "<Plug>(Marks-deletebuf)",        desc = "Delete all marks in the buffer" },
             { "m:",        "<Plug>(Marks-preview)",          desc = "Preview a mark" },
@@ -78,9 +78,11 @@ return {
             { "m{8",       "<Plug>(Marks-prev-bookmark8)",   desc = "Moves to the previous bookmark of of the same group" },
             { "m}9",       "<Plug>(Marks-next-bookmark9)",   desc = "Moves to the next bookmark of of the same group" },
             { "m{9",       "<Plug>(Marks-prev-bookmark9)",   desc = "Moves to the previous bookmark of of the same group" },
-
             -- { "<Plug>(Marks-toggle-bookmark[0-9])", desc = "Toggles a bookmark from group" },
         },
-        config = true,
+        lazy = false,
+        opts = {
+            default_mappings = false,
+        },
     },
 }

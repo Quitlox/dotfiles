@@ -29,6 +29,7 @@ return {
         opts = {
             handlers = {
                 ["pyright"] = function()
+                    ---@diagnostic disable-next-line: missing-fields
                     require("lspconfig").pyright.setup({
                         on_attach = function(client, bufnr)
                             local function filter_diagnostics(diagnostic)
@@ -54,6 +55,7 @@ return {
                         capabilities = require("quitlox.util").make_capabilities(),
                         settings = {
                             pylsp = {
+                                ---@diagnostic disable-next-line: missing-fields
                                 plugins = {
                                     black = { enabled = true },
                                     autopep8 = { enabled = false },

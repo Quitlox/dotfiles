@@ -1,3 +1,11 @@
+- Replace null-ls with lint and format
+- Instead of adding commands to legendary via lazy, how about adding all
+  commands to a global variable during init and loading them once during setup?
+- Sessions are still inconsistent / don't always work
+- When writing LaTeX or code in docstring, puppeteer erroneously adds an f
+- Switch to fidget.nvim
+- Legendary.nvim has many duplicates (e.g. gI, g0)
+
 FIX:
     - vie (select inside environment) from vimtex should not select first line of env
         https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321 ? 
@@ -11,9 +19,8 @@ TODO:
 
 COULD:
     - Python
-    	- checkout: https://github.com/chrisgrieser/nvim-kickstart-python/blob/main/kickstart-python.lua
       	- nvim-various-textobjs
-	- magma-nvim
+	- ~magma-nvim~ molten.nvim
 	- notebook-navigator
     - Replace nvm-cmp with coq
     	- Should be faster

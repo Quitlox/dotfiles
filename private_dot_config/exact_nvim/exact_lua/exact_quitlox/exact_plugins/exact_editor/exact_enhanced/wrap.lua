@@ -11,7 +11,6 @@ local filetypes = {
 return {
     {
         "andrewferrier/wrapping.nvim",
-        config = true,
         ft = filetypes,
         opts = {
             create_keymappings = false,

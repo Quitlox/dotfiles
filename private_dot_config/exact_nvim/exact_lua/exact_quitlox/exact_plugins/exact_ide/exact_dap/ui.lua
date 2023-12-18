@@ -45,7 +45,7 @@ return {
 
     -- Triggers
     cmd = { "DapToggleRepl", "DapToggleBreakpoint" },
-    keys = { "<leader>d" },
+    keys = { "<leader>d", "<leader>td" },
 
     -- Keybindings
     init = function()
