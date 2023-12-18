@@ -1,47 +1,37 @@
+local function filter_nt_source_eq(source)
+    return function(buf) return vim.b[buf].neo_tree_source == source end
+end
+
+local function filter_nt_source_neq(source)
+    return function(buf) return vim.b[buf].neo_tree_source ~= source end
+end
+
+local function filter_not_relative()
+    return function(_buf, win) return vim.api.nvim_win_get_config(win).relative == "" end
+end
+
+local function filter_bt(type)
+    return function(buf) return vim.bo[buf].buftype == type end
+end
+
 return {
     {
         "folke/edgy.nvim",
-        ft = {
-            "neo-tree",
-            "Trouble",
-            "qf",
-            "Outline",
-            "spectre_panel",
-            "help",
-            "NeogitStatus",
-            "neotest-summary",
-            "toggleterm",
-        },
+        ft = { "neo-tree", "Trouble", "qf", "Outline", "spectre_panel", "help", "NeogitStatus", "neotest-summary", "toggleterm" },
         opts = {
             left = {
-                { title = "Neo-Tree", ft = "neo-tree" },
+                { ft = "neo-tree", filter = filter_nt_source_neq("document_symbols") },
             },
-            -- Sidebar Right
             right = {
-                -- Symbols Outline
-                { ft = "Outline",        open = "Outline" },
                 { ft = "neotest-summary" },
+                { title = "Outline",     ft = "neo-tree", filter = filter_nt_source_eq("document_symbols") },
             },
-            -- Sidebar Bottom
             bottom = {
-                -- Terminal
-                {
-                    ft = "toggleterm",
-                    -- exclude floating windows
-                    filter = function(buf, win) return vim.api.nvim_win_get_config(win).relative == "" end,
-                },
-                -- Git
+                { ft = "toggleterm",    filter = filter_not_relative() },
                 { ft = "NeogitStatus" },
-                -- Diagnostics
                 { ft = "Trouble" },
-                -- Quickfix
-                { ft = "qf",          title = "QuickFix" },
-                -- Help
-                {
-                    ft = "help",
-                    size = { height = 20 },
-                    filter = function(buf) return vim.bo[buf].buftype == "help" end,
-                },
+                { ft = "qf",            title = "QuickFix" },
+                { ft = "help",          size = { height = 20 },        filter = filter_bt("help") },
                 { ft = "spectre_panel", size = { height = 0.4 } },
             },
 

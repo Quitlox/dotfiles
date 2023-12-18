@@ -4,16 +4,12 @@ return {
         event = "VeryLazy",
         dependencies = {
             -- Module: Breadcrumbs
-            "SmiteshP/nvim-navic",
-            --
-            "linrongbin16/lsp-progress.nvim",
+            { "SmiteshP/nvim-navic", lazy = true, opts = { highlight = true } },
         },
         config = function() require("quitlox.plugins.interface.components.base.statusline.lualine") end,
     },
     {
-        "linrongbin16/lsp-progress.nvim",
-        version ="",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function() require("lsp-progress").setup() end,
+        "j-hui/fidget.nvim",
+        config = true,
     },
 }

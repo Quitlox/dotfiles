@@ -5,19 +5,10 @@
 -- In this file, the navic plugin is setup and attached to the LSP.
 -- Furthermore the module is defined with custom behaviour
 
--- Require
-local navic = require('nvim-navic')
-
--- Setup function
--- TODO: We should not be initializing navic here
-navic.setup({
-    highlight = true,
-})
-
-
-
 -- Custom behaviour: Retain the breadcrumbs even while buffer is inactive
 local breadcrumbs = function(highlight)
+    local navic = require('nvim-navic')
+
     -- Wrapper around navic to remember last value
     vim.b.navic_last = ""
     local get_location = function()

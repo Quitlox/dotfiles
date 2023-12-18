@@ -100,6 +100,15 @@ return {
         end,
     },
     {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            defaults = {
+                ["<leader>op"] = { ":SwitchProject<cr>", "Open Project" },
+            },
+        },
+    },
+    {
         "mrjones2014/legendary.nvim",
         optional = true,
         opts = function(_, opts)

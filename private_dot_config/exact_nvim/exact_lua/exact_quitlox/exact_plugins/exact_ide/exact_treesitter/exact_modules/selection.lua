@@ -7,7 +7,7 @@ return {
                 enable = true,
                 prev_selection = ",",
                 keymaps = {
-                        ["."] = "textsubjects-smart",
+                        ["<cr>"] = "textsubjects-smart",
                         [";"] = "textsubjects-container-outer",
                         ["i;"] = "textsubjects-container-inner",
                 },

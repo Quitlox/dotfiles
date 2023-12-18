@@ -8,5 +8,8 @@
         "/home/quitlox/.config/nvim/lua",
         "${3rd}/luv/library",
         "${3rd}/luv/library"
+    ],
+    "diagnostics.disable": [
+        "missing-fields"
     ]
 }

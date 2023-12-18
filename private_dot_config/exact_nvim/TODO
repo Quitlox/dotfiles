@@ -1,9 +1,8 @@
+WIP: Moving over to Trello
+
 - Replace null-ls with lint and format
 - Instead of adding commands to legendary via lazy, how about adding all
   commands to a global variable during init and loading them once during setup?
-- Sessions are still inconsistent / don't always work
-- When writing LaTeX or code in docstring, puppeteer erroneously adds an f
-- Switch to fidget.nvim
 - Legendary.nvim has many duplicates (e.g. gI, g0)
 
 FIX:
@@ -18,44 +17,18 @@ TODO:
     - Add venv-selector to lualine
 
 COULD:
-    - Python
-      	- nvim-various-textobjs
-	- ~magma-nvim~ molten.nvim
-	- notebook-navigator
-    - Replace nvm-cmp with coq
-    	- Should be faster
-    - Replace LSPSaga with:
-    	- Code Action Menu: nvim-code-action-menu
-    - Replace navic with dropdown.nvim
-    - Add Notebook Navigator
-    	- If I want to use VSCode Cell like functionality
-    - dap-utils.nvim
-    	- Once I figure out session management,
-	I should incorporate this
-    - nvim-projector
-	- Better project-specifc configs for nvim-dap with telescope!
-    - Add one-small-step-for-vimkind
-    	- Debugger for Neovim plugins, will be usefull for development of plugins
-    - Add alpha-nvim
-    	- As dashboard. But I should first settle on a "project"  solution
     - Add hydra.nvim
     	- Use: for navigating git changes and stashing them
-    - Replace projections with persisted.nvim as session manager and conduct.nvim as project manager
-    - Add other.nvim for alternative files
-    	Use-case: Switching between test and file
-    - Add otter.nvim for snippet lsp support
-    	Use-case: Wanting completion in markdown etc.
-    - Add vim-dadbod
-        Fugitive like solution for Databases from t-pope. If I every need to make changes to a database by hand
 
 OPTIONAL PLUGINS: (might come in handy later)
-    - Command
-        wilder.nvim (Customizable wildmenu, change completion and renderer)
-        live-command.nvim
-    - Telescope:
-    	- telescope-docker
-	- session-lens
-	- telescope-repo
+    - Commandline: wilder.nvim (Customizable wildmenu, change completion and renderer)
+    - Winbar: dropbar.nvim as a fancy replacement of navic.nvim
+        I barely use navic so there's no point
+    - Nested LSP: otter.nvim for lsp support inside embedded snippets (e.g. code block in markdown)
+        Configuration not trivial
+    - Completion: replace nvm-cmp with coq
+      	Supposed to be much faster, but too much of a headache
+	
 
 Contribute (My Ideas):
     - Plugin for a custom outline

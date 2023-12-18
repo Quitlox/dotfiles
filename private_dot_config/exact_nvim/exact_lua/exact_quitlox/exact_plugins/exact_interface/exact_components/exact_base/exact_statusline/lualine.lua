@@ -83,7 +83,6 @@ lualine.setup({
     sections = {
         lualine_a = { mode },
         lualine_b = { "branch" },
-	-- lualine_c = { filename, require("lsp-progress").progress },
         lualine_c = { filename },
         lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
         lualine_y = { lazy, diff, diagnostics },
