@@ -17,14 +17,15 @@ end
 return {
     {
         "folke/edgy.nvim",
-        ft = { "neo-tree", "Trouble", "qf", "Outline", "spectre_panel", "help", "NeogitStatus", "neotest-summary", "toggleterm" },
+        ft = { "neo-tree", "Trouble", "qf", "spectre_panel", "help", "NeogitStatus", "neotest-summary", "toggleterm", "OverseerList" },
         opts = {
             left = {
                 { ft = "neo-tree", filter = filter_nt_source_neq("document_symbols") },
             },
             right = {
                 { ft = "neotest-summary" },
-                { title = "Outline",     ft = "neo-tree", filter = filter_nt_source_eq("document_symbols") },
+                { title = "Outline",     ft = "neo-tree",    filter = filter_nt_source_eq("document_symbols") },
+                { title = "Overseer",    ft = "OverseerList" },
             },
             bottom = {
                 { ft = "toggleterm",    filter = filter_not_relative() },
@@ -68,7 +69,7 @@ return {
         optional = true,
         opts = function(_, opts)
             opts.open_files_do_not_replace_types = opts.open_files_do_not_replace_types or
-            { "terminal", "Trouble", "qf", "Outline" }
+                { "terminal", "Trouble", "qf", "Outline" }
             table.insert(opts.open_files_do_not_replace_types, "edgy")
         end,
     },
