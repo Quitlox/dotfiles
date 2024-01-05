@@ -58,7 +58,7 @@ return {
                         -- You can choose the select mode (default is charwise 'v')
                         selection_modes = {
                             ["@parameter.outer"] = "v", -- charwise
-                            ["@function.outer"] = "v", -- linewise
+                            ["@function.outer"] = "v",  -- linewise
                             ["@class.outer"] = "<c-v>", -- blockwise
                             ["@statement.outer"] = "v", -- blockwise
                         },
@@ -83,4 +83,13 @@ return {
             })
         end,
     },
+    -- {
+    --     "chrisgrieser/nvim-various-textobjs",
+    --     lazy = false,
+    --     opts = { useDefaultKeymaps = false },
+    --     config = function()
+    --         vim.keymap.set({ "o", "x" }, "aS", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
+    --         vim.keymap.set({ "o", "x" }, "iS", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
+    --     end,
+    -- },
 }
