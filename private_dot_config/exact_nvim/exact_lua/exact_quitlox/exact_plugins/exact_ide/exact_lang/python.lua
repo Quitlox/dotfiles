@@ -14,10 +14,48 @@ return {
     {
         "linux-cultist/venv-selector.nvim",
         dependencies = { "neovim/nvim-lspconfig" },
-        opts = {},
+        opts = {
+            name = {
+                "venv",
+                "venv3.8",
+                "venv3.9",
+                "venv3.10",
+                "venv3.11",
+                "venv3.12",
+                ".venv",
+                ".venv3.8",
+                ".venv3.9",
+                ".venv3.10",
+                ".venv3.11",
+                ".venv3.12",
+            },
+            dap_enabled = true,
+        },
         keys = {
-            { "<leader>mv", "<cmd>VenvSelect<cr>",       desc = "Open VenvSelector" },
-            { "<leader>mc", "<cmd>VenvSelectCached<cr>", desc = "Retrieve Venv from Cache" },
+            { "<localleader>vs", "<cmd>VenvSelect<cr>",       desc = "Select Virtual Env" },
+            { "<localleader>vc", "<cmd>VenvSelectCached<cr>", desc = "Retrieve Virtual Env from Cache" },
+        },
+        -- init = function()
+        --     vim.api.nvim_create_autocmd("VimEnter", {
+        --         desc = "Auto select virtualenv Nvim open",
+        --         pattern = "*",
+        --         callback = function()
+        --             local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
+        --             if venv ~= "" then
+        --                 require("venv-selector").retrieve_from_cache()
+        --             end
+        --         end,
+        --         once = true,
+        --     })
+        -- end,
+    },
+    {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            defaults = {
+                ["<localleader>v"] = { name = "Virtual Env" },
+            }
         },
     },
 
@@ -34,9 +72,13 @@ return {
                     require("lspconfig").pyright.setup({
                         on_attach = function(client, bufnr)
                             local function filter_diagnostics(diagnostic)
-                                if diagnostic.source ~= "Pyright" then return true end
+                                if diagnostic.source ~= "Pyright" then
+                                    return true
+                                end
                                 -- Just disable 'is not accessed' altogether
-                                if string.match(diagnostic.message, '".+" is not accessed') then return false end
+                                if string.match(diagnostic.message, '".+" is not accessed') then
+                                    return false
+                                end
                                 return true
                             end
 
@@ -45,8 +87,8 @@ return {
                                 vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
                             end
 
-                            client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-                            custom_on_publish_diagnostics, {})
+                            client.handlers["textDocument/publishDiagnostics"] =
+                                vim.lsp.with(custom_on_publish_diagnostics, {})
                         end,
                         capabilities = require("quitlox.util").make_capabilities(),
                     })
@@ -103,8 +145,15 @@ return {
             local path = require("quitlox.util.path")
             local pythondap = require("dap-python")
 
-            local debugpy_path = path.concat({ vim.fn.stdpath("data"), "mason", "packages", "debugpy", "venv", "bin",
-                "python" })
+            local debugpy_path = path.concat({
+                vim.fn.stdpath("data"),
+                "mason",
+                "packages",
+                "debugpy",
+                "venv",
+                "bin",
+                "python",
+            })
 
             if path.exists(debugpy_path) then
                 -- Setup Python DAP and point to debugpy
@@ -121,8 +170,11 @@ return {
                     s = { pythondap.debug_selection, "Debug Selection" },
                 }, { prefix = "<leader>d", mode = "v" })
             else
-                vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN",
-                    { title = "No Python Debugging", timeout = 3000 })
+                vim.notify(
+                    'For Python debugging, install debugpy using: ":MasonInstall debugpy"',
+                    "WARN",
+                    { title = "No Python Debugging", timeout = 3000 }
+                )
             end
         end,
     },

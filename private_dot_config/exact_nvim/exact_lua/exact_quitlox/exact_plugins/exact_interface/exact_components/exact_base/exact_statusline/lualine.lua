@@ -29,6 +29,7 @@ local breadcrumbs = require("quitlox.plugins.interface.components.base.statuslin
 local yaml_schema = require("quitlox.plugins.interface.components.base.statusline.modules.yaml_schema")
 local diff = require("quitlox.plugins.interface.components.base.statusline.modules.diff")
 local mixed_indent = require("quitlox.plugins.interface.components.base.statusline.modules.mixed_indent")
+local py_virtual_env = require("quitlox.plugins.interface.components.base.statusline.modules.py_virtual_env")
 
 ----------------------------------------
 -- Modules
