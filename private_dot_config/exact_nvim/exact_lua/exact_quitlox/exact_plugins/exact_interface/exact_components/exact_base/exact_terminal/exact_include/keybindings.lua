@@ -8,7 +8,7 @@
 -- We use the '~' key to toggle terminals. However, the default behaviour is not
 -- my style. This section customizes the behaviour to my liking.
 
--- When you press '~' with a count, it will create or destroy the terminal with that id.
+-- When you press '~' with a count, it will create and show or hide the terminal with that id.
 -- When you press '~' without a count, it will toggle all terminals.
 
 vim.keymap.set("n", [[`]], '<cmd>execute v:count . "CustomToggleTerm"<cr>', { silent = true })
@@ -17,29 +17,36 @@ vim.api.nvim_create_user_command("CustomToggleTerm", function(opts)
     local terminal = require("toggleterm.terminal")
     local Terminal = terminal.Terminal
 
+    local terminals = terminal.get_all()
+    local any_terminal_visible = false
+    for _, term in pairs(terminals) do
+        if term:is_open() then
+            any_terminal_visible = true
+            break
+        end
+    end
+
     -- If a count is supplied, i.e. a specific terminal is referenced
     if opts.count ~= 0 then
         local term = terminal.get(opts.count)
+        if any_terminal_visible then toggleterm.toggle_all({ bang = true }) end
+
         if term == nil then
-            -- Create it if it doesn't exist yet
-            toggleterm.toggle_all({ bang = true })
-            Terminal:new({ id = opts.count }):open()
+            term = Terminal:new({ id = opts.count, direction = "float" }):open()
         else
-            -- Open it if it does exist
             term:toggle()
         end
 
         return
     end
 
-    -- If no count is supplied, all terminals should be toggled
-    local terminals = terminal.get_all()
-    if #terminals == 0 then
-        -- If there currently exist no terminals
-        -- Create a Default Terminal to toggle
-        Terminal:new({ id = 1, direction = "horizontal" }):open(18)
+    local term0 = terminal.get(0)
+    if term0 == nil then
+        term0 = Terminal:new({ id = 0, direction = "horizontal" }):open(18)
     else
-        toggleterm.toggle_all({ bang = true })
+        if any_terminal_visible then toggleterm.toggle_all({ bang = true }) end
+
+        term0:toggle()
     end
 end, { count = true, nargs = "*" })
 

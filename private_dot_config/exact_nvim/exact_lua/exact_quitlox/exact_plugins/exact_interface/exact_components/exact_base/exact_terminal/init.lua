@@ -16,9 +16,5 @@ return {
             end,
         },
     },
-    config = function(_, opts)
-        require("toggleterm").setup(opts)
-        require("quitlox.plugins.interface.components.base.terminal.include.lazygit")
-    end,
     init = function() require("quitlox.plugins.interface.components.base.terminal.include.keybindings") end,
 }
