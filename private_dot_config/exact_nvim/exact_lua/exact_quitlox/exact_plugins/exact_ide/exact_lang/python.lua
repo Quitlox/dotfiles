@@ -5,7 +5,8 @@ return {
     -- Fix indentation after assignment / brackets
     -- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
     -- https://www.reddit.com/r/neovim/comments/13d3hy5/different_autopair_indentation_on_cr_in_python/
-    { "Vimjas/vim-python-pep8-indent" },
+    -- NOTE: Disabled as experiment. Is this needed?
+    -- { "Vimjas/vim-python-pep8-indent" },
     ---------- Text Objects ----------
     -- Indent Text Object (for Python)
     { "michaeljsmith/vim-indent-object", ft = "python" },
@@ -123,6 +124,82 @@ return {
                 vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN",
                     { title = "No Python Debugging", timeout = 3000 })
             end
+        end,
+    },
+
+    --  +----------------------------------------------------------+
+    --  |     REPL                                                 |
+    --  +----------------------------------------------------------+
+
+    {
+        "Vigemus/iron.nvim",
+        lazy = false,
+        config = function()
+            require("iron.core").setup({
+                config = {
+                    -- Whether a repl should be discarded or not
+                    scratch_repl = true,
+                    -- Your repl definitions come here
+                    repl_definition = {
+                        sh = {
+                            -- Can be a table or a function that
+                            -- returns a table (see below)
+                            command = { "zsh" },
+                        },
+                    },
+                    -- How the repl window will be displayed
+                    -- See below for more information
+                    repl_open_cmd = require("iron.view").bottom(40),
+                },
+                -- Iron doesn't set keymaps by default anymore.
+                -- You can set them here or manually add keymaps to the functions in iron.core
+                keymaps = {
+                    send_motion = "<space>rc",
+                    visual_send = "<space>rc",
+                    send_file = "<space>rf",
+                    send_line = "<space>rl",
+                    send_until_cursor = "<space>ru",
+                    send_mark = "<space>rm",
+                    mark_motion = "<space>rmc",
+                    mark_visual = "<space>rmc",
+                    remove_mark = "<space>rmd",
+                    cr = "<space>r<cr>",
+                    interrupt = "<space>rx",
+                    exit = "<space>rq",
+                    clear = "<space>rl",
+                },
+                -- If the highlight is on, you can change how it looks
+                -- For the available options, check nvim_set_hl
+                highlight = {
+                    italic = true,
+                },
+                ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+            })
+        end,
+    },
+    {
+        "folke/which-key.nvim",
+        opts = {
+            defaults = {
+                ["<leader>r"] = { name = "REPL" },
+            },
+        },
+    },
+    {
+        "mrjones2014/legendary.nvim",
+        optional = true,
+        opts = function(_, opts)
+            opts.commands = opts.commands or {}
+            vim.list_extend(opts.commands, {
+                { "IronRepl",     description = "Open a repl for current or given file type" },
+                { "IronReplHere", description = "Open a repl for current or given file type in the current window" },
+                { "IronRestart",  description = "Restart the current repl" },
+                { "IronSend",     description = "Sends the supplied chunk of text to the repl for current filtetype" },
+                { "IronFocus",    description = "Focuses on the repl for current or given file type" },
+                { "IronHide",     description = "Hide the repl window for current or given file type" },
+                { "IronWatch",    description = "Send the file/mark to the repl after writing the buffer" },
+                { "IronAttach",   description = "Attach current buffer regardless of its filtetype to a repl" },
+            })
         end,
     },
 }
