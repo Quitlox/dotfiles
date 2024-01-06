@@ -9,11 +9,14 @@ local actived_venv = function()
         if find_dot_venv ~= nil then return string.sub(venv_name, find_dot_venv + 1, -1) end
 
         return venv_name
-    else
-        return "venv"
     end
+
+    return "none"
 end
 
-local function virtual_env_text() return " (" .. actived_venv() .. ") " end
+local function virtual_env_text()
+    if vim.bo.filetype ~= "python" then return "" end
+    return " (" .. actived_venv() .. ") "
+end
 
 return virtual_env_text
