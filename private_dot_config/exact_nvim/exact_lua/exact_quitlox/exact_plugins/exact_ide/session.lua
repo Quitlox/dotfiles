@@ -52,6 +52,12 @@ end
 local function delete_session()
     local Session = require("projections.session")
     local info = Session.info(vim.fn.getcwd())
+
+    if not info then
+        vim.notify("No session found!", vim.log.levels.INFO)
+        return
+    end
+
     if vim.fn.delete(info.path.path) == 0 then
         -- Delete the AutoCommand group to prevent the same Session file from being recreated
         vim.api.nvim_del_augroup_by_id(augroup)
