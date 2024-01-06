@@ -1,6 +1,12 @@
 return {
     {
         "nvim-pack/nvim-spectre",
+        cmd = {
+            "Replace",
+            "ReplaceWord",
+            "ReplaceFile",
+            "ReplaceVisual",
+        },
         keys = {
             { "<C-F>", function() require("spectre").open() end, desc = "Find & Replace" },
             {
