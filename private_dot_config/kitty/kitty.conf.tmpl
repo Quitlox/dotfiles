@@ -6,6 +6,9 @@ bold_font        auto
 italic_font      auto
 bold_italic_font auto
 
+# Disable close on ctrl+d
+map ctrl+d no_op 
+
 {{ if eq .chezmoi.hostname "quitlox-LenovoT14" }}
 font_size 13.0
 {{ end }}
