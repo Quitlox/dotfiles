@@ -1,30 +1,11 @@
-----------------------------------------------------------------------
---          Sessions + Projects Manager: projections.nvim           --
-----------------------------------------------------------------------
+-- +---------------------------------------------------------+
+-- | Automagic Sessions                                      |
+-- +---------------------------------------------------------+
 
--- Set sessionoptions
-vim.opt.sessionoptions:append("localoptions")
--- Autocmd group
-local augroup = vim.api.nvim_create_augroup("Projections", { clear = true })
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-local function store_hook()
+local function pre_save_hook()
     if package.loaded["neo-tree"] then vim.cmd("Neotree action=close") end
-
-    -- Close all directory buffers
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.bo[buf].buftype == "dirvish" then vim.api.nvim_buf_delete(buf, { force = true }) end
-    end
-
-    -- Close SymbolsOutline if open
-    if package.loaded["symbols-outline"] then
-        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-            if vim.bo[buf].buftype == "Outline" then
-                -- vim.api.nvim_buf_delete(buf, { force = true })
-                vim.cmd("SymbolsOutlineClose")
-            end
-        end
-    end
-
     if package.loaded["neotest"] then
         require("neotest").output_panel.close()
         require("neotest").summary.close()
@@ -32,132 +13,71 @@ local function store_hook()
     if package.loaded["edgy"] then require("edgy").close() end
     if package.loaded["dapui"] then require("dapui").close() end
     if package.loaded["diffview"] then vim.cmd([[DiffviewClose]]) end
-
-    -- Close Neogit
     if package.loaded["neogit"] then
         for _, win in ipairs(vim.api.nvim_list_wins()) do
             local buf = vim.api.nvim_win_get_buf(win)
             if vim.bo[buf].filetype == "NeogitStatus" then vim.api.nvim_win_close(win, true) end
         end
     end
-    -- Close ToggleTerm
     if package.loaded["toggleterm"] then
         for _, term in pairs(require("toggleterm.terminal").get_all(true)) do
             term:close()
         end
     end
+
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        -- Close all directory buffers
+        if vim.bo[buf].buftype == "dirvish" then vim.api.nvim_buf_delete(buf, { force = true }) end
+        -- Close all notify buffers
+        if vim.bo[buf].buftype == "notify" then vim.api.nvim_buf_delete(buf, { force = true }) end
+    end
 end
 
--- Delete the current session
-local function delete_session()
-    local Session = require("projections.session")
-    local info = Session.info(vim.fn.getcwd())
+local function post_save_hook()
+    local session_dir = require("auto-session").get_root_dir()
+    local session_name = require("auto-session.lib").current_session_name()
+end
 
-    if not info then
-        vim.notify("No session found!", vim.log.levels.INFO)
-        return
-    end
-
-    if vim.fn.delete(info.path.path) == 0 then
-        -- Delete the AutoCommand group to prevent the same Session file from being recreated
-        vim.api.nvim_del_augroup_by_id(augroup)
-        vim.notify("Successfully deleted session!\nSession file: " .. info.path.path, vim.log.levels.INFO)
-    else
-        vim.notify("Could not delete session\nSession file: " .. info.path.path, vim.log.levels.ERROR)
-    end
+local function post_restore_hook()
+    local session_dir = require("auto-session").get_root_dir()
+    local session_name = require("auto-session.lib").current_session_name()
 end
 
 return {
-    {
-        "GnikDroy/projections.nvim",
-        lazy = false,
-        opts = {
-            workspaces = {
-                "/home/quitlox/Workspace/job",
-                "/home/quitlox/Workspace/work",
-                "/home/quitlox/Workspace/hobby",
-                "/home/quitlox/Workspace/study",
-                "/home/quitlox/Workspace/contrib",
-                "/home/quitlox/Workspace/activism",
-                "/home/quitlox/Workspace/activism/yorinf",
-                "/home/quitlox/Workspace/overleaf",
-                { "/home/quitlox/.config", { "init.lua", "vimrc" } },
-            },
-            store_hooks = { pre = store_hook },
-            -- restore_hooks = { post = restore_hook },
-        },
-        config = function(_, opts)
-            -- Setup projections.nvim plugin
-            require("projections").setup(opts)
+    "rmagatti/auto-session",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    opts = {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+        auto_session_save_enabled = true,
+        auto_session_restore_enabled = true,
 
-            -- Autostore session on VimExit
-            vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
-                callback = function() require("projections.session").store(vim.loop.cwd()) end,
-                group = augroup,
-            })
+        pre_save_cmds = { pre_save_hook },
+        post_save_cmds = { post_save_hook },
+        post_restore_cmds = { post_restore_hook },
 
-            -- Switch to project if vim was started in a project dir
-            local switcher = require("projections.switcher")
-            vim.api.nvim_create_autocmd({ "VimEnter" }, {
-                callback = function()
-                    if vim.fn.argc() == 0 then switcher.switch(vim.loop.cwd()) end
-                end,
-            })
-        end,
-    },
-    {
-        "folke/which-key.nvim",
-        optional = true,
-        opts = {
-            defaults = {
-                ["<leader>op"] = { ":SwitchProject<cr>", "Open Project" },
-            },
+        session_lens = {
+            load_on_setup = true,
+            theme_conf = { border = true },
+            previewer = false,
         },
     },
-    {
-        "mrjones2014/legendary.nvim",
-        optional = true,
-        opts = function(_, opts)
-            opts.commands = opts.commands or {}
-            table.insert(opts.commands, {
-                ":SwitchProject",
-                function()
-                    -- Bind telescope keybinding for browsing projects
-                    require("telescope").load_extension("projections")
-                    vim.cmd([[Telescope projections]])
-                end,
-                description = "Switch Project",
-            })
-            table.insert(opts.commands, {
-                ":DeleteSession",
-                delete_session,
-                description = "Delete Session",
-            })
-            table.insert(opts.commands, {
-                ":AddWorkspace",
-                function() require("projections.workspace").add(vim.loop.cwd()) end,
-                description = "Add the pwd as Workspace",
-            })
-            table.insert(opts.commands, {
-                ":AddParentAsWorkspace",
-                function()
-                    local cwd = vim.loop.cwd()
-                    local parent = cwd:match("(.*[/\\])")
-
-                    require("projections.workspace").add(parent)
-                end,
-                description = "Add the parent of the pwd as a Workspace",
-            })
-            table.insert(opts.commands, {
-                ":StoreSession",
-                function() require("projections.session").store(vim.loop.cwd()) end,
-                description = "Store Session",
-            })
-            table.insert(opts.commands, {
-                ":RestoreSession",
-                function() require("projections.session").restore(vim.loop.cwd()) end,
-                description = "Restore Session",
-            })
-        end,
+    lazy = false,
+    keys = {
+        { "<leader>fs", "<cmd>lua require('auto-session.session-lens').search_session", desc = "Find Sessions" },
     },
+    config = function(_, opts)
+        require("telescope").load_extension("session-lens")
+        require("auto-session").setup(opts)
+    end,
+    init = function()
+        require("legendary").commands({
+            { ":SessionSave", description = "Create or save a session" },
+            { ":SessionRestore", description = "Restore a session" },
+            { ":SessionDelete", description = "Delete a session" },
+            { ":SessionPurgeOrphaned", description = "Delete orphaned sessions" },
+            { ":Autosession search", description = "Search for sessions" },
+            { ":Autosession delete", description = "Delete a session" },
+        })
+    end,
 }
