@@ -133,29 +133,57 @@ zinit load sharkdp/bat
 
 # Array of directories to exclude
 exclude_dirs=(.git .svn .hg .venv env venv node_modules .cache .DS_Store .idea .vscode __pycache__ .pytest_cache .mypy_cache .pytest_cache dist build .sass-cache .npm .next .nuxt .yarn-cache .yarn .bundle vendor .serverless .netlify .vercel .firebase .cypress .storybook .parcel-cache .gradle .m2 .rvm .rbenv .jekyll-cache .tox .docker)
-# Start of the find command
-find_cmd="find ~ -type d"
-# Add each directory to the find command
-for dir in "${exclude_dirs[@]}"; do
-    find_cmd+=" \( -name $dir -prune \) -o"
-done
-# Add wildcard patterns to the find command
-find_cmd+=" \( -path \*.egg-info -prune \) -o"
-find_cmd+=" \( -path .venv\* -prune \) -o"
-# Add -type d -print to the end of the command
-find_cmd+=" -type d -print 2> /dev/null | fzf"
-
+# Function to generate find command
+function open_dir_command() {
+    # Start of the find command
+    local find_cmd="find ~ -type d"
+    # Add each directory to the find command
+    for dir in "${exclude_dirs[@]}"; do
+        find_cmd+=" \( -name $dir -prune \) -o"
+    done
+    # Add wildcard patterns to the find command
+    find_cmd+=" \( -path \*.egg-info -prune \) -o"
+    find_cmd+=" \( -path .venv\* -prune \) -o"
+    # Add -type d -print to the end of the command
+    find_cmd+=" -type d -print 2> /dev/null | fzf"
+    echo $find_cmd
+}
+function find_file_command() {
+    # Start of the find command
+    local find_cmd="find . -type f"
+    # Add each directory to the find command
+    for dir in "${exclude_dirs[@]}"; do
+        find_cmd+=" \( -name $dir -prune \) -o"
+    done
+    # Add wildcard patterns to the find command
+    find_cmd+=" \( -path \*.egg-info -prune \) -o"
+    find_cmd+=" \( -path .venv\* -prune \) -o"
+    # Add -type d -print to the end of the command
+    find_cmd+=" -type f -print 2> /dev/null | fzf"
+    echo $find_cmd
+}
 export FZF_COMPLETION_TRIGGER=''
 function __bind_fzf_keys() {
-  function fzf_select_directory() {
+  function fzf_select_directory_home() {
+    local find_cmd=$(open_dir_command)
     local dir=$(eval "$find_cmd")
     if [ -n "$dir" ]; then
         cd "$dir"
         zle reset-prompt
     fi
   }
-  zle -N fzf_select_directory
-  bindkey '^o' fzf_select_directory
+  function fzf_find_file_current() {
+    local find_cmd=$(find_file_command)
+    local dir=$(eval "$find_cmd")
+    if [ -n "$dir" ]; then
+        LBUFFER="$LBUFFER$dir"
+        zle reset-prompt
+    fi
+  }
+  zle -N fzf_select_directory_home
+  zle -N fzf_find_file_current
+  bindkey '^o' fzf_select_directory_home
+  bindkey '^f' fzf_find_file_current
 }
 if [[ -n "$commands[fzf]" ]]; then
   __bind_fzf_keys

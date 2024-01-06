@@ -14,7 +14,7 @@ bindkey '^W' backward-kill-word                         # Kill previous word
 bindkey '^Y' yank
 # Vi-like
 bindkey '^B' vi-backward-blank-word
-bindkey '^F' vi-forward-blank-word
+# bindkey '^F' vi-forward-blank-word
 
 # Fix backspace in vi-mode
 bindkey -v '^?' backward-delete-char
