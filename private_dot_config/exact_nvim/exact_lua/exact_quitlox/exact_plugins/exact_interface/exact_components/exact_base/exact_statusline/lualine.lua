@@ -25,7 +25,6 @@ local lualine = require("lualine")
 local encoding = require("quitlox.plugins.interface.components.base.statusline.modules.encoding")
 local fileformat = require("quitlox.plugins.interface.components.base.statusline.modules.fileformat")
 local filename = require("quitlox.plugins.interface.components.base.statusline.modules.filename")
-local breadcrumbs = require("quitlox.plugins.interface.components.base.statusline.modules.breadcrumbs")
 local yaml_schema = require("quitlox.plugins.interface.components.base.statusline.modules.yaml_schema")
 local diff = require("quitlox.plugins.interface.components.base.statusline.modules.diff")
 local mixed_indent = require("quitlox.plugins.interface.components.base.statusline.modules.mixed_indent")
@@ -95,23 +94,6 @@ lualine.setup({
         lualine_c = { filename },
         lualine_x = { "location" },
         lualine_y = { lazy },
-        lualine_z = {},
-    },
-
-    winbar = {
-        lualine_a = {},
-        lualine_b = { breadcrumbs(true) },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = { filename },
-        lualine_z = {},
-    },
-    inactive_winbar = {
-        lualine_a = {},
-        lualine_b = { breadcrumbs(false) },
-        lualine_c = {},
-        lualine_x = { filename },
-        lualine_y = {},
         lualine_z = {},
     },
 
