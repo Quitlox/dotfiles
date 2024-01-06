@@ -35,6 +35,21 @@ return {
             end,
         },
         select = {
+            -- Override configruation for legendary.nvim
+            get_config = function(opts)
+                if opts.kind == "legendary.nvim" then
+                    return {
+                        telescope = {
+                            layout_strategy = "vertical",
+                            layout_config = {
+                                vertical = {
+                                    width = 0.8,
+                                },
+                            },
+                        },
+                    }
+                end
+            end,
             -- Options for built-in selector
             builtin = {
                 win_options = {
