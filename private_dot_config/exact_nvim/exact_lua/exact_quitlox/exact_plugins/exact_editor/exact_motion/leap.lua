@@ -63,8 +63,6 @@ end
 return {
     "ggandor/leap.nvim",
     keys = {
-        { "s",                 "<Plug>(leap-forward-to)",    desc = "Leap forward" },
-        { "S",                 "<Plug>(leap-backward-to)",   desc = "Leap backward" },
         { "<leader><leader>j", leap_to_line_forward,         desc = "which_key_ignore",  mode = { "n", "v" } },
         { "<leader><leader>k", leap_to_line_backward,        desc = "which_key_ignore",  mode = { "n", "v" } },
     },
