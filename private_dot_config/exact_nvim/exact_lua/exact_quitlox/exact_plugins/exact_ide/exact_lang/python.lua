@@ -1,6 +1,8 @@
+local venv_names = { "venv", "venv3.8", "venv3.9", "venv3.10", "venv3.11", "venv3.12", ".venv", ".venv3.8", ".venv3.9", ".venv3.10", ".venv3.11", ".venv3.12" }
+
 return {
     ---------- Editing ----------
-    { "chrisgrieser/nvim-puppeteer",     dependencies = { "nvim-treesitter/nvim-treesitter" }, lazy = false },
+    { "chrisgrieser/nvim-puppeteer", dependencies = { "nvim-treesitter/nvim-treesitter" }, lazy = false },
     ---------- Indent ----------
     -- Fix indentation after assignment / brackets
     -- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
@@ -15,39 +17,31 @@ return {
         "linux-cultist/venv-selector.nvim",
         dependencies = { "neovim/nvim-lspconfig" },
         opts = {
-            name = {
-                "venv",
-                "venv3.8",
-                "venv3.9",
-                "venv3.10",
-                "venv3.11",
-                "venv3.12",
-                ".venv",
-                ".venv3.8",
-                ".venv3.9",
-                ".venv3.10",
-                ".venv3.11",
-                ".venv3.12",
-            },
+            name = venv_names,
             dap_enabled = true,
         },
-        keys = {
-            { "<localleader>vs", "<cmd>VenvSelect<cr>",       desc = "Select Virtual Env" },
-            { "<localleader>vc", "<cmd>VenvSelectCached<cr>", desc = "Retrieve Virtual Env from Cache" },
+        cmd = {
+            "VenvSelect",
+            "VenvSelectCached",
+            "VenvDeactivate",
         },
-        -- init = function()
-        --     vim.api.nvim_create_autocmd("VimEnter", {
-        --         desc = "Auto select virtualenv Nvim open",
-        --         pattern = "*",
-        --         callback = function()
-        --             local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
-        --             if venv ~= "" then
-        --                 require("venv-selector").retrieve_from_cache()
-        --             end
-        --         end,
-        --         once = true,
-        --     })
-        -- end,
+        init = function()
+            require("legendary").commands({
+                { ":VenvSelect", description = "Select Virtual Env" },
+                { ":VenvSelectCached", description = "Retrieve Virtual Env from Cache" },
+                { ":VenvDeactivate", "<cmd>lua require('venv-selector').deactivate_venv()<cr>", description = "Deactivate Virtual Env" },
+            })
+
+            vim.api.nvim_create_autocmd("UIEnter", {
+                desc = "Auto select virtualenv Nvim open",
+                pattern = "*",
+                callback = function()
+                    local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
+                    if venv ~= "" then require("venv-selector").retrieve_from_cache() end
+                end,
+                once = true,
+            })
+        end,
     },
     {
         "folke/which-key.nvim",
@@ -55,7 +49,7 @@ return {
         opts = {
             defaults = {
                 ["<localleader>v"] = { name = "Virtual Env" },
-            }
+            },
         },
     },
 
@@ -72,13 +66,9 @@ return {
                     require("lspconfig").pyright.setup({
                         on_attach = function(client, bufnr)
                             local function filter_diagnostics(diagnostic)
-                                if diagnostic.source ~= "Pyright" then
-                                    return true
-                                end
+                                if diagnostic.source ~= "Pyright" then return true end
                                 -- Just disable 'is not accessed' altogether
-                                if string.match(diagnostic.message, '".+" is not accessed') then
-                                    return false
-                                end
+                                if string.match(diagnostic.message, '".+" is not accessed') then return false end
                                 return true
                             end
 
@@ -87,8 +77,7 @@ return {
                                 vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
                             end
 
-                            client.handlers["textDocument/publishDiagnostics"] =
-                                vim.lsp.with(custom_on_publish_diagnostics, {})
+                            client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
                         end,
                         capabilities = require("quitlox.util").make_capabilities(),
                     })
@@ -170,11 +159,7 @@ return {
                     s = { pythondap.debug_selection, "Debug Selection" },
                 }, { prefix = "<leader>d", mode = "v" })
             else
-                vim.notify(
-                    'For Python debugging, install debugpy using: ":MasonInstall debugpy"',
-                    "WARN",
-                    { title = "No Python Debugging", timeout = 3000 }
-                )
+                vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN", { title = "No Python Debugging", timeout = 3000 })
             end
         end,
     },
@@ -243,14 +228,14 @@ return {
         opts = function(_, opts)
             opts.commands = opts.commands or {}
             vim.list_extend(opts.commands, {
-                { "IronRepl",     description = "Open a repl for current or given file type" },
+                { "IronRepl", description = "Open a repl for current or given file type" },
                 { "IronReplHere", description = "Open a repl for current or given file type in the current window" },
-                { "IronRestart",  description = "Restart the current repl" },
-                { "IronSend",     description = "Sends the supplied chunk of text to the repl for current filtetype" },
-                { "IronFocus",    description = "Focuses on the repl for current or given file type" },
-                { "IronHide",     description = "Hide the repl window for current or given file type" },
-                { "IronWatch",    description = "Send the file/mark to the repl after writing the buffer" },
-                { "IronAttach",   description = "Attach current buffer regardless of its filtetype to a repl" },
+                { "IronRestart", description = "Restart the current repl" },
+                { "IronSend", description = "Sends the supplied chunk of text to the repl for current filtetype" },
+                { "IronFocus", description = "Focuses on the repl for current or given file type" },
+                { "IronHide", description = "Hide the repl window for current or given file type" },
+                { "IronWatch", description = "Send the file/mark to the repl after writing the buffer" },
+                { "IronAttach", description = "Attach current buffer regardless of its filtetype to a repl" },
             })
         end,
     },

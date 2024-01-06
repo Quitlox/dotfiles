@@ -85,7 +85,7 @@ lualine.setup({
         lualine_a = { mode },
         lualine_b = { "branch" },
         lualine_c = { filename },
-        lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, "filetype" },
+        lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, py_virtual_env, "filetype" },
         lualine_y = { lazy, diff, diagnostics },
         lualine_z = { "searchcount", "location" },
     },
