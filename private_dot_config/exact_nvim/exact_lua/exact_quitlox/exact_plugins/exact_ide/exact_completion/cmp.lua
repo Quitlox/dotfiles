@@ -39,6 +39,8 @@ return {
                 ["<C-f>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
                 ["<C-u>"] = cmp.mapping(scroll_completion_up, { "i", "s", "c" }),
                 ["<C-d>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
+                ["<C-n>"] = cmp.mapping(function() require('luasnip').jump(1) end, {"i", "s", "c"}),
+                ["<C-p>"] = cmp.mapping(function() require('luasnip').jump(-1) end, {"i", "s", "c"}),
                 ["<C-space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
@@ -88,7 +90,8 @@ return {
         -- Add colorizer to completion menu for tailwind colors
         { "roobert/tailwindcss-colorizer-cmp.nvim", opts = { color_square_width = 2 }, config = true },
         -- Snippet Engine
-        { "L3MON4D3/LuaSnip", version = "" },
+        { "L3MON4D3/LuaSnip", version = "", dependencies = { "rafamadriz/friendly-snippets" } },
+        "saadparwaiz1/cmp_luasnip",
         -- Completion Sorter
         "lukas-reineke/cmp-under-comparator",
     },
