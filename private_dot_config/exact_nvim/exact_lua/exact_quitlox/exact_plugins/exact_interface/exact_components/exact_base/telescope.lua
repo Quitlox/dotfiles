@@ -54,12 +54,16 @@ return {
             -- https://github.com/nvim-telescope/telescope.nvim/issues/848
             {
                 "<leader>fa",
-                function() require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({})) end,
+                function()
+                    require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({
+                        layout_config = { width = 0.6},
+                    }))
+                end,
                 desc = "Find All",
             },
             {
                 "<leader>ff",
-                function() require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({search_dirs={vim.fn.expand('%')}})) end,
+                function() require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({ search_dirs = { vim.fn.expand("%") } })) end,
                 desc = "Find in File",
             },
             {
