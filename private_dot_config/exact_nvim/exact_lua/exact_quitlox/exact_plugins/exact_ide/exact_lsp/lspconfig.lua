@@ -24,18 +24,11 @@ local function set_keybindings(bufnr)
         -- Add Go mappings for LSP Symbol navigation
         g = {
             name = "Go",
-            D = { "<cmd>Lspsaga peek_definition<cr>", "Peek Declaration" },
-            d = { "<cmd>Lspsaga goto_definition<cr>", "Go Definition" },
-            O = { "<cmd>Lspsaga outgoing_calls<cr>", "Go Outgoing Calls" },
-            I = { "<cmd>Lspsaga incoming_calls<cr>", "Go Incoming Calls" },
-            i = { function() vim.lsp.buf.implementation() end, "Go Implementation" },
+            -- O = { "<cmd>Lspsaga outgoing_calls<cr>", "Go Outgoing Calls" },
+            -- I = { "<cmd>Lspsaga incoming_calls<cr>", "Go Incoming Calls" },
             s = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols='variable'<cr>", "Symbols" },
-            t = { "<cmd>Lspsaga peek_type_definition<cr>", "Peek Type Definition" },
             R = { "<cmd>Lspsaga rename ++project<cr>", "Go Rename" },
-            r = { "<cmd>Lspsaga finder<cr>", "Go References" },
             h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
-            -- f = { function() require('conform').format({ bufnr = bufnr }) end, "Format" }, // Set in formatting.lua
-            a = { "<cmd>Lspsaga code_action<cr>", "Action" },
         },
         K = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
     }, bufopts)
