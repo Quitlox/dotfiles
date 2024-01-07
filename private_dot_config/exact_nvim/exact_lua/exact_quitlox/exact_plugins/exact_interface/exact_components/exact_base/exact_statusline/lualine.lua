@@ -13,12 +13,6 @@ local winbar_disabled_filetypes = {
 }
 
 ----------------------------------------
--- Import Plugins
-----------------------------------------
--- Require Lualine
-local lualine = require("lualine")
-
-----------------------------------------
 -- Import Modules
 ----------------------------------------
 
@@ -32,7 +26,7 @@ local py_virtual_env = require("quitlox.plugins.interface.components.base.status
 local yaml_schema = require("quitlox.plugins.interface.components.base.statusline.modules.yaml_schema")
 
 ----------------------------------------
--- Modules
+-- Inline Modules
 ----------------------------------------
 
 local mode = {
@@ -64,39 +58,44 @@ local lazy = {
 -- Lualine Setup
 ----------------------------------------
 
-lualine.setup({
-    options = {
-        theme = "catppuccin",
-        disabled_filetypes = {
-            winbar = {
-                "neo-tree",
-                "NvimTree",
-                "dap-repl",
-                "dapui_scopes",
-                "dapui_breakpoints",
-                "dapui_stacks",
-                "dapui_watches",
-                "dapui_console",
+return {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    -- config = function() require("quitlox.plugins.interface.components.base.statusline.lualine") end,
+    opts = {
+        options = {
+            theme = "catppuccin",
+            disabled_filetypes = {
+                winbar = {
+                    "neo-tree",
+                    "NvimTree",
+                    "dap-repl",
+                    "dapui_scopes",
+                    "dapui_breakpoints",
+                    "dapui_stacks",
+                    "dapui_watches",
+                    "dapui_console",
+                },
             },
+            globalstatus = true,
         },
-        globalstatus = true,
-    },
-    sections = {
-        lualine_a = { mode },
-        lualine_b = { "branch" },
-        lualine_c = { filename },
-        lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, linters, py_virtual_env, "filetype" },
-        lualine_y = { lazy, diff, diagnostics },
-        lualine_z = { "searchcount", "location" },
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = { "branch" },
-        lualine_c = { filename },
-        lualine_x = { "location" },
-        lualine_y = { lazy },
-        lualine_z = {},
-    },
+        sections = {
+            lualine_a = { mode },
+            lualine_b = { "branch" },
+            lualine_c = { filename },
+            lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, linters, py_virtual_env, "filetype" },
+            lualine_y = { lazy, diff, diagnostics },
+            lualine_z = { "searchcount", "location" },
+        },
+        inactive_sections = {
+            lualine_a = {},
+            lualine_b = { "branch" },
+            lualine_c = { filename },
+            lualine_x = { "location" },
+            lualine_y = { lazy },
+            lualine_z = {},
+        },
 
-    extensions = { "man", "nvim-dap-ui", "neo-tree", "toggleterm", "trouble", "overseer" },
-})
+        extensions = { "man", "nvim-dap-ui", "neo-tree", "toggleterm", "trouble", "overseer" },
+    },
+}

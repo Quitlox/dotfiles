@@ -58,9 +58,6 @@ local on_attach = function(client, bufnr)
         -- Disable virtual_text
         virtual_text = false,
     })
-
-    -- Breadcrumbs
-    if client.server_capabilities.documentSymbolProvider then require("nvim-navic").attach(client, bufnr) end
 end
 
 require("quitlox.util").on_attach(on_attach)
