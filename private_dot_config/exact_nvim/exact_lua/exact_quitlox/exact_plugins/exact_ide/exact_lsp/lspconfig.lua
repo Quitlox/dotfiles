@@ -34,14 +34,14 @@ local function set_keybindings(bufnr)
             R = { "<cmd>Lspsaga rename ++project<cr>", "Go Rename" },
             r = { "<cmd>Lspsaga finder<cr>", "Go References" },
             h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
-            f = { function() vim.lsp.buf.format({ bufnr = bufnr }) end, "Format" },
+            -- f = { function() require('conform').format({ bufnr = bufnr }) end, "Format" }, // Set in formatting.lua
             a = { "<cmd>Lspsaga code_action<cr>", "Action" },
         },
         K = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
     }, bufopts)
 
     -- Range formatting
-    vim.keymap.set("v", "gf", vim.lsp.buf.format, bufopts)
+    -- vim.keymap.set("v", "gf", require("conform").format, bufopts) // Set in formatting.lua
     -- Rename
     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
     -- Signature Help

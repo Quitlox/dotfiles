@@ -22,13 +22,14 @@ local lualine = require("lualine")
 -- Import Modules
 ----------------------------------------
 
+local diff = require("quitlox.plugins.interface.components.base.statusline.modules.diff")
 local encoding = require("quitlox.plugins.interface.components.base.statusline.modules.encoding")
 local fileformat = require("quitlox.plugins.interface.components.base.statusline.modules.fileformat")
 local filename = require("quitlox.plugins.interface.components.base.statusline.modules.filename")
-local yaml_schema = require("quitlox.plugins.interface.components.base.statusline.modules.yaml_schema")
-local diff = require("quitlox.plugins.interface.components.base.statusline.modules.diff")
+local linters = require("quitlox.plugins.interface.components.base.statusline.modules.linters")
 local mixed_indent = require("quitlox.plugins.interface.components.base.statusline.modules.mixed_indent")
 local py_virtual_env = require("quitlox.plugins.interface.components.base.statusline.modules.py_virtual_env")
+local yaml_schema = require("quitlox.plugins.interface.components.base.statusline.modules.yaml_schema")
 
 ----------------------------------------
 -- Modules
@@ -84,7 +85,7 @@ lualine.setup({
         lualine_a = { mode },
         lualine_b = { "branch" },
         lualine_c = { filename },
-        lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, py_virtual_env, "filetype" },
+        lualine_x = { keymap, mixed_indent, encoding, fileformat, yaml_schema, linters, py_virtual_env, "filetype" },
         lualine_y = { lazy, diff, diagnostics },
         lualine_z = { "searchcount", "location" },
     },
