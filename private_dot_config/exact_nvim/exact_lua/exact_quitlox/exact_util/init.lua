@@ -3,6 +3,17 @@
 
 local M = {}
 
+function M.legendary(commands)
+    local function insert_commands(_, opts)
+        opts.commands = opts.commands or {}
+        for _, command in ipairs(commands) do
+            table.insert(opts.commands, { command[1], description = command[2] })
+        end
+    end
+
+    return insert_commands
+end
+
 ---@param on_attach fun(client, buffer)
 function M.on_attach(on_attach)
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -39,8 +50,7 @@ function M.telescope(builtin, opts)
                 map("i", "<a-c>", function()
                     local action_state = require("telescope.actions.state")
                     local line = action_state.get_current_line()
-                    M.telescope(params.builtin,
-                        vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line }))()
+                    M.telescope(params.builtin, vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line }))()
                 end)
                 return true
             end
