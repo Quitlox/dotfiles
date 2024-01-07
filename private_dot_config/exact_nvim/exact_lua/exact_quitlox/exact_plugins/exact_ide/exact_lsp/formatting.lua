@@ -86,35 +86,35 @@ function format_on_save(format_args)
 end
 
 return {
-    "stevearc/conform.nvim",
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo", "FormatEnable", "FormatDisable", "FormatToggle" },
-    opts = {
-        formatters_by_ft = {
-            lua = { "stylua" },
-            python = { "pycln", "black", "isort" },
-            javascript = { { "prettierd", "prettier" } },
-            typescript = { { "prettierd", "prettier" } },
-            svelte = { { "prettierd", "prettier" } },
-            markdown = { { "prettierd", "prettier" }, "injected" },
-            ["_"] = { "trim_whitespace" },
+    {
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo", "FormatEnable", "FormatDisable", "FormatToggle" },
+        opts = {
+            formatters_by_ft = {
+                lua = { "stylua" },
+                python = { "pycln", "black", "isort" },
+                javascript = { { "prettierd", "prettier" } },
+                typescript = { { "prettierd", "prettier" } },
+                svelte = { { "prettierd", "prettier" } },
+                markdown = { { "prettierd", "prettier" }, "injected" },
+                ["_"] = { "trim_whitespace" },
+            },
+            format_on_save = function(bufnr)
+                -- Disable with a global or buffer-local variable
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
+                return format_on_save({ timeout_ms = 500 })
+            end,
         },
-        format_on_save = function(bufnr)
-            -- Disable with a global or buffer-local variable
-            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
-            return format_on_save({ timeout_ms = 500 })
-        end,
+        keys = {
+            { "<leader>Tf", "<cmd>FormatToggle<cr>", desc = "Toggle format-on-save" },
+            { "gf", function() format({ async = true }) end, mode = "", desc = "Format buffer" },
+        },
     },
-    keys = {
-        { "<leader>Tf", "<cmd>FormatToggle<cr>", desc = "Toggle format-on-save" },
-        { "gf", function() format({ async = true }) end, mode = "", desc = "Format buffer" },
-    },
-    init = function()
-        require("legendary").commands({
-            { ":FormatDisable", description = "Disable format-on-save" },
-            { ":FormatEnable", description = "Re-enable format-on-save" },
-            { ":FormatToggle", description = "Toggle format-on-save" },
-            { ":ConformInfo", description = "Show formatter (conform.nvim) info" },
-        })
-    end,
+    require("quitlox.util").legendary({
+        { ":FormatDisable", "Disable format-on-save" },
+        { ":FormatEnable", "Re-enable format-on-save" },
+        { ":FormatToggle", "Toggle format-on-save" },
+        { ":ConformInfo", "Show formatter (conform.nvim) info" },
+    }),
 }

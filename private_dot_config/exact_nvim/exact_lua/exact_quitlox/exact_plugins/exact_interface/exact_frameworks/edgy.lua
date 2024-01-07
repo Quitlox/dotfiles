@@ -24,15 +24,15 @@ return {
             },
             right = {
                 { ft = "neotest-summary" },
-                { title = "Outline",     ft = "neo-tree",    filter = filter_nt_source_eq("document_symbols") },
-                { title = "Overseer",    ft = "OverseerList" },
+                { title = "Outline", ft = "neo-tree", filter = filter_nt_source_eq("document_symbols") },
+                { title = "Overseer", ft = "OverseerList" },
             },
             bottom = {
-                { ft = "toggleterm",    filter = filter_not_relative() },
+                { ft = "toggleterm", filter = filter_not_relative() },
                 { ft = "NeogitStatus" },
                 { ft = "Trouble" },
-                { ft = "qf",            title = "QuickFix" },
-                { ft = "help",          size = { height = 20 },        filter = filter_bt("help") },
+                { ft = "qf", title = "QuickFix" },
+                { ft = "help", size = { height = 20 }, filter = filter_bt("help") },
                 { ft = "spectre_panel", size = { height = 0.4 } },
             },
 
@@ -51,25 +51,16 @@ return {
 
             fix_win_height = vim.fn.has("nvim-0.10.0") == 0,
         },
-        config = function(_, opts)
-            require("edgy").setup(opts)
-
-            require("which-key").register({
-                ["<leader>"] = {
-                    o = {
-                        s = { "<cmd>lua require('edgy').toggle()<cr>", "Open Sidebar" },
-                    },
-                },
-            })
-        end,
+        keys = {
+            { "<leader>os", "<cmd>lua require('edgy').toggle()<cr>", desc = "Open Sidebar" },
+        },
     },
     -- prevent neo-tree from opening files in edgy windows
     {
         "nvim-neo-tree/neo-tree.nvim",
         optional = true,
         opts = function(_, opts)
-            opts.open_files_do_not_replace_types = opts.open_files_do_not_replace_types or
-                { "terminal", "Trouble", "qf", "Outline" }
+            opts.open_files_do_not_replace_types = opts.open_files_do_not_replace_types or { "terminal", "Trouble", "qf", "Outline" }
             table.insert(opts.open_files_do_not_replace_types, "edgy")
         end,
     },

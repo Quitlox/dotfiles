@@ -31,85 +31,70 @@ local evaluate = function()
 end
 
 return {
-    "rcarriga/nvim-dap-ui",
-    version = "",
-    config = function()
-        local dap = require("dap")
-        require("dapui").setup({ expand_lines = true })
+    {
+        "rcarriga/nvim-dap-ui",
+        version = "",
+        config = function()
+            local dap = require("dap")
+            require("dapui").setup({ expand_lines = true })
 
-        -- Autmatically open/close DAP UI and Nvim-Tree
-        dap.listeners.after.event_initialized["dapui_config"] = on_open
-        dap.listeners.before.event_terminated["dapui_config"] = on_close
-        dap.listeners.before.event_exited["dapui_config"] = on_close
-    end,
+            -- Autmatically open/close DAP UI and Nvim-Tree
+            dap.listeners.after.event_initialized["dapui_config"] = on_open
+            dap.listeners.before.event_terminated["dapui_config"] = on_close
+            dap.listeners.before.event_exited["dapui_config"] = on_close
+        end,
 
-    -- Triggers
-    cmd = { "DapToggleRepl", "DapToggleBreakpoint" },
-    keys = { "<leader>d", "<leader>td" },
-
-    -- Keybindings
-    init = function()
-        -- Signs (required by Catppuccin)
-        local sign = vim.fn.sign_define
-        sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-        sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
-        sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+        -- Triggers
+        cmd = { "DapToggleRepl", "DapToggleBreakpoint" },
+        keys = {
+            { "<F9>", "<cmd>lua require('dap').continue()<cr>", desc = "Debug Continue" },
+            { "<F8>", "<cmd>lua require('dap').step_over()<cr>", desc = "Debug Step Over" },
+            { "<S-F8>", "<cmd>lua require('dap').step_out()<cr>", desc = "Debug Step Out" },
+            { "<F7>", "<cmd>lua require('dap').step_into()<cr>", desc = "Debug Step Into" },
+            { "<leader>do", "<cmd>lua require('dapui').open()<cr>", desc = "Debug UI Open" },
+            { "<leader>dc", "<cmd>lua require('dapui').close()<cr>", desc = "Debug UI Close" },
+            { "<leader>de", evaluate, desc = "Evaluate Expression" },
+            { "<leader>dd", "<cmd>lua require('dap').continue()<cr>", desc = "Debugger Launch/Continue" },
+            { "<leader>dx", "<cmd>lua require('dap').terminate()<cr>", desc = "Debugger Terminate" },
+            { "<leader>dr", "<cmd>DapToggleRepl<cr>", desc = "Open REPL" },
+            { "<leader>dso", "<cmd>lua require('dap').step_over()<cr>", desc = "Step Over (F8)" },
+            { "<leader>dsu", "<cmd>lua require('dap').step_out()<cr>", desc = "Step Out (Shift+F8)" },
+            { "<leader>dsi", "<cmd>lua require('dap').step_into()<cr>", desc = "Step Into (F7)" },
+            { "<leader>dt", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "Breakpoint Toggle" },
+            { "<leader>dbc", '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', desc = "Breakpoint Condition" },
+            { "<leader>dbm", '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = "Breakpoint Message" },
+            { "<leader>dlc", "<cmd>Telescope dap commands<cr>", desc = "List Debug Commands" },
+            { "<leader>dld", "<cmd>Telescope dap configurations<cr>", desc = "List Debug Configurations" },
+            { "<leader>dlb", "<cmd>Telescope dap list_breakpoints<cr>", desc = "List Debug Breakpoints" },
+            { "<leader>dlv", "<cmd>Telescope dap variables<cr>", desc = "List Debug Variables" },
+            { "<leader>dlf", "<cmd>Telescope dap frames<cr>", desc = "List Debug Frames" },
+        },
 
         -- Keybindings
-        require("which-key").register({
-            ["<F9>"] = { "<cmd>lua require('dap').continue()<cr>", "Debug Continue" },
-            ["<F8>"] = { "<cmd>lua require('dap').step_over()<cr>", "Debug Step Over" },
-            ["<S-F8>"] = { "<cmd>lua require('dap').step_out()<cr>", "Debug Step Out" },
-            ["<F7>"] = { "<cmd>lua require('dap').step_into()<cr>", "Debug Step Into" },
-            ["<leader>"] = {
-                d = {
-                    name = "Debug",
-                    o = { "<cmd>lua require('dapui').open()<cr>", "Debug UI Open" },
-                    c = { "<cmd>lua require('dapui').close()<cr>", "Debug UI Close" },
-                    e = { evaluate, "Evaluate Expression" },
-                    d = { "<cmd>lua require('dap').continue()<cr>", "Debugger Launch/Continue" },
-                    x = { "<cmd>lua require('dap').terminate()<cr>", "Debugger Terminate" },
-                    r = { "<cmd>DapToggleRepl<cr>", "Open REPL" },
-                    s = {
-                        name = "Step",
-                        o = { "<cmd>lua require('dap').step_over()<cr>", "Step Over (F8)" },
-                        u = { "<cmd>lua require('dap').step_out()<cr>", "Step Out (Shift+F8)" },
-                        i = { "<cmd>lua require('dap').step_into()<cr>", "Step Into (F7)" },
-                    },
-                    t = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Breakpoint Toggle" },
-                    b = {
-                        name = "Breakpoint",
-                        c = {
-                            '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
-                            "Breakpoint Condition",
-                        },
-                        m = {
-                            '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
-                            "Breakpoint Message",
-                        },
-                    },
-                    l = {
-                        name = "List",
-                        c = { "<cmd>Telescope dap commands<cr>", "List Debug Commands" },
-                        d = { "<cmd>Telescope dap configurations<cr>", "List Debug Configurations" },
-                        b = { "<cmd>Telescope dap list_breakpoints<cr>", "List Debug Breakpoints" },
-                        v = { "<cmd>Telescope dap variables<cr>", "List Debug Variables" },
-                        f = { "<cmd>Telescope dap frames<cr>", "List Debug Frames" },
-                    },
-                },
-            },
-        })
-    end,
+        init = function()
+            -- Signs (required by Catppuccin)
+            local sign = vim.fn.sign_define
+            sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+            sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+            sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+        end,
 
-    dependencies = {
-        "mfussenegger/nvim-dap",
-        -- Virtual Text while debugging
-        { "theHamsta/nvim-dap-virtual-text", config = true },
-        -- Telescope extension
-        {
-            "nvim-telescope/telescope-dap.nvim",
-            dependencies = { "nvim-telescope/telescope.nvim" },
-            config = function() require("telescope").load_extension("dap") end,
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            -- Virtual Text while debugging
+            { "theHamsta/nvim-dap-virtual-text", config = true },
+            -- Telescope extension
+            {
+                "nvim-telescope/telescope-dap.nvim",
+                dependencies = { "nvim-telescope/telescope.nvim" },
+                config = function() require("telescope").load_extension("dap") end,
+            },
         },
     },
+    require("quitlox.util").whichkey({
+        ["<leader>d"] = { name = "Debug" },
+        ["<leader>ds"] = { name = "Step" },
+        ["<leader>db"] = { name = "Breakpoint" },
+        ["<leader>dl"] = { name = "List" },
+    }),
 }

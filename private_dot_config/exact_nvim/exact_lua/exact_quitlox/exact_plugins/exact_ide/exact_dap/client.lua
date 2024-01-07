@@ -16,6 +16,9 @@ return {
             -- Configure launch.json file handling
             require("quitlox.plugins.ide.dap.include.launch_json")
         end,
+        keys = {
+            { "<leader>dv", ":LoadLaunchJson<cr>", desc = "Reload launch.json" },
+        },
     },
     {
         "mxsdev/nvim-dap-vscode-js",

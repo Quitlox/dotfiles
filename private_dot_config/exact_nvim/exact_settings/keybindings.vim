@@ -74,7 +74,7 @@ noremap gk k
 "     autocmd FileType Neotree,Outline nunmap <buffer> k | nnoremap <buffer> k gk
 "     autocmd FileType * nnoremap <buffer> gk kzz
 "     autocmd FileType Neotree,Outline nunmap <buffer> gk | nnoremap <buffer> gk k
-" augroup 
+" augroup
 
 
 " Undo breakpoints

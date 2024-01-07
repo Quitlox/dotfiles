@@ -4,11 +4,5 @@ return {
         lazy = false,
         opts = {},
     },
-    {
-        "mrjones2014/legendary.nvim",
-        optional = true,
-        opts = require("quitlox.util").legendary({
-            { ":GuessIndent", description = "Guess indent" },
-        }),
-    },
+    require("quitlox.util").legendary({ { ":GuessIndent", "Guess indent" } }),
 }

@@ -3,6 +3,16 @@
 
 local M = {}
 
+function M.whichkey(opts)
+    return {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            defaults = opts,
+        },
+    }
+end
+
 function M.legendary(commands)
     local function insert_commands(_, opts)
         opts.commands = opts.commands or {}
@@ -11,7 +21,26 @@ function M.legendary(commands)
         end
     end
 
-    return insert_commands
+    return {
+        "mrjones2014/legendary.nvim",
+        optional = true,
+        opts = insert_commands,
+    }
+end
+
+function M.legendary_full(commands)
+    local function insert_commands(_, opts)
+        opts.commands = opts.commands or {}
+        for _, command in ipairs(commands) do
+            table.insert(opts.commands, command)
+        end
+    end
+
+    return {
+        "mrjones2014/legendary.nvim",
+        optional = true,
+        opts = insert_commands,
+    }
 end
 
 ---@param on_attach fun(client, buffer)

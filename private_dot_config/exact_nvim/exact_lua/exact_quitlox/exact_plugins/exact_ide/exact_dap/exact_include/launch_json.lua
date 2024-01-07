@@ -1,19 +1,13 @@
 ----------------------------------------------------------------------
 --                         DAP: Launch.json                         --
 ----------------------------------------------------------------------
--- This script enables and configures the use of the launch.json file 
+-- This script enables and configures the use of the launch.json file
 -- to configure debug configurations.
 
 -- Command: Reload launch.json
 local function load_launch_json()
     local status, err = pcall(require("dap.ext.vscode").load_launchjs)
-    if not status then
-        require("notify")(
-            "Is there a typo in the config?\n\n" .. err,
-            "ERROR",
-            { title = "Error while loading .vscode/launch.json" }
-        )
-    end
+    if not status then require("notify")("Is there a typo in the config?\n\n" .. err, "ERROR", { title = "Error while loading .vscode/launch.json" }) end
 end
 
 -- Load launch.json on startup
@@ -26,8 +20,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "launch.json",
     callback = load_launch_json,
 })
--- Load launch.json via keybinding
-require("which-key").register({
-    name = "Debug",
-    v = { load_launch_json, "Reload launch.json" },
-}, { prefix = "<leader>dv" })
+
+vim.api.nvim_create_user_command("LoadLaunchJson", load_launch_json, {
+    desc = "Reload launch.json",
+})

@@ -26,12 +26,6 @@ return {
             "VenvDeactivate",
         },
         init = function()
-            require("legendary").commands({
-                { ":VenvSelect", description = "Select Virtual Env" },
-                { ":VenvSelectCached", description = "Retrieve Virtual Env from Cache" },
-                { ":VenvDeactivate", "<cmd>lua require('venv-selector').deactivate_venv()<cr>", description = "Deactivate Virtual Env" },
-            })
-
             vim.api.nvim_create_autocmd("UIEnter", {
                 desc = "Auto select virtualenv Nvim open",
                 pattern = "*",
@@ -43,15 +37,14 @@ return {
             })
         end,
     },
-    {
-        "folke/which-key.nvim",
-        optional = true,
-        opts = {
-            defaults = {
-                ["<localleader>v"] = { name = "Virtual Env" },
-            },
-        },
-    },
+    require("quitlox.util").legendary_full({
+        { ":VenvSelect", description = "Select Virtual Env" },
+        { ":VenvSelectCached", description = "Retrieve Virtual Env from Cache" },
+        { ":VenvDeactivate", "<cmd>lua require('venv-selector').deactivate_venv()<cr>", description = "Deactivate Virtual Env" },
+    }),
+    require("quitlox.util").whichkey({
+        ["<localleader>v"] = { name = "Virtual Env" },
+    }),
 
     --  +----------------------------------------------------------+
     --  |     LSP Config                                           |
@@ -128,8 +121,8 @@ return {
     {
         "mfussenegger/nvim-dap-python",
         -- FIXME: This is too late apparently
-        -- ft = "python",
-        lazy = false,
+        ft = "python",
+        -- lazy = false,
         config = function()
             local path = require("quitlox.util.path")
             local pythondap = require("dap-python")

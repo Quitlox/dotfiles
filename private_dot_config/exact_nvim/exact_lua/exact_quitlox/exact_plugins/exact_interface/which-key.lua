@@ -2,6 +2,7 @@ return {
     "folke/which-key.nvim",
     version = "",
     dependencies = { "mrjones2014/legendary.nvim" },
+    lazy = true,
     opts = {
         operators = { gc = "Comments" },
         defaults = {

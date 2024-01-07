@@ -5,9 +5,5 @@ return {
         cmd = "Gitignore",
         lazy = true,
     },
-    {
-        "mrjones2014/legendary.nvim",
-        optional = true,
-        opts = require("quitlox.util").legendary({ { ":Gitignore", "Generate .gitignore file" } }),
-    },
+    require("quitlox.util").legendary({ { ":Gitignore", "Generate .gitignore file" } }),
 }

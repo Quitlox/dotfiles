@@ -1,23 +1,24 @@
 return {
-    "luckasRanarison/clear-action.nvim",
-    opts = {
-        signs = {
-            icons = {
-                quickfix = " ", -- "🔧",
-                refactor = " ", -- "💡",
-                source = " ", -- "🔗",
-                combined = " ", -- "💡",
+    {
+        "luckasRanarison/clear-action.nvim",
+        opts = {
+            signs = {
+                icons = {
+                    quickfix = " ", -- "🔧",
+                    refactor = " ", -- "💡",
+                    source = " ", -- "🔗",
+                    combined = " ", -- "💡",
+                },
+            },
+            mappings = {
+                code_action = "ga",
             },
         },
-        mappings = {
-            code_action = "ga",
-        },
+        event = "LspAttach",
     },
-    event = "LspAttach",
-    init = function()
-        require("legendary").commands({
-            { ":CodeActionToggleSigns", description = "Toggle code action signs" },
-            { ":CodeActionToggleLabel", description = "Toggle code action labels" },
-        })
-    end,
+
+    require("quitlox.util").legendary({
+        { ":CodeActionToggleSigns", "Toggle code action signs" },
+        { ":CodeActionToggleLabel", "Toggle code action labels" },
+    }),
 }

@@ -44,40 +44,41 @@ local function post_restore_hook()
 end
 
 return {
-    "rmagatti/auto-session",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    opts = {
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
-        auto_session_save_enabled = true,
-        auto_session_restore_enabled = true,
+    {
+        "rmagatti/auto-session",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        opts = {
+            log_level = "error",
+            auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+            auto_session_save_enabled = true,
+            auto_session_restore_enabled = true,
 
-        pre_save_cmds = { pre_save_hook },
-        post_save_cmds = { post_save_hook },
-        post_restore_cmds = { post_restore_hook },
+            pre_save_cmds = { pre_save_hook },
+            post_save_cmds = { post_save_hook },
+            post_restore_cmds = { post_restore_hook },
 
-        session_lens = {
-            load_on_setup = true,
-            theme_conf = { border = true },
-            previewer = false,
+            session_lens = {
+                load_on_setup = true,
+                theme_conf = { border = true },
+                previewer = false,
+            },
         },
+        lazy = false,
+        keys = {
+            { "<leader>fs", "<cmd>lua require('auto-session.session-lens').search_session", desc = "Find Sessions" },
+        },
+        config = function(_, opts)
+            require("telescope").load_extension("session-lens")
+            require("auto-session").setup(opts)
+        end,
     },
-    lazy = false,
-    keys = {
-        { "<leader>fs", "<cmd>lua require('auto-session.session-lens').search_session", desc = "Find Sessions" },
-    },
-    config = function(_, opts)
-        require("telescope").load_extension("session-lens")
-        require("auto-session").setup(opts)
-    end,
-    init = function()
-        require("legendary").commands({
-            { ":SessionSave", description = "Create or save a session" },
-            { ":SessionRestore", description = "Restore a session" },
-            { ":SessionDelete", description = "Delete a session" },
-            { ":SessionPurgeOrphaned", description = "Delete orphaned sessions" },
-            { ":Autosession search", description = "Search for sessions" },
-            { ":Autosession delete", description = "Delete a session" },
-        })
-    end,
+
+    require("quitlox.util").legendary({
+        { ":SessionSave", "Create or save a session" },
+        { ":SessionRestore", "Restore a session" },
+        { ":SessionDelete", "Delete a session" },
+        { ":SessionPurgeOrphaned", "Delete orphaned sessions" },
+        { ":Autosession search", "Search for sessions" },
+        { ":Autosession delete", "Delete a session" },
+    }),
 }
