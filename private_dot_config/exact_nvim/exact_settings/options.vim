@@ -24,6 +24,8 @@ autocmd FileType * setlocal formatoptions-=o
 
 " Automatically resize Windows when resizing the terminal
 autocmd VimResized * wincmd =
+autocmd WinEnter * wincmd =
+autocmd WinLeave * wincmd =
 
 " Set quickfix buffers as unlisted
 augroup HideQuickFix
