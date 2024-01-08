@@ -120,9 +120,7 @@ return {
 
     {
         "mfussenegger/nvim-dap-python",
-        -- FIXME: This is too late apparently
         ft = "python",
-        -- lazy = false,
         config = function()
             local path = require("quitlox.util.path")
             local pythondap = require("dap-python")
