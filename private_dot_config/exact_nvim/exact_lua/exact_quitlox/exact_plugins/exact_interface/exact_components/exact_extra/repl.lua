@@ -253,6 +253,8 @@ return {
     {
         "3rd/image.nvim",
         version = "",
+        -- Depends on luarock "magick"
+        -- luarocks --local --lua-version 5.1 install magick
         opts = {
             backend = "kitty",
             integrations = {},
