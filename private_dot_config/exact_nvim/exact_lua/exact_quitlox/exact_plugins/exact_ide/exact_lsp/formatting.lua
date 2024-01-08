@@ -98,6 +98,7 @@ return {
                 typescript = { { "prettierd", "prettier" } },
                 svelte = { { "prettierd", "prettier" } },
                 markdown = { { "prettierd", "prettier" }, "injected" },
+                toml = { "taplo" },
                 ["_"] = { "trim_whitespace" },
             },
             format_on_save = function(bufnr)
