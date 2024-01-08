@@ -74,22 +74,19 @@ return {
                     },
                 },
             })
-
-            require("which-key").register({
-                ["<leader>"] = {
-                    ["a"] = { "Swap Next" },
-                    ["A"] = { "Swap Previous" },
-                },
-            })
         end,
     },
-    -- {
-    --     "chrisgrieser/nvim-various-textobjs",
-    --     lazy = false,
-    --     opts = { useDefaultKeymaps = false },
-    --     config = function()
-    --         vim.keymap.set({ "o", "x" }, "aS", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
-    --         vim.keymap.set({ "o", "x" }, "iS", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
-    --     end,
-    -- },
+    require("quitlox.util").legendary({
+        { "<leader>a", desc = "Swap Next" },
+        { "<leader>A", desc = "Swap Previous" },
+    }),
+    {
+        "chrisgrieser/nvim-various-textobjs",
+        lazy = false,
+        opts = { useDefaultKeymaps = false },
+        keys = {
+            { "aS", "<cmd>lua require('various-textobjs').subword('outer')<CR>", mode = { "o", "x" } },
+            { "iS", "<cmd>lua require('various-textobjs').subword('inner')<CR>", mode = { "o", "x" } },
+        },
+    },
 }
