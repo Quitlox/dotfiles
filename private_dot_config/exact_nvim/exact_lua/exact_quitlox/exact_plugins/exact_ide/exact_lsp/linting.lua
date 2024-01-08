@@ -2,7 +2,7 @@ return {
     "mfussenegger/nvim-lint",
     config = function()
         require("lint").linters_by_ft = {
-            python = { "pylint", "mypy" },
+            python = { "pylint", "mypy", "codespell" },
         }
 
         vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
