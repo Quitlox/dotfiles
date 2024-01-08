@@ -68,21 +68,6 @@ local plugins = {
     { "kylechui/nvim-surround", version = "*", event = "VeryLazy", config = true },
     { "tpope/vim-repeat" },
     ---------- Navigation ----------
-    ---------- Improved Defaults ----------
-    -- Matchup - Better %
-    {
-        "andymass/vim-matchup",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                matchup = {
-                    enable = true,
-                },
-            })
-        end,
-    },
 
     ----------------------------------------
     -- Import
