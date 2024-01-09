@@ -2,10 +2,8 @@
 vim.o.completeopt = "menu,menuone,noselect"
 
 -- Behaviour
-local select_next_completion_item =
-    require("quitlox.plugins.ide.completion.include.behaviour").select_next_completion_item
-local select_prev_completion_item =
-    require("quitlox.plugins.ide.completion.include.behaviour").select_prev_completion_item
+local select_next_completion_item = require("quitlox.plugins.ide.completion.include.behaviour").select_next_completion_item
+local select_prev_completion_item = require("quitlox.plugins.ide.completion.include.behaviour").select_prev_completion_item
 local scroll_completion_down = require("quitlox.plugins.ide.completion.include.behaviour").scroll_completion_down
 local scroll_completion_up = require("quitlox.plugins.ide.completion.include.behaviour").scroll_completion_up
 
@@ -39,8 +37,8 @@ return {
                 ["<C-f>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
                 ["<C-u>"] = cmp.mapping(scroll_completion_up, { "i", "s", "c" }),
                 ["<C-d>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
-                ["<C-n>"] = cmp.mapping(function() require('luasnip').jump(1) end, {"i", "s", "c"}),
-                ["<C-p>"] = cmp.mapping(function() require('luasnip').jump(-1) end, {"i", "s", "c"}),
+                ["<C-n>"] = cmp.mapping(function() require("luasnip").jump(1) end, { "i", "s", "c" }),
+                ["<C-p>"] = cmp.mapping(function() require("luasnip").jump(-1) end, { "i", "s", "c" }),
                 ["<C-space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
@@ -56,28 +54,23 @@ return {
                     name = "spell",
                     option = {
                         keep_all_entries = false,
-                        enable_in_context = function()
-                            return require("cmp.config.context").in_treesitter_capture("spell")
-                        end,
+                        enable_in_context = function() return require("cmp.config.context").in_treesitter_capture("spell") end,
                     },
                 },
             }),
         })
 
-        -- Map documentation hover
-        require("quitlox.plugins.ide.completion.include.hover_doc")
         -- Configure the snippet engine
         require("quitlox.plugins.ide.completion.include.luasnip")
         -- Configure completion sources for different context
         require("quitlox.plugins.ide.completion.include.contexts")
-
     end,
     dependencies = {
         -- Completion Sources
         "hrsh7th/cmp-nvim-lsp",
         -- "hrsh7th/cmp-nvim-lsp-document-symbol",
         -- "hrsh7th/cmp-nvim-lsp-signature-help",
-        
+
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",

@@ -36,12 +36,22 @@ return {
         "Saecki/crates.nvim",
         lazy = true,
         version = "",
-        opts = {
-            null_ls = {
-                enabled = true,
-                name = "crates.nvim",
-            },
-        },
+        opts = {},
+        -- TODO: Once there is a way to natively create LSP sources, add a LSP
+        -- code-action source for the code actions provided by crates.nvim
+        config = function(_, opts)
+            require("hover").register({
+                priority = 1001, -- One more than LSP
+                name = "Cargo.toml",
+                enabled = function(bufnr) return vim.fn.expand("%:t") == "Cargo.toml" end,
+                execute = function(opts, done)
+                    print("test")
+                    require("crates").show_popup()
+                end,
+            })
+
+            require("crates").setup(opts)
+        end,
         init = function()
             -- Inject crates as completion source
             vim.api.nvim_create_autocmd("BufRead", {

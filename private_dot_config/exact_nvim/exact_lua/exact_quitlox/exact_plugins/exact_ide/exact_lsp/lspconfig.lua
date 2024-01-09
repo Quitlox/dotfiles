@@ -22,9 +22,7 @@ local function set_keybindings(bufnr)
             -- I = { "<cmd>Lspsaga incoming_calls<cr>", "Go Incoming Calls" },
             s = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols='variable'<cr>", "Symbols" },
             R = { "<cmd>Lspsaga rename ++project<cr>", "Go Rename" },
-            h = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
         },
-        K = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
     }, bufopts)
 
     -- Range formatting

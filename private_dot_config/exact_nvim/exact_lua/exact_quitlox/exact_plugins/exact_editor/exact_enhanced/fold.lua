@@ -6,7 +6,18 @@ return {
         dependencies = {
             { "kevinhwang91/promise-async", version = "" },
         },
-        config = function(_, opts) require("ufo").setup(opts) end,
+        config = function(_, opts)
+            require("ufo").setup(opts)
+            require("hover").register({
+                priority = 1002,
+                name = "Fold",
+                enabled = function(bufnr)
+                    local winid = require("ufo").peekFoldedLinesUnderCursor()
+                    return winid ~= nil
+                end,
+                execute = function(opts, done) end,
+            })
+        end,
         opts = {
             provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
         },
@@ -24,23 +35,13 @@ return {
             -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
         end,
     },
-    {
-        "mrjones2014/legendary.nvim",
-        optional = true,
-        opts = function(_, opts)
-            opts.commands = opts.commands or {}
-            local commands = {
-                { ":UfoEnable", "Enable ufo" },
-                { ":UfoDisable", "Disable ufo" },
-                { ":UfoInspect", "Inspect current buffer information" },
-                { ":UfoAttach", "Attach current buffer to enable all features" },
-                { ":UfoDetach", "Detach current buffer to disable all features" },
-                { ":UfoEnableFold", "Enable to get folds and update them at once for current buffer" },
-                { ":UfoDisableFold", "Disable to get folds for current buffer" },
-            }
-            for _, command in ipairs(commands) do
-                table.insert(opts.commands, { command[1], description = command[2] })
-            end
-        end,
-    },
+    require("quitlox.util").legendary({
+        { ":UfoEnable", "Enable ufo" },
+        { ":UfoDisable", "Disable ufo" },
+        { ":UfoInspect", "Inspect current buffer information" },
+        { ":UfoAttach", "Attach current buffer to enable all features" },
+        { ":UfoDetach", "Detach current buffer to disable all features" },
+        { ":UfoEnableFold", "Enable to get folds and update them at once for current buffer" },
+        { ":UfoDisableFold", "Disable to get folds for current buffer" },
+    }),
 }
