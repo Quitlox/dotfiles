@@ -19,23 +19,12 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         cmd = { "TroubleToggle" },
         keys = {
-            { "<leader>od",  "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Open Document Diagnostics" },
-            { "<leader>ow",  "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Open Workspace Diagnostics" },
-            { "<leader>oq",  "<cmd>TroubleToggle quickfix<cr>",              desc = "Open Quickfix" },
+            { "<leader>od", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Open Document Diagnostics" },
+            { "<leader>ow", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Open Workspace Diagnostics" },
+            { "<leader>oq", "<cmd>TroubleToggle quickfix<cr>", desc = "Open Quickfix" },
         },
     },
-    --  +----------------------------------------------------------+
-    --  |     Add mappings for opening Trouble from Telescope      |
-    --  +----------------------------------------------------------+
-    {
-        "nvim-telescope/telescope.nvim",
-        optional = true,
-        opts = function(_, opts)
-            -- BUG: This works for find_all but not smart_open, the latter resulting in an error
-            local trouble = require("trouble.providers.telescope")
-            opts.defaults.mappings.i = vim.tbl_extend("keep", opts.defaults.mappings.i, {
-                ["<c-t>"] = trouble.open_with_trouble,
-            })
-        end,
-    },
+    require("quitlox.util").legendary({
+        { ":TroubleToggle", "Toggle Trouble" },
+    }),
 }
