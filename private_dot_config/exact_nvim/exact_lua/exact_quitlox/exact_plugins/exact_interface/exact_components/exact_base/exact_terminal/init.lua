@@ -1,6 +1,11 @@
 return {
     "akinsho/toggleterm.nvim",
-    lazy = false,
+    keys = { "`" },
+    config = function(_, opts)
+        require("toggleterm").setup(opts)
+        vim.keymap.set("n", [[`]], '<cmd>execute v:count . "CustomToggleTerm"<cr>', { silent = true })
+        vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
+    end,
     opts = {
         {
             persist_mode = true,
