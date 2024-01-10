@@ -64,13 +64,15 @@ function format(format_args)
 end
 
 function format_on_save(format_args)
-    -- Custom: do not autoformat in pyproject.toml
+    -- Custom: disable autoformat in pyproject.toml
     if vim.fn.expand("%:t") == "pyproject.toml" then return end
-    -- Disable autoformat for certain filetypes
+    -- Custom: disable autoformat for certain filetypes
     if vim.bo.filetype == "toml" then return end
     if vim.bo.filetype == "markdown" then return end
     if vim.bo.filetype == "json" then return end
     if vim.bo.filetype == "jsonc" then return end
+    -- Custom: disable autoformat for chezmoi
+    if vim.fn.expand("%:p"):match("chezmoi") then return end
 
     local fmt_util = require("conform")
     local formatters = fmt_util.list_formatters()
