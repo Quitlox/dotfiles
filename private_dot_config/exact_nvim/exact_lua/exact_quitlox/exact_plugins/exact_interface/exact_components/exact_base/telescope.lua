@@ -2,8 +2,7 @@
 -- Setup
 ----------------------------------------
 
-if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then vim.g.sqlite_clib_path = vim.fn.expand(
-    "$HOME/.config/vim/sqlite3.dll") end
+if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then vim.g.sqlite_clib_path = vim.fn.expand("$HOME/.config/vim/sqlite3.dll") end
 
 return {
     {
@@ -22,6 +21,7 @@ return {
             "nvim-lua/plenary.nvim",
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
+                enabled = function() return not vim.fn.has("win64") end,
                 build = "make",
                 config = function() require("telescope").load_extension("fzf") end,
             },
@@ -56,7 +56,7 @@ return {
                 "<leader>fa",
                 function()
                     require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({
-                        layout_config = { width = 0.6},
+                        layout_config = { width = 0.6 },
                     }))
                 end,
                 desc = "Find All",
@@ -104,8 +104,7 @@ return {
                 group = telescope_augroup_id,
                 pattern = "*",
                 callback = function()
-                    if vim.bo.filetype == "TelescopePrompt" and vim.fn.mode() == "i" then vim.api.nvim_feedkeys(
-                        vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false) end
+                    if vim.bo.filetype == "TelescopePrompt" and vim.fn.mode() == "i" then vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false) end
                 end,
             })
         end,
@@ -120,8 +119,7 @@ return {
         keys = {
             {
                 "<leader>of",
-                function() require("telescope").extensions.smart_open.smart_open(require("telescope.themes")
-                    .get_dropdown({})) end,
+                function() require("telescope").extensions.smart_open.smart_open(require("telescope.themes").get_dropdown({})) end,
                 desc = "Open File",
             },
         },

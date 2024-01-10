@@ -227,6 +227,7 @@ return {
     require("quitlox.util").legendary(molten_commands),
     {
         "benlubas/molten-nvim",
+        enabled = function() return not vim.fn.has("win64") end,
         version = "*",
         lazy = false,
         -- Required python packages: pynvim jupyter_client
@@ -252,6 +253,7 @@ return {
     },
     {
         "3rd/image.nvim",
+        enabled = function() return not vim.fn.has("win64") end,
         version = "",
         -- Depends on luarock "magick"
         -- luarocks --local --lua-version 5.1 install magick
