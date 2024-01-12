@@ -23,9 +23,11 @@ let g:vimsyn_embed = 'l'
 autocmd FileType * setlocal formatoptions-=o
 
 " Automatically resize Windows when resizing the terminal
-autocmd VimResized * wincmd =
-autocmd WinEnter * wincmd =
-autocmd WinLeave * wincmd =
+" autocmd VimResized * wincmd =
+" autocmd WinEnter * wincmd =
+" autocmd WinLeave * wincmd =
+set equalalways
+set ead=hor
 
 " Set quickfix buffers as unlisted
 augroup HideQuickFix
@@ -73,12 +75,12 @@ set switchbuf=uselast
 " Comments
 set comments+=:#
 " Wrapping
-set autoindent 		
+set autoindent
 set nosmartindent    " This causes comments not to be moved while indenting
 set nocindent        " This causes comments to wrap weirdly with parenthesis
 set autoindent	     " This is the modern way, which fixes the above
-set nowrap 
-set linebreak		
+set nowrap
+set linebreak
 " Cursor
 set scrolloff=7      " Leave 7 lines around the cursor when moving vertically using j/k
 set sidescrolloff=10 " Leave 10 characters around the cursor when moving horizontally using h/l
@@ -90,11 +92,11 @@ set culopt=number
 set concealcursor=c
 set conceallevel=2
 " Searching
-set ignorecase      
-set smartcase      
-set hlsearch      
-set incsearch    
-set wrapscan    
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set wrapscan
 " Layout
 set signcolumn=yes   " Prevent the error gutter from moving the vertical seperator
 set mouse=nv         " Disable mouse in command-line mode
@@ -103,6 +105,7 @@ set showtabline=2
 set splitright	     " Open splits in the window to the right
 		     " For opening splits from NERDTree
 set splitbelow       " Like vscode
+set splitkeep=screen
 " Performance
 set lazyredraw       " Don't redraw while executing macros (good performance config)
 " Configure backspace so it acts as it should act
