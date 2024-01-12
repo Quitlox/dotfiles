@@ -65,16 +65,13 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             -- These need to be ran before nvim-lspconfig
-            "folke/neodev.nvim",
+            { "folke/neodev.nvim", opts = {} },
             "folke/neoconf.nvim",
         },
     },
     {
         "williamboman/mason-lspconfig.nvim",
         version = "",
-
-        -- navic used in quitlox.plugins.lsp.include.common
-        dependencies = { "SmiteshP/nvim-navic" },
 
         opts = {
             automatic_installation = false,
