@@ -6,16 +6,64 @@ vim.api.nvim_create_user_command("OverseerRestartLast", function()
     else
         overseer.run_action(tasks[1], "restart")
     end
-end, {})
+end, { desc = "Overseer Restart Last" })
 
 return {
-    "stevearc/overseer.nvim",
-    version = "",
-    opts = {
-        -- strategy = { "toggleterm", hidden = true },
-        bindings = {
-            ["<C-l>"] = false,
-            ["<C-h>"] = false,
+    {
+        "stevearc/overseer.nvim",
+        version = "",
+        keys = {
+            { "<leader>eo", "<cmd>OverseerOpen<cr>", desc = "Executor Open" },
+            { "<leader>ep", "<cmd>OverseerQuickAction open float<cr>", desc = "Executor Quick Peek" },
+            { "<leader>ec", "<cmd>OverseerClose<cr>", desc = "Executor Close" },
+            { "<leader>et", "<cmd>OverseerToggle<cr>", desc = "Executor Toggle" },
+            { "<leader>er", "<cmd>OverseerRun<cr>", desc = "Executor Run" },
+            { "<leader>ei", "<cmd>OverseerInfo<cr>", desc = "Executor Info" },
+            { "<leader>eb", "<cmd>OverseerBuild<cr>", desc = "Executor Build" },
+            { "<leader>eq", "<cmd>OverseerQuickAction<cr>", desc = "Executor Quick Action" },
+            { "<leader>ea", "<cmd>OverseerTaskAction<cr>", desc = "Executor Task Action" },
+            { "<leader>el", "<cmd>OverseerRestartLast<cr>", desc = "Executor Restart Last" },
+        },
+        cmd = {
+            "OverseerOpen",
+            "OverseerClose",
+            "OverseerToggle",
+            "OverseerSaveBundle",
+            "OverseerLoadBundle",
+            "OverseerDeleteBundle",
+            "OverseerRun",
+            "OverseerInfo",
+            "OverseerBuild",
+            "OverseerQuickAction",
+            "OverseerTaskAction",
+            "OverseerClearCache",
+        },
+        opts = {
+            strategy = {
+                "toggleterm",
+                direction = "float",
+                hidden = false,
+                on_open = function(term) vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true }) end,
+            },
+            bindings = {
+                ["<C-l>"] = false,
+                ["<C-h>"] = false,
+            },
         },
     },
+    require("quitlox.util").legendary({
+        { ":OverseerOpen", "Overseer Open" },
+        { ":OverseerClose", "Overseer Close" },
+        { ":OverseerToggle", "Overseer Toggle" },
+        { ":OverseerSaveBundle", "Overseer Save Bundle" },
+        { ":OverseerLoadBundle~", "Overseer Load Bundle" },
+        { ":OverseerDeleteBundle", "Overseer Delete Bundle" },
+        { ":OverseerRun", "Overseer Run" },
+        { ":OverseerInfo", "Overseer Info" },
+        { ":OverseerBuild", "Overseer Build" },
+        { ":OverseerQuickAction", "Overseer Quick Action" },
+        { ":OverseerTaskAction", "Overseer Task Action" },
+        { ":OverseerClearCache", "Overseer Clear Cache" },
+        { ":OverseerRestartLast", "Overseer Restart Last" },
+    }),
 }
