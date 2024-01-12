@@ -13,7 +13,10 @@ return {
             hooks = {
                 before_open = function(results, open, jump, method)
                     -- Always show Glance for references | implementations
-                    if method == "references" or method == "implementations" then return end
+                    if method == "references" or method == "implementations" then
+                        open(results)
+                        return
+                    end
 
                     -- For definitions | type definitions, jump to the first result
                     if #results == 1 then
