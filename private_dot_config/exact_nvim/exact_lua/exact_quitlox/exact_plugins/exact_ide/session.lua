@@ -4,6 +4,12 @@
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+-- Convert the cwd to a simple file name
+local function get_cwd_as_name()
+    local dir = vim.fn.getcwd(0)
+    return dir:gsub("[^A-Za-z0-9]", "_")
+end
+
 local function pre_save_hook()
     if package.loaded["neo-tree"] then vim.cmd("Neotree action=close") end
     if package.loaded["neotest"] then
@@ -36,11 +42,34 @@ end
 local function post_save_hook()
     local session_dir = require("auto-session").get_root_dir()
     local session_name = require("auto-session.lib").current_session_name()
+
+    -- Save Overseer tasks
+    if package.loaded["overseer"] then
+        require("overseer").save_task_bundle(
+            get_cwd_as_name(),
+            -- Passing nil will use config.opts.save_task_opts. You can call list_tasks() explicitly and
+            -- pass in the results if you want to save specific tasks.
+            nil,
+            { on_conflict = "overwrite" } -- Overwrite existing bundle, if any
+        )
+    end
+end
+
+local function pre_restore_hook()
+    -- Remove existing Overseer tasks
+    if package.loaded["overseer"] then
+        for _, task in ipairs(require("overseer").list_tasks({})) do
+            task:dispose(true)
+        end
+    end
 end
 
 local function post_restore_hook()
     local session_dir = require("auto-session").get_root_dir()
     local session_name = require("auto-session.lib").current_session_name()
+
+    -- Restore Overseer tasks
+    require("overseer").load_task_bundle(get_cwd_as_name(), { ignore_missing = true, autostart = false })
 end
 
 return {
@@ -55,6 +84,7 @@ return {
 
             pre_save_cmds = { pre_save_hook },
             post_save_cmds = { post_save_hook },
+            pre_restore_cmds = { pre_restore_hook },
             post_restore_cmds = { post_restore_hook },
 
             session_lens = {
