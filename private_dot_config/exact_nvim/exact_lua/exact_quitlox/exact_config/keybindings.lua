@@ -1,4 +1,3 @@
-
 vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 
@@ -18,8 +17,7 @@ vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buff
 -- the filetype is not equals to 'NvimTree'
 local function window_only()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
-        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then
-            vim.api.nvim_win_close(win, false) end
+        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then vim.api.nvim_win_close(win, false) end
     end
 end
 
@@ -49,29 +47,6 @@ vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Tab New" 
 vim.keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Tab Next" })
 vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Tab Close" })
 vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Tab Previous" })
-
-----------------------------------------------------------------------
---                        Keybindings: Fold                         --
-----------------------------------------------------------------------
-
--- Define the NextClosedFold function
-local function NextClosedFold(dir)
-    local cmd = 'norm!z'..dir
-    local view = vim.api.nvim_win_get_viewport(0)
-    local l0, l, open = 0, view[0], true
-    while l ~= l0 and open do
-        vim.api.nvim_exec(cmd, true)
-        l0, l = l, vim.api.nvim_win_get_cursor(0)[0]
-        open = vim.api.nvim_call_function('foldclosed', {l}) < 0
-    end
-    if open then
-        vim.api.nvim_win_set_viewport(0, unpack(view))
-    end
-end
-
--- Map keys to the function
-vim.api.nvim_set_keymap('n', ']z', '<cmd>lua NextClosedFold("j")<cr>', {silent = true})
-vim.api.nvim_set_keymap('n', '[z', '<cmd>lua NextClosedFold("k")<cr>', {silent = true})
 
 ----------------------------------------------------------------------
 --                        Keybindings: Misc                         --

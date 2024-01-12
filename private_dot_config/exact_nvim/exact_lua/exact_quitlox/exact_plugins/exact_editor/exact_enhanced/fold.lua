@@ -26,6 +26,8 @@ return {
             { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
             { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Fold less" },
             { "zm", function() require("ufo").closeFoldsWith() end, desc = "Fold more" },
+            { "[z", function() require("ufo").goPreviousClosedFold() end, desc = "Next fold" },
+            { "]z", function() require("ufo").goNextClosedFold() end, desc = "Next fold" },
         },
         init = function()
             vim.o.foldcolumn = "0"
