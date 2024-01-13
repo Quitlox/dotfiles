@@ -21,7 +21,7 @@ return {
             "nvim-lua/plenary.nvim",
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
-                enabled = function() return not vim.fn.has("win64") end,
+                enabled = function() return vim.fn.has("win64") == 0 end,
                 build = "make",
                 config = function() require("telescope").load_extension("fzf") end,
             },
