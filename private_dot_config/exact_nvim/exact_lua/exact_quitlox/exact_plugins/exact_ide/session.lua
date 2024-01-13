@@ -81,6 +81,7 @@ return {
             auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
             auto_session_save_enabled = true,
             auto_session_restore_enabled = true,
+            auto_session_use_git_branch = true,
 
             pre_save_cmds = { pre_save_hook },
             post_save_cmds = { post_save_hook },
