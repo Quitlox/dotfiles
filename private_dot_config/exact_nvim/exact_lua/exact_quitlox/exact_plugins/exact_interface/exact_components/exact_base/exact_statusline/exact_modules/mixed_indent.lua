@@ -1,4 +1,4 @@
-local mixed_indent = function()
+return function()
     local space_pat = [[\v^ +]]
     local tab_pat = [[\v^\t+]]
     local space_indent = vim.fn.search(space_pat, "nwc")
@@ -19,12 +19,3 @@ local mixed_indent = function()
         return "" .. space_indent
     end
 end
-
-return {
-    mixed_indent,
-    icon = {
-        "",
-        name = "MixedIndent",
-    },
-    color = "DiagnosticError",
-}

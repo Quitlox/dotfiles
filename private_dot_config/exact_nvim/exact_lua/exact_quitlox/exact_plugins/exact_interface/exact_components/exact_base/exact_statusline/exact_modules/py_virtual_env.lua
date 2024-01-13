@@ -16,7 +16,7 @@ end
 
 local function virtual_env_text()
     if vim.bo.filetype ~= "python" then return "" end
-    return " (" .. actived_venv() .. ") "
+    return "(" .. actived_venv() .. ")"
 end
 
 return virtual_env_text
