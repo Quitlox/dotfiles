@@ -68,6 +68,7 @@ function format_on_save(format_args)
     if vim.fn.expand("%:t") == "pyproject.toml" then return end
     -- Custom: disable autoformat for certain filetypes
     if vim.bo.filetype == "toml" then return end
+    if vim.bo.filetype == "yaml" then return end
     if vim.bo.filetype == "markdown" then return end
     if vim.bo.filetype == "json" then return end
     if vim.bo.filetype == "jsonc" then return end
@@ -109,6 +110,7 @@ return {
                 svelte = { { "prettierd", "prettier" } },
                 markdown = { { "prettierd", "prettier" }, "injected" },
                 toml = { "taplo" },
+                yaml = { { "prettier", "prettierd" } },
                 ["_"] = { "trim_whitespace" },
             },
             format_on_save = function(bufnr)
