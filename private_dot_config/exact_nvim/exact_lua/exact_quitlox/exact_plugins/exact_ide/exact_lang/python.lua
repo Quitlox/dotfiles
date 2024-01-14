@@ -9,9 +9,7 @@ return {
     -- https://www.reddit.com/r/neovim/comments/13d3hy5/different_autopair_indentation_on_cr_in_python/
     -- NOTE: Disabled as experiment. Is this needed?
     -- { "Vimjas/vim-python-pep8-indent" },
-    ---------- Text Objects ----------
-    -- Indent Text Object (for Python)
-    { "michaeljsmith/vim-indent-object", ft = "python" },
+
     ---------- Virtual Environment ----------
     {
         "linux-cultist/venv-selector.nvim",

@@ -6,7 +6,7 @@
 return {
     "folke/todo-comments.nvim",
     version = "",
-    lazy = false, -- To highlight notes
+    event = "VeryLazy",
     opts = {
         highlight = {
             keyword = "wide",
@@ -14,9 +14,9 @@ return {
     },
     cmd = { "TodoTelescope", "TodoTrouble" },
     keys = {
-        { "<leader>on", "<cmd>TodoTrouble<cr>",                              desc = "Open Notes" },
-        { "<leader>fn", "<cmd>TodoTelescope<cr>",                            desc = "Find Notes" },
-        { "[n",         function() require("todo-comments").jump_prev() end, desc = "Previous Note" },
-        { "]n",         function() require("todo-comments").jump_next() end, desc = "Next Note" },
+        { "<leader>on", "<cmd>TodoTrouble<cr>", desc = "Open Notes" },
+        { "<leader>fn", "<cmd>TodoTelescope<cr>", desc = "Find Notes" },
+        { "[n", function() require("todo-comments").jump_prev() end, desc = "Previous Note" },
+        { "]n", function() require("todo-comments").jump_next() end, desc = "Next Note" },
     },
 }

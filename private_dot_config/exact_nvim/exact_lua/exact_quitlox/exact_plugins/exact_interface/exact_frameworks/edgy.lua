@@ -42,7 +42,7 @@ return {
             options = {
                 left = { size = 40 },
                 right = { size = 50 },
-                bottom = { size = 0.35 },
+                bottom = { size = 0.40 },
             },
 
             wo = {

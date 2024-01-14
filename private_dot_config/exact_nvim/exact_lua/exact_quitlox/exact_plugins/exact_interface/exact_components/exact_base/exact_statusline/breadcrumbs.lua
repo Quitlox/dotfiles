@@ -23,7 +23,11 @@ return {
                 if client.server_capabilities.documentSymbolProvider then require("nvim-navic").attach(client, bufnr) end
             end)
         end,
-        opts = { attach_navic = false, create_autocmd = false },
+        opts = {
+            attach_navic = false,
+            create_autocmd = false,
+            theme = "catppuccin",
+        },
     },
 
     require("quitlox.util").legendary({

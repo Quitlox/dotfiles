@@ -44,6 +44,7 @@ return {
     {
         "akinsho/bufferline.nvim",
         event = "VeryLazy",
+        after = "catppucin",
         version = "",
         keys = {
             { "<leader>bn", "<cmd>BufferLineCycleNext<cr>", desc = "Buffer Next" },
