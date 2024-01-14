@@ -61,23 +61,4 @@ return {
             { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out", version = "v1.*" },
         },
     },
-    {
-        "jbyuki/one-small-step-for-vimkind",
-        ft = "lua",
-        config = function(_, opts)
-            require("dap").configurations.lua = {
-                {
-                    type = "nlua",
-                    request = "attach",
-                    name = "Attach to running Neovim instance",
-                },
-            }
-
-            require("dap").adapters.nlua = function(callback, config) callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 }) end
-        end,
-        keys = {
-            { "<F5>", function() require("osv").launch({ port = 8086 }) end, "Start Neovim Debugger" },
-            { "<F12>", function() require("dap.ui.widgets").hover() end, desc = "DAP Hover" },
-        },
-    },
 }
