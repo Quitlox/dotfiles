@@ -111,6 +111,8 @@ return {
                 markdown = { { "prettierd", "prettier" }, "injected" },
                 toml = { "taplo" },
                 yaml = { { "prettier", "prettierd" } },
+                json = { { "prettier", "prettierd" } },
+                jsonc = { { "prettier", "prettierd" } },
                 ["_"] = { "trim_whitespace" },
             },
             format_on_save = function(bufnr)
