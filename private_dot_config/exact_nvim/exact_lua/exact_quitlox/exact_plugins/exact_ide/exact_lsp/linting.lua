@@ -3,7 +3,7 @@ return {
     config = function()
         require("lint").linters_by_ft = {
             python = { "pylint", "mypy", "codespell" },
-            svelte = { "eslint" },
+            svelte = { "eslint_d" },
         }
 
         vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {

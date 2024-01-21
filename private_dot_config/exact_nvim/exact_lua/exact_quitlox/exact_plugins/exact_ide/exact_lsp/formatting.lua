@@ -107,7 +107,7 @@ return {
                 python = { "pycln", "black", "isort" },
                 javascript = { { "prettierd", "prettier" } },
                 typescript = { { "prettierd", "prettier" } },
-                svelte = { { "prettierd", "prettier" }, "eslint_d" },
+                svelte = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
                 markdown = { { "prettierd", "prettier" }, "injected" },
                 toml = { "taplo" },
                 yaml = { { "prettier", "prettierd" } },
