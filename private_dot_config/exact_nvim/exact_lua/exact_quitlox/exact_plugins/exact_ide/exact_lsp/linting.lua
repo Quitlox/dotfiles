@@ -3,6 +3,8 @@ return {
     config = function()
         require("lint").linters_by_ft = {
             python = { "pylint", "mypy", "codespell" },
+            javascript = { "eslint_d" },
+            typescript = { "eslint_d" },
             svelte = { "eslint_d" },
         }
 
