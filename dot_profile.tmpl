@@ -46,6 +46,8 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Used by Neovim ChatGPT plugin
 export OPENAI_API_KEY={{ (bitwardenFields "item" "OpenAI").OPENAI_API_KEY.value | quote }}
+# Used by Neovim octo.nvim plugin
+export GITHUB_TOKEN={{ (bitwardenFields "item" "github.com").GITHUB_TOKEN_NEOVIM.value | quote }}
 
 ########################################
 ### XDG_BASE_DIR: fucking conform
