@@ -58,7 +58,8 @@ local plugins = {
     ----------------------------------------
     -- Vim
     ----------------------------------------
-    { "jbyuki/quickmath.nvim" },
+    { "jbyuki/quickmath.nvim", cmd = "Quickmath" },
+    require("quitlox.util").legendary({ { ":Quickmath", "Activate Quickmath" } }),
 
     ---------- Commands ----------
     -- Proper Buffer Delete command, which does not mess with your window layout
