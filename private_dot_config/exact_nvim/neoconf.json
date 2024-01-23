@@ -1,14 +1,14 @@
 {
-	"lspconfig": {
-		"pyright": {
-			"python.analysis.diagnosticMode": "openFilesOnly",
-			// "python.analysis.stubPath": "stubs"
-		},
-		"neodev": {
-			"library": {
-				"enabled":true,
-				"plugins":true
-			}
-		}
-	}
+  "lspconfig": {
+    "pyright": {
+      "python.analysis.diagnosticMode": "openFilesOnly"
+      // "python.analysis.stubPath": "stubs"
+    },
+    "neodev": {
+      "library": {
+        "enabled": true,
+        "plugins": true
+      }
+    }
+  }
 }

@@ -81,7 +81,7 @@ return {
             auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
             auto_session_save_enabled = true,
             auto_session_restore_enabled = true,
-            -- auto_session_use_git_branch = true,
+            auto_session_use_git_branch = true, -- FIXME: Broken
 
             pre_save_cmds = { pre_save_hook },
             post_save_cmds = { post_save_hook },
@@ -96,7 +96,7 @@ return {
         },
         lazy = false,
         keys = {
-            { "<leader>fs", "<cmd>lua require('auto-session.session-lens').search_session", desc = "Find Sessions" },
+            { "<leader>fs", "<cmd>lua require('auto-session.session-lens').search_session<cr>", desc = "Find Sessions" },
         },
         config = function(_, opts)
             require("telescope").load_extension("session-lens")
