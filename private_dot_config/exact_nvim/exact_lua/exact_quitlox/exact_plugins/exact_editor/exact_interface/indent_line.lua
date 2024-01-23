@@ -4,29 +4,60 @@
 -- Display indent lines in the current buffer to visualize the indent depths.
 -- The configuration is found in the settings/plugins/shared/indent_line.vim
 
--- return {
---     "lukas-reineke/indent-blankline.nvim",
---     version = "",
--- }
-
 return {
-    {
-        "echasnovski/mini.indentscope",
-        version = "",
-        config = function(_, opts)
-            -- Disable indent scope for NvimTree and terminal buffers
-            vim.cmd([[
-                    augroup DisableIndentScope 
-                        autocmd!
-                        autocmd Filetype NvimTree lua vim.b.miniindentscope_disable = true 
-                        autocmd Filetype lazy lua vim.b.miniindentscope_disable = true 
-                        autocmd Filetype mason lua vim.b.miniindentscope_disable = true 
-                        autocmd TermOpen * lua vim.b.miniindentscope_disable = true
-                    augroup END
-            ]])
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {},
+    config = function(_, opts)
+        require("ibl").setup(opts)
 
-            require("mini.indentscope").setup(opts)
-        end,
-        opts = {},
-    },
+        local highlight = {
+            "RainbowRed",
+            "RainbowYellow",
+            "RainbowBlue",
+            "RainbowOrange",
+            "RainbowGreen",
+            "RainbowViolet",
+            "RainbowCyan",
+        }
+        local hooks = require("ibl.hooks")
+        -- create the highlight groups in the highlight setup hook, so they are reset
+        -- every time the colorscheme changes
+        hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+            vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+            vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+            vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+            vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+            vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+            vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+            vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+        end)
+
+        vim.g.rainbow_delimiters = { highlight = highlight }
+        require("ibl").setup({ scope = { highlight = highlight } })
+
+        hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+    end,
 }
+
+-- return {
+--     {
+--         "echasnovski/mini.indentscope",
+--         version = "",
+--         config = function(_, opts)
+--             -- Disable indent scope for NvimTree and terminal buffers
+--             vim.cmd([[
+--                     augroup DisableIndentScope
+--                         autocmd!
+--                         autocmd Filetype NvimTree lua vim.b.miniindentscope_disable = true
+--                         autocmd Filetype lazy lua vim.b.miniindentscope_disable = true
+--                         autocmd Filetype mason lua vim.b.miniindentscope_disable = true
+--                         autocmd TermOpen * lua vim.b.miniindentscope_disable = true
+--                     augroup END
+--             ]])
+--
+--             require("mini.indentscope").setup(opts)
+--         end,
+--         opts = {},
+--     },
+-- }
