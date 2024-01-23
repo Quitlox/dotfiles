@@ -17,11 +17,23 @@ return {
         opts = {
             open_files_do_not_replace_types = { "terminal", "trouble", "qf", "Neogit" },
 
+            -- Project.
+            sync_root_with_cwd = true,
+            respect_buf_cwd = true,
+            update_focused_file = {
+                enable = true,
+                update_root = true,
+            },
+
             window = {
                 mappings = {
-                    ["<cr>"] = "open",
-                    ["o"] = "open_with_window_picker",
+                    ["<cr>"] = "open_with_window_picker",
+                    ["o"] = "open",
                     ["<esc>"] = "revert_preview",
+                    ["b"] = "open_vsplit",
+                    ["v"] = "open_split",
+                    ["s"] = "noop",
+                    ["S"] = "noop",
                 },
             },
 
