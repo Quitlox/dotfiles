@@ -65,7 +65,17 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             -- These need to be ran before nvim-lspconfig
-            { "folke/neodev.nvim", opts = {} },
+            {
+                "folke/neodev.nvim",
+                opts = {
+                    override = function(root_dir, library)
+                        if root_dir:find("/home/quitlox/.local/share/nvim", 1, true) == 1 then
+                            library.enabled = true
+                            library.plugins = true
+                        end
+                    end,
+                },
+            },
             "folke/neoconf.nvim",
         },
     },
