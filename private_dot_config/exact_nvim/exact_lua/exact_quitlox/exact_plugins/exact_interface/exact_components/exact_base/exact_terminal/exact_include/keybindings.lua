@@ -32,7 +32,7 @@ vim.api.nvim_create_user_command("CustomToggleTerm", function(opts)
     if venv_name ~= nil then cmd = "source " .. venv_name .. "/bin/activate; clear" end
     local on_open = function(term)
         if vim.b.custom_venv_source == nil then
-            require("toggleterm").exec(cmd)
+            require("toggleterm").exec(cmd, term.id)
             vim.api.nvim_set_current_win(term.window)
             vim.b.custom_venv_source = 1
         end
