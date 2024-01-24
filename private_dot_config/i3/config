@@ -90,7 +90,7 @@ bindsym Print exec --no-startup-id maim -o ~/Pictures/Screenshots/$(date +%Y-%M-
 bindsym shift+Print exec --no-startup-id maim -s -o | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d-%s).png | xclip -selection clipboard -t image/png
 
 # Common Application Launcher Menu
-set $mode_launcher Launch: [f]irefox [t]hunderbird [e]xplorer [d]iscord [s]potify [b]menu
+set $mode_launcher Launch: [f]irefox [t]hunderbird [e]xplorer [d]iscord [s]potify [b]menu [n]eovide
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
@@ -100,6 +100,7 @@ mode "$mode_launcher" {
         bindsym d exec discord --no-sandbox; mode "default"
         bindsym s exec spotify; mode "default"
 	bindsym b exec $terminal -e 'bmenu'; mode "default"
+	bindsym n exec neovide; mode "default"
 
 	bindsym Escape mode "default"
 	bindsym Return mode "default"
@@ -516,7 +517,7 @@ for_window [class="Zenity"] floating enable border none
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-# Sticky 
+# Sticky
 for_window [title="Picture-in-Picture"] sticky enable
 
 # Assigning windows to specific workspaces
