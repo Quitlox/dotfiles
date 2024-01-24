@@ -30,3 +30,8 @@
     dest: /etc/fonts/conf.d/10-sub-pixel-rgb.conf
     state: link
   become: true
+
+- name: Install emoji font
+  community.general.pacman:
+    name: noto-fonts-emoji
+  become: true
