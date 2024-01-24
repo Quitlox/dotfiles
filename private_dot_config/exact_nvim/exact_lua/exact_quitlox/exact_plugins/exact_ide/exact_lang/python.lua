@@ -38,7 +38,7 @@ return {
     require("quitlox.util").legendary_full({
         { ":VenvSelect", description = "Select Virtual Env" },
         { ":VenvSelectCached", description = "Retrieve Virtual Env from Cache" },
-        { ":VenvDeactivate", "<cmd>lua require('venv-selector').deactivate_venv()<cr>", description = "Deactivate Virtual Env" },
+        { ":VenvDeactivate", ":lua require('venv-selector').deactivate_venv()<cr>", description = "Deactivate Virtual Env" },
     }),
     require("quitlox.util").whichkey({
         ["<localleader>v"] = { name = "Virtual Env" },

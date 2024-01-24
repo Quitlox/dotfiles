@@ -17,23 +17,46 @@ end
 return {
     {
         "folke/edgy.nvim",
-        ft = { "neo-tree", "Trouble", "qf", "spectre_panel", "help", "NeogitStatus", "neotest-summary", "toggleterm", "OverseerList" },
+        ft = {
+            "neo-tree",
+            "Trouble",
+            "qf",
+            "spectre_panel",
+            "help",
+            "NeogitStatus",
+            "neotest-summary",
+            "toggleterm",
+            "OverseerList",
+            "dap-repl",
+            "dapui_console",
+            "dapui_scopes",
+            "dapui_breakpoints",
+            "dapui_stacks",
+            "dapui_watches",
+        },
         opts = {
             left = {
-                { ft = "neo-tree", filter = filter_nt_source_neq("document_symbols") },
+                { ft = "neo-tree", filter = filter_nt_source_neq("document_symbols"), wo = { winbar = "    File Explorer" } },
+                { ft = "dapui_scopes", size = { height = 20 }, wo = { winbar = " 󰒉  Scopes" } },
+                { ft = "dapui_breakpoints", size = { height = 20 }, wo = { winbar = "    Breakpoints" } },
+                { ft = "dapui_stacks", size = { height = 20 }, wo = { winbar = "    Call Stack" } },
+                { ft = "dapui_watches", size = { height = 20 }, wo = { winbar = "   Watches" } },
             },
             right = {
                 { ft = "neotest-summary" },
-                { title = "Outline", ft = "neo-tree", filter = filter_nt_source_eq("document_symbols") },
-                { title = "Overseer", ft = "OverseerList" },
+                { title = "Outline", ft = "neo-tree", filter = filter_nt_source_eq("document_symbols"), wo = { winbar = "  󰙅  Outline" } },
+                { title = "Overseer", ft = "OverseerList", wo = { winbar = "    Overseer" } },
             },
             bottom = {
-                { ft = "toggleterm", filter = filter_not_relative() },
-                { ft = "NeogitStatus" },
-                { ft = "Trouble" },
-                { ft = "qf", title = "QuickFix" },
-                { ft = "help", size = { height = 20 }, filter = filter_bt("help") },
+                { ft = "toggleterm", filter = filter_not_relative(), wo = { winbar = "  󰆍  Terminal" } },
+                { ft = "NeogitStatus", wo = { winbar = "  󰊢  Neogit" } },
+                { ft = "Trouble", wo = { winbar = "󰍉  Trouble" } },
+                { ft = "qf", title = "QuickFix", wo = { winbar = "  󰍉  QuickFix" } },
+                { ft = "help", size = { height = 20 }, filter = filter_bt("help"), wo = { winbar = "    Help" } },
                 { ft = "spectre_panel", size = { height = 0.4 } },
+
+                { ft = "dap-repl", wo = { winbar = "  󰜎 Dap REPL" } },
+                { ft = "dapui_console", wo = { winbar = "  󰆍  DAP Console" } },
             },
 
             animate = {
@@ -47,6 +70,8 @@ return {
 
             wo = {
                 winbar = true,
+                foldcolumn = "1",
+                foldenable = false,
             },
 
             fix_win_height = vim.fn.has("nvim-0.10.0") == 0,
@@ -70,10 +95,10 @@ return {
         "akinsho/bufferline.nvim",
         optional = true,
         opts = function()
-            local Offset = require("bufferline.offset")
-            if not Offset.edgy then
-                local get = Offset.get
-                Offset.get = function()
+            local offset = require("bufferline.offset")
+            if not offset.edgy then
+                local get = offset.get
+                offset.get = function()
                     if package.loaded.edgy then
                         local layout = require("edgy.config").layout
                         local ret = { left = "", left_size = 0, right = "", right_size = 0 }
@@ -90,7 +115,7 @@ return {
                     end
                     return get()
                 end
-                Offset.edgy = true
+                offset.edgy = true
             end
         end,
     },
