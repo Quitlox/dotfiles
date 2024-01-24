@@ -44,7 +44,7 @@ return {
                 extensions = {
                     smart_open = {
                         cwd_only = true,
-                        match_algorithm = "fzy",
+                        match_algorithm = "fzf",
                     },
                 },
             }
