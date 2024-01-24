@@ -55,19 +55,8 @@ cmp.setup.cmdline("/", {
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = "cmdline" },
-        { name = "cmdline_history" },
         { name = "path" },
+        { name = "cmdline" },
+        -- { name = "cmdline_history" },
     }),
 })
-
--- Command Line Completion
-cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "cmdline" },
-        { name = "cmdline_history" },
-        { name = "path" },
-    }),
-})
-
