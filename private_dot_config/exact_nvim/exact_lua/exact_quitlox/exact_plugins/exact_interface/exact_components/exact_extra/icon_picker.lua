@@ -17,7 +17,7 @@ return {
         opts = function(_, opts)
             opts.commands = opts.commands or {}
             table.insert(opts.commands, {
-                ":IconPickerNormal alt_font symbols nerd_font emoji",
+                ":IconPickerNormal alt_font symbols nerd_font_v3 emoji",
                 description = "Open Icon Picker",
             })
         end,
