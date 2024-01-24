@@ -28,10 +28,10 @@ return {
             window = {
                 mappings = {
                     ["<cr>"] = "open_with_window_picker",
-                    ["o"] = "open",
+                    ["o"] = { "open", nowait = true },
                     ["<esc>"] = "revert_preview",
-                    ["b"] = "open_vsplit",
-                    ["v"] = "open_split",
+                    ["b"] = { "open_vsplit", nowait = true },
+                    ["v"] = { "open_split", nowait = true },
                     ["s"] = "noop",
                     ["S"] = "noop",
                 },
