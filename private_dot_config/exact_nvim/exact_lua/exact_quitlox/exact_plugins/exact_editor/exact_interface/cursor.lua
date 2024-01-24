@@ -2,6 +2,7 @@ return {
     {
         "DanilaMihailov/beacon.nvim",
         lazy = false,
+        enabled = function() return vim.fn.has("neovide") == 0 end,
     },
     require("quitlox.util").legendary({
         { ":Beacon", "Highlight current position." },
