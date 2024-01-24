@@ -26,13 +26,26 @@ vim.api.nvim_create_user_command("CustomToggleTerm", function(opts)
         end
     end
 
+    -- Integrate python venv-selector (automatically source venv)
+    local cmd = ""
+    local venv_name = require("venv-selector").get_active_venv()
+    if venv_name ~= nil then cmd = "source " .. venv_name .. "/bin/activate; clear" end
+    local on_open = function(term)
+        if vim.b.custom_venv_source == nil then
+            require("toggleterm").exec(cmd)
+            vim.api.nvim_set_current_win(term.window)
+            vim.b.custom_venv_source = 1
+        end
+        vim.cmd("startinsert!")
+    end
+
     -- If a count is supplied, i.e. a specific terminal is referenced
     if opts.count ~= 0 then
         local term = terminal.get(opts.count)
         if any_terminal_visible then toggleterm.toggle_all({ bang = true }) end
 
         if term == nil then
-            term = Terminal:new({ id = opts.count, direction = "float" }):open()
+            term = Terminal:new({ id = opts.count, direction = "float", on_open = on_open }):open()
         else
             term:toggle()
         end
@@ -42,7 +55,7 @@ vim.api.nvim_create_user_command("CustomToggleTerm", function(opts)
 
     local term0 = terminal.get(0)
     if term0 == nil then
-        term0 = Terminal:new({ id = 0, direction = "horizontal" }):open(18)
+        term0 = Terminal:new({ id = 0, direction = "horizontal", on_open = on_open }):open(18)
     else
         if any_terminal_visible then toggleterm.toggle_all({ bang = true }) end
 
