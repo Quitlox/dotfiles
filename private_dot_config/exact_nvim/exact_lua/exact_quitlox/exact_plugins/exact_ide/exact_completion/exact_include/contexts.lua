@@ -3,6 +3,7 @@ local cmp = require("cmp")
 ----------------------------------------
 -- DAP
 ----------------------------------------
+-- TODO: Move to cmp-dap
 cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
     sources = {
         { name = "dap" },
@@ -13,6 +14,7 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 -- Filtetype: Python
 ----------------------------------------
 
+-- TODO: Move to python
 cmp.setup.filetype("python", {
     sorting = {
         comparators = {
@@ -30,7 +32,7 @@ cmp.setup.filetype("python", {
 })
 
 ----------------------------------------
--- Filtetype: Python
+-- Filtetype: Git
 ----------------------------------------
 cmp.setup.filetype("gitcommit", {
     sources = cmp.config.sources({

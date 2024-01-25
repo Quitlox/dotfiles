@@ -10,9 +10,10 @@ local scroll_completion_up = require("quitlox.plugins.ide.completion.include.beh
 return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
-    config = function()
+    config = function(_, opts)
         local cmp = require("cmp")
         cmp.setup({
+            enabled = opts.enabled,
             preselect = require("cmp.types").cmp.PreselectMode.None,
             formatting = require("quitlox.plugins.ide.completion.include.format"),
             snippet = {
