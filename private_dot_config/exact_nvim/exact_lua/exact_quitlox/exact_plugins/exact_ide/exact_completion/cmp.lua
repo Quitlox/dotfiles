@@ -58,6 +58,7 @@ return {
                         enable_in_context = function() return require("cmp.config.context").in_treesitter_capture("spell") end,
                     },
                 },
+                { name = "rg" },
             }),
         })
 
@@ -78,6 +79,7 @@ return {
         "dmitmel/cmp-cmdline-history",
         "petertriho/cmp-git",
         "hrsh7th/cmp-omni",
+        "lukas-reineke/cmp-rg",
         -- LSP Kind
         "onsails/lspkind.nvim",
         -- Tailwind Colorizer
