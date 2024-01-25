@@ -1,5 +1,8 @@
 vim.o.termguicolors = true
 
+-- Experimental Lua loader: https://neovim.io/doc/user/lua.html#vim.loader
+vim.loader.enable()
+
 ----------------------------------------------------------------------
 --                     Plugin Manager: Install                      --
 ----------------------------------------------------------------------
