@@ -10,9 +10,7 @@ local diagnostic_goto = function(next, severity)
 end
 
 local function set_keybindings(bufnr)
-    -- Default buffer options
     local bufopts = { silent = true, noremap = true, buffer = bufnr }
-    -- Require which-key
     local wk = require("which-key")
 
     wk.register({
@@ -30,10 +28,9 @@ local function set_keybindings(bufnr)
         },
     }, bufopts)
 
+    -- Insert mode keybindings
     bufopts.mode = "i"
-    wk.register({
-        ["<C-p>"] = { vim.lsp.buf.signature_help, "Signature Help" },
-    }, bufopts)
+    wk.register({ ["<C-p>"] = { vim.lsp.buf.signature_help, "Signature Help" } }, bufopts)
 end
 
 --  +----------------------------------------------------------+
@@ -111,4 +108,10 @@ return {
             })
         end,
     },
+    require("quitlox.util").legendary({
+        { ":LspInfo", "Show the status of active and configured language servers." },
+        { ":LspStart", "Start the requested server name." },
+        { ":LspStop", "Stop the requested server name." },
+        { ":LspRestart", "Restart the requested server name." },
+    }),
 }
