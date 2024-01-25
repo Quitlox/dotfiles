@@ -37,10 +37,10 @@ return {
         opts = {
             left = {
                 { ft = "neo-tree", filter = filter_nt_source_neq("document_symbols"), wo = { winbar = "    File Explorer" } },
-                { ft = "dapui_scopes", size = { height = 20 }, wo = { winbar = " 󰒉  Scopes" } },
-                { ft = "dapui_breakpoints", size = { height = 20 }, wo = { winbar = "    Breakpoints" } },
-                { ft = "dapui_stacks", size = { height = 20 }, wo = { winbar = "    Call Stack" } },
-                { ft = "dapui_watches", size = { height = 20 }, wo = { winbar = "   Watches" } },
+                { ft = "dapui_scopes", size = { height = 0.125 }, wo = { winbar = " 󰒉  Scopes" } },
+                { ft = "dapui_breakpoints", size = { height = 0.125 }, wo = { winbar = "    Breakpoints" } },
+                { ft = "dapui_stacks", size = { height = 0.125 }, wo = { winbar = "    Call Stack" } },
+                { ft = "dapui_watches", size = { height = 0.125 }, wo = { winbar = "   Watches" } },
             },
             right = {
                 { ft = "neotest-summary" },
