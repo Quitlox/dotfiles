@@ -2,6 +2,13 @@
 --  | LSP Keybindings                                          |
 --  +----------------------------------------------------------+
 
+-- Stolen from LazyVim
+local diagnostic_goto = function(next, severity)
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function() go({ severity = severity }) end
+end
+
 local function set_keybindings(bufnr)
     -- Default buffer options
     local bufopts = { silent = true, noremap = true, buffer = bufnr }
@@ -9,28 +16,24 @@ local function set_keybindings(bufnr)
     local wk = require("which-key")
 
     wk.register({
+        ["<F2>"] = { vim.lsp.buf.rename, "Rename Symbol" },
         -- Add [e and ]e for navigating to Error Diagnostics
         -- Add [d and ]d for navigating to any Diagnostics
-        ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Prev Diagnostic" },
-        ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Prev Diagnostic" },
-        ["[e"] = { "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })<cr>", "Prev Error" },
-        ["]e"] = { "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>", "Prev Error" },
+        ["[d"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
+        ["]d"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+        ["[e"] = { diagnostic_goto(false, "ERROR"), "Prev Error" },
+        ["]e"] = { diagnostic_goto(true, "ERROR"), "Prev Error" },
         -- Add Go mappings for LSP Symbol navigation
         g = {
             name = "Go",
-            -- O = { "<cmd>Lspsaga outgoing_calls<cr>", "Go Outgoing Calls" },
-            -- I = { "<cmd>Lspsaga incoming_calls<cr>", "Go Incoming Calls" },
             s = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols='variable'<cr>", "Symbols" },
-            R = { "<cmd>Lspsaga rename ++project<cr>", "Go Rename" },
         },
     }, bufopts)
 
-    -- Range formatting
-    -- vim.keymap.set("v", "gf", require("conform").format, bufopts) // Set in formatting.lua
-    -- Rename
-    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
-    -- Signature Help
-    vim.keymap.set("i", "<C-p>", vim.lsp.buf.signature_help)
+    bufopts.mode = "i"
+    wk.register({
+        ["<C-p>"] = { vim.lsp.buf.signature_help, "Signature Help" },
+    }, bufopts)
 end
 
 --  +----------------------------------------------------------+
@@ -69,6 +72,7 @@ return {
                 "folke/neodev.nvim",
                 opts = {
                     override = function(root_dir, library)
+                        -- Enable neodev for plugin directory
                         if root_dir:find("/home/quitlox/.local/share/nvim", 1, true) == 1 then
                             library.enabled = true
                             library.plugins = true

@@ -21,8 +21,8 @@ return {
                 "luap",
                 -- Dependencies
                 "regex",
-                "markdown", -- Used by LspSaga
-                "markdown_inline", -- Used by LspSaga
+                "markdown",
+                "markdown_inline",
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
