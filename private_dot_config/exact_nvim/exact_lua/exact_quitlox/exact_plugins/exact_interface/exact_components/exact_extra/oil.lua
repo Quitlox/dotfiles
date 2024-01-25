@@ -7,6 +7,9 @@ return {
             keymaps = {
                 ["q"] = "actions.close",
             },
+            view_optoins = {
+                show_hidden = true,
+            },
         },
         keys = {
             { "-", "<cmd>lua require('oil').open_float()<cr>", desc = "Directory" },
