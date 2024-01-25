@@ -122,6 +122,11 @@ return {
                 function() require("telescope").extensions.smart_open.smart_open(require("telescope.themes").get_dropdown({})) end,
                 desc = "Open File",
             },
+            {
+                "<leader>oa",
+                "<cmd>Telescope find_files cwd=~<cr>",
+                desc = "Open Any File",
+            },
         },
     },
     {
