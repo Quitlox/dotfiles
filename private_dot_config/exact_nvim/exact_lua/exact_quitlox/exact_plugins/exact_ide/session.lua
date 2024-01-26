@@ -1,6 +1,7 @@
 -- +---------------------------------------------------------+
 -- | Automagic Sessions                                      |
 -- +---------------------------------------------------------+
+-- NOTE: Posession has built-in support for various plugins, which might make it worth to switch over to.
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
@@ -10,7 +11,18 @@ local function get_cwd_as_name()
     return dir:gsub("[^A-Za-z0-9]", "_")
 end
 
+local plugin_state = {
+    neo_tree = false,
+}
+
 local function pre_save_hook()
+    -- Save the current state of the plugins
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.bo[buf].ft == "neo-tree" and vim.b[buf].neo_tree_source == "filesystem" then plugin_state.neo_tree = true end
+        print(plugin_state.neo_tree)
+    end
+
+    -- Close all open plugins
     if package.loaded["neo-tree"] then vim.cmd("Neotree action=close") end
     if package.loaded["neotest"] then
         require("neotest").output_panel.close()
@@ -37,6 +49,14 @@ local function pre_save_hook()
         -- Close all notify buffers
         if vim.bo[buf].buftype == "notify" then vim.api.nvim_buf_delete(buf, { force = true }) end
     end
+end
+
+local function save_extra_cmds()
+    return {
+        function()
+            if plugin_state.neo_tree then return [[execute 'lua require("neo-tree.command").execute({action="show", source="filesystem", position="left"})']] end
+        end,
+    }
 end
 
 local function post_save_hook()
@@ -83,12 +103,14 @@ return {
             auto_session_restore_enabled = true,
             auto_session_use_git_branch = true, -- FIXME: Broken
 
+            save_extra_cmds = save_extra_cmds(),
             pre_save_cmds = { pre_save_hook },
             post_save_cmds = { post_save_hook },
             pre_restore_cmds = { pre_restore_hook },
             post_restore_cmds = { post_restore_hook },
 
             session_lens = {
+                -- FIXME: Ensure that session is deleted on fail
                 load_on_setup = true,
                 theme_conf = { border = true },
                 previewer = false,

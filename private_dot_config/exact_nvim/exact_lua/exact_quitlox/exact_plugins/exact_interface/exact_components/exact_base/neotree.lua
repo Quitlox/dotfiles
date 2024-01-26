@@ -17,18 +17,10 @@ return {
         opts = {
             open_files_do_not_replace_types = { "terminal", "trouble", "qf", "Neogit" },
 
-            -- Project.
-            sync_root_with_cwd = true,
-            respect_buf_cwd = true,
-            update_focused_file = {
-                enable = true,
-                update_root = true,
-            },
-
             window = {
                 mappings = {
                     ["<cr>"] = "open_with_window_picker",
-                    ["o"] = { "open", nowait = true },
+                    ["o"] = { "open", silent = true, nowait = true },
                     ["<esc>"] = "revert_preview",
                     ["b"] = { "open_vsplit", nowait = true },
                     ["v"] = { "open_split", nowait = true },
@@ -38,6 +30,11 @@ return {
             },
 
             filesystem = {
+                -- for project.nvim
+                bind_to_cwd = true,
+                cwd_target = {
+                    sidebar = "tab",
+                },
                 -- time the current file is changed while the tree is open.
                 group_empty_dirs = true,
             },
@@ -91,8 +88,8 @@ return {
             },
         },
         keys = {
-            { "<leader>lf", "<cmd>Neotree source=filesystem reveal=true<cr>", desc = "Locate File" },
-            { "<leader>oe", "<cmd>Neotree source=filesystem reveal=false toggle=true<cr>", desc = "Open Explorer" },
+            { "<leader>lf", "<cmd>Neotree position=left source=filesystem reveal=true<cr>", desc = "Locate File" },
+            { "<leader>oe", "<cmd>Neotree position=left source=filesystem reveal=false toggle=true<cr>", desc = "Open Explorer" },
             { "<leader>oo", "<cmd>Neotree position=right document_symbols reveal=true<cr>", desc = "Open Outline" },
             { "<leader>ls", "<cmd>Neotree position=right document_symbols reveal=true<cr>", desc = "Locate Symbol" },
         },

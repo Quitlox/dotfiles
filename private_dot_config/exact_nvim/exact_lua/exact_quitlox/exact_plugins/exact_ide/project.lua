@@ -8,10 +8,11 @@ return {
         require("telescope").load_extension("projects")
     end,
     -- FIXME: https://github.com/ahmedkhalf/project.nvim/issues/123
+    lazy = false,
     keys = {
         {
             "<leader>op",
-            vim.schedule_wrap(function() require("telescope").extensions.projects.projects({}) end),
+            "<cmd>lua require('telescope').extensions.projects.projects({})<cr>",
         },
     },
 }

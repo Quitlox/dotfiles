@@ -26,6 +26,9 @@ local lazy_config = {
         lazy = false,
     },
     ui = {
+        icons = {
+            plugin = " ",
+        },
         border = "single",
         custom_keys = {
             ["<localleader>l"] = false,
