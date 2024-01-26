@@ -18,6 +18,8 @@ map <C-S> :wa<CR>
 " Ctrl+Backspace deletes word
 inoremap <C-BS> <C-w>
 inoremap <C-h> <C-w>
+cnoremap <C-BS> <C-w>
+cnoremap <C-h> <C-w>
 
 " Remove some default mappings that conflict
 map K <Nop>
