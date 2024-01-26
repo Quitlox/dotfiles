@@ -5,7 +5,10 @@ return {
         "nvim-telescope/telescope.nvim",
         "nvim-tree/nvim-web-devicons",
     },
+    cmd = { "Octo" },
+    keys = { { "<leader>gh", "<cmd>Octo<cr>", desc = "Octo" } },
     opts = {
+        enable_builtin = true,
         -- mappings = {
         --     issue = {
         --         close_issue = { lhs = "<space>ic", desc = "close issue" },
