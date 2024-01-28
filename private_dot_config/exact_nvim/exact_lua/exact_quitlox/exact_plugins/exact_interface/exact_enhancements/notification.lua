@@ -10,30 +10,21 @@ vim.cmd([[ autocmd FileType notify lua CloseNotification() ]])
 vim.notify = function(msg, level, opts) require("notify")(msg, level, opts) end
 
 return {
-    {
-        "rcarriga/nvim-notify",
-        version = "",
-        keys = {
-            {
-                "<leader>vd",
-                function() require("notify").dismiss({ pedning = true, silent = true }) end,
-                desc = "Dismiss Notifications",
-            },
+    "rcarriga/nvim-notify",
+    version = "",
+    keys = {
+        {
+            "<leader>vd",
+            function() require("notify").dismiss({ pedning = true, silent = true }) end,
+            desc = "Dismiss Notifications",
         },
-        opts = {
-            top_down = false,
+        {
+            "<leader>vn",
+            function() require("telescope").extensions.notify.notify(require("telescope.themes").get_dropdown()) end,
+            desc = "List Notifications",
         },
     },
-    {
-        "mrjones2014/legendary.nvim",
-        optional = true,
-        opts = function(_, opts)
-            opts.commands = opts.commands or {}
-            table.insert(opts.commands, {
-                ":ListNotifications",
-                function() require("telescope").extensions.notify.notify(require("telescope.themes").get_dropdown()) end,
-                description = "List Notifications",
-            })
-        end,
+    opts = {
+        top_down = false,
     },
 }

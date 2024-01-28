@@ -6,7 +6,7 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     cmd = { "Octo" },
-    keys = { { "<leader>gh", "<cmd>Octo<cr>", desc = "Octo" } },
+    keys = { { "<leader>gh", "<cmd>Octo<cr>", desc = "Github" } },
     opts = {
         enable_builtin = true,
         -- mappings = {

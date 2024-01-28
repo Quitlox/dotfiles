@@ -6,6 +6,7 @@ return {
             default_file_explorer = false,
             keymaps = {
                 ["q"] = "actions.close",
+                ["<esc>"] = "actions.close",
             },
             view_optoins = {
                 show_hidden = true,

@@ -87,4 +87,7 @@ return {
     require("quitlox.util").legendary({
         { ":SetTNOGitlabToken", "Configure TNO Gitlab in this repository." },
     }),
+    require("quitlox.util").whichkey({
+        ["<leader>gl"] = { name = "Gitlab" },
+    }),
 }
