@@ -133,9 +133,10 @@ return {
         "debugloop/telescope-undo.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
         },
+        config = function()
+            require("telescope").load_extension("undo")
+        end,
         keys = { { "<leader>fu", function() require("telescope").extensions.undo.undo() end, desc = "Undo History" } },
-        config = function() require("telescope").load_extension("undo") end,
     },
 }

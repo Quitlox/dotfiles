@@ -70,11 +70,6 @@ return {
             { "<leader>dt", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>", desc = "Breakpoint Toggle" },
             { "<leader>dbc", '<cmd>lua require"persistent-breakpoints.api".set_conditional_breakpoint()<CR>', desc = "Breakpoint Condition" },
             { "<leader>dbm", '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = "Breakpoint Message" },
-            { "<leader>dlc", "<cmd>Telescope dap commands<cr>", desc = "List Debug Commands" },
-            { "<leader>dld", "<cmd>Telescope dap configurations<cr>", desc = "List Debug Configurations" },
-            { "<leader>dlb", "<cmd>Telescope dap list_breakpoints<cr>", desc = "List Debug Breakpoints" },
-            { "<leader>dlv", "<cmd>Telescope dap variables<cr>", desc = "List Debug Variables" },
-            { "<leader>dlf", "<cmd>Telescope dap frames<cr>", desc = "List Debug Frames" },
         },
 
         -- Keybindings
@@ -90,12 +85,18 @@ return {
             "mfussenegger/nvim-dap",
             -- Virtual Text while debugging
             { "theHamsta/nvim-dap-virtual-text", config = true },
-            -- Telescope extension
-            {
-                "nvim-telescope/telescope-dap.nvim",
-                dependencies = { "nvim-telescope/telescope.nvim" },
-                config = function() require("telescope").load_extension("dap") end,
-            },
+        },
+    },
+    -- Telescope extension
+    {
+        "nvim-telescope/telescope-dap.nvim",
+        config = function() require("telescope").load_extension("dap") end,
+        keys = {
+            { "<leader>dlc", "<cmd>require('telescope').extensions.dap.commands()<cr>", desc = "List Debug Commands" },
+            { "<leader>dld", "<cmd>require('telescope').extensions.dap.configurations()<cr>", desc = "List Debug Configurations" },
+            { "<leader>dlb", "<cmd>require('telescope').extensions.dap.list_breakpoints()<cr>", desc = "List Debug Breakpoints" },
+            { "<leader>dlv", "<cmd>require('telescope').extensions.dap.variables()<cr>", desc = "List Debug Variables" },
+            { "<leader>dlf", "<cmd>require('telescope').extensions.dap.frames()<cr>", desc = "List Debug Frames" },
         },
     },
     require("quitlox.util").whichkey({

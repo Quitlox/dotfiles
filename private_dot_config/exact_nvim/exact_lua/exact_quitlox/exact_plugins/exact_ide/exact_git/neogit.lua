@@ -11,6 +11,7 @@ return {
         keys = {
             { "<leader>og", "<cmd>Neogit<cr>", desc = "Open Git Status" },
             { "<leader>gs", "<cmd>Neogit<cr>", desc = "Git Status" },
+            { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
         },
     },
     {
@@ -21,10 +22,6 @@ return {
             table.insert(opts.commands, {
                 ":Neogit",
                 description = "Open Neogit",
-            })
-            table.insert(opts.commands, {
-                "<cmd>Telescope git_branches<cr>",
-                description = "View Git Branches",
             })
         end,
     },

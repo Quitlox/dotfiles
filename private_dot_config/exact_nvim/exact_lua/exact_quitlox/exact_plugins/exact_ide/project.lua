@@ -5,7 +5,7 @@ return {
     },
     config = function(_, opts)
         require("project_nvim").setup(opts)
-        require("telescope").load_extension("projects")
+        -- require("telescope").load_extension("projects")
     end,
     -- FIXME: https://github.com/ahmedkhalf/project.nvim/issues/123
     lazy = false,
@@ -13,6 +13,7 @@ return {
         {
             "<leader>op",
             "<cmd>lua require('telescope').extensions.projects.projects({})<cr>",
+            desc = "Open Projects",
         },
     },
 }

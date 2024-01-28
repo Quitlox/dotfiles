@@ -3,9 +3,11 @@
 ----------------------------------------------------------------------
 -- Hightlight all occurences of the word under the cursor
 
+require("quitlox.util").on_attach(function(client, buffer) require("illuminate").on_attach(client) end, "Lazy load vim-illuminate.")
+
 return {
     "RRethy/vim-illuminate",
-    lazy = false,
+    lazy = true,
     config = function()
         require("illuminate").configure({
             delay = 1000,
@@ -19,7 +21,5 @@ return {
             large_file_cutoff = 5000,
             min_count_to_highlight = 3,
         })
-
-        require("quitlox.util").on_attach(require("illuminate").on_attach)
     end,
 }

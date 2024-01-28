@@ -9,9 +9,9 @@ return function()
     if vim.bo.filetype ~= "yaml" then return "" end
 
     -- Import yaml-companion
-    local yaml = require("yaml-companion")
+    -- local yaml = require("yaml-companion")
 
-    local schema = yaml.get_buf_schema(0)
-    if schema then return schema.result[1].name end
+    -- local schema = yaml.get_buf_schema(0)
+    -- if schema then return schema.result[1].name end
     return ""
 end

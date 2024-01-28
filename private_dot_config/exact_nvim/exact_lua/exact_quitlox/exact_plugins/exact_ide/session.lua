@@ -92,7 +92,7 @@ end
 return {
     {
         "rmagatti/auto-session",
-        dependencies = { "nvim-telescope/telescope.nvim" },
+        -- FIXME: Ensure that session is deleted on fail
         opts = {
             log_level = "error",
             auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
@@ -107,22 +107,27 @@ return {
             post_restore_cmds = { post_restore_hook },
 
             session_lens = {
-                -- FIXME: Ensure that session is deleted on fail
-                load_on_setup = true,
+                load_on_setup = false,
                 theme_conf = { border = true },
                 previewer = false,
             },
         },
         lazy = false,
         keys = {
-            { "<leader>fs", "<cmd>lua require('auto-session.session-lens').search_session<cr>", desc = "Find Sessions" },
+            {
+                "<leader>fs",
+                function()
+                    require("auto-session").setup_session_lens()
+                    require("auto-session.session-lens").search_session()
+                end,
+                desc = "Find Sessions",
+            },
         },
         config = function(_, opts)
-            require("telescope").load_extension("session-lens")
             require("auto-session").setup(opts)
+            -- require("telescope").load_extension("session-lens")
         end,
     },
-
     require("quitlox.util").legendary({
         { ":SessionSave", "Create or save a session" },
         { ":SessionRestore", "Restore a session" },
