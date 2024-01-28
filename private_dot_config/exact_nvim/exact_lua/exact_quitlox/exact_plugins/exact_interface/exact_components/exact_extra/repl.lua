@@ -227,8 +227,7 @@ return {
     require("quitlox.util").legendary(molten_commands),
     {
         "benlubas/molten-nvim",
-        -- enabled = function() return vim.fn.has("win64") == 0 end,
-        enabled = false,
+        enabled = function() return vim.fn.has("win64") == 0 and vim.g.neovide == nil end,
         version = "*",
         lazy = false,
         -- Required python packages: pynvim jupyter_client
@@ -246,7 +245,7 @@ return {
             { "<localleader>je", "<cmd>MoltenEvaluateOperator<cr>", desc = "Evaluate operator" },
             { "<localleader>jrl", "<cmd>MoltenEvaluateLine<cr>", desc = "Evaluate line" },
             { "<localleader>jrr", "<cmd>MoltenReevaluateCell<cr>", desc = "Re-evaluate cell" },
-            { "<localleader>jr", "<cmd>MoltenEvaluateVisual<cr>", desc = "Evaluate visual selection", { mode = "v" } },
+            { "<localleader>jr", "<cmd>MoltenEvaluateVisual<cr>", desc = "Evaluate visual selection", mode = "v" },
             { "<localleader>jd", "<cmd>MoltenDelete<cr>", desc = "Delete cell" },
             { "<localleader>jh", "<cmd>MoltenHideOutput<cr>", desc = "Hide output" },
             { "<localleader>js", "<cmd>noautocmd MoltenEnterOutput<cr>", desc = "Show/enter output" },
