@@ -4,23 +4,30 @@
 -- We use dapui to provide a friendly user interface for debugging.
 
 -- State
-local nvim_tree_enabled = false
+local state = {
+    neo_tree_open = false,
+    gitsigns_enabled = false,
+}
 
 -- Logic
 local function on_open()
-    -- Remember whether the explorer was open
-    -- TODO: Replace with NeoTree
     -- Close the explorer
-    -- TODO: Replace with NeoTree
-    -- Detach gitsigns
+    if require("quitlox.util").is_neotree_open() then
+        state.neo_tree_open = true
+        require("neo-tree").execute({ action = "close" })
+    end
+
     require("gitsigns").toggle_signs(false)
-    -- Open the DAP UI
     require("dapui").open()
 end
 
 local function on_close()
     -- Open the explorer
-    -- TODO: Replace with NeoTree
+    if state.neo_tree_open then
+        require("neo-tree").execute({ action = "open" })
+        state.neo_tree_open = false
+    end
+
     require("dapui").close()
     require("gitsigns").toggle_signs(true)
 end

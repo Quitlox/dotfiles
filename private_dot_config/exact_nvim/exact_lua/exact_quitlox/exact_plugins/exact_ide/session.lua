@@ -17,9 +17,7 @@ local plugin_state = {
 
 local function pre_save_hook()
     -- Save the current state of the plugins
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.bo[buf].ft == "neo-tree" and vim.b[buf].neo_tree_source == "filesystem" then plugin_state.neo_tree = true end
-    end
+    plugin_state.neo_tree = require("quitlox.util").is_neotree_open()
 
     -- Close all open plugins
     if package.loaded["neo-tree"] then vim.cmd("Neotree action=close") end

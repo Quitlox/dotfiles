@@ -54,8 +54,13 @@ function M.on_attach(on_attach)
     })
 end
 
----@param plugin string
-function M.has(plugin) return require("lazy.core.config").plugins[plugin] ~= nil end
+function M.is_neotree_open()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.bo[buf].ft == "neo-tree" and vim.b[buf].neo_tree_source == "filesystem" then return true end
+    end
+
+    return false
+end
 
 -- this will return a function that calls telescope.
 -- cwd will default to lazyvim.util.get_root
