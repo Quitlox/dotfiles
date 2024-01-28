@@ -69,6 +69,8 @@ end, { count = true, nargs = "*" })
 
 function _G.set_terminal_keymaps()
     local opts = { buffer = 0 }
+    vim.keymap.set("t", "q", "<cmd>close<cr>", opts)
+    vim.keymap.set("t", "<esc>", "<cmd>close<cr>", opts)
     vim.keymap.set("t", "`", "<cmd>ToggleTermToggleAll<cr>", opts)
     vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
 end

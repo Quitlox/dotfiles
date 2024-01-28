@@ -65,6 +65,17 @@ local linting = {
     linters,
 }
 
+local overseer = {
+    "overseer",
+    label = "", -- Prefix for task counts
+    colored = true, -- Color the task icons and counts
+    unique = false, -- Unique-ify non-running task count by name
+    name = nil, -- List of task names to search for
+    name_not = false, -- When true, invert the name search
+    status = nil, -- List of task statuses to display
+    status_not = false, -- When true, invert the status search
+}
+
 -------------------
 --  Component X
 -------------------
@@ -148,7 +159,7 @@ return {
             lualine_a = { mode },
             lualine_b = { branch },
             lualine_c = { filename, midsection, linting },
-            lualine_x = { keymap, mixed_indent, lazy, diff, diagnostics },
+            lualine_x = { keymap, mixed_indent, overseer, lazy, diff, diagnostics },
             lualine_y = { filetype, encoding, fileformat, python, yaml },
             lualine_z = { "searchcount", "location" },
         },

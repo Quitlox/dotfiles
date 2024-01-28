@@ -12,6 +12,7 @@ return {
     {
         "stevearc/overseer.nvim",
         version = "",
+        lazy = false, -- Overseer lazy loads itself
         keys = {
             { "<leader>eo", "<cmd>OverseerOpen<cr>", desc = "Executor Open" },
             { "<leader>ep", "<cmd>OverseerQuickAction open float<cr>", desc = "Executor Quick Peek" },
@@ -24,20 +25,6 @@ return {
             { "<leader>ea", "<cmd>OverseerTaskAction<cr>", desc = "Executor Task Action" },
             { "<leader>el", "<cmd>OverseerRestartLast<cr>", desc = "Executor Restart Last" },
         },
-        cmd = {
-            "OverseerOpen",
-            "OverseerClose",
-            "OverseerToggle",
-            "OverseerSaveBundle",
-            "OverseerLoadBundle",
-            "OverseerDeleteBundle",
-            "OverseerRun",
-            "OverseerInfo",
-            "OverseerBuild",
-            "OverseerQuickAction",
-            "OverseerTaskAction",
-            "OverseerClearCache",
-        },
         opts = {
             strategy = {
                 "toggleterm",
@@ -45,9 +32,16 @@ return {
                 hidden = false,
                 on_open = function(term) vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true }) end,
             },
-            bindings = {
-                ["<C-l>"] = false,
-                ["<C-h>"] = false,
+            task_list = {
+                bindings = {
+                    ["<C-l>"] = false,
+                    ["<C-h>"] = false,
+                    ["<esc>"] = "Close",
+                    ["o"] = "<cmd>OverseerQuickAction open float<cr>",
+                    ["s"] = "<cmd>OverseerQuickAction start<cr>",
+                    ["r"] = "<cmd>OverseerQuickAction restart<cr>",
+                    ["x"] = "<cmd>OverseerQuickAction stop<cr>",
+                },
             },
         },
     },
