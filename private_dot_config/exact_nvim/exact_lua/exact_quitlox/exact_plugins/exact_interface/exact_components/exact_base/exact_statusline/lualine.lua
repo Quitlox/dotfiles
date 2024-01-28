@@ -133,6 +133,7 @@ return {
                 winbar = {
                     "neo-tree",
                     "NvimTree",
+                    "gitlab",
                     "dap-repl",
                     "dapui_scopes",
                     "dapui_breakpoints",
