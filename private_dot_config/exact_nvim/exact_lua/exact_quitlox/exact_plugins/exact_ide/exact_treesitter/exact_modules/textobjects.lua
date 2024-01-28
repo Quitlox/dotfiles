@@ -17,28 +17,28 @@ return {
 
                         goto_next_start = {
                             ["]f"] = "@function.outer",
-                            ["]c"] = "@class.outer",
+                            ["]C"] = "@class.outer",
                             ["]a"] = "@parameter.inner",
                             ["]b"] = "@block.outer",
                             ["]l"] = "@loop.outer",
                         },
                         goto_next_end = {
                             ["]F"] = "@function.outer",
-                            ["]C"] = "@class.outer",
+                            -- ["]C"] = "@class.outer",
                             ["]A"] = "@parameter.outer",
                             ["]B"] = "@block.outer",
                             ["]L"] = "@loop.outer",
                         },
                         goto_previous_start = {
                             ["[f"] = "@function.outer",
-                            ["[c"] = "@class.outer",
+                            ["[C"] = "@class.outer",
                             ["[a"] = "@parameter.inner",
                             ["[b"] = "@block.outer",
                             ["[l"] = "@loop.outer",
                         },
                         goto_previous_end = {
                             ["[F"] = "@function.outer",
-                            ["[C"] = "@class.outer",
+                            -- ["[C"] = "@class.outer",
                             ["[A"] = "@parameter.outer",
                             ["[B"] = "@block.outer",
                             ["[L"] = "@loop.outer",
@@ -50,16 +50,16 @@ return {
                         keymaps = {
                             ["af"] = "@function.outer",
                             ["if"] = "@function.inner",
-                            ["ac"] = "@class.outer",
-                            ["ic"] = "@class.inner",
+                            ["aC"] = "@class.outer",
+                            ["iC"] = "@class.inner",
                             ["ad"] = "@statement.outer",
                             ["id"] = "@statement.inner", -- Not used by any language
                         },
                         -- You can choose the select mode (default is charwise 'v')
                         selection_modes = {
                             ["@parameter.outer"] = "v", -- charwise
-                            ["@function.outer"] = "v",  -- linewise
-                            ["@class.outer"] = "<c-v>", -- blockwise
+                            ["@function.outer"] = "v", -- linewise
+                            ["@class.outer"] = "v", -- blockwise
                             ["@statement.outer"] = "v", -- blockwise
                         },
                     },

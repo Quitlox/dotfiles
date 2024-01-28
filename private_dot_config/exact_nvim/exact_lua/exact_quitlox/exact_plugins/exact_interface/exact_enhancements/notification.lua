@@ -22,6 +22,7 @@ return {
             "<leader>vn",
             function() require("telescope").extensions.notify.notify(require("telescope.themes").get_dropdown()) end,
             desc = "List Notifications",
+            nowait = true,
         },
     },
     opts = {
