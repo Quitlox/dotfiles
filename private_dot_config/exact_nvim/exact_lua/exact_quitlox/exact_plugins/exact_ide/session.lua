@@ -45,6 +45,9 @@ local function pre_save_hook()
         if vim.bo[buf].buftype == "dirvish" then vim.api.nvim_buf_delete(buf, { force = true }) end
         -- Close all notify buffers
         if vim.bo[buf].buftype == "notify" then vim.api.nvim_buf_delete(buf, { force = true }) end
+        -- Close all octo buffers
+        if string.match(vim.api.nvim_buf_get_name(buf), "octo://.+") then vim.api.nvim_buf_delete(buf, { force = true }) end
+        if string.match(vim.api.nvim_buf_get_name(buf), "OctoChangedFiles.+") then vim.api.nvim_buf_delete(buf, { force = true }) end
     end
 end
 
