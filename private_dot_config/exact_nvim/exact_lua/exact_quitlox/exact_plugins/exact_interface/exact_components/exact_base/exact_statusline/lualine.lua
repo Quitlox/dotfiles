@@ -124,6 +124,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     -- config = function() require("quitlox.plugins.interface.components.base.statusline.lualine") end,
+    init = function() vim.opt.laststatus = 3 end,
     opts = {
         options = {
             theme = "catppuccin",

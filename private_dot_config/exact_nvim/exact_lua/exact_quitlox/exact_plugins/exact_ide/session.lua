@@ -19,7 +19,6 @@ local function pre_save_hook()
     -- Save the current state of the plugins
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.bo[buf].ft == "neo-tree" and vim.b[buf].neo_tree_source == "filesystem" then plugin_state.neo_tree = true end
-        print(plugin_state.neo_tree)
     end
 
     -- Close all open plugins
