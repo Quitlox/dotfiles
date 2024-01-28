@@ -31,10 +31,10 @@ vim.keymap.set("n", "<leader>wb", "<C-W>v", { desc = "Window Split" })
 vim.keymap.set("n", "<leader>wd", "<C-W>q", { desc = "Window Delete" })
 
 -- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "which_key_ignore" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "which_key_ignore" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "which_key_ignore" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "which_key_ignore" })
 
 ----------------------------------------------------------------------
 --                         Keybindings: Tab                         --
