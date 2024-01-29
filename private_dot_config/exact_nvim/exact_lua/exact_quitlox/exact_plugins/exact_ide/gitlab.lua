@@ -44,26 +44,26 @@ return {
             },
         },
         keys = {
-            { "<leader>glr", "<cmd>require('gitlab').review()<cr>", desc = "Gitlab Review" },
-            { "<leader>gls", "<cmd>require('gitlab').summary()<cr>", desc = "Gitlab Summary" },
-            { "<leader>glA", "<cmd>require('gitlab').approve()<cr>", desc = "Gitlab Approve" },
-            { "<leader>glR", "<cmd>require('gitlab').revoke()<cr>", desc = "Gitlab Revoke" },
-            { "<leader>glc", "<cmd>require('gitlab').create_comment()<cr>", desc = "Gitlab Create Comment" },
-            { "<leader>glc", "<cmd>require('gitlab').create_multiline_comment()<cr>", desc = "Gitlab Create Multiline Comment", mode = "v" },
-            { "<leader>glC", "<cmd>require('gitlab').create_comment_suggestion()<cr>", desc = "Gitlab Create Comment Suggestion", mode = "v" },
-            { "<leader>glO", "<cmd>require('gitlab').create_mr()<cr>", desc = "Gitlab Create MR" },
-            { "<leader>glm", "<cmd>require('gitlab').move_to_discussion_tree_from_diagnostic()<cr>", desc = "Gitlab Move to Discussion Tree from Diagnostic" },
-            { "<leader>gln", "<cmd>require('gitlab').create_note()<cr>", desc = "Gitlab Create Note" },
-            { "<leader>gld", "<cmd>require('gitlab').toggle_discussions()<cr>", desc = "Gitlab Toggle Discussions" },
-            { "<leader>glaa", "<cmd>require('gitlab').add_assignee()<cr>", desc = "Gitlab Add Assignee" },
-            { "<leader>glad", "<cmd>require('gitlab').delete_assignee()<cr>", desc = "Gitlab Delete Assignee" },
-            { "<leader>glla", "<cmd>require('gitlab').add_label()<cr>", desc = "Gitlab Add Label" },
-            { "<leader>glld", "<cmd>require('gitlab').delete_label()<cr>", desc = "Gitlab Delete Label" },
-            { "<leader>glra", "<cmd>require('gitlab').add_reviewer()<cr>", desc = "Gitlab Add Reviewer" },
-            { "<leader>glrd", "<cmd>require('gitlab').delete_reviewer()<cr>", desc = "Gitlab Delete Reviewer" },
-            { "<leader>glp", "<cmd>require('gitlab').pipeline()<cr>", desc = "Gitlab Pipeline" },
-            { "<leader>glo", "<cmd>require('gitlab').open_in_browser()<cr>", desc = "Gitlab Open in Browser" },
-            { "<leader>glM", "<cmd>require('gitlab').merge()<cr>", desc = "Gitlab Merge" },
+            { "<leader>glr", "<cmd>lua require('gitlab').review()<cr>", desc = "Gitlab Review" },
+            { "<leader>gls", "<cmd>lua require('gitlab').summary()<cr>", desc = "Gitlab Summary" },
+            { "<leader>glA", "<cmd>lua require('gitlab').approve()<cr>", desc = "Gitlab Approve" },
+            { "<leader>glR", "<cmd>lua require('gitlab').revoke()<cr>", desc = "Gitlab Revoke" },
+            { "<leader>glc", "<cmd>lua require('gitlab').create_comment()<cr>", desc = "Gitlab Create Comment" },
+            { "<leader>glc", "<cmd>lua require('gitlab').create_multiline_comment()<cr>", desc = "Gitlab Create Multiline Comment", mode = "v" },
+            { "<leader>glC", "<cmd>lua require('gitlab').create_comment_suggestion()<cr>", desc = "Gitlab Create Comment Suggestion", mode = "v" },
+            { "<leader>glO", "<cmd>lua require('gitlab').create_mr()<cr>", desc = "Gitlab Create MR" },
+            { "<leader>glm", "<cmd>lua require('gitlab').move_to_discussion_tree_from_diagnostic()<cr>", desc = "Gitlab Move to Discussion Tree from Diagnostic" },
+            { "<leader>gln", "<cmd>lua require('gitlab').create_note()<cr>", desc = "Gitlab Create Note" },
+            { "<leader>gld", "<cmd>lua require('gitlab').toggle_discussions()<cr>", desc = "Gitlab Toggle Discussions" },
+            { "<leader>glaa", "<cmd>lua require('gitlab').add_assignee()<cr>", desc = "Gitlab Add Assignee" },
+            { "<leader>glad", "<cmd>lua require('gitlab').delete_assignee()<cr>", desc = "Gitlab Delete Assignee" },
+            { "<leader>glla", "<cmd>lua require('gitlab').add_label()<cr>", desc = "Gitlab Add Label" },
+            { "<leader>glld", "<cmd>lua require('gitlab').delete_label()<cr>", desc = "Gitlab Delete Label" },
+            { "<leader>glra", "<cmd>lua require('gitlab').add_reviewer()<cr>", desc = "Gitlab Add Reviewer" },
+            { "<leader>glrd", "<cmd>lua require('gitlab').delete_reviewer()<cr>", desc = "Gitlab Delete Reviewer" },
+            { "<leader>glp", "<cmd>lua require('gitlab').pipeline()<cr>", desc = "Gitlab Pipeline" },
+            { "<leader>glo", "<cmd>lua require('gitlab').open_in_browser()<cr>", desc = "Gitlab Open in Browser" },
+            { "<leader>glM", "<cmd>lua require('gitlab').merge()<cr>", desc = "Gitlab Merge" },
         },
         init = function()
             vim.api.nvim_create_user_command("SetTNOGitlabToken", function(args)
@@ -71,8 +71,8 @@ return {
                 Terminal:new({
                     id = 97, -- Random high number
                     direction = "float",
-                    cmd = [[
-                        rm .gitlab.nvim && \
+                    close_on_exit = false,
+                    cmd = "[[" .. [[ -e .gitlab.nvim ]] .. "]]" .. [[ && rm .gitlab.nvim || \
                         touch .gitlab.nvim && \
                         echo -n "auth_token=" >> .gitlab.nvim && \
                         bw get item "ci.tno.nl" | jq '.fields[] | select(.name == "Access Token (Neovim)").value' >> .gitlab.nvim && \
