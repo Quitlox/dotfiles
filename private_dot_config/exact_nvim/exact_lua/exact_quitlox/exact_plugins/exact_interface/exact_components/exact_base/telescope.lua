@@ -40,6 +40,13 @@ return {
                             ["<C-b>"] = require("telescope.actions").select_vertical,
                         },
                     },
+                    preview = {
+                        filesize_hook = function(filepath, bufnr, opts)
+                            local max_bytes = 10000
+                            local cmd = { "head", "-c", max_bytes, filepath }
+                            require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
+                        end,
+                    },
                 },
                 extensions = {
                     smart_open = {
@@ -134,9 +141,7 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
-        config = function()
-            require("telescope").load_extension("undo")
-        end,
+        config = function() require("telescope").load_extension("undo") end,
         keys = { { "<leader>fu", function() require("telescope").extensions.undo.undo() end, desc = "Undo History" } },
     },
 }
