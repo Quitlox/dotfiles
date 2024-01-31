@@ -135,6 +135,7 @@ return {
         },
     },
     require("quitlox.util").whichkey({
+        ["<leader>gh"] = { name = "Github" },
         ["<leader>ghc"] = { name = "Comment" },
         ["<leader>ghi"] = { name = "Issue" },
         ["<leader>ghp"] = { name = "Pull-request" },
