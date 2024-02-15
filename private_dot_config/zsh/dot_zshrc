@@ -192,7 +192,7 @@ function __bind_fzf_keys() {
   zle -N fzf_select_directory_cwd
   zle -N fzf_find_file_current
   bindkey '^o' fzf_select_directory_home
-  bindkey '^i' fzf_select_directory_cwd
+  # bindkey '^i' fzf_select_directory_cwd
   bindkey '^f' fzf_find_file_current
 }
 if [[ -n "$commands[fzf]" ]]; then
