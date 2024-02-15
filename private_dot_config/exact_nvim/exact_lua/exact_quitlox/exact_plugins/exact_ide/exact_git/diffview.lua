@@ -8,7 +8,7 @@ return {
         "sindrets/diffview.nvim",
         config = true,
         keys = {
-            { "<leader>gd", "<cmd>DiffviewFileHistory<cr>", desc = "Git Diff File History" },
+            { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "Git Diff File History" },
         },
         cmd = {
             "DiffviewFileHistory",
@@ -20,7 +20,7 @@ return {
         },
     },
     require("quitlox.util").legendary_full({
-        { ":DiffviewFileHistory", description = "Diffview File History" },
+        { ":DiffviewCurrentFileHistory","DiffviewFileHistory %", description = "Diffview File History" },
         { ":DiffviewOpen", description = "Diffview Open (compare against current index)" },
         { ":DiffviewClose", description = "Diffview Close" },
         { ":DiffviewToggleFiles", description = "Diffview Toggle files" },
