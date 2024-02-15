@@ -136,7 +136,7 @@ exclude_dirs=(.git .svn .hg .venv env venv node_modules .cache .DS_Store .idea .
 # Function to generate find command
 function open_dir_command() {
     # Start of the find command
-    local find_cmd="find ~ -type d"
+    local find_cmd="find $1 -type d"
     # Add each directory to the find command
     for dir in "${exclude_dirs[@]}"; do
         find_cmd+=" \( -name $dir -prune \) -o"
@@ -165,7 +165,15 @@ function find_file_command() {
 export FZF_COMPLETION_TRIGGER=''
 function __bind_fzf_keys() {
   function fzf_select_directory_home() {
-    local find_cmd=$(open_dir_command)
+    local find_cmd=$(open_dir_command ~)
+    local dir=$(eval "$find_cmd")
+    if [ -n "$dir" ]; then
+        cd "$dir"
+        zle reset-prompt
+    fi
+  }
+  function fzf_select_directory_cwd() {
+    local find_cmd=$(open_dir_command .)
     local dir=$(eval "$find_cmd")
     if [ -n "$dir" ]; then
         cd "$dir"
@@ -181,8 +189,10 @@ function __bind_fzf_keys() {
     fi
   }
   zle -N fzf_select_directory_home
+  zle -N fzf_select_directory_cwd
   zle -N fzf_find_file_current
   bindkey '^o' fzf_select_directory_home
+  bindkey '^i' fzf_select_directory_cwd
   bindkey '^f' fzf_find_file_current
 }
 if [[ -n "$commands[fzf]" ]]; then
