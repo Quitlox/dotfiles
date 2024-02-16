@@ -20,17 +20,21 @@ return {
             { "<leader>et", "<cmd>OverseerToggle<cr>", desc = "Executor Toggle" },
             { "<leader>er", "<cmd>OverseerRun<cr>", desc = "Executor Run" },
             { "<leader>ei", "<cmd>OverseerInfo<cr>", desc = "Executor Info" },
-            { "<leader>eb", "<cmd>OverseerBuild<cr>", desc = "Executor Build" },
+            { "<leader>em", "<cmd>OverseerBuild<cr>", desc = "Executor Build" },
             { "<leader>eq", "<cmd>OverseerQuickAction<cr>", desc = "Executor Quick Action" },
             { "<leader>ea", "<cmd>OverseerTaskAction<cr>", desc = "Executor Task Action" },
             { "<leader>el", "<cmd>OverseerRestartLast<cr>", desc = "Executor Restart Last" },
+
+            { "<leader>ev", "<cmd>OverseerQuickAction open split<cr>", desc = "Executor Quick Split" },
+            { "<leader>eb", "<cmd>OverseerQuickAction open vsplit<cr>", desc = "Executor Quick vSplit" },
         },
         opts = {
             strategy = {
                 "toggleterm",
-                direction = "float",
+                -- direction = "float",
                 hidden = false,
                 on_open = function(term) vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true }) end,
+                open_on_start = false,
             },
             task_list = {
                 bindings = {

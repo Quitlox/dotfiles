@@ -26,6 +26,9 @@ map K <Nop>
 map [f <Nop>
 map ]f <Nop>
 
+" Disable some default keybindings
+nnoremap q: <Nop>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Editing and Navigation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""

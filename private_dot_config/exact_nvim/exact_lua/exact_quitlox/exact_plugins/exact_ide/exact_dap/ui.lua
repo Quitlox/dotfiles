@@ -14,7 +14,7 @@ local function on_open()
     -- Close the explorer
     if require("quitlox.util").is_neotree_open() then
         state.neo_tree_open = true
-        require("neo-tree").execute({ action = "close" })
+        require("neo-tree.command").execute({ action = "close" })
     end
 
     require("gitsigns").toggle_signs(false)
@@ -24,7 +24,7 @@ end
 local function on_close()
     -- Open the explorer
     if state.neo_tree_open then
-        require("neo-tree").execute({ action = "open" })
+        require("neo-tree.command").execute({ action = "open" })
         state.neo_tree_open = false
     end
 
@@ -54,22 +54,22 @@ return {
         -- Triggers
         cmd = { "DapToggleRepl", "DapToggleBreakpoint" },
         keys = {
-            { "<F9>", "<cmd>lua require('dap').continue()<cr>", desc = "Debug Continue" },
-            { "<F8>", "<cmd>lua require('dap').step_over()<cr>", desc = "Debug Step Over" },
-            { "<S-F8>", "<cmd>lua require('dap').step_out()<cr>", desc = "Debug Step Out" },
-            { "<F7>", "<cmd>lua require('dap').step_into()<cr>", desc = "Debug Step Into" },
-            { "<leader>do", "<cmd>lua require('dapui').open()<cr>", desc = "Debug UI Open" },
-            { "<leader>dc", "<cmd>lua require('dapui').close()<cr>", desc = "Debug UI Close" },
+            { "<F9>", function() require("dap").continue() end, desc = "Debug Continue" },
+            { "<F8>", function() require("dap").step_over() end, desc = "Debug Step Over" },
+            { "<S-F8>", function() require("dap").step_out() end, desc = "Debug Step Out" },
+            { "<F7>", function() require("dap").step_into() end, desc = "Debug Step Into" },
+            { "<leader>do", function() require("dapui").open() end, desc = "Debug UI Open" },
+            { "<leader>dc", function() require("dapui").close() end, desc = "Debug UI Close" },
             { "<leader>de", evaluate, desc = "Evaluate Expression" },
-            { "<leader>dd", "<cmd>lua require('dap').continue()<cr>", desc = "Debugger Launch/Continue" },
-            { "<leader>dx", "<cmd>lua require('dap').terminate()<cr>", desc = "Debugger Terminate" },
+            { "<leader>dd", function() require("dap").continue() end, desc = "Debugger Launch/Continue" },
+            { "<leader>dx", function() require("dap").terminate() end, desc = "Debugger Terminate" },
             { "<leader>dr", "<cmd>DapToggleRepl<cr>", desc = "Open REPL" },
-            { "<leader>dso", "<cmd>lua require('dap').step_over()<cr>", desc = "Step Over (F8)" },
-            { "<leader>dsu", "<cmd>lua require('dap').step_out()<cr>", desc = "Step Out (Shift+F8)" },
-            { "<leader>dsi", "<cmd>lua require('dap').step_into()<cr>", desc = "Step Into (F7)" },
-            { "<leader>dt", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>", desc = "Breakpoint Toggle" },
-            { "<leader>dbc", '<cmd>lua require"persistent-breakpoints.api".set_conditional_breakpoint()<CR>', desc = "Breakpoint Condition" },
-            { "<leader>dbm", '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = "Breakpoint Message" },
+            { "<leader>dso", function() require("dap").step_over() end, desc = "Step Over (F8)" },
+            { "<leader>dsu", function() require("dap").step_out() end, desc = "Step Out (Shift+F8)" },
+            { "<leader>dsi", function() require("dap").step_into() end, desc = "Step Into (F7)" },
+            { "<leader>dt", function() require("persistent-breakpoints.api").toggle_breakpoint() end, desc = "Breakpoint Toggle" },
+            { "<leader>dbc", function() require("persistent-breakpoints.api").set_conditional_breakpoint() end, desc = "Breakpoint Condition" },
+            { "<leader>dbm", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, desc = "Breakpoint Message" },
         },
 
         -- Keybindings
@@ -92,11 +92,11 @@ return {
         "nvim-telescope/telescope-dap.nvim",
         config = function() require("telescope").load_extension("dap") end,
         keys = {
-            { "<leader>dlc", "<cmd>require('telescope').extensions.dap.commands()<cr>", desc = "List Debug Commands" },
-            { "<leader>dld", "<cmd>require('telescope').extensions.dap.configurations()<cr>", desc = "List Debug Configurations" },
-            { "<leader>dlb", "<cmd>require('telescope').extensions.dap.list_breakpoints()<cr>", desc = "List Debug Breakpoints" },
-            { "<leader>dlv", "<cmd>require('telescope').extensions.dap.variables()<cr>", desc = "List Debug Variables" },
-            { "<leader>dlf", "<cmd>require('telescope').extensions.dap.frames()<cr>", desc = "List Debug Frames" },
+            { "<leader>dlc", function() require("telescope").extensions.dap.commands() end, desc = "List Debug Commands" },
+            { "<leader>dld", function() require("telescope").extensions.dap.configurations() end, desc = "List Debug Configurations" },
+            { "<leader>dlb", function() require("telescope").extensions.dap.list_breakpoints() end, desc = "List Debug Breakpoints" },
+            { "<leader>dlv", function() require("telescope").extensions.dap.variables() end, desc = "List Debug Variables" },
+            { "<leader>dlf", function() require("telescope").extensions.dap.frames() end, desc = "List Debug Frames" },
         },
     },
     require("quitlox.util").whichkey({
