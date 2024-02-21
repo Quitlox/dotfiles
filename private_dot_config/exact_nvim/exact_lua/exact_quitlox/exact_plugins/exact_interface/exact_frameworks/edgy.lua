@@ -50,6 +50,8 @@ return {
             bottom = {
                 { ft = "toggleterm", filter = filter_not_relative(), wo = { winbar = "  󰆍  Terminal" } },
                 { ft = "NeogitStatus", wo = { winbar = "  󰊢  Neogit" } },
+                { ft = "gitlab", wo = { winbar = "  󰊢  Gitlab" } },
+
                 { ft = "Trouble", wo = { winbar = "󰍉  Trouble" } },
                 { ft = "qf", title = "QuickFix", wo = { winbar = "  󰍉  QuickFix" } },
                 { ft = "help", size = { height = 20 }, filter = filter_bt("help"), wo = { winbar = "    Help" } },

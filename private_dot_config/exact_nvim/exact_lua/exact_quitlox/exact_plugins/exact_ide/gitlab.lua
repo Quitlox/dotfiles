@@ -20,14 +20,14 @@ return {
                 switch_view = "T", -- Toggles between the notes and discussions views
                 default_view = "discussions", -- Show "discussions" or "notes" by default
                 blacklist = {}, -- List of usernames to remove from tree (bots, CI, etc)
-                jump_to_file = "o", -- Jump to comment location in file
+                jump_to_file = "i", -- Jump to comment location in file
                 jump_to_reviewer = "m", -- Jump to the location in the reviewer window
                 edit_comment = "e", -- Edit comment
                 delete_comment = "dd", -- Delete comment
                 reply = "r", -- Reply to comment
-                toggle_node = "t", -- Opens or closes the discussion
+                toggle_node = "o", -- Opens or closes the discussion
                 toggle_resolved = "p", -- Toggles the resolved status of the whole discussion
-                position = "left", -- "top", "right", "bottom" or "left"
+                position = "bottom", -- "top", "right", "bottom" or "left"
                 open_in_browser = "b", -- Jump to the URL of the current note/discussion
                 tree_type = "simple", -- Type of discussion tree - "simple" means just list of discussions, "by_file_name" means file tree with discussions under file
             },
@@ -56,11 +56,11 @@ return {
             { "<leader>gln", "<cmd>lua require('gitlab').create_note()<cr>", desc = "Gitlab Create Note" },
             { "<leader>gld", "<cmd>lua require('gitlab').toggle_discussions()<cr>", desc = "Gitlab Toggle Discussions" },
             { "<leader>glaa", "<cmd>lua require('gitlab').add_assignee()<cr>", desc = "Gitlab Add Assignee" },
-            { "<leader>glad", "<cmd>lua require('gitlab').delete_assignee()<cr>", desc = "Gitlab Delete Assignee" },
-            { "<leader>glla", "<cmd>lua require('gitlab').add_label()<cr>", desc = "Gitlab Add Label" },
-            { "<leader>glld", "<cmd>lua require('gitlab').delete_label()<cr>", desc = "Gitlab Delete Label" },
-            { "<leader>glra", "<cmd>lua require('gitlab').add_reviewer()<cr>", desc = "Gitlab Add Reviewer" },
-            { "<leader>glrd", "<cmd>lua require('gitlab').delete_reviewer()<cr>", desc = "Gitlab Delete Reviewer" },
+            { "<leader>glda", "<cmd>lua require('gitlab').delete_assignee()<cr>", desc = "Gitlab Delete Assignee" },
+            { "<leader>glal", "<cmd>lua require('gitlab').add_label()<cr>", desc = "Gitlab Add Label" },
+            { "<leader>gldl", "<cmd>lua require('gitlab').delete_label()<cr>", desc = "Gitlab Delete Label" },
+            { "<leader>glar", "<cmd>lua require('gitlab').add_reviewer()<cr>", desc = "Gitlab Add Reviewer" },
+            { "<leader>gldr", "<cmd>lua require('gitlab').delete_reviewer()<cr>", desc = "Gitlab Delete Reviewer" },
             { "<leader>glp", "<cmd>lua require('gitlab').pipeline()<cr>", desc = "Gitlab Pipeline" },
             { "<leader>glo", "<cmd>lua require('gitlab').open_in_browser()<cr>", desc = "Gitlab Open in Browser" },
             { "<leader>glM", "<cmd>lua require('gitlab').merge()<cr>", desc = "Gitlab Merge" },
