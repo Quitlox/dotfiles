@@ -2,9 +2,12 @@
 	defaultBranch = main
 [user]
 	name = Kevin Witlox
-	email = {{ .email | quote }}
+	email = {{ .email }}
 [credential]
 	helper = cache --timeout=10800
 [core]
 	excludesFile = ~/.config/gitignore
 	editor = nvim
+	autocrlf = input
+[rerere]
+	enabled = true
