@@ -106,6 +106,7 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 python = { "pycln", "black", "isort" },
+                go = { "gofmt" },
                 javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
                 typescript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
                 svelte = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
