@@ -6,8 +6,10 @@ return {
     ----------------------------------------
     -- LSP plugins and LSP configs are in lsp/configs.lua
 
+    ----- Sage -----
+    { "petRUShka/vim-sage" },
     ----- Tex -----
-    { "lervag/vimtex",                    version = "" },
+    { "lervag/vimtex", version = "" },
     ----- Yuck -----
     -- the filetype used by ewww
     { "elkowar/yuck.vim" },
