@@ -1,28 +1,17 @@
 return {
     {
         "nvim-pack/nvim-spectre",
-        cmd = {
-            "Replace",
-            "ReplaceWord",
-            "ReplaceFile",
-            "ReplaceVisual",
-        },
         keys = {
-            { "<C-F>", function() require("spectre").open() end, desc = "Find & Replace" },
+            { "<C-F>", function() require("spectre").open_visual({ select_word = true }) end, desc = "Find & Replace" },
             {
                 "<C-F>",
-                function() require("spectre").open_visual({ select_word = true }) end,
+                function() require("spectre").open_visual() end,
                 desc = "Find & Replace",
-                mode = {
-                    "v",
-                },
+                mode = { "v" },
             },
         },
     },
-    require("quitlox.util").legendary({
-        { ":Replace", "Find & Replace" },
-        { ":ReplaceWord", "Replace & Replace under cursor" },
-        { ":ReplaceFile", "Replace & Replace in file" },
-        { ":ReplaceVisual", "Replace & Replace visual selection" },
+    require("quitlox.util").legendary_full({
+        { ":ReplaceFile", 'lua require("spectre").open_file_search({select_word=true})<CR>', description = "Find & Replace in file" },
     }),
 }
