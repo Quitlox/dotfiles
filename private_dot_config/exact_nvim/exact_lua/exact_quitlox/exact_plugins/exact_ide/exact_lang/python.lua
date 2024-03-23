@@ -1,18 +1,6 @@
 local venv_names = { "venv", "venv3.8", "venv3.9", "venv3.10", "venv3.11", "venv3.12", ".venv", ".venv3.8", ".venv3.9", ".venv3.10", ".venv3.11", ".venv3.12" }
 
 return {
-    ---------- Editing ----------
-    {
-        "chrisgrieser/nvim-puppeteer",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        keys = {{"<leader>Tp", "<cmd>PuppeteerToggle<cr>"}},
-        lazy = false,
-    },
-    require('quitlox.util').legendary({
-        {":PuppeteerToggle", description = "Toggle Puppeteer"},
-        {":PuppeteerEnable", description = "Enable Puppeteer"},
-        {":PuppeteerDisable", description = "Disable Puppeteer"},
-    }),
     ---------- Indent ----------
     -- Fix indentation after assignment / brackets
     -- https://www.reddit.com/r/neovim/comments/y9qkks/problem_with_python_identation_when_using/
