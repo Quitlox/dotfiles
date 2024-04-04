@@ -114,4 +114,23 @@ return {
         { ":LspStop", "Stop the requested server name." },
         { ":LspRestart", "Restart the requested server name." },
     }),
+    -- Workspace Diagnostics Helper
+    {
+        "artemave/workspace-diagnostics.nvim",
+        config = function()
+            require("quitlox.util").on_attach(function(client, bufnr)
+                whitelist = { "tsserver", "pyright" }
+                if vim.tbl_contains(whitelist, client.name) then require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr) end
+            end)
+        end,
+    },
+    -- DocumentLink Handler
+    {
+        "icholy/lsplinks.nvim",
+        setup = function()
+            local lsplinks = require("lsplinks")
+            lsplinks.setup()
+            vim.keymap.set("n", "gx", lsplinks.gx)
+        end,
+    },
 }
