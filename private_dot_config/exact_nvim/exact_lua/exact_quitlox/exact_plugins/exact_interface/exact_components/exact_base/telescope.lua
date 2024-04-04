@@ -69,29 +69,9 @@ return {
                 desc = "Find All",
             },
             {
-                "<leader>ff",
-                function() require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({ search_dirs = { vim.fn.expand("%") } })) end,
-                desc = "Find in File",
-            },
-            {
-                "<leader>fb",
-                function() require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({})) end,
-                desc = "Find Buffer",
-            },
-            {
-                "<leader>fd",
-                function() require("telescope.builtin").diagnostics(require("telescope.themes").get_dropdown({})) end,
-                desc = "Find Diagnostics",
-            },
-            {
                 "<leader>fm",
                 function() require("telescope.builtin").man_pages(require("telescope.themes").get_dropdown({})) end,
                 desc = "Find Manpage",
-            },
-            {
-                "<leader>fh",
-                function() require("telescope.builtin").help_tags(require("telescope.themes").get_dropdown({})) end,
-                desc = "Find Help",
             },
             {
                 "<leader>fr",
@@ -143,5 +123,16 @@ return {
         },
         config = function() require("telescope").load_extension("undo") end,
         keys = { { "<leader>fu", function() require("telescope").extensions.undo.undo() end, desc = "Undo History" } },
+    },
+    {
+        "catgoose/telescope-helpgrep.nvim",
+        config = function() require("telescope").load_extension("helpgrep") end,
+        keys = {
+            {
+                "<leader>fh",
+                function() require("telescope-helpgrep").live_grep() end,
+                desc = "Find Help",
+            },
+        },
     },
 }

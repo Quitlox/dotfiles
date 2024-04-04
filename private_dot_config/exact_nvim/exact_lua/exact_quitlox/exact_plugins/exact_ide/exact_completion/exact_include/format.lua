@@ -11,7 +11,7 @@ local vscode_format = lspkind.cmp_format({
     mode = "symbol_text",
     preset = "codicons",
 
-    maxwidth = 50,
+    maxwidth = 35,
     ellipsis_char = "...",
     -- Add visual names for the sources
     menu = {
@@ -22,14 +22,8 @@ local vscode_format = lspkind.cmp_format({
         latex_symbols = "[Latex]",
         cmdline_history = "[History]",
     },
-    before = function(entry, vim_item)
-        -- Tailwind Colorizer
-        -- TODO: Improve formatting
-        -- https://github.com/roobert/tailwindcss-colorizer-cmp.nvim/issues/4
-        local status_ok, tw_colorizer = pcall(require, "tailwindcss-colorizer-cmp")
-        if status_ok then vim_item = tw_colorizer.formatter(entry, vim_item) end
-        return vim_item
-    end,
+
+    before = require("tailwind-tools.cmp").lspkind_format
 })
 
 local format = function(entry, vim_item)
@@ -43,7 +37,7 @@ local format = function(entry, vim_item)
 end
 
 local formatting = {
-    fields = { require("cmp").ItemField.Kind, require("cmp").ItemField.Abbr, require("cmp").ItemField.Menu },
+    fields = { require("cmp").ItemField.Kind, require("cmp").ItemField.Abbr, require("cmp").ItemField.Menu }, 
     format = format,
 }
 

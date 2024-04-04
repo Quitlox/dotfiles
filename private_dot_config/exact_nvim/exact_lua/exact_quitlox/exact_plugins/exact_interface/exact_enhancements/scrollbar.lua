@@ -14,6 +14,7 @@ return {
             "dapui_scopes",
             "dapui_breakpoints",
             "dapui_watches",
+            "lazy",
         },
         handlers = {
             cursor = true,

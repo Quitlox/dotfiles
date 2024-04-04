@@ -14,25 +14,25 @@ return {
         },
     },
     {
-        -- dir = "~/Workspace/neovim-plugins/neotest",
         "nvim-neotest/neotest",
         version = "",
-        dependencies = { "antoinemadec/FixCursorHold.nvim" },
+        dependencies = { "antoinemadec/FixCursorHold.nvim", "nvim-neotest/nvim-nio" },
         keys = {
-            { "[T",         function() require("neotest").jump.prev({ status = "failed" }) end,
-                                                                                                    desc =
-                "Previous Failed Test" },
-            { "]T",         function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next Failed Test" },
-            { "[t",         function() require("neotest").jump.prev() end,                      desc = "Previous Test" },
-            { "]t",         function() require("neotest").jump.next() end,                      desc = "Next Test" },
-            { "<leader>tr", function() require("neotest").run.run() end,                        desc = "Test Run" },
-            { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end,      desc = "Test File" },
-            { "<leader>tx", function() require("neotest").run.stop() end,                       desc = "Test Stop" },
-            { "<leader>ta", function() require("neotest").run.attach() end,                     desc = "Test Attach" },
-            { "<leader>to", function() require("neotest").output.open({ enter = true }) end,    desc = "Test Output" },
-            { "<leader>ts", function() require("neotest").summary.toggle() end,                 desc =
-            "Test Summary toggle" },
-            { "<leader>lt", function() require("neotest").summary.open() end,                   desc = "Locate Test" },
+            {
+                "[T",
+                function() require("neotest").jump.prev({ status = "failed" }) end,
+                desc = "Previous Failed Test",
+            },
+            { "]T", function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next Failed Test" },
+            { "[t", function() require("neotest").jump.prev() end, desc = "Previous Test" },
+            { "]t", function() require("neotest").jump.next() end, desc = "Next Test" },
+            { "<leader>tr", function() require("neotest").run.run() end, desc = "Test Run" },
+            { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Test File" },
+            { "<leader>tx", function() require("neotest").run.stop() end, desc = "Test Stop" },
+            { "<leader>ta", function() require("neotest").run.attach() end, desc = "Test Attach" },
+            { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Test Output" },
+            { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Test Summary toggle" },
+            { "<leader>lt", function() require("neotest").summary.open() end, desc = "Locate Test" },
         },
         config = function(_, opts)
             -- Blatently stolen from
@@ -64,7 +64,7 @@ return {
             require("neotest").setup(opts)
         end,
         opts = {
-            log_level="trace",
+            log_level = "trace",
             window = {
                 mappings = {},
             },

@@ -82,13 +82,29 @@ return {
         "lukas-reineke/cmp-rg",
         -- LSP Kind
         "onsails/lspkind.nvim",
-        -- Tailwind Colorizer
-        -- Add colorizer to completion menu for tailwind colors
-        { "roobert/tailwindcss-colorizer-cmp.nvim", opts = { color_square_width = 2 }, config = true },
         -- Snippet Engine
         { "L3MON4D3/LuaSnip", version = "", dependencies = { "rafamadriz/friendly-snippets" } },
         "saadparwaiz1/cmp_luasnip",
         -- Completion Sorter
         "lukas-reineke/cmp-under-comparator",
+        -- Tailwind
+        {
+            "luckasRanarison/tailwind-tools.nvim",
+            opts = {},
+            keys = {
+                { "[c", "<cmd>TailwindPrevClass<cr>", desc = "Moves the cursor to the nearest previous Tailwind class", noremap = true, silent = true },
+                { "]c", "<cmd>TailwindNextClass<cr>", desc = "Moves the cursor to the nearest next Tailwind class", noremap = true, silent = true },
+            },
+        },
+        require("quitlox.util").legendary({
+            { ":TailwindConcealEnable", "Enables conceal for all buffers." },
+            { ":TailwindConcealDisable", "Disables conceal." },
+            { ":TailwindConcealToggle", "Toggles conceal." },
+            { ":TailwindColorEnable", "Enables color hints for all buffers." },
+            { ":TailwindColorDisable", "Disables color hints." },
+            { ":TailwindColorToggle", "Toggles color hints." },
+            { ":TailwindSort", "Sorts all classes in the current buffer." },
+            { ":TailwindSortSelection", "Sorts selected classes in visual mode." },
+        }),
     },
 }

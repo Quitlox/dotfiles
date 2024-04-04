@@ -28,17 +28,18 @@ return {
             },
             mappings = {
                 list = {
-                    -- ["<leader>l"] = actions.enter_win("preview"),
                     ["<leader>l"] = false,
                     ["i"] = actions.enter_win("preview"),
+                    ["<C-t>"] = actions.quickfix,
                 },
                 preview = {
                     ["Q"] = actions.close,
-                    -- ["<leader>l"] = actions.enter_win("list"),
                     ["<leader>l"] = false,
                     ["q"] = actions.enter_win("list"),
+                    ["<C-t>"] = actions.quickfix,
                 },
             },
+            use_trouble_qf = true,
         })
     end,
 }

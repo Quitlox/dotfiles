@@ -7,7 +7,7 @@
 return {
     {
         "folke/trouble.nvim",
-        version = "",
+        branch = "dev", -- FIXME: Update once Trouble v3 is out
         opts = {
             action_keys = {
                 close = "q",
