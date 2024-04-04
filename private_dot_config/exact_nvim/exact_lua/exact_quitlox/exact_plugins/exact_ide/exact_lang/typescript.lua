@@ -11,6 +11,7 @@ return {
         config = true,
         version = "",
     },
+    { "dmmulroy/ts-error-translator.nvim", opts = {} },
     {
         "williamboman/mason-lspconfig.nvim",
         optional = true,
