@@ -20,7 +20,6 @@ return {
         "utilyre/sentiment.nvim",
         version = "*",
         event = "VeryLazy",
-        enabled = false,
         opts = {},
     },
     require("quitlox.util").legendary({

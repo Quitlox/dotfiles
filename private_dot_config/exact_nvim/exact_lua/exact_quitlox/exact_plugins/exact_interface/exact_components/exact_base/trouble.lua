@@ -19,9 +19,9 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         cmd = { "TroubleToggle" },
         keys = {
-            { "<leader>od", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Open Document Diagnostics" },
-            { "<leader>ow", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Open Workspace Diagnostics" },
-            { "<leader>oq", "<cmd>TroubleToggle quickfix<cr>", desc = "Open Quickfix" },
+            { "<leader>od", "<cmd>Trouble diagnostics<cr>", desc = "Open Document Diagnostics" },
+            -- { "<leader>ow", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Open Workspace Diagnostics" },
+            { "<leader>oq", "<cmd>Trouble quickfix<cr>", desc = "Open Quickfix" },
         },
     },
     require("quitlox.util").legendary({

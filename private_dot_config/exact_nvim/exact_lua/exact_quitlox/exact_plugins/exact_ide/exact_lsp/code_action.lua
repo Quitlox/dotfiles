@@ -11,12 +11,11 @@ return {
                 },
             },
             mappings = {
-                code_action = "ga",
+                code_action = { key = "ga", options = { desc = "Code Action" } },
             },
         },
         event = "LspAttach",
     },
-
     require("quitlox.util").legendary({
         { ":CodeActionToggleSigns", "Toggle code action signs" },
         { ":CodeActionToggleLabel", "Toggle code action labels" },

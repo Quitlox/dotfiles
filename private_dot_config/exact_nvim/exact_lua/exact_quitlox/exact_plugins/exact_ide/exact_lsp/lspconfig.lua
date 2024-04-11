@@ -127,10 +127,9 @@ return {
     -- DocumentLink Handler
     {
         "icholy/lsplinks.nvim",
-        setup = function()
-            local lsplinks = require("lsplinks")
-            lsplinks.setup()
-            vim.keymap.set("n", "gx", lsplinks.gx)
-        end,
+        opts = {},
+        keys = {
+            { "gx", "<cmd>lua require('lsplinks').gx()<cr>", desc = "Go to document link" },
+        },
     },
 }

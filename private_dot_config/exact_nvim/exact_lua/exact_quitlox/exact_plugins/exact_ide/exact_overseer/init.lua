@@ -33,7 +33,9 @@ return {
                 "toggleterm",
                 -- direction = "float",
                 hidden = false,
-                on_open = function(term) vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true }) end,
+                on_open = function(term)
+                    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+                end,
                 open_on_start = false,
             },
             task_list = {
@@ -62,6 +64,7 @@ return {
         { ":OverseerQuickAction", "Overseer Quick Action" },
         { ":OverseerTaskAction", "Overseer Task Action" },
         { ":OverseerClearCache", "Overseer Clear Cache" },
+
         { ":OverseerRestartLast", "Overseer Restart Last" },
     }),
 }

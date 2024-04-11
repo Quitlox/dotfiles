@@ -227,7 +227,8 @@ return {
     require("quitlox.util").legendary(molten_commands),
     {
         "benlubas/molten-nvim",
-        enabled = function() return vim.fn.has("win64") == 0 and vim.g.neovide == nil end,
+        -- enabled = function() return vim.fn.has("win64") == 0 and vim.g.neovide == nil end,
+        enabled = false,
         version = "*",
         lazy = false,
         -- Required python packages: pynvim jupyter_client
@@ -253,7 +254,8 @@ return {
     },
     {
         "3rd/image.nvim",
-        enabled = function() return vim.fn.has("win64") == 0 end,
+        -- enabled = function() return vim.fn.has("win64") == 0 end,
+        enabled = false,
         version = "",
         lazy = true,
         -- Depends on luarock "magick"

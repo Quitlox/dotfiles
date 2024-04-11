@@ -2,10 +2,10 @@ return {
     "dnlhc/glance.nvim",
     cmd = { "Glance" },
     keys = {
-        { "gd", "<cmd>Glance definitions<cr>", "Go Definition" },
-        { "gi", "<cmd>Glance implementations<cr>", "Go Implementation" },
-        { "gt", "<cmd>Glance type_definitions<cr>", "Peek Type Definition" },
-        { "gr", "<cmd>Glance references<cr>", "Go References" },
+        { "gd", "<cmd>Glance definitions<cr>", desc = "Go Definition" },
+        { "gi", "<cmd>Glance implementations<cr>", desc = "Go Implementation" },
+        { "gt", "<cmd>Glance type_definitions<cr>", desc = "Peek Type Definition" },
+        { "gr", "<cmd>Glance references<cr>", desc = "Go References" },
     },
     config = function()
         local actions = require("glance").actions

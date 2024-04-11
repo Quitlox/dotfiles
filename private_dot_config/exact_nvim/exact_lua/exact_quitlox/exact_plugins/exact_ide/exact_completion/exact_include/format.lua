@@ -23,7 +23,15 @@ local vscode_format = lspkind.cmp_format({
         cmdline_history = "[History]",
     },
 
-    before = require("tailwind-tools.cmp").lspkind_format
+    before = function(entry, vim_item)
+        local tailwind_whitelist = { "html", "svelte" }
+
+        if tailwind_whitelist[vim.bo.filetype] then
+            return require("tailwind-tools.cmp").lspkind_format(entry, vim_item)
+        end
+
+        return vim_item
+    end,
 })
 
 local format = function(entry, vim_item)

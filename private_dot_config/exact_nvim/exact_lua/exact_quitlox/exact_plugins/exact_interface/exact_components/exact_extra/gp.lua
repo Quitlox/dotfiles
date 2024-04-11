@@ -4,6 +4,8 @@ return {
         opts = {
             chat_confirm_delete = false,
             toggle_target = "popup",
+            chat_user_prefix = "󰭹 :",
+            chat_assistant_prefix = { "󰚩 :", "[{{agent}}]" },
         },
         -- stylua: ignore
         cmd = {
@@ -24,8 +26,8 @@ return {
             { "<C-g>p", ":'<,'>GpChatPaste<cr>", desc = "VisualChatPaste", mode = { "v" }, noremap = true, silent = true, nowait = true },
             { "<C-g>t", ":'<,'>GpChatToggle<cr>", desc = "VisualToggleChat", mode = { "v" }, noremap = true, silent = true, nowait = true },
 
-            { "<C-g><C-b>", ":GpChatNew split<cr>", desc = "NewChat split", mode = { "n", "i" }, noremap = true, silent = true, nowait = true },
-            { "<C-g><C-v>", ":GpChatNew vsplit<cr>", desc = "NewChat vsplit", mode = { "n", "i" }, noremap = true, silent = true, nowait = true },
+            { "<C-g><C-b>", ":GpChatNew vsplit<cr>", desc = "NewChat split", mode = { "n", "i" }, noremap = true, silent = true, nowait = true },
+            { "<C-g><C-v>", ":GpChatNew split<cr>", desc = "NewChat vsplit", mode = { "n", "i" }, noremap = true, silent = true, nowait = true },
             { "<C-g><Tab>", ":GpChatNew tabnew<cr>", desc = "NewChat tabnew", mode = { "n", "i" }, noremap = true, silent = true, nowait = true },
 
             { "<C-g><C-x>", ":<C-u>'<,'>GpChatNew split<cr>", desc = "VisualChatNew split", mode = { "v" }, noremap = true, silent = true, nowait = true },

@@ -6,8 +6,6 @@ return {
     opts = {
         operators = { gc = "Comments" },
         defaults = {
-            ["<leader><cr>"] = "which_key_ignore",
-            ["<leader><leader>"] = "which_key_ignore",
             ["<leader><tab>"] = { name = "Tab" },
             ["<leader>v"] = { name = "Vim" },
             ["<leader>T"] = { name = "Toggle" },
@@ -17,6 +15,11 @@ return {
             ["<leader>m"] = { name = "Miscelleneous" },
             -- Plugins
             ["<leader>g"] = { name = "Git" },
+            -- Disable
+            ["<leader><cr>"] = "which_key_ignore",
+            ["<leader><leader>"] = "which_key_ignore",
+            ["gk"] = { name = "which_key_ignore" },
+            ["gj"] = { name = "which_key_ignore" },
         },
         plugins = {
             marks = true,

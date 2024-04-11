@@ -54,7 +54,9 @@ end
 local function save_extra_cmds()
     return {
         function()
-            if plugin_state.neo_tree then return [[execute 'lua require("neo-tree.command").execute({action="show", source="filesystem", position="left"})']] end
+            if plugin_state.neo_tree then
+                return [[execute 'lua require("neo-tree.command").execute({action="focus", source="filesystem", position="left"})']]
+            end
         end,
     }
 end
