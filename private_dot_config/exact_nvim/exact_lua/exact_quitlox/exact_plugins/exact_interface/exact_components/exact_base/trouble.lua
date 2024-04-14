@@ -19,9 +19,11 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         cmd = { "TroubleToggle" },
         keys = {
-            { "<leader>od", "<cmd>Trouble diagnostics<cr>", desc = "Open Document Diagnostics" },
-            -- { "<leader>ow", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Open Workspace Diagnostics" },
+            -- stylua: ignore start
+            { "<leader>ow", "<cmd>Trouble diagnostics filter.severity={vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN}<cr>", desc = "Open Document Diagnostics" },
+            { "<leader>od", "<cmd>Trouble diagnostics filter.severity={vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO}<cr>", desc = "Open All Diagnostics" },
             { "<leader>oq", "<cmd>Trouble quickfix<cr>", desc = "Open Quickfix" },
+            -- stylua: ignore end
         },
     },
     require("quitlox.util").legendary({

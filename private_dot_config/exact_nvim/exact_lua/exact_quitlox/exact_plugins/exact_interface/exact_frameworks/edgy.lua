@@ -1,17 +1,25 @@
 local function filter_nt_source_eq(source)
-    return function(buf) return vim.b[buf].neo_tree_source == source end
+    return function(buf)
+        return vim.b[buf].neo_tree_source == source
+    end
 end
 
 local function filter_nt_source_neq(source)
-    return function(buf) return vim.b[buf].neo_tree_source ~= source end
+    return function(buf)
+        return vim.b[buf].neo_tree_source ~= source
+    end
 end
 
 local function filter_not_relative()
-    return function(_buf, win) return vim.api.nvim_win_get_config(win).relative == "" end
+    return function(_buf, win)
+        return vim.api.nvim_win_get_config(win).relative == ""
+    end
 end
 
 local function filter_bt(type)
-    return function(buf) return vim.bo[buf].buftype == type end
+    return function(buf)
+        return vim.bo[buf].buftype == type
+    end
 end
 
 return {
@@ -19,7 +27,7 @@ return {
         "folke/edgy.nvim",
         ft = {
             "neo-tree",
-            "Trouble",
+            "trouble",
             "qf",
             "spectre_panel",
             "help",
@@ -48,11 +56,11 @@ return {
                 { title = "Overseer", ft = "OverseerList", wo = { winbar = "    Overseer" } },
             },
             bottom = {
-                { ft = "toggleterm", filter = filter_not_relative(), wo = { winbar = "  󰆍  Terminal" } },
-                { ft = "NeogitStatus", wo = { winbar = "  󰊢  Neogit" } },
+                { ft = "toggleterm", size = { height = 0.4 }, filter = filter_not_relative(), wo = { winbar = "  󰆍  Terminal" } },
+                { ft = "NeogitStatus", size = { height = 20 }, wo = { winbar = "  󰊢  Neogit" } },
                 { ft = "gitlab", wo = { winbar = "  󰊢  Gitlab" } },
 
-                { ft = "Trouble", wo = { winbar = "󰍉  Trouble" } },
+                { ft = "trouble", size = { height = 15 }, wo = { winbar = "󰍉  Trouble" } },
                 { ft = "qf", title = "QuickFix", wo = { winbar = "  󰍉  QuickFix" } },
                 { ft = "help", size = { height = 20 }, filter = filter_bt("help"), wo = { winbar = "    Help" } },
                 { ft = "spectre_panel", size = { height = 0.4 } },
@@ -67,7 +75,7 @@ return {
             options = {
                 left = { size = 40 },
                 right = { size = 50 },
-                bottom = { size = 0.40 },
+                -- bottom = { size = 0.40 },
             },
 
             wo = {
@@ -87,7 +95,7 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         optional = true,
         opts = function(_, opts)
-            opts.open_files_do_not_replace_types = opts.open_files_do_not_replace_types or { "terminal", "Trouble", "qf", "Outline" }
+            opts.open_files_do_not_replace_types = opts.open_files_do_not_replace_types or { "terminal", "trouble", "qf", "Outline" }
             table.insert(opts.open_files_do_not_replace_types, "edgy")
         end,
     },
@@ -113,7 +121,9 @@ return {
                             end
                         end
                         ret.total_size = ret.left_size + ret.right_size
-                        if ret.total_size > 0 then return ret end
+                        if ret.total_size > 0 then
+                            return ret
+                        end
                     end
                     return get()
                 end

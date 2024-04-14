@@ -44,6 +44,7 @@ return {
                     ["<C-h>"] = false,
                     ["<esc>"] = "Close",
                     ["o"] = "<cmd>OverseerQuickAction open float<cr>",
+                    ["d"] = "<cmd>OverseerQuickAction dispose<cr>",
                     ["s"] = "<cmd>OverseerQuickAction start<cr>",
                     ["r"] = "<cmd>OverseerQuickAction restart<cr>",
                     ["x"] = "<cmd>OverseerQuickAction stop<cr>",
@@ -57,7 +58,7 @@ return {
         { ":OverseerToggle", "Overseer Toggle" },
         { ":OverseerSaveBundle", "Overseer Save Bundle" },
         { ":OverseerLoadBundle~", "Overseer Load Bundle" },
-        { ":OverseerDeleteBundle", "Overseer Delete Bundle" },
+        { ":OverseerDeleteBundle", "Overseer Delete Bundle" }, -- FIXME: Not working
         { ":OverseerRun", "Overseer Run" },
         { ":OverseerInfo", "Overseer Info" },
         { ":OverseerBuild", "Overseer Build" },

@@ -20,18 +20,28 @@ local function pre_save_hook()
     plugin_state.neo_tree = require("quitlox.util").is_neotree_open()
 
     -- Close all open plugins
-    if package.loaded["neo-tree"] then vim.cmd("Neotree action=close") end
+    if package.loaded["neo-tree"] then
+        vim.cmd("Neotree action=close")
+    end
     if package.loaded["neotest"] then
         require("neotest").output_panel.close()
         require("neotest").summary.close()
     end
-    if package.loaded["edgy"] then require("edgy").close() end
-    if package.loaded["dapui"] then require("dapui").close() end
-    if package.loaded["diffview"] then vim.cmd([[DiffviewClose]]) end
+    if package.loaded["edgy"] then
+        require("edgy").close()
+    end
+    if package.loaded["dapui"] then
+        require("dapui").close()
+    end
+    if package.loaded["diffview"] then
+        vim.cmd([[DiffviewClose]])
+    end
     if package.loaded["neogit"] then
         for _, win in ipairs(vim.api.nvim_list_wins()) do
             local buf = vim.api.nvim_win_get_buf(win)
-            if vim.bo[buf].filetype == "NeogitStatus" then vim.api.nvim_win_close(win, true) end
+            if vim.bo[buf].filetype == "NeogitStatus" then
+                vim.api.nvim_win_close(win, true)
+            end
         end
     end
     if package.loaded["toggleterm"] then
@@ -42,12 +52,20 @@ local function pre_save_hook()
 
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         -- Close all directory buffers
-        if vim.bo[buf].buftype == "dirvish" then vim.api.nvim_buf_delete(buf, { force = true }) end
+        if vim.bo[buf].buftype == "dirvish" then
+            vim.api.nvim_buf_delete(buf, { force = true })
+        end
         -- Close all notify buffers
-        if vim.bo[buf].buftype == "notify" then vim.api.nvim_buf_delete(buf, { force = true }) end
+        if vim.bo[buf].buftype == "notify" then
+            vim.api.nvim_buf_delete(buf, { force = true })
+        end
         -- Close all octo buffers
-        if string.match(vim.api.nvim_buf_get_name(buf), "octo://.+") then vim.api.nvim_buf_delete(buf, { force = true }) end
-        if string.match(vim.api.nvim_buf_get_name(buf), "OctoChangedFiles.+") then vim.api.nvim_buf_delete(buf, { force = true }) end
+        if string.match(vim.api.nvim_buf_get_name(buf), "octo://.+") then
+            vim.api.nvim_buf_delete(buf, { force = true })
+        end
+        if string.match(vim.api.nvim_buf_get_name(buf), "OctoChangedFiles.+") then
+            vim.api.nvim_buf_delete(buf, { force = true })
+        end
     end
 end
 
@@ -95,7 +113,9 @@ local function post_restore_hook()
     -- if venv ~= "" then require("venv-selector").retrieve_from_cache() end
 
     local venv_name = require("venv-selector").get_active_venv()
-    if venv_name ~= nil then require("venv-selector").retrieve_from_cache() end
+    if venv_name ~= nil then
+        require("venv-selector").retrieve_from_cache()
+    end
     -- Restore Overseer tasks
     require("overseer").load_task_bundle(get_cwd_as_name(), { ignore_missing = true, autostart = false })
 end
@@ -107,9 +127,9 @@ return {
         opts = {
             log_level = "error",
             auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
-            auto_session_save_enabled = true,
-            auto_session_restore_enabled = true,
-            auto_session_use_git_branch = true, -- FIXME: Broken
+            auto_save_enabled = true,
+            auto_restore_enabled = false,
+            auto_session_use_git_branch = true,
 
             save_extra_cmds = save_extra_cmds(),
             pre_save_cmds = { pre_save_hook },
@@ -144,7 +164,7 @@ return {
         { ":SessionRestore", "Restore a session" },
         { ":SessionDelete", "Delete a session" },
         { ":SessionPurgeOrphaned", "Delete orphaned sessions" },
-        { ":Autosession search", "Search for sessions" },
-        { ":Autosession delete", "Delete a session" },
+        { ":Autosession search", "Search for sessions" }, -- FIXME: Doesn't work
+        { ":Autosession delete", "Delete a session" }, -- FIXME: Doesn't work
     }),
 }

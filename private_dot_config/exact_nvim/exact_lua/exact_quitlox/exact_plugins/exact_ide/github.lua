@@ -86,7 +86,7 @@ return {
                     -- select_prev_entry = { lhs = "[q", desc = "move to next changed file" },
                     -- select_first_entry = { lhs = "[Q", desc = "move to first changed file" },
                     -- select_last_entry = { lhs = "]Q", desc = "move to last changed file" },
-                    close_review_tab = { lhs = "<C-c>", desc = "Close review tab" },
+                    close_review_tab = { lhs = "q", desc = "Close review tab" },
                     -- react_hooray = { lhs = "<space>rp", desc = "add/remove 🎉 reaction" },
                     -- react_heart = { lhs = "<space>rh", desc = "add/remove ❤️ reaction" },
                     -- react_eyes = { lhs = "<space>re", desc = "add/remove 👀 reaction" },

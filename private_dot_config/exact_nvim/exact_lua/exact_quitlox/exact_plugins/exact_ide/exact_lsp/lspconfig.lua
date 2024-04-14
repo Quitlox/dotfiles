@@ -1,26 +1,20 @@
 --  +----------------------------------------------------------+
 --  | LSP Keybindings                                          |
 --  +----------------------------------------------------------+
-
--- Stolen from LazyVim
-local diagnostic_goto = function(next, severity)
-    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-    severity = severity and vim.diagnostic.severity[severity] or nil
-    return function() go({ severity = severity }) end
-end
-
 local function set_keybindings(bufnr)
     local bufopts = { silent = true, noremap = true, buffer = bufnr }
     local wk = require("which-key")
 
     wk.register({
         ["<F2>"] = { vim.lsp.buf.rename, "Rename Symbol" },
-        -- Add [e and ]e for navigating to Error Diagnostics
-        -- Add [d and ]d for navigating to any Diagnostics
-        ["[d"] = { vim.diagnostic.goto_prev, "Prev Diagnostic" },
-        ["]d"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
-        ["[e"] = { diagnostic_goto(false, "ERROR"), "Prev Error" },
-        ["]e"] = { diagnostic_goto(true, "ERROR"), "Prev Error" },
+        -- stylua: ignore start
+        ["[d"] = { function() vim.diagnostic.goto_prev({severity= { min = vim.diagnostic.severity.INFO } }) end, "Prev Diagnostic" },
+        ["]d"] = { function() vim.diagnostic.goto_next({severity= { min = vim.diagnostic.severity.INFO } }) end, "Next Diagnostic" },
+        ["[w"] = { function() vim.diagnostic.goto_prev({severity= { min = vim.diagnostic.severity.WARN } }) end, "Prev Diagnostic" },
+        ["]w"] = { function() vim.diagnostic.goto_next({severity= { min = vim.diagnostic.severity.WARN } }) end, "Next Diagnostic" },
+        ["[e"] = { function() vim.diagnostic.goto_prev({ severity=vim.diagnostic.severity.ERROR }) end, "Prev Error" },
+        ["]e"] = { function() vim.diagnostic.goto_next({ severity=vim.diagnostic.severity.ERROR }) end, "Prev Error" },
+        -- stylua: ignore end
         -- Add Go mappings for LSP Symbol navigation
         g = {
             name = "Go",

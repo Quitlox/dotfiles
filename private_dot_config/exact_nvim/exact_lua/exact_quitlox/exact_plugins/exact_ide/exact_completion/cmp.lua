@@ -101,7 +101,13 @@ return {
     -- Tailwind
     {
         "luckasRanarison/tailwind-tools.nvim",
-        opts = {},
+        opts = {
+            conceal = {
+                enabled = true, -- can be toggled by commands
+            },
+            custom_filetypes = {}, -- see the extension section to learn how it works
+        },
+        ft = { "html", "css", "scss", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
         keys = {
             { "[c", "<cmd>TailwindPrevClass<cr>", desc = "Moves the cursor to the nearest previous Tailwind class", noremap = true, silent = true },
             { "]c", "<cmd>TailwindNextClass<cr>", desc = "Moves the cursor to the nearest next Tailwind class", noremap = true, silent = true },
