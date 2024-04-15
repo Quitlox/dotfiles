@@ -64,7 +64,7 @@ local function save_extra_cmds()
     return {
         function()
             if plugin_state.neo_tree then
-                return [[execute 'lua require("neo-tree.command").execute({action="focus", source="filesystem", position="left"})']]
+                return [[execute 'lua require("neo-tree.command").execute({action="show", source="filesystem", position="left"})']]
             end
         end,
     }
@@ -144,12 +144,18 @@ return {
                 end,
                 desc = "Find Sessions",
             },
+            { "<leader>qs", ":SessionSave<CR>", desc = "Save Session" },
+            { "<leader>qr", ":SessionRestore<CR>", desc = "Restore Session" },
+            { "<leader>qd", ":SessionDelete<CR>", desc = "Delete Session" },
         },
         config = function(_, opts)
             require("auto-session").setup(opts)
             -- require("telescope").load_extension("session-lens")
         end,
     },
+    require("quitlox.util").whichkey({
+        ["<leader>q"] = { name = "Quit/Session" },
+    }),
     require("quitlox.util").legendary({
         { ":SessionSave", "Create or save a session" },
         { ":SessionRestore", "Restore a session" },

@@ -34,9 +34,9 @@ cmp.setup.filetype("python", {
 ----------------------------------------
 -- Filtetype: Git
 ----------------------------------------
-cmp.setup.filetype("gitcommit", {
+cmp.setup.filetype({ "NeogitCommitMessage", "gitcommit", "octo" }, {
     sources = cmp.config.sources({
-        { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+        { name = "git" },
     }, {
         { name = "buffer" },
     }),

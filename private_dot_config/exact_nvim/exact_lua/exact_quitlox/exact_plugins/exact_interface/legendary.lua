@@ -27,16 +27,61 @@ end
 
 local functions = {
     -- Log Files
-    { function() deleteCacheFile("dap.log") end, description = "Clear DAP Log" },
-    { function() deleteDataFile("legendary/legendary_frecency.sqlite3") end, description = "Clear Legendary Database" },
+    {
+        function()
+            deleteCacheFile("dap.log")
+        end,
+        description = "Clear DAP Log",
+    },
+    {
+        function()
+            deleteDataFile("legendary/legendary_frecency.sqlite3")
+        end,
+        description = "Clear Legendary Database",
+    },
     -- Telescope + Vim
-    { function() require("telescope.builtin").filetypes() end, description = "List Filetypes" },
-    { function() require("telescope.builtin").registers() end, description = "List Registers" },
-    { function() require("telescope.builtin").vim_options() end, description = "List Options" },
-    { function() require("telescope.builtin").autocommands() end, description = "List Autocommands" },
-    { function() require("telescope.builtin").highlights() end, description = "List Highlights" },
-    { function() require("telescope.builtin").commands() end, description = "List Commands" },
-    { function() require("telescope.builtin").undo() end, description = "List Undo" },
+    {
+        function()
+            require("telescope.builtin").filetypes()
+        end,
+        description = "List Filetypes",
+    },
+    {
+        function()
+            require("telescope.builtin").registers()
+        end,
+        description = "List Registers",
+    },
+    {
+        function()
+            require("telescope.builtin").vim_options()
+        end,
+        description = "List Options",
+    },
+    {
+        function()
+            require("telescope.builtin").autocommands()
+        end,
+        description = "List Autocommands",
+    },
+    {
+        function()
+            require("telescope.builtin").highlights()
+        end,
+        description = "List Highlights",
+    },
+    {
+        function()
+            require("telescope.builtin").commands()
+        end,
+        description = "List Commands",
+    },
+    {
+        function()
+            require("telescope.builtin").undo()
+        end,
+        description = "List Undo",
+    },
     {
         function()
             local ft = vim.bo.filetype
@@ -63,7 +108,7 @@ return {
     version = "",
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
-        { "<leader>vk", "<cmd>Legendary<cr>", desc = "Keymap", mode = { "n", "v" } },
+        { "<leader>vk", "<cmd>Legendary commands<cr>", desc = "Keymap", mode = { "n", "v" } },
     },
     opts = {
         include_builtin = false,

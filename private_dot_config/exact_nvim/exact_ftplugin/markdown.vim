@@ -3,8 +3,8 @@
 "#######################################
 
 " We do not want concealcursor in insert mode
-set concealcursor=nvc
-set conceallevel=0
+set concealcursor=c
+" set conceallevel=0
 
 "#######################################
 "### Markdown Plugin                 ###

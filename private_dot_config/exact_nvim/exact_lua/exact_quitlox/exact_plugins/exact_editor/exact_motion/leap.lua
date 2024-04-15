@@ -28,7 +28,9 @@ local function get_line_starts(winid, backward)
         if fold_end ~= -1 then
             lnum = fold_end + increment
         else
-            if lnum ~= cur_line then table.insert(targets, { pos = { lnum, 1 } }) end
+            if lnum ~= cur_line then
+                table.insert(targets, { pos = { lnum, 1 } })
+            end
             lnum = lnum + increment
         end
     end
@@ -38,9 +40,13 @@ local function get_line_starts(winid, backward)
         local t_screen_row = vim.fn.screenpos(winid, t.pos[1], t.pos[2])["row"]
         return math.abs(cur_screen_row - t_screen_row)
     end
-    table.sort(targets, function(t1, t2) return screen_rows_from_cur(t1) < screen_rows_from_cur(t2) end)
+    table.sort(targets, function(t1, t2)
+        return screen_rows_from_cur(t1) < screen_rows_from_cur(t2)
+    end)
 
-    if #targets >= 1 then return targets end
+    if #targets >= 1 then
+        return targets
+    end
 end
 
 local function leap_to_line_forward()
@@ -62,8 +68,9 @@ end
 
 return {
     "ggandor/leap.nvim",
+    enabled = false,
     keys = {
-        { "<leader><leader>j", leap_to_line_forward,         desc = "which_key_ignore",  mode = { "n", "v" } },
-        { "<leader><leader>k", leap_to_line_backward,        desc = "which_key_ignore",  mode = { "n", "v" } },
+        { "<leader><leader>j", leap_to_line_forward, desc = "which_key_ignore", mode = { "n", "v" } },
+        { "<leader><leader>k", leap_to_line_backward, desc = "which_key_ignore", mode = { "n", "v" } },
     },
 }

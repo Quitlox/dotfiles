@@ -24,5 +24,9 @@ return {
             search = false,
             ale = false,
         },
+        marks = {
+            Info = { text = { "" } },
+            Hint = { text = { "" } },
+        },
     },
 }

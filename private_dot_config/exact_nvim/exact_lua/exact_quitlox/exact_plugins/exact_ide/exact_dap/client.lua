@@ -10,9 +10,6 @@ return {
         config = function()
             local dap = require("dap")
 
-            -- Set log level
-            dap.set_log_level("TRACE")
-
             -- Configure launch.json file handling
             require("quitlox.plugins.ide.dap.include.launch_json")
         end,

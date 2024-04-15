@@ -8,34 +8,31 @@ local filetypes = {
     "text",
 }
 
+-- Automatically set textwidth=80 for certain filetypes
+vim.api.nvim_create_autocmd("filetype", {
+    group = vim.api.nvim_create_augroup("HardWrapFileType", {}),
+    pattern = filetypes,
+    callback = function(event)
+        vim.opt_local.textwidth = 80
+    end,
+})
+
 return {
     {
         "andrewferrier/wrapping.nvim",
         ft = filetypes,
+        cmd = { "HardWrapMode", "SoftWrapMode", "ToggleWrapMode", "WrappingOpenLog" },
         opts = {
             create_keymappings = false,
             auto_set_mode_filetype_allowlist = filetypes,
         },
     },
-    {
-        {
-            "mrjones2014/legendary.nvim",
-            optional = true,
-            opts = function(_, opts)
-                opts.commands = opts.commands or {}
-                table.insert(opts.commands, {
-                    ":HardWrapMode",
-                    description = "Toggle hard wrap mode",
-                })
-                table.insert(opts.commands, {
-                    ":SoftWrapMode",
-                    description = "Toggle soft wrap mode",
-                })
-                table.insert(opts.commands, {
-                    ":ToggleWrapMode",
-                    description = "Toggle wrap mode",
-                })
-            end,
-        },
-    },
+    -- stylua: ignore
+    require("quitlox.util").whichkey({ ["<leader>Tw"] = { function() require("wrapping").toggle_wrap_mode() end, "Toggle wrap mode" } }),
+    require("quitlox.util").legendary({
+        { ":HardWrapMode", "wrapping.nvim: toggle hard wrap mode" },
+        { ":SoftWrapMode", "wrapping.nvim: toggle soft wrap mode" },
+        { ":ToggleWrapMode", "wrapping.nvim: toggle wrap mode" },
+        { ":WrappingOpenLog", "wrapping.nvim: open log file" },
+    }),
 }

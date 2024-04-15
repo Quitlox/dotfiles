@@ -5,6 +5,8 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        -- TODO: Re-enable (I have problems with typescript files)
+        enabled = false,
         event = "VeryLazy",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         config = function()

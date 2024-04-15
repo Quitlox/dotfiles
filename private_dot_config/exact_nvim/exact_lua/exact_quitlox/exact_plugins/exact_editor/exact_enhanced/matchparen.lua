@@ -7,6 +7,7 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         config = function()
+            -- We use sentiment.nvim for highlighting instead of vim-matchup
             vim.g.matchup_matchparen_enabled = 0
             require("nvim-treesitter.configs").setup({
                 matchup = {
@@ -15,8 +16,8 @@ return {
             })
         end,
     },
-    -- We use sentiment.nvim for highlighting instead of vim-matchup
     {
+        -- Sentiment - Highlight matching parenthesis
         "utilyre/sentiment.nvim",
         version = "*",
         event = "VeryLazy",

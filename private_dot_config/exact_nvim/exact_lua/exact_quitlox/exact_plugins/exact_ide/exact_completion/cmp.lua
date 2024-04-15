@@ -57,6 +57,7 @@ return {
                     -- This introduces a new group, meaning that only if the group above has
                     -- no completion items, this group is used.
                     { name = "path" },
+                    { name = "cmp_yanky" },
                     { name = "buffer" },
                     {
                         name = "spell",
@@ -77,18 +78,19 @@ return {
             require("quitlox.plugins.ide.completion.include.contexts")
         end,
         dependencies = {
-            -- Completion Sources
             "hrsh7th/cmp-nvim-lsp",
-            -- "hrsh7th/cmp-nvim-lsp-document-symbol",
-            -- "hrsh7th/cmp-nvim-lsp-signature-help",
-
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
             "dmitmel/cmp-cmdline-history",
-            "petertriho/cmp-git",
-            "hrsh7th/cmp-omni",
+            -- "hrsh7th/cmp-omni",
+
+            -- Special
+            -- stylua: ignore
+            { "petertriho/cmp-git", config = function() require("cmp_git").setup({ filetypes = { "NeogitCommitMessage", "gitcommit", "octo" } }) end },
             "lukas-reineke/cmp-rg",
+            "chrisgrieser/cmp_yanky",
+
             -- LSP Kind
             "onsails/lspkind.nvim",
             -- Snippet Engine
@@ -103,9 +105,8 @@ return {
         "luckasRanarison/tailwind-tools.nvim",
         opts = {
             conceal = {
-                enabled = true, -- can be toggled by commands
+                enabled = true,
             },
-            custom_filetypes = {}, -- see the extension section to learn how it works
         },
         ft = { "html", "css", "scss", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
         keys = {

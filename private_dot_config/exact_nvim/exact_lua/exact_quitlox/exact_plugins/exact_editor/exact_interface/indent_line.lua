@@ -43,25 +43,3 @@ return {
         hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     end,
 }
-
--- return {
---     {
---         "echasnovski/mini.indentscope",
---         version = "",
---         config = function(_, opts)
---             -- Disable indent scope for NvimTree and terminal buffers
---             vim.cmd([[
---                     augroup DisableIndentScope
---                         autocmd!
---                         autocmd Filetype NvimTree lua vim.b.miniindentscope_disable = true
---                         autocmd Filetype lazy lua vim.b.miniindentscope_disable = true
---                         autocmd Filetype mason lua vim.b.miniindentscope_disable = true
---                         autocmd TermOpen * lua vim.b.miniindentscope_disable = true
---                     augroup END
---             ]])
---
---             require("mini.indentscope").setup(opts)
---         end,
---         opts = {},
---     },
--- }

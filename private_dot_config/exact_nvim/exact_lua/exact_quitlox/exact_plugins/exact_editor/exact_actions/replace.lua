@@ -2,13 +2,10 @@ return {
     {
         "nvim-pack/nvim-spectre",
         keys = {
+            -- stylua: ignore start
             { "<C-F>", function() require("spectre").open_visual({ select_word = true }) end, desc = "Find & Replace" },
-            {
-                "<C-F>",
-                function() require("spectre").open_visual() end,
-                desc = "Find & Replace",
-                mode = { "v" },
-            },
+            { "<C-F>", function() require("spectre").open_visual() end, desc = "Find & Replace", mode = { "v" } },
+            -- stylua: ignore end
         },
     },
     require("quitlox.util").legendary_full({

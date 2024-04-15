@@ -2,7 +2,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     desc = "Neotest Buffer-local Mappings",
     callback = function(args)
         local buf = args.buf
-        print("Attaching Neotest Buffer-local Mappings to", buf)
         require("which-key").register({
             -- stylua: ignore start
             ["[T"] = { function() require("neotest").jump.prev({ status = "failed" }) end, "Previous Failed Test", },
