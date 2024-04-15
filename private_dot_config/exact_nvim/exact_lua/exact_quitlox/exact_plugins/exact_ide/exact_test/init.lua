@@ -1,5 +1,20 @@
+vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "Neotest Buffer-local Mappings",
+    callback = function(args)
+        local buf = args.buf
+        print("Attaching Neotest Buffer-local Mappings to", buf)
+        require("which-key").register({
+            -- stylua: ignore start
+            ["[T"] = { function() require("neotest").jump.prev({ status = "failed" }) end, "Previous Failed Test", },
+            ["]T"] = { function() require("neotest").jump.next({ status = "failed" }) end, "Next Failed Test", },
+            ["[t"] = { function() require("neotest").jump.prev() end, "Previous Test", },
+            ["]t"] = { function() require("neotest").jump.next() end, "Next Test", },
+            -- stylua: ignore end
+        }, { buffer = args.buf })
+    end,
+})
+
 return {
-    { import = "quitlox.plugins.ide.test" },
     {
         "folke/which-key.nvim",
         optional = true,
@@ -9,8 +24,10 @@ return {
         "mfussenegger/nvim-dap",
         optional = true,
         keys = {
+            -- stylua: ignore start
             { "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Test Debug Nearest" },
             { "<leader>tD", function() require("neotest").run.run(vim.fn.getcwd(0), { strategy = "dap" }) end, desc = "Test Debug All" },
+            -- stylua: ignore end
         },
     },
     {
@@ -18,14 +35,7 @@ return {
         version = "",
         dependencies = { "antoinemadec/FixCursorHold.nvim", "nvim-neotest/nvim-nio" },
         keys = {
-            {
-                "[T",
-                function() require("neotest").jump.prev({ status = "failed" }) end,
-                desc = "Previous Failed Test",
-            },
-            { "]T", function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next Failed Test" },
-            { "[t", function() require("neotest").jump.prev() end, desc = "Previous Test" },
-            { "]t", function() require("neotest").jump.next() end, desc = "Next Test" },
+            -- stylua: ignore start
             { "<leader>tr", function() require("neotest").run.run() end, desc = "Test Run" },
             { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Test File" },
             { "<leader>tx", function() require("neotest").run.stop() end, desc = "Test Stop" },
@@ -33,6 +43,7 @@ return {
             { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Test Output" },
             { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Test Summary toggle" },
             { "<leader>lt", function() require("neotest").summary.open() end, desc = "Locate Test" },
+            -- stylua: ignore end
         },
         config = function(_, opts)
             -- Blatently stolen from
@@ -41,7 +52,9 @@ return {
                 local adapters = {}
                 for name, config in pairs(opts.adapters or {}) do
                     if type(name) == "number" then
-                        if type(config) == "string" then config = require(config) end
+                        if type(config) == "string" then
+                            config = require(config)
+                        end
                         adapters[#adapters + 1] = config
                     elseif config ~= false then
                         local adapter = require(name)

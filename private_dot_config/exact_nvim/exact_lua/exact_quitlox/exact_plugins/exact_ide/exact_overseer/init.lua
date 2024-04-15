@@ -34,7 +34,7 @@ return {
                 -- direction = "float",
                 hidden = false,
                 on_open = function(term)
-                    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+                    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true, nowait = true })
                 end,
                 open_on_start = false,
             },

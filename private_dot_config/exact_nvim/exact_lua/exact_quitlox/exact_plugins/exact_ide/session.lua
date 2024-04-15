@@ -20,22 +20,13 @@ local function pre_save_hook()
     plugin_state.neo_tree = require("quitlox.util").is_neotree_open()
 
     -- Close all open plugins
-    if package.loaded["neo-tree"] then
-        vim.cmd("Neotree action=close")
-    end
-    if package.loaded["neotest"] then
-        require("neotest").output_panel.close()
-        require("neotest").summary.close()
-    end
-    if package.loaded["edgy"] then
-        require("edgy").close()
-    end
-    if package.loaded["dapui"] then
-        require("dapui").close()
-    end
-    if package.loaded["diffview"] then
-        vim.cmd([[DiffviewClose]])
-    end
+    -- stylua: ignore start
+    if package.loaded["neo-tree"] then vim.cmd("Neotree action=close") end
+    if package.loaded["neotest"] then require("neotest").output_panel.close() require("neotest").summary.close() end
+    if package.loaded["edgy"] then require("edgy").close() end
+    if package.loaded["dapui"] then require("dapui").close() end
+    if package.loaded["diffview"] then vim.cmd([[DiffviewClose]]) end
+    -- stylua: ignore end
     if package.loaded["neogit"] then
         for _, win in ipairs(vim.api.nvim_list_wins()) do
             local buf = vim.api.nvim_win_get_buf(win)
@@ -164,7 +155,17 @@ return {
         { ":SessionRestore", "Restore a session" },
         { ":SessionDelete", "Delete a session" },
         { ":SessionPurgeOrphaned", "Delete orphaned sessions" },
-        { ":Autosession search", "Search for sessions" }, -- FIXME: Doesn't work
-        { ":Autosession delete", "Delete a session" }, -- FIXME: Doesn't work
+    }),
+    require("quitlox.util").legendary_full({
+        {
+            ":SessionSearch",
+            function()
+                require("auto-session").setup_session_lens()
+                require("auto-session.session-lens").search_session()
+            end,
+            description = "Search for a session",
+        },
+        -- { ":Autosession search", ":Autosession search", description = "Search for sessions" },
+        { ":Autosession delete", ":Autosession delete", description = "Delete a session" },
     }),
 }

@@ -77,6 +77,10 @@ return {
                 right = { size = 50 },
                 -- bottom = { size = 0.40 },
             },
+            keys = {
+                -- FIXME: For some reason, disabling this fixes the wait after q
+                ["q"] = false,
+            },
 
             wo = {
                 winbar = true,

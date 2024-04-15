@@ -114,7 +114,9 @@ return {
         config = function()
             require("quitlox.util").on_attach(function(client, bufnr)
                 whitelist = { "tsserver", "pyright" }
-                if vim.tbl_contains(whitelist, client.name) then require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr) end
+                if vim.tbl_contains(whitelist, client.name) then
+                    require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+                end
             end)
         end,
     },
