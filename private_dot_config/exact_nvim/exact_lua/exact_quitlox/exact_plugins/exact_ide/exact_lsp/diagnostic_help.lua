@@ -17,8 +17,8 @@ return {
             opts.commands = opts.commands or {}
             vim.list_extend(opts.commands, {
                 -- stylua: ignore start
-                { ":DebugDiagnosticWithAI", function() require("wtf").ai() end, description = "wtf.nvim: debug diagnostic with ai" },
-                { ":SearchDiagnosticWithGoogle", function() require("wtf").search() end,description = "wtf.nvim: search diagnostic with google" },
+                { ":DebugDiagnosticWithAI", function() require("wtf").ai() end, description = "wtf.nvim: Debug diagnostic with ai" },
+                { ":SearchDiagnosticWithGoogle", function() require("wtf").search() end,description = "wtf.nvim: Search diagnostic with google" },
                 -- stylua: ignore end
             })
         end,

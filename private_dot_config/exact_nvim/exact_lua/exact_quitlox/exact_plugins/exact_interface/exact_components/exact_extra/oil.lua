@@ -3,7 +3,7 @@ return {
         "stevearc/oil.nvim",
         version = "",
         opts = {
-            default_file_explorer = false,
+            default_file_explorer = true,
             keymaps = {
                 ["q"] = "actions.close",
                 ["<esc>"] = "actions.close",
@@ -21,20 +21,12 @@ return {
         optional = true,
         opts = function(_, opts)
             opts.commands = opts.commands or {}
-            table.insert(opts.commands, {
-                ":Oil",
-                function() require("oil").open_float(vim.fn.getcwd()) end,
-                description = "Oil: Open",
-            })
-            table.insert(opts.commands, {
-                ":OilRoot",
-                function() require("oil").open_float(vim.fn.getcwd()) end,
-                description = "Oil: Open in project root",
-            })
-            table.insert(opts.commands, {
-                ":OilDiscard",
-                function() require("oil").discard_all_changes() end,
-                description = "Oil: Discard changes",
+            vim.list_extend(opts.commands, {
+                -- stylua: ignore start
+                { ":Oil", function() require("oil").open_float(vim.fn.getcwd()) end, description = "oil.nvim: Open" },
+                { ":OilRoot", function() require("oil").open_float(vim.fn.getcwd()) end, description = "oil.nvim: Open in project root" },
+                { ":OilDiscard", function() require("oil").discard_all_changes() end, description = "oil.nvim: Discard changes" },
+                -- stylua: ignore end
             })
         end,
     },

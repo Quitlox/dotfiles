@@ -12,6 +12,15 @@ local winbar_disabled_filetypes = {
     "neo-tree",
 }
 
+-- Update the statusline when the git signs are updated
+vim.api.nvim_create_autocmd("User", {
+    pattern = "GitSignsUpdate",
+    group = vim.api.nvim_create_augroup("LualineRefreshEvents", {}),
+    callback = function()
+        require("lualine").refresh({ place = { "statusline" } })
+    end,
+})
+
 ----------------------------------------
 -- Import Modules
 ----------------------------------------

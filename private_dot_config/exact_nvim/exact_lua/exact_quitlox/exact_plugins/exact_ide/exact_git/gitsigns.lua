@@ -18,14 +18,22 @@ return {
             ----------------------------------------
 
             local function next_hunk()
-                if vim.wo.diff then return "]h" end
-                vim.schedule(function() gs.next_hunk() end)
+                if vim.wo.diff then
+                    return "]h"
+                end
+                vim.schedule(function()
+                    gs.next_hunk()
+                end)
                 return "<Ignore>"
             end
 
             local function prev_hunk()
-                if vim.wo.diff then return "[h" end
-                vim.schedule(function() gs.prev_hunk() end)
+                if vim.wo.diff then
+                    return "[h"
+                end
+                vim.schedule(function()
+                    gs.prev_hunk()
+                end)
                 return "<Ignore>"
             end
 
@@ -68,9 +76,19 @@ return {
                     u = { gs.undo_stage_hunk, "Hunk Reset" },
                     R = { gs.reset_buffer, "Hunk Reset Buffer" },
                     p = { gs.preview_hunk, "Hunk Preview" },
-                    b = { function() gs.blame_line({ full = true }) end, "Hunk Blame" },
+                    b = {
+                        function()
+                            gs.blame_line({ full = true })
+                        end,
+                        "Hunk Blame",
+                    },
                     d = { gs.diffthis, "Hunk Diff" },
-                    D = { function() gs.diffthis("~") end, "Hunk Diff Buffer" },
+                    D = {
+                        function()
+                            gs.diffthis("~")
+                        end,
+                        "Hunk Diff Buffer",
+                    },
                     t = { name = "Toggle", d = { gs.toggle_deleted, "Hunk Toggle Deleted" } },
                 },
             }, { prefix = "<leader>", mode = "n", buffer = bufnr })
@@ -85,7 +103,7 @@ return {
         })
 
         ----------------------------------------
-        -- Scrollbar integration
+        -- Integrations
         ----------------------------------------
         require("scrollbar.handlers.gitsigns").setup()
     end,
