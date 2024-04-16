@@ -1,4 +1,5 @@
 return {
+    -- FIXME: Remove once Neovim 0.10 is out
     "numToStr/Comment.nvim",
     dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     keys = {

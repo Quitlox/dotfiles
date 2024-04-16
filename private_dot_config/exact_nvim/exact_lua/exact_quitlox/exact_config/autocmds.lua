@@ -13,12 +13,12 @@ vim.api.nvim_create_autocmd("filetype", {
 
         "notify",
         "spectre_panel",
+        "OverseerList",
+        "oil",
 
         "neotest-output",
         "neotest-summary",
         "neotest-output-panel",
-
-        "OverseerList",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

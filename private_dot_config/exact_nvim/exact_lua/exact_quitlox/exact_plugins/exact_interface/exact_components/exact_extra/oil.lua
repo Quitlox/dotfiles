@@ -5,11 +5,8 @@ return {
         opts = {
             default_file_explorer = true,
             keymaps = {
-                ["q"] = "actions.close",
+                -- ["q"] = "actions.close",
                 ["<esc>"] = "actions.close",
-            },
-            view_optoins = {
-                show_hidden = true,
             },
         },
         keys = {

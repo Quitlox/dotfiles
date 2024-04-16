@@ -1,16 +1,6 @@
 ----------------------------------------
 -- SETTINGS
 ----------------------------------------
-local winbar_disabled_filetypes = {
-    "dap-repl",
-    "dapui_scopes",
-    "dapui_breakpoints",
-    "dapui_stacks",
-    "dapui_watches",
-    "dapui_console",
-    "edgy",
-    "neo-tree",
-}
 
 -- Update the statusline when the git signs are updated
 vim.api.nvim_create_autocmd("User", {
@@ -22,11 +12,63 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 ----------------------------------------
--- Import Modules
+-- Define Modules
 ----------------------------------------
 
-local mixed_indent_func = require("quitlox.plugins.interface.components.base.statusline.modules.mixed_indent")
-local py_virtual_env = require("quitlox.plugins.interface.components.base.statusline.modules.py_virtual_env")
+local mixed_indent_func = function()
+    local space_pat = [[\v^ +]]
+    local tab_pat = [[\v^\t+]]
+    local space_indent = vim.fn.search(space_pat, "nwc")
+    local tab_indent = vim.fn.search(tab_pat, "nwc")
+    local mixed = (space_indent > 0 and tab_indent > 0)
+    local mixed_same_line
+    if not mixed then
+        mixed_same_line = vim.fn.search([[\v^(\t+ | +\t)]], "nwc")
+        mixed = mixed_same_line > 0
+    end
+    if not mixed then
+        return ""
+    end
+    if mixed_same_line ~= nil and mixed_same_line > 0 then
+        return "" .. mixed_same_line
+    end
+    local space_indent_cnt = vim.fn.searchcount({ pattern = space_pat, max_count = 1e3 }).total
+    local tab_indent_cnt = vim.fn.searchcount({ pattern = tab_pat, max_count = 1e3 }).total
+    if space_indent_cnt > tab_indent_cnt then
+        return "" .. tab_indent
+    else
+        return "" .. space_indent
+    end
+end
+
+local function py_venv_func()
+    local actived_venv = function()
+        local venv_name = require("venv-selector").get_active_venv()
+        if venv_name ~= nil then
+            if string.find(venv_name, "pypoetry") ~= nil then
+                return string.gsub(venv_name, ".*/pypoetry/virtualenvs/", "poetry")
+            end
+
+            local find_venv = string.find(venv_name, "./venv")
+            local find_dot_venv = string.find(venv_name, "/.venv")
+            if find_venv ~= nil then
+                return string.sub(venv_name, find_venv[0], -1)
+            end
+            if find_dot_venv ~= nil then
+                return string.sub(venv_name, find_dot_venv + 1, -1)
+            end
+
+            return venv_name
+        end
+
+        return "none"
+    end
+
+    if vim.bo.filetype ~= "python" then
+        return ""
+    end
+    return "(" .. actived_venv() .. ")"
+end
 
 local encoding = function()
     local replaced, _count = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
@@ -149,8 +191,8 @@ local filetype = {
     colored = false,
 }
 
-local python = {
-    py_virtual_env,
+local py_venv = {
+    py_venv_func,
     separator = { left = "" },
 }
 
@@ -195,7 +237,7 @@ return {
             lualine_b = { branch },
             lualine_c = { filename, midsection, linting },
             lualine_x = { keymap, mixed_indent, overseer, lazy, "fancy_diff", "fancy_diagnostics" },
-            lualine_y = { filetype, encoding, fileformat, python, yaml },
+            lualine_y = { filetype, encoding, fileformat, py_venv, yaml },
             lualine_z = { "fancy_searchcount", "location" },
         },
         inactive_sections = {
