@@ -5,8 +5,8 @@ return {
         opts = {},
         keys = {
             -- stylua: ignore start
-            { "gw", mode = { "n", "x" }, function() require("wtf").ai() end, desc = "Debug diagnostic with AI" },
-            { "gW", mode = { "n" }, function() require("wtf").search() end, desc = "Search diagnostic with Google" },
+            -- { "gw", mode = { "n", "x" }, function() require("wtf").ai() end, desc = "Debug diagnostic with AI" },
+            -- { "gW", mode = { "n" }, function() require("wtf").search() end, desc = "Search diagnostic with Google" },
             -- stylua: ignore end
         },
     },
