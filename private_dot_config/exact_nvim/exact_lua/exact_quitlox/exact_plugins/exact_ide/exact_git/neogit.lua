@@ -3,7 +3,8 @@ vim.api.nvim_create_autocmd("User", {
     pattern = "GitSignsUpdate",
     group = vim.api.nvim_create_augroup("NeogitRefreshEvents", {}),
     callback = function()
-        require("neogit").refresh_manually(vim.api.nvim_buf_get_name(0))
+        -- require("neogit").refresh_manually(vim.api.nvim_buf_get_name(0))
+        -- FIXME: Deprecated
     end,
 })
 
