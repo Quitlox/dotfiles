@@ -8,6 +8,7 @@ return {
             },
         },
     },
+    -- Preview Markdown file in Browser
     {
         "iamcco/markdown-preview.nvim",
         ft = "markdown",
@@ -17,6 +18,24 @@ return {
             { "<localleader>mb", "<cmd>MarkdownPreviewStop<cr>", desc = "Markdown Preview Stop" },
             { "<localleader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview Toggle" },
         },
-        build = function() vim.fn["mkdp#util#install"]() end,
+        build = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+    },
+    -- Preview Markdown file in Neovim
+    {
+        "MeanderingProgrammer/markdown.nvim",
+        name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        keys = {
+            { "<localleader>mr", "<cmd>RenderMarkdownToggle<cr>", desc = "Toggle in-line preview" },
+        },
+        ft = "markdown",
+        opts = {
+            start_enabled = false,
+        },
+        config = function(_, opts)
+            require("render-markdown").setup(opts)
+        end,
     },
 }

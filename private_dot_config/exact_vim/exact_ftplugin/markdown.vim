@@ -10,7 +10,7 @@ let g:indentLine_setConceal = 0
 let g:indentLine_setColors = 0
 
 " We do not want concealcursor in insert mode
-set concealcursor=nvc
+set concealcursor=c
 
 "#######################################
 "### Markdown Plugin                 ###
