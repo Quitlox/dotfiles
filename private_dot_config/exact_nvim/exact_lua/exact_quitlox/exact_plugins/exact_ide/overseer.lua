@@ -32,18 +32,25 @@ return {
             strategy = {
                 "toggleterm",
                 -- direction = "float",
-                hidden = false,
+                hidden = true,
                 on_open = function(term)
                     vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true, nowait = true })
                 end,
                 open_on_start = false,
             },
             task_list = {
+                default_detail = 2,
                 bindings = {
                     ["<C-l>"] = false,
                     ["<C-h>"] = false,
-                    ["<esc>"] = "Close",
-                    ["o"] = "<cmd>OverseerQuickAction open float<cr>",
+                    ["<C-j>"] = false,
+                    ["<C-k>"] = false,
+                    ["<A-l>"] = "IncreaseDetail",
+                    ["<A-h>"] = "DecreaseDetail",
+                    ["<A-k>"] = "ScrollOutputUp",
+                    ["<A-j>"] = "ScrollOutputDown",
+                    ["<Esc>"] = "Close",
+                    ["o"] = "<cmd>OverseerQuickAction open<cr>",
                     ["d"] = "<cmd>OverseerQuickAction dispose<cr>",
                     ["s"] = "<cmd>OverseerQuickAction start<cr>",
                     ["r"] = "<cmd>OverseerQuickAction restart<cr>",

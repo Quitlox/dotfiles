@@ -53,10 +53,10 @@ return {
             right = {
                 { ft = "neotest-summary" },
                 { title = "Outline", ft = "neo-tree", filter = filter_nt_source_eq("document_symbols"), wo = { winbar = "  󰙅  Outline" } },
-                { title = "Overseer", ft = "OverseerList", wo = { winbar = "    Overseer" } },
             },
             bottom = {
                 { ft = "toggleterm", size = { height = 0.4 }, filter = filter_not_relative(), wo = { winbar = "  󰆍  Terminal" } },
+                { title = "Overseer", size = { height = 20 }, ft = "OverseerList", wo = { winbar = "    Overseer" } },
                 { ft = "NeogitStatus", size = { height = 20 }, wo = { winbar = "  󰊢  Neogit" } },
                 { ft = "gitlab", wo = { winbar = "  󰊢  Gitlab" } },
 

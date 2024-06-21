@@ -9,7 +9,7 @@ augroup filetypedetect
     " https://github.com/data61/MP-SPDZ
     au! BufNewFile,BufRead *.mpc setfiletype python
     au! BufNewFile,BufRead ~/.config/polybar/config set filetype=dosini
-    au! BufRead,BufNewFile *.sage,*.spyx,*.pyx setfiletype python
+    au! BufNewFile,BufRead *.sage,*.spyx,*.pyx setfiletype python
     " .sbatch is a filetype used by slurm, software for managing and running jobs
     " on computing clusters.
     au! BufNewFile,BufRead *.sbatch setfiletype bash

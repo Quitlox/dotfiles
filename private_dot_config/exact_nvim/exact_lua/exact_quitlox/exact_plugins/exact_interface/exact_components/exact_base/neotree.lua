@@ -39,6 +39,7 @@ return {
                 group_empty_dirs = true,
             },
             document_symbols = {
+                follow_cursor = true,
                 window = {
                     mappings = {
                         ["<cr>"] = "jump_to_symbol",
@@ -91,7 +92,7 @@ return {
             { "<leader>lf", "<cmd>Neotree position=left source=filesystem reveal=true<cr>", desc = "Locate File" },
             { "<leader>oe", "<cmd>Neotree position=left source=filesystem reveal=false toggle=true<cr>", desc = "Open Explorer" },
             { "<leader>oo", "<cmd>Neotree position=right document_symbols reveal=true<cr>", desc = "Open Outline" },
-            { "<leader>ls", "<cmd>Neotree position=right document_symbols reveal=true<cr>", desc = "Locate Symbol" },
+            { "<leader>ls", "<cmd>Neotree position=right source=document_symbols reveal=true<cr>", desc = "Locate Symbol" },
         },
     },
     {

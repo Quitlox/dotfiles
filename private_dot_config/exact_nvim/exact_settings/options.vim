@@ -23,7 +23,8 @@ let g:vimsyn_embed = 'l'
 autocmd FileType * setlocal formatoptions-=o
 
 " Automatically resize Windows when resizing the terminal
-" autocmd VimResized * wincmd =
+ autocmd VimResized * wincmd =
+ autocmd TermOpen * wincmd =
 " autocmd WinEnter * wincmd =
 " autocmd WinLeave * wincmd =
 set equalalways
@@ -90,7 +91,7 @@ set showmatch        " Show matching brackets when text indicator is over them
 set cursorline
 set culopt=number
 set concealcursor=c
-set conceallevel=2
+" set conceallevel=2
 " Searching
 set ignorecase
 set smartcase
@@ -103,7 +104,6 @@ set mouse=nv         " Disable mouse in command-line mode
 set number           " Enable line-numbering
 set showtabline=2
 set splitright	     " Open splits in the window to the right
-		     " For opening splits from NERDTree
 set splitbelow       " Like vscode
 set splitkeep=screen
 " Performance
@@ -114,10 +114,13 @@ set whichwrap+=<,>,h,l
 set noerrorbells
 set novisualbell
 " Misc
-set formatoptions+=1 " Don't break lines after a one-letter word
-set timeoutlen=800
-set history=1000      " Sets how many lines of history VIM has to remember
 set confirm
+set formatoptions+=1 " Don't break lines after a one-letter word
+set history=1000      " Sets how many lines of history VIM has to remember
+set tabstop=4
+set title
+set titlestring=neovim:\ %{fnamemodify(getcwd(),':t')}\ \(%t\) titlelen=70
+set timeoutlen=800
 
 let g:loaded_python_provider = 0
 let g:python3_host_prog = '/usr/bin/python3'
