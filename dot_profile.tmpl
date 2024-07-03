@@ -38,7 +38,7 @@ XDG_CACHE_HOME="$HOME/.cache"
 XDG_DATA_HOME="$HOME/.local/share"
 XDG_CONFIG_HOME="$HOME/.config"
 # Load XDG_BASE_DIR configuration
-source ~/.config/user-dirs.dirs
+[[ -f ~/.config/user-dirs.dirs ]] && source ~/.config/user-dirs.dirs
 
 # Required by ssh-agent.service, which auto-starts ssh-agent
 # https://wiki.archlinux.org/index.php/SSH_keys#Start_ssh-agent_with_systemd_user
