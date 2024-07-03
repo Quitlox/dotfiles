@@ -1,0 +1,19 @@
+---
+- name: Generate the locale system_locale
+  community.general.locale_gen:
+    name: "{{ system_locale }}"
+  become: true
+
+- name: Set timezone to system_timezone
+  community.general.timezone:
+    name: "{{ system_timezone }}"
+  notify: restart cron # TODO: Configure cron?
+
+  # The recommended and default way is to save
+  # the hardware clock in UTC.
+  # This may conflict with Windows, thus in a
+  # dual-boot environment, Windows should be
+  # configured to use UTC.
+- name: Ensure Hardware Clock is set to UTC
+  community.general.timezone:
+    rtc: UTC

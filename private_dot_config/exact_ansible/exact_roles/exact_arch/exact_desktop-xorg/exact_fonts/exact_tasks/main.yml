@@ -1,0 +1,39 @@
+---
+- name: Install fontconfig
+  community.general.pacman:
+    name:
+      - fontconfig
+
+- name: Check if nerd-fonts-complete is installed
+  command: pacman -Q nerd-fonts-complete # TODO: use package facts
+  register: nerd_fonts_complete_installed
+  failed_when: nerd_fonts_complete_installed.rc != 0 and nerd_fonts_complete_installed.rc != 1
+  changed_when: false
+  check_mode: false
+
+- name: Install Iosevka font
+  become: true
+  community.general.pacman:
+    # NerdFonts: Iconic font aggregator, collection, and patcher.
+    name: ttf-iosevka-nerd
+  when: nerd_fonts_complete_installed.rc != 0
+
+- name: Install siji font
+  become: true
+  become_user: "{{ user_name }}"
+  kewlfft.aur.aur:
+    # An iconic bitmap font based on Stlarch with additional glyphs.
+    # > Used in polybar
+    name: siji
+
+- name: Enable sub-pixel rendering
+  ansible.builtin.file:
+    src: /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf
+    dest: /etc/fonts/conf.d/10-sub-pixel-rgb.conf
+    state: link
+  become: true
+
+- name: Install emoji font
+  community.general.pacman:
+    name: noto-fonts-emoji
+  become: true

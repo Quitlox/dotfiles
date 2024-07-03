@@ -1,0 +1,12 @@
+---
+- name: Install sshfs
+  ansible.builtin.package:
+    name: sshfs
+  become: true
+
+- name: Configure sshfs
+  ansible.builtin.lineinfile:
+    path: /etc/fuse.conf
+    regexp: "^#user_allow_other"
+    line: "user_allow_other"
+  become: true

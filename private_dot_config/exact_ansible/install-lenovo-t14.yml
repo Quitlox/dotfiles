@@ -1,0 +1,51 @@
+---
+- name: Install and configure Lenovo T14
+  hosts: lenovo-t14
+  gather_facts: true
+  handlers:
+    - ansible.builtin.import_tasks: handlers/grub.yml
+
+  roles:
+    - linux/system/user
+    - arch/system/yay
+    - arch/system/chaotic-aur
+    - linux/system/package-upgrade
+
+    - arch/system/beep
+    - arch/system/hibernate
+    - arch/system/laptop
+    - arch/system/microcode
+    - arch/system/mkinitcpio
+    - arch/system/numlock
+    - arch/system/pacman
+    - arch/system/swap
+
+    - linux/system/bluetooth
+    - linux/system/locale
+    - linux/system/network
+    - linux/system/ssd
+    - linux/system/ssh
+    - linux/system/sshfs
+    - linux/system/time
+
+    - machines/lenovo-t14/firmware
+    - machines/lenovo-t14/screen-tearing
+    - machines/lenovo-t14/video-drivers
+
+    - arch/desktop-xorg/appearance
+    - arch/desktop-xorg/brightness
+    - arch/desktop-xorg/clipboard
+    - arch/desktop-xorg/environment
+    - arch/desktop-xorg/fonts
+    - arch/desktop-xorg/monitors
+    - arch/desktop-xorg/printing
+    - arch/desktop-xorg/screenshot
+    - arch/desktop-xorg/sound
+    - arch/desktop-xorg/wacom
+
+    - linux/applications/atuin-client
+    - linux/applications/cmdline
+    - linux/applications/desktop
+    - linux/applications/dev
+    - linux/applications/docker
+    - linux/applications/hacking

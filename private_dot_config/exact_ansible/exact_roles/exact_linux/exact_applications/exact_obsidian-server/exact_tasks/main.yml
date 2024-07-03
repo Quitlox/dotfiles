@@ -1,0 +1,72 @@
+---
+- name: Create obsidian-sync system user
+  ansible.builtin.user:
+    name: obsidian-sync
+    system: true
+    create_home: false
+
+    append: true
+    groups:
+      - docker
+
+    comment: Used for the obsidian-sync service
+
+- name: Create obsidian-sync folder
+  ansible.builtin.file:
+    state: directory
+    path: /var/www/obsidian-sync
+    owner: obsidian-sync
+    group: obsidian-sync
+
+- name: Create data directory
+  ansible.builtin.file:
+    path: /var/www/obsidian-sync/data
+    state: directory
+    owner: obsidian-sync
+    group: obsidian-sync
+
+- name: Place obsidian-sync configuration file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/local.ini"
+    dest: /var/www/obsidian-sync/local.ini
+    owner: obsidian-sync
+    group: obsidian-sync
+
+- name: Place obsidian-sync env file
+  ansible.builtin.copy:
+    dest: /var/www/atuin-server/.env
+    content: |
+      COUCHDB_USER="{{ obsidian.couchdb.user }}"
+      COUCHDB_PASSWORD="{{ obsidian.couchdb.password }}"
+    owner: obsidian-sync
+    group: obsidian-sync
+
+- name: Place docker-compose file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/docker-compose.yml"
+    dest: /var/www/obsidian-sync/docker-compose.yml
+    owner: obsidian-sync
+    group: obsidian-sync
+
+- name: Place obsidian-sync.service file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/obsidian-sync.service"
+    dest: /etc/systemd/system/obsidian-sync.service
+    owner: root
+    group: root
+
+- name: Set port forwarding
+  command: sysctl net.ipv4.conf.all.forwarding=1
+  become: true
+
+- name: Configure port forwarding
+  command: iptables -P FORWARD ACCEPT
+  become: true
+
+- name: Enable and start obsidian-sync.service
+  ansible.builtin.systemd:
+    name: obsidian-sync.service
+    enabled: true
+    state: restarted
+    daemon_reload: true
+  become: true

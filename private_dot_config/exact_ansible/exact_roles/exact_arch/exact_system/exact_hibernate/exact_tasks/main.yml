@@ -1,0 +1,33 @@
+---
+- name: Check if swapfile exists
+  ansible.builtin.stat:
+    path: /swapfile
+  become: true
+  register: swapfile_stat
+
+- name: Gather swap_device_uuid
+  ansible.builtin.command: findmnt -no UUID -T /swapfile
+  register: swap_file_uuid
+  when: swapfile_stat.stat.exists
+  changed_when: false
+  check_mode: false
+
+- name: Gather swap_file_offset
+  ansible.builtin.shell: filefrag -v /swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
+  register: swap_file_offset
+  become: true
+  when: swapfile_stat.stat.exists
+  changed_when: false
+  check_mode: false
+
+- name: Add kernel parameters for hibernation
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: "^GRUB_CMDLINE_LINUX_DEFAULT"
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet resume=UUID={{ swap_file_uuid.stdout }} resume_offset={{ swap_file_offset.stdout }}"'
+  when: swapfile_stat.stat.exists
+  notify: regenerate grub
+# Note: There is also a package called uswsusp-git which provides
+# userspace commands for configuring hibernation. Unfortunately,
+# the ArchWiki doesn't specify the benefits and how to configure it
+# with systemd.

@@ -1,0 +1,4 @@
+- name: Message concerning zotero
+  ansible.builtin.debug:
+    msg: "Don't forget to install the zotero-better-bibtex addon"
+  listen: message zotero addon

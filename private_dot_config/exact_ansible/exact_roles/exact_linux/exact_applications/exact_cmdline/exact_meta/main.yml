@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: linux/applications/npm
+    when:
+      - ansible_facts['os_family'] == 'Debian'

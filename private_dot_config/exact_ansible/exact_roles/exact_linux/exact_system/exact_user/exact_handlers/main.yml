@@ -1,0 +1,4 @@
+---
+- name: Notify passwd
+  ansible.builtin.debug:
+    msg: "Please set the password for the user '{{ user_name }}' using `passwd`"

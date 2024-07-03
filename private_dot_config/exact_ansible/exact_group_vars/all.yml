@@ -1,0 +1,15 @@
+# These variables are loaded by all playbooks
+# and should contain only defaults that apply
+# to all my machines.
+
+# User configuration
+# ==================
+user_name: quitlox
+user_shell: /bin/zsh
+
+# System configuration
+# ====================
+system_locale: "en_US.UTF-8"
+system_timezone: "Europe/Amsterdam"
+system_headless: true
+system_swap_size: 4294967296 # 4.0 GiB

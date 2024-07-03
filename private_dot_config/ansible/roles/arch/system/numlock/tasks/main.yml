@@ -1,5 +1,0 @@
----
-- name: Install numlock mkinitcpio hook
-  aur:
-    name: mkinitcpio-numlock
-    user: "{{ user.name }}"

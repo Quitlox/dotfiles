@@ -1,0 +1,5 @@
+---
+- name: Install numlock mkinitcpio hook
+  become_user: "{{ user_name }}"
+  kewlfft.aur.aur:
+    name: mkinitcpio-numlock

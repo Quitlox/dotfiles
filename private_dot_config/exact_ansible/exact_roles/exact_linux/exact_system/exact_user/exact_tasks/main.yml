@@ -1,0 +1,38 @@
+---
+- name: Install sudo package
+  ansible.builtin.package:
+    name: sudo
+  become: true
+
+- name: Create default user
+  ansible.builtin.user:
+    name: "{{ user_name }}"
+    shell: /bin/zsh
+    create_home: true
+    update_password: on_create
+  become: true
+  notify: Notify passwd
+
+- name: Add wheel group
+  ansible.builtin.group:
+    name: wheel
+    system: true
+  become: true
+  when: ansible_facts['os_family'] == 'Archlinux'
+
+- name: Configure wheel group
+  ansible.builtin.lineinfile:
+    dest: /etc/sudoers
+    state: present
+    line: "%wheel ALL=(ALL) NOPASSWD:ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+  become: true
+  when: ansible_facts['os_family'] == 'Archlinux'
+
+- name: Add default user to wheel group
+  ansible.builtin.user:
+    name: "{{ user_name }}"
+    groups: wheel
+    append: true
+  become: true
+  when: ansible_facts['os_family'] == 'Archlinux'

@@ -1,0 +1,2 @@
+system_headless: false
+system_swap_size: 4294967296 # 4.0 GiB

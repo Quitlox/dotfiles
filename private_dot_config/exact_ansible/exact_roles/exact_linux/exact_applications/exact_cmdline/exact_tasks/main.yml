@@ -1,0 +1,116 @@
+---
+- name: Install common command-line programs
+  become: true
+  ansible.builtin.package:
+    name:
+      # Bare Essentials
+      - zsh
+      - git
+      # Frequently used tools
+      - exa
+      - bat
+      - fzf
+      # Programs
+      - tree
+      - unzip
+      - make
+      - btop
+      - ascii # Manpage with ASCII table
+
+- name: Install common command-line programs on Arch
+  become: true
+  community.general.pacman:
+    name: fd
+  when: ansible_facts['os_family'] == "Archlinux"
+
+- name: Install common command-line programs on Debian
+  become: true
+  ansible.builtin.apt:
+    name: fd-find
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Install command-line dependencies
+  become: true
+  ansible.builtin.package:
+    name:
+      # Ripgrep recursively searches directories for a regex pattern while respecting your gitignore.
+      # > Used by Neovim Telescope Live Grep.
+      - ripgrep
+      # Alternative for default 'diff'
+      # > Used by  ~/.config/zsh/zsh-config alias for 'diff'
+      - colordiff
+
+- name: Install command-line dependencies on Arch
+  become: true
+  community.general.pacman:
+    name:
+      # Package Manager for the Ruby Language
+      # > Used by: zinit
+      - rubygems
+      # Simple database
+      # > Used by: Neovim Telescope
+      - sqlite
+  when: ansible_facts['os_family'] == "Archlinux"
+
+- name: Install command-line dependencies on Debian
+  become: true
+  ansible.builtin.apt:
+    name:
+      # Package Manager for the Ruby Language
+      # > Used by: zinit
+      - ruby-rubygems
+      # Simple database
+      # > Used by: Neovim Telescope
+      - sqlite3
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Install vim distribution on Arch
+  become: true
+  when: ansible_facts['os_family'] == "Archlinux"
+  block:
+    - name: Uninstall vim
+      become: true
+      ansible.builtin.package:
+        name: vim
+        state: absent
+    - name: Install gvim as default vim
+      become: true
+      ansible.builtin.package:
+        name: gvim
+
+- name: Install neovim and dependencies
+  block:
+    - name: Install NeoVim
+      become: true
+      ansible.builtin.package:
+        name: neovim
+
+      # Python client for Neovim for plugins written in Python
+    - name: Install pynvim on Arch
+      become: true
+      community.general.pacman:
+        name: python-pynvim
+      when: ansible_facts['os_family'] == "Archlinux"
+
+      # Python client for Neovim for plugins written in Python
+    - name: Install pynvim on Debian
+      become: true
+      ansible.builtin.apt:
+        name: python3-pynvim
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Install VSCode codicons on Arch
+      become: true
+      become_user: "{{ user_name }}"
+      kewlfft.aur.aur:
+        name: vscode-codicons-git
+      when: ansible_facts['os_family'] == "Archlinux"
+
+    - name: Install VSCode codicons on Debian
+      become: true
+      community.general.npm:
+        name: "@vscode/codicons"
+        global: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - "'npm' in ansible_facts.packages"

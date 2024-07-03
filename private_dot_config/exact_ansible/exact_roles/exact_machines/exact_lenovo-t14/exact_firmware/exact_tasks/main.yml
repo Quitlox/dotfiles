@@ -1,0 +1,18 @@
+---
+- name: Install firmware
+  notify: regenerate initramfs
+  block:
+    - name: Install default linux-firmware
+      become: true
+      community.general.pacman:
+        name: linux-firmware
+
+    - name: Install extra linux-firmware for quitlox-lenovo-t14
+      become: true
+      become_user: "{{ user_name }}"
+      kewlfft.aur.aur:
+        name:
+          - aic94xx-firmware
+          - wd719x-firmware
+          - linux-firmware-qlogic
+      when: ansible_product_name == "20UES06X00"

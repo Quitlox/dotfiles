@@ -1,0 +1,32 @@
+---
+- name: Import primary key
+  become: true
+  ansible.builtin.command: pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+  changed_when: false
+
+- name: Sign primary key
+  become: true
+  ansible.builtin.command: pacman-key --lsign-key 3056513887B78AEB
+  changed_when: false
+
+- name: Install keyring and mirrorlist
+  become: true
+  ansible.builtin.command: pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
+  changed_when: false
+
+- name: Check pacman.conf contents
+  ansible.builtin.command: cat /etc/pacman.conf
+  register: pacman_conf_output
+  changed_when: false
+
+- name: Add repository to pacman.conf
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    line: |
+      [chaotic-aur]
+      Include = /etc/pacman.d/chaotic-mirrorlist
+    insertafter: EOF
+  when: "'[chaotic-aur]' not in pacman_conf_output.stdout"
+  changed_when: false
+  failed_when: false

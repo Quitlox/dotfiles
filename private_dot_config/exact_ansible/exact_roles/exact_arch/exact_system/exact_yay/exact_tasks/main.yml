@@ -1,0 +1,6 @@
+---
+- name: Install yay AUR helper
+  become: true
+  become_user: "{{ user_name }}"
+  kewlfft.aur.aur:
+    name: yay

@@ -1,6 +1,0 @@
----
-- name: Setup time synchronization
-  ansible.builtin.systemd:
-    name: systemd-timesyncd.service
-    state: started
-    enabled: true

@@ -1,0 +1,19 @@
+---
+- name: Update & Upgrade on Debian
+  ansible.builtin.apt:
+    upgrade: full
+    update_cache: true
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Update & Upgrade on Arch
+  community.general.pacman:
+    upgrade: true
+    update_cache: true
+  become: true
+  when: ansible_os_family == 'Archlinux'
+
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
+  no_log: true

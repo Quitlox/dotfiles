@@ -1,0 +1,23 @@
+# Installation Instructions
+#   1. Download Raspberry Pi OS Lite image (Debian-based)
+#   2. Flash image to SD or NVMe using Raspberry Pi Imager
+#       - Set configuration:
+#         - Create default quitlox account
+#         - Enable SSH and authorize key_quitlox.pub
+
+---
+- name: Install and configure Raspberry Pi
+  hosts: raspberry-pi
+  gather_facts: true
+
+  roles:
+    - linux/system/package-upgrade
+    - linux/system/user
+
+    - linux/system/ssh
+    - linux/system/locale
+    - linux/system/time
+    - linux/system/ssd
+
+    - linux/applications/cmdline
+    - linux/applications/docker
