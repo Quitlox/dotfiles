@@ -1,7 +1,0 @@
----
-- name: Update package cache
-  ansible.builtin.apt:
-    upgrade: full
-    update_cache: true
-  become: true
-  when: ansible_os_family == 'Debian'

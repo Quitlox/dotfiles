@@ -24,3 +24,6 @@ ansible-galaxy collection install -r requirements.yml -p /usr/local/share/ansibl
 - Atuin: Server out of sync and misconfigured
 - chezmoi repo set to ssh
 STARSHIP
+
+- Make abstract role for adding hook to initramfs
+- Configure swap using swap partition

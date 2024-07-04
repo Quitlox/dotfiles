@@ -1,0 +1,4 @@
+---
+dependencies:
+  - linux/applications/docker
+  - linux/applications/podman

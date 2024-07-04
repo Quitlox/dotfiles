@@ -27,6 +27,8 @@
   become: true
   ansible.builtin.package:
     name: firewalld
+    state: "{{ 'present' if system_firewalld else 'absent' }}"
+    purge: true
 
 - name: Enable and start firewalld
   become: true
@@ -34,11 +36,14 @@
     name: firewalld
     enabled: true
     state: started
+  when: system_firewalld
 
 - name: Install fail2ban
   become: true
   ansible.builtin.package:
     name: fail2ban
+    state: "{{ 'present' if system_fail2ban else 'absent' }}"
+    purge: true
 
 - name: Enable and start fail2ban
   become: true
@@ -46,3 +51,4 @@
     name: fail2ban
     enabled: true
     state: started
+  when: system_fail2ban

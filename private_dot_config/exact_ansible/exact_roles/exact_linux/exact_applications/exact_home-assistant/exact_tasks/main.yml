@@ -1,5 +1,44 @@
 ---
-- name: Create a data container
+# TODO: Automatically install HACS?
+
+- name: Ensure configuration folder exists
+  become: true
+  become_user: "{{ user_name }}"
+  ansible.builtin.file:
+    path: "/home/{{ user_name }}/.config/home-assistant"
+    state: directory
+    group: "{{ user_name }}"
+    owner: "{{ user_name }}"
+    mode: "0755"
+
+- name: Create the homeassistant container
+  become: true
   containers.podman.podman_container:
     name: home-assistant
-    image: busybox
+    image: ghcr.io/home-assistant/home-assistant:stable
+    privileged: true
+    state: created
+    network: host
+    restart_policy: "unless-stopped"
+    env:
+      TZ: "{{ system_timezone }}"
+    volumes:
+      - "/home/{{ user_name }}/.config/home-assistant:/config"
+      - "/run/dbus:/run/dbus:ro"
+
+- name: Create home-assistant systemd unit file
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/docker.home-assistant.service
+    src: "{{ role_path }}/files/docker.home-assistant.service"
+    owner: root
+    group: root
+    mode: "0644"
+  notify: reload systemd
+
+- name: Enable and start home-assistant service
+  become: true
+  ansible.builtin.systemd_service:
+    name: docker.home-assistant
+    enabled: true
+    state: started

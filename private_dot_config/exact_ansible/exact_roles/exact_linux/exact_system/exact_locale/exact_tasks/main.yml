@@ -15,5 +15,6 @@
   # dual-boot environment, Windows should be
   # configured to use UTC.
 - name: Ensure Hardware Clock is set to UTC
+  become: true
   community.general.timezone:
     rtc: UTC

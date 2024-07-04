@@ -2,6 +2,7 @@
 - name: Configure acpi
   block:
     - name: Install acpi related packages
+      become: true
       community.general.pacman:
         name:
           - acpi

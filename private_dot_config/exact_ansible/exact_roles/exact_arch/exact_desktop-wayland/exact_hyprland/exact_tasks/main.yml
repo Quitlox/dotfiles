@@ -1,0 +1,50 @@
+---
+- name: Install Hyprland
+  become: true
+  ansible.builtin.package:
+    name:
+      - hyprland
+      - wev
+      # Required for using plugins with hyprpm
+      # https://github.com/hyprwm/Hyprland/issues/4479
+      - cpio
+      - hyprwayland-scanner
+      # Desktop
+      - hyprpaper # Wallpaper
+      - wofi
+
+- name: Initialize/Update Hyprland plugin manager
+  become: true
+  become_user: " {{ user_name }}"
+  ansible.builtin.command: hyprpm update
+  changed_when: true
+
+# TODO: Abstract this into a role, only name of plugin should be needed
+
+- name: Check if Hyprland hy3 plugin repository is installed
+  become: true
+  become_user: "{{ user_name }}"
+  ansible.builtin.command: hyprpm list | grep hy3
+  result: hy3
+  changed_when: false
+
+- name: Add Hyprland hy3 plugin repository
+  become: true
+  become_user: "{{ user_name }}"
+  ansible.builtin.command: hyprpm add https://github.com/outfoxxed/hy3
+  changed_when: hy3.rc == 0
+  when: hy3.rc == 0
+
+- name: Check if Hyprland hyprland-plugins repository is installed
+  become: true
+  become_user: "{{ user_name }}"
+  ansible.builtin.command: hyprpm list | grep hyprland-plugins
+  result: hyprland-plugins
+  changed_when: false
+
+- name: Add Hyprland hyprland-plugins repository
+  become: true
+  become_user: "{{ user_name }}"
+  ansible.builtin.command: hyprpm add https://github.com/hyprwm/hyprland-plugins
+  changed_when: hy3.rc == 0
+  when: hyprland-plugins.rc == 0

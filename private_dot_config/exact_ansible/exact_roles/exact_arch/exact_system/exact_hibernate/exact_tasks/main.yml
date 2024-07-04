@@ -26,7 +26,19 @@
     regexp: "^GRUB_CMDLINE_LINUX_DEFAULT"
     line: 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet resume=UUID={{ swap_file_uuid.stdout }} resume_offset={{ swap_file_offset.stdout }}"'
   when: swapfile_stat.stat.exists
-  notify: regenerate grub
+  notify:
+    - regenerate grub
+    - regenerate initramfs
+
+- name: Add resume hook to mkinitcpio configuration
+  become: true
+  ansible.builtin.lineinfile:
+    insertbefore: fsck
+    firstmatch: true
+    line: "    resume"
+    path: /etc/mkinitcpio.d/my-hooks.conf
+  when: ansible_virtualization_type != "docker"
+  notify: regenerate initramfs
 # Note: There is also a package called uswsusp-git which provides
 # userspace commands for configuring hibernation. Unfortunately,
 # the ArchWiki doesn't specify the benefits and how to configure it

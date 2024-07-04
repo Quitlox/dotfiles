@@ -1,0 +1,31 @@
+---
+- name: Install and configure Desktop Linux
+  hosts: desktop-linux
+  gather_facts: true
+  handlers:
+    - ansible.builtin.import_tasks: handlers/grub.yml
+
+  roles:
+    - linux/system/user
+    - linux/system/package-upgrade
+
+    - linux/system/bluetooth
+    - linux/system/locale
+    - linux/system/network
+    - linux/system/ssd
+    - linux/system/ssh
+    - linux/system/sshfs
+    - linux/system/time
+
+    - arch/system/beep
+    - arch/system/chaotic-aur
+    # - arch/system/hibernate # swap configuration differs
+    - arch/system/microcode
+    - arch/system/mkinitcpio
+    - arch/system/numlock
+    - arch/system/pacman
+    # - arch/system/swap # desktop-linux uses swap partition
+    - arch/system/yay
+
+    - linux/user/cmdline
+    - linux/applications/docker

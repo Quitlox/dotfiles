@@ -1,0 +1,7 @@
+#jinja2: trim_blocks:False
+{%- set hooks = hooks_line.split("=")[1].strip("()").split() -%}
+HOOKS=(
+{%- for hook in hooks %}
+    {{ hook }}
+{%- endfor %}
+)

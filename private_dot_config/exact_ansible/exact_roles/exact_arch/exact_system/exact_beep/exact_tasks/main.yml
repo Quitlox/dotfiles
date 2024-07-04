@@ -6,6 +6,7 @@
     src: "{{ role_path }}/files/nobeep.conf"
     dest: /etc/modprobe.d/nobeep.conf
     mode: "0440"
+
 - name: Disable computer speaker now
   block:
     - name: Check if 'pcspkr' module is loaded
@@ -15,6 +16,7 @@
       changed_when: false
 
     - name: Disable 'pcsprk' kernel module
+      become: true
       when: pcspkr.rc == 0
       register: result
       changed_when: result.rc == 0
@@ -27,6 +29,7 @@
       changed_when: false
 
     - name: Disable 'snd_pcsp' kernel module
+      become: true
       when: snd_pcsp.rc == 0
       register: result
       changed_when: result.rc == 0

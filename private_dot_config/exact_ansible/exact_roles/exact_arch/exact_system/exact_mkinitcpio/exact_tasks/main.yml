@@ -1,9 +1,44 @@
 ---
-- name: Configure mkinitcpio
-  ansible.builtin.lineinfile:
+# In Arch, the initial ramdisk is generated using the mkinitcpio utility.
+# By default, mkinitcpio utility reads its configuration from /etc/mkinitcpio.conf.
+# Arch supports customized configuration through the /etc/mkinitcpio.d directory, which we will rely on.
+#
+# The tasks in this role basically read the default HOOKS configured by the
+# Arch installation in /etc/mkinitcpio.conf, and write these to a custom
+# configuration file /etc/mkinitcpio.d/my-hooks.conf.
+#
+# This allows us to more easily add hooks to the default configuration, without
+# having the configuration be static.
+
+- name: Read /etc/mkinitcpio.conf
+  ansible.builtin.slurp:
     path: /etc/mkinitcpio.conf
-    regexp: '^HOOKS=\(.*\)'
-    line: "HOOKS=(base udev autodetect keyboard modconf block filesystems resume fsck numlock)"
-    state: present
+  register: mkinitcpio_conf
+
+- name: Extract HOOKS line
+  ansible.builtin.set_fact:
+    hooks_line: "{{ mkinitcpio_conf.content | b64decode | regex_search('^HOOKS=\\(.*\\)', multiline=True) }}"
+
+- name: Set hooks list
+  ansible.builtin.set_fact:
+    hooks_list: "{{ hooks_line.split('=')[1].strip('()').split() }}"
+
+- name: Create /etc/mkinitcpio.d directory if not present
   become: true
-  notify: regenerate initramfs
+  ansible.builtin.file:
+    path: /etc/mkinitcpio.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Write formatted HOOKS to /etc/mkinitcpio.d/my-hooks.conf
+  become: true
+  ansible.builtin.template:
+    src: templates/my-hooks.conf.j2
+    dest: /etc/mkinitcpio.d/my-hooks.conf
+    owner: root
+    group: root
+    mode: "0644"
+  vars:
+    hooks: "{{ hooks_list }}"

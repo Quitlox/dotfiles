@@ -4,14 +4,7 @@ Description=HomeAssistant Docker Container through Podman
 [Service]
 Restart=always
 ExecStart=/usr/bin/podman start -a home-assistant
-ExecStop=/usr/bin/podman stop -t 2 home-assistant \
-    -- privileged
-    --restart=unless-stopped
-    -v /home/quitlox/.config/home-assistant:/config \
-    -v /run/dbus:/run/dbus:ro \
-    --network=host \
-    ghcr.io/home-assistant/home-assistant:stable
-Environment=TZ=Europe/Amsterdam
+ExecStop=/usr/bin/podman stop -t 2 home-assistant
 
 [Install]
 WantedBy=local.target

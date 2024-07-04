@@ -1,5 +1,17 @@
 ---
 - name: Install numlock mkinitcpio hook
+  become: true
   become_user: "{{ user_name }}"
   kewlfft.aur.aur:
     name: mkinitcpio-numlock
+  when: ansible_virtualization_type != "docker"
+
+- name: Add numlock hook to mkinitcpio configuration
+  become: true
+  ansible.builtin.lineinfile:
+    insertbefore: block|encrypt|lvm2|filesystems|fsck
+    firstmatch: true
+    line: "    numlock"
+    path: /etc/mkinitcpio.d/my-hooks.conf
+  when: ansible_virtualization_type != "docker"
+  notify: regenerate initramfs

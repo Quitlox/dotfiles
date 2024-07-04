@@ -4,22 +4,36 @@
 #       - Set configuration:
 #         - Create default quitlox account
 #         - Enable SSH and authorize key_quitlox.pub
+#
+# Miscellenous:
+#   - IP Addresses:
+#     - It may be a good idea to set static IP addresses for the Raspberry Pi
+#       and devices for which wake-on-lan is configured (LG TV, Desktop).
+#       Make sure to update IP-addresses in:
+#         - ~/.config/ansible/inventory.yml
+#         - ~/.config/home-assistant/configuration.yaml
 
 ---
 - name: Install and configure Raspberry Pi
   hosts: raspberry-pi
   gather_facts: true
 
+  handlers:
+    - import_tasks: handlers/systemd.yml
   roles:
-    - linux/system/package-upgrade
-    - linux/system/user
+    # - linux/system/package-upgrade
+    # - linux/system/user
+    #
+    # - linux/system/ssh
+    # - linux/system/locale
+    # - linux/system/time
+    # - linux/system/ssd
+    # - role: linux/system/firewall
+    #   vars:
+    #     # Firewall conflicts with home assistant
+    #     system_firewalld: false
+    #
+    # - linux/user/cmdline
 
-    - linux/system/ssh
-    - linux/system/locale
-    - linux/system/time
-    - linux/system/ssd
-    - linux/system/firewall
+    - linux/applications/home-assistant
 
-    - linux/applications/docker
-
-    - linux/user/cmdline
