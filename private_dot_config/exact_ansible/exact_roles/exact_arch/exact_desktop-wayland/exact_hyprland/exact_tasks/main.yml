@@ -1,5 +1,5 @@
 ---
-- name: Install Hyprland
+- name: Install Hyprland and Friends
   become: true
   ansible.builtin.package:
     name:
@@ -9,9 +9,48 @@
       # https://github.com/hyprwm/Hyprland/issues/4479
       - cpio
       - hyprwayland-scanner
-      # Desktop
+      # Libraries
+      - qt5-wayland
+      - qt6-wayland
+      # Desktop Applications (Background)
       - hyprpaper # Wallpaper
-      - wofi
+      - xdg-desktop-portal-hyprland # Screensharing
+      - xdg-desktop-portal-gtk # Needed for file picker?
+      - copyq # Clipboard Manager
+      - udiskie # USB Automounter
+      # Desktop Applications (Foreground)
+      - wofi # Launcher
+
+- name: Install Hyprland and Friends
+  become: true
+  kewlfft.aur: overskride # Bluetooth UI
+
+  # The recommendation is the KDE Authentication Agent,
+  # on Arch packaged as polkit-kde-agent
+- name: Install Authentication Agent on Arch
+  become: true
+  ansible.builtin.package:
+    name: polkit-kde-agent
+
+# TODO:
+# - hyprshade: blue light filter
+# - hyprgrass: touch gestures plugin
+# - hycov: window switch (overview of all windows in all workspaces)
+# - pyprland/monitors: generically configure monitors based on model (right-of, etc.)
+# - pyprland/system_notifier: get system notifications from journal and others
+# - hyprland-monitor-attached: run commands on display connect/display (for organizing workspaces)
+# - hyprshot: screenshot tool
+#
+# - SwayOSD: On-Screen Display
+# - Widget Frameworks: Ewww, Fabric, Aylur's GTK Shell
+# - WayBar: Status Bar
+# - SwayNotificationCenter: notification center configured through CSS
+#
+# - WebCord: Discord Replacement
+#
+# - TODO
+#   - Mirror display
+#   - Display Manager
 
 - name: Initialize/Update Hyprland plugin manager
   become: true
