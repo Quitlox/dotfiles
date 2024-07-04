@@ -3,3 +3,6 @@ dependencies:
   - role: linux/applications/npm
     when:
       - ansible_facts['os_family'] == 'Debian'
+  - role: linux/applications/snap
+    when:
+      - ansible_facts['os_family'] == 'Debian'

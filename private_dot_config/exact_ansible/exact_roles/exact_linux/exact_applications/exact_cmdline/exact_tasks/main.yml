@@ -80,10 +80,18 @@
 
 - name: Install neovim and dependencies
   block:
-    - name: Install NeoVim
+    - name: Install NeoVim on Arch
       become: true
-      ansible.builtin.package:
+      community.general.pacman:
         name: neovim
+      when: ansible_facts['os_family'] == "Archlinux"
+
+    - name: Install NeoVim on Debian
+      become: true
+      community.general.snap:
+        name: nvim
+        classic: true
+      when: ansible_facts['os_family'] == "Debian"
 
       # Python client for Neovim for plugins written in Python
     - name: Install pynvim on Arch

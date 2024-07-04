@@ -10,9 +10,12 @@ ansible-galaxy install -r requirements.yml -p /usr/share/ansible/roles
 
 - `ansible-playbook maintenance-dotfiles.yml -l '<host>'`
     - Installs the dotfiles repository on the target host.
+    - Note: You may need to restart in order for starship to be able to load.
 
 ## TODO
 
 /etc/udev/rules.d/99-wacom.rules
 ~/.config/systemd
 - Atuin: Server out of sync and misconfigured
+- chezmoi repo set to ssh
+STARSHIP
