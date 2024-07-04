@@ -12,20 +12,22 @@
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Disable SSH root login
-  ansible.builtin.lineinfile:
-    dest: /etc/ssh/sshd_config
-    regexp: "^PermitRootLogin"
-    line: "PermitRootLogin prohibit-password"
-    state: present
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/00-deny-root.conf"
+    dest: /etc/ssh/sshd_config.d/00-deny-root.conf
+    owner: root
+    group: root
+    mode: "0644"
   notify: restart ssh
   become: true
 
-- name: Disable password authentication
-  ansible.builtin.lineinfile:
-    dest: /etc/ssh/sshd_config
-    regexp: "^#?PasswordAuthentication"
-    line: "PasswordAuthentication no"
-    state: present
+- name: Force public key authentication
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/00-force-public-key.conf"
+    dest: /etc/ssh/sshd_config.d/00-force-public-key.conf
+    owner: root
+    group: root
+    mode: "0644"
   notify: restart ssh
   become: true
 

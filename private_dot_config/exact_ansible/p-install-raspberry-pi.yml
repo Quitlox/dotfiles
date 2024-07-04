@@ -18,6 +18,8 @@
     - linux/system/locale
     - linux/system/time
     - linux/system/ssd
+    - linux/system/firewall
 
-    - linux/applications/cmdline
     - linux/applications/docker
+
+    - linux/user/cmdline

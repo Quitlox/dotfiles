@@ -1,0 +1,5 @@
+---
+- name: Create a data container
+  containers.podman.podman_container:
+    name: home-assistant
+    image: busybox

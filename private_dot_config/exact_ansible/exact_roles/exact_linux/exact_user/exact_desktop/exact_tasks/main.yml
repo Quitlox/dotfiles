@@ -1,0 +1,66 @@
+---
+- name: Install mail client
+  become: true
+  ansible.builtin.package:
+    name: thunderbird
+- name: Install discord
+  become: true
+  ansible.builtin.package:
+    name: discord
+- name: Install browser
+  become: true
+  ansible.builtin.package:
+    name: firefox
+
+- name: Install and configure zathura
+  block:
+    - name: Install zathura as pdf reader
+      become: true
+      community.general.pacman:
+        name:
+          # Zathura is a highly customizable and functional document viewer.
+          - zathura
+          # PDF support for Zathura
+          - zathura-pdf-mupdf
+
+    - name: Set zathura as default pdf reader
+      ansible.builtin.ini_file:
+        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        section: Default Applications
+        value: org.pwmt.zathura.desktop
+        option: x-scheme-handler/pdf
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+
+- name: Install obsidian
+  become: true
+  ansible.builtin.package:
+    name: obsidian
+
+- name: Install reference manager
+  become: true
+  become_user: "{{ user_name }}"
+  kewlfft.aur.aur:
+    name: zotero-bin
+  notify: message zotero addon
+
+- name: Install LaTeX distribution and dependencies
+  block:
+    - name: Install TexLive
+      become: true
+      community.general.pacman:
+        name:
+          # A modernized, complete, self-contained TeX/LaTeX engine,
+          # powered by XeTeX and TeXLive.
+          # > Used by ~/.config/vim/settings/plugins/vimtex.vim
+          - texlive-basic
+          # > Needed for biblatex files
+          - biber
+    - name: Install dependencies
+      become: true
+      become_user: "{{ user_name }}"
+      # Pretty-Print LaTeX: A tool to reformat the output of latex
+      # and friends into readable messages.
+      # > Used by ~/.config/vim/settings/plugins/vimtex.vim
+      kewlfft.aur.aur:
+        name: pplatex-git

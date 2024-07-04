@@ -1,10 +1,15 @@
 ## Install
 
-To install the required roles, run the following command:
+To install the required roles, run the following commands:
 
 ```bash
-ansible-galaxy install -r requirements.yml -p /usr/share/ansible/roles
+ansible-galaxy install -r requirements.yml -p /usr/local/share/ansible/roles
+ansible-galaxy collection install -r requirements.yml -p /usr/local/share/ansible/roles
 ```
+
+> [!WARNING]
+> `/usr/local/share` is not included in the default paths of ansible (`/usr/share/ansible` is).
+> Therefore, `ansible.cfg` modifies the defaults paths.
 
 ## Playbooks
 

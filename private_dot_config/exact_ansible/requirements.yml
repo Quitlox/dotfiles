@@ -6,4 +6,5 @@ roles:
 collections:
   - community.general
   - kewlfft.aur # For AUR
+  - containers.podman
 

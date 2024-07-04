@@ -1,5 +1,4 @@
 ---
-
 - name: Create atuin system user
   ansible.builtin.user:
     name: atuin
@@ -54,13 +53,13 @@
     owner: root
     group: root
 
-- name: Set port forwarding
-  command: sysctl net.ipv4.conf.all.forwarding=1
-  become: true
-
-- name: Configure port forwarding
-  command: iptables -P FORWARD ACCEPT
-  become: true
+# - name: Set port forwarding
+#   command: sysctl net.ipv4.conf.all.forwarding=1
+#   become: true
+#
+# - name: Configure port forwarding
+#   command: iptables -P FORWARD ACCEPT
+#   become: true
 
 - name: Enable and start atuin-server.service
   ansible.builtin.systemd:
