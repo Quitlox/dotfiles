@@ -8,6 +8,6 @@ return {
         vim.g.http_client_preserve_responses = 1
     end,
     keys = {
-        { "<localleader>rr", "<cmd>HTTPClientDoRequest<cr>", desc = "Run HTTP request under cursor" },
+        { "<localleader>hr", "<cmd>HTTPClientDoRequest<cr>", desc = "Run HTTP request under cursor" },
     },
 }

@@ -75,6 +75,11 @@ set hidden              " Allow changed buffers to be hidden
 set switchbuf=uselast
 " Comments
 set comments+=:#
+" Editing Defaults
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
 " Wrapping
 set autoindent
 set nosmartindent    " This causes comments not to be moved while indenting
@@ -117,7 +122,6 @@ set novisualbell
 set confirm
 set formatoptions+=1 " Don't break lines after a one-letter word
 set history=1000      " Sets how many lines of history VIM has to remember
-set tabstop=4
 set title
 set titlestring=neovim:\ %{fnamemodify(getcwd(),':t')}\ \(%t\) titlelen=70
 set timeoutlen=800

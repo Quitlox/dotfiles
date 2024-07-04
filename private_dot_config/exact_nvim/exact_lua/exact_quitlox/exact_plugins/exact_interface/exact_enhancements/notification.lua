@@ -17,7 +17,7 @@ return {
     keys = {
         -- stylua: ignore start
         { "<leader>vd", function() require("notify").dismiss({ pedning = true, silent = true }) end, desc = "Dismiss Notifications" },
-        { "<leader>vn", function() require("telescope").extensions.notify.notify(require("telescope.themes").get_dropdown()) end, desc = "List Notifications", nowait = true },
+        { "<leader>vln", function() require("telescope").extensions.notify.notify(require("telescope.themes").get_dropdown()) end, desc = "List Notifications", nowait = true },
         -- stylua: ignore end
     },
     opts = {
