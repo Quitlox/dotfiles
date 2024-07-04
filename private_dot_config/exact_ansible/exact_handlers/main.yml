@@ -1,3 +1,0 @@
----
-- name: grub
-  import_tasks: grub.yml
