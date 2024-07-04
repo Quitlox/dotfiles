@@ -55,7 +55,7 @@ return {
         end,
         dependencies = {
             -- Persistent breakpoints
-            { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out", version = "v1.*" },
+            { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out && git reset --hard HEAD", version = "v1.*" },
         },
     },
 }
