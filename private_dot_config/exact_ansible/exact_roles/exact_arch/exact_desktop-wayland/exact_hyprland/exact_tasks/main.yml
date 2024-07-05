@@ -52,6 +52,22 @@
 #   - Mirror display
 #   - Display Manager
 
+# Configure Firefox
+# - Download & Extract WaveFox plugin (https://github.com/QNetITQ/WaveFox?tab=readme-ov-file)
+# - Copy 'chrome' folder to ~/.mozilla/firefox/PROFILE/chrome
+# - In about:config:
+#   - toolkit.legacyUserProfileCustomizations.stylesheets = true
+#   - userChrome.Toolbar.Transparency.High.Enabled = true
+#   - userChrome.Toolbar.Transparency.Low.Enabled = true
+#   - userChrome.Tabs.Option2.Enabled = true
+#   - userChrome.Menu.Icons.Regular.Enabled = true
+# Alternatives:
+#  - ShyFox https://github.com/Naezr/ShyFox
+#
+# Inspiration:
+# - https://www.reddit.com/r/unixporn/comments/ys4nfs/hyprland_glassmorphism/
+# - https://www.reddit.com/r/unixporn/comments/ys4nfs/hyprland_glassmorphism/
+
 - name: Initialize/Update Hyprland plugin manager
   become: true
   become_user: " {{ user_name }}"
