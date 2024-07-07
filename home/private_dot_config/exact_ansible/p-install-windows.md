@@ -64,12 +64,15 @@
             - Intel Network Connections
             - Realteak Audio Driver
             - AMD Chipset Driver
-    2. Other
+    2. RGB
         - OpenRGB: `winget install CalcProgrammer1.OpenRGB`
         - L-Connect 3: `winget install LianLi.LConnect3`
+    3. Other
+        - HardwareInfo: `winget install REALiX.HWiNFO`
 1. WSL
     - `wsl --install --no-distribution`
     - [Install Arch](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/)
+        - Simply download and run ArchOnline.exe
 1. Applications
     1. Games
         1. Steam: `winget install valve.steam`
@@ -79,8 +82,8 @@
         4. Battle.net: No winget yet
         5. Rockstar: No winget yet
         6. Playnite: `winget install playnite.playnite`
-        7. Install DZSALauncher (no winget)
-        8. Install [Stardrop](https://github.com/Floogen/Stardrop/releases/tag/v1.2.1) (no wiget)
+        7. Install DZSALauncher
+        8. Install [Stardrop](https://github.com/Floogen/Stardrop/releases/latest)
     1. User Applications
         - Obsidian: `winget install obsidian.obsidian`
         - Zotero: `winget install digitalscholar.zotero`
@@ -93,7 +96,9 @@
             - Set "Hamburger > View > Layout to 'Classic View'"
         - No Configuration
             - QBittorrent: `winget install qbittorrent.qbittorrent`
-            - Neovim: `winget install neovim neovide sqlite ripgrep`
+    1. Command Line
+        - Neovim: `winget install neovim neovide sqlite ripgrep`
+        - `winget install waterlan.dos2unix`
     1. Development
         - `winget install kitware.cmake`
         - `winget install microsoft.openjdk.11`
@@ -101,18 +106,25 @@
         - `winget install 7zip.7zip
         - `winget install rufus.rufus`
         - `winget install uderzosoftware.spacesniffer'
-        - `winget install Iterate.MountainDuck`
-        - `winget install REALiX.HWiNFO`
+        - `winget install SSHFS-Win.SSHFS-Win`
         - Windows Tools: 
           `winget install winscp.winscp microsoft.sysinternals.pstools`
     1. [Office](https://massgrave.dev/#method_1_-_powershell)
         - Install Office (see website above for correct official link)
-        - irm https://get.activated.win | iex
+        - `irm https://get.activated.win | iex`
             - select ohook method
     1. Miscellenous
         1. `winget install 9MVZQVXJBQ9V` # AV1 Video Extension
-        1. `winget install SSHFS-Win.SSHFS-Win`
+1. Wacom
+    1. Install `winget install wacom.wacomtabletdriver`
+1. Sunshine
+    1. Install and Configure [webOS Dev Manager](https://github.com/webosbrew/dev-manager-desktop/releases/latest)
+    1. Install `winget install vigem.vigembus lizardbyte.sunshin`
+    1. Download [resolution_change.exe](https://github.com/designer-living/sunshine_utils/releases/latest) and extract to `~/Applications/resolution_change.exe`
+    1. Copy `{{ chezmoi }}/windows/sunshine/apps.json` to `C:/Program Files/Sunshine/config/apps.json`
+    1. Log into Sunshine and create account at https://localhost:47990/
+    
 
 TODO:
 - Setup StardewValley
-- Install Arch
+- Setup Arch
