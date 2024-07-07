@@ -1,0 +1,44 @@
+{
+    "env": "",
+    "apps": [
+        {
+            "name": "Desktop",
+            "image-path": "desktop.png"
+        },
+        {
+            "name": "Steam Big Picture",
+            "cmd": "steam:\/\/open\/bigpicture",
+            "auto-detach": "true",
+            "wait-all": "true",
+            "image-path": "steam.png",
+            "prep-cmd": [
+                {
+                    "do": "C:\\Users\\kevin\\Applications\\resolution_change.exe -p 4k --refreshrate 60",
+                    "undo": "C:\\Users\\kevin\\Applications\\resC:\\Users\\kevin\\Applications\\resolution_change.exeolution_change.exe -r",
+                    "elevated": "false"
+                }
+            ],
+            "exclude-global-prep-cmd": "",
+            "elevated": "",
+            "exit-timeout": "5"
+        },
+        {
+            "name": "Playnite",
+            "output": "",
+            "cmd": "\"C:\\Users\\kevin\\AppData\\Local\\Playnite\\Playnite.FullscreenApp.exe\" --hidesplashscreen",
+            "exclude-global-prep-cmd": "false",
+            "elevated": "false",
+            "auto-detach": "true",
+            "wait-all": "true",
+            "exit-timeout": "5",
+            "prep-cmd": [
+                {
+                    "do": "C:\\Users\\kevin\\Applications\\resolution_change.exe -p 4k --refreshrate 60",
+                    "undo": "C:\\Users\\kevin\\Applications\\resolution_change.exe -r",
+                    "elevated": "false"
+                }
+            ],
+            "image-path": ""
+        }
+    ]
+}

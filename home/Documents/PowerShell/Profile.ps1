@@ -1,5 +1,5 @@
 # Aliases
-Function alias_chm { z "C:\Users\witloxkhd\.local\share\chezmoi" }
+Function alias_chm { z "~\.local\share\chezmoi" }
 Set-Alias "chm" alias_chm
 Function alias_dotdot { cd .. }
 Set-Alias ".." alias_dotdot 
@@ -19,7 +19,7 @@ Function alias_cd { z $args }
 Set-Alias "cd" alias_cd -Option AllScope
 
 # Neovim
-$env:XDG_CONFIG_HOME="C:/Users/witloxkhd/.config"
+$env:XDG_CONFIG_HOME="~/.config"
 
 # Completion
 Set-PSReadlineKeyHandler -Chord Tab -Function MenuComplete
