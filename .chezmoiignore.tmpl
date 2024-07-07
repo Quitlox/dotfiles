@@ -1,18 +1,9 @@
-bootstrap.sh
 README.md
-Session.vim
-Microsoft.PowerShell_profile.ps1
 
 settings.json
 keybindings.json
 
 .config/zsh/theme.sh
-
-private_dot_config/ansible/roles/library
-private_dot_config/ansible/roles/library/geerlingguy.docker
-private_dot_config/ansible/roles/library/gantsign.visual-studio-code
-private_dot_config/ansible/library
-private_dot_config/ansible/library/aur
 
 {{ if (eq .chezmoi.os "windows") }}
 ** # Default to ignore all (whitelist instead of blacklist)
@@ -40,10 +31,22 @@ private_dot_config/ansible/library/aur
 !.config/nvim/**
 !.config/zathura
 !.config/zathura/**
+!.config/ansible
+!.config/ansible/**
 
 !.config/pythonrc
 !.config/starship.toml
-{{ end }}
+
+!Documents
+!Documents/PowerShell
+!Documents/PowerShell/Profile.ps1
+!Documents/PowerToys
+!Documents/PowerToys/Backup
+!Documents/PowerToys/Backup/**
+{{ else }}
+
+# If not on windows, ignore Windows-specific files and folders
+Documents/PowerShell/Profile.ps1
 
 {{ if (eq .headless "true") }}
 ** # Default to ignore all (whitelist instead of blacklist)
@@ -76,4 +79,6 @@ private_dot_config/ansible/library/aur
 !.config/pythonrc
 !.config/user-dirs.dirs
 !.config/starship.toml
+{{ end }}
+
 {{ end }}
