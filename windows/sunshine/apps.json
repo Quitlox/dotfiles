@@ -14,7 +14,7 @@
             "prep-cmd": [
                 {
                     "do": "C:\\Users\\kevin\\Applications\\resolution_change.exe -p 4k --refreshrate 60",
-                    "undo": "C:\\Users\\kevin\\Applications\\resC:\\Users\\kevin\\Applications\\resolution_change.exeolution_change.exe -r",
+                    "undo": "C:\\Users\\kevin\\Applications\\resolution_change.exe -r",
                     "elevated": "false"
                 }
             ],
@@ -38,7 +38,7 @@
                     "elevated": "false"
                 }
             ],
-            "image-path": ""
+            "image-path": "C:\\Users\\kevin\\AppData\\Local\\Playnite\\Themes\\Fullscreen\\Default\\Images\\custom_cover_background.png"
         }
     ]
 }
