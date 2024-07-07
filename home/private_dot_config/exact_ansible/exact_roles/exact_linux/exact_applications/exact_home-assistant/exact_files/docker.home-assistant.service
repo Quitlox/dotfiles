@@ -7,4 +7,4 @@ ExecStart=/usr/bin/podman start -a home-assistant
 ExecStop=/usr/bin/podman stop -t 2 home-assistant
 
 [Install]
-WantedBy=local.target
+WantedBy=multi-user.target
