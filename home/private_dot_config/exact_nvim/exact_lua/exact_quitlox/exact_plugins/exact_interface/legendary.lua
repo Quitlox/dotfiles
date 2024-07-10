@@ -108,7 +108,7 @@ return {
     version = "",
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
-        { "<leader>vk", "<cmd>Legendary commands<cr>", desc = "Keymap", mode = { "n", "v" } },
+        { "<leader>vk", "<cmd>Legendary functions commands<cr>", desc = "Keymap", mode = { "n", "v" } },
     },
     opts = {
         include_builtin = false,
