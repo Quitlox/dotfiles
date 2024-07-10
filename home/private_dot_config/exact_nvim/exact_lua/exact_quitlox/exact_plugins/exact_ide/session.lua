@@ -99,14 +99,6 @@ local function post_restore_hook()
     local session_dir = require("auto-session").get_root_dir()
     local session_name = require("auto-session.lib").current_session_name()
 
-    -- Source Python virtual environment
-    -- local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
-    -- if venv ~= "" then require("venv-selector").retrieve_from_cache() end
-
-    local venv_name = require("venv-selector").get_active_venv()
-    if venv_name ~= nil then
-        require("venv-selector").retrieve_from_cache()
-    end
     -- Restore Overseer tasks
     require("overseer").load_task_bundle(get_cwd_as_name(), { ignore_missing = true, autostart = false })
 end

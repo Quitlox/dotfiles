@@ -12,7 +12,7 @@ local function create_terminal(id, direction)
 
     -- Integrate python venv-selector (automatically source venv)
     local on_open = function(term)
-        local venv_name = require("venv-selector").get_active_venv()
+        local venv_name = require("venv-selector").venv()
         if vim.b.custom_venv_source == nil and venv_name ~= nil then
             toggleterm.exec("source " .. venv_name .. "/bin/activate; clear", term.id)
             vim.api.nvim_set_current_win(term.window)

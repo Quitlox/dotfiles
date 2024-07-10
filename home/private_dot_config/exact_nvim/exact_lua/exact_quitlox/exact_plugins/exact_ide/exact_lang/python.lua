@@ -1,5 +1,3 @@
-local venv_names = { "venv", "venv3.8", "venv3.9", "venv3.10", "venv3.11", "venv3.12", ".venv", ".venv3.8", ".venv3.9", ".venv3.10", ".venv3.11", ".venv3.12" }
-
 return {
     ---------- Indent ----------
     -- Fix indentation after assignment / brackets
@@ -11,32 +9,14 @@ return {
     ---------- Virtual Environment ----------
     {
         "linux-cultist/venv-selector.nvim",
+        branch = "regexp", -- FIXME: At some point, this should be merged into the main branch
         dependencies = { "neovim/nvim-lspconfig" },
-        opts = {
-            name = venv_names,
-            dap_enabled = true,
-        },
-        cmd = {
-            "VenvSelect",
-            "VenvSelectCached",
-            "VenvDeactivate",
-        },
-        init = function()
-            vim.api.nvim_create_autocmd("UIEnter", {
-                desc = "Auto select virtualenv Nvim open",
-                pattern = "*",
-                callback = function()
-                    local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
-                    if venv ~= "" then require("venv-selector").retrieve_from_cache() end
-                end,
-                once = true,
-            })
-        end,
+        config = true,
+        lazy = false,
     },
     require("quitlox.util").legendary_full({
         { ":VenvSelect", description = "Select Virtual Env" },
-        { ":VenvSelectCached", description = "Retrieve Virtual Env from Cache" },
-        { ":VenvDeactivate", ":lua require('venv-selector').deactivate_venv()<cr>", description = "Deactivate Virtual Env" },
+        { ":VenvDeactivate", ":lua require('venv-selector').deactivate()<cr>", description = "Deactivate Virtual Env" },
     }),
     require("quitlox.util").whichkey({
         ["<localleader>v"] = { name = "Virtual Env" },
@@ -55,9 +35,13 @@ return {
                     require("lspconfig").pyright.setup({
                         on_attach = function(client, bufnr)
                             local function filter_diagnostics(diagnostic)
-                                if diagnostic.source ~= "Pyright" then return true end
+                                if diagnostic.source ~= "Pyright" then
+                                    return true
+                                end
                                 -- Just disable 'is not accessed' altogether
-                                if string.match(diagnostic.message, '".+" is not accessed') then return false end
+                                if string.match(diagnostic.message, '".+" is not accessed') then
+                                    return false
+                                end
                                 return true
                             end
 

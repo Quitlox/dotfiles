@@ -43,7 +43,7 @@ end
 
 local function py_venv_func()
     local actived_venv = function()
-        local venv_name = require("venv-selector").get_active_venv()
+        local venv_name = require("venv-selector").venv()
         if venv_name ~= nil then
             if string.find(venv_name, "pypoetry") ~= nil then
                 return string.gsub(venv_name, ".*/pypoetry/virtualenvs/", "poetry")
