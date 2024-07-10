@@ -33,9 +33,16 @@ return {
         ft = "markdown",
         opts = {
             start_enabled = false,
+            win_options = {
+                concealcursor = {
+                    default = vim.api.nvim_get_option_value("concealcursor", {}),
+                    -- rendered = vim.api.nvim_get_option_value("concealcursor", {}),
+                },
+            },
         },
         config = function(_, opts)
             require("render-markdown").setup(opts)
         end,
     },
+    require("quitlox.util").legendary({ { ":RenderMarkdownToggle", "Render Markdown in Buffer" } }),
 }
