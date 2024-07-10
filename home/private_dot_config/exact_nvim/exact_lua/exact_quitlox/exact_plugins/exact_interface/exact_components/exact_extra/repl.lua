@@ -43,183 +43,6 @@ local molten_commands = {
 }
 
 return {
-    -- +---------------------------------------------------------+
-    -- | REPL: Clojure                                           |
-    -- +---------------------------------------------------------+
-    {
-        "folke/which-key.nvim",
-        optional = true,
-        opts = {
-            defaults = {
-                ["<localleader>r"] = { name = "REPL" },
-                ["<localleader>rl"] = { name = "Log" },
-                ["<localleader>re"] = { name = "Eval" },
-                ["<localleader>rec"] = { name = "Eval and Comment" },
-                ["<localleader>rg"] = { name = "Go" },
-                ["<localleader>rc"] = { name = "Client" },
-            },
-        },
-    },
-    {
-        "Olical/conjure",
-        version = "",
-        lazy = true,
-        cmd = {
-            "ConjureEval",
-            "ConjureSchool",
-            "ConjureConnect",
-            "ConjureClientState",
-            --
-            "ConjureLogSplit",
-            "ConjureLogVSplit",
-            "ConjureLogTab",
-            "ConjureLogBuf",
-            "ConjureLogToggle",
-            "ConjureLogResetSoft",
-            "ConjureLogResetHard",
-            "ConjureLogJumpToLatest",
-            "ConjureLogCloseVisible",
-            --
-            "ConjureEvalCurrentForm",
-            "ConjureEvalCommentCurrentForm",
-            "ConjureEvalRootForm",
-            "ConjureEvalCommentRootForm",
-            "ConjureEvalWord",
-            "ConjureEvalCommentWord",
-            "ConjureEvalReplaceForm",
-            "ConjureEvalMarkedForm",
-            "ConjureEvalCommentForm",
-            "ConjureEvalFile",
-            "ConjureEvalBuf",
-            "ConjureEvalMotion",
-            "ConjureEvalVisual",
-        },
-        keys = {
-            { "<localleader>rlv", desc = "Log Split" },
-            { "<localleader>rlb", desc = "Log Vertical split" },
-            { "<localleader>rlt", desc = "Log Tab" },
-            { "<localleader>rlb", desc = "Log Buffer" },
-            { "<localleader>rlg", desc = "Log toggle" },
-            { "<localleader>rlr", desc = "Log Reset soft" },
-            { "<localleader>rlR", desc = "Log Reset hard" },
-            { "<localleader>rll", desc = "Log jumpConjure Latest" },
-            { "<localleader>rlq", desc = "Log close visible" },
-            { "<localleader>ree", desc = "Eval" },
-            { "<localleader>rece", desc = "Eval and Comment" },
-            { "<localleader>rer", desc = "Eval Root" },
-            { "<localleader>recr", desc = "Eval Root and Comment" },
-            { "<localleader>rew", desc = "Eval Word" },
-            { "<localleader>recw", desc = "Eval Word and Comment" },
-            { "<localleader>re!", desc = "Eval and replace" },
-            { "<localleader>rem", desc = "Eval Mark" },
-            { "<localleader>rec", desc = "Eval Form and Comment" },
-            { "<localleader>ref", desc = "Eval File from disk" },
-            { "<localleader>reb", desc = "Eval buffer" },
-            { "<localleader>rE", desc = "Eval Motion", mode = { "n" } },
-            { "<localleader>rE", desc = "Eval Motion", mode = { "v" } },
-            --
-            { "<localleader>rgd", desc = "Go Definition" },
-            { "<localleader>rK", desc = "Look up doc" },
-            --
-            { "<localleader>rcs", desc = "Client Start" },
-            { "<localleader>rcS", desc = "Client Stop" },
-            { "<localleader>rei", desc = "Eval Interrupt" },
-        },
-        dependencies = {
-            {
-                "PaterJason/cmp-conjure",
-                config = function()
-                    local cmp = require("cmp")
-                    local config = cmp.get_config()
-                    table.insert(config.sources, {
-                        name = "buffer",
-                        option = {
-                            sources = {
-                                { name = "conjure" },
-                            },
-                        },
-                    })
-                    cmp.setup(config)
-                end,
-            },
-        },
-        config = function(_, opts)
-            require("conjure.main").main()
-            require("conjure.mapping")["on-filetype"]()
-        end,
-        init = function()
-            vim.g["conjure#mapping#prefix"] = "<localleader>r"
-            vim.g["conjure#mapping#log_split"] = "lv"
-            vim.g["conjure#mapping#log_vsplit"] = "lb"
-            vim.g["conjure#mapping#doc_word"] = "<localleader>rK"
-
-            vim.g["conjure#client_on_load"] = false
-        end,
-    },
-
-    -- +---------------------------------------------------------+
-    -- | REPL: Iron                                              |
-    -- +---------------------------------------------------------+
-    {
-        "Vigemus/iron.nvim",
-        keys = {
-            { "<leader>rc", desc = "Send motion" },
-            { "<leader>rc", desc = "Send motion", mode = { "v" } },
-            { "<leader>rf", desc = "Send file" },
-            { "<leader>rl", desc = "Send line" },
-            { "<leader>ru", desc = "Send until cursor" },
-            { "<leader>rm", desc = "Send mark", mode = { "n", "v" } },
-            { "<leader>rmc", desc = "Mark motion" },
-            { "<leader>rmc", desc = "Mark motion", mode = { "v" } },
-            { "<leader>rmd", desc = "Remove mark" },
-            { "<leader>rq", desc = "Exit" },
-            { "<leader>rx", desc = "Interrupt" },
-            { "<leader>rl", desc = "Clear" },
-            { "<leader>r<cr>", desc = "Carriage return" },
-        },
-        config = function()
-            require("iron.core").setup({
-                config = {
-                    -- Whether a repl should be discarded or not
-                    scratch_repl = true,
-                    -- Your repl definitions come here
-                    repl_definition = {
-                        sh = {
-                            -- Can be a table or a function that
-                            -- returns a table (see below)
-                            command = { "zsh" },
-                        },
-                    },
-                    -- How the repl window will be displayed
-                    -- See below for more information
-                    repl_open_cmd = require("iron.view").split("40%"),
-                },
-                -- Iron doesn't set keymaps by default anymore.
-                -- You can set them here or manually add keymaps to the functions in iron.core
-                keymaps = {
-                    send_motion = "<space>rc",
-                    visual_send = "<space>rc",
-                    send_file = "<space>rf",
-                    send_line = "<space>rl",
-                    send_until_cursor = "<space>ru",
-                    send_mark = "<space>rm",
-                    mark_motion = "<space>rmc",
-                    mark_visual = "<space>rmc",
-                    remove_mark = "<space>rmd",
-                    cr = "<space>r<cr>",
-                    interrupt = "<space>rx",
-                    exit = "<space>rq",
-                    clear = "<space>rl",
-                },
-                -- If the highlight is on, you can change how it looks
-                -- For the available options, check nvim_set_hl
-                highlight = {
-                    italic = true,
-                },
-                ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
-            })
-        end,
-    },
 
     -- +---------------------------------------------------------+
     -- | Jupyter Notebook: molten.nvim                           |
@@ -228,7 +51,7 @@ return {
     {
         "benlubas/molten-nvim",
         -- enabled = function() return vim.fn.has("win64") == 0 and vim.g.neovide == nil end,
-        enabled = false,
+        enabled = true,
         version = "*",
         lazy = false,
         -- Required python packages: pynvim jupyter_client
@@ -242,20 +65,24 @@ return {
         end,
         config = false,
         keys = {
-            { "<localleader>ji", "<cmd>MoltenInit<cr>", desc = "Initialize molten.nvim for Jupyter" },
-            { "<localleader>je", "<cmd>MoltenEvaluateOperator<cr>", desc = "Evaluate operator" },
-            { "<localleader>jrl", "<cmd>MoltenEvaluateLine<cr>", desc = "Evaluate line" },
-            { "<localleader>jrr", "<cmd>MoltenReevaluateCell<cr>", desc = "Re-evaluate cell" },
-            { "<localleader>jr", "<cmd>MoltenEvaluateVisual<cr>", desc = "Evaluate visual selection", mode = "v" },
-            { "<localleader>jd", "<cmd>MoltenDelete<cr>", desc = "Delete cell" },
-            { "<localleader>jh", "<cmd>MoltenHideOutput<cr>", desc = "Hide output" },
-            { "<localleader>js", "<cmd>noautocmd MoltenEnterOutput<cr>", desc = "Show/enter output" },
+            { "<leader><leader>ji", "<cmd>MoltenInit<cr>", desc = "Initialize Jupyter" },
+            { "<leader><leader>je", "<cmd>MoltenEvaluateOperator<cr>", desc = "Evaluate operator" },
+            { "<leader><leader>jrl", "<cmd>MoltenEvaluateLine<cr>", desc = "Evaluate line" },
+            { "<leader><leader>jrr", "<cmd>MoltenReevaluateCell<cr>", desc = "Re-evaluate cell" },
+            { "<leader><leader>jr", ":<C-u>MoltenEvaluateVisual<cr>", desc = "Evaluate visual selection", mode = "v" },
+            { "<leader><leader>jd", "<cmd>MoltenDelete<cr>", desc = "Delete cell" },
+            { "<leader><leader>jh", "<cmd>MoltenHideOutput<cr>", desc = "Hide output" },
+            { "<leader><leader>js", "<cmd>noautocmd MoltenEnterOutput<cr>", desc = "Show/enter output" },
         },
     },
+    require("quitlox.util").whichkey({
+        ["<leader><leader>j"] = { name = "Jupyter" },
+        ["<leader><leader>jr"] = { name = "Jupyter Evaluate" },
+    }),
     {
         "3rd/image.nvim",
         -- enabled = function() return vim.fn.has("win64") == 0 end,
-        enabled = false,
+        enabled = true,
         version = "",
         lazy = true,
         -- Depends on luarock "magick"
