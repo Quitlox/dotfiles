@@ -4,6 +4,7 @@ if !(&term == 'xterm-kitty' || &term == 'kitty') | finish | endif
 " Link: https://github.com/ryanoasis/vim-devicons/issues/266#issuecomment-599166010
 set t_RV=
 
+" Vim
 if !has('nvim')
 	set term=kitty
 endif

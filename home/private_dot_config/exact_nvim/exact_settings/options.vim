@@ -120,6 +120,7 @@ set noerrorbells
 set novisualbell
 " Misc
 set confirm
+set fillchars+=eob:\ ,
 set formatoptions+=1 " Don't break lines after a one-letter word
 set history=1000      " Sets how many lines of history VIM has to remember
 set title

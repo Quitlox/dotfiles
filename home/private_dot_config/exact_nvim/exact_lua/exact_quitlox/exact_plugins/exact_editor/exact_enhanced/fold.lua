@@ -19,15 +19,19 @@ return {
             })
         end,
         opts = {
-            provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
+            provider_selector = function(bufnr, filetype, buftype)
+                return { "treesitter", "indent" }
+            end,
         },
         keys = {
-            { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
-            { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
+            -- stylua: ignore start
+            { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds", },
+            { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds", },
             { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Fold less" },
             { "zm", function() require("ufo").closeFoldsWith() end, desc = "Fold more" },
             { "[z", function() require("ufo").goPreviousClosedFold() end, desc = "Next fold" },
             { "]z", function() require("ufo").goNextClosedFold() end, desc = "Next fold" },
+            -- stylua: ignore end
         },
         init = function()
             vim.o.foldcolumn = "0"
