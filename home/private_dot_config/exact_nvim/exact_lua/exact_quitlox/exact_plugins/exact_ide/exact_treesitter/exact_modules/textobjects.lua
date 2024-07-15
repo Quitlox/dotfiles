@@ -82,6 +82,10 @@ return {
         { "<leader>a", desc = "Swap Next" },
         { "<leader>A", desc = "Swap Previous" },
     }),
+    require("quitlox.util").whichkey({
+        ["<leader>a"] = { desc = "Swap Next" },
+        ["<leader>A"] = { desc = "Swap Previous" },
+    }),
     {
         "chrisgrieser/nvim-various-textobjs",
         lazy = false,

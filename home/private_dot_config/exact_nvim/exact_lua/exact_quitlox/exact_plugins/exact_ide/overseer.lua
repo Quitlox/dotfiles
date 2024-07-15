@@ -59,6 +59,9 @@ return {
             },
         },
     },
+    require("quitlox.util").whichkey({
+        ["<leader>e"] = { name = "Overseer" },
+    }),
     require("quitlox.util").legendary({
         { ":OverseerOpen", "Overseer Open" },
         { ":OverseerClose", "Overseer Close" },

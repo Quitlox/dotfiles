@@ -11,6 +11,7 @@ return {
             init = function()
                 -- Require providers
                 require("hover.providers.lsp")
+                require("hover.providers.dap")
                 require("hover.providers.man")
             end,
         })
