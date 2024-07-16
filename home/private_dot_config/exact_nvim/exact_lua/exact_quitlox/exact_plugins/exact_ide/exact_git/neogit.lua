@@ -8,6 +8,14 @@ vim.api.nvim_create_autocmd("User", {
     end,
 })
 
+vim.api.nvim_create_autocmd("User", {
+    pattern = "NeogitCommitComplete",
+    group = vim.api.nvim_create_augroup("NeogitCommitEvents", {}),
+    callback = function()
+        require("gitsigns.actions").reset_base()
+    end,
+})
+
 return {
     "NeogitOrg/neogit",
     opts = {
