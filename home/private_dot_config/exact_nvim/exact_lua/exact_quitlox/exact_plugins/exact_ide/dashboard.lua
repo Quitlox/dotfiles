@@ -9,6 +9,13 @@ return {
                 },
                 shortcut = {
                     {
+                        icon = " ",
+                        desc = " Plugins",
+                        group = "Number",
+                        action = "Lazy",
+                        key = "p",
+                    },
+                    {
                         icon = "󰊳 ",
                         desc = " Update",
                         group = "Number",
