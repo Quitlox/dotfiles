@@ -1,0 +1,36 @@
+[rocks]
+
+[plugins]
+"rocks.nvim" = "2.35.1"
+"rocks-git.nvim" = "2.0.0"
+"rocks-config.nvim" = "2.1.4"
+"rocks-lazy.nvim" = "1.0.0"
+"rocks-treesitter.nvim" = "scm"
+
+vim-bbye = { git = "moll/vim-bbye", rev = "v1.0.1" }
+
+# Vim
+nvim-surround = "2.1.5"
+vim-repeat = { git = "tpope/vim-repeat", rev = "v1.2^{}" }
+
+# Commands
+"gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", cmd = "Gitignore" }
+"nvim-spectre" = { git = "nvim-pack/nvim-spectre" }
+# "treesj" = { git = "wansmer/treesj" }
+
+# Big
+"hydra.nvim" = "1.0.2"
+
+[config]
+plugins_dir = "plugins/single/"
+auto_setup = false
+
+[plugins.treesj]
+git = "wansmer/treesj"
+options = { max_join_length = 300, use_default_keymaps = false }
+keys = [
+  { lhs = "<leader>s", rhs = "<cmd>lua require('treesj').split()<cr>", desc = "Split" },
+  { lhs = "<leader>j", rhs = "<cmd>lua require('treesj').join()<cr>", desc = "Join" },
+]
+
+# Left off at lua.quitlox.plugins.editor.actions <- completed, move to enhanced
