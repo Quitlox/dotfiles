@@ -13,24 +13,28 @@ vim-bbye = { git = "moll/vim-bbye", rev = "v1.0.1" }
 nvim-surround = "2.1.5"
 vim-repeat = { git = "tpope/vim-repeat", rev = "v1.2^{}" }
 
-# Commands
+# Commands / Actions
 "gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", cmd = "Gitignore" }
-"nvim-spectre" = { git = "nvim-pack/nvim-spectre" }
-# "treesj" = { git = "wansmer/treesj" }
+"treesj" = { git = "wansmer/treesj" }
 
-# Big
+# +----------------------------------------------------------+
+# | Enhancements                                             |
+# +----------------------------------------------------------+
+# Cursor
+"mini.misc" = { rev = "0.9.0" }
+# Dial
+"dial.nvim" = "0.4.0"
+# Fold
+"nvim-ufo" = "1.4.0"
+
+# Dependencies
+"promise-async" = "scm"
+
+# Unsorted
 "hydra.nvim" = "1.0.2"
 
 [config]
-plugins_dir = "plugins/single/"
+plugins_dir = "plugins/misc/"
 auto_setup = false
-
-[plugins.treesj]
-git = "wansmer/treesj"
-options = { max_join_length = 300, use_default_keymaps = false }
-keys = [
-  { lhs = "<leader>s", rhs = "<cmd>lua require('treesj').split()<cr>", desc = "Split" },
-  { lhs = "<leader>j", rhs = "<cmd>lua require('treesj').join()<cr>", desc = "Join" },
-]
 
 # Left off at lua.quitlox.plugins.editor.actions <- completed, move to enhanced

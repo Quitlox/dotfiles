@@ -3,10 +3,10 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Remove default conflicting mappings
-vim.keymap.del("n", "K")
-vim.keymap.del("n", "[f")
-vim.keymap.del("n", "]f")
-vim.keymap.del("n", "q:")
+-- vim.keymap.del("n", "K")
+-- vim.keymap.del("n", "[f")
+-- vim.keymap.del("n", "]f")
+-- vim.keymap.del("n", "q:")
 
 -- +---------------------------------------------------------+
 -- | Modifier Shortcuts                                      |
@@ -80,14 +80,11 @@ vim.keymap.set({ "n", "v" }, "<C-l>", "<C-w>l")
 -- Close the window if it is not the current window and
 -- the filetype is not equals to 'NvimTree'
 local function window_only()
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		if
-			win ~= vim.api.nvim_get_current_win()
-			and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree"
-		then
-			vim.api.nvim_win_close(win, false)
-		end
-	end
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then
+            vim.api.nvim_win_close(win, false)
+        end
+    end
 end
 
 vim.keymap.set("n", "<leader>wo", window_only, { desc = "Window Only" })

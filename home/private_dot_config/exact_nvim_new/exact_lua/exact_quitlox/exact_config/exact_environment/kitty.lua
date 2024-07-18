@@ -1,3 +1,3 @@
-if vim.o.term ~= "xterm-kitty" and vim.o.term ~= "kitty" then
-	return
+if vim.env.TERM ~= "xterm-kitty" and vim.env.TERM ~= "kitty" then
+    return
 end

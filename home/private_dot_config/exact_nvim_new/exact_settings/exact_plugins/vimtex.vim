@@ -41,7 +41,7 @@ if has('unix')
                     \ 'on_exit': function('s:on_sioyek_exit'),
                     \ })
 
-        if job_id = 0
+        if job_id == 0
             call luaeval('vim.notify("Failed to reload sioyek", "error")')
         endif
     endfunction

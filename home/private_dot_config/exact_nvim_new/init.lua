@@ -15,10 +15,10 @@ require("quitlox.config.environment.kitty")
 require("quitlox.config.environment.neovide")
 
 -- Load vim plugins
-vim.cmd([[source ./settings/plugins/vimtex.vim]])
+-- vim.cmd([[source ./settings/plugins/vimtex.vim]]) TODO:
 
 -- Manually load colorscheme
-require("rocks").packadd("")
+-- require("rocks").packadd("") TODO:
 
 -- TODO:
 
