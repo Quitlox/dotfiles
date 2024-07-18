@@ -30,7 +30,7 @@ endif
 if has('unix')
   if executable('sioyek.exe')
     " Only available in Windows WSL
-    let g:vimtex_view_mthod = 'sioyek'
+    let g:vimtex_view_method = 'sioyek'
     let g:vimtex_view_sioyek_exe = 'sioyek.exe'
     let g:vimtex_callback_progpath = 'wsl nvim'
 
@@ -42,7 +42,7 @@ if has('unix')
                     \ 'on_exit': function('s:on_sioyek_exit'),
                     \ })
 
-        if job_id == 0
+        if job_id = 0
             call luaeval('vim.notify("Failed to reload sioyek", "error")')
         endif
     endfunction
