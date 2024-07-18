@@ -9,7 +9,6 @@ return {
         },
     },
     require("quitlox.util").legendary_full({
-        { ":Replace", 'lua require("spectre").open_visual({select_word=true})<CR>', description = "Find & Replace" },
-        { ":ReplaceFile", 'lua require("spectre").open_file_search({select_word=true})<CR>', description = "Find & Replace (Current File)" },
+        { ":ReplaceFile", 'lua require("spectre").open_file_search({select_word=true})<CR>', description = "Find & Replace in file" },
     }),
 }

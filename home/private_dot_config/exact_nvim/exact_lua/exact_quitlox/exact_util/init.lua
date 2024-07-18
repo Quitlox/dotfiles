@@ -8,7 +8,7 @@ function M.whichkey(opts)
         "folke/which-key.nvim",
         optional = true,
         opts = {
-            defaults = opts,
+            default = opts,
         },
     }
 end
@@ -57,7 +57,9 @@ end
 
 function M.is_neotree_open()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.bo[buf].ft == "neo-tree" and vim.b[buf].neo_tree_source == "filesystem" then return true end
+        if vim.bo[buf].ft == "neo-tree" and vim.b[buf].neo_tree_source == "filesystem" then
+            return true
+        end
     end
 
     return false

@@ -135,10 +135,10 @@ return {
         },
     },
     require("quitlox.util").whichkey({
-        ["<leader>gh"] = { name = "Github" },
-        ["<leader>ghc"] = { name = "Comment" },
-        ["<leader>ghi"] = { name = "Issue" },
-        ["<leader>ghp"] = { name = "Pull-request" },
-        ["<leader>gha"] = { name = "Assignee" },
+        { "<leader>gh", group = "Github" },
+        { "<leader>ghc", group = "Comment" },
+        { "<leader>ghi", group = "Issue" },
+        { "<leader>ghp", group = "Pull-request" },
+        { "<leader>gha", group = "Assignee" },
     }),
 }

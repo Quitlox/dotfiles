@@ -2,12 +2,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     desc = "Neotest Buffer-local Mappings",
     callback = function(args)
         local buf = args.buf
-        require("which-key").register({
+        require("which-key").add({
             -- stylua: ignore start
-            ["[T"] = { function() require("neotest").jump.prev({ status = "failed" }) end, "Previous Failed Test", },
-            ["]T"] = { function() require("neotest").jump.next({ status = "failed" }) end, "Next Failed Test", },
-            ["[t"] = { function() require("neotest").jump.prev() end, "Previous Test", },
-            ["]t"] = { function() require("neotest").jump.next() end, "Next Test", },
+            {"[T", function() require("neotest").jump.prev({ status = "failed" }) end, desc = "Previous Failed Test"},
+            {"]T", function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next Failed Test"},
+            {"[t", function() require("neotest").jump.prev() end, desc = "Previous Test"},
+            {"]t", function() require("neotest").jump.next() end, desc = "Next Test"},
             -- stylua: ignore end
         }, { buffer = args.buf })
     end,
@@ -17,7 +17,7 @@ return {
     {
         "folke/which-key.nvim",
         optional = true,
-        opts = { defaults = { ["<leader>t"] = { name = "Test" } } },
+        opts = { default = { { "<leader>t", group = "Test" } } },
     },
     {
         "mfussenegger/nvim-dap",

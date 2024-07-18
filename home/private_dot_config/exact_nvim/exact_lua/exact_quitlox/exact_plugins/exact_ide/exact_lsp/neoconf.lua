@@ -3,8 +3,8 @@ return {
         "folke/which-key.nvim",
         optional = true,
         opts = {
-            defaults = {
-                ["<leader>vn"] = { name = "Neoconf" },
+            default = {
+                { "<leader>vn", "Neoconf" },
             },
         },
     },
@@ -18,9 +18,9 @@ return {
         },
         lazy = false,
         keys = {
-            { "<leader>vne", "<cmd>Neoconf<cr>",      desc = "Neoconf Edit" },
+            { "<leader>vne", "<cmd>Neoconf<cr>", desc = "Neoconf Edit" },
             { "<leader>vns", "<cmd>Neoconf show<cr>", desc = "Neoconf Show" },
-            { "<leader>vnl", "<cmd>Neoconf lsp<cr>",  desc = "Neoconf Lsp" },
+            { "<leader>vnl", "<cmd>Neoconf lsp<cr>", desc = "Neoconf Lsp" },
         },
     },
 }

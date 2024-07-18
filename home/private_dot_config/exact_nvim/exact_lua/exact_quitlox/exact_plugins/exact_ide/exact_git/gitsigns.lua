@@ -21,9 +21,7 @@ return {
                 if vim.wo.diff then
                     return "]h"
                 end
-                vim.schedule(function()
-                    gs.next_hunk()
-                end)
+                vim.schedule(function() gs.next_hunk() end)
                 return "<Ignore>"
             end
 
@@ -31,18 +29,16 @@ return {
                 if vim.wo.diff then
                     return "[h"
                 end
-                vim.schedule(function()
-                    gs.prev_hunk()
-                end)
+                vim.schedule(function() gs.prev_hunk() end)
                 return "<Ignore>"
             end
 
             vim.keymap.set("n", "]h", next_hunk, { expr = true, buffer = bufnr })
             vim.keymap.set("n", "[h", prev_hunk, { expr = true, buffer = bufnr })
 
-            wk.register({
-                ["[h"] = { "Next Change" },
-                ["]h"] = { "Prev Change" },
+            wk.add({
+                { "[h", desc = "Next Change" },
+                { "]h", desc = "Prev Change" },
             })
 
             ----------------------------------------
@@ -50,48 +46,39 @@ return {
             ----------------------------------------
 
             -- Git Blame
-            wk.register({
-                b = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle git Blame" },
-            }, { prefix = "<leader>T", buffer = bufnr })
+            wk.add({
+                { "<leader>Tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle git Blame" },
+            }, { buffer = bufnr })
 
             -- Git List
-            wk.register({
-                g = { name = "Git", l = { name = "List", c = { "<cmd>Gitsigns setqflist<cr>", "Git list Changes" } } },
-            }, { prefix = "<leader>", buffer = bufnr })
+            wk.add({
+                { "<leader>g", group = "Git" },
+                { "<leader>gl", group = "List" },
+                { "<leader>glc", "<cmd>Gitsigns setqflist<cr>", desc = "Git list Changes" },
+            }, { buffer = bufnr })
 
             -- Hunk Actions (Line)
             local _mapping = {
-                name = "Hunk",
-                s = { "<cmd>Gitsigns stage_hunk<cr>", "Hunk Stage" },
-                r = { "<cmd>Gitsigns reset_hunk<cr>", "Hunk Reset" },
+                { "<leader>h", group = "Hunk" },
+                { "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>", desc = "Hunk Stage" },
+                { "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Hunk Reset" },
             }
-            wk.register(_mapping, { prefix = "<leader>h", mode = "n", buffer = bufnr })
-            wk.register(_mapping, { prefix = "<leader>h", mode = "v", buffer = bufnr })
+            wk.add(_mapping, { mode = "n", buffer = bufnr })
+            wk.add(_mapping, { mode = "v", buffer = bufnr })
 
             -- Hunk Actions (Buffer)
-            wk.register({
-                h = {
-                    name = "Hunk",
-                    S = { gs.stage_buffer, "Hunk Stage Buffer" },
-                    u = { gs.undo_stage_hunk, "Hunk Reset" },
-                    R = { gs.reset_buffer, "Hunk Reset Buffer" },
-                    p = { gs.preview_hunk, "Hunk Preview" },
-                    b = {
-                        function()
-                            gs.blame_line({ full = true })
-                        end,
-                        "Hunk Blame",
-                    },
-                    d = { gs.diffthis, "Hunk Diff" },
-                    D = {
-                        function()
-                            gs.diffthis("~")
-                        end,
-                        "Hunk Diff Buffer",
-                    },
-                    t = { name = "Toggle", d = { gs.toggle_deleted, "Hunk Toggle Deleted" } },
-                },
-            }, { prefix = "<leader>", mode = "n", buffer = bufnr })
+            wk.add({
+                { "<leader>h", group = "Hunk" },
+                { "<leader>hS", gs.stage_buffer, desc = "Hunk Stage Buffer" },
+                { "<leader>hu", gs.undo_stage_hunk, desc = "Hunk Reset" },
+                { "<leader>hR", gs.reset_buffer, desc = "Hunk Reset Buffer" },
+                { "<leader>hp", gs.preview_hunk, desc = "Hunk Preview" },
+                { "<leader>hb", function() gs.blame_line({ full = true }) end, desc = "Hunk Blame" },
+                { "<leader>hd", gs.diffthis, desc = "Hunk Diff" },
+                { "<leader>hD", function() gs.diffthis("~") end, desc = "Hunk Diff Buffer" },
+                { "<leader>ht", group = "Toggle" },
+                { "<leader>htd", gs.toggle_deleted, desc = "Hunk Toggle Deleted" },
+            }, { mode = "n", buffer = bufnr })
         end
 
         require("gitsigns").setup({

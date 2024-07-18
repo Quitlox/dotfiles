@@ -76,8 +76,8 @@ return {
         },
     },
     require("quitlox.util").whichkey({
-        ["<leader><leader>j"] = { name = "Jupyter" },
-        ["<leader><leader>jr"] = { name = "Jupyter Evaluate" },
+        { "<leader><leader>j", group = "Jupyter" },
+        { "<leader><leader>jr", group = "Jupyter Evaluate" },
     }),
     {
         "3rd/image.nvim",

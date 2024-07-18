@@ -5,26 +5,26 @@ local function set_keybindings(bufnr)
     local bufopts = { silent = true, noremap = true, buffer = bufnr }
     local wk = require("which-key")
 
-    wk.register({
-        ["<F2>"] = { vim.lsp.buf.rename, "Rename Symbol" },
-        -- stylua: ignore start
-        ["[d"] = { function() vim.diagnostic.goto_prev({severity= { min = vim.diagnostic.severity.INFO } }) end, "Prev Diagnostic" },
-        ["]d"] = { function() vim.diagnostic.goto_next({severity= { min = vim.diagnostic.severity.INFO } }) end, "Next Diagnostic" },
-        ["[w"] = { function() vim.diagnostic.goto_prev({severity= { min = vim.diagnostic.severity.WARN } }) end, "Prev Diagnostic" },
-        ["]w"] = { function() vim.diagnostic.goto_next({severity= { min = vim.diagnostic.severity.WARN } }) end, "Next Diagnostic" },
-        ["[e"] = { function() vim.diagnostic.goto_prev({ severity=vim.diagnostic.severity.ERROR }) end, "Prev Error" },
-        ["]e"] = { function() vim.diagnostic.goto_next({ severity=vim.diagnostic.severity.ERROR }) end, "Prev Error" },
-        -- stylua: ignore end
+    wk.add({
+        { "<F2>", vim.lsp.buf.rename, desc = "Rename Symbol" },
+
+        { "[d", function() vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.INFO } }) end, desc = "Prev Diagnostic" },
+        { "]d", function() vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.INFO } }) end, desc = "Next Diagnostic" },
+        { "[w", function() vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } }) end, desc = "Prev Diagnostic" },
+        { "]w", function() vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } }) end, desc = "Next Diagnostic" },
+        { "[e", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, desc = "Prev Error" },
+        { "]e", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end, desc = "Prev Error" },
+
         -- Add Go mappings for LSP Symbol navigation
-        g = {
-            name = "Go",
-            s = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols='variable'<cr>", "Symbols" },
-        },
+        { "g", group = "Go" },
+        { "gs", "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols='variable'<cr>", desc = "Symbols" },
     }, bufopts)
 
     -- Insert mode keybindings
     bufopts.mode = "i"
-    wk.register({ ["<C-p>"] = { vim.lsp.buf.signature_help, "Signature Help" } }, bufopts)
+    wk.add({
+        { "<C-p>", vim.lsp.buf.signature_help, desc = "Signature Help" },
+    }, bufopts)
 end
 
 --  +----------------------------------------------------------+

@@ -50,7 +50,7 @@ return {
         "folke/which-key.nvim",
         optional = true,
         opts = {
-            defaults = {
+            default = {
                 ["<localleader>r"] = { name = "REPL" },
                 ["<localleader>rl"] = { name = "Log" },
                 ["<localleader>re"] = { name = "Eval" },

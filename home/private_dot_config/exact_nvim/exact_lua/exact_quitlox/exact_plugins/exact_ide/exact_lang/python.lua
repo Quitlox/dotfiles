@@ -19,7 +19,7 @@ return {
         { ":VenvDeactivate", ":lua require('venv-selector').deactivate()<cr>", description = "Deactivate Virtual Env" },
     }),
     require("quitlox.util").whichkey({
-        ["<localleader>v"] = { name = "Virtual Env" },
+        { "<localleader>v", group = "Virtual Env" },
     }),
 
     --  +----------------------------------------------------------+
@@ -122,12 +122,12 @@ return {
                 pythondap.rest_runner = "pytest"
 
                 -- Set keymaps specifically for python
-                require("which-key").register({
+                require("which-key").add({
                     -- x = { pythondap.test_class, "Debug Class" },
-                    y = { pythondap.test_method, "Debug Method" },
+                    { "y", pythondap.test_method, desc = "Debug Method" },
                 }, { prefix = "<leader>d" })
-                require("which-key").register({
-                    s = { pythondap.debug_selection, "Debug Selection" },
+                require("which-key").add({
+                    { "s", pythondap.debug_selection, desc = "Debug Selection" },
                 }, { prefix = "<leader>d", mode = "v" })
             else
                 vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN", { title = "No Python Debugging", timeout = 3000 })
@@ -142,8 +142,8 @@ return {
     {
         "folke/which-key.nvim",
         opts = {
-            defaults = {
-                ["<leader>r"] = { name = "REPL" },
+            default = {
+                { "<leader>r", group = "REPL" },
             },
         },
     },

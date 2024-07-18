@@ -8,7 +8,9 @@ return {
             "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
             "nvim-tree/nvim-web-devicons", -- Recommended but not required. Icons in discussion tree.
         },
-        build = function() require("gitlab.server").build(true) end, -- Builds the Go binary
+        build = function()
+            require("gitlab.server").build(true)
+        end, -- Builds the Go binary
         opts = {
             help = "?", -- Opens a help popup for local keymaps when a relevant view is focused (popup, discussion panel, etc)
             popup = { -- The popup for comment creation, editing, and replying
@@ -88,6 +90,6 @@ return {
         { ":SetTNOGitlabToken", "Configure TNO Gitlab in this repository." },
     }),
     require("quitlox.util").whichkey({
-        ["<leader>gl"] = { name = "Gitlab" },
+        { "<leader>gl", group = "Gitlab" },
     }),
 }

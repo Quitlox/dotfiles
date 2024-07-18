@@ -146,7 +146,7 @@ return {
         end,
     },
     require("quitlox.util").whichkey({
-        ["<leader>q"] = { name = "Quit/Session" },
+        { "<leader>q", group = "Quit/Session" },
     }),
     require("quitlox.util").legendary({
         { ":SessionSave", "Create or save a session" },

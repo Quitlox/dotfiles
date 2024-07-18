@@ -3,8 +3,8 @@ return {
         "folke/which-key.nvim",
         optional = true,
         opts = {
-            defaults = {
-                ["<localleader>m"] = { name = "Markdown" },
+            default = {
+                { "<localleader>m", group = "Markdown" },
             },
         },
     },

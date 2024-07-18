@@ -39,9 +39,9 @@ return {
         "folke/which-key.nvim",
         optional = true,
         opts = {
-            defaults = {
-                ["<leader>bm"] = { name = "Buffer Move" },
-                ["<leader>b"] = { name = "Buffer" },
+            default = {
+                { "<leader>bm", group = "Buffer Move" },
+                { "<leader>b", group = "Buffer" },
             },
         },
     },

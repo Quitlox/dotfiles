@@ -11,6 +11,6 @@ return {
         },
     },
     require("quitlox.util").whichkey({
-        ["gl"] = { name = "Log" },
+        { "gl", group = "Log" },
     }),
 }

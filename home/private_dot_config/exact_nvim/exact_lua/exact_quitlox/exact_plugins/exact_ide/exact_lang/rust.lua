@@ -43,7 +43,9 @@ return {
             require("hover").register({
                 priority = 1001, -- One more than LSP
                 name = "Cargo.toml",
-                enabled = function(bufnr) return vim.fn.expand("%:t") == "Cargo.toml" end,
+                enabled = function(bufnr)
+                    return vim.fn.expand("%:t") == "Cargo.toml"
+                end,
                 execute = function(opts, done)
                     print("test")
                     require("crates").show_popup()
@@ -61,28 +63,25 @@ return {
                     require("cmp").setup.buffer({ sources = { { name = "crates" } } })
 
                     local crates = require("crates")
-                    require("which-key").register({
-                        ["<localleader>"] = {
-                            c = {
-                                name = "Crates",
-                                t = { crates.toggle, "Crates Toggle" },
-                                r = { crates.reload, "Crates Reload" },
-                                --
-                                v = { crates.show_versions_popup, "Crate Version" },
-                                f = { crates.show_features_popup, "Crate show Features" },
-                                d = { crates.show_dependencies_popup, "Crate show Dependencies" },
-                                --
-                                u = { crates.update_crate, "Crate Update" },
-                                U = { crates.update_all_creates, "Crate Upgrade" },
-                                a = { crates.update_all_crates, "Crate update All" },
-                                A = { crates.update_all_creates, "Crate Upgrade all" },
-                                --
-                                H = { crates.open_homepage, "Crate open Homepage" },
-                                R = { crates.open_repository, "Crate open Repository" },
-                                D = { crates.open_documentation, "Crate open Documentation" },
-                                C = { crates.open_crates_io, "Crate open CratesIO" },
-                            },
-                        },
+                    require("which-key").add({
+                        { "<localleader>c", group = "Crates" },
+
+                        { "<localleader>ct", crates.toggle, desc = "Crates Toggle" },
+                        { "<localleader>cr", crates.reload, desc = "Crates Reload" },
+                        --
+                        { "<localleader>cv", crates.show_versions_popup, desc = "Crate Version" },
+                        { "<localleader>cf", crates.show_features_popup, desc = "Crate show Features" },
+                        { "<localleader>cd", crates.show_dependencies_popup, desc = "Crate show Dependencies" },
+                        --
+                        { "<localleader>cu", crates.update_crate, desc = "Crate Update" },
+                        { "<localleader>cU", crates.update_all_creates, desc = "Crate Upgrade" },
+                        { "<localleader>ca", crates.update_all_crates, desc = "Crate update All" },
+                        { "<localleader>cA", crates.update_all_creates, desc = "Crate Upgrade all" },
+                        --
+                        { "<localleader>cH", crates.open_homepage, desc = "Crate open Homepage" },
+                        { "<localleader>cR", crates.open_repository, desc = "Crate open Repository" },
+                        { "<localleader>cD", crates.open_documentation, desc = "Crate open Documentation" },
+                        { "<localleader>cC", crates.open_crates_io, desc = "Crate open CratesIO" },
                     })
                 end,
             })

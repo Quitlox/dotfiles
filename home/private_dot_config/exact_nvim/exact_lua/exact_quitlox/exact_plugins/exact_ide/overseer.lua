@@ -60,7 +60,7 @@ return {
         },
     },
     require("quitlox.util").whichkey({
-        ["<leader>e"] = { name = "Overseer" },
+        { "<leader>e", group = "Overseer" },
     }),
     require("quitlox.util").legendary({
         { ":OverseerOpen", "Overseer Open" },

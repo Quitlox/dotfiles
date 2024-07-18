@@ -86,7 +86,7 @@ local plugins = {
     { import = "quitlox.plugins" },
 
     require("quitlox.util").whichkey({
-        ["<leader>vp"] = { "<cmd>Lazy<cr>", "Plugins" },
+        { "<leader>vp", "<cmd>Lazy<cr>", desc = "Plugins" },
     }),
 }
 

@@ -2,15 +2,17 @@
 -- Setup
 ----------------------------------------
 
-if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then vim.g.sqlite_clib_path = vim.fn.expand("$HOME/.config/vim/sqlite3.dll") end
+if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+    vim.g.sqlite_clib_path = vim.fn.expand("$HOME/.config/vim/sqlite3.dll")
+end
 
 return {
     {
         "folke/which-key.nvim",
         optional = true,
         opts = {
-            defaults = {
-                ["<leader>f"] = { name = "Find" },
+            default = {
+                { "<leader>f", group = "Find" },
             },
         },
     },
@@ -21,9 +23,13 @@ return {
             "nvim-lua/plenary.nvim",
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
-                enabled = function() return vim.fn.has("win64") == 0 end,
+                enabled = function()
+                    return vim.fn.has("win64") == 0
+                end,
                 build = "make",
-                config = function() require("telescope").load_extension("fzf") end,
+                config = function()
+                    require("telescope").load_extension("fzf")
+                end,
             },
         },
         opts = function(_, opts)
@@ -52,6 +58,7 @@ return {
                     smart_open = {
                         cwd_only = true,
                         match_algorithm = "fzf",
+                        ignore_patterns = { "*.git/*", "*/tmp/*", ".venv/*" },
                     },
                 },
             }
@@ -70,12 +77,16 @@ return {
             },
             {
                 "<leader>fm",
-                function() require("telescope.builtin").man_pages(require("telescope.themes").get_dropdown({})) end,
+                function()
+                    require("telescope.builtin").man_pages(require("telescope.themes").get_dropdown({}))
+                end,
                 desc = "Find Manpage",
             },
             {
                 "<leader>fr",
-                function() require("telescope.builtin").resume(require("telescope.themes").get_ivy({})) end,
+                function()
+                    require("telescope.builtin").resume(require("telescope.themes").get_ivy({}))
+                end,
                 desc = "Find Resume",
             },
         },
@@ -91,7 +102,9 @@ return {
                 group = telescope_augroup_id,
                 pattern = "*",
                 callback = function()
-                    if vim.bo.filetype == "TelescopePrompt" and vim.fn.mode() == "i" then vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false) end
+                    if vim.bo.filetype == "TelescopePrompt" and vim.fn.mode() == "i" then
+                        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
+                    end
                 end,
             })
         end,
@@ -102,11 +115,15 @@ return {
         dependencies = {
             "kkharji/sqlite.lua",
         },
-        config = function() require("telescope").load_extension("smart_open") end,
+        config = function()
+            require("telescope").load_extension("smart_open")
+        end,
         keys = {
             {
                 "<leader>of",
-                function() require("telescope").extensions.smart_open.smart_open(require("telescope.themes").get_dropdown({})) end,
+                function()
+                    require("telescope").extensions.smart_open.smart_open(require("telescope.themes").get_dropdown({}))
+                end,
                 desc = "Open File",
             },
             {
@@ -121,16 +138,28 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
-        config = function() require("telescope").load_extension("undo") end,
-        keys = { { "<leader>fu", function() require("telescope").extensions.undo.undo() end, desc = "Undo History" } },
+        config = function()
+            require("telescope").load_extension("undo")
+        end,
+        keys = { {
+            "<leader>fu",
+            function()
+                require("telescope").extensions.undo.undo()
+            end,
+            desc = "Undo History",
+        } },
     },
     {
         "catgoose/telescope-helpgrep.nvim",
-        config = function() require("telescope").load_extension("helpgrep") end,
+        config = function()
+            require("telescope").load_extension("helpgrep")
+        end,
         keys = {
             {
                 "<leader>fh",
-                function() require("telescope-helpgrep").live_grep() end,
+                function()
+                    require("telescope-helpgrep").live_grep()
+                end,
                 desc = "Find Help",
             },
         },

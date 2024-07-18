@@ -100,9 +100,9 @@ return {
         },
     },
     require("quitlox.util").whichkey({
-        ["<leader>d"] = { name = "Debug" },
-        ["<leader>ds"] = { name = "Step" },
-        ["<leader>db"] = { name = "Breakpoint" },
-        ["<leader>dl"] = { name = "List" },
+        { "<leader>d", group = "Debug" },
+        { "<leader>ds", group = "Step" },
+        { "<leader>db", group = "Breakpoint" },
+        { "<leader>dl", group = "List" },
     }),
 }
