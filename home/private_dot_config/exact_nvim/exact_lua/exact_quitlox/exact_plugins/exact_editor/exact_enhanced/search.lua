@@ -1,6 +1,7 @@
 return {
     "kevinhwang91/nvim-hlslens",
     config = true,
+    enabled = false,
     version = "",
     keys = {
         -- stylua: ignore start
