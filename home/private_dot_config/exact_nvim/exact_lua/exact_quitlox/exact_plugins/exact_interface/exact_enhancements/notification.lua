@@ -1,11 +1,3 @@
-function CloseNotification()
-    require("which-key").register({
-        q = { ":q<cr>", "Close Notification" },
-    }, { mode = "n", buffer = vim.api.nvim_get_current_buf() })
-end
-
-vim.cmd([[ autocmd FileType notify lua CloseNotification() ]])
-
 -- Set up as default notification handler
 vim.notify = function(msg, level, opts)
     require("notify")(msg, level, opts)
