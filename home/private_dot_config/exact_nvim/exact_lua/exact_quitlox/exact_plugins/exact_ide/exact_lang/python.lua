@@ -124,11 +124,11 @@ return {
                 -- Set keymaps specifically for python
                 require("which-key").add({
                     -- x = { pythondap.test_class, "Debug Class" },
-                    { "y", pythondap.test_method, desc = "Debug Method" },
-                }, { prefix = "<leader>d" })
+                    { "<leader>dy", pythondap.test_method, desc = "Debug Method" },
+                })
                 require("which-key").add({
-                    { "s", pythondap.debug_selection, desc = "Debug Selection" },
-                }, { prefix = "<leader>d", mode = "v" })
+                    { "<leader>ds", pythondap.debug_selection, desc = "Debug Selection", mode = "v" },
+                })
             else
                 vim.notify('For Python debugging, install debugpy using: ":MasonInstall debugpy"', "WARN", { title = "No Python Debugging", timeout = 3000 })
             end
