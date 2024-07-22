@@ -18,3 +18,8 @@ Plugins that could be useful, but I am not using.
 I should make a plugin to help create tasks/debug configurations in Neovim.
 
 I should make a generic "run under cursor function" task runs tests, or e.g. rest.nvim
+
+Oil changes should update neotree
+Autoinstall black for python
+Reinsert hlslens
+Replace textobjects with mini? (check for python)
