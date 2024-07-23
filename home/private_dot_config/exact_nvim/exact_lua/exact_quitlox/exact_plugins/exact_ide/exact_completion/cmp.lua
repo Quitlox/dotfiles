@@ -19,9 +19,7 @@ return {
                 formatting = require("quitlox.plugins.ide.completion.include.format"),
                 snippet = {
                     -- Set the Snippet Engine
-                    expand = function(args)
-                        require("luasnip").lsp_expand(args.body)
-                    end,
+                    expand = function(args) require("luasnip").lsp_expand(args.body) end,
                 },
                 -- Enable border around completion
                 window = {
@@ -41,12 +39,8 @@ return {
                     ["<C-f>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
                     ["<C-u>"] = cmp.mapping(scroll_completion_up, { "i", "s", "c" }),
                     ["<C-d>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
-                    ["<C-n>"] = cmp.mapping(function()
-                        require("luasnip").jump(1)
-                    end, { "i", "s", "c" }),
-                    ["<C-p>"] = cmp.mapping(function()
-                        require("luasnip").jump(-1)
-                    end, { "i", "s", "c" }),
+                    ["<C-n>"] = cmp.mapping(function() require("luasnip").jump(1) end, { "i", "s", "c" }),
+                    ["<C-p>"] = cmp.mapping(function() require("luasnip").jump(-1) end, { "i", "s", "c" }),
                     ["<C-space>"] = cmp.mapping.complete(),
                 }),
                 sources = cmp.config.sources({
@@ -63,9 +57,7 @@ return {
                         name = "spell",
                         option = {
                             keep_all_entries = false,
-                            enable_in_context = function()
-                                return require("cmp.config.context").in_treesitter_capture("spell")
-                            end,
+                            enable_in_context = function() return require("cmp.config.context").in_treesitter_capture("spell") end,
                         },
                     },
                     { name = "rg" },
@@ -94,7 +86,7 @@ return {
             -- LSP Kind
             "onsails/lspkind.nvim",
             -- Snippet Engine
-            { "L3MON4D3/LuaSnip", version = "", dependencies = { "rafamadriz/friendly-snippets" } },
+            -- { "L3MON4D3/LuaSnip", version = "", dependencies = { "rafamadriz/friendly-snippets" } },
             "saadparwaiz1/cmp_luasnip",
             -- Completion Sorter
             "lukas-reineke/cmp-under-comparator",
