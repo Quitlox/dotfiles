@@ -8,6 +8,7 @@ return {
     {
         "folke/trouble.nvim",
         opts = {
+            auto_preview = false,
             action_keys = {
                 close = "q",
                 open_split = { "<c-v>" },
