@@ -47,7 +47,7 @@ return {
     -- +---------------------------------------------------------+
     -- | Jupyter Notebook: molten.nvim                           |
     -- +---------------------------------------------------------+
-    require("quitlox.util").legendary(molten_commands),
+    -- require("quitlox.util").legendary(molten_commands),
     {
         "benlubas/molten-nvim",
         -- enabled = function() return vim.fn.has("win64") == 0 and vim.g.neovide == nil end,
