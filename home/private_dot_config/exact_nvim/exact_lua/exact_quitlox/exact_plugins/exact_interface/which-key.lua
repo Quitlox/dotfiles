@@ -1,6 +1,6 @@
 return {
     "folke/which-key.nvim",
-    version = "~2.0",
+    version = "",
     dependencies = { "mrjones2014/legendary.nvim" },
     lazy = false,
     opts = {
