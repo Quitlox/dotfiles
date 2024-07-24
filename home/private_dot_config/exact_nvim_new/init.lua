@@ -3,6 +3,8 @@ vim.loader.enable()
 
 -- Bootstrap rocks.nvim
 require("quitlox.rocks_bootstrap")
+-- Colorscheme
+require("quitlox.colorscheme")
 
 -- Load configuration
 require("quitlox.config.options")

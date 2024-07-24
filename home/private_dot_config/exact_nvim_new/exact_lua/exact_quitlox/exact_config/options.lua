@@ -40,6 +40,8 @@ vim.opt.fillchars = vim.opt.fillchars + "eob: "
 --- UI ---
 vim.opt.mouse = "a"
 vim.opt.termguicolors = true
+vim.opt.pumheight = 10
+vim.opt.showmode = false
 vim.g.have_nerd_font = true -- Maybe kickstart.nvim specific
 -- vim.showtabline = 2 -- TODO: Is this necessary?
 --- Splits ---
@@ -55,11 +57,17 @@ vim.opt.spell = true
 vim.opt.spelllang = "en_us,nl"
 --- Backup ---
 vim.opt.undofile = true
+vim.opt.undolevels = 10000
 vim.opt.backup = true
 --- Misc ---
--- vim.opt.confirm = true TODO: Is this necessary?
+vim.opt.confirm = true
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 800
+vim.opt.timeoutlen = 300 -- FIXME: was 800
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.shada = vim.opt.shada + "'0,f0"
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0 -- WARNING: NEW
 
 -- +---------------------------------------------------------+
 -- | Wildmenu                                                |
@@ -67,7 +75,7 @@ vim.opt.timeoutlen = 800
 
 if vim.fn.has("wildmenu") == 1 then
     vim.opt.wildmenu = true
-    vim.opt.wildmode = "list,full" -- Was 'list:longest,full'
+    vim.opt.wildmode = "longest:full,full" -- Was 'list:longest,full'
     vim.opt.wildignorecase = true
 
     -- Version Control
@@ -111,4 +119,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "json", "jsonc" },
     command = "setconceallevel=0",
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = "lua",
+    command = "setlocal nospell",
 })
