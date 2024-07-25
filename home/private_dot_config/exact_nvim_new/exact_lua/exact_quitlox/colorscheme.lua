@@ -1,10 +1,12 @@
 -- +---------------------------------------------------------+
 -- | catppuccin/nvim: Colorscheme                            |
 -- +---------------------------------------------------------+
-if not pcall(require, "catppuccin") then return end
+if not pcall(require, "catppuccin") then
+    print("Error: catppuccin.nvim not found")
+    return
+end
 
 vim.cmd([[packadd nvim]]) -- silly name of catppuccin.nvim
-vim.cmd([[packadd tiny-devicons-auto-colors.nvim]])
 
 --+- Kitty Integartion --------------------------------------+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
@@ -20,7 +22,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
+vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
     group = vim.api.nvim_create_augroup("MyColorschemeCleanup", { clear = true }),
     callback = function()
         -- If terminal is kitty, set the background to transparent
@@ -85,11 +87,24 @@ require("catppuccin").setup({
 })
 
 -- Set colorscheme
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd.colorscheme("catppuccin")
 
 -- +---------------------------------------------------------+
 -- | rachartier/tiny-devicons-auto-colors.nvim: Color       |
 -- | Devicons based on the colorscheme                       |
 -- +---------------------------------------------------------+
 
-require("tiny-devicons-auto-colors").setup()
+local theme_colors = require("catppuccin.palettes").get_palette("mocha")
+
+require("nvim-web-devicons").setup({
+    color_icons = true,
+})
+
+require("tiny-devicons-auto-colors").setup({
+    colors = theme_colors,
+    autoreload = true,
+})
+
+require("legendary").commands({
+    { ":NvimWebDeviconsHiTest", description = "Test nvim-web-devicons" },
+})

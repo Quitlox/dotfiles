@@ -3,8 +3,6 @@ vim.loader.enable()
 
 -- Bootstrap rocks.nvim
 require("quitlox.rocks_bootstrap")
--- Colorscheme
-require("quitlox.colorscheme")
 
 -- Debugging
 local osvpath = vim.fn.expand("~") .. "/.local/share/nvim_new/rocks/lib/luarocks/rocks-5.1" .. "/one-small-step-for-vimkind"
@@ -20,6 +18,9 @@ if (vim.uv or vim.loop).fs_stat(osvpath) then
     end
 end
 
+-- Colorscheme
+require("quitlox.colorscheme")
+
 -- Load configuration
 require("quitlox.config.options")
 require("quitlox.config.commands")
@@ -30,12 +31,5 @@ require("quitlox.config.mappings")
 require("quitlox.config.environment.kitty")
 require("quitlox.config.environment.neovide")
 
--- Load vim plugins
--- vim.cmd([[source ./settings/plugins/vimtex.vim]]) TODO:
-
--- Manually load colorscheme
--- require("rocks").packadd("") TODO:
-
 -- TODO:
-
 -- stevearc/profile.nvim

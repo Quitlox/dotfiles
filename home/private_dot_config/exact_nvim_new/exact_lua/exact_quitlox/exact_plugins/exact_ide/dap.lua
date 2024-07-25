@@ -50,16 +50,16 @@ vim.api.nvim_create_user_command("LoadLaunchJson", load_launch_json, {
 })
 
 --+- Keymaps ------------------------------------------------+
-vim.keymap.set("n", "<F9>", function() dap.continue() end, { noremap = true, silent = true, desc = "Debug Continue" })
-vim.keymap.set("n", "<F8>", function() dap.step_over() end, { noremap = true, silent = true, desc = "Debug Step Over" })
-vim.keymap.set("n", "<S-F8>", function() dap.step_out() end, { noremap = true, silent = true, desc = "Debug Step Out" })
-vim.keymap.set("n", "<F7>", function() dap.step_into() end, { noremap = true, silent = true, desc = "Debug Step Into" })
-vim.keymap.set("n", "<leader>dd", function() dap.continue() end, { noremap = true, silent = true, desc = "Debugger Launch/Continue" })
-vim.keymap.set("n", "<leader>dx", function() dap.terminate() end, { noremap = true, silent = true, desc = "Debugger Terminate" })
+vim.keymap.set("n", "<F9>", function() require("dap").continue() end, { noremap = true, silent = true, desc = "Debug Continue" })
+vim.keymap.set("n", "<F8>", function() require("dap").step_over() end, { noremap = true, silent = true, desc = "Debug Step Over" })
+vim.keymap.set("n", "<S-F8>", function() require("dap").step_out() end, { noremap = true, silent = true, desc = "Debug Step Out" })
+vim.keymap.set("n", "<F7>", function() require("dap").step_into() end, { noremap = true, silent = true, desc = "Debug Step Into" })
+vim.keymap.set("n", "<leader>dd", function() require("dap").continue() end, { noremap = true, silent = true, desc = "Debugger Launch/Continue" })
+vim.keymap.set("n", "<leader>dx", function() require("dap").terminate() end, { noremap = true, silent = true, desc = "Debugger Terminate" })
 vim.keymap.set("n", "<leader>dr", "<cmd>DapToggleRepl<cr>", { noremap = true, silent = true, desc = "Open REPL" })
 
 vim.keymap.set("n", "<leader>dt", function() require("persistent-breakpoints.api").toggle_breakpoint() end, { noremap = true, silent = true, desc = "Breakpoint Toggle" })
-vim.keymap.set("n", "<leader>dbm", function() dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, { noremap = true, silent = true, desc = "Breakpoint Message" })
+vim.keymap.set("n", "<leader>dbm", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, { noremap = true, silent = true, desc = "Breakpoint Message" })
 vim.keymap.set("n", "<leader>dbc", function() require("persistent-breakpoints.api").set_conditional_breakpoint() end, { noremap = true, silent = true, desc = "Breakpoint Condition" })
 
 vim.keymap.set("n", "<leader>dv", "<cmd>LoadLaunchJson<cr>", { noremap = true, silent = true, desc = "Reload launch.json" })
