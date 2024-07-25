@@ -47,7 +47,7 @@
 "comment-box.nvim" = "scm"
 
 # +- Completion ---------------------------------------------+
-"nvim-cmp" = "scm"
+"nvim-cmp" = { git = "hrsh7th/nvim-cmp" }
 "cmp-under-comparator" = { git = "lukas-reineke/cmp-under-comparator", rev = "v1.0.1" }
 "cmp-nvim-lsp-signature-help" = { git = "hrsh7th/cmp-nvim-lsp-signature-help" }
 "cmp-nvim-lsp" = { git = "hrsh7th/cmp-nvim-lsp" }
@@ -72,7 +72,7 @@
 "neogit" = "1.0.0"
 
 # +- Language Server Protocol -------------------------------+
-"clear-action.nvim" = { git = "theHamsta/clear-action.nvim", rev = "v3.0.0" }
+"clear-action.nvim" = { git = "luckasRanarison/clear-action.nvim", rev = "v0.3.0" }
 "glance.nvim" = "scm"
 "hover.nvim" = "scm"
 "lsp_signature.nvim" = "0.3.1"
@@ -106,18 +106,18 @@
 # +- LaTeX --------------------------------------------------+
 "vimtex" = { git = "lervag/vimtex", rev = "v2.9" }
 # +- Lua ----------------------------------------------------+
-"lazydev.nvim" = "1.7.0"
+"lazydev.nvim" = "1.7.1"
 "luvit-meta" = { git = "Bilal2453/luvit-meta" }
 # +- Markdown -----------------------------------------------+
 "markdown-preview.nvim" = { git = "iamcco/markdown-preview.nvim", rev = "v0.0.9^{}" }
 "markdown.nvim" = { git = "meanderingprogrammer/markdown.nvim", rev = "v4.1.0^{}" }
 # +- Python -------------------------------------------------+
-"nvim-dap-python" = { git = "mfussenegger/nvim-dap-python" }
-"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", branch = "regexp" }
+"nvim-dap-python" = "scm"
+"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", branch = "regexpr" }
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "4.26.1", config = "quitlox.plugins.lang.rust" }
 # +- Typescript ---------------------------------------------+
-"typescript-tools.nvim" = { git = "pmizio/typescript-tools.nvim", config = "quitlox.plugins.lang.typescript" }
+"typescript-tools.nvim" = "scm"
 # +- Vim ----------------------------------------------------+
 "jbyuki/one-small-step-for-vimkind" = { git = "jbyuki/one-small-step-for-vimkind" }
 
@@ -141,6 +141,8 @@
 "legendary.nvim" = "2.13.11"
 "telescope.nvim" = "scm"
 "neo-tree.nvim" = "3.26"
+nvim-autopairs = "scm"
+one-small-step-for-vimkind = "scm"
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |
@@ -152,7 +154,6 @@ items = [
   "nvim-cmp",
   "cmp-under-comparator",
   "cmp-nvim-lsp-signature-help",
-  "cmp-nvim-lsp",
   "cmp-path",
   "cmp-cmdline",
   "cmp-buffer",
