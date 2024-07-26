@@ -1,7 +1,7 @@
 -- +---------------------------------------------------------+
 -- | stevearc/profile.nvim: Profile Neovim                   |
 -- +---------------------------------------------------------+
--- To profile, launch Neovim with NVIM_PROFILE=1 and press F1
+-- To profile, launch
 
 local should_profile = os.getenv("NVIM_PROFILE")
 if should_profile then

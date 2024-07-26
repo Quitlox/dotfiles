@@ -60,8 +60,6 @@
 "cmp-rg" = { git = "lukas-reineke/cmp-rg", rev = "v1.3.9" }
 "cmp-dap" = { git = "rcarriga/cmp-dap" }
 "lspkind.nvim" = { git = "onsails/lspkind-nvim" }
-# Copilot
-"copilot.vim" = { git = "github/copilot.vim", rev = "v1.38.0" }
 
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = "0.8.0"
@@ -227,6 +225,12 @@
 # | New and Unsorted                                         |
 # +----------------------------------------------------------+
 "profile.nvim" = { git = "stevearc/profile.nvim" }
+
+[# -- Copilot --
+plugins."copilot.vim" ]
+git = "github/copilot.vim"
+rev = "v1.38.0"
+
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |

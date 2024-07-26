@@ -61,13 +61,6 @@ vim.keymap.set("n", "<leader><cr>", ":noh<cr>", { silent = true })
 vim.keymap.set("v", ":", ":<C-U>", { noremap = true })
 
 -- +---------------------------------------------------------+
--- | Buffer                                                  |
--- +---------------------------------------------------------+
-
-vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-
--- +---------------------------------------------------------+
 -- | Window                                                  |
 -- +---------------------------------------------------------+
 
@@ -81,9 +74,7 @@ vim.keymap.set({ "n", "v" }, "<C-l>", "<C-w>l")
 -- the filetype is not equals to 'NvimTree'
 local function window_only()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
-        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then
-            vim.api.nvim_win_close(win, false)
-        end
+        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then vim.api.nvim_win_close(win, false) end
     end
 end
 

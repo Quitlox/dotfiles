@@ -1,0 +1,18 @@
+{
+  "lspconfig": {
+    "pyright": {
+      "python.analysis.diagnosticMode": "openFilesOnly",
+      // "python.analysis.stubPath": "stubs"
+      "python.analysis.diagnosticSeverityOverrides": {
+        "reportUnusedVariable": "information",
+        "reportUnusedImport": "information"
+      }
+    },
+    "neodev": {
+      "library": {
+        "enabled": true,
+        "plugins": true
+      }
+    }
+  }
+}

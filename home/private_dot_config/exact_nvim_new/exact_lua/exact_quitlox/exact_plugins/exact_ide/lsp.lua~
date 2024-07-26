@@ -41,7 +41,6 @@ local custom_before_open = function(results, open, jump, method)
 end
 
 local actions = require("glance").actions
----@diagnostic disable-next-line: missing-fields
 require("glance").setup({
     hooks = {
         before_open = custom_before_open,

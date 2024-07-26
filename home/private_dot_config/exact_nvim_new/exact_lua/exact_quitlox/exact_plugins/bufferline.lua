@@ -40,8 +40,8 @@ require("bufferline").setup({
         buffer_close_icon = " ",
         modified_icon = " ",
         close_icon = " ",
-        left_trunc_marker = " ",
-        right_trunc_marker = " ",
+        -- left_trunc_marker = " ",
+        -- right_trunc_marker = " ",
 
         -- Insert space for padding
         get_element_icon = function(element)
@@ -56,6 +56,10 @@ require("bufferline").setup({
 vim.keymap.set("n", "<leader>bb", "<cmd>BufferLinePick<cr>", { desc = "Buffer Pick" })
 vim.keymap.set("n", "<leader>bd", ":Bdelete<cr>", { desc = "Buffer Delete" })
 vim.keymap.set("n", "<leader>bo", close_all_but_current, { desc = "Buffer Only" })
+
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+
 vim.keymap.set("n", "<leader>bmn", "<cmd>BufferLineMoveNext<cr>", { desc = "Buffer Move Next" })
 vim.keymap.set("n", "<leader>bmp", "<cmd>BufferLineMovePrev<cr>", { desc = "Buffer Move Prev" })
 
@@ -65,18 +69,18 @@ require("which-key").add({
 })
 
 --+- Integration: Edgy --------------------------------------+
-local Offset = require("bufferline.offset")
-if not Offset.edgy then
-    local get = Offset.get
-    Offset.get = function()
+local offset = require("bufferline.offset")
+if not offset.edgy then
+    local get = offset.get
+    offset.get = function()
         if package.loaded.edgy then
             local layout = require("edgy.config").layout
             local ret = { left = "", left_size = 0, right = "", right_size = 0 }
             for _, pos in ipairs({ "left", "right" }) do
                 local sb = layout[pos]
                 if sb and #sb.wins > 0 then
-                    local title = " Sidebar" .. string.rep(" ", sb.bounds.width - 8)
-                    ret[pos] = "%#EdgyTitle#" .. title .. "%*" .. "%#WinSeparator#│%*"
+                    local title = " " .. string.rep(" ", sb.bounds.width - 1)
+                    ret[pos] = "%#EdgyTitle#" .. title .. "%*" .. "%#EdgyTitle# %*"
                     ret[pos .. "_size"] = sb.bounds.width
                 end
             end
@@ -85,18 +89,5 @@ if not Offset.edgy then
         end
         return get()
     end
-    Offset.edgy = true
+    offset.edgy = true
 end
-
--- +---------------------------------------------------------+
--- | roobert/bufferline-cycle-windowless.nvim                |
--- +---------------------------------------------------------+
-
---+- Setup --------------------------------------------------+
-require("bufferline-cycle-windowless").setup({
-    default_enabled = true,
-})
-
---+- Keymaps ------------------------------------------------+
-vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleWindowlessNext<cr>", { desc = "Buffer Next" })
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineCycleWindowlessPrev<cr>", { desc = "Buffer Prev" })

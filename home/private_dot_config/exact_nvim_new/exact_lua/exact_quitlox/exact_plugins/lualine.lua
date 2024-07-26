@@ -41,7 +41,7 @@ local py_venv = { "python_env", separator = { left = "" } }
 
 --+- Options ------------------------------------------------+
 vim.opt.laststatus = 3
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
 
 --+- Setup --------------------------------------------------+
 require("lualine").setup({

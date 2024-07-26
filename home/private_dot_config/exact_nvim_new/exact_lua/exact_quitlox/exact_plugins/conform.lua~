@@ -75,7 +75,7 @@ require("conform").setup({
         jsonc = { { "prettier", "prettierd" } },
         ["_"] = { "trim_whitespace" },
     },
-    format_on_save = function(_bufnr)
+    format_on_save = function(bufnr)
         if not should_format_on_save() then return end
         return { timeout_ms = 1000 }
     end,

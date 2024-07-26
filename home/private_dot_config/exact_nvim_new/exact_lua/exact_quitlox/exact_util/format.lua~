@@ -31,5 +31,3 @@ function M.enable(enable, buf)
     end
     M.info()
 end
-
-return M

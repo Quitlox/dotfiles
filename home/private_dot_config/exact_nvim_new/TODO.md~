@@ -17,7 +17,6 @@
 
 - scrollbar removed
 - disable hint diagnostics
-- molten not building
 
 deprecated plugins?:
 - sentiment.nvim (this should be covered by matchup)

@@ -20,28 +20,28 @@ require("nvim-treesitter.configs").setup({
                 ["]f"] = "@function.outer",
                 ["]C"] = "@class.outer",
                 ["]a"] = "@parameter.inner",
-                ["]b"] = "@block.outer",
+                -- ["]b"] = "@block.outer", -- Used for breakpoing
                 ["]l"] = "@loop.outer",
             },
             goto_next_end = {
                 ["]F"] = "@function.outer",
                 -- ["]C"] = "@class.outer",
                 ["]A"] = "@parameter.outer",
-                ["]B"] = "@block.outer",
+                -- ["]B"] = "@block.outer", -- Used for breakpoing
                 ["]L"] = "@loop.outer",
             },
             goto_previous_start = {
                 ["[f"] = "@function.outer",
                 ["[C"] = "@class.outer",
                 ["[a"] = "@parameter.inner",
-                ["[b"] = "@block.outer",
+                -- ["[b"] = "@block.outer",
                 ["[l"] = "@loop.outer",
             },
             goto_previous_end = {
                 ["[F"] = "@function.outer",
                 -- ["[C"] = "@class.outer",
                 ["[A"] = "@parameter.outer",
-                ["[B"] = "@block.outer",
+                -- ["[B"] = "@block.outer",
                 ["[L"] = "@loop.outer",
             },
         },

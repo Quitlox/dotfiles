@@ -123,4 +123,5 @@ require("window-picker").setup({
             buftype = { "terminal", "quickfix" },
         },
     },
+
 })

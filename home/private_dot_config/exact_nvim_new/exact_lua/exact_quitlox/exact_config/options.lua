@@ -47,7 +47,7 @@ vim.g.have_nerd_font = true -- Maybe kickstart.nvim specific
 --- Splits ---
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.splitkeep = "screen"
+-- vim.opt.splitkeep = "screen"
 vim.opt.eadirection = "hor"
 --- Title ---
 vim.opt.title = true
