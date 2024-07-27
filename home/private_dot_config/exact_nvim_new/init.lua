@@ -4,6 +4,12 @@ vim.loader.enable()
 -- Bootstrap rocks.nvim
 require("quitlox.rocks_bootstrap")
 
+-- Load configuration
+require("quitlox.config.options")
+require("quitlox.config.commands")
+require("quitlox.config.autocmds")
+require("quitlox.config.mappings")
+
 -- Debugging
 local osvpath = vim.fn.expand("~") .. "/.local/share/nvim_new/rocks/lib/luarocks/rocks-5.1" .. "/one-small-step-for-vimkind"
 if (vim.uv or vim.loop).fs_stat(osvpath) then
@@ -20,12 +26,6 @@ end
 
 -- Colorscheme
 require("quitlox.colorscheme")
-
--- Load configuration
-require("quitlox.config.options")
-require("quitlox.config.commands")
-require("quitlox.config.autocmds")
-require("quitlox.config.mappings")
 
 -- Load environment specific configuration
 require("quitlox.config.environment.kitty")

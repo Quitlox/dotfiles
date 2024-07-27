@@ -58,5 +58,5 @@ vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
 --+- Setup --------------------------------------------------+
 require("toggleterm").setup({
     direction = "horizontal",
-    auto_scroll = false,
+    auto_scroll = true,
 })

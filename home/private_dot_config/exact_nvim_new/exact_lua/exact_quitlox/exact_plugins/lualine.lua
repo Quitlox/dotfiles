@@ -30,7 +30,7 @@ local fancy_cwd = {
         return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     end,
     icon = " ",
-    fmt = trunc(160, 20, nil, false),
+    fmt = trunc(160, 30, nil, false),
 }
 
 --+- Customize Modules --------------------------------------+

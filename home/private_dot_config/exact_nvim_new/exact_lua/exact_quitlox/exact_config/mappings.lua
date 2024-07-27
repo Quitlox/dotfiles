@@ -1,12 +1,13 @@
--- Leader
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 -- Remove default conflicting mappings
 -- vim.keymap.del("n", "K")
 -- vim.keymap.del("n", "[f")
 -- vim.keymap.del("n", "]f")
 -- vim.keymap.del("n", "q:")
+-- vim.keymap.del("n", "\\")
+
+-- Leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- +---------------------------------------------------------+
 -- | Modifier Shortcuts                                      |

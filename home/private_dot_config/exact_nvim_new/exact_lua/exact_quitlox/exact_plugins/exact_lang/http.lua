@@ -19,3 +19,19 @@ vim.api.nvim_create_autocmd("FileType", {
         require("which-key").add({ { "<localleader>h", group = "HTTP" } })
     end,
 })
+
+-- Example HTTP request
+-- POST {{bob}}/transfers/request/consumer?processId=1
+-- content-type: application/json
+-- accept: application/json
+-- # @env-json-key TRANSFER_UUID_BOB json.identifier
+--
+-- {
+--     "@type": "dspace:TransferRequestMessage",
+--     "dspace:consumerPid": "1",
+--     "dspace:agreementId": "1",
+--     "dct:format": "mpc",
+--     "dspace:callbackAddress": "callback"
+-- }
+
+-- FIXME: Warn if jq not installed

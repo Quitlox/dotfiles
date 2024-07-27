@@ -163,7 +163,7 @@ cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "path" },
-        }, {
+    }, {
         { name = "cmdline" },
         { name = "cmdline_history" },
     }),
@@ -176,6 +176,31 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
     },
 })
 
+local python_underscore = function(entry1, entry2)
+    -- rank python completions starting with underscore last
+    local _, entry1_under = entry1.completion_item.label:find("^_+")
+    local _, entry2_under = entry2.completion_item.label:find("^_+")
+    entry1_under = entry1_under or 0
+    entry2_under = entry2_under or 0
+    if entry1_under > entry2_under then
+        return false
+    elseif entry1_under < entry2_under then
+        return true
+    end
+end
+
+local types = require("cmp.types")
+
+---@type table<integer, integer>
+local modified_priority = {
+    [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Method,
+    [types.lsp.CompletionItemKind.Snippet] = 0, -- top
+    [types.lsp.CompletionItemKind.Keyword] = 0, -- top
+    [types.lsp.CompletionItemKind.Text] = 100, -- bottom
+}
+---@param kind integer: kind of completion entry
+local function modified_kind(kind) return modified_priority[kind] or kind end
+
 cmp.setup.filetype("python", {
     sorting = {
         priority_weight = 1,
@@ -183,10 +208,20 @@ cmp.setup.filetype("python", {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.score,
-            -- rank python completions starting with underscore last
-            require("cmp-under-comparator").under,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
+            python_underscore,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
+                local kind1 = modified_kind(entry1:get_kind())
+                local kind2 = modified_kind(entry2:get_kind())
+                if kind1 ~= kind2 then return kind1 - kind2 < 0 end
+            end,
+            function(entry1, entry2) -- score by lsp, if available
+                local t1 = entry1.completion_item.sortText
+                local t2 = entry2.completion_item.sortText
+                if t1 ~= nil and t2 ~= nil and t1 ~= t2 then return t1 < t2 end
+            end,
+            -- cmp.config.compare.sort_text,
             cmp.config.compare.length,
             cmp.config.compare.order,
         },

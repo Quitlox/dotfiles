@@ -47,6 +47,7 @@ vim.keymap.set("n", "<leader>el", "<cmd>OverseerRestartLast<cr>", { noremap = tr
 
 vim.keymap.set("n", "<leader>ev", "<cmd>OverseerQuickAction open split<cr>", { noremap = true, silent = true, desc = "Overseer Quick Split" })
 vim.keymap.set("n", "<leader>eb", "<cmd>OverseerQuickAction open vsplit<cr>", { noremap = true, silent = true, desc = "Overseer Quick vSplit" })
+require("which-key").add({ { "<leader>e", "Overseer" } })
 
 --+- Commands -----------------------------------------------+
 vim.api.nvim_create_user_command("OverseerRestartLast", function()

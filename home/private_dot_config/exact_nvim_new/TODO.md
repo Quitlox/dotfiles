@@ -27,3 +27,21 @@ deprecated plugins?:
 try out:
 - cmp completion styling once colorscheme installed
 - diffview for reviewing pr
+
+### Bugs
+
+report bug: if treesitter-ecma is not installed explicitely, treesitter is not
+autostarted
+
+report bug: make one mistake in big config, is very confusing. My example, I had 
+autopairs on ft InsertEnter with the following in cmp.
+```lua
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+vim.api.nvim_create_autocmd("InsertEnter", {
+    callback = function()
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+})
+```

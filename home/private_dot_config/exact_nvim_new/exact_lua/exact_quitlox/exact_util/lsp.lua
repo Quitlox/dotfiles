@@ -5,7 +5,7 @@ local function make_capabilities()
 
     local success, mod = pcall(require, "cmp_nvim_lsp")
     if not success then
-        vim.notify("cmp_nvim_lsp not installed", vim.log.levels.ERROR, { title = "Error" })
+        vim.notify("cmp_nvim_lsp not installed", vim.log.levels.WARNING, { title = "Error while loading capabilities" })
         return vim.lsp.protocol.make_client_capabilities()
     end
 

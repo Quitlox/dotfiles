@@ -21,17 +21,27 @@ require("which-key").setup({
         { "<leader>vu", "<cmd>Rocks sync<cr>", desc = "Update Plugins" },
 
         { "<leader><cr>", hidden = true },
-        { "<leader><leader>", hidden = true },
+        { "<C-W>h", hidden = true },
+        { "<C-W>l", hidden = true },
+        { "<C-W>j", hidden = true },
+        { "<C-W>k", hidden = true },
+        { "H", hidden = true },
+        { "L", hidden = true },
+        { "p", hidden = true },
+        { "P", hidden = true },
         { "gk", hidden = true },
         { "gj", hidden = true },
+        { "k", hidden = true },
+        { "j", hidden = true },
+        { "Y", hidden = true },
     },
     plugins = {
         marks = true,
         registers = true,
         presets = {
             operators = false,
-            motions = true, -- FIXME: was false
-            text_objects = true, -- FIXME: was false
+            motions = false,
+            text_objects = false,
             windows = false,
             nav = false,
             z = true,
@@ -51,10 +61,6 @@ require("which-key").setup({
     keys = {
         scroll_down = "<c-d>", -- binding to scroll down inside the popup
         scroll_up = "<c-u>", -- binding to scroll up inside the popup
-    },
-    disable = {
-        ft = {},
-        bt = {},
     },
 })
 

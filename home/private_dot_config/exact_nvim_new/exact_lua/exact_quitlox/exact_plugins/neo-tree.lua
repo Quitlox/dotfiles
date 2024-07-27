@@ -36,8 +36,8 @@ require("neo-tree").setup({
 
     window = {
         mappings = {
-            ["<cr>"] = "open_with_window_picker",
-            ["o"] = { "open", silent = true, nowait = true },
+            ["<cr>"] = { "open", silent = true, noremap = true },
+            ["o"] = { "open_with_window_picker", silent = true, nowait = true },
             ["<esc>"] = "revert_preview",
             ["b"] = { "open_vsplit", nowait = true },
             ["v"] = { "open_split", nowait = true },

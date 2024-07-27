@@ -8,7 +8,7 @@ vim.filetype.add({
         ["launch.json"] = "jsonc",
     },
     extension = {
-        htt = "http", -- required for kulala.nvim
+        http = "http", -- required for kulala.nvim
         -- Python
         mpc = "python", -- MP-SPDZ Compiler
         sage = "python",

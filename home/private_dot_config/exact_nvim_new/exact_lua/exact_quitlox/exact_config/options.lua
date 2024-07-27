@@ -59,6 +59,7 @@ vim.opt.spelllang = "en_us,nl"
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
 vim.opt.backup = true
+vim.opt.backupdir = vim.fn.expand("$XDG_STATE_HOME/nvim/backup//")
 --- Misc ---
 vim.opt.confirm = true
 vim.opt.updatetime = 250
@@ -122,7 +123,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "json", "jsonc" },
-    command = "setconceallevel=0",
+    command = "set conceallevel=0",
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
