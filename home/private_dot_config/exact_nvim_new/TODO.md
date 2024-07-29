@@ -1,31 +1,20 @@
-- conform: make isort / pylint run async
 - replace mason with my own checkhealth for missing dependencies
-- resession but check that git commit status has not changed
 - obsidian
 - spectre / search-replace
 - replace hydra with whichkey?
 - configure wrapping properly (softwarp no point without textwidth)
-- tailwind tools broken?
-
-- test hlslens and textobj
-- project.nvim, dashboard.nvim, session
 
 - icons:
     - remove lualine filetype
     - telescope find all icons space
-    - neo tree icons space
 
 - scrollbar removed
 - disable hint diagnostics
 - molten not building
-
-deprecated plugins?:
-- sentiment.nvim (this should be covered by matchup)
-- do I need ts-context-commentstring? (test with svelte)
-- scrolleof (doesn't provide usefull functionality)
+- when dab focusses the breakpoint, it should focus an existing window if
+  possible, instead of opening the buffer in the current window
 
 try out:
-- cmp completion styling once colorscheme installed
 - diffview for reviewing pr
 
 ### Bugs

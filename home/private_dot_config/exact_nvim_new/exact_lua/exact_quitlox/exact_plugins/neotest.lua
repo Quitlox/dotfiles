@@ -4,8 +4,21 @@ require("neotest").setup({
         require("neotest-python")({
             dap = { justMyCode = true },
             args = { "--log-level", "DEBUG", "--log-cli-level", "DEBUG", "-v" },
+            runner = "pytest",
+            python = function()
+                local venv = require("venv-selector").venv()
+                if venv ~= nil then return venv .. "/bin/python" end
+
+                -- If no venv-selector, manullay check if '.venv/bin/python' exists
+                if vim.fn.filereadable(".venv/bin/python") == 1 then return ".venv/bin/python" end
+
+                return "python"
+            end,
+
+            pytest_discover_instances = true,
         }),
     },
+    log_level = 3,
     summary = {
         mappings = {
             stop = "x",
@@ -22,12 +35,12 @@ require("neotest").setup({
 
 --+- Keymaps ------------------------------------------------+
 require("which-key").add({ { "<leader>t", group = "Test" } })
-vim.keymap.set("n", "<leader>trr", function() require("neotest").run.run() end, { noremap = true, desc = "Test Run" })
-vim.keymap.set("n", "<leader>trf", function() require("neotest").run.run(vim.fn.expand("%")) end, { noremap = true, desc = "Test File" })
-vim.keymap.set("n", "<leader>trx", function() require("neotest").run.stop() end, { noremap = true, desc = "Test Stop" })
-vim.keymap.set("n", "<leader>tra", function() require("neotest").run.attach() end, { noremap = true, desc = "Test Attach" })
-vim.keymap.set("n", "<leader>tro", function() require("neotest").output.open({ enter = true }) end, { noremap = true, desc = "Test Output" })
-vim.keymap.set("n", "<leader>trs", function() require("neotest").summary.toggle() end, { noremap = true, desc = "Test Summary toggle" })
+vim.keymap.set("n", "<leader>tr", function() require("neotest").run.run() end, { noremap = true, desc = "Test Run" })
+vim.keymap.set("n", "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, { noremap = true, desc = "Test File" })
+vim.keymap.set("n", "<leader>tx", function() require("neotest").run.stop() end, { noremap = true, desc = "Test Stop" })
+vim.keymap.set("n", "<leader>ta", function() require("neotest").run.attach() end, { noremap = true, desc = "Test Attach" })
+vim.keymap.set("n", "<leader>to", function() require("neotest").output.open({ enter = true }) end, { noremap = true, desc = "Test Output" })
+vim.keymap.set("n", "<leader>ts", function() require("neotest").summary.toggle() end, { noremap = true, desc = "Test Summary toggle" })
 vim.keymap.set("n", "<leader>lt", function() require("neotest").summary.open() end, { noremap = true, desc = "Locate Test" })
 
 vim.api.nvim_create_autocmd("LspAttach", {

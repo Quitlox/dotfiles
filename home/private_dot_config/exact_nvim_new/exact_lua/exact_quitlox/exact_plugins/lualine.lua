@@ -18,7 +18,7 @@ local fileformat = function()
     return ret
 end
 
-local linters = function()
+local active_linters = function()
     local linters = require("lint").get_running()
     if #linters == 0 then return "󰦕 " end
     return "󱉶  " .. table.concat(linters, ", ")
@@ -31,6 +31,22 @@ local fancy_cwd = {
     end,
     icon = " ",
     fmt = trunc(160, 30, nil, false),
+}
+
+local linters = {
+    function()
+        local ft_formatters = require("lint").linters_by_ft[vim.bo.filetype]
+        return ft_formatters and table.concat(require("lint").linters_by_ft[vim.bo.filetype], " ") or "None"
+    end,
+    icon = "󱉶 ",
+}
+
+local formatters = {
+    function()
+        local ft_formatters = require("conform").formatters_by_ft[vim.bo.filetype]
+        return ft_formatters and table.concat(require("conform").formatters_by_ft[vim.bo.filetype], " ") or "None"
+    end,
+    icon = "󱄽 ",
 }
 
 --+- Customize Modules --------------------------------------+
@@ -69,8 +85,8 @@ require("lualine").setup({
         lualine_a = { fancy_cwd },
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", midsection },
-        lualine_x = { linters, "mixed_indent", "overseer", "fancy_diff", "fancy_diagnostics" },
-        lualine_y = { filetype, encoding, fileformat, py_venv },
+        lualine_x = { active_linters, "mixed_indent", "overseer", "fancy_diff", "fancy_diagnostics" },
+        lualine_y = { encoding, fileformat, py_venv },
         lualine_z = { "fancy_searchcount", "location" },
     },
     inactive_sections = {
@@ -78,7 +94,7 @@ require("lualine").setup({
         lualine_b = { branch },
         lualine_c = { "my_pretty_path" },
         lualine_x = { "mixed_indent" },
-        lualine_y = { filetype, encoding, fileformat },
+        lualine_y = { encoding, fileformat },
         lualine_z = { "fancy_searchcount", "location" },
     },
 

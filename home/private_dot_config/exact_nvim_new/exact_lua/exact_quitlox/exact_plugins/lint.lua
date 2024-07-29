@@ -19,3 +19,10 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
         require("lint").try_lint(nil, { ignore_errors = true })
     end,
 })
+
+local lint_progress = function()
+    local linters = require("lint").get_running()
+    if #linters == 0 then return "󰦕" end
+
+    return "󱉶 " .. table.concat(linters, ", ")
+end

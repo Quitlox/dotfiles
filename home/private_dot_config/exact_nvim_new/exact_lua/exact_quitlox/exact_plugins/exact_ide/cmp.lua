@@ -66,7 +66,7 @@ end
 
 --+- Interface ----------------------------------------------+
 local vscode_format = require("lspkind").cmp_format({
-    mode = "symbol_text",
+    mode = "symbol",
     preset = "codicons",
 
     maxwidth = 35,
@@ -75,7 +75,6 @@ local vscode_format = require("lspkind").cmp_format({
     menu = {
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
-        luasnip = "[LuaSnip]",
         nvim_lua = "[Lua]",
         latex_symbols = "[LaTeX]",
         cmdline_history = "[History]",
@@ -93,9 +92,12 @@ local vscode_format = require("lspkind").cmp_format({
 local format = function(entry, vim_item)
     -- VSCode Kind
     local kind = vscode_format(entry, vim_item)
-    local strings = vim.split(kind.kind, "%s", { trimempty = true })
-    kind.kind = " " .. (strings[1] or "") .. " "
-    kind.menu = "    (" .. (strings[2] or "") .. ")"
+    -- local strings = vim.split(kind.kind, "%s", { trimempty = true }) -- requires symbol_text for lspkind
+    kind.kind = " " .. (kind.kind or "") .. " "
+    -- kind.menu = "    (" .. (strings[2] or "") .. ")" -- name of kind
+    -- kind.menu = "    (" .. (entry.source.name or "") .. ")" -- name of source
+    -- kind.menu = "    " .. (kind.menu or "") -- nice name of source
+    kind.dup = 0 -- Remove duplicate entries
 
     return kind
 end
@@ -136,8 +138,6 @@ cmp.setup({
         ["<C-f>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
         ["<C-u>"] = cmp.mapping(scroll_completion_up, { "i", "s", "c" }),
         ["<C-d>"] = cmp.mapping(scroll_completion_down, { "i", "s", "c" }),
-        ["<C-n>"] = cmp.mapping(function() require("luasnip").jump(1) end, { "i", "s", "c" }),
-        ["<C-p>"] = cmp.mapping(function() require("luasnip").jump(-1) end, { "i", "s", "c" }),
         ["<C-space>"] = cmp.mapping.complete(),
     }),
     sources = cmp.config.sources({
@@ -176,6 +176,7 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
     },
 })
 
+--+- Modify ordering ----------------------------------------+
 local python_underscore = function(entry1, entry2)
     -- rank python completions starting with underscore last
     local _, entry1_under = entry1.completion_item.label:find("^_+")
@@ -201,6 +202,7 @@ local modified_priority = {
 ---@param kind integer: kind of completion entry
 local function modified_kind(kind) return modified_priority[kind] or kind end
 
+-- FIXME: Should not only be for python
 cmp.setup.filetype("python", {
     sorting = {
         priority_weight = 1,

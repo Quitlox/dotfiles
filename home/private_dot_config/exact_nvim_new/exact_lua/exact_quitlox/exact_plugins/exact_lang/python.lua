@@ -66,7 +66,7 @@ function InstallPackageInVenv(name)
     local venv_path = vim.fn.getenv("VIRTUAL_ENV")
 
     -- Check if running in a virtual environment
-    if venv_path and venv_path ~= "" then
+    if not venv_path == vim.v.null and venv_path ~= "" then
         -- Attempt to install package using pip
         local handle = io.popen(venv_path .. "/bin/pip install " .. name)
         if not handle then

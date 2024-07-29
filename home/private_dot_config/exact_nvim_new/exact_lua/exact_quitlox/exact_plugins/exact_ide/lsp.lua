@@ -108,13 +108,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 --+- Toggle -------------------------------------------------+
 vim.g.lsp_signature_toggle_enabled = 1
-local lsp_signatu_toggle = require("quitlox.util.toggle").wrap({
+
+local lsp_signature_toggle = require("quitlox.util.toggle").wrap({
     name = "Signature Help",
     get = function() return vim.g.lsp_signature_toggle_enabled == 1 end,
     set = function(state) vim.g.lsp_signature_toggle_enabled = require("lsp_signature").toggle_float_win() end,
 })
+
 require("legendary").commands({
-    { ":LspSignatureToggle", lsp_signatu_toggle, description = "Toggle LSP Signature Help" },
+    { ":LspSignatureToggle", lsp_signature_toggle, description = "Toggle LSP Signature Help" },
 })
 
 -- +---------------------------------------------------------+

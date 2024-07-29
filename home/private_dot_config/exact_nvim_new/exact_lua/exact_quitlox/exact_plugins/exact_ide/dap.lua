@@ -7,6 +7,7 @@ vim.keymap.set("n", "]b", function() require("goto-breakpoints").next() end, { n
 -- +---------------------------------------------------------+
 -- | Weissle/persistent-breakpoints.nvim: Peristence         |
 -- +---------------------------------------------------------+
+-- FIXME: Is this taken over by possesion?
 require("persistent-breakpoints").setup({
     load_breakpoints_event = { "BufReadPost" },
 })
@@ -21,6 +22,10 @@ require("nvim-dap-virtual-text").setup()
 -- +---------------------------------------------------------+
 
 local dap = require("dap")
+
+-- dap.defaults.fallback
+dap.defaults.fallback.switchbuf = "useopen,uselast"
+-- dap.defaults.fallback.stepping_granularity = "line"
 
 --+- Launch.json --------------------------------------------+
 -- Command: Reload launch.json
@@ -68,15 +73,26 @@ vim.keymap.set("n", "<leader>dv", "<cmd>LoadLaunchJson<cr>", { noremap = true, s
 -- | rcarriga/nvim-dap-ui: Debug Adapter Protocol UI         |
 -- +---------------------------------------------------------+
 
+-- Setup
+require("dapui").setup({ expand_lines = true })
+
 -- State
 local state = {
     neo_tree_open = false,
     gitsigns_enabled = false,
 }
 
+local function is_neotree_open()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.bo[buf].ft == "neo-tree" and vim.b[buf].neo_tree_source == "filesystem" then return true end
+    end
+
+    return false
+end
+
 -- Logic
 local function on_open()
-    if require("quitlox.util").is_neotree_open() then
+    if is_neotree_open() then
         state.neo_tree_open = true
         require("neo-tree.command").execute({ action = "close" })
     end
@@ -94,9 +110,6 @@ local function on_close()
     require("dapui").close()
     require("gitsigns").toggle_signs(true)
 end
-
--- Setup
-require("dapui").setup({ expand_lines = true })
 
 -- Autmatically open/close DAP UI and Nvim-Tree
 dap.listeners.after.event_initialized["dapui_config"] = on_open

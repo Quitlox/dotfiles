@@ -33,6 +33,13 @@ vim.keymap.set("n", "<leader>ls", "<cmd>Neotree position=right source=document_s
 --+- Setup --------------------------------------------------+
 require("neo-tree").setup({
     open_files_do_not_replace_types = ignore_ft,
+    enable_diagnostics = false,
+
+    default_component_configs = {
+        container = {
+            left_padding = 1, -- Padding after icon
+        },
+    },
 
     window = {
         mappings = {
@@ -47,14 +54,28 @@ require("neo-tree").setup({
     },
 
     filesystem = {
-        -- for project.nvim
-        bind_to_cwd = true,
-        cwd_target = {
-            sidebar = "tab",
-        },
         -- time the current file is changed while the tree is open.
         group_empty_dirs = true,
+        components = {
+            -- name = function(config, node, state)
+            --     local highlight = config.highlight or highlights.FILE_NAME
+            --     if node.type == "directory" then highlight = highlights.DIRECTORY_NAME end
+            --     if node:get_depth() == 1 then
+            --         highlight = highlights.ROOT_NAME
+            --     else
+            --         if config.use_git_status_colors == nil or config.use_git_status_colors then
+            --             local git_status = state.components.git_status({}, node, state)
+            --             if git_status and git_status.highlight then highlight = git_status.highlight end
+            --         end
+            --     end
+            --     return {
+            --         text = node.name,
+            --         highlight = highlight,
+            --     }
+            -- end,
+        },
     },
+
     document_symbols = {
         follow_cursor = true,
         window = {
@@ -73,6 +94,43 @@ require("neo-tree").setup({
                 ["/"] = "filter",
                 ["f"] = "filter_on_submit",
             },
+        },
+
+        kinds = {
+            Unknown = { icon = "? ", hl = "" },
+            Root = { icon = " ", hl = "NeoTreeRootName" },
+            File = { icon = " ", hl = "Tag" },
+            Module = { icon = " ", hl = "Exception" },
+            Namespace = { icon = "󰌗 ", hl = "Include" },
+            Package = { icon = "󰏖 ", hl = "Label" },
+            Class = { icon = "󰌗 ", hl = "Include" },
+            Method = { icon = " ", hl = "Function" },
+            Property = { icon = "󰆧 ", hl = "@property" },
+            Field = { icon = " ", hl = "@field" },
+            Constructor = { icon = " ", hl = "@constructor" },
+            Enum = { icon = "󰒻 ", hl = "@number" },
+            Interface = { icon = " ", hl = "Type" },
+            Function = { icon = "󰊕 ", hl = "Function" },
+            Variable = { icon = " ", hl = "@variable" },
+            Constant = { icon = " ", hl = "Constant" },
+            String = { icon = "󰀬 ", hl = "String" },
+            Number = { icon = "󰎠 ", hl = "Number" },
+            Boolean = { icon = " ", hl = "Boolean" },
+            Array = { icon = "󰅪 ", hl = "Type" },
+            Object = { icon = "󰅩 ", hl = "Type" },
+            Key = { icon = "󰌋 ", hl = "" },
+            Null = { icon = " ", hl = "Constant" },
+            EnumMember = { icon = " ", hl = "Number" },
+            Struct = { icon = "󰌗 ", hl = "Type" },
+            Event = { icon = " ", hl = "Constant" },
+            Operator = { icon = "󰆕 ", hl = "Operator" },
+            TypeParameter = { icon = "󰊄 ", hl = "Type" },
+
+            -- ccls
+            -- TypeAlias = { icon = ' ', hl = 'Type' },
+            -- Parameter = { icon = ' ', hl = '@parameter' },
+            -- StaticMethod = { icon = '󰠄 ', hl = 'Function' },
+            -- Macro = { icon = ' ', hl = 'Macro' },
         },
     },
 

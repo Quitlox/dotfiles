@@ -80,4 +80,4 @@ vim.keymap.set("n", "<leader>oa", "<cmd>Telescope find_files cwd=~<cr>", { norem
 -- +---------------------------------------------------------+
 
 require("telescope").load_extension("helpgrep")
-vim.keymap.set("n", "<leader>fh", function() require("telescope-helpgrep").live_grep() end, { noremap = true, silent = true, desc = "Find Help" })
+vim.keymap.set("n", "<leader>fh", function() require("telescope-helpgrep").live_grep(require("telescope.themes").get_dropdown({})) end, { noremap = true, silent = true, desc = "Find Help" })
