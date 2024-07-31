@@ -5,13 +5,12 @@ return {
     -- BUG: https://github.com/hrsh7th/nvim-cmp/issues/1613
     config = function()
         require("lsp_signature").setup({
-            bind = true,
+            hint_prefix = "  ",
             handler_opts = {
-                border = "single",
+                border = "rounded",
             },
-            hint_prefix = " ",
-            floating_window = false,
-            wrap = false,
+            floating_window = true,
+            wrap = true,
         })
     end,
 }

@@ -7,9 +7,9 @@ return {
                 enable = true,
                 prev_selection = ",",
                 keymaps = {
-                        ["<cr>"] = "textsubjects-smart",
-                        [";"] = "textsubjects-container-outer",
-                        ["i;"] = "textsubjects-container-inner",
+                    ["<cr>"] = "textsubjects-smart",
+                    [";"] = { "textsubjects-container-outer", desc = "Select outside containers (classes, functions, etc.)" },
+                    ["i;"] = { "textsubjects-container-inner", desc = "Select inside containers (classes, functions, etc.)" },
                 },
             },
         })
