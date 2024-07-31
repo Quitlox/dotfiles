@@ -1,21 +1,17 @@
-- replace mason with my own checkhealth for missing dependencies
-- obsidian
-- spectre / search-replace
-- replace hydra with whichkey?
-- configure wrapping properly (softwarp no point without textwidth)
 
-- icons:
-    - remove lualine filetype
-    - telescope find all icons space
+- [ ] Icons: add padding to treesitter
+    - I tried overriding "telescope.utils".get_devicons, but it doesn't seem to work
+- [ ] Session: Save neotree state (https://github.com/coffebar/neovim-project/blob/main/lua/neovim-project/utils/neo-tree.lua)
+- [ ] Session: Save overseer state (https://github.com/stevearc/overseer.nvim/blob/master/doc/third_party.md#other-session-managers)
+- [ ] Investigate: Slow Legendary, Iconpicker (or Telescope?)
+- [ ] Statusline: Show git blame of current line?
+- [ ] Report: profile.nvim bug
 
-- scrollbar removed
-- disable hint diagnostics
-- molten not building
-- when dab focusses the breakpoint, it should focus an existing window if
-  possible, instead of opening the buffer in the current window
-
-try out:
-- diffview for reviewing pr
+- [ ] Minor Improvements:
+    - [ ] Python
+        - [ ] Requirements checking and installation should be async
+        - [ ] Pip may print lines to stdout
+        - [ ] Erroneously reporting pynvim not installed ?
 
 ### Bugs
 
@@ -34,3 +30,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     end,
 })
 ```
+
+### Memorandum
+- Help File Navigation: Hit `gO` to open an outline in the help file.
+- In insert mode, use `<C-o>` to execute a normal mode command.

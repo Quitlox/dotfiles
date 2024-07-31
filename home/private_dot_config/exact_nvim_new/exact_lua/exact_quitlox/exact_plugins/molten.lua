@@ -12,6 +12,19 @@ if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.g.neovide ~= nil 
 vim.g.molten_image_provider = "image.nvim"
 vim.g.molten_output_win_max_height = 20
 
+--+- Check Requirements -------------------------------------+
+-- Check if pynvim pip package is installed
+-- check exit code
+vim.fn.system("python3 -m pip show pynvim")
+if vim.v.shell_error == 1 then
+    vim.schedule(
+        function() vim.notify("`pynvim` is not installed. Please install it by running `pip install pynvim` or globally using your package manager.", vim.log.levels.ERROR, { title = "Molten.nvim" }) end
+    )
+    return
+else
+    vim.schedule(function() vim.cmd("UpdateRemotePlugins") end)
+end
+
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader><leader>ji", "<cmd>MoltenInit<cr>", { desc = "Initialize Jupyter" })
 vim.keymap.set("n", "<leader><leader>je", "<cmd>MoltenEvaluateOperator<cr>", { desc = "Evaluate operator" })
@@ -27,7 +40,7 @@ require("which-key").add({
 })
 
 --+- Commands -----------------------------------------------+
--- FIXME: This breaks molten for some reason
+-- FIXME: Commands not properly registered
 
 -- require("legendary").commands({
 --     -- stylua: ignore start

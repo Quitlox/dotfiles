@@ -41,6 +41,7 @@ require("legendary").commands({
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "python",
+    once = true,
     callback = function()
         local pythondap = require("dap-python")
         local bufnr = vim.api.nvim_get_current_buf()
@@ -55,18 +56,26 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         vim.keymap.set("v", "<leader>ds", pythondap.debug_selection, { buffer = bufnr, desc = "Debug Selection" })
 
         -- Install debugpy
-        -- TODO: Check if this works
         InstallPackageInVenv("debugpy")
+        -- Install black
+        InstallPackageInVenv("black")
+        -- Install isort
+        InstallPackageInVenv("isort")
     end,
 })
 
 --+- Helper functions ---------------------------------------+
+vim.g.python_venv_warning = false
 function InstallPackageInVenv(name)
     -- Determine if running inside a virtual environment
     local venv_path = vim.fn.getenv("VIRTUAL_ENV")
 
     -- Check if running in a virtual environment
-    if not venv_path == vim.v.null and venv_path ~= "" then
+    if venv_path ~= vim.v.null and venv_path ~= "" then
+        -- Check if package is already installed
+        local handle = vim.system({ venv_path .. "/bin/pip", "show", name })
+        if handle:wait().code == 0 then return end
+
         -- Attempt to install package using pip
         local handle = io.popen(venv_path .. "/bin/pip install " .. name)
         if not handle then
@@ -78,16 +87,16 @@ function InstallPackageInVenv(name)
         local success = handle:close()
 
         if success then
-            vim.notify("Black formatter installed successfully.", vim.log.levels.INFO, { title = "Python Support" })
+            vim.notify("`" .. name .. "` installed successfully.", vim.log.levels.INFO, { title = "Python Support" })
         else
-            vim.notify("Failed to install Black formatter.", vim.log.levels.ERROR, { title = "Python Support" })
+            vim.notify("Failed to install `" .. name .. "`.", vim.log.levels.ERROR, { title = "Python Support" })
         end
     else
-        -- Not running inside a virtual environment
-        if pcall(require, "notify") then
-            require("notify")("Not running inside a virtual environment.", "warn", { title = "Python Support" })
-        else
-            vim.api.nvim_out_write("Not running inside a virtual environment.\n")
-        end
+        vim.schedule(function()
+            if vim.g.python_venv_warning then return end
+
+            vim.notify("Not running inside a virtual environment. Could not install package `" .. name .. "`", "warn", { title = "Python Support" })
+            vim.g.python_venv_warning = true
+        end)
     end
 end
