@@ -2,6 +2,8 @@
 -- Bufferline: Keybindings
 ----------------------------------------
 
+-- TODO: group buffers by cwd
+
 local function close_all_but_current()
     local current = vim.api.nvim_get_current_buf()
     local buffers = require("bufferline.utils").get_valid_buffers()

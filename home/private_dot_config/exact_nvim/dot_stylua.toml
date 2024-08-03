@@ -1,3 +1,6 @@
-collapse_simple_statement = "FunctionOnly"
+collapse_simple_statement = "Always"
 indent_type = "Spaces"
 column_width = 200
+
+[sort_requires]
+enabled = true

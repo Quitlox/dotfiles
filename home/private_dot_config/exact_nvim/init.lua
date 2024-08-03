@@ -1,21 +1,35 @@
--- General Configurations
-vim.cmd('source ~/.config/nvim/settings/options.vim')
-vim.cmd('source ~/.config/nvim/settings/keybindings.vim')
-vim.cmd('source ~/.config/nvim/settings/wildmenu.vim')
-vim.cmd('source ~/.config/nvim/settings/undo_swap_backup.vim')
+-- Experimental Lua loader: https://neovim.io/doc/user/lua.html#vim.loader
+vim.loader.enable()
 
--- Plugin Manager
-require('quitlox.lazy')
+-- Bootstrap rocks.nvim
+require("quitlox.rocks_bootstrap")
 
--- Environment Specific
--- These should be sourced first, as these files often contain work-arounds
--- to make the general configurations compatible.
-for _, f in ipairs(vim.fn.glob('~/.config/nvim/settings/environments/*.vim', false, true)) do
-  vim.cmd('source ' .. f)
+-- Load configuration
+require("quitlox.config.options")
+require("quitlox.config.commands")
+require("quitlox.config.autocmds")
+require("quitlox.config.mappings")
+
+-- Debugging
+local osvpath = vim.fn.expand("~") .. "/.local/share/nvim_new/rocks/lib/luarocks/rocks-5.1" .. "/one-small-step-for-vimkind"
+if (vim.uv or vim.loop).fs_stat(osvpath) then
+    local nvim_config_debug = vim.env.NVIM_CONFIG_DEBUG
+    if nvim_config_debug ~= vim.NIL and nvim_config_debug == "y" then
+        vim.opt.rtp:prepend(osvpath)
+        vim.env.NVIM_CONFIG_DEBUG = ""
+        require("osv").launch({ port = 8086 })
+        vim.env.NVIM_CONFIG_DEBUG = nvim_config_debug
+        vim.print("Press any key to continue")
+        vim.fn.getchar()
+    end
 end
 
--- Plugin Configuration
-for _, f in ipairs(vim.fn.glob('~/.config/nvim/settings/plugins/*.vim', false, true)) do
-  vim.cmd('source ' .. f)
-end
+-- Colorscheme
+require("quitlox.colorscheme")
 
+-- Load environment specific configuration
+require("quitlox.config.environment.kitty")
+require("quitlox.config.environment.neovide")
+
+-- TODO:
+-- stevearc/profile.nvim

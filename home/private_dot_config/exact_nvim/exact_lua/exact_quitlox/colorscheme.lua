@@ -100,10 +100,15 @@ require("nvim-web-devicons").setup({
     color_icons = true,
 })
 
-require("tiny-devicons-auto-colors").setup({
-    colors = theme_colors,
-    autoreload = true,
-})
+-- Globally pad icons with a space
+-- Devicons = require("nvim-web-devicons")
+-- local get_icon = Devicons.get_icon
+-- Devicons.get_icon = function(name, ext, opts)
+--     local icon, hl = get_icon(name, ext, opts)
+--     if icon ~= nil then return icon .. " ", hl end
+-- end
+
+require("tiny-devicons-auto-colors").setup({ colors = theme_colors, autoreload = true })
 
 require("legendary").commands({
     { ":NvimWebDeviconsHiTest", description = "Test nvim-web-devicons" },

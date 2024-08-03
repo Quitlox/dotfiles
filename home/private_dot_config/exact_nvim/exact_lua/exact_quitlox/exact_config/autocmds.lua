@@ -1,4 +1,17 @@
--- close some filetypes with <q>
+-- Automatically resize Windows when resizing the terminal or opening a terminal
+vim.api.nvim_create_autocmd({ "VimResized", "TermOpen" }, {
+    pattern = "*",
+    command = "wincmd =",
+})
+
+-- Set quickfix buffers as unlisted
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    group = vim.api.nvim_create_augroup("HideQuickFix", { clear = true }),
+    command = "set nobuflisted",
+})
+
+-- Close specific filetypes with <q>
 vim.api.nvim_create_autocmd("filetype", {
     group = vim.api.nvim_create_augroup("close_with_q", {}),
     pattern = {
@@ -14,7 +27,7 @@ vim.api.nvim_create_autocmd("filetype", {
         "notify",
         "spectre_panel",
         "OverseerList",
-        "oil",
+        "CodeAction",
 
         "neotest-output",
         "neotest-summary",
