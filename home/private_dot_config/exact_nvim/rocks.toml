@@ -119,6 +119,7 @@
 # +----------------------------------------------------------+
 "nvim-lspconfig" = "0.1.8"
 "otter.nvim" = { version = "2.3.0", config = "quitlox.plugins.lang.otter" }
+"nvim-parinfer" = "1.2.0" # parentheses support for lisp-like languages
 # +- Config -------------------------------------------------+
 "schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.config-lang" }
 # +- Go -----------------------------------------------------+
@@ -239,8 +240,10 @@ tree-sitter-dockerfile = "0.0.2"
 tree-sitter-ecma = "0.0.2"
 tree-sitter-editorconfig = "0.0.3"
 tree-sitter-gitignore = "0.0.2"
+tree-sitter-git_config = "0.0.1"
 tree-sitter-html = "0.0.2"
 tree-sitter-http = "0.0.2"
+tree-sitter-hyprlang = "0.0.2"
 tree-sitter-javascript = "0.0.2"
 tree-sitter-json = "0.0.2"
 tree-sitter-jsonc = "0.0.2"
@@ -253,9 +256,9 @@ tree-sitter-scss = "0.0.2"
 tree-sitter-svelte = "0.0.3"
 tree-sitter-toml = "0.0.2"
 tree-sitter-typescript = "0.0.3"
-tree-sitter-yaml = "0.0.2"
 tree-sitter-vimdoc = "0.0.2"
-tree-sitter-git_config = "0.0.1"
+tree-sitter-yaml = "0.0.2"
+tree-sitter-yuck = "0.0.1"
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |

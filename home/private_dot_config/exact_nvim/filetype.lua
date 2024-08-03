@@ -9,6 +9,7 @@ vim.filetype.add({
     },
     extension = {
         http = "http", -- required for kulala.nvim
+        hl = "hyprlang",
         -- Python
         mpc = "python", -- MP-SPDZ Compiler
         sage = "python",
@@ -16,5 +17,8 @@ vim.filetype.add({
         pyx = "python",
         -- Misc
         sbatch = "bash", -- Slurm
+    },
+    pattern = {
+        ["~/.config/hypr/.*%.conf"] = "hyprlang",
     },
 })

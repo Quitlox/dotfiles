@@ -35,3 +35,15 @@ require("legendary").commands({
     { ":LspStop", description = "Stop the requested server name." },
     { ":LspRestart", description = "Restart the requested server name." },
 })
+
+--+- LSP: Hyperlang -----------------------------------------+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+    pattern = { "*.hl", "hypr*.conf" },
+    callback = function(event)
+        vim.lsp.start({
+            name = "hyprlang",
+            cmd = { "hyprls" },
+            root_dir = vim.fn.getcwd(),
+        })
+    end,
+})
