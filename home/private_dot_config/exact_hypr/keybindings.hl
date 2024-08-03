@@ -1,0 +1,99 @@
+####################
+### KEYBINDINGSS ###
+####################
+
+$mainMod = SUPER
+
+# +- Applications -----------------------------------------+
+bind = $mainMod, Return, exec, $terminal
+bind = $mainMod SHIFT, W, killactive,
+bind = $mainMod SHIFT, Q, exit,
+bind = $mainMod, E, exec, $fileManager
+bind = $mainMod, D, exec, $menu
+bind = $mainMod, P, pseudo, # dwindle
+
+# +- Windows: Move ----------------------------------------+
+bind = $mainMod, h, hy3:movefocus, l
+bind = $mainMod, l, hy3:movefocus, r
+bind = $mainMod, k, hy3:movefocus, u
+bind = $mainMod, j, hy3:movefocus, d
+
+bind = $mainMod SHIFT, h, hy3:movewindow, l
+bind = $mainMod SHIFT, l, hy3:movewindow, r
+bind = $mainMod SHIFT, k, hy3:movewindow, u
+bind = $mainMod SHIFT, j, hy3:movewindow, d
+
+# +- Windows: Resize --------------------------------------+
+bind=$mainMod,R,submap,resize
+submap = resize
+binde = ,l,resizeactive,100 0
+binde = ,h,resizeactive,-100 0
+binde = ,k,resizeactive,0 -100
+binde = ,j,resizeactive,0 100
+bind = ,escape,submap,reset
+bind = ,catchall,submap,reset
+submap = reset
+
+# +- Windows: Splits --------------------------------------+
+bind = $mainMod, v, hy3:makegroup, v, ephemeral
+bind = $mainMod, b, hy3:makegroup, h, ephemeral
+bind = $mainMod, a, hy3:changefocus, raise
+
+bind = $mainMod, s, hy3:changegroup, tab
+bind = $mainMod, w, hy3:changegroup, tab
+bind = $mainMod, e, hy3:changegroup, untab
+
+# +- Windows: Other ---------------------------------------+
+bind = $mainMod, f, fullscreen
+bind = $mainMod SHIFT, s, pin
+bind = $mainMod SHIFT, Space, togglefloating
+bind = $mainMod, Space, cyclenext # TODO: i3: toggle between floating and non-floating windows
+
+# +- Workspaces: Switch -----------------------------------+
+bind = $mainMod, 1, workspace, 1
+bind = $mainMod, 2, workspace, 2
+bind = $mainMod, 3, workspace, 3
+bind = $mainMod, 4, workspace, 4
+bind = $mainMod, 5, workspace, 5
+bind = $mainMod, 6, workspace, 6
+bind = $mainMod, 7, workspace, 7
+bind = $mainMod, 8, workspace, 8
+bind = $mainMod, 9, workspace, 9
+bind = $mainMod, 0, workspace, 10
+
+# +- Workspaces: Move -------------------------------------+
+bind = $mainMod SHIFT, 1, movetoworkspace, 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9
+bind = $mainMod SHIFT, 0, movetoworkspace, 10
+
+# +- Workspaces: Other ------------------------------------+
+# Example special workspace (scratchpad)
+# bind = $mainMod, S, togglespecialworkspace, magic
+bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+
+# +- Mouse ------------------------------------------------+
+# Scroll through existing workspaces with mainMod + scroll
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = $mainMod, mouse:272, hy3:movewindow
+bindm = $mainMod, mouse:273, resizewindow
+
+bindm=$mainMod,mouse:272,movewindow
+
+# +- Media ------------------------------------------------+
+bindel=, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindel=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindl=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+# Requires playerctl
+bindl=, XF86AudioPlay, exec, playerctl play-pause
+bindl=, XF86AudioPrev, exec, playerctl previous
+bindl=, XF86AudioNext, exec, playerctl next
