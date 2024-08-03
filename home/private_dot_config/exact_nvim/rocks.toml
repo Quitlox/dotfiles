@@ -235,6 +235,7 @@
 "profile.nvim" = { git = "stevearc/profile.nvim" }
 
 # +- Treesitter: Parsers ------------------------------------+
+tree-sitter-bash = "0.0.2"
 tree-sitter-css = "0.0.2"
 tree-sitter-dockerfile = "0.0.2"
 tree-sitter-ecma = "0.0.2"

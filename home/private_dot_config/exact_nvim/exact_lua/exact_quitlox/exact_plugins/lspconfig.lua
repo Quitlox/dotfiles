@@ -47,3 +47,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
         })
     end,
 })
+
+--+- LSP: Other ---------------------------------------------+
+require("lspconfig").cssls.setup({
+    capabilities = require("quitlox.util.lsp").capabilities,
+})
