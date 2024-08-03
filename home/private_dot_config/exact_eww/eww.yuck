@@ -1,0 +1,73 @@
+
+; +--- Widget: Powermenu ------------------------------------------------------+
+(defwidget powermenu []
+           (box :orientation "horizontal"
+                :halign "center"
+                :class "powermenu-bar-container"
+            "powermenu"))
+
+; +--- Widget: Battery --------------------------------------------------------+
+(defwidget battery []
+    (box :orientation "h")
+    (button :label "Battery"
+            :class "battery-button"
+            ""))
+
+; +--- Widget: Notifications Button -------------------------------------------+
+(defwidget notifications-button []
+    (button :label "Notification"
+            :class "notifications-button"
+            ""))
+
+; +--- Widget: Date and Time --------------------------------------------------+
+(defpoll datetime-string :interval "1s" "date '+ %a, %b %d, %H:%S'")
+(defwidget datetime []
+           (box :orientation "horizontal"
+                :class "datetime-container"
+            (box :class "time" datetime-string)))
+
+; +--- Sections ---------------------------------------------------------------+
+(defwidget section-start []
+  (box :orientation "h"
+       :class "section-start-container"
+       :halign "start"
+       "start"))
+
+
+(defwidget section-middle []
+  (box :orientation "h"
+       :class "section-middle-container"
+       :halign "center"
+       "middle"))
+
+(defwidget section-end []
+  (box :orientation "h"
+       :class "section-end-container"
+       :halign "end"
+       :space-evenly false
+       (battery)
+       (datetime)
+       (notifications-button)))
+
+(defwidget bar-container []
+           (box :orientation "h"
+                :vexpand true
+                :hexpand false
+                :class "bar-container"
+            (section-start)
+            (section-middle)
+            (section-end)))
+
+; +--- Window -----------------------------------------------------------------+
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "0px"
+                               :y "0px"
+                               :width "100%"
+                               :height "48"
+                               :anchor "bottom left")
+           :stacking "fg"
+           :exclusive true
+           :focusable false
+           :namespace "quitlox-bar"
+ (bar-container))

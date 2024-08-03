@@ -1,0 +1,35 @@
+* {
+    all: unset;
+}
+
+// +--- Sections --------------------------------------------------------------+
+.bar-container {
+    padding: 0 16 8 16;
+    // background: rgba(204, 208, 218, 0.1); // surface0
+}
+
+.section-end-container {
+    // background: rgba(204, 208, 218, 0.1); // surface0
+}
+
+// +--- Widget: Notifications Button ------------------------------------------+
+.notifications-button {
+    background: rgba(204, 208, 218, 0.1); // surface0
+    border-radius: 8;
+    padding: 0 8;
+    margin: 0 0 0 8;
+
+    &:hover {
+        background: rgba(204, 208, 218, 0.5); // surface0
+    }
+}
+
+// +--- Widget: Date and Time -------------------------------------------------+
+.datetime-container {
+    background: rgba(204, 208, 218, 0.1); // surface0
+    border-radius: 8;
+    padding: 0 8;
+
+    font-size: 14;
+    font-family: 'Iosevka';
+}
