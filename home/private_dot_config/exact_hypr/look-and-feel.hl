@@ -19,11 +19,10 @@ general {
 }
 
 decoration {
-    # Change transparency of focused and unfocused windows
     active_opacity = 1.0
     inactive_opacity = 1.0
 
-    # Blur
+    rounding = 6
     blur {
         enabled = yes
         size = 2
@@ -36,10 +35,7 @@ decoration {
 
         ignore_opacity = true
     }
-    # Corners
-    rounding = 6
 
-    # Shadows
     drop_shadow = yes
     shadow_range = 25
     shadow_render_power = 2
@@ -61,6 +57,7 @@ animations {
 
 windowrule = opacity 0.99 0.99, obsidian
 windowrule = opacity 0.99 0.99, Electron
+
 
 misc {
     force_default_wallpaper = 0 # Set to 0 or 1 to disable the anime mascot wallpapers
