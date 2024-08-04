@@ -97,3 +97,9 @@ bindl=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindl=, XF86AudioPlay, exec, playerctl play-pause
 bindl=, XF86AudioPrev, exec, playerctl previous
 bindl=, XF86AudioNext, exec, playerctl next
+
+# +- Brightness -------------------------------------------+
+bind = ,XF86MonBrightnessUp, exec, brightnessctl --exponent=3 s +10%
+bind = ,XF86MonBrightnessDown, exec, brightnessctl --exponent=3 s 10%-
+bind = ,XF86MonBrightnessUp, exec, eww update var-brightness-percent=$(brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%')
+bind = ,XF86MonBrightnessDown, exec, eww update var-brightness-percent=$(brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%')
