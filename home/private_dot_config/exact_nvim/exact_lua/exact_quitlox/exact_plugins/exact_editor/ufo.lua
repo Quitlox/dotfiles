@@ -48,9 +48,10 @@ end
 
 -- FIXME: Remove ufo if this is sufficient
 
+-- FIXME:: Slows down legendary
 vim.opt.foldlevel = 99
 vim.opt.foldenable = true
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.fillchars = vim.opt.fillchars + "fold: "
