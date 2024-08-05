@@ -2,6 +2,8 @@
     all: unset;
 }
 
+$surface0: rgba(204, 208, 218, 0.1);
+
 // +--- Sections --------------------------------------------------------------+
 .bar-container {
     padding: 0 16 8 16;
@@ -12,24 +14,42 @@
     // background: rgba(204, 208, 218, 0.1); // surface0
 }
 
+
+// +--- Widget: Brightness ----------------------------------------------------+
+.brightness {
+    background: $surface0;
+    border-radius: 8;
+    padding: 0 8;
+    margin: 0 8 0 0;
+    font-size: 12;
+}
+
+// +--- Widget: Battery -------------------------------------------------------+
+.battery {
+    background: $surface0;
+    border-radius: 8;
+    padding: 0 8;
+    margin: 0 8 0 0;
+    font-size: 12;
+}
+
+// +--- Widget: Date and Time -------------------------------------------------+
+.datetime-container {
+    background: $surface0;
+    border-radius: 8;
+    padding: 0 8;
+    font-size: 14;
+    font-family: 'Iosevka';
+}
+
 // +--- Widget: Notifications Button ------------------------------------------+
 .notifications-button {
-    background: rgba(204, 208, 218, 0.1); // surface0
+    background: $surface0;
     border-radius: 8;
     padding: 0 8;
     margin: 0 0 0 8;
 
     &:hover {
-        background: rgba(204, 208, 218, 0.5); // surface0
+        background: rgba(204, 208, 218, 0.5);
     }
-}
-
-// +--- Widget: Date and Time -------------------------------------------------+
-.datetime-container {
-    background: rgba(204, 208, 218, 0.1); // surface0
-    border-radius: 8;
-    padding: 0 8;
-
-    font-size: 14;
-    font-family: 'Iosevka';
 }
