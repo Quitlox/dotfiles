@@ -10,6 +10,43 @@ require("gp").setup({
     chat_assistant_prefix = { "󰚩 :", "[{{agent}}]" },
 })
 
+--+- Helper: Change settings during writing -----------------+
+local function create_gp_command(command_name, gp_command)
+    vim.api.nvim_create_user_command(command_name, function(cmd)
+        local prev_matchup_matchparen_fallback = vim.b.matchup_matchparen_fallback
+        local prev_matchup_matchparen_enabled = vim.b.matchup_matchparen_enabled
+        local prev_foldenable = vim.wo.foldenable
+
+        vim.b.matchup_matchparen_fallback = 0
+        vim.b.matchup_matchparen_enabled = 0
+        vim.wo.foldenable = false
+
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "GpDone",
+            once = true,
+            desc = "Temporary autocommand to restore previous settings.",
+            callback = function()
+                vim.b.matchup_matchparen_fallback = prev_matchup_matchparen_fallback
+                vim.b.matchup_matchparen_enabled = prev_matchup_matchparen_enabled
+                vim.wo.foldenable = prev_foldenable
+            end,
+        })
+
+        vim.api.nvim_cmd({
+            cmd = gp_command,
+            range = { cmd.line1, cmd.line2 },
+            bang = cmd.bang,
+            nargs = cmd.nargs,
+            mods = cmd.smods,
+        }, {})
+    end, { range = true })
+end
+
+create_gp_command("MyGpRewrite", "GpRewrite")
+create_gp_command("MyGpAppend", "GpAppend")
+create_gp_command("MyGpPrepend", "GpPrepend")
+create_gp_command("MyGpImplement", "GpImplement")
+
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set({ "n", "i" }, "<C-g>c", ":GpChatNew popup<cr>", { desc = "NewChat", noremap = true, silent = true, nowait = true })
 vim.keymap.set({ "n", "i" }, "<C-g>t", ":GpChatToggle<cr>", { desc = "ToggleChat", noremap = true, silent = true, nowait = true })
@@ -28,14 +65,14 @@ vim.keymap.set("v", "<C-g><C-v>", ":<C-u>'<,'>GpChatNew vsplit<cr>", { desc = "V
 vim.keymap.set("v", "<C-g><Tab>", ":<C-u>'<,'>GpChatNew tabnew<cr>", { desc = "VisualChatNew tabnew", noremap = true, silent = true, nowait = true })
 
 -- Prompt Commands
-vim.keymap.set({ "n", "i" }, "<C-g>r", ":GpRewrite<cr>", { desc = "InlineRewrite", noremap = true, silent = true, nowait = true })
-vim.keymap.set({ "n", "i" }, "<C-g>a", ":GpAppend<cr>", { desc = "Append", noremap = true, silent = true, nowait = true })
-vim.keymap.set({ "n", "i" }, "<C-g>b", ":GpPrepend<cr>", { desc = "Prepend", noremap = true, silent = true, nowait = true })
+vim.keymap.set({ "n", "i" }, "<C-g>r", ":MyGpRewrite<cr>", { desc = "InlineRewrite", noremap = true, silent = true, nowait = true })
+vim.keymap.set({ "n", "i" }, "<C-g>a", ":MyGpAppend<cr>", { desc = "Append", noremap = true, silent = true, nowait = true })
+vim.keymap.set({ "n", "i" }, "<C-g>b", ":MyGpPrepend<cr>", { desc = "Prepend", noremap = true, silent = true, nowait = true })
 
-vim.keymap.set("v", "<C-g>r", ":<C-u>'<,'>GpRewrite<cr>", { desc = "VisualInlineRewrite", noremap = true, silent = true, nowait = true })
-vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<cr>", { desc = "VisualAppend", noremap = true, silent = true, nowait = true })
-vim.keymap.set("v", "<C-g>b", ":<C-u>'<,'>GpPrepend<cr>", { desc = "VisualPrepend", noremap = true, silent = true, nowait = true })
-vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<cr>", { desc = "VisualImplement", noremap = true, silent = true, nowait = true })
+vim.keymap.set("v", "<C-g>r", ":<C-u>'<,'>MyGpRewrite<cr>", { desc = "VisualInlineRewrite", noremap = true, silent = true, nowait = true })
+vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>MyGpAppend<cr>", { desc = "VisualAppend", noremap = true, silent = true, nowait = true })
+vim.keymap.set("v", "<C-g>b", ":<C-u>'<,'>MyGpPrepend<cr>", { desc = "VisualPrepend", noremap = true, silent = true, nowait = true })
+vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>MyGpImplement<cr>", { desc = "VisualImplement", noremap = true, silent = true, nowait = true })
 
 -- vim.keymap.set({"n", "i"}, "<C-g>gp", ":GpPopup<cr>", { desc = "Popup", noremap = true, silent = true, nowait = true })
 -- vim.keymap.set({"n", "i"}, "<C-g>ge", ":GpEnew<cr>", { desc = "GpEnew", noremap = true, silent = true, nowait = true })
