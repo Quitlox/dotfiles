@@ -31,7 +31,7 @@ border-color = ${colors.base00}
 
 ; Fonts
 font-0 = siji:size=9:antialias=false
-font-1 = Iosevka Nerd Font:size=10;2
+font-1 = Iosevka:size=10;2
 
 [bar/top]
 ; Monitor
