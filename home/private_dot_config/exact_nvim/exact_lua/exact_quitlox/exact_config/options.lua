@@ -54,7 +54,7 @@ vim.opt.title = true
 vim.opt.titlestring = "neovim: %{fnamemodify(getcwd(),':t')} (%t) titlelen=70"
 --- Spell ---
 vim.opt.spell = true
-vim.opt.spelllang = "en_us,nl"
+-- vim.opt.spelllang = "en_us,nl"
 --- Backup ---
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
