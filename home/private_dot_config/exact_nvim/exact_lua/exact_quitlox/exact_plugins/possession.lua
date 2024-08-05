@@ -40,6 +40,15 @@ require("possession").setup({
         previewer = {
             enabled = false,
         },
+        -- list = {
+        --     default_action = "load",
+        --     mappings = {
+        --         save = { n = "<c-x>", i = "<c-x>" },
+        --         load = { n = "<c-v>", i = "<c-v>" },
+        --         delete = { n = "<c-t>", i = "<c-t>" },
+        --         rename = { n = "<c-r>", i = "<c-r>" },
+        --     },
+        -- },
     },
 })
 
@@ -47,10 +56,22 @@ require("telescope").load_extension("possession")
 
 require("legendary").commands({
     { "PossessionSave", description = "Save current session" },
-    { "PossessionSaveCwd", description = "Save session in current working directory" },
-    { "PossessionLoadCwd", description = "Load session from current working directory" },
+    { "PossessionSave [name]", description = "Save current session as", unfinished = true },
+    -- { "PossessionLoad", description = "Load last session" },
+    { "PossessionLoad [name]", description = "Load session", unfinished = true },
+    -- { "PossessionSaveCwd", description = "Save session in current working directory" },
+    -- { "PossessionLoadCwd", description = "Load last session from current working directory" },
+    -- { "PossessionLoadCwd [name]", description = "Load session from current working directory", unfinished = true },
+    -- { "PossessionRename", description = "Rename current session" },
+    -- { "PossessionRename [name]", description = "Rename given session", unfinished = true },
+    { "PossessionDelete", description = "Delete current session" },
+    -- { "PossessionDelete [name]", description = "Delete given session", unfinished = true },
+    { "PosessionShow", description = "Show current session info" },
+    -- { "PosessionShow [name]", description = "Show given session info", unfinished = true },
     { "PossessionClose", description = "Close current session" },
     { "PossessionList", description = "List available sessions" },
+    { "PossessionListCwd", description = "List available sessions for current cwd" },
+    -- { "PossessionListCwd [name]", description = "List available sessions for given cwd", unfinished = true },
 })
 
-vim.keymap.set("n", "<leader>op", "<cmd>Telescope possession<cr>", { noremap = true, silent = true, desc = "Open Sessions" })
+vim.keymap.set("n", "<leader>os", "<cmd>Telescope possession<cr>", { noremap = true, silent = true, desc = "Open Sessions" })

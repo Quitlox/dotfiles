@@ -5,6 +5,7 @@
 "rocks-git.nvim" = "2.0.1"
 "rocks-config.nvim" = "2.1.5"
 "rocks-lazy.nvim" = "1.0.0"
+"rocks-dev.nvim" = "1.3.0"
 
 # +----------------------------------------------------------+
 # | Colorschemes                                             |
@@ -86,8 +87,9 @@
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim" }
 
-# +- Session Management -------------------------------------+
+# +- Session and Project Management - -----------------------+
 "possession.nvim" = "scm"
+"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "master" }
 
 # +- Test ---------------------------------------------------+
 "neotest" = "5.4.0"
@@ -342,6 +344,9 @@ config = "quitlox.plugins.telescope"
 [config]
 plugins_dir = "quitlox/plugins/"
 auto_setup = false
+
+[dev]
+dir = "~/Workspace/neovim-plugins"
 
 # +----------------------------------------------------------+
 # | Graveyard                                                |

@@ -19,7 +19,7 @@ local function filter_bt(type)
 end
 
 --+- Keymaps ------------------------------------------------+
-vim.keymap.set("n", "<leader>os", "<cmd>lua require('edgy').toggle()<cr>", { desc = "Open Sidebar" })
+-- vim.keymap.set("n", "<leader>os", "<cmd>lua require('edgy').toggle()<cr>", { desc = "Open Sidebar" })
 
 --+- Setup --------------------------------------------------+
 require("edgy").setup({
