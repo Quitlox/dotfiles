@@ -1,10 +1,25 @@
 #!/bin/sh
 
-battery_path="/sys/class/power_supply/BAT0/"
-capacity=$(cat "${battery_path}capacity")
-status=$(cat "${battery_path}status")
+BATTERY_PATH="/sys/class/power_supply/BAT0"
+
+get_capacity() {
+	if [ -d "${BATTERY_PATH}" ]; then
+		cat "${BATTERY_PATH}/capacity"
+	else
+		echo 100
+	fi
+}
+
+has_battery() {
+	if [ -d "${BATTERY_PATH}" ]; then
+		echo 1
+	else
+		echo 0
+	fi
+}
 
 get_charging_status() {
+	status=$(cat "${BATTERY_PATH}/status")
 	if [ "${status}" = "Charging" ]; then
 		echo 1
 	else
@@ -55,15 +70,20 @@ get_battery_icon() {
 	echo "${icon}"
 }
 
-print_battery_percentage() {
-	echo "${capacity}"
+json_output() {
+	has_battery=$(has_battery)
+	charging_status=$(get_charging_status)
+	battery_icon=$(get_battery_icon)
+	capacity=$(get_capacity)
+	cat <<EOF
+{
+	"present": ${has_battery},
+	"charging": ${charging_status},
+	"icon": "${battery_icon}",
+	"percent": ${capacity}
+}
+EOF
 }
 
-case "$1" in
-"charging") get_charging_status ;;
-"icon") get_battery_icon ;;
-"percent") print_battery_percentage ;;
-*) exit 1 ;;
-esac
-
+json_output
 exit 0

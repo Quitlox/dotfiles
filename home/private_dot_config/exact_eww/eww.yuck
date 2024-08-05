@@ -7,14 +7,13 @@
             "powermenu"))
 
 ; +--- Widget: Brightness------------------------------------------------------+
-; (defpoll var-brightness-exp :interval "1s" "brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%'")
-; (defpoll var-brightness-lin :interval "1s" "scripts/brightness")
+(defpoll var-brightness-exp :interval "1s" "brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%'")
+(defpoll var-brightness-lin :interval "1s" "scripts/brightness")
 ; (defvar brightness-icons "{ \"icons\": [\"󰃚\",\"󰃛\",\"󰃜\",\"󰃜\",\"󰃝\",\"󰃞\",\"󰃟\",\"󰃠\"] }")
 (defvar brightness-icons "󰃚󰃛󰃜󰃜󰃝󰃞󰃟󰃠")
 
 (defwidget w-brightness []
   (box :class "brightness"
-       :tooltip var-brightness-percent
        (overlay
         (circular-progress :value var-brightness-lin
                            :thickness 2
@@ -28,22 +27,20 @@
                :class "brightness-icon"))))
 
 ; +--- Widget: Battery --------------------------------------------------------+
-(defpoll var-battery-icon :interval "1m" "scripts/battery icon")
-(defpoll var-battery-percent :interval "1m" "scripts/battery percent")
-(defpoll var-battery-charging :interval "1m" "scripts/battery charging")
+(defpoll var-battery :interval "1m" "scripts/battery")
 (defwidget w-battery []
   (box :class "battery"
-       :tooltip var-battery-percent
+       :visible {var-battery.present == "1"}
        (overlay
-        (circular-progress :value {var-battery-percent - (var-battery-percent % 5)}
+        (circular-progress :value {var-battery.percent - (var-battery.percent % 5)}
                            :thickness 2
                            :start-at 25
                            :width 28
                            :class "battery-progress")
-        (label :text "${var-battery-icon}"
+        (label :text "${var-battery.icon}"
                :valign "center"
                :halign "center"
-               :style {var-battery-charging == "1" ? "margin-left: 3px" : ""} ; center charging icon
+               :style {var-battery.charging == "1" ? "margin-left: 3px" : ""} ; center charging icon
                :class "battery-icon"))))
 
 ; +--- Widget: Date and Time --------------------------------------------------+
