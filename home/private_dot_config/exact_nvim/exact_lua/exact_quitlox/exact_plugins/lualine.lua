@@ -84,10 +84,10 @@ require("lualine").setup({
     sections = {
         lualine_a = { fancy_cwd },
         lualine_b = { branch },
-        lualine_c = { "my_pretty_path", midsection },
-        lualine_x = { active_linters, "mixed_indent", "overseer", "fancy_diff", "fancy_diagnostics" },
+        lualine_c = { "my_pretty_path", "my_fancy_macro", midsection },
+        lualine_x = { "my_fancy_diff", "my_fancy_diagnostics", "overseer", "mixed_indent", active_linters, "my_fancy_lsp_servers" },
         lualine_y = { encoding, fileformat, py_venv },
-        lualine_z = { "fancy_searchcount", "location" },
+        lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
     },
     inactive_sections = {
         lualine_a = { fancy_cwd },
@@ -95,7 +95,7 @@ require("lualine").setup({
         lualine_c = { "my_pretty_path" },
         lualine_x = { "mixed_indent" },
         lualine_y = { encoding, fileformat },
-        lualine_z = { "fancy_searchcount", "location" },
+        lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
     },
 
     extensions = { "man", "nvim-dap-ui", "neo-tree", "toggleterm", "trouble", "overseer" },

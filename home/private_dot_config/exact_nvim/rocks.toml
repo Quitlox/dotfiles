@@ -206,7 +206,6 @@
 
 # +- Statusline (Lualine) -----------------------------------+
 "lualine.nvim" = "scm"
-"lualine-so-fancy.nvim" = { git = "meuter/lualine-so-fancy.nvim" }
 "lualine-pretty-path" = { git = "bwpge/lualine-pretty-path" }
 
 # +- Terminal (toggleterm) ----------------------------------+
