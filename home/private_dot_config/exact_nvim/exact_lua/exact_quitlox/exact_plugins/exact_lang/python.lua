@@ -26,11 +26,7 @@ require("lspconfig").pyright.setup({
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "python",
-    callback = function() require("venv-selector").setup({}) end,
-})
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    pattern = "pyproject.toml",
-    callback = function() require("venv-selector").setup({}) end,
+    callback = function() require("venv-selector").setup({ require_lsp_activation = false }) end,
 })
 
 --+- Commands -----------------------------------------------+
