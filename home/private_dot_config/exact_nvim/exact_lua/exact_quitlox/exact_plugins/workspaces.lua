@@ -47,6 +47,7 @@ require("workspaces").setup({
             end
 
             possession_session.autosave()
+            vim.wait(100, function() end) -- Stupid hack to wait for Neo-tree to close and open before/after saving
         end,
         --- Automatically load the session of the given workspace if it exists.
         --- Otherwise, only close down the current session.
