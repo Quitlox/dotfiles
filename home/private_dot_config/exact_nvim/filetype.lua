@@ -22,3 +22,8 @@ vim.filetype.add({
         ["~/.config/hypr/.*%.conf"] = "hyprlang",
     },
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "checkhealth",
+    callback = function() vim.wo.spell = false end,
+})

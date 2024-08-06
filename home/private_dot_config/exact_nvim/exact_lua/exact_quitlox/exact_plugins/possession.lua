@@ -11,7 +11,15 @@ require("possession").setup({
     logfile = false,
     prompt_no_cr = true,
     autosave = {
-        -- cwd = function() return not require("possession.session").exists(require("possession.paths").cwd_session_name()) end,
+        cwd = function()
+            -- return not require("possession.session").exists(require("possession.paths").cwd_session_name())
+
+            -- check that path is not ~
+            local cwd = vim.fn.getcwd()
+            if cwd == os.getenv("HOME") then return false end
+
+            return true
+        end,
         current = true,
         cwd = true,
         on_load = true,

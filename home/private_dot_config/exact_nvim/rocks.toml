@@ -88,8 +88,9 @@
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim" }
 
 # +- Session and Project Management - -----------------------+
-"possession.nvim" = "scm"
-"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "master" }
+# "possession.nvim" = { version = "scm" }
+"possession.nvim" = { dir = true }
+"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "master", dev = true }
 
 # +- Test ---------------------------------------------------+
 "neotest" = "5.4.0"
@@ -149,7 +150,7 @@
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "5.1.0", config = "quitlox.plugins.lang.rust" }
 # +- Vim ----------------------------------------------------+
-"one-small-step-for-vimkind" = "scm"
+"one-small-step-for-vimkind" = { version = "scm", config = "quitlox.plugins.lang.vim" }
 # +- Web ----------------------------------------------------+
 "typescript-tools.nvim" = { version = "scm", config = "quitlox.plugins.lang.typescript" }
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.2.0", config = "quitlox.plugins.lang.tailwind" }
@@ -263,6 +264,7 @@ tree-sitter-typescript = "0.0.3"
 tree-sitter-vimdoc = "0.0.2"
 tree-sitter-yaml = "0.0.2"
 tree-sitter-yuck = "0.0.1"
+tree-sitter-ini = "0.0.1"
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |

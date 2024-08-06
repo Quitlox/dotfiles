@@ -28,10 +28,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "python",
     callback = function() require("venv-selector").setup({}) end,
 })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = "pyproject.toml",
+    callback = function() require("venv-selector").setup({}) end,
+})
 
 --+- Commands -----------------------------------------------+
 require("legendary").commands({
-    { ":VenvSelector", description = "Select Virtual Env", filters = { ft = { "python" } } },
+    { ":VenvSelect", description = "Select Virtual Env", filters = { ft = { "python" } } },
     { ":VenvDeactivate", ":lua require('venv-selector').deactivate()<cr>", description = "Deactivate Virtual Env", filters = { ft = { "python" } } },
 })
 
