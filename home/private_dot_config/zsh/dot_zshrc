@@ -115,6 +115,7 @@ zinit load zdharma-continuum/z-a-man
 
 ### exa
 # A modern replacement for 'ls'.
+# FIXME: Replace with eza
 zinit ice wait"0a" \
   if'[[ -z "$commands[exa]" ]]' \
   from"gh-r" as"command" \

@@ -28,8 +28,8 @@ alias chown="chown -c"
 alias mkdir="mkdir -v"
 
 #if command -v exa > /dev/null 2>&1; then
-	alias l="exa --all --icons --long --group-directories-first"
-	alias ls="exa --long --group-directories-first"
+	alias l="EXA_ICON_SPACING=2 eza --all --icons --long --group-directories-first"
+	alias ls="EXA_ICON_SPACING=2 eza --long --group-directories-first"
 #fi
 
 #if command -v zoxide > /dev/null 2>&1; then
