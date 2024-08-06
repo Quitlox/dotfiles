@@ -59,12 +59,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         vim.keymap.set("n", "<leader>dy", pythondap.test_method, { buffer = bufnr, desc = "Debug Method" })
         vim.keymap.set("v", "<leader>ds", pythondap.debug_selection, { buffer = bufnr, desc = "Debug Selection" })
 
-        -- Install debugpy
-        InstallPackageInVenv("debugpy")
-        -- Install black
-        InstallPackageInVenv("black")
-        -- Install isort
-        InstallPackageInVenv("isort")
+        vim.schedule(function()
+            -- Install debugpy
+            InstallPackageInVenv("debugpy")
+            -- Install black
+            InstallPackageInVenv("black")
+            -- Install isort
+            InstallPackageInVenv("isort")
+        end)
     end,
 })
 

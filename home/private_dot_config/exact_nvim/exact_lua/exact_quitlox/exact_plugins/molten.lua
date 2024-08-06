@@ -15,15 +15,19 @@ vim.g.molten_output_win_max_height = 20
 --+- Check Requirements -------------------------------------+
 -- Check if pynvim pip package is installed
 -- check exit code
-vim.fn.system("python3 -m pip show pynvim")
-if vim.v.shell_error == 1 then
-    vim.schedule(
-        function() vim.notify("`pynvim` is not installed. Please install it by running `pip install pynvim` or globally using your package manager.", vim.log.levels.ERROR, { title = "Molten.nvim" }) end
-    )
-    return
-else
-    vim.schedule(function() vim.cmd("UpdateRemotePlugins") end)
-end
+vim.schedule(function()
+    vim.fn.system("python3 -m pip show pynvim")
+    if vim.v.shell_error == 1 then
+        vim.schedule(
+            function()
+                vim.notify("`pynvim` is not installed. Please install it by running `pip install pynvim` or globally using your package manager.", vim.log.levels.ERROR, { title = "Molten.nvim" })
+            end
+        )
+        return
+    else
+        vim.schedule(function() vim.cmd("UpdateRemotePlugins") end)
+    end
+end)
 
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader><leader>ji", "<cmd>MoltenInit<cr>", { desc = "Initialize Jupyter" })
