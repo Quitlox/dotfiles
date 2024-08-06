@@ -44,7 +44,7 @@
                :class "battery-icon"))))
 
 ; +--- Widget: Date and Time --------------------------------------------------+
-(defpoll var-datetime :interval "1s" "date '+ %a, %b %d, %H:%S'")
+(defpoll var-datetime :interval "1s" "date '+ %a, %b %d, %H:%M'")
 (defwidget w-datetime []
     (box :orientation "horizontal"
          :class "datetime-container"
