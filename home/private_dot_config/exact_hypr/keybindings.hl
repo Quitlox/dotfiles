@@ -8,6 +8,7 @@ $mainMod = SUPER
 bind = $mainMod, Return, exec, $terminal
 bind = $mainMod SHIFT, W, killactive,
 bind = $mainMod SHIFT, Q, exit,
+bind = $mainMod, D, exec, wofi --show drun
 
 bind=$mainMod,O,submap,applications
 submap = applications
