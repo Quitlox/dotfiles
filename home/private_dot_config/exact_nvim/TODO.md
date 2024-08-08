@@ -4,16 +4,20 @@
 - [ ] Session: Save neotree state (https://github.com/coffebar/neovim-project/blob/main/lua/neovim-project/utils/neo-tree.lua)
 - [ ] Session: Save overseer state (https://github.com/stevearc/overseer.nvim/blob/master/doc/third_party.md#other-session-managers)
 - [x] Investigate: Slow Legendary, Iconpicker (or Telescope?)
-- [ ] Statusline: Show git blame of current line?
+- [x] Statusline: Show git blame of current line?
 - [ ] Report: profile.nvim bug
-- [ ] Session: Automatically load Venv and integrate with Possession
 - [ ] Keybinding: Select git branch
+-
 
 - [ ] Minor Improvements:
     - [ ] Python
         - [ ] Requirements checking and installation should be async
         - [ ] Pip may print lines to stdout
         - [ ] Erroneously reporting pynvim not installed ?
+    - [ ] Python venv
+        - [ ] Automatically select venv upon creation (watch dir)
+        - [ ] Create command for creating venv (either with pip or uv)
+        - [ ] Automatically load Venv and integrate with Possession
 
 ### Bugs
 
