@@ -49,6 +49,12 @@ local formatters = {
     icon = "󱄽 ",
 }
 
+local git_blame = {
+    "b:gitsigns_blame_line",
+    fmt = trunc(180, 40, 140, true),
+    icon = " ",
+}
+
 --+- Customize Modules --------------------------------------+
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
 local midsection = { "%=", separator = { left = "" }, color = nil }
@@ -84,7 +90,7 @@ require("lualine").setup({
     sections = {
         lualine_a = { fancy_cwd },
         lualine_b = { branch },
-        lualine_c = { "my_pretty_path", "my_fancy_macro", midsection },
+        lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, midsection },
         lualine_x = { "my_fancy_diff", "my_fancy_diagnostics", "overseer", "mixed_indent", active_linters, "my_fancy_lsp_servers" },
         lualine_y = { encoding, fileformat, py_venv },
         lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
