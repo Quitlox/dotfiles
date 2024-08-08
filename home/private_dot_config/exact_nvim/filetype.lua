@@ -10,6 +10,7 @@ vim.filetype.add({
     extension = {
         http = "http", -- required for kulala.nvim
         hl = "hyprlang",
+        jinja = "jinja",
         -- Python
         mpc = "python", -- MP-SPDZ Compiler
         sage = "python",

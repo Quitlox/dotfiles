@@ -55,11 +55,18 @@ local function on_attach(bufnr)
     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 end
 
+--+- Toggle -------------------------------------------------+
+
 --+- Setup --------------------------------------------------+
 require("gitsigns").setup({
-    on_attach = on_attach,
     trouble = false,
     _signs_staged_enable = true,
+
+    on_attach = function(bufnr)
+        -- Buggy on Jinja files
+        if vim.api.nvim_buf_get_name(bufnr):match("jinja") then return false end
+        return on_attach(bufnr)
+    end,
 })
 
 --+- Integration --------------------------------------------+

@@ -83,6 +83,10 @@ require("lualine").setup({
                 "dapui_stacks",
                 "dapui_watches",
                 "dapui_console",
+                "jinja", -- buggy
+            },
+            statusline = {
+                "jinja", -- buggy
             },
         },
         globalstatus = true,
