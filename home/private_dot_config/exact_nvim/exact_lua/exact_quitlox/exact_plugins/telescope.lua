@@ -44,6 +44,7 @@ require("telescope").setup({
 vim.keymap.set("n", "<leader>fa", function() require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({ layout_config = { width = 0.6 } })) end, { noremap = true, silent = true, desc = "Find All" })
 vim.keymap.set("n", "<leader>fm", function() require("telescope.builtin").man_pages(require("telescope.themes").get_dropdown({})) end, { noremap = true, silent = true, desc = "Find Manpage" })
 vim.keymap.set("n", "<leader>fr", function() require("telescope.builtin").resume(require("telescope.themes").get_ivy({})) end, { noremap = true, silent = true, desc = "Find Resume" })
+vim.keymap.set("n", "<leader>gb", function() require("telescope.builtin").git_branches(require("telescope.themes").get_ivy({})) end, { noremap = true, silent = true, desc = "Git Branches" })
 require("which-key").add({ { "<leader>f", group = "Find" } })
 -- stylua: ignore end
 

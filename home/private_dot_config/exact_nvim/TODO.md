@@ -1,13 +1,13 @@
 
-- [ ] Icons: add padding to treesitter
+- [ ] Icons: add padding to telescope
     - I tried overriding "telescope.utils".get_devicons, but it doesn't seem to work
 - [ ] Session: Save neotree state (https://github.com/coffebar/neovim-project/blob/main/lua/neovim-project/utils/neo-tree.lua)
 - [ ] Session: Save overseer state (https://github.com/stevearc/overseer.nvim/blob/master/doc/third_party.md#other-session-managers)
 - [x] Investigate: Slow Legendary, Iconpicker (or Telescope?)
 - [x] Statusline: Show git blame of current line?
 - [ ] Report: profile.nvim bug
-- [ ] Keybinding: Select git branch
--
+- [x] Keybinding: Select git branch
+- [ ] LSP Diagnostics: Currently not very useful for Python in Trouble mode
 
 - [ ] Minor Improvements:
     - [ ] Python
