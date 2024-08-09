@@ -15,7 +15,22 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
-require("typescript-tools").setup({})
+require("typescript-tools").setup({
+    settings = {
+        tsserver_file_preferences = function(ft)
+            return {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            }
+        end,
+    },
+})
 
 --+- Commands -----------------------------------------------+
 require("legendary").commands({

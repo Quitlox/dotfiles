@@ -43,8 +43,9 @@ end
 
 --+- Helper Functions: Disable Autoformat on conditions -----+
 local function should_format_on_save()
+    local bufnr = vim.api.nvim_get_current_buf()
     -- Don't autosave if disabled
-    if not require("quitlox.util.format").enabled() then return end
+    if not require("quitlox.util.format").enabled(bufnr) then return end
 
     local filepath = vim.fn.expand("%:p")
     local filename = vim.fn.expand("%:t")

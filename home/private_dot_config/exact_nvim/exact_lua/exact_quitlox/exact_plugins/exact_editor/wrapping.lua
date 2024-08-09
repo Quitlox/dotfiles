@@ -7,6 +7,7 @@ local filetypes = { "asciidoc", "gitcommit", "mail", "markdown", "rst", "tex", "
 -- Setup
 require("wrapping").setup({
     create_keymaps = false,
+    notify_on_switch = true,
     auto_set_mode_filetype_allowlist = filetypes,
 })
 
@@ -18,7 +19,7 @@ vim.api.nvim_create_autocmd("filetype", {
 })
 
 -- Toggle
-local toggle_wrap = require("quitlox.util.toggle").wrap({
+local toggle = {
     name = "Soft Wrap",
     get = function() return require("wrapping").get_current_mode() == "soft" end,
     set = function(state)
@@ -28,8 +29,8 @@ local toggle_wrap = require("quitlox.util.toggle").wrap({
             require("wrapping").hard_wrap_mode()
         end
     end,
-})
-require("quitlox.util.toggle").map("<leader>Tw", toggle_wrap)
+}
+require("quitlox.util.toggle").map("<leader>Tw", toggle, false)
 
 -- Commands
 require("legendary").commands({

@@ -12,16 +12,23 @@ local M = {}
 ---@class quitlox.Toggle.wrap: quitlox.util.Toggle
 ---@operator call:boolean
 
+-- +---------------------------------------------------------+
+-- | Helper Functions for Defining Toggles                   |
+-- +---------------------------------------------------------+
+
 ---@param toggle quitlox.util.Toggle
-function M.wrap(toggle)
+---@param notify? boolean
+function M.wrap(toggle, notify)
     return setmetatable(toggle, {
         __call = function()
             toggle.set(not toggle.get())
             local state = toggle.get()
+
+            if notify == nil then notify = true end
             if state then
-                vim.notify("Enabled " .. toggle.name, vim.log.levels.INFO, { title = toggle.name })
+                if notify then vim.notify("Enabled " .. toggle.name, vim.log.levels.INFO, { title = toggle.name }) end
             else
-                vim.notify("Disabled " .. toggle.name, vim.log.levels.WARN, { title = toggle.name })
+                if notify then vim.notify("Disabled " .. toggle.name, vim.log.levels.WARN, { title = toggle.name }) end
             end
             return state
         end,
@@ -30,8 +37,9 @@ end
 
 ---@param lhs string
 ---@param toggle quitlox.util.Toggle
-function M.map(lhs, toggle)
-    local t = M.wrap(toggle)
+---@param notify? boolean
+function M.map(lhs, toggle, notify)
+    local t = M.wrap(toggle, notify)
     vim.keymap.set("n", lhs, function() t() end, { desc = "Toggle " .. toggle.name })
     M.wk(lhs, toggle)
 end
@@ -45,6 +53,10 @@ function M.wk(lhs, toggle)
         },
     })
 end
+
+-- +---------------------------------------------------------+
+-- | Predefine Toggles                                       |
+-- +---------------------------------------------------------+
 
 M.treesitter = M.wrap({
     name = "Treesitter Highlight",
@@ -146,6 +158,20 @@ M.maximize = M.wrap({
         end
     end,
 })
+
+-- +---------------------------------------------------------+
+-- | Configure Toggles                                       |
+-- +---------------------------------------------------------+
+
+M.map("<leader>Tf", M.format(true))
+M.map("<leader>TF", M.format())
+M.map("<leader>Tt", M.treesitter)
+M.map("<leader>Th", M.inlay_hints)
+M.map("<leader>Td", M.diagnostics)
+
+-- +---------------------------------------------------------+
+-- | Export                                                  |
+-- +---------------------------------------------------------+
 
 setmetatable(M, {
     __call = function(m, ...) return m.option(...) end,

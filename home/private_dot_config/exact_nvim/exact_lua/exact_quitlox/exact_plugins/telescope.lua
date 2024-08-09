@@ -16,6 +16,10 @@ require("telescope").setup({
                 ["<C-k>"] = require("telescope.actions").move_selection_previous,
                 ["<C-v>"] = require("telescope.actions").select_horizontal,
                 ["<C-b>"] = require("telescope.actions").select_vertical,
+                ["<C-t>"] = require("trouble.sources.telescope").open,
+            },
+            n = {
+                ["<C-t>"] = require("trouble.sources.telescope").open,
             },
         },
         preview = {

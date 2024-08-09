@@ -5,7 +5,7 @@ vim.g.rocks_nvim = {
     },
 }
 
-local filetypes = { "python", "lua", "http" }
+local filetypes = { "python", "lua", "http", "typescript", "svelte" }
 
 for _, filetype in ipairs(filetypes) do
     vim.api.nvim_create_autocmd("FileType", {

@@ -29,7 +29,6 @@ function M.enable(enable, buf)
         vim.g.autoformat = enable
         vim.b.autoformat = nil
     end
-    M.info()
 end
 
 return M

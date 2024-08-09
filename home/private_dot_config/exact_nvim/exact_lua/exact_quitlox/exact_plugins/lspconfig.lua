@@ -6,6 +6,19 @@ vim.diagnostic.config({
     virtual_text = false,
 })
 
+--+- Inlay Hints --------------------------------------------+
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("MyLspAttachInlayHints", { clear = true }),
+    desc = "Attach LSP inlay hints",
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client then return end
+        if (client.supports_method and client.supports_method("textDocument/inlayHint")) or (client.server_capabilities and client.server_capabilities.inlayHintProvider) then
+            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+        end
+    end,
+})
+
 --+- Keybindings --------------------------------------------+
 local function set_keybindings(bufnr)
     -- stylua: ignore start

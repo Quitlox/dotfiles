@@ -20,7 +20,7 @@
 # +- Vim Built-in Enhancements ------------------------------+
 "dial.nvim" = "0.4.0"
 "mini.misc" = "0.9.0"
-"vim-matchup" = { git = "andymass/vim-matchup" }                          # Matchup
+"vim-matchup" = { git = "andymass/vim-matchup", branch="master" }         # Matchup
 "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens" }                    # Search
 "highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim" }           # Undo
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" } # Wrap
@@ -127,14 +127,8 @@
 # +- Config -------------------------------------------------+
 "schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.config-lang" }
 # +- Go -----------------------------------------------------+
-"go.nvim" = { version = "0.9.0", ft = [
-  "go",
-  "gomod",
-], config = "quitlox.plugins.lang.go" }
-"guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1^{}", ft = [
-  "go",
-  "gomod",
-] }
+"go.nvim" = { version = "0.9.0", ft = [ "go", "gomod" ], config = "quitlox.plugins.lang.go" }
+"guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1^{}", ft = [ "go", "gomod" ] }
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v2.6.0", config = "quitlox.plugins.lang.http" }
 # +- LaTeX --------------------------------------------------+
@@ -155,8 +149,6 @@
 # +- Web ----------------------------------------------------+
 "typescript-tools.nvim" = { version = "scm", config = "quitlox.plugins.lang.typescript" }
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.2.0", config = "quitlox.plugins.lang.tailwind" }
-
-# TODO: lang/clangd
 
 # +- Minor Languages ----------------------------------------+
 "nvim-ansible" = { git = "mfussenegger/nvim-ansible" }
@@ -239,6 +231,7 @@
 
 # +- Treesitter: Parsers ------------------------------------+
 tree-sitter-bash = "0.0.2"
+tree-sitter-c = "0.0.3"
 tree-sitter-css = "0.0.2"
 tree-sitter-dockerfile = "0.0.2"
 tree-sitter-ecma = "0.0.2"
@@ -246,22 +239,30 @@ tree-sitter-editorconfig = "0.0.3"
 tree-sitter-gitignore = "0.0.2"
 tree-sitter-git_config = "0.0.1"
 tree-sitter-html = "0.0.2"
+tree-sitter-html_tags = "0.0.2"
 tree-sitter-http = "0.0.2"
 tree-sitter-hyprlang = "0.0.2"
 tree-sitter-ini = "0.0.1"
 tree-sitter-javascript = "0.0.2"
 tree-sitter-json = "0.0.2"
 tree-sitter-jsonc = "0.0.2"
+tree-sitter-jsx = "0.0.2"
+tree-sitter-jq = "0.0.2"
 tree-sitter-lua = "0.0.2"
 tree-sitter-luadoc = "0.0.2"
 tree-sitter-markdown = "0.0.2"
 tree-sitter-markdown_inline = "0.0.2"
 tree-sitter-python = "scm"
+tree-sitter-query = "0.0.2"
 tree-sitter-requirements = "0.0.1"
+tree-sitter-rst = "0.0.2"
 tree-sitter-scss = "0.0.2"
 tree-sitter-svelte = "0.0.3"
+tree-sitter-tsx = "0.0.3"
 tree-sitter-toml = "0.0.2"
 tree-sitter-typescript = "0.0.3"
+tree-sitter-xml = "0.0.2"
+tree-sitter-vim = "0.0.3"
 tree-sitter-vimdoc = "0.0.2"
 tree-sitter-yaml = "0.0.2"
 tree-sitter-yuck = "0.0.1"
