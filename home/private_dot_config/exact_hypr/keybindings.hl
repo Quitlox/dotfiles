@@ -5,7 +5,7 @@
 $mainMod = SUPER
 
 # +- Applications -----------------------------------------+
-bind = $mainMod, Return, exec, $terminal
+bind = $mainMod, Return, exec, kitty --single-instance
 bind = $mainMod SHIFT, W, killactive,
 bind = $mainMod SHIFT, Q, exit,
 bind = $mainMod, D, exec, wofi --show drun
@@ -14,6 +14,7 @@ bind=$mainMod,O,submap,applications
 submap = applications
 binde = ,n, exec, neovide
 binde = ,f, exec, firefox
+binde = ,e, exec, dolphin
 bind = ,escape,submap,reset
 bind = ,catchall,submap,reset
 submap = reset
