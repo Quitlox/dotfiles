@@ -9,16 +9,6 @@
 - [x] Keybinding: Select git branch
 - [ ] LSP Diagnostics: Currently not very useful for Python in Trouble mode
 
-- [ ] Minor Improvements:
-    - [ ] Python
-        - [ ] Requirements checking and installation should be async
-        - [ ] Pip may print lines to stdout
-        - [ ] Erroneously reporting pynvim not installed ?
-    - [ ] Python venv
-        - [ ] Automatically select venv upon creation (watch dir)
-        - [ ] Create command for creating venv (either with pip or uv)
-        - [ ] Automatically load Venv and integrate with Possession
-
 ### Bugs
 
 report bug: if treesitter-ecma is not installed explicitely, treesitter is not
@@ -40,3 +30,4 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 ### Memorandum
 - Help File Navigation: Hit `gO` to open an outline in the help file.
 - In insert mode, use `<C-o>` to execute a normal mode command.
+

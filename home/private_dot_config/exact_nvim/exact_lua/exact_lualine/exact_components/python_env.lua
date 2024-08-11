@@ -16,7 +16,14 @@ local function actived_venv()
     return "none"
 end
 
+function M:init(options)
+    options.separator = { left = "" }
+    M.super.init(self, options)
+end
+
 function M:update_status()
     if vim.bo.filetype ~= "python" then return "" end
     return "(" .. actived_venv() .. ")"
 end
+
+return M

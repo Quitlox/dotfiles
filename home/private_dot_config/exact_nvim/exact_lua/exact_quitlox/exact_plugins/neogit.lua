@@ -4,9 +4,10 @@
 
 -- Update the signcolumn on neogit event
 vim.api.nvim_create_autocmd("User", {
-    pattern = "NeogitCommitComplete",
-    group = vim.api.nvim_create_augroup("NeogitCommitEvents", {}),
-    callback = function() require("gitsigns.actions").reset_base() end,
+    pattern = { "NeogitCommitComplete", "NeogitStatusRefreshed", "NeogitBranchReset", "NeogitRebase", "NeogitReset" },
+    group = vim.api.nvim_create_augroup("MyNeogitCommitEvents", { clear = true }),
+    desc = "Update the signcolumn on neogit event",
+    callback = function() require("gitsigns").reset_base() end,
 })
 
 require("neogit").setup({

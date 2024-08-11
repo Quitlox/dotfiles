@@ -3,7 +3,7 @@
 -- +---------------------------------------------------------+
 
 require("notify").setup({
-    top_down = false,
+    top_down = true,
 })
 
 -- Set up as default notification handler

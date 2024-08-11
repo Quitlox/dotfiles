@@ -3,31 +3,23 @@
 -- +---------------------------------------------------------+
 
 --+- Options ------------------------------------------------+
-if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.g.neovide ~= nil then vim.notify("molten-nvim is not supported on Windows", vim.log.levels.WARN, { title = "Molten.nvim" }) end
-
--- Example for configuring Neovim to load user-installed installed Lua rocks:
--- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
--- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
-
 vim.g.molten_image_provider = "image.nvim"
 vim.g.molten_output_win_max_height = 20
 
 --+- Check Requirements -------------------------------------+
--- Check if pynvim pip package is installed
--- check exit code
-vim.schedule(function()
-    vim.fn.system("python3 -m pip show pynvim")
-    if vim.v.shell_error == 1 then
-        vim.schedule(
-            function()
-                vim.notify("`pynvim` is not installed. Please install it by running `pip install pynvim` or globally using your package manager.", vim.log.levels.ERROR, { title = "Molten.nvim" })
-            end
-        )
-        return
-    else
-        vim.schedule(function() vim.cmd("UpdateRemotePlugins") end)
-    end
-end)
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("MyMoltenRequirementsCheck", { clear = true }),
+    desc = "Check if pynvim is installed",
+    pattern = "python",
+    once = true,
+    callback = function()
+        -- Print message if molten is disabled on windows
+        -- because I don't want this message printed for every filetype
+        if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.g.neovide ~= nil then vim.notify("molten-nvim is not supported on Windows", vim.log.levels.WARN, { title = "Molten.nvim" }) end
+
+        -- See python.lua for installation of pynvim
+    end,
+})
 
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader><leader>ji", "<cmd>MoltenInit<cr>", { desc = "Initialize Jupyter" })

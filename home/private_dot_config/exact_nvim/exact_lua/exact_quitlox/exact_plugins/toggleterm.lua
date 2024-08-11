@@ -6,19 +6,7 @@
 -- When you press '~' without a count, it will toggle all terminals.
 
 local function create_terminal(id, direction)
-    local toggleterm = require("toggleterm")
-
-    -- Integrate python venv-selector (automatically source venv)
-    local on_open = function(term)
-        local venv_name = require("venv-selector").venv()
-        if vim.b.custom_venv_source == nil and venv_name ~= nil then
-            toggleterm.exec("source " .. venv_name .. "/bin/activate; clear", term.id)
-            vim.api.nvim_set_current_win(term.window)
-            vim.b.custom_venv_source = 1
-        end
-        vim.cmd("startinsert!")
-    end
-
+    local on_open = function(term) vim.cmd("startinsert!") end
     local Terminal = require("toggleterm.terminal").Terminal
     return Terminal:new({ id = id, direction = direction, on_open = on_open })
 end

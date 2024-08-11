@@ -20,7 +20,7 @@
 # +- Vim Built-in Enhancements ------------------------------+
 "dial.nvim" = "0.4.0"
 "mini.misc" = "0.9.0"
-"vim-matchup" = { git = "andymass/vim-matchup", branch="master" }         # Matchup
+"vim-matchup" = { git = "andymass/vim-matchup", branch = "master" }       # Matchup
 "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens" }                    # Search
 "highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim" }           # Undo
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" } # Wrap
@@ -127,8 +127,14 @@
 # +- Config -------------------------------------------------+
 "schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.config-lang" }
 # +- Go -----------------------------------------------------+
-"go.nvim" = { version = "0.9.0", ft = [ "go", "gomod" ], config = "quitlox.plugins.lang.go" }
-"guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1^{}", ft = [ "go", "gomod" ] }
+"go.nvim" = { version = "0.9.0", ft = [
+  "go",
+  "gomod",
+], config = "quitlox.plugins.lang.go" }
+"guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1^{}", ft = [
+  "go",
+  "gomod",
+] }
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v2.6.0", config = "quitlox.plugins.lang.http" }
 # +- LaTeX --------------------------------------------------+
@@ -140,8 +146,8 @@
 "markdown-preview.nvim" = { git = "iamcco/markdown-preview.nvim", rev = "v0.0.9^{}", config = "quitlox.plugins.lang.markdown-preview" }
 "markdown.nvim" = { git = "meanderingprogrammer/markdown.nvim", rev = "v4.1.0^{}", config = "quitlox.plugins.lang.markdown-render", ft = "markdown" }
 # +- Python -------------------------------------------------+
-"nvim-dap-python" = "scm"
-"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", branch = "regexp" }
+"nvim-dap-python" = { version = "scm", config = "quitlox.plugins.lang.python-dap" }
+"venv-selector.nvim" = { dir = "/home/quitlox/Workspace/neovim-plugins/venv-selector.nvim", config = "quitlox.plugins.lang.python-venv" }
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "5.1.0", config = "quitlox.plugins.lang.rust" }
 # +- Vim ----------------------------------------------------+
@@ -192,7 +198,7 @@
 "fidget.nvim" = "1.4.1"
 
 # +- REPL ---------------------------------------------------+
-"molten-nvim" = { git = "benlubas/molten-nvim", rev = "v1.8.4", ft = "python" }
+"molten-nvim" = { git = "benlubas/molten-nvim", rev = "v1.8.4" }
 
 # +- Runner (Overseer) --------------------------------------+
 "overseer.nvim" = "1.4.0"
@@ -327,11 +333,6 @@ items = [
   "workspace-diagnostics.nvim",
 ]
 config = "quitlox.plugins.ide.lsp"
-
-# +- Language Support ---------------------------------------+
-[bundles.python]
-items = ["nvim-dap-python", "venv-selector.nvim"]
-config = "quitlox.plugins.lang.python"
 
 # +- Components ---------------------------------------------+
 [bundles.telescope]

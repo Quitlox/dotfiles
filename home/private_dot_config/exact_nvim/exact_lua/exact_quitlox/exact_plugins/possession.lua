@@ -27,10 +27,19 @@ require("possession").setup({
     },
     autoload = "auto_cwd",
     hooks = {
-        before_save = function(name) return {} end,
+        before_save = function(name)
+            local user_data = {}
+            user_data.venv = require("possession.plugins.venv_selector").before_save(name)
+            return user_data
+        end,
         after_save = function(name, user_data, aborted) end,
-        before_load = function(name, user_data) return user_data end,
-        after_load = function(name, user_data) end,
+        before_load = function(name, user_data)
+            require("possession.plugins.venv_selector").before_load()
+            return user_data
+        end,
+        after_load = function(name, user_data)
+            if user_data and user_data.venv then require("possession.plugins.venv_selector").after_load(nil, name, user_data.venv) end
+        end,
     },
     plugins = {
         nvim_tree = false,
