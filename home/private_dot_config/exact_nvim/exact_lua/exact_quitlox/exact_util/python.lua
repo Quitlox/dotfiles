@@ -50,55 +50,55 @@ M.install_dependencies = function()
 end
 
 -- After PR
-M.activate_venv = function(venv_path, source, type)
-    local python_path = venv_path .. "/bin/python"
-    if vim.fn.filereadable(python_path) == 0 then
-        vim.notify("Virtual Environment '" .. python_path .. "' no longer exists.", vim.log.levels.ERROR, { title = "Python Support" })
-        return
-    end
-
-    require("venv-selector").activate(python_path, type)
-    vim.notify("Virtual environment activated.\n" .. require("venv-selector").venv(), vim.log.levels.INFO, { title = "Python Support" })
-
-    M.install_dependencies()
-end
-
--- -- Before PR
--- --- Activate the given Virtual Environment using venv-selector.nvim
--- --- Copied from 'venv-selector.gui'
--- ---@param venv_path The path to the virtual environment (base path)
--- ---@param source The source with which the venv was found (cwd, workspace, etc..)
--- ---@param type The type of the virtual environment (venv, anaconda, etc..)
 -- M.activate_venv = function(venv_path, source, type)
---     -- Copied from venv-selector.gui
---     local hooks = require("venv-selector.config").user_settings.hooks
---     local venv = require("venv-selector.venv")
---     local path = require("venv-selector.path")
---
---     venv_path = venv_path .. "/bin/python"
---     local activated = require("venv-selector.venv").activate(hooks, {
---         path = venv_path,
---         type = type,
---         source = source,
---     })
---
---     if activated == true then
---         path.add(path.get_base(venv_path))
---         path.update_python_dap(venv_path)
---         path.save_selected_python(venv_path)
---
---         if type == "anaconda" then
---             venv.unset_env("VIRTUAL_ENV")
---             venv.set_env(venv_path, "CONDA_PREFIX")
---         else
---             venv.unset_env("CONDA_PREFIX")
---             venv.set_env(venv_path, "VIRTUAL_ENV")
---         end
+--     local python_path = venv_path .. "/bin/python"
+--     if vim.fn.filereadable(python_path) == 0 then
+--         vim.notify("Virtual Environment '" .. python_path .. "' no longer exists.", vim.log.levels.ERROR, { title = "Python Support" })
+--         return
 --     end
 --
+--     require("venv-selector").activate(python_path, type)
 --     vim.notify("Virtual environment activated.\n" .. require("venv-selector").venv(), vim.log.levels.INFO, { title = "Python Support" })
+--
 --     M.install_dependencies()
 -- end
+
+-- -- Before PR
+--- Activate the given Virtual Environment using venv-selector.nvim
+--- Copied from 'venv-selector.gui'
+---@param venv_path The path to the virtual environment (base path)
+---@param source The source with which the venv was found (cwd, workspace, etc..)
+---@param type The type of the virtual environment (venv, anaconda, etc..)
+M.activate_venv = function(venv_path, source, type)
+    -- Copied from venv-selector.gui
+    local hooks = require("venv-selector.config").user_settings.hooks
+    local venv = require("venv-selector.venv")
+    local path = require("venv-selector.path")
+
+    venv_path = venv_path .. "/bin/python"
+    local activated = require("venv-selector.venv").activate(hooks, {
+        path = venv_path,
+        type = type,
+        source = source,
+    })
+
+    if activated == true then
+        path.add(path.get_base(venv_path))
+        path.update_python_dap(venv_path)
+        path.save_selected_python(venv_path)
+
+        if type == "anaconda" then
+            venv.unset_env("VIRTUAL_ENV")
+            venv.set_env(venv_path, "CONDA_PREFIX")
+        else
+            venv.unset_env("CONDA_PREFIX")
+            venv.set_env(venv_path, "VIRTUAL_ENV")
+        end
+    end
+
+    vim.notify("Virtual environment activated.\n" .. require("venv-selector").venv(), vim.log.levels.INFO, { title = "Python Support" })
+    M.install_dependencies()
+end
 
 M.create_venv_in_cwd = function()
     if vim.fn.isdirectory(".venv") == 1 then

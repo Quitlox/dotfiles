@@ -141,7 +141,7 @@
 "markdown.nvim" = { git = "meanderingprogrammer/markdown.nvim", rev = "v4.1.0^{}", config = "quitlox.plugins.lang.markdown-render", ft = "markdown" }
 # +- Python -------------------------------------------------+
 "nvim-dap-python" = { version = "scm", config = "quitlox.plugins.lang.python-dap" }
-"venv-selector.nvim" = { dir = "/home/quitlox/Workspace/neovim-plugins/venv-selector.nvim", config = "quitlox.plugins.lang.python-venv" }
+"venv-selector.nvim" = { dir = "linux-cultist/venv-selector.nvim", config = "quitlox.plugins.lang.python-venv" }
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "5.1.0", config = "quitlox.plugins.lang.rust" }
 # +- Vim ----------------------------------------------------+
@@ -172,6 +172,7 @@
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.26"
 "nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.0.3" } # neo-tree.nvim
+"nvim-lsp-file-operation" = { git = "antosha417/nvim-lsp-file-operations" }
 "oil.nvim" = "2.11.0"
 
 # +- Finder -------------------------------------------------+
@@ -269,9 +270,6 @@ tree-sitter-vim = "0.0.3"
 tree-sitter-vimdoc = "0.0.2"
 tree-sitter-yaml = "0.0.2"
 tree-sitter-yuck = "0.0.1"
-
-[plugins.nvim-lsp-file-operations]
-git = "antosha417/nvim-lsp-file-operations"
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |
