@@ -14,7 +14,4 @@ require("dap").configurations.lua = {
 require("dap").adapters.nlua = function(callback, config) callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 }) end
 
 -- + Keymaps ------------------------------------------------+
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "lua",
-    callback = function() vim.keymap.set({ "n" }, "<F5>", "<cmd>lua require'osv'.launch({port = 8086})<cr>", { noremap = true }) end,
-})
+vim.keymap.set({ "n" }, "<F5>", "<cmd>lua require'osv'.launch({port = 8086})<cr>", { noremap = true })
