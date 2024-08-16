@@ -141,7 +141,7 @@
 "markdown.nvim" = { git = "meanderingprogrammer/markdown.nvim", rev = "v4.1.0^{}", config = "quitlox.plugins.lang.markdown-render", ft = "markdown" }
 # +- Python -------------------------------------------------+
 "nvim-dap-python" = { version = "scm", config = "quitlox.plugins.lang.python-dap" }
-"venv-selector.nvim" = { dir = "linux-cultist/venv-selector.nvim", config = "quitlox.plugins.lang.python-venv" }
+"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", branch = "regexp", config = "quitlox.plugins.lang.python-venv" }
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "5.1.0", config = "quitlox.plugins.lang.rust" }
 # +- Vim ----------------------------------------------------+
@@ -270,6 +270,7 @@ tree-sitter-vim = "0.0.3"
 tree-sitter-vimdoc = "0.0.2"
 tree-sitter-yaml = "0.0.2"
 tree-sitter-yuck = "0.0.1"
+
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |
