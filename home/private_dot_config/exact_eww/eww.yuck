@@ -7,10 +7,8 @@
             "powermenu"))
 
 ; +--- Widget: Brightness------------------------------------------------------+
-(defpoll var-brightness-exp :interval "1s" "brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%'")
 (defpoll var-brightness-lin :interval "1s" "scripts/brightness")
-; (defvar brightness-icons "{ \"icons\": [\"󰃚\",\"󰃛\",\"󰃜\",\"󰃜\",\"󰃝\",\"󰃞\",\"󰃟\",\"󰃠\"] }")
-(defvar brightness-icons "󰃚󰃛󰃜󰃜󰃝󰃞󰃟󰃠")
+(defvar brightness-icons ".");
 
 (defwidget w-brightness []
   (box :class "brightness"
@@ -20,8 +18,8 @@
                            :start-at 25
                            :width 28
                            :class "brightness-progress")
-        "test"
-        (label :text (var-brightness-exp)
+        ; "test"
+        (label :text "${substring(brightness-icons, round(var-brightness-lin / 10, 0), 1)}"
                :valign "center"
                :halign "center"
                :class "brightness-icon"))))
