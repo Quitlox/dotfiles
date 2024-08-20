@@ -137,8 +137,9 @@
 "lazydev.nvim" = { version = "1.8.0", config = "quitlox.plugins.lang.lua" }
 "luvit-meta" = { git = "Bilal2453/luvit-meta" }
 # +- Markdown -----------------------------------------------+
+"markdown.nvim" = { git = "tadmccorkle/markdown.nvim", config = "quitlox.plugins.lang.markdown"}
 "markdown-preview.nvim" = { git = "iamcco/markdown-preview.nvim", rev = "v0.0.9^{}", config = "quitlox.plugins.lang.markdown-preview" }
-"markdown.nvim" = { git = "meanderingprogrammer/markdown.nvim", rev = "v4.1.0^{}", config = "quitlox.plugins.lang.markdown-render", ft = "markdown" }
+"markdown-render" = { git = "meanderingprogrammer/markdown.nvim", rev = "v4.1.0^{}", config = "quitlox.plugins.lang.markdown-render", ft = "markdown" }
 # +- Python -------------------------------------------------+
 "nvim-dap-python" = { version = "scm", config = "quitlox.plugins.lang.python-dap" }
 "venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", branch = "regexp", config = "quitlox.plugins.lang.python-venv" }
@@ -272,6 +273,7 @@ tree-sitter-vim = "0.0.3"
 tree-sitter-vimdoc = "0.0.2"
 tree-sitter-yaml = "0.0.2"
 tree-sitter-yuck = "0.0.1"
+
 
 
 # +----------------------------------------------------------+

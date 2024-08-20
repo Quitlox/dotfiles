@@ -1,36 +1,55 @@
 -- +---------------------------------------------------------+
--- | iamcco/markdown-preview.nvim: Preview Markdown in Browser|
+-- | tadmccorkle/markdown.nvim: Editing Support for Markdown |
 -- +---------------------------------------------------------+
+
+-- TODO: Fix mapping conflicts
 
 --+- Keymaps ------------------------------------------------+
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "markdown",
+    desc = "Setup markdown.nvim",
+    group = vim.api.nvim_create_augroup("MyMarkdownGroup", { clear = true }),
     callback = function()
-        vim.fn["mkdp#util#install"]()
+        require("markdown").setup({
+            mappings = {
+                inline_surround_toggle = "gs", -- (string|boolean) toggle inline style
+                inline_surround_toggle_line = "gss", -- (string|boolean) line-wise toggle inline style
+                inline_surround_delete = "ds", -- (string|boolean) delete emphasis surrounding cursor
+                inline_surround_change = "cs", -- (string|boolean) change emphasis surrounding cursor
+                link_add = "gl", -- (string|boolean) add link
+                link_follow = "gx", -- (string|boolean) follow link
+                go_curr_heading = "]c", -- (string|boolean) set cursor to current section heading
+                go_parent_heading = "]p", -- (string|boolean) set cursor to parent section heading
+                go_next_heading = "]]", -- (string|boolean) set cursor to next section heading
+                go_prev_heading = "[[", -- (string|boolean) set cursor to previous section heading
+            },
+            inline_surround = {
+                -- For the emphasis, strong, strikethrough, and code fields:
+                -- * 'key': used to specify an inline style in toggle, delete, and change operations
+                -- * 'txt': text inserted when toggling or changing to the corresponding inline style
+                emphasis = {
+                    key = "i",
+                    txt = "*",
+                },
+                strong = {
+                    key = "b",
+                    txt = "**",
+                },
+                strikethrough = {
+                    key = "s",
+                    txt = "~~",
+                },
+                code = {
+                    key = "c",
+                    txt = "`",
+                },
+            },
+            on_attach = function(bufnr)
+                local function toggle(key) return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>" end
 
-        local bufnr = vim.api.nvim_get_current_buf()
-        vim.keymap.set("n", "<localleader>mo", "<cmd>MarkdownPreview<cr>", { noremap = true, silent = true, desc = "Markdown Preview", buffer = bufnr })
-        vim.keymap.set("n", "<localleader>mb", "<cmd>MarkdownPreviewStop<cr>", { noremap = true, silent = true, desc = "Markdown Preview Stop", buffer = bufnr })
-        vim.keymap.set("n", "<localleader>mp", "<cmd>MarkdownPreviewToggle<cr>", { noremap = true, silent = true, desc = "Markdown Preview Toggle", buffer = bufnr })
+                vim.keymap.set("x", "<C-b>", toggle("b"), { buffer = bufnr })
+                vim.keymap.set("x", "<C-i>", toggle("i"), { buffer = bufnr })
+            end,
+        })
     end,
-})
-
--- +---------------------------------------------------------+
--- | MeanderingProgrammer/markdown.nvim: Preview Markdown    |
--- | in Neovim                                               |
--- +---------------------------------------------------------+
-
-require("render-markdown").setup({
-    enabled = true,
-    win_options = {
-        concealcursor = {
-            -- default = vim.api.nvim_get_option_value("concealcursor", {}),
-            -- rendered = vim.api.nvim_get_option_value("concealcursor", {}),
-        },
-    },
-})
-
---+- Commands -----------------------------------------------+
-require("legendary").commands({
-    { ":RenderMarkdownToggle", description = "Render Markdown in Buffer", filters = { ft = { "markdown" } } },
 })
