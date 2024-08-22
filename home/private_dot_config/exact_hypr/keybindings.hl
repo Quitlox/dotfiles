@@ -5,7 +5,7 @@
 $mainMod = SUPER
 
 # +- Applications -----------------------------------------+
-bind = $mainMod, Return, exec, kitty --single-instance
+bind = $mainMod, RETURN, exec, kitty --single-instance
 bind = $mainMod SHIFT, W, killactive,
 bind = $mainMod SHIFT, Q, exit,
 bind = $mainMod, D, exec, wofi --show drun
