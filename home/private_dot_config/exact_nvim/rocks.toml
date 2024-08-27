@@ -230,6 +230,7 @@
 # | New and Unsorted                                         |
 # +----------------------------------------------------------+
 "profile.nvim" = { git = "stevearc/profile.nvim" }
+"perfanno.nvim" = { git = "t-troebst/perfanno.nvim" }
 
 # +- Treesitter: Parsers ------------------------------------+
 tree-sitter-bash = "0.0.2"
@@ -273,7 +274,6 @@ tree-sitter-vim = "0.0.3"
 tree-sitter-vimdoc = "0.0.2"
 tree-sitter-yaml = "0.0.2"
 tree-sitter-yuck = "0.0.1"
-
 
 
 # +----------------------------------------------------------+
