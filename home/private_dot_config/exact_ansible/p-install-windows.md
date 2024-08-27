@@ -44,9 +44,13 @@
     ```
 1. Windows Settings
     1. Keyboard
-        - English (Netherlands) with US keyboard
-        - Dutch (Netherlands) with US-International keyboard
-        - "Korean
+        1. Keyboard Layouts
+            - English (United Kingdom)  with US keyboard
+            - Dutch (Netherlands) with US-International keyboard
+            - Korean
+        1. Switching Layout with Alt+Shift
+            1. Settings > Time & language > Typing > Advanced keyboard settings
+                * > Input language hot keys > Change Key Sequence > Enable "Between input languages"
     2. Dualboot Time UTC
        ```powershell
        reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
