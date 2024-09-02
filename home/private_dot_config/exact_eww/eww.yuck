@@ -6,23 +6,20 @@
                 :class "powermenu-bar-container"
             "powermenu"))
 
-; +--- Widget: Brightness------------------------------------------------------+
-(defpoll var-brightness-lin :interval "1s" "scripts/brightness")
-(defvar brightness-icons ".");
-
-(defwidget w-brightness []
-  (box :class "brightness"
-       (overlay
-        (circular-progress :value var-brightness-lin
-                           :thickness 2
-                           :start-at 25
-                           :width 28
-                           :class "brightness-progress")
-        ; "test"
-        (label :text "${substring(brightness-icons, round(var-brightness-lin / 10, 0), 1)}"
-               :valign "center"
-               :halign "center"
-               :class "brightness-icon"))))
+; +--- Widget: Workspaces -----------------------------------------------------+
+(deflisten var-workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
+; (defvar var-workspace-icons "󰝚") ; Home, Study, Code, Search, Documentation, Servers, Scratch, Communication, Music
+(defvar var-workspace-icons "󰚡󱆀󰅴󰦅󰭤󰒍󰻭󰂞󰎈󰂕") ; Home, Study, Code, Search, Documentation, Servers, Scratch, Communication, Music
+(defwidget w-workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+    (box :space-evenly true
+         :class "workspaces"
+      (label :text "${var-workspaces}${current_workspace}" :visible false)
+      (for workspace in var-workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "workspace-current" : ""} ${workspace.windows > 0 ? "workspace-occupied" : "workspace-empty"}"
+            (label :text "${substring(var-workspace-icons, workspace.id - 1, 1)}")))))))
 
 ; +--- Widget: Battery --------------------------------------------------------+
 (defpoll var-battery :interval "1m" "scripts/battery")
@@ -40,6 +37,26 @@
                :halign "center"
                :style {var-battery.charging == "1" ? "margin-left: 3px" : ""} ; center charging icon
                :class "battery-icon"))))
+
+; +--- Widget: Brightness------------------------------------------------------+
+(defpoll var-brightness-lin :interval "1s" "scripts/brightness")
+; (defvar brightness-icons ".");
+(defvar brightness-icons "󱩎󱩏󱩐󱩑󱩒󱩓󱩔󱩕󱩖󰛨");
+
+(defwidget w-brightness []
+  (box :class "brightness"
+       :visible {var-battery.present == "1"}
+       (overlay
+        (circular-progress :value var-brightness-lin
+                           :thickness 2
+                           :start-at 25
+                           :width 28
+                           :class "brightness-progress")
+        ; "test"
+        (label :text "${substring(brightness-icons, round(var-brightness-lin / 10, 0), 1)}"
+               :valign "center"
+               :halign "center"
+               :class "brightness-icon"))))
 
 ; +--- Widget: Date and Time --------------------------------------------------+
 (defpoll var-datetime :interval "1s" "date '+ %a, %b %d, %H:%M'")
@@ -59,7 +76,7 @@
   (box :orientation "h"
        :class "section-start-container"
        :halign "start"
-       "start"))
+     (w-workspaces)))
 
 
 (defwidget section-middle []

@@ -27,3 +27,6 @@ STARSHIP
 
 - Make abstract role for adding hook to initramfs
 - Configure swap using swap partition
+
+- Hyprland
+    - dependencies: socat (used in eww scripts)
