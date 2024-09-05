@@ -15,6 +15,7 @@ submap = applications
 binde = ,n, exec, neovide
 binde = ,f, exec, firefox
 binde = ,e, exec, dolphin
+binde = ,t, exec, thunderbird
 bind = ,escape,submap,reset
 bind = ,catchall,submap,reset
 submap = reset

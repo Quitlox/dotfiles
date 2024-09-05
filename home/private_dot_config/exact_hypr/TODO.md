@@ -1,0 +1,1 @@
+- Add icons of applications to the workspaces

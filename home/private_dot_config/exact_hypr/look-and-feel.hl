@@ -2,6 +2,9 @@
 ### LOOK AND FEEL ###
 #####################
 
+$slate400 = 94a3b8
+$slate200 = e2e8f0a
+
 general {
     gaps_in = 5
     gaps_out = 20
@@ -19,27 +22,43 @@ general {
 }
 
 decoration {
+    # Window Rounding
+    rounding = 6
+
+    # Window Opacity
     active_opacity = 1.0
     inactive_opacity = 1.0
 
-    rounding = 6
-    blur {
-        enabled = yes
-        size = 2
-        passes = 6
-        new_optimizations = yes
-        xray = no
-        noise = 0.0117
-        contrast = 0.97
-        brightness = 1
+    # Window Blur
+    # blur {
+    #     enabled = yes
+    #     size = 2
+    #     passes = 6
+    #     new_optimizations = yes
+    #     xray = no
+    #     noise = 0.0117
+    #     contrast = 0.97
+    #     brightness = 1
 
+    #     ignore_opacity = true
+    # }
+
+    blur {
+        enabled = true
+        size = 5
+        passes = 2
+        new_optimizations = on
         ignore_opacity = true
+        xray = true
+        blurls = waybar
     }
 
+    # Window Shadow
     drop_shadow = yes
-    shadow_range = 25
-    shadow_render_power = 2
-    col.shadow = rgba(00000034)
+    shadow_range = 30
+    shadow_render_power = 3
+    col.shadow = rgba(e2e8f020)
+    col.shadow_inactive = rgba(00000034)
 }
 
 animations {
