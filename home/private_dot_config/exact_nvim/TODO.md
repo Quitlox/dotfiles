@@ -8,6 +8,11 @@
 - [ ] Report: profile.nvim bug
 - [x] Keybinding: Select git branch
 - [ ] LSP Diagnostics: Currently not very useful for Python in Trouble mode
+- [ ] Possession Bugs: 
+    - Do not ask to save changes to "Neotest Output Panel" and "[dap-repl]"
+    - Keeps opening COMMIT_MSG for some reason
+    - Neotest gets angry after switching
+- [ ] DapUI: "DAP Watches" shows up as listed buffer in bufferline if edited
 
 ### Bugs
 
