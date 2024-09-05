@@ -1,18 +1,45 @@
 
-; +--- Widget: Powermenu ------------------------------------------------------+
-(defwidget powermenu []
-           (box :orientation "horizontal"
-                :halign "center"
-                :class "powermenu-bar-container"
-            "powermenu"))
+; +--- Window: Powermenu ------------------------------------------------------+
+(defwidget w-powermenu []
+  (box :orientation "h"
+       :space-evenly false
+       :class "powermenu-container"
+       :halign "center"
+       :valign "center"
+       :spacing 20
+    (box :orientation "v" :class "powermenu-item"
+         (button :style "color: #d8dee9;" :class "powermenu-item-shutdown" :onrightclick "systemctl poweroff" "")
+         "Power Off")
+    (box :orientation "v" :class "powermenu-item"
+         (button :style "color: #e5e9f0;" :class "powermenu-item-reboot" :onrightclick "systemctl reboot" "󰜉")
+         "Reboot")
+    (box :orientation "v" :class "powermenu-item"
+         (button :style "color: #eceff4;" :class "powermenu-item-lock" :onrightclick "hyprctl lock" "󰌾")
+         "Lock")
+    (box :orientation "v" :class "powermenu-item"
+         (button :style "color: #e8e8e8;" :class "powermenu-item-suspend" :onrightclick "playerctl pause & amixer set Master mute & systemctl hibernate" "󰒲")
+         "Hibernate")
+    (box :orientation "v" :class "powermenu-item"
+         (button :style "color: #ffffff;" :class "powermenu-item-logout" :onrightclick "hyprctl exit" "󰗽")
+         "Exit")))
+
+(defwindow powermenu
+  :wm-ignore true
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0px"
+                      :y "0%"
+                      :width "20%"
+                      :height "10%"
+                      :anchor "center center")
+  (w-powermenu))
 
 ; +--- Widget: Workspaces -----------------------------------------------------+
-(deflisten var-workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
-(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
-; (defvar var-workspace-icons "󰝚") ; Home, Study, Code, Search, Documentation, Servers, Scratch, Communication, Music
+(deflisten var-workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
 (defvar var-workspace-icons "󰚡󱆀󰅴󰦅󰭤󰒍󰻭󰂞󰎈󰂕") ; Home, Study, Code, Search, Documentation, Servers, Scratch, Communication, Music
 (defwidget w-workspaces []
-  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
     (box :space-evenly true
          :class "workspaces"
       (label :text "${var-workspaces}${current_workspace}" :visible false)
@@ -21,8 +48,15 @@
           (box :class "workspace-entry ${workspace.id == current_workspace ? "workspace-current" : ""} ${workspace.windows > 0 ? "workspace-occupied" : "workspace-empty"}"
             (label :text "${substring(var-workspace-icons, workspace.id - 1, 1)}")))))))
 
+; +--- Widget: Music ----------------------------------------------------------+
+(defpoll var-music :interval "1s" "bash scripts/getmusic.sh")
+(defwidget w-music []
+  (box :class "music-player-container"
+        (label :text "${var-music}"
+             :class "music-player-text")))
+
 ; +--- Widget: Battery --------------------------------------------------------+
-(defpoll var-battery :interval "1m" "scripts/battery")
+(defpoll var-battery :interval "1m" "scripts/battery.sh")
 (defwidget w-battery []
   (box :class "battery"
        :visible {var-battery.present == "1"}
@@ -39,7 +73,7 @@
                :class "battery-icon"))))
 
 ; +--- Widget: Brightness------------------------------------------------------+
-(defpoll var-brightness-lin :interval "1s" "scripts/brightness")
+(defpoll var-brightness-lin :interval "1s" "scripts/brightness.sh")
 ; (defvar brightness-icons ".");
 (defvar brightness-icons "󱩎󱩏󱩐󱩑󱩒󱩓󱩔󱩕󱩖󰛨");
 
@@ -65,6 +99,35 @@
          :class "datetime-container"
      (box :class "time" var-datetime)))
 
+; +--- Widget: Wifi -----------------------------------------------------------+
+(defwidget w-wifi []
+    (box :orientation "horizontal"
+         :class "wifi"
+         "wifi"))
+
+; +--- Widget: Ethernet -------------------------------------------------------+
+(defpoll var-ethernet :interval "1s" "bash scripts/geteth.sh")
+(defpoll var-ip :interval "1s" "bash scripts/getip.sh")
+(defwidget w-ethernet []
+    (box :orientation "horizontal"
+         :class "ethernet"
+         :visible {var-ethernet != "no-interface"}
+         (tooltip
+           (box :orientation "horizontal"
+                :class "ethernet-tooltip"
+                (label :text "${var-ip}"))
+           (label :text "${var-ethernet == "disconnected" ? '󱘖' : ''}${var-ethernet == "offline" ? '󰌙' : ''}${var-ethernet == "online" ? '󰌘' : ''}"))))
+
+
+; +--- Widget: Container Right ------------------------------------------------+
+(defwidget w-container-system []
+    (box :orientation "horizontal"
+         :class "container-system"
+         :space-evenly false
+         :visible {var-ethernet != "no-interface"}
+         (w-ethernet)))
+
+
 ; +--- Widget: Notifications Button -------------------------------------------+
 (defwidget notifications-button []
     (button :label "Notification"
@@ -83,7 +146,7 @@
   (box :orientation "h"
        :class "section-middle-container"
        :halign "center"
-       "middle"))
+       (w-music)))
 
 (defwidget section-end []
   (box :orientation "h"
@@ -92,6 +155,7 @@
        :space-evenly false
        (w-brightness)
        (w-battery)
+       (w-container-system)
        (w-datetime)
        (notifications-button)))
 

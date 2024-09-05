@@ -14,6 +14,31 @@ $surface0: rgba(204, 208, 218, 0.1);
     // background: rgba(204, 208, 218, 0.1); // surface0
 }
 
+// +--- Widget: Base ----------------------------------------------------------+
+.base {
+    background: $surface0;
+    border-radius: 8;
+    padding: 0 8;
+    margin: 0 8 0 0;
+    font-size: 12;
+    font-family: 'Iosevka';
+}
+
+// +--- Window: Powermenu -----------------------------------------------------+
+.powermenu-container {
+    @extend .base;
+    font-size: 14;
+    font-family: '';
+}
+
+.powermenu-item {
+    margin: 16 16;
+
+    >:first-child {
+        margin: 0 0 4 0;
+    }
+}
+
 // +--- Widget: Workspaces ----------------------------------------------------+
 .workspaces {
     background: $surface0;
@@ -37,39 +62,52 @@ $surface0: rgba(204, 208, 218, 0.1);
 
 .workspace-empty {}
 
+// +--- Widget: Music Player --------------------------------------------------+
+.music-player-container {
+    @extend .base;
+    font-size: 14;
+}
+
 // +--- Widget: Brightness ----------------------------------------------------+
 .brightness {
-    background: $surface0;
-    border-radius: 8;
-    padding: 0 8;
-    margin: 0 8 0 0;
-    font-size: 12;
+    @extend .base;
 }
 
 // +--- Widget: Battery -------------------------------------------------------+
 .battery {
-    background: $surface0;
-    border-radius: 8;
-    padding: 0 8;
-    margin: 0 8 0 0;
-    font-size: 12;
+    @extend .base;
 }
 
 // +--- Widget: Date and Time -------------------------------------------------+
 .datetime-container {
-    background: $surface0;
-    border-radius: 8;
-    padding: 0 8;
+    @extend .base;
     font-size: 14;
-    font-family: 'Iosevka';
+}
+
+// +--- Widget: Container System ----------------------------------------------+
+.container-system {
+    @extend .base;
+    font-size: 14;
+}
+
+.wifi {
+    margin: 4;
+}
+
+.ethernet {
+    margin: 4;
+}
+
+.ethernet-tooltip {
+    background: rgba(204, 208, 218, 0.5);
+    border-radius: 8;
+    padding: 4;
+    font-size: 12;
 }
 
 // +--- Widget: Notifications Button ------------------------------------------+
 .notifications-button {
-    background: $surface0;
-    border-radius: 8;
-    padding: 0 8;
-    margin: 0 0 0 8;
+    @extend .base;
 
     &:hover {
         background: rgba(204, 208, 218, 0.5);
