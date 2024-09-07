@@ -1,11 +1,11 @@
 [rocks]
 
 [plugins]
-"rocks.nvim" = "2.36.1"
-"rocks-git.nvim" = "2.0.1"
-"rocks-config.nvim" = "2.1.5"
-"rocks-lazy.nvim" = "1.0.0"
-"rocks-dev.nvim" = "1.3.0"
+"rocks.nvim" = "2.40.0"
+"rocks-git.nvim" = "2.2.0"
+"rocks-config.nvim" = "2.2.0"
+"rocks-lazy.nvim" = "1.0.1"
+"rocks-dev.nvim" = "1.7.0"
 
 # +----------------------------------------------------------+
 # | Colorschemes                                             |
@@ -102,7 +102,7 @@
 "nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook" }
 
 # +- Treesitter ---------------------------------------------+
-"rocks-treesitter.nvim" = { version = "1.0.2" }
+"rocks-treesitter.nvim" = { version = "1.1.2" }
 "nvim-treesitter-legacy-api" = "scm"
 # +- Treesitter: Modules ------------------------------------+
 "targets.vim" = { git = "wellle/targets.vim", rev = "v0.5.0^{}" }
@@ -224,7 +224,7 @@
 "promise-async" = "scm"
 "nui.nvim" = "0.3.0"
 "sqlite.lua" = "1.2.2"
-"nvim-nio" = "1.10.0"
+"nvim-nio" = { git = "nvim-neotest/nvim-nio" } # TODO: switch back to >1.10.0
 "fixcursorhold.nvim" = { git = "antoinemadec/FixCursorHold.nvim" }
 "image.nvim" = "1.3.0"
 "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "a3e3bc8", pin = true } # pin required as scm is way behind
@@ -236,47 +236,47 @@
 "perfanno.nvim" = { git = "t-troebst/perfanno.nvim" }
 
 # +- Treesitter: Parsers ------------------------------------+
-tree-sitter-bash = "0.0.2"
-tree-sitter-c = "0.0.3"
-tree-sitter-css = "0.0.2"
-tree-sitter-dockerfile = "0.0.2"
-tree-sitter-ecma = "0.0.2"
-tree-sitter-editorconfig = "0.0.3"
-tree-sitter-gitcommit = "0.0.1"
-tree-sitter-gitignore = "0.0.2"
-tree-sitter-git_config = "0.0.1"
-tree-sitter-git_rebase = "0.0.1"
-tree-sitter-html = "0.0.2"
-tree-sitter-htmldjango = "0.0.1"
-tree-sitter-html_tags = "0.0.2"
-tree-sitter-http = "0.0.2"
-tree-sitter-hyprlang = "0.0.2"
-tree-sitter-ini = "0.0.1"
-tree-sitter-javascript = "0.0.2"
-tree-sitter-json = "0.0.2"
-tree-sitter-jsonc = "0.0.2"
-tree-sitter-jsx = "0.0.2"
-tree-sitter-jq = "0.0.2"
-tree-sitter-latex = "0.0.3"
-tree-sitter-lua = "0.0.2"
-tree-sitter-luadoc = "0.0.2"
-tree-sitter-markdown = "0.0.2"
-tree-sitter-markdown_inline = "0.0.2"
-tree-sitter-perl = "0.0.4"
+tree-sitter-bash = "scm"
+tree-sitter-c = "scm"
+tree-sitter-css = "scm"
+tree-sitter-dockerfile = "scm"
+tree-sitter-ecma = "scm"
+tree-sitter-editorconfig = "scm"
+tree-sitter-gitcommit = "scm"
+tree-sitter-gitignore = "scm"
+tree-sitter-git_config = "scm"
+tree-sitter-git_rebase = "scm"
+tree-sitter-html = "scm"
+tree-sitter-htmldjango = "scm"
+tree-sitter-html_tags = "scm"
+tree-sitter-http = "scm"
+tree-sitter-hyprlang = "scm"
+tree-sitter-ini = "scm"
+tree-sitter-javascript = "scm"
+tree-sitter-json = "scm"
+tree-sitter-jsonc = "scm"
+tree-sitter-jsx = "scm"
+tree-sitter-jq = "scm"
+tree-sitter-latex = "scm"
+tree-sitter-lua = "scm"
+tree-sitter-luadoc = "scm"
+tree-sitter-markdown = "scm"
+tree-sitter-markdown_inline = "scm"
+tree-sitter-perl = "scm"
 tree-sitter-python = "scm"
-tree-sitter-query = "0.0.2"
-tree-sitter-requirements = "0.0.1"
-tree-sitter-rst = "0.0.2"
-tree-sitter-scss = "0.0.2"
-tree-sitter-svelte = "0.0.3"
-tree-sitter-tsx = "0.0.3"
-tree-sitter-toml = "0.0.2"
-tree-sitter-typescript = "0.0.3"
-tree-sitter-xml = "0.0.2"
-tree-sitter-vim = "0.0.3"
-tree-sitter-vimdoc = "0.0.2"
-tree-sitter-yaml = "0.0.2"
-tree-sitter-yuck = "0.0.1"
+tree-sitter-query = "scm"
+tree-sitter-requirements = "scm"
+tree-sitter-rst = "scm"
+tree-sitter-scss = "scm"
+tree-sitter-svelte = "scm"
+tree-sitter-tsx = "scm"
+tree-sitter-toml = "scm"
+tree-sitter-typescript = "scm"
+tree-sitter-xml = "scm"
+tree-sitter-vim = "scm"
+tree-sitter-vimdoc = "scm"
+tree-sitter-yaml = "scm"
+tree-sitter-yuck = "scm"
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |
