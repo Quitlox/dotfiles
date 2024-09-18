@@ -11,6 +11,8 @@ require("dressing").setup({
             winhighlight = "",
         },
 
+        insert_only = true,
+
         -- Set to `false` to disable
         mappings = {
             i = {
