@@ -13,6 +13,8 @@
     - Keeps opening COMMIT_MSG for some reason
     - Neotest gets angry after switching
 - [ ] DapUI: "DAP Watches" shows up as listed buffer in bufferline if edited
+- [ ] Automatically optimize on opening large file buffer
+    - Disable LSP, Highlight, diagnostics
 
 ### Bugs
 
