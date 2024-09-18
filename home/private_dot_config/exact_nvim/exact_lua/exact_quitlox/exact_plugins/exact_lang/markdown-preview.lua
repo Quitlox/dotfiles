@@ -2,6 +2,11 @@
 -- | iamcco/markdown-preview.nvim: Preview Markdown in Browser|
 -- +---------------------------------------------------------+
 
+vim.g.mkdp_port = "8087"
+vim.g.mkdp_echo_preview_url = true
+vim.g.mkdp_combine_preview = true
+vim.g.mkdp_auto_close = false
+
 -- Install
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "markdown",
