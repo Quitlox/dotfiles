@@ -38,3 +38,19 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 - Help File Navigation: Hit `gO` to open an outline in the help file.
 - In insert mode, use `<C-o>` to execute a normal mode command.
 
+
+### Scratchpad
+
+hyptoheses:
+- it breaks when there is a large upgrade 
+- it also added new revs to all git thingies, which might have something to do with it.
+- the result broke my toml due to the comment thing
+
+
+also:
+- rocks refuses to install a branch
+`Rocks install linux-cultist/venv-selector.nvim branch=regexp`
+
+
+[credential "https://ci.tno.nl"]
+	provider = generic
