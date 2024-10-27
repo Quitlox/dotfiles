@@ -15,6 +15,9 @@
 - [ ] DapUI: "DAP Watches" shows up as listed buffer in bufferline if edited
 - [ ] Automatically optimize on opening large file buffer
     - Disable LSP, Highlight, diagnostics
+- [ ] Fix virtualenv selector
+- [ ] Hyprland: Do not defocus on notification
+- [ ] Eww: Bar should use fill icons on select
 
 ### Bugs
 
