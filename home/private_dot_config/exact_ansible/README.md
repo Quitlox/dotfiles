@@ -30,3 +30,9 @@ STARSHIP
 
 - Hyprland
     - dependencies: socat (used in eww scripts)
+
+- Bitwarden:
+    - Get chezmoi decryption key using: 
+    ```bash
+    bw get item "ChezMoi Dotfiles Manager" | jq ".fields[1].value" > ~/.ssh/.age_private_key.txt
+    ```
