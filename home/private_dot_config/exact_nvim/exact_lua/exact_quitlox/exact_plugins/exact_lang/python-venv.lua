@@ -6,6 +6,9 @@ require("venv-selector").setup({
     require_lsp_activation = false,
     settings = {
         search = { hatch = false, pyenv = false, pipenv = false, anaconda_envs = false, anaconda_base = false, miniconda_envs = false, file = false, pipx = false },
+        cache = {
+            file = vim.fn.stdpath("data") .. "/nvim/venv-selector/cache.json",
+        },
         options = {
             enable_cached_venvs = false,
             activate_venv_in_terminal = true,
