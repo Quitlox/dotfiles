@@ -1,7 +1,7 @@
 [rocks]
 
 [plugins]
-"rocks.nvim" = "2.40.5"
+"rocks.nvim" = "2.41.0"
 "rocks-git.nvim" = "2.5.0"
 "rocks-config.nvim" = "3.0.0"
 "rocks-lazy.nvim" = "1.1.1"
@@ -112,7 +112,6 @@
 "markdown-preview.nvim" = { git = "iamcco/markdown-preview.nvim", rev = "v0.0.9^{}", config = "quitlox.plugins.lang.markdown-preview" }
 # +- Python -------------------------------------------------+
 "nvim-dap-python" = { version = "scm", config = "quitlox.plugins.lang.python-dap" }
-"pymple.nvim" = { rev = "v0.1.1", git = "alexpasmantier/pymple.nvim" }
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "5.13.0", config = "quitlox.plugins.lang.rust" }
 # +- Vim ----------------------------------------------------+
@@ -219,6 +218,10 @@ tree-sitter-vim = "scm"
 tree-sitter-vimdoc = "scm"
 tree-sitter-yaml = "scm"
 tree-sitter-yuck = "scm"
+
+[plugins."pymple.nvim" ]
+git = "alexpasmantier/pymple.nvim"
+rev = "v0.4.0"
 
 
 # +----------------------------------------------------------+
