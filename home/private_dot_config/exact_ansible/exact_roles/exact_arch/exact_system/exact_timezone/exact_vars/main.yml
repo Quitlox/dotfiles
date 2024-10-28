@@ -1,0 +1,3 @@
+---
+valid_regions: "{{ lookup('fileglob', '/usr/share/zoneinfo/*') | map('basename') | list }}"
+valid_timezones: "{{ lookup('fileglob', '/usr/share/zoneinfo/*/*') | map('basename') | list }}"

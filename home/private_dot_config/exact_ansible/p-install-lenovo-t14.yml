@@ -12,40 +12,31 @@
     - linux/system/package-upgrade
 
     - arch/system/beep
-    - arch/system/hibernate
-    - arch/system/laptop
+    - arch/system/filesystem
+    #- arch/system/hibernate
+    #- arch/system/laptop
+    - arch/system/man
     - arch/system/microcode
-    - arch/system/mkinitcpio
-    - arch/system/numlock
+    #- arch/system/mkinitcpio
+    - arch/system/networking
     - arch/system/pacman
-    - arch/system/swap
+    - arch/system/timezone
 
-    - linux/system/bluetooth
+    #- linux/system/bluetooth
     - linux/system/locale
-    - linux/system/network
-    - linux/system/ssd
+    #- linux/system/network
+    #- linux/system/ssd
     - linux/system/ssh
-    - linux/system/sshfs
-    - linux/system/time
+    #- linux/system/sshfs
+    - linux/system/timesync
 
     - machines/lenovo-t14/firmware
-    - machines/lenovo-t14/screen-tearing
-    - machines/lenovo-t14/video-drivers
+    #- machines/lenovo-t14/screen-tearing
+    #- machines/lenovo-t14/video-drivers
 
-    - arch/desktop-xorg/appearance
-    - arch/desktop-xorg/brightness
-    - arch/desktop-xorg/clipboard
-    - arch/desktop-xorg/environment
-    - arch/desktop-xorg/fonts
-    - arch/desktop-xorg/monitors
-    - arch/desktop-xorg/printing
-    - arch/desktop-xorg/screenshot
-    - arch/desktop-xorg/sound
-    - arch/desktop-xorg/wacom
-
-    - linux/applications/atuin-client
-    - linux/applications/cmdline
-    - linux/applications/desktop
-    - linux/applications/dev
-    - linux/applications/docker
-    - linux/applications/hacking
+    #- linux/applications/atuin-client
+    #- linux/applications/cmdline
+    #- linux/applications/desktop
+    #- linux/applications/dev
+    #- linux/applications/docker
+    #- linux/applications/hacking

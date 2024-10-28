@@ -13,18 +13,12 @@
     update_password: on_create
   notify: Notify passwd
 
-- name: Add wheel group
-  become: true
-  ansible.builtin.group:
-    name: wheel
-    system: true
-  when: ansible_facts['os_family'] == 'Archlinux'
-
 - name: Configure wheel group
   become: true
   ansible.builtin.lineinfile:
     dest: /etc/sudoers
     state: present
+    regexp: '^#?\s?%wheel ALL=(ALL) NOPASSWD:ALL$'
     line: "%wheel ALL=(ALL) NOPASSWD:ALL"
     validate: "/usr/sbin/visudo -cf %s"
   when: ansible_facts['os_family'] == 'Archlinux'

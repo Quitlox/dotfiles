@@ -12,7 +12,9 @@
       become_user: "{{ user_name }}"
       kewlfft.aur.aur:
         name:
+          - upd72020x-fw
+          - ast-firmware
+          - linux-firmware-qlogic
           - aic94xx-firmware
           - wd719x-firmware
-          - linux-firmware-qlogic
       when: ansible_product_name == "20UES06X00"

@@ -1,0 +1,33 @@
+---
+- name: Ensure NetworkManager is installed and enabled
+  tasks:
+    - name: Install NetworkManager
+      community.general.pacman:
+        name: NetworkManager
+        state: present
+    - name: Enable NetworkManager
+      ansible.builtin.service:
+        name: NetworkManager
+        enabled: true
+        state: started
+  become: true
+
+- name: Ensure systemd-resolved is enabled
+  ansible.builtin.service:
+    name: systemd-resolved
+    enabled: true
+    state: started
+  become: true
+
+- name: Install wpa_supplicant for WiFi support
+  community.general.pacman:
+    name: wpa_supplicant
+    state: present
+  become: true
+  when: system_has_wifi
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ system_hostname }}"
+  become: true
+  when: system_hostname is defined

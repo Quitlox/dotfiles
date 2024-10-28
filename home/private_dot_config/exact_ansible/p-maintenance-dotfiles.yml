@@ -4,7 +4,7 @@
 # localhost, and thus is meant to be run on a remote host.
 #
 # To use this playbook, run the following command:
-#   - ansible-playbook dotfiles-bw.yml
+#   - ansible-playbook maintenance-dotfiles.yml -l '<host>'
 
 ---
 - name: Install dotfiles on a host (without bitwarden-cli)

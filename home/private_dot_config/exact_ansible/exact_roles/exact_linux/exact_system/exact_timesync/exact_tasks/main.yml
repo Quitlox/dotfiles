@@ -1,0 +1,17 @@
+---
+# - name: Remove NTPd if installed on Debian
+#   ansible.builtin.apt:
+#     name: ntp
+#     state: absent
+#     purge: true
+#     autoremove: yes
+#   become: true
+#   when: ansible_facts['os_family'] == "Debian"
+
+- name: Setup time synchronization using systemd-timesyncd
+  ansible.builtin.systemd:
+    name: systemd-timesyncd.service
+    state: started
+    enabled: true
+  become: true
+  when: ansible_facts['os_family'] == "Archlinux"

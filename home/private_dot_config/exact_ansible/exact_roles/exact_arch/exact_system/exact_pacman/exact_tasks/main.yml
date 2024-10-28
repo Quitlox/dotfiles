@@ -97,7 +97,7 @@
       become: true
     - name: Enable and start reflector service
       ansible.builtin.systemd:
-        name: reflector
+        name: reflector.timer
         enabled: true
         state: started
       become: true

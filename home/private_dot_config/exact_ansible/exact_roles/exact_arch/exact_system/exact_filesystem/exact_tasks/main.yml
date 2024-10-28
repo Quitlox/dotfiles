@@ -1,0 +1,5 @@
+---
+- name: Install userspace utilities for file systems
+  community.general.pacman:
+    name: dosfstools exfatprogs e2fsprogs
+  become: true

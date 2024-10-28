@@ -1,2 +1,5 @@
 system_headless: false
-system_swap_size: 4294967296 # 4.0 GiB
+system_use_swapfile: false
+system_has_wifi: true
+
+system_hostname: quitlox-laptop
