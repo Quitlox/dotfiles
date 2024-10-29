@@ -4,6 +4,7 @@
     - name: Install Wireshark
       community.general.pacman:
         name: wireshark-qt
+      become: true
     - name: Add user to wireshark group
       ansible.builtin.user:
         user: "{{ user_name }}"

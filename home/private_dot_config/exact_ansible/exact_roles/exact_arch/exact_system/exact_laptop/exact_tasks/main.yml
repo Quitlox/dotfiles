@@ -1,61 +1,27 @@
 ---
-- name: Configure acpi
-  block:
-    - name: Install acpi related packages
-      become: true
-      community.general.pacman:
-        name:
-          - acpi
-          - acpid
-          - acpi_call
-
-    # - name: Enable and start acpid
-    #   ansible.builtin.systemd:
-    #     name: acpid.service
-    #     enabled: true
-    #     state: started
-
-- name: Configure TLP
-  block:
-    - name: Install TLP
-      community.general.pacman:
-        name:
-          - tlp
-          - tlp-rdw
-    - name: Enable and start tlp
-      ansible.builtin.systemd:
-        name: tlp.service
-        enabled: true
-        state: started
-      become: true
-    # Per the ArchWiki docs, to avoid conflicts and ensure proper operation of TLP's radio device switching options.
-    - name: Mask systemd-rfkill.service
-      ansible.builtin.systemd:
-        name: systemd-rfkill.service
-        masked: true
-        state: stopped
-      become: true
-    - name: Mask systemd-rfkill.socket
-      ansible.builtin.systemd:
-        name: systemd-rfkill.socket
-        masked: true
-        state: stopped
-      become: true
-    - name: Enable and start NetworkManager-dispatcher for tlp-rdw
-      ansible.builtin.systemd:
-        name: NetworkManager-dispatcher.service
-        enabled: true
-        state: started
-      become: true
-
-- name: Configure CPU scaling
+- name: Configure CPU frequency scaling
   block:
     - name: Install cpupower
       community.general.pacman:
         name: cpupower
+      become: true
+    - name: Set governor to ondemand
+      ansible.builtin.lineinfile:
+        path: /etc/default/cpupower
+        regexp: "^#governor='ondemand'"
+        line: "governor='ondemand'"
+      become: true
     - name: Enable and start cpupower service
       ansible.builtin.systemd:
         name: cpupower.service
         enabled: true
-        state: started
       become: true
+
+- name: Configure automatic hibernate on low battery
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/99-low_battery.rules"
+    dest: /etc/udev/rules.d/99-low_battery.rules
+    owner: root
+    group: root
+    mode: "0644"
+  become: true

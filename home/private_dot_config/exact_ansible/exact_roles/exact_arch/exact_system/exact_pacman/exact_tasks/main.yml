@@ -1,4 +1,10 @@
 ---
+- name: Install pacman-contrib (contains paccache.timer)
+  community.general.pacman:
+    name: "pacman-contrib"
+    update_cache: true
+  become: true
+
 - name: Setup cache cleaning
   ansible.builtin.systemd:
     name: paccache.timer
@@ -50,6 +56,7 @@
     - name: Install pigz
       community.general.pacman:
         name: pigz
+        update_cache: true
       become: true
     - name: Replace GZ compression with pigz
       ansible.builtin.lineinfile:
@@ -85,7 +92,7 @@
     - name: Install Reflector
       community.general.pacman:
         name: reflector
-      register: reflector_installation
+        update_cache: true
       become: true
     - name: Configure Reflector
       ansible.builtin.copy:
@@ -101,5 +108,3 @@
         enabled: true
         state: started
       become: true
-# TODO: Add task for cleaning pacman cache (maybe as cron job?)
-# https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache

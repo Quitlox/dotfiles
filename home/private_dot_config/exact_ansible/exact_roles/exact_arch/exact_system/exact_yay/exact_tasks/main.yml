@@ -1,6 +1,33 @@
 ---
-- name: Install yay AUR helper
+- name: Install dependencies for yay AUR helper
+  community.general.pacman:
+    name:
+      - fakeroot
+      - debugedit
+      - base-devel
+    update_cache: true
   become: true
-  become_user: "{{ user_name }}"
+
+- name: Create the `aur_builder` user
+  become: true
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: yes
+    group: wheel
+    system: true
+    shell: /usr/bin/nologin
+
+- name: Allow the `aur_builder` user to run `sudo pacman` without a password
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: true
+    mode: 0644
+    validate: "visudo -cf %s"
+
+- name: Install yay AUR helper
   kewlfft.aur.aur:
     name: yay
+  become: true
+  become_user: aur_builder

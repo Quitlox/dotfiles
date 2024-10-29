@@ -1,5 +1,5 @@
 system_headless: false
-system_use_swapfile: false
+system_swap_method: "partition"
 system_has_wifi: true
 
 system_hostname: quitlox-laptop

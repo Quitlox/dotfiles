@@ -3,7 +3,7 @@
   community.general.locale_gen:
     name: "{{ item }}"
     state: present
-  loop: "{{ system_locales }}"
+  loop: "{{ system_locale }}"
 
   # The recommended and default way is to save
   # the hardware clock in UTC.

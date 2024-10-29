@@ -2,17 +2,15 @@
 - name: Validate timezone variable
   assert:
     that:
-      - timezone is defined
-      - timezone is string
-      - "'/' in timezone"
-      - timezone.split('/')[0] in valid_regions
-      - "timezone in valid_timezones"
-    fail_msg: "The timezone '{{ timezone }}' is not valid. Please provide a valid 'Region/City' format that exists on the system."
+      - system_timezone is defined
+      - system_timezone is string
+      - "'/' in system_timezone"
+      # - system_timezone.split('/')[0] in valid_regions # FIXME: Doesn't work
+      # - "system_timezone in valid_timezones"
+    fail_msg: "The timezone '{{ system_timezone }}' is not valid. Please provide a valid 'Region/City' format that exists on the system."
 
-- name: Symlink /etc/localtime to timezone
-  ansible.builtin.file:
-    src: "/usr/share/zoneinfo/{{ timezone }}"
-    dest: /etc/localtime
-    state: link
-    force: true
-  when: timezone in valid_timezones
+- name: Set timezone
+  community.general.timezone:
+    name: "{{ system_timezone }}"
+  when: system_timezone is defined
+  become: true

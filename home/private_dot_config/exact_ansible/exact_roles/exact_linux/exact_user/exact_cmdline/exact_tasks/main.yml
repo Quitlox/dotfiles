@@ -16,6 +16,10 @@
       - make
       - btop
       - ascii # Manpage with ASCII table
+      # Help / Man
+      - man-db
+      - man-pages
+      - texinfo
 
       # Dependencies
       # Ripgrep recursively searches directories for a regex pattern while respecting your gitignore.
@@ -56,54 +60,59 @@
   when: ansible_facts['os_family'] == "Archlinux"
   block:
     - name: Uninstall vim
-      become: true
       ansible.builtin.package:
         name: vim
         state: absent
-    - name: Install gvim as default vim
       become: true
+    - name: Install gvim as default vim
       ansible.builtin.package:
         name: gvim
+      become: true
 
 - name: Install neovim and dependencies
   block:
     - name: Install NeoVim and pynvim on Arch
-      become: true
       community.general.pacman:
         name:
           - neovim
+          # Dependencies of rocks.nvim
+          - luajit
+          - luarocks
+          # Required for image.nvim
+          - imagemagick
           # Python client for Neovim for plugins written in Python
           - python-pynvim
+      become: true
       when: ansible_facts['os_family'] == "Archlinux"
 
     - name: Install NeoVim on Debian
-      become: true
       community.general.snap:
         name:
           - nvim
         classic: true
+      become: true
       when: ansible_facts['os_family'] == "Debian"
 
     - name: Install pynvim on Debian
-      become: true
       ansible.builtin.apt:
         name:
           # Python client for Neovim for plugins written in Python
           - python3-pynvim
+      become: true
       when: ansible_facts['os_family'] == "Debian"
 
     - name: Install VSCode codicons on Arch
-      become: true
-      become_user: "{{ user_name }}"
       kewlfft.aur.aur:
         name: vscode-codicons-git
+      become: true
+      become_user: aur_builder
       when: ansible_facts['os_family'] == "Archlinux"
 
     - name: Install VSCode codicons on Debian
-      become: true
       community.general.npm:
         name: "@vscode/codicons"
         global: true
+      become: true
       when:
         - ansible_facts['os_family'] == "Debian"
         - "'npm' in ansible_facts.packages"

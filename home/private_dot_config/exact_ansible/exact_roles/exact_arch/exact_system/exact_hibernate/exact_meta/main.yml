@@ -1,5 +1,4 @@
 ---
 dependencies:
-  - name: arch/system/swap
   - name: arch/system/mkinitcpio
 

@@ -1,10 +1,10 @@
 ---
 - name: Ensure NetworkManager is installed and enabled
-  tasks:
+  block:
     - name: Install NetworkManager
       community.general.pacman:
-        name: NetworkManager
-        state: present
+        name: networkmanager
+        update_cache: true
     - name: Enable NetworkManager
       ansible.builtin.service:
         name: NetworkManager
@@ -22,7 +22,7 @@
 - name: Install wpa_supplicant for WiFi support
   community.general.pacman:
     name: wpa_supplicant
-    state: present
+    update_cache: true
   become: true
   when: system_has_wifi
 

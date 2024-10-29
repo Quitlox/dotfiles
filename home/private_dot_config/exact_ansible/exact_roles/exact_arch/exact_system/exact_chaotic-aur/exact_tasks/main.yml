@@ -18,6 +18,7 @@
   ansible.builtin.command: cat /etc/pacman.conf
   register: pacman_conf_output
   changed_when: false
+  no_log: true
 
 - name: Add repository to pacman.conf
   become: true

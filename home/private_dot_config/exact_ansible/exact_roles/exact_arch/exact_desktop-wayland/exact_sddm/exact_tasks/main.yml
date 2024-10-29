@@ -1,0 +1,81 @@
+---
+- name: Install SDDM
+  community.general.pacman:
+    name: sddm
+    update_cache: true
+  become: true
+
+- name: Enable SDDM
+  ansible.builtin.systemd:
+    name: sddm
+    enabled: true
+  become: true
+
+- name: Install SDDM Chili Theme
+  kewlfft.aur.aur:
+    name: chili-sddm-theme
+  become: true
+  become_user: aur_builder
+
+- name: Create configuration directory for SDDM
+  ansible.builtin.file:
+    path: /etc/sddm.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+
+- name: Set SDDM theme to Chili
+  ansible.builtin.copy:
+    content: |
+      [Theme]
+      Current=chili
+      background=../../../../local/share/sddm/themes/quitlox/assets/white_mountain1.png
+    dest: /etc/sddm.conf.d/theme.conf
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+
+- name: Create directory for SDDM theme background image
+  ansible.builtin.file:
+    path: /usr/local/share/sddm/themes/quitlox/assets
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+
+- name: Place background image
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/white_mountain1.png"
+    dest: /usr/local/share/sddm/themes/quitlox/assets/white_mountain1.png
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+
+- name: Configure SDDM autologin
+  ansible.builtin.copy:
+    dest: /etc/sddm.conf.d/autologin.conf
+    content: |
+      [Autologin]
+      User={{ user_name }}
+      Session=Hyprland
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+
+- name: Hide system users from SDDM
+  ansible.builtin.copy:
+    content: |
+      [Users]
+      HideShells=/usr/bin/nologin,/sbin/nologin,/bin/false,/usr/bin/git-shell
+      MinimumUid=500
+    dest: /etc/sddm.conf.d/hide-users.conf
+    owner: root
+    group: root
+    mode: "0644"
+  become: true

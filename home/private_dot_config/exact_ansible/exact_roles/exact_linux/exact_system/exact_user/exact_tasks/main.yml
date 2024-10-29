@@ -3,6 +3,7 @@
   become: true
   ansible.builtin.package:
     name: sudo
+    update_cache: true
 
 - name: Create default user
   become: true
@@ -10,16 +11,18 @@
     name: "{{ user_name }}"
     shell: /bin/zsh
     create_home: true
+    move_home: false
     update_password: on_create
   notify: Notify passwd
 
+# FIXME: Place file in /etc/sudoers.d/ instead
 - name: Configure wheel group
   become: true
   ansible.builtin.lineinfile:
     dest: /etc/sudoers
     state: present
-    regexp: '^#?\s?%wheel ALL=(ALL) NOPASSWD:ALL$'
-    line: "%wheel ALL=(ALL) NOPASSWD:ALL"
+    regexp: '^#?\s?%wheel ALL=(ALL:ALL) ALL'
+    line: "%wheel ALL=(ALL:ALL) ALL"
     validate: "/usr/sbin/visudo -cf %s"
   when: ansible_facts['os_family'] == 'Archlinux'
 

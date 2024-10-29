@@ -2,14 +2,16 @@
 - name: Install microcode updates for intel
   community.general.pacman:
     name: intel-ucode
-    state: present
+    update_cache: true
+  become: true
   notify: regenerate grub
   when: "'GenuineIntel' in ansible_processor"
 
 - name: Install microcode updates for amd
   community.general.pacman:
     name: amd-ucode
-    state: present
+    update_cache: true
+  become: true
   register: task_result
   notify: regenerate grub
   when: "'AuthenticAMD' in ansible_processor"

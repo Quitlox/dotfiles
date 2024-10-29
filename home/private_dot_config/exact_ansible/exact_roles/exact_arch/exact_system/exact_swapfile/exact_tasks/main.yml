@@ -1,0 +1,66 @@
+# This role configures a swap file on the target system.
+# Only use this role if no swap partition is available.
+---
+- name: Check if /swapfile exists
+  ansible.builtin.stat:
+    path: /swapfile
+  become: true
+  register: swapfile_stat
+  when: system_swap_method == 'file'
+
+- name: Get current swap file size if it exists
+  ansible.builtin.set_fact:
+    current_swap_size: "{{ swapfile_stat.stat.size }}"
+  when: system_swap_method == 'file' and swapfile_stat.stat.exists
+  changed_when: false
+
+- name: Print current swap size
+  ansible.builtin.debug:
+    msg: "Current swap size: {{ current_swap_size }}"
+  when: system_swap_method == 'file'
+
+- name: Deactivate existing swap file if needed
+  ansible.builtin.command: swapoff /swapfile
+  register: result
+  changed_when: result.rc == 0
+  when: system_swap_method == 'file' and swapfile_stat.stat.exists and (system_swap_size == 0 or ((current_swap_size | int) != (system_swap_size | int)))
+
+- name: Remove swap file if system_swap_size is 0
+  ansible.builtin.file:
+    path: /swapfile
+    state: absent
+  when: system_swap_method == 'file' and system_swap_size == 0
+
+- name: Allocate space for the swap file
+  ansible.builtin.command: dd if=/dev/zero of=/swapfile bs=1M count={{ system_swap_size }}
+  register: result
+  changed_when: result.rc == 0
+  when: system_swap_method == 'file' and system_swap_size != 0 and (not swapfile_stat.stat.exists or ((current_swap_size | int) != (system_swap_size | int)))
+
+- name: Set swap file permissions
+  ansible.builtin.file:
+    path: /swapfile
+    owner: root
+    group: root
+    mode: "0600"
+  when: system_swap_method == 'file' and system_swap_size != 0 and (not swapfile_stat.stat.exists or (current_swap_size) != system_swap_size)
+
+- name: Make swap space
+  ansible.builtin.command: mkswap -U clear /swapfile
+  register: result
+  changed_when: result.rc == 0
+  when: system_swap_method == 'file' and system_swap_size != 0 and (not swapfile_stat.stat.exists or ((current_swap_size | int) != (system_swap_size | int)))
+
+- name: Enable swap
+  ansible.builtin.command: swapon /swapfile
+  register: result
+  changed_when: result.rc == 0
+  when: system_swap_method == 'file' and system_swap_size != 0 and (not swapfile_stat.stat.exists or ((current_swap_size | int) != (system_swap_size | int)))
+
+- name: Add swapfile entry to /etc/fstab if not present
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    regexp: '^/swapfile\s+'
+    line: "/swapfile none swap defaults 0 0"
+    state: present
+  when: system_swap_method == 'file' and system_swap_size != 0

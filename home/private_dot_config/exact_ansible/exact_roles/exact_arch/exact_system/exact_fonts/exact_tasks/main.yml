@@ -1,0 +1,6 @@
+---
+- name: Install fonts (noto)
+  community.general.pacman:
+    name: noto-fonts
+    update_cache: true
+  become: true

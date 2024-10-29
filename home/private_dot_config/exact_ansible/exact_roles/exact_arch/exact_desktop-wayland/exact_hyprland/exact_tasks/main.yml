@@ -1,37 +1,43 @@
 ---
 - name: Install Hyprland and Friends
-  become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name:
       - hyprland
       - wev
       # Required for using plugins with hyprpm
       # https://github.com/hyprwm/Hyprland/issues/4479
       - cpio
+      - cmake
+      - meson
       - hyprwayland-scanner
       # Libraries
       - qt5-wayland
       - qt6-wayland
       # Desktop Applications (Background)
+      - brightnessctl # Brightness Control
       - hyprpaper # Wallpaper
       - xdg-desktop-portal-hyprland # Screensharing
       - xdg-desktop-portal-gtk # Needed for file picker?
       - copyq # Clipboard Manager
       - udiskie # USB Automounter
+      - eww # Widget Framework
       # Desktop Applications (Foreground)
+      - kitty # Terminal
       - wofi # Launcher
+  become: true
 
 - name: Install Hyprland and Friends
+  kewlfft.aur.aur:
+    name: overskride # Bluetooth UI
   become: true
-  kewlfft.aur: overskride # Bluetooth UI
+  become_user: aur_builder
 
   # The recommendation is the KDE Authentication Agent,
   # on Arch packaged as polkit-kde-agent
 - name: Install Authentication Agent on Arch
-  become: true
   ansible.builtin.package:
     name: polkit-kde-agent
-
+  become: true
 # TODO:
 # - hyprshade: blue light filter
 # - hyprgrass: touch gestures plugin
@@ -50,7 +56,6 @@
 #
 # - TODO
 #   - Mirror display
-#   - Display Manager
 
 # Configure Firefox
 # - Download & Extract WaveFox plugin (https://github.com/QNetITQ/WaveFox?tab=readme-ov-file)
@@ -68,38 +73,43 @@
 # - https://www.reddit.com/r/unixporn/comments/ys4nfs/hyprland_glassmorphism/
 # - https://www.reddit.com/r/unixporn/comments/ys4nfs/hyprland_glassmorphism/
 
-- name: Initialize/Update Hyprland plugin manager
-  become: true
-  become_user: " {{ user_name }}"
-  ansible.builtin.command: hyprpm update
-  changed_when: true
+# FIXME: Can only run within Hyprland
+# - name: Initialize/Update Hyprland plugin manager
+#   become: true
+#   become_user: " {{ user_name }}"
+#   ansible.builtin.command: hyprpm update
+#   changed_when: true
 
 # TODO: Abstract this into a role, only name of plugin should be needed
 
-- name: Check if Hyprland hy3 plugin repository is installed
-  become: true
-  become_user: "{{ user_name }}"
-  ansible.builtin.command: hyprpm list | grep hy3
-  result: hy3
-  changed_when: false
-
-- name: Add Hyprland hy3 plugin repository
-  become: true
-  become_user: "{{ user_name }}"
-  ansible.builtin.command: hyprpm add https://github.com/outfoxxed/hy3
-  changed_when: hy3.rc == 0
-  when: hy3.rc == 0
-
-- name: Check if Hyprland hyprland-plugins repository is installed
-  become: true
-  become_user: "{{ user_name }}"
-  ansible.builtin.command: hyprpm list | grep hyprland-plugins
-  result: hyprland-plugins
-  changed_when: false
-
-- name: Add Hyprland hyprland-plugins repository
-  become: true
-  become_user: "{{ user_name }}"
-  ansible.builtin.command: hyprpm add https://github.com/hyprwm/hyprland-plugins
-  changed_when: hy3.rc == 0
-  when: hyprland-plugins.rc == 0
+# - name: Check if Hyprland hy3 plugin repository is installed
+#   become: true
+#   become_user: "{{ user_name }}"
+#   ansible.builtin.shell: hyprpm list | grep hy3
+#   register: has_hy3
+#   changed_when: false
+#   failed_when: has_hy3.rc != 1 and has_hy3.rc != 0
+#
+# - name: Add Hyprland hy3 plugin repository
+#   become: true
+#   become_user: "{{ user_name }}"
+#   ansible.builtin.shell: yes | hyprpm add https://github.com/outfoxxed/hy3
+#   register: hy3
+#   changed_when: hy3.rc == 0
+#   when: has_hy3.rc == 1
+#
+# - name: Check if Hyprland hyprland-plugins repository is installed
+#   become: true
+#   become_user: "{{ user_name }}"
+#   ansible.builtin.shell: hyprpm list | grep hyprland-plugins
+#   register: has_hyprland_plugins
+#   changed_when: false
+#   failed_when: has_hyprland_plugins.rc != 1 and has_hyprland_plugins.rc != 0
+#
+# - name: Add Hyprland hyprland-plugins repository
+#   become: true
+#   become_user: "{{ user_name }}"
+#   ansible.builtin.shell: yes | hyprpm add https://github.com/hyprwm/hyprland-plugins
+#   register: hyprland_plugins
+#   changed_when: hyprland_plugins.rc == 0
+#   when: has_hyprland_plugins.rc == 1

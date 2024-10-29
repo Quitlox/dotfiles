@@ -4,7 +4,9 @@
     - name: Install util-linux for SSD TRIM support
       community.general.pacman:
         name: util-linux
+        update_cache: true
       when: ansible_facts['os_family'] == "Archlinux"
+      become: true
 
     - name: Enable TRIM for SSDs
       ansible.builtin.systemd:

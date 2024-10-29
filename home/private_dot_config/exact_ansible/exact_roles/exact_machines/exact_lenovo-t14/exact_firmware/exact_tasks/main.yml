@@ -8,8 +8,6 @@
         name: linux-firmware
 
     - name: Install extra linux-firmware for quitlox-lenovo-t14
-      become: true
-      become_user: "{{ user_name }}"
       kewlfft.aur.aur:
         name:
           - upd72020x-fw
@@ -17,4 +15,6 @@
           - linux-firmware-qlogic
           - aic94xx-firmware
           - wd719x-firmware
+      become: true
+      become_user: aur_builder
       when: ansible_product_name == "20UES06X00"

@@ -23,7 +23,7 @@
   ansible.builtin.set_fact:
     hooks_list: "{{ hooks_line.split('=')[1].strip('()').split() }}"
 
-- name: Create /etc/mkinitcpio.d directory if not present
+- name: Create /etc/mkinitcpio.conf.d directory if not present
   become: true
   ansible.builtin.file:
     path: /etc/mkinitcpio.d
@@ -32,11 +32,11 @@
     group: root
     mode: "0755"
 
-- name: Write formatted HOOKS to /etc/mkinitcpio.d/my-hooks.conf
+- name: Write formatted HOOKS to /etc/mkinitcpio.conf.d/my-hooks.conf
   become: true
   ansible.builtin.template:
     src: templates/my-hooks.conf.j2
-    dest: /etc/mkinitcpio.d/my-hooks.conf
+    dest: /etc/mkinitcpio.conf.d/my-hooks.conf
     owner: root
     group: root
     mode: "0644"

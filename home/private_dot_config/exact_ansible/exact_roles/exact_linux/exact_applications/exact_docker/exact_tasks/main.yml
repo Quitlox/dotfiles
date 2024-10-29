@@ -8,21 +8,21 @@
   when: ansible_facts['os_family'] == "Archlinux"
 
 - name: Create group "docker"
-  become: true
   ansible.builtin.group:
     name: docker
     state: present
+  become: true
 
 - name: Add user to docker group
-  become: true
   ansible.builtin.user:
     name: "{{ user_name }}"
     groups: docker
     append: true
+  become: true
 
 - name: Enable and start docker
-  become: true
   ansible.builtin.systemd:
-    name: docker
+    name: docker.socket # faster boot-time than docker.service
     enabled: true
     state: started
+  become: true

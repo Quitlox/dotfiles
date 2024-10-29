@@ -16,6 +16,6 @@ system_locale:
 system_timezone: "Europe/Amsterdam"
 system_hostname: quitlox-unnamed
 system_headless: true
-system_use_swapfile: false
+system_swap_method: "partition" # 'off', 'file', 'partition'
 system_swap_size: 4294967296 # 4.0 GiB
 system_has_wifi: false

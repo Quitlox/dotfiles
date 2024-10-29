@@ -13,7 +13,7 @@ ansible-galaxy collection install -r requirements.yml -p /usr/local/share/ansibl
 
 ## Playbooks
 
-- `ansible-playbook maintenance-dotfiles.yml -l '<host>'`
+- `ansible-playbook maintenance-dotfiles.yml -u quitlox -l '<host>' -K`
     - Installs the dotfiles repository on the target host.
     - Note: You may need to restart in order for starship to be able to load.
 
