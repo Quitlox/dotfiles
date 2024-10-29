@@ -16,6 +16,7 @@
       # Desktop Applications (Background)
       - brightnessctl # Brightness Control
       - hyprpaper # Wallpaper
+      - hyprlock # Screenlock
       - xdg-desktop-portal-hyprland # Screensharing
       - xdg-desktop-portal-gtk # Needed for file picker?
       - copyq # Clipboard Manager

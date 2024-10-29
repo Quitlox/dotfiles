@@ -333,16 +333,6 @@ zinit wait as"none" \
   run-atpull \
 for zdharma-continuum/null
 
-# Starship prompt
-zinit ice from"gh-r" as"program" \
-  atload'!eval $(starship init zsh)'
-zinit load starship/starship
-# This hangs the terminal, don't do this
-#zinit ice from"gh-r" as"program" \
-#  atclone'./starship init zsh > init.zsh; ./starship completions zsh > _starship' \
-#  atpull'%atclone' src'init.zsh'
-#zinit load starship/starship
-
 # Use Atuin or FZF for history searching
 # zsh-fzf-history-search
 zinit ice lucid wait'0c' if'[[ -z "$commands[atuin]" ]]'
@@ -368,3 +358,10 @@ zinit load zsh-users/zsh-completions
 # Fast Syntax Highlighting
 zinit ice wait atinit'zpcompinit; zpcdreplay'
 zinit load zdharma-continuum/fast-syntax-highlighting
+
+############################################################
+### Starship Prompt                                      ###
+############################################################
+
+eval "$(starship init zsh)"
+

@@ -5,6 +5,7 @@
     name:
       # Bare Essentials
       - zsh
+      - starship
       - git
       # Frequently used tools
       - exa
