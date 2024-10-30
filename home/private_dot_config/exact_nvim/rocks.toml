@@ -19,7 +19,7 @@
 
 # +- Visual Enhancements ------------------------------------+
 "nvim-colorizer.lua" = "scm"
-"indent-blankline.nvim" = "3.8.2"
+"indent-blankline.nvim" = "3.8.3"
 
 # +- Vim Motions --------------------------------------------+
 "nvim-surround" = { version = "2.1.5", pin = true }
