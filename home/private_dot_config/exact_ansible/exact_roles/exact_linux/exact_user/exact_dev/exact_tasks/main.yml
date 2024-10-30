@@ -46,6 +46,29 @@
   when: install_rust
   tags: rust
 
+- name: Install tools for development
+  ansible.builtin.package:
+    name:
+      - lazygit
+  become: true
+  when: install_lsps
+  tags: lsps
+
+- name: Install formatters and linters
+  kewlfft.aur.aur:
+    name:
+      - shfmt
+      - taplo-cli
+  become: true
+  become_user: "{{ user_name }}"
+
+- name: Install formatters and linters (AUR)
+  kewlfft.aur.aur:
+    name:
+      - prettierd
+  become: true
+  become_user: "{{ user_name }}"
+
 - name: Install language servers for development
   ansible.builtin.package:
     name:
@@ -54,8 +77,6 @@
   become: true
   when: install_lsps
   tags: lsps
-
-
 # TODO: https://github.com/fubarhouse/ansible-role-golang
 # Include installation of go pacakages:
 #   - hyprls # language server for hypr

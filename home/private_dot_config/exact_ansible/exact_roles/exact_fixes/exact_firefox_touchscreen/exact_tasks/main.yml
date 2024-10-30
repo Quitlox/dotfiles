@@ -1,0 +1,12 @@
+# - name: Fix touchscreen support in Firefox (Xorg)
+#   ansible.builtin.lineinfile:
+#     line: MOZ_USE_XINPUT2 DEFAULT=0 OVERRIDE=1
+#     path: /etc/security/pam_env.conf
+#   become: true
+
+# FIXME: Only on wayland
+- name: Fix touchscreen support in Firefox (Wayland)
+  ansible.builtin.lineinfile:
+    line: MOZ_ENABLE_WAYLAND DEFAULT=0 OVERRIDE=1
+    path: /etc/security/pam_env.conf
+  become: true

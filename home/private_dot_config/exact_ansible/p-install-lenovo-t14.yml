@@ -46,6 +46,8 @@
     #- linux/applications/atuin-client
     #- linux/applications/hacking
 
+    - fixes/firefox_touchscreen
+
 # TODO:
 # - OpenVPN / DNS
 
