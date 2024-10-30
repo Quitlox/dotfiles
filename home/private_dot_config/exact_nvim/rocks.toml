@@ -86,7 +86,6 @@
 "hover.nvim" = "scm"
 "lsp_signature.nvim" = "0.3.1"
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
-"refjump.nvim" = { git = "mawkler/refjump.nvim", config = { options = {} } } # Jump to reference with ]r and [r 
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim" }
 
 # +- Session and Project Management - -----------------------+
