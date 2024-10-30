@@ -5,34 +5,35 @@
 autoload colors && colors
 
 ############################################################
-### Zsh Settings 					 ###
+### Zsh Settings                                         ###
 ############################################################
 
 setopt rmstarsilent             # Don't prompt on rm * (already aliased rm, see ./aliases.zsh)
 setopt extendedglob             # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob               # Case insensitive globbing
 setopt numericglobsort          # Sort filenames numerically when it makes sense
-setopt globdots			# files beginning with . matched without explicit .
+setopt globdots                 # files beginning with . matched without explicit .
 
 setopt rcexpandparam            # Array expension with parameters
-setopt nocheckjobs          	 # Don't warn about running processes when exiting
+setopt nocheckjobs              # Don't warn about running processes when exiting
 setopt nobeep                   # No beep
 setopt autocd                   # if only directory path is entered, cd there.
+setopt ignoreeof                # Do not EOF on Ctrl+D
 
 # History Settings
-setopt extended_history 	# Record timestamp of command in HISTFILE
+setopt extended_history         # Record timestamp of command in HISTFILE
 setopt appendhistory            # Immediately append history instead of overwriting
 setopt histignorealldups        # If a new command is a duplicate, remove the older one
-setopt share_history 		# Share command history data
+setopt share_history            # Share command history data
 setopt inc_append_history       # save commands are added to the history immediately,
-				                # otherwise only when shell exits.
+                                # otherwise only when shell exits.
 
 # Bash style Ctrl+Backspace (till first slash)
 autoload -Uz select-word-style
 select-word-style bash
 
 ############################################################
-### Zsh Completion Settings 				 ###
+### Zsh Completion Settings                              ###
 ############################################################
 
 # Completion rleated settings
@@ -57,7 +58,7 @@ zstyle ':completion:*' completer _expand _complete _ignored _approximate
 #zstyle ':completion:*' file-list all
 
 ############################################################
-### Zinit: Init & Settings 				 ###
+### Zinit: Init & Settings                               ###
 ############################################################
 
 HISTSIZE=999999999
@@ -91,7 +92,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 ############################################################
-### Zinit: Annexes 					 ###
+### Zinit: Annexes                                       ###
 ############################################################
 
 # Turbo Mode:
@@ -110,7 +111,7 @@ zinit load zdharma-continuum/z-a-man
 
 
 ############################################################
-### Zinit: Programs 				 	 ###
+### Zinit: Programs                                      ###
 ############################################################
 
 ### exa
@@ -134,11 +135,10 @@ zinit load sharkdp/bat
 
 # Array of directories to exclude
 exclude_dirs=(.git .svn .hg .venv env venv node_modules .cache .DS_Store .idea .vscode __pycache__ .pytest_cache .mypy_cache .pytest_cache dist build .sass-cache .npm .next .nuxt .yarn-cache .yarn .bundle vendor .serverless .netlify .vercel .firebase .cypress .storybook .parcel-cache .gradle .m2 .rvm .rbenv .jekyll-cache .tox .docker)
-# Function to generate find command
+# Function to select and open a directory
 function open_dir_command() {
-    # Start of the find command
     local find_cmd="find $1 -type d"
-    # Add each directory to the find command
+    # Exclude the blacklist directories
     for dir in "${exclude_dirs[@]}"; do
         find_cmd+=" \( -name $dir -prune \) -o"
     done
@@ -149,10 +149,10 @@ function open_dir_command() {
     find_cmd+=" -type d -print 2> /dev/null | fzf"
     echo $find_cmd
 }
+# Function to find a file from the current directory
 function find_file_command() {
-    # Start of the find command
     local find_cmd="find . -type f"
-    # Add each directory to the find command
+    # Exclude the blacklist directories
     for dir in "${exclude_dirs[@]}"; do
         find_cmd+=" \( -name $dir -prune \) -o"
     done
@@ -187,14 +187,28 @@ function __bind_fzf_keys() {
     if [ -n "$dir" ]; then
         LBUFFER="$LBUFFER$dir"
         zle reset-prompt
+        zle beginning-of-line
+        zle -I  # Enter insert mode
+    fi
+  }
+  function fzf_find_directory_current() {
+    local find_cmd=$(open_dir_command .)
+    local dir=$(eval "$find_cmd")
+    if [ -n "$dir" ]; then
+        LBUFFER="$LBUFFER$dir"
+        zle reset-prompt
+        zle beginning-of-line
+        zle -I  # Enter insert mode
     fi
   }
   zle -N fzf_select_directory_home
   zle -N fzf_select_directory_cwd
   zle -N fzf_find_file_current
+  zle -N fzf_find_directory_current
   bindkey '^o' fzf_select_directory_home
   # bindkey '^i' fzf_select_directory_cwd
   bindkey '^f' fzf_find_file_current
+  bindkey '^d' fzf_find_directory_current
 }
 if [[ -n "$commands[fzf]" ]]; then
   __bind_fzf_keys
@@ -223,7 +237,7 @@ zinit ice wait"0" lucid \
 zinit load ajeetdsouza/zoxide
 
 ############################################################
-### Zinit: Completions 					 ###
+### Zinit: Completions                                   ###
 ############################################################
 
 ### Docker
@@ -255,7 +269,7 @@ alias gcan='git commit --amend --no-edit'
 alias gpfl='git push --force-with-lease'
 
 ############################################################
-### Zinit: Scripts 					 ###
+### Zinit: Scripts                                       ###
 ############################################################
 
 ### SSH-Agent ###
@@ -283,7 +297,7 @@ zinit ice wait"2" \
 zinit load agkozak/zhooks
 
 ############################################################
-### Zinit: Plugins Extra				 ###
+### Zinit: Plugins Extra                                 ###
 ############################################################
 
 # Python: Poetry
@@ -295,7 +309,7 @@ zinit ice wait"3" as"completion" blockf
 zinit snippet OMZP::rust/rust.plugin.zsh
 
 ############################################################
-### Zinit: Plugins 					 ###
+### Zinit: Plugins                                       ###
 ############################################################
 
 ZSH_TMUX_CONFIG="$HOME/.config/tmux/tmux.conf"
@@ -321,10 +335,6 @@ zinit ice wait for \
   as"command" pick"cmds/zc-bg-notify" silent \
     zdharma-continuum/zconvey
 
-### bgnotify
-# Cross-platform background notifications for long running
-# commands.
-
 # Custom Plugins & Completions
 zinit wait as"none" \
   id-as"local-plugins" nocompile \
@@ -344,7 +354,6 @@ function __bind_atuin_keys() {
 }
 zinit ice wait'0c' if'[[ -n "$commands[atuin]" ]]' atload'__bind_atuin_keys'
 zinit load ellie/atuin
-
 
 # Zsh Autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history) # Match suggestions with history-substring
