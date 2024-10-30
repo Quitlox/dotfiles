@@ -10,17 +10,22 @@ bind = $mainMod SHIFT, W, killactive,
 bind = $mainMod SHIFT, Q, exit,
 bind = $mainMod, D, exec, wofi --show drun
 
+# Application Launcher
 bind=$mainMod,O,submap,applications
 submap = applications
 binde = ,n, exec, neovide
 binde = ,f, exec, firefox
 binde = ,e, exec, dolphin
 binde = ,t, exec, thunderbird
-binde = ,o, exec, blueman
+binde = ,b, exec, blueman-manager
 binde = ,m, exec, pavucontrol
 bind = ,escape,submap,reset
 bind = ,catchall,submap,reset
 submap = reset
+
+# Alternative mappings
+bind = $mainMod CTRL, b, exec, blueman-manager
+bind = $mainMod CTRL, m, exec, blueman-manager
 
 # +- Power Menu -------------------------------------------+
 bind=$mainMod,0,submap,powermenu
