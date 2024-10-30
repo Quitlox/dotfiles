@@ -1,6 +1,9 @@
 ---
-- name: Install fonts (noto)
+- name: Install fonts
   community.general.pacman:
-    name: noto-fonts
+    name: 
+      - noto-fonts
+      - ttc-iosevka
+      - ttf-nerd-fonts-symbols
     update_cache: true
   become: true

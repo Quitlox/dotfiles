@@ -26,3 +26,10 @@
     enabled: true
     state: started
   become: true
+
+- name: Enable and start docker container
+  ansible.builtin.systemd:
+    name: containerd.socket 
+    enabled: true
+    state: started
+  become: true

@@ -1,0 +1,43 @@
+---
+- name: Configure audio (PipeWire)
+  block:
+    - name: Install sound base packages
+      become: true
+      community.general.pacman:
+        name:
+          - pipewire
+          - pipewire-docs
+          - lib32-pipewire
+          - wireplumber
+          - pipewire-audio
+          - pipewire-alsa
+          - pipewire-pulse
+          - pavucontrol # Graphical Interface
+
+    - name: Ensure pulseaudio is not installed
+      community.general.pacman:
+        name:
+          - pulseaudio
+          - pulseaudio-bluetooth
+        state: absent
+      become: true
+
+- name: Configure noise supression
+  block:
+    - name: Install required package
+      become: true
+      community.general.pacman:
+        name: noise-suppression-for-voice
+    - name: Ensure ~/.config/pipewire exists
+      ansible.builtin.file:
+        path: /home/{{ user_name }}/.config/pipewire/pipewire.conf.d/
+        state: directory
+    - name: Copy over configuration file
+      # TODO: Move this config to /etc
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/99-input-denoising.conf"
+        dest: "/home/{{ user_name }}/.config/pipewire/pipewire.conf.d/99-input-denoising.conf"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: "0644"
+  notify: restart pipewire

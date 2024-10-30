@@ -27,19 +27,20 @@
     - arch/system/networking
     - arch/system/timezone
 
-    #- linux/system/bluetooth
+    - linux/system/bluetooth
     - linux/system/locale
     - linux/system/ssd
     - linux/system/ssh
     #- linux/system/sshfs
+    - linux/system/sound
     - linux/system/timesync
 
     - arch/desktop-wayland/sddm
     - arch/desktop-wayland/hyprland
 
-    - linux/user/desktop
     - linux/user/dev
-    #- linux/user/docker
+    - linux/user/desktop
+    - linux/user/docker
     - linux/user/cmdline
 
     #- linux/applications/atuin-client

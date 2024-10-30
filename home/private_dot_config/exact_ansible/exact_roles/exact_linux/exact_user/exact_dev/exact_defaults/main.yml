@@ -1,0 +1,5 @@
+---
+install_java: false
+install_python: true
+install_rust: false
+install_lsps: true

@@ -1,43 +1,31 @@
 ---
-- name: Install bluez and bluez-utils packages
+- name: Install Bluetooth packages
   community.general.pacman:
     name:
       - bluez
-      - bluez-libs
       - bluez-utils
+      - bluez-obex # Required for File Transfer
+      - blueman
     state: present
-  when:
-    - ansible_virtualization_role | lower != "guest"
-    - ansible_facts['os_family'] == "Archlinux"
-
-# - name: Load btusb kernel module
-#   community.general.modprobe:
-#     name: btusb
-#     state: present
-#   when:
-#     - ansible_virtualization_role | lower != "guest"
-#     - ansible_facts['os_family'] == "Archlinux"
-
-# - name: Ensure btusb module is loaded at boot
-#   ansible.builtin.lineinfile:
-#     path: /etc/modules-load.d/btusb.conf
-#     line: btusb
-#     create: true
-#   when:
-#     - ansible_virtualization_role | lower != "guest"
-#     - ansible_facts['os_family'] == "Archlinux"
+  become: true
 
 - name: Start and enable bluetooth.service
   ansible.builtin.systemd:
     name: bluetooth.service
     state: started
     enabled: true
-  when: ansible_virtualization_role | lower != "guest"
+  become: true
 
-- name: Install bluetooth graphical interface
-  ansible.builtin.package:
-    name: blueman
-    state: present
-  when:
-    - not system_headless
-    - ansible_facts['os_family'] == "Archlinux"
+- name: Install Bluetooth GUI
+  kewlfft.aur.aur:
+    name: 
+      - overskride
+  become: true
+  become_user: "{{ user_name }}"
+
+- name: Add user to lp group # Required for Bluetooth Tether
+  ansible.builtin.user:
+    name: "{{ user_name }}"
+    groups: lp
+    append: true
+  become: true

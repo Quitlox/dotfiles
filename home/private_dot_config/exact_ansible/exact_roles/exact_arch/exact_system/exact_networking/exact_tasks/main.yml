@@ -31,3 +31,13 @@
     name: "{{ system_hostname }}"
   become: true
   when: system_hostname is defined
+
+
+- name: Setup OpenVPN
+  block:
+    - name: Install OpenVPN
+      community.general.pacman:
+        name: networkmanager-openvpn
+        update_cache: true
+  become: true
+
