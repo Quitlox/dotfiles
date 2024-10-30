@@ -1,6 +1,0 @@
----
-- name: Install help-related packages
-  community.general.pacman:
-    name: man-db man-pages texinfo
-    state: present
-  become: true
