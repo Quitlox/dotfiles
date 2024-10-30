@@ -76,13 +76,16 @@
       community.general.pacman:
         name:
           - neovim
+          # Dependencies of plugins
+          - imagemagick # Required for image.nvim
+          - github-cli # Required for octo.nvim
+          - glab # Required for gitlab.nvim ?
           # Dependencies of rocks.nvim
           - luajit
           - luarocks
-          # Required for image.nvim
-          - imagemagick
           # Python client for Neovim for plugins written in Python
           - python-pynvim
+
       become: true
       when: ansible_facts['os_family'] == "Archlinux"
 

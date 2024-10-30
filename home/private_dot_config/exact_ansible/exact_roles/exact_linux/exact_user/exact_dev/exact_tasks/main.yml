@@ -59,6 +59,7 @@
     name:
       - shfmt
       - taplo-cli
+      - stylua
   become: true
   become_user: "{{ user_name }}"
 
