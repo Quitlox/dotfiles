@@ -80,6 +80,7 @@
           - imagemagick # Required for image.nvim
           - github-cli # Required for octo.nvim
           - glab # Required for gitlab.nvim ?
+          - vivify # Required for vivify.nvim
           # Dependencies of rocks.nvim
           - luajit
           - luarocks
