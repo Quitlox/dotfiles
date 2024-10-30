@@ -169,26 +169,13 @@
             (section-end)))
 
 ; +--- Window -----------------------------------------------------------------+
-(defwindow bar0
-           :monitor 0
+(defwindow bar
            :geometry (geometry :x "0px"
                                :y "0px"
                                :width "100%"
                                :height "48"
                                :anchor "bottom left")
-           :stacking "fg"
-           :exclusive true
-           :focusable false
-           :namespace "quitlox-bar"
- (bar-container))
-
-(defwindow bar1
-           :monitor 1
-           :geometry (geometry :x "0px"
-                               :y "0px"
-                               :width "100%"
-                               :height "48"
-                               :anchor "bottom left")
+           :windowtype "dock"
            :stacking "fg"
            :exclusive true
            :focusable false
