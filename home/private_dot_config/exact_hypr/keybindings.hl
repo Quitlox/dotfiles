@@ -20,6 +20,18 @@ bind = ,escape,submap,reset
 bind = ,catchall,submap,reset
 submap = reset
 
+# +- Power Menu -------------------------------------------+
+bind=$mainMod,0,submap,powermenu
+submap = powermenu
+binde = ,h, exec, systemctl hibernate
+binde = ,s, exec, systemctl poweroff
+binde = SHIFT, s, exec, systemctl suspend
+binde = ,r, exec, systemctl reboot
+binde = ,l, exec, hyprlock
+bind = ,escape,submap,reset
+bind = ,catchall,submap,reset
+submap = reset
+
 # +- Windows: Move ----------------------------------------+
 bind = $mainMod, h, hy3:movefocus, l
 bind = $mainMod, l, hy3:movefocus, r
@@ -109,3 +121,4 @@ bind = ,XF86MonBrightnessUp, exec, brightnessctl --exponent=3 s +10%
 bind = ,XF86MonBrightnessDown, exec, brightnessctl --exponent=3 s 10%-
 #bind = ,XF86MonBrightnessUp, exec, eww update var-brightness-percent=$(brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%')
 #bind = ,XF86MonBrightnessDown, exec, eww update var-brightness-percent=$(brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%')
+
