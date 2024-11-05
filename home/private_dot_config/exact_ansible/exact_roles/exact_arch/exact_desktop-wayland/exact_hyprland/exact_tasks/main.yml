@@ -22,6 +22,7 @@
       - copyq # Clipboard Manager
       - udiskie # USB Automounter
       - eww # Widget Framework
+      - swaync # Notification Daemon
       # Desktop Applications (Foreground)
       - kitty # Terminal
       - wofi # Launcher
