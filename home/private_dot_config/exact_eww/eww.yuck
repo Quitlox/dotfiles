@@ -36,7 +36,7 @@
 
 ; +--- Widget: Workspaces -----------------------------------------------------+
 (deflisten var-workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
-(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh ${screen}")
 (defvar var-workspace-icons "󰚡󱆀󰅴󰦅󰭤󰒍󰻭󰂞󰎈󰂕") ; Home, Study, Code, Search, Documentation, Servers, Scratch, Communication, Music
 (defwidget w-workspaces []
   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
