@@ -22,7 +22,7 @@
 "mini.misc" = "0.9.0"
 "vim-matchup" = { git = "andymass/vim-matchup", rev = "v0.7.3", branch = "master" }
 "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "v1.0.0" }
-"highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim", rev = "1ea1c79372d7d93c88fd97543880927b7635e3d2" }
+"highlight-undo.nvim"  = { git = "tzachar/highlight-undo.nvim", rev = "c87a6ec1ded241ef223269077cbd5f97a6f0d5bf" }
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" } # Wrap
 "yanky.nvim" = "scm"
 
@@ -34,7 +34,7 @@
 # +- Vim Motions --------------------------------------------+
 "nvim-surround" = { version = "2.1.5", pin = true }
 "flash.nvim" = "2.1.0"
-"vim-repeat" = { git = "tpope/vim-repeat", rev = "65846025c15494983dafe5e3b46c8f88ab2e9635" }
+"vim-repeat"  = { git = "tpope/vim-repeat", rev = "v1.2" }
 
 # +- Miscellenous -------------------------------------------+
 "guess-indent.nvim" = "scm"
@@ -67,9 +67,6 @@
 "nvim-dap-ui" = "4.0.0"
 "nvim-dap-virtual-text" = "scm"
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }
-"persistent-breakpoints.nvim" = { git = "weissle/persistent-breakpoints.nvim", rev = "4b199b1dcfd136cac8b0fa9c8dbbdeb81463f7a9" }
-# +- Debugging: Adapters ------------------------------------+
-"neotest-python"= { git = "nvim-neotest/neotest-python", rev = "72603dfdbaad5695160268cb10531a14cc37236e" }
 
 # +- Git ----------------------------------------------------+
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.0.0" }
@@ -129,7 +126,11 @@
 "go.nvim" = { version = "0.9.0", ft = [ "go", "gomod" ], config = "quitlox.plugins.lang.go" }
 "guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1^{}", ft = [ "go", "gomod" ] }
 # +- HTTP ---------------------------------------------------+
+<<<<<<< HEAD
 "kulala.nvim"= { git = "mistweaverco/kulala.nvim", rev = "v4.4.1" }
+=======
+"kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v4.4.0" }
+>>>>>>> 9c24e4f ([nvim] remove redundant persistent-breakpoints plugin)
 # +- LaTeX --------------------------------------------------+
 "vimtex" = { git = "lervag/vimtex", rev = "v2.9" }
 # +- Lua ----------------------------------------------------+
@@ -137,13 +138,14 @@
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "ce76f6f6cdc9201523a5875a4471dcfe0186eb60" }
 # +- Markdown -----------------------------------------------+
 "markdown.nvim"= { git = "tadmccorkle/markdown.nvim", rev = "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" }
-"markdown-render" = { git = "meanderingprogrammer/markdown.nvim", rev = "v7.4.0^{}" }
-"vivify.vim"= { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
+"markdown-render"  = { git = "meanderingprogrammer/markdown.nvim", rev = "v7.5.0" }
+"vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626", ft = "markdown" }
 # +- Python -------------------------------------------------+
+"neotest-python" = { git = "nvim-neotest/neotest-python", rev = "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" }
 "nvim-dap-python" = { version = "scm", config = "quitlox.plugins.lang.python-dap" }
 "pymple.nvim"= { git = "alexpasmantier/pymple.nvim", rev = "v0.4.0" }
-"venv-selector.nvim"= { git = "linux-cultist/venv-selector.nvim", rev = "e82594274bf7b54387f9a2abe65f74909ac66e97", branch = "regexp" }
+"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "0.4", branch = "regexp" }
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "5.13.1", config = "quitlox.plugins.lang.rust" }
 # +- Vim ----------------------------------------------------+
@@ -151,9 +153,8 @@
 # +- Web ----------------------------------------------------+
 "typescript-tools.nvim" = { version = "scm", config = "quitlox.plugins.lang.typescript" }
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.3.1" }
-
 # +- Minor Languages ----------------------------------------+
-"nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "9c3b4a771b8c8d7b4f2171466464d978cb3846f7" }
+"nvim-ansible"  = { git = "mfussenegger/nvim-ansible", rev = "44dabdaa8a9193b7f564a8408ed6d7107705030a" }
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
 "yuck.vim" = { git = "elkowar/yuck.vim", rev = "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
 
@@ -174,7 +175,7 @@
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.26"
 "nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.0.3" } # neo-tree.nvim
-"nvim-lsp-file-operation" = { git = "antosha417/nvim-lsp-file-operations", rev = "92a673de7ecaa157dd230d0128def10beb56d103" }
+"nvim-lsp-file-operation"  = { git = "antosha417/nvim-lsp-file-operations", rev = "9744b738183a5adca0f916527922078a965515ed" }
 "oil.nvim" = "2.12.2"
 
 # +- Finder -------------------------------------------------+
@@ -188,7 +189,7 @@
 # Commands
 "legendary.nvim" = "2.13.11"
 # Buffers
-"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "fb8e2cf548f625f6e36cb44d3e65600656924234" }
+"arrow.nvim"  = { git = "otavioschwanck/arrow.nvim", rev = "5438c977e729a29d96bd54c8da3103154e80dbd1" }
 
 # +- Notifications ------------------------------------------+
 "nvim-notify" = "3.14.0"
@@ -202,7 +203,7 @@
 
 # +- Statusline (Lualine) -----------------------------------+
 "lualine.nvim" = "scm"
-"lualine-pretty-path" = { git = "bwpge/lualine-pretty-path", rev = "51873c2ea8e70843b7599913a64eabfbbd5b980a" }
+"lualine-pretty-path"  = { git = "bwpge/lualine-pretty-path", rev = "852cb06f3562bced4776a924e56a9e44d0ce634f" }
 
 # +- Terminal (toggleterm) ----------------------------------+
 "toggleterm.nvim" = "2.12.0"
@@ -269,6 +270,7 @@ tree-sitter-typescript = "scm"
 tree-sitter-xml = "scm"
 tree-sitter-vim = "scm"
 tree-sitter-vimdoc = "scm"
+tree-sitter-vue = "0.0.29"
 tree-sitter-yaml = "scm"
 tree-sitter-yuck = "scm"
 
@@ -320,7 +322,6 @@ items = [
   "nvim-dap-ui",
   "nvim-dap-virtual-text",
   "goto-breakpoints.nvim",
-  "persistent-breakpoints.nvim",
   # Adapters
   "neotest-python",
 ]

@@ -5,14 +5,6 @@ vim.keymap.set("n", "[b", function() require("goto-breakpoints").prev() end, { n
 vim.keymap.set("n", "]b", function() require("goto-breakpoints").next() end, { noremap = true, silent = true, desc = "Next Breakpoint" })
 
 -- +---------------------------------------------------------+
--- | Weissle/persistent-breakpoints.nvim: Peristence         |
--- +---------------------------------------------------------+
--- FIXME: Is this taken over by possesion?
-require("persistent-breakpoints").setup({
-    load_breakpoints_event = { "BufReadPost" },
-})
-
--- +---------------------------------------------------------+
 -- | theHamsta/nvim-dap-virtual-text: Virtual Text for DAP   |
 -- +---------------------------------------------------------+
 require("nvim-dap-virtual-text").setup()
@@ -63,9 +55,9 @@ vim.keymap.set("n", "<leader>dd", function() require("dap").continue() end, { no
 vim.keymap.set("n", "<leader>dx", function() require("dap").terminate() end, { noremap = true, silent = true, desc = "Debugger Terminate" })
 vim.keymap.set("n", "<leader>dr", "<cmd>DapToggleRepl<cr>", { noremap = true, silent = true, desc = "Open REPL" })
 
-vim.keymap.set("n", "<leader>dt", function() require("persistent-breakpoints.api").toggle_breakpoint() end, { noremap = true, silent = true, desc = "Breakpoint Toggle" })
+vim.keymap.set("n", "<leader>dt", function() require("dap").toggle_breakpoint() end, { noremap = true, silent = true, desc = "Breakpoint Toggle" })
 vim.keymap.set("n", "<leader>dbm", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, { noremap = true, silent = true, desc = "Breakpoint Message" })
-vim.keymap.set("n", "<leader>dbc", function() require("persistent-breakpoints.api").set_conditional_breakpoint() end, { noremap = true, silent = true, desc = "Breakpoint Condition" })
+vim.keymap.set("n", "<leader>dbc", function() require("dap").toggle_breakpoint(vim.fn.input("Condition: ")) end, { noremap = true, silent = true, desc = "Breakpoint Condition" })
 
 vim.keymap.set("n", "<leader>dv", "<cmd>LoadLaunchJson<cr>", { noremap = true, silent = true, desc = "Reload launch.json" })
 

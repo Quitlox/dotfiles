@@ -312,6 +312,7 @@ zinit snippet OMZP::rust/rust.plugin.zsh
 ### Zinit: Plugins                                       ###
 ############################################################
 
+# tmux
 ZSH_TMUX_CONFIG="$HOME/.config/tmux/tmux.conf"
 zinit ice wait"1" if'[[ -n "$commands[tmux]" ]]'
 zinit snippet OMZP::tmux/tmux.plugin.zsh
