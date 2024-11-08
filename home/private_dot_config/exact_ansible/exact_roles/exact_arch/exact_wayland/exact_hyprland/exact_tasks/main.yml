@@ -10,35 +10,26 @@
       - cmake
       - meson
       - hyprwayland-scanner
+      # Dependencies
+      - socat # Required for eww detecting workspace switching script
+      - brightnessctl # Brightness Control
       # Libraries
       - qt5-wayland
       - qt6-wayland
-      # Desktop Applications (Background)
-      - brightnessctl # Brightness Control
+      # Desktop UI
       - hyprpaper # Wallpaper
       - hyprlock # Screenlock
-      - xdg-desktop-portal-hyprland # Screensharing
-      - xdg-desktop-portal-gtk # Needed for file picker?
-      - copyq # Clipboard Manager
-      - udiskie # USB Automounter
+      - wofi # Launcher
       - eww # Widget Framework
       - swaync # Notification Daemon
+      # Desktop Helpers
+      - wl-clipboard # Clipboard Manager
+      - udiskie # USB Automounter
+      - xdg-desktop-portal-gtk # General desktop integration
+      - xdg-desktop-portal-hyprland # Screensharing
+      - polkit-kde-agent # GUI Authentication
       # Desktop Applications (Foreground)
       - kitty # Terminal
-      - wofi # Launcher
-  become: true
-
-- name: Install Hyprland and Friends
-  kewlfft.aur.aur:
-    name: overskride # Bluetooth UI
-  become: true
-  become_user: aur_builder
-
-  # The recommendation is the KDE Authentication Agent,
-  # on Arch packaged as polkit-kde-agent
-- name: Install Authentication Agent on Arch
-  ansible.builtin.package:
-    name: polkit-kde-agent
   become: true
 # TODO:
 # - hyprshade: blue light filter
