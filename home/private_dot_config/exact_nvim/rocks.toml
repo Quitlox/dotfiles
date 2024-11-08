@@ -1,8 +1,8 @@
 [rocks]
 
 [plugins]
-"rocks.nvim" = "2.41.0"
-"rocks-git.nvim" = "2.5.0"
+"rocks.nvim" = "2.41.2"
+"rocks-git.nvim" = "2.5.1"
 "rocks-config.nvim" = "3.0.0"
 "rocks-lazy.nvim" = "1.1.1"
 "rocks-dev.nvim" = "1.7.0"
@@ -76,8 +76,8 @@
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v0.9.0" }
 "neogit" = { version = "scm" }
 "diffview.nvim" = "scm"
+"gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "v3.3.8" }
 "octo.nvim" = "scm"
-"gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "v3.3.7" }
 
 # +- Language Server Protocol -------------------------------+
 "glance.nvim" = "scm"
@@ -103,7 +103,7 @@
 "nvim-treesitter-legacy-api" = "scm"
 # +- Treesitter: Modules ------------------------------------+
 "targets.vim" = { git = "wellle/targets.vim", rev = "v0.5.0" }
-"rainbow-delimiters.nvim" = "0.6.2"
+"rainbow-delimiters.nvim" = "0.7.0"
 "nvim-autopairs" = { version = "scm", config = "quitlox.plugins.ide.treesitter.autopairs" }
 "nvim-ts-autotag" = { version = "scm" }
 "nvim-ts-context-commentstring" = { version = "scm", config = "quitlox.plugins.ide.treesitter.context-commentstring" }
@@ -129,7 +129,7 @@
 "go.nvim" = { version = "0.9.0", ft = [ "go", "gomod" ], config = "quitlox.plugins.lang.go" }
 "guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1^{}", ft = [ "go", "gomod" ] }
 # +- HTTP ---------------------------------------------------+
-"kulala.nvim"= { git = "mistweaverco/kulala.nvim", rev = "v4.3.0" }
+"kulala.nvim"= { git = "mistweaverco/kulala.nvim", rev = "v4.4.1" }
 # +- LaTeX --------------------------------------------------+
 "vimtex" = { git = "lervag/vimtex", rev = "v2.9" }
 # +- Lua ----------------------------------------------------+

@@ -104,3 +104,4 @@ require("lspconfig").pyright.setup({
 --+- LSP: Other ---------------------------------------------+
 require("lspconfig").cssls.setup({ capabilities = require("quitlox.util.lsp").capabilities })
 require("lspconfig").bashls.setup({ capabilities = require("quitlox.util.lsp").capabilities })
+require("lspconfig").ansiblels.setup({ capabilities = require("quitlox.util.lsp").capabilities })
