@@ -8,26 +8,33 @@
 
   roles:
     - linux/system/user
-    - linux/system/package-upgrade
+    - arch/system/pacman
+    - arch/system/yay
+    - arch/system/chaotic-aur
+    - linux/system/update
 
-    - linux/system/bluetooth
-    - linux/system/locale
-    - linux/system/network
+    - arch/system/beep
+    - arch/system/bluetooth
+    - arch/system/fonts
+    - arch/system/filesystem
+    #- arch/system/hibernate
+    - arch/system/locale
+    - arch/system/microcode
+    - arch/system/mkinitcpio
+    #- arch/system/networking
+    - arch/system/sound
+    - arch/system/timesync
+    - arch/system/timezone
+
     - linux/system/ssd
     - linux/system/ssh
     - linux/system/sshfs
-    - linux/system/time
 
-    - arch/system/beep
-    - arch/system/chaotic-aur
-    # - arch/system/hibernate # swap configuration differs
-    - arch/system/microcode
-    - arch/system/mkinitcpio
-    - arch/system/numlock
-    - arch/system/pacman
-    # - arch/system/swap # desktop-linux uses swap partition
-    - arch/system/yay
+    - arch/wayland/sddm
+    - arch/wayland/hyprland
 
+    - linux/user/dev
+    - linux/user/desktop
     - linux/user/cmdline
-    - linux/applications/docker
 
+    - linux/common/docker

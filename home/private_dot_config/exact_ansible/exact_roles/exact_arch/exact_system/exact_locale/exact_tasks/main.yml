@@ -4,6 +4,7 @@
     name: "{{ item }}"
     state: present
   loop: "{{ system_locale }}"
+  become: true
 
   # The recommended and default way is to save
   # the hardware clock in UTC.

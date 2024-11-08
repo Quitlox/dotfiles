@@ -1,5 +1,0 @@
----
-- name: Install npm on Debian
-  ansible.builtin.apt:
-    name: npm
-  when: ansible_facts['os_family'] == "Debian"

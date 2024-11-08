@@ -32,15 +32,15 @@
   notify: restart pipewire
   block:
     - name: Install required package
-      become: true
       community.general.pacman:
         name: noise-suppression-for-voice
+      become: true
     - name: Ensure ~/.config/pipewire exists
       ansible.builtin.file:
         path: /home/{{ user_name }}/.config/pipewire/pipewire.conf.d/
         state: directory
-    - name: Copy over configuration file
-      # TODO: Move this config to /etc
+        mode: "0755"
+    - name: Copy over configuration file # TODO: Move this config to /etc
       ansible.builtin.copy:
         src: "{{ role_path }}/files/99-input-denoising.conf"
         dest: "/home/{{ user_name }}/.config/pipewire/pipewire.conf.d/99-input-denoising.conf"

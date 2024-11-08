@@ -23,6 +23,8 @@
   tags: python
 
 - name: Install Rust
+  when: install_rust
+  tags: rust
   block:
     - name: "Rust: Check if installed"
       ansible.builtin.command: command -v cargo
@@ -43,8 +45,6 @@
       changed_when: true
       become_user: " {{ user_name }}"
       become: true
-  when: install_rust
-  tags: rust
 
 - name: Install tools for development
   ansible.builtin.package:
@@ -60,6 +60,7 @@
       - shfmt
       - taplo-cli
       - stylua
+      - ansible-lint
   become: true
   become_user: "{{ user_name }}"
 
@@ -76,6 +77,7 @@
       - bash-language-server
       - lua-language-server
       - yaml-language-server
+      - ansible-language-server
   become: true
   when: install_lsps
   tags: lsps

@@ -31,7 +31,7 @@
     - linux/system/locale
     - linux/system/ssd
     - linux/system/ssh
-    #- linux/system/sshfs
+    - linux/system/sshfs
     - linux/system/sound
     - linux/system/timesync
 

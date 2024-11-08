@@ -18,12 +18,16 @@
 
 - name: Install Bluetooth GUI
   kewlfft.aur.aur:
-    name: 
+    name:
       - overskride
   become: true
   become_user: "{{ user_name }}"
 
-- name: Add user to lp group # Required for Bluetooth Tether
+  # NOTE: Required for Bluetooth Tether
+  # By default the Bluetooth daemon will only give out bnep0 devices to users
+  # that are a member of the lp group. Make sure to add your user to that group
+  # if you intend to connect to a Bluetooth tether.
+- name: Add user to lp group
   ansible.builtin.user:
     name: "{{ user_name }}"
     groups: lp

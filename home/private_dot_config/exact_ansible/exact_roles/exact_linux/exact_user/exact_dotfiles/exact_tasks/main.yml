@@ -22,27 +22,46 @@
     name: p7zip-full
   when: ansible_facts['os_family'] == "Debian"
 
-- name: Install bitwarden-cli on Arch
-  become: true
-  community.general.pacman:
-    name: bitwarden-cli
-  when: ansible_facts['os_family'] == "Archlinux"
+- name: Install bitwarden-cli
+  block:
+    - name: Install bitwarden-cli on Arch
+      community.general.pacman:
+        name: bitwarden-cli
+      become: true
+      when: ansible_facts['os_family'] == "Archlinux"
 
-- name: Install bitwarden-cli on Debian (x86)
-  community.general.snap:
-    name: bw
-  when:
-    - ansible_facts['os_family'] == "Debian"
-    - ansible_facts['architecture'] == "x86_64"
+    - name: Install snap on Debian (x86)
+      ansible.builtin.package:
+        name: snapd
+      become: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - ansible_facts['architecture'] == "x86_64"
 
-- name: Install bitwarden-cli on Debian (arm)
-  community.general.npm:
-    name: "@bitwarden/cli"
-    global: true
-  become: true
-  when:
-    - ansible_facts['os_family'] == "Debian"
-    - ansible_facts['architecture'] == "aarch64" # arm64
+    - name: Install bitwarden-cli on Debian (x86)
+      community.general.snap:
+        name: bw
+      become: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - ansible_facts['architecture'] == "x86_64"
+
+    - name: Install npm on Debian (arm)
+      ansible.builtin.apt:
+        name: npm
+      become: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - ansible_facts['architecture'] == "aarch64" # arm64
+
+    - name: Install bitwarden-cli on Debian (arm)
+      community.general.npm:
+        name: "@bitwarden/cli"
+        global: true
+      become: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - ansible_facts['architecture'] == "aarch64" # arm64
 
 - name: Check if logged into bitwarden
   ansible.builtin.command: bw status

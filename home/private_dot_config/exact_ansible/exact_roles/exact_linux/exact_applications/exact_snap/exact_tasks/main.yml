@@ -1,9 +1,0 @@
----
-- name: Install snap
-  become: true
-  ansible.builtin.package:
-    name: snapd
-    state: present
-  when:
-    - ansible_facts['os_family'] == "Debian"
-    - ansible_facts['architecture'] == "x86_64"
