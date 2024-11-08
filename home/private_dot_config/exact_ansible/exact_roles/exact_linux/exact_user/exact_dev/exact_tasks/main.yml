@@ -74,6 +74,7 @@
   ansible.builtin.package:
     name:
       - bash-language-server
+      - lua-language-server
       - yaml-language-server
   become: true
   when: install_lsps
