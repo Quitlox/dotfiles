@@ -1,0 +1,12 @@
+---
+- name: Install Steam
+  ansible.builtin.package:
+    name: steam
+  become: true
+
+- name: Ensure Steam does not create ~/.pulse-cookie
+  ansible.builtin.lineinfile:
+    path: /etc/pulse/client.conf
+    regexp: "cookie-file"
+    line: "cookie-file = ~/.config/pulse/cookie"
+  become: true
