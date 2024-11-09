@@ -46,46 +46,25 @@ keybindings.json
 !Documents/PowerToys
 !Documents/PowerToys/Backup
 !Documents/PowerToys/Backup/**
+
 {{ else }}
 
 # If not on windows, ignore Windows-specific files and folders
 Documents/PowerShell/Profile.ps1
+Documents/PowerToys/
 
 {{ if (eq .headless "true") }}
-** # Default to ignore all (whitelist instead of blacklist)
 
-!.gitconfig
-!.profile
-!.zprofile
-!.zshenv
-!.Xresources
-
-!.cache/
-!.cache/**
-!.ssh/
-!.ssh/**
-
-!.config
-!.config/base16-universal-manager
-!.config/base16-universal-manager/**
-!.config/dotfiles
-!.config/dotfiles/**
-!.config/systemd
-!.config/systemd/**
-!.config/vim
-!.config/vim/**
-!.config/nvim
-!.config/nvim/**
-!.config/nvim_new
-!.config/nvim_new/**
-!.config/zsh
-!.config/zsh/**
-!.config/ansible
-!.config/ansible/**
-
-!.config/pythonrc
-!.config/user-dirs.dirs
-!.config/starship.toml
+# Ignore GUI-specific files and folders
+.config/eww
+.config/hypr
+.config/fontconfig
+.config/gtk-2.0
+.config/ideavim
+.config/kitty
+.config/Code
+.config/qutebrowser
+.config/zathura
 {{ end }}
 
 {{ end }}
