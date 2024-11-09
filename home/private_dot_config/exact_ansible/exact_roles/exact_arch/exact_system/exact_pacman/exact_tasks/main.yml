@@ -15,16 +15,10 @@
 - name: Enable Multilib
   community.general.ini_file:
     path: /etc/pacman.conf
-    section: "{{ item.section }}"
-    option: "{{ item.option }}"
-    value: "{{ item.value | default(omit) }}"
+    section: multilib
+    option: Include
+    value: /etc/pacman.d/mirrorlist
     mode: "0644"
-  loop:
-    - {
-        section: "multilib",
-        option: "Include",
-        value: "/etc/pacman.d/mirrorlist",
-      }
   become: true
 
 - name: Enable VerbosePkgLists in /etc/pacman.conf

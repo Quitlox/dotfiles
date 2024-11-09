@@ -1,15 +1,10 @@
 ---
-- name: Install mail client
+- name: Install thunderbird, discord, firefox
   ansible.builtin.package:
-    name: thunderbird
-  become: true
-- name: Install discord
-  ansible.builtin.package:
-    name: discord
-  become: true
-- name: Install browser
-  ansible.builtin.package:
-    name: firefox
+    name:
+      - thunderbird
+      - discord
+      - firefox
   become: true
 
 - name: Install and configure zathura
@@ -31,6 +26,7 @@
         option: x-scheme-handler/pdf
         owner: "{{ user_name }}"
         group: "{{ user_name }}"
+        mode: "0644"
 
 - name: Install obsidian
   ansible.builtin.package:

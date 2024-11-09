@@ -21,13 +21,10 @@
   no_log: true
 
 - name: Add repository to pacman.conf
-  become: true
-  ansible.builtin.lineinfile:
+  community.general.ini_file:
     path: /etc/pacman.conf
-    line: |
-      [chaotic-aur]
-      Include = /etc/pacman.d/chaotic-mirrorlist
-    insertbefore: "[core]"
-  when: "'[chaotic-aur]' not in pacman_conf_output.stdout"
-  changed_when: false
-  failed_when: false
+    section: chaotic-aur
+    option: Include
+    value: /etc/pacman.d/chaotic-mirrorlist
+    mode: "0644"
+  become: true

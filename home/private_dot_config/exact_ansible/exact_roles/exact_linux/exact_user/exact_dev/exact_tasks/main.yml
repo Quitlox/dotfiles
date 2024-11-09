@@ -55,21 +55,20 @@
   tags: lsps
 
 - name: Install formatters and linters
-  kewlfft.aur.aur:
+  ansible.builtin.package:
     name:
       - shfmt
       - taplo-cli
       - stylua
       - ansible-lint
   become: true
-  become_user: "{{ user_name }}"
 
 - name: Install formatters and linters (AUR)
   kewlfft.aur.aur:
     name:
       - prettierd
   become: true
-  become_user: "{{ user_name }}"
+  become_user: aur_builder
 
 - name: Install language servers for development
   ansible.builtin.package:

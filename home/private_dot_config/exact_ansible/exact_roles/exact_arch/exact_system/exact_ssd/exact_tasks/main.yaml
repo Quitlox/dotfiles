@@ -13,3 +13,7 @@
         daemon_reload: true
       become: true
       when: ansible_facts['os_family'] == "Archlinux"
+
+    - name: Warn user that SSD must support TRIM
+      ansible.builtin.debug:
+        msg: https://wiki.archlinux.org/title/Solid_state_drive#TRIM

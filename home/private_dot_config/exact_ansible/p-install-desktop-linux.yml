@@ -5,6 +5,7 @@
   gather_facts: true
   handlers:
     - ansible.builtin.import_tasks: handlers/grub.yml
+    - ansible.builtin.import_tasks: handlers/mkinitcpio.yml
 
   roles:
     - linux/system/user
@@ -17,11 +18,11 @@
     - arch/system/bluetooth
     - arch/system/fonts
     - arch/system/filesystem
-    #- arch/system/hibernate
+    - arch/system/hibernate
     - arch/system/locale
     - arch/system/microcode
     - arch/system/mkinitcpio
-    #- arch/system/networking
+    - arch/system/networking
     - arch/system/sound
     - arch/system/timesync
     - arch/system/timezone
@@ -33,8 +34,9 @@
     - arch/wayland/sddm
     - arch/wayland/hyprland
 
+    - linux/user/cmdline
     - linux/user/dev
     - linux/user/desktop
-    - linux/user/cmdline
+    - linux/user/dotfiles
 
     - linux/common/docker

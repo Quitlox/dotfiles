@@ -1,8 +1,10 @@
 ---
-- name: Install sudo package
+- name: Install sudo package and shell
   become: true
   ansible.builtin.package:
-    name: sudo
+    name:
+      - sudo
+      - zsh
     update_cache: true
 
 - name: Create default user

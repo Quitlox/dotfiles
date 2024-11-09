@@ -16,13 +16,6 @@
     enabled: true
   become: true
 
-- name: Install Bluetooth GUI
-  kewlfft.aur.aur:
-    name:
-      - overskride
-  become: true
-  become_user: "{{ user_name }}"
-
   # NOTE: Required for Bluetooth Tether
   # By default the Bluetooth daemon will only give out bnep0 devices to users
   # that are a member of the lp group. Make sure to add your user to that group

@@ -1,7 +1,7 @@
 ---
 - name: Install fonts
   community.general.pacman:
-    name: 
+    name:
       - noto-fonts
       - ttc-iosevka
       - ttf-nerd-fonts-symbols

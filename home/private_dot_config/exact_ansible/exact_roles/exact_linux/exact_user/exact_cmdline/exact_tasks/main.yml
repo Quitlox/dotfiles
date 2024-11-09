@@ -72,7 +72,7 @@
 
 - name: Install neovim and dependencies
   block:
-    - name: Install NeoVim and pynvim on Arch
+    - name: Install NeoVim and dependencies
       community.general.pacman:
         name:
           - neovim
@@ -80,15 +80,20 @@
           - imagemagick # Required for image.nvim
           - github-cli # Required for octo.nvim
           - glab # Required for gitlab.nvim ?
-          - vivify # Required for vivify.nvim
           # Dependencies of rocks.nvim
           - luajit
           - luarocks
           # Python client for Neovim for plugins written in Python
           - python-pynvim
-
       become: true
       when: ansible_facts['os_family'] == "Archlinux"
+
+    - name: Install NeoVim and dependencies (AUR)
+      kewlfft.aur.aur:
+        name:
+          - vivify # Required for vivify.nvim
+      become: true
+      become_user: aur_builder
 
     - name: Install NeoVim on Debian
       community.general.snap:
