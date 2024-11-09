@@ -1,0 +1,19 @@
+---
+- name: Install firmware
+  notify: regenerate initramfs
+  block:
+    - name: Install default linux-firmware
+      become: true
+      community.general.pacman:
+        name: linux-firmware
+
+    - name: Install extra linux-firmware for quitlox-desktop
+      kewlfft.aur.aur:
+        name:
+          - upd72020x-fw
+          - ast-firmware
+          - linux-firmware-qlogic
+          - aic94xx-firmware
+          - wd719x-firmware
+      become: true
+      become_user: aur_builder
