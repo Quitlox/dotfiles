@@ -13,4 +13,4 @@
 	enabled = true
 
 [includeIf "gitdir:~/Workspace/tno/"]
-  path = gitconfig-tno
+  path = config-tno
