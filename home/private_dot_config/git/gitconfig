@@ -2,7 +2,7 @@
 	defaultBranch = main
 [user]
 	name = Kevin Witlox
-	email = {{ .email }}
+	email = kevin.witlox@upcmail.nl
 [credential]
 	helper = cache --timeout=10800
 [core]
@@ -13,4 +13,4 @@
 	enabled = true
 
 [includeIf "gitdir:~/Workspace/tno/"]
-  path = .gitconfig-tno
+  path = gitconfig-tno
