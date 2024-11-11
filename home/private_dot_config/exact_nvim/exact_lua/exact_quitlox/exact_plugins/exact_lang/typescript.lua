@@ -12,24 +12,24 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
             vim.notify("Typescript server not found. Please install it.", vim.log.levels.ERROR, { title = "Typescript Tools" })
             return
         end
-    end,
-})
 
-require("typescript-tools").setup({
-    settings = {
-        tsserver_file_preferences = function(ft)
-            return {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-            }
-        end,
-    },
+        require("typescript-tools").setup({
+            settings = {
+                tsserver_file_preferences = function(ft)
+                    return {
+                        includeInlayParameterNameHints = "all",
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
+                    }
+                end,
+            },
+        })
+    end,
 })
 
 --+- Commands -----------------------------------------------+

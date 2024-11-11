@@ -6,6 +6,6 @@
 require("nvim-treesitter.configs").setup({
     matchup = {
         enable = true,
-        disable = { "tsx", "svelte" }, -- FIXME: Having problems
+        disable = { "javascript", "tsx", "svelte" }, -- FIXME: Having problems
     },
 })
