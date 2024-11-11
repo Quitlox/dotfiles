@@ -14,7 +14,6 @@
     - linux/system/package-upgrade
 
     - machines/lenovo-t14/firmware
-    - machines/lenovo-t14/video-drivers
     #- machines/lenovo-t14/screen-tearing
 
     - arch/system/beep
@@ -26,6 +25,7 @@
     - arch/system/mkinitcpio
     - arch/system/networking
     - arch/system/timezone
+    - arch/system/video-drivers
 
     - linux/system/bluetooth
     - linux/system/locale

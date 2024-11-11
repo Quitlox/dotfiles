@@ -26,6 +26,7 @@
     - arch/system/sound
     - arch/system/timesync
     - arch/system/timezone
+    - arch/system/video-drivers
 
     - linux/system/ssd
     - linux/system/ssh
