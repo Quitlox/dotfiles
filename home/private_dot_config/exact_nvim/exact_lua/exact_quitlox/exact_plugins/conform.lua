@@ -112,6 +112,7 @@ require("conform").setup({
         yaml = { "prettierd" },
         json = { "prettierd" },
         jsonc = { "prettierd" },
+        rust = { "rustfmt" },
         ["_"] = { "trim_whitespace" },
     },
     format_on_save = function(_bufnr)

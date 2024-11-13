@@ -8,6 +8,7 @@ require("lint").linters_by_ft = {
     typescript = { "eslint_d" },
     svelte = { "eslint_d" },
     ansible = { "ansible_lint" },
+    rust = { "clippy" },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
