@@ -76,6 +76,7 @@
 "octo.nvim" = "scm"
 
 # +- Language Server Protocol -------------------------------+
+"fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v1.2.1" }
 "glance.nvim" = "scm"
 "hover.nvim" = "scm"
 "lsp_signature.nvim" = "0.3.1"
@@ -357,4 +358,3 @@ dir = "~/Workspace/neovim-plugins"
 # | Graveyard                                                |
 # +----------------------------------------------------------+
 # "marks.nvim" = { git = "chentoast/marks.nvim" }
-# "clear-action.nvim" = { git = "luckasRanarison/clear-action.nvim", rev = "v0.3.0" }
