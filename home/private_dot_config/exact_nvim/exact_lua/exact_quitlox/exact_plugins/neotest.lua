@@ -17,6 +17,7 @@ require("neotest").setup({
 
             pytest_discover_instances = true,
         }),
+        require("rustaceanvim.neotest"),
     },
     log_level = 3,
     summary = {
