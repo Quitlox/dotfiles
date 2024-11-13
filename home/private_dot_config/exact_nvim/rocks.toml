@@ -20,7 +20,6 @@
 # +- Vim Built-in Enhancements ------------------------------+
 "dial.nvim" = "0.4.0"
 "mini.misc" = "0.9.0"
-"vim-matchup" = { git = "andymass/vim-matchup", rev = "v0.7.3", branch = "master" }
 "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "v1.0.0" }
 "highlight-undo.nvim"  = { git = "tzachar/highlight-undo.nvim", rev = "c87a6ec1ded241ef223269077cbd5f97a6f0d5bf" }
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" } # Wrap
@@ -285,7 +284,6 @@ tree-sitter-yuck = "scm"
 items = [
   "dial.nvim",
   "mini.misc",
-  "vim-matchup",
   "highlight-undo.nvim",
   "wrapping.nvim",
   "yanky.nvim",

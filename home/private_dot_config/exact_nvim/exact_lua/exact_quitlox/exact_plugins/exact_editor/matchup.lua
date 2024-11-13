@@ -6,6 +6,9 @@
 require("nvim-treesitter.configs").setup({
     matchup = {
         enable = true,
-        disable = { "javascript", "tsx", "svelte" }, -- FIXME: Having problems
+        disable = { "rust", "javascript", "tsx", "svelte" }, -- FIXME: Having problems
     },
 })
+
+-- FIXME: I had to completely disable vim-matchup due to problems with rust completion.
+-- https://github.com/hrsh7th/nvim-cmp/issues/1940
