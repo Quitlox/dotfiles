@@ -23,6 +23,8 @@
     - [ ] Keybinding X to stop all
     - [ ] Keybinding <leader>e (without waiting for which-key) does not work
     - [ ] OverseerSaveBundle opens input in seemingly random location
+- [ ] Glance.nvim:
+    - [ ] Bug when having hlslens open (search highlights)
 
 ### Bugs
 
