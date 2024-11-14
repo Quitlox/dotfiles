@@ -77,6 +77,7 @@
       - lua-language-server
       - yaml-language-server
       - ansible-language-server
+      - vscode-json-languageserver
   become: true
   when: install_lsps
   tags: lsps
