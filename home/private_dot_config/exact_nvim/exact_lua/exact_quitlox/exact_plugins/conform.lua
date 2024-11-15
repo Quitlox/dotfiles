@@ -105,6 +105,7 @@ require("conform").setup({
         go = { "gofmt" },
         javascript = { "prettierd", "eslint_d" },
         typescript = { "prettierd", "eslint_d" },
+        typescriptreact = { "prettierd", "eslint_d" },
         sh = { "shfmt" },
         svelte = { "prettierd", "eslint_d" },
         markdown = { "prettierd", "injected" },
