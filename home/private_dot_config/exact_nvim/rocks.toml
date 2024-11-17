@@ -137,11 +137,11 @@
 "markdown-render"  = { git = "meanderingprogrammer/markdown.nvim", rev = "v7.5.0" }
 "vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626", ft = "markdown" }
-"nvim-dap-python" = { version = "scm", config = "quitlox.plugins.lang.python-dap" }
-"pymple.nvim"= { git = "alexpasmantier/pymple.nvim", rev = "v0.4.0" }
-"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "0.4", branch = "regexp" }
 # +- Python -------------------------------------------------+
 "neotest-python" = { git = "nvim-neotest/neotest-python", rev = "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" }
+"nvim-dap-python" = { version = "scm", config = "quitlox.plugins.lang.python-dap" }
+"pymple.nvim"= { git = "alexpasmantier/pymple.nvim", rev = "v0.4.0" }
+"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "e82594274bf7b54387f9a2abe65f74909ac66e97", branch = "regexp" }
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "5.14.1", config = "quitlox.plugins.lang.rust" }
 # +- Vim ----------------------------------------------------+
