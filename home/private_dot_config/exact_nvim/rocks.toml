@@ -69,7 +69,7 @@
 
 # +- Git ----------------------------------------------------+
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
-"gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v0.9.0" }
+"gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "ac5aba6dce8c06ea22bea2c9016f51a2dbf90dc7" } # NOTE: Latest semver is buggy
 "neogit" = { version = "scm" }
 "diffview.nvim" = "scm"
 "octo.nvim" = "scm"
