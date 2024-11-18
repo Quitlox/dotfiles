@@ -5,4 +5,5 @@
     state: restarted
     scope: user
   listen: restart pipewire
+  become: true
   become_user: "{{ user_name }}"

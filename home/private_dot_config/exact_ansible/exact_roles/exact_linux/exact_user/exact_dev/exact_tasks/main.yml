@@ -73,11 +73,14 @@
 - name: Install language servers for development
   ansible.builtin.package:
     name:
-      - bash-language-server
-      - lua-language-server
-      - yaml-language-server
       - ansible-language-server
+      - bash-language-server
+      - json-css-languageserver
+      - lua-language-server
+      - typescript-language-server
       - vscode-json-languageserver
+      - vscode-css-languageserver
+      - yaml-language-server
   become: true
   when: install_lsps
   tags: lsps

@@ -41,3 +41,39 @@
         owner: "{{ user_name }}"
         group: "{{ user_name }}"
         mode: "0644"
+
+- name: Configure soft-mixer to resolve USB DAC volume issue
+  notify: restart pipewire
+  block:
+    - name: Ensure /etc/wireplumber/wireplumber.conf.d exists
+      ansible.builtin.file:
+        path: /etc/wireplumber/wireplumber.conf.d/
+        state: directory
+        mode: "0755"
+      become: true
+
+    - name: Set api.alsa.soft-mixer to true in WirePlumber configuration
+      ansible.builtin.copy:
+        dest: /etc/wireplumber/wireplumber.conf.d/alsa-soft-mixer.conf
+        content: |
+          monitor.alsa.rules = [
+            {
+              matches = [
+                {
+                  device.name = "~alsa_card.*"
+                }
+              ]
+              actions = {
+                update-props = {
+                  # Do not use the hardware mixer for volume control. It
+                  # will only use software volume. The mixer is still used
+                  # to mute unused paths based on the selected port.
+                  api.alsa.soft-mixer = true
+                }
+              }
+            }
+          ]
+        owner: root
+        group: root
+        mode: "0644"
+      become: true

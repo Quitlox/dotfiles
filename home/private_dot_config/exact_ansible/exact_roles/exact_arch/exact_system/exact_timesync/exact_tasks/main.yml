@@ -15,4 +15,3 @@
     enabled: true
   become: true
   when: ansible_facts['os_family'] == "Archlinux"
-  no_log: true
