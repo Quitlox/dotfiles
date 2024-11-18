@@ -66,3 +66,4 @@ STARSHIP
 - Log into Zotero automatically and setup sync?
 - Install Zotero browser connector automatically?
 - Log into Obsidian automatically?
+- Configure thunderbird
