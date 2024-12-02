@@ -1,10 +1,6 @@
 
 - [ ] Icons: add padding to telescope
     - I tried overriding "telescope.utils".get_devicons, but it doesn't seem to work
-- [x] Session: Save neotree state (https://github.com/coffebar/neovim-project/blob/main/lua/neovim-project/utils/neo-tree.lua)
-- [x] Session: Save overseer state (https://github.com/stevearc/overseer.nvim/blob/master/doc/third_party.md#other-session-managers)
-- [x] Investigate: Slow Legendary, Iconpicker (or Telescope?)
-- [x] Statusline: Show git blame of current line?
 - [ ] Report: profile.nvim bug
 - [x] Keybinding: Select git branch
 - [ ] LSP Diagnostics: Currently not very useful for Python in Trouble mode
@@ -13,9 +9,6 @@
     - Keeps opening COMMIT_MSG for some reason
     - Neotest gets angry after switching
 - [ ] DapUI: "DAP Watches" shows up as listed buffer in bufferline if edited
-- [ ] Automatically optimize on opening large file buffer
-    - Disable LSP, Highlight, diagnostics
-- [ ] Fix virtualenv selector
 - [ ] Eww: Bar should use fill icons on select
 - [ ] Overseer: 
     - [ ] "OverseerQuickAction duplicate" would be convenient
@@ -25,6 +18,14 @@
     - [ ] OverseerSaveBundle opens input in seemingly random location
 - [ ] Glance.nvim:
     - [ ] Bug when having hlslens open (search highlights)
+- [ ] Possesion
+    - [ ] On load, should always enter normal mode
+- [ ] Performance
+    - [ ] Investigate sluggishness when switching windows from terminal into LSP
+      enabled window (python)
+    - [ ] Use snacks.nvim profiler (when 2.7.0) is released
+- [ ] Miscelleneous
+    - [ ] When in visual mode in terminal, ` mapping doesn't work (not mapped)
 
 ### Bugs
 

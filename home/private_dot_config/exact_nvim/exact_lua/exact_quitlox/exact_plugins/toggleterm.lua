@@ -40,6 +40,7 @@ end
 
 -- Set mapping to launch toggleterm
 vim.keymap.set("n", [[`]], '<cmd>execute v:count . "CustomToggleTerm"<cr>', { silent = true })
+vim.keymap.set("v", [[`]], '<Esc><cmd>execute v:count . "CustomToggleTerm"<cr>', { silent = true })
 -- Set mappings in toggleterm buffers
 vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
 
