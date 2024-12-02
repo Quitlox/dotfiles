@@ -81,6 +81,36 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     end,
 })
 
+--+- LSP: Javascript / Typescript ---------------------------+
+local path = require("quitlox.util.path")
+
+require("dap").adapters["pwa-node"] = {
+    type = "server",
+    host = "localhost",
+    port = "${port}",
+    executable = {
+        command = "node",
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        args = { path.concat({ vim.fn.stdpath("data"), "lazy", "vscode-js-debug" }), "${port}" },
+    },
+}
+
+for _, language in ipairs({ "typescript", "javascript" }) do
+    require("dap").configurations[language] = {
+        {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+        },
+    }
+end
+
+-- FIXME: To be able to use these configurations again, install the required dependencies.
+-- See https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
+-- { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out && git reset --hard HEAD", version = "v1.*" },
+
 --+- LSP: Python --------------------------------------------+
 ---@diagnostic disable-next-line: missing-fields
 require("lspconfig").pyright.setup({
@@ -104,6 +134,11 @@ require("lspconfig").pyright.setup({
 })
 
 --+- LSP: Other ---------------------------------------------+
-require("lspconfig").cssls.setup({ capabilities = require("quitlox.util.lsp").capabilities })
-require("lspconfig").bashls.setup({ capabilities = require("quitlox.util.lsp").capabilities })
 require("lspconfig").ansiblels.setup({ capabilities = require("quitlox.util.lsp").capabilities })
+require("lspconfig").bashls.setup({ capabilities = require("quitlox.util.lsp").capabilities })
+require("lspconfig").cssls.setup({ capabilities = require("quitlox.util.lsp").capabilities })
+require("lspconfig").svelte.setup({
+    -- Add filetypes for the server to run and share info between files
+    filetypes = { "typescript", "javascript", "svelte", "html", "css" },
+})
+require("lspconfig").texlab.setup({})

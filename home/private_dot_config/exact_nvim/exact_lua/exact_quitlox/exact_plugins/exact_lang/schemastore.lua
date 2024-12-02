@@ -1,3 +1,4 @@
+--+- LSP: JSON / YAML----------------------------------------+
 require("lspconfig").jsonls.setup({
     capabilities = require("quitlox.util.lsp").capabilities,
     settings = {
