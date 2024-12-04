@@ -12,6 +12,17 @@ local setup_trouble = function()
             open_vsplit = { "<c-b>" },
             toggle_fold = { "zA", "za", "o" },
         },
+        modes = {
+            filtered_diagnostics = {
+                mode = "diagnostics",
+                filter = function(items)
+                    return vim.tbl_filter(function(item)
+                        if item.item.source == "Pyright" then return false end
+                        return true
+                    end, items)
+                end,
+            },
+        },
         icons = {
             indent = {
                 fold_open = "  ",
@@ -57,7 +68,7 @@ require("quitlox.util.lazy").command_stub_args("Trouble", setup_trouble)
 
 --+- Keymaps ------------------------------------------------+
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>ow", "<CMD>Trouble diagnostics filter.severity={vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN}<CR>", { desc = "Open Document Diagnostics" })
-vim.keymap.set("n", "<leader>od", "<CMD>Trouble diagnostics filter.severity={vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO}<CR>", {desc = "Open All Diagnostics"})
+vim.keymap.set("n", "<leader>ow", "<CMD>Trouble filtered_diagnostics<CR>", { desc = "Open Document Diagnostics" })
+vim.keymap.set("n", "<leader>od", "<CMD>Trouble filtered_diagnostics<CR>", {desc = "Open All Diagnostics"})
 vim.keymap.set("n", "<leader>oq", "<CMD>Trouble quickfix<CR>", { desc = "Open Quickfix" })
 -- stylua: ignore end
