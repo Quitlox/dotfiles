@@ -116,7 +116,7 @@ bind = $mainMod SHIFT, 0, exec, /home/quitlox/.config/hypr/scripts/move_to_works
 # +- Workspaces: Other ------------------------------------+
 # Example special workspace (scratchpad)
 # bind = $mainMod, S, togglespecialworkspace, magic
-bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+# bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 
 # +- Mouse ------------------------------------------------+
 # Scroll through existing workspaces with mainMod + scroll
@@ -142,3 +142,6 @@ bind = ,XF86MonBrightnessDown, exec, brightnessctl --exponent=3 s 10%-
 #bind = ,XF86MonBrightnessUp, exec, eww update var-brightness-percent=$(brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%')
 #bind = ,XF86MonBrightnessDown, exec, eww update var-brightness-percent=$(brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%')
 
+# +- Screenshot -------------------------------------------+
+# Screenshot a region
+bind = $mainMod SHIFT, s, exec, hyprshot -m region

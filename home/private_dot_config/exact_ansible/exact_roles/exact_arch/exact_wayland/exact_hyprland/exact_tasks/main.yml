@@ -28,6 +28,7 @@
       - xdg-desktop-portal-gtk # General desktop integration
       - xdg-desktop-portal-hyprland # Screensharing
       - polkit-kde-agent # GUI Authentication
+      - hyprshot # Screenshot
       # Desktop Applications (Foreground)
       - kitty # Terminal
   become: true
