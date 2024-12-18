@@ -24,7 +24,6 @@ require("possession").setup({
             return true
         end,
         current = true,
-        cwd = true,
         on_load = true,
         on_quit = true,
     },
@@ -36,7 +35,6 @@ require("possession").setup({
             user_data.venv = require("possession.plugins.venv-selector").before_save(name)
             user_data.overseer = require("possession.plugins.overseer").before_save(name)
             user_data.neotree = require("possession.plugins.neo-tree").before_save(name)
-            vim.notify(vim.inspect(user_data), vim.log.levels.INFO)
 
             return user_data
         end,
@@ -53,6 +51,9 @@ require("possession").setup({
                 if user_data.overseer then require("possession.plugins.overseer").after_load(nil, name, user_data.overseer) end
                 if user_data.neotree then require("possession.plugins.neo-tree").after_load(nil, name, user_data.neotree) end
             end
+
+            -- Exit to normal mode, ensuring we're not in insert mode
+            vim.cmd("stopinsert")
         end,
     },
     plugins = {

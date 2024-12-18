@@ -33,8 +33,8 @@ require("bufferline").setup({
 
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader>bb", "<cmd>BufferLinePick<cr>", { desc = "Buffer Pick" })
-vim.keymap.set("n", "<leader>bd", ":lua require('snacks').bufdelete()<cr>", { desc = "Buffer Delete" })
-vim.keymap.set("n", "<leader>bo", ":lua require('snacks').bufdelete.other()<cr>", { desc = "Buffer Only" })
+vim.keymap.set("n", "<leader>bd", ":lua require('snacks').bufdelete()<cr>", { desc = "Buffer Delete", silent = true })
+vim.keymap.set("n", "<leader>bo", ":lua require('snacks').bufdelete.other()<cr>", { desc = "Buffer Only", silent = true })
 
 vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })

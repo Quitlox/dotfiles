@@ -32,6 +32,3 @@ require("quitlox.colorscheme")
 -- Load environment specific configuration
 require("quitlox.config.environment.kitty")
 require("quitlox.config.environment.neovide")
-
--- TODO:
--- stevearc/profile.nvim

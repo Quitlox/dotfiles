@@ -143,6 +143,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp_signature_help" },
         { name = "nvim_lsp" }, -- TODO: Do we use default_capabilities
+        { name = "html-css" },
     }, {
         { name = "path" },
     }, {
@@ -160,7 +161,12 @@ cmp.setup.cmdline("/", {
 })
 
 cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = {
+        ["<Tab>"] = cmp.mapping(next_completion, { "i", "s", "c" }),
+        ["<S-Tab>"] = cmp.mapping(prev_completion, { "i", "s", "c" }),
+        ["<C-j>"] = cmp.mapping(next_completion, { "i", "s", "c" }),
+        ["<C-k>"] = cmp.mapping(prev_completion, { "i", "s", "c" }),
+    },
     sources = cmp.config.sources({
         { name = "path" },
     }, {

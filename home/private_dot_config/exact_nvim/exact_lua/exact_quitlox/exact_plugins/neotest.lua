@@ -5,6 +5,7 @@ require("neotest").setup({
             dap = { justMyCode = true },
             args = { "--log-level", "DEBUG", "--log-cli-level", "DEBUG", "-v" },
             runner = "pytest",
+            pytest_discover_instances = true,
             python = function()
                 local venv = require("venv-selector").venv()
                 if venv ~= nil then return venv .. "/bin/python" end
@@ -14,12 +15,10 @@ require("neotest").setup({
 
                 return "python"
             end,
-
-            pytest_discover_instances = true,
         }),
         require("rustaceanvim.neotest"),
     },
-    log_level = 3,
+    log_level = vim.log.levels.TRACE,
     summary = {
         mappings = {
             stop = "x",

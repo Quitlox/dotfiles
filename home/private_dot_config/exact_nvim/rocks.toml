@@ -2,7 +2,7 @@
 
 [plugins]
 "rocks.nvim" = "2.42.2"
-"rocks-git.nvim" = "2.5.1"
+"rocks-git.nvim" = "2.5.2"
 "rocks-config.nvim" = "3.1.0"
 "rocks-lazy.nvim" = "1.1.1"
 "rocks-dev.nvim" = "1.7.0"
@@ -11,7 +11,7 @@
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
 "nvim"= { git = "catppuccin/nvim", rev = "v1.9.0" }
-"nvim-web-devicons" = { version = "0.100" }
+"nvim-web-devicons" = "0.100"
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "a39fa4c92268832f6034306793b8acbfec2a7549" }
 
 # +----------------------------------------------------------+
@@ -19,7 +19,7 @@
 # +----------------------------------------------------------+
 # +- Vim Built-in Enhancements ------------------------------+
 "dial.nvim" = "0.4.0"
-"mini.misc" = "0.9.0"
+"mini.misc" = "0.14.0"
 "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "v1.0.0" }
 "highlight-undo.nvim"  = { git = "tzachar/highlight-undo.nvim", rev = "5f588b420179a31d7073854bfd07ed9d5f364645" }
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" } # Wrap
@@ -27,11 +27,12 @@
 
 # +- Visual Enhancements ------------------------------------+
 "nvim-colorizer.lua" = "scm"
-"indent-blankline.nvim" = "3.8.5"
+"indent-blankline.nvim" = "3.8.6"
 "vim-illuminate" = { git = "rrethy/vim-illuminate", rev = "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" }
 
 # +- Vim Motions --------------------------------------------+
-"nvim-surround" = { version = "2.1.5", pin = true }
+# previously pinned at 2.1.5
+"nvim-surround" = "2.1.5" 
 "flash.nvim" = "2.1.0"
 "vim-repeat"  = { git = "tpope/vim-repeat", rev = "v1.2" }
 
@@ -54,28 +55,28 @@
 "cmp-path" = "scm"
 "cmp-cmdline" = "scm"
 "cmp-buffer" = "scm"
-"cmp-rg" = "1.3.9"
+"cmp-rg" = "1.3.11"
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
+"nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" }
 "lspkind.nvim" = "scm"
 # Copilot
 "copilot.vim" = { git = "github/copilot.vim", rev = "v1.38.0" }
 
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = "scm"
-"nvim-dap-ui" = "4.0.0"
+"nvim-dap-ui" = { git = "rcarriga/nvim-dap-ui", rev = "ffa89839f97bad360e78428d5c740fdad9a0ff02", branch = "master" }
 "nvim-dap-virtual-text" = "scm"
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }
 
 # +- Git ----------------------------------------------------+
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "5f808b5e4fef30bd8aca1b803b4e555da07fc412", branch = "main", pin = true }
-"neogit" = { version = "scm" }
+"neogit" = "scm"
 "diffview.nvim" = "scm"
 "octo.nvim" = "scm"
 "gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "v3.3.9" }
-
 # +- Language Server Protocol -------------------------------+
-"fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v1.2.1" }
+"fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
 "glance.nvim" = "scm"
 "hover.nvim" = "scm"
 "lsp_signature.nvim" = "0.3.1"
@@ -83,11 +84,11 @@
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim", rev = "573ff93c47898967efdfbc6587a1a39e3c2d365e" }
 
 # +- Session and Project Management -------------------------+
-"possession.nvim" = { version = "scm" }
-"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "master" }
+"possession.nvim" = "scm"
+"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", branch = "master" }
 
 # +- Test ---------------------------------------------------+
-"neotest" = { git = "nvim-neotest/neotest", rev = "6d3d22cdad49999ef774ebe1bc250a4994038964", pin = true } 
+"neotest" = { git = "nvim-neotest/neotest", rev = "v5.6.1" }
 
 # +- Tooling ------------------------------------------------+
 "conform.nvim" = "8.2.0"
@@ -95,13 +96,13 @@
 "nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "528857a6e522396c2ded41cb24e694fb3f177429" }
 
 # +- Treesitter ---------------------------------------------+
-"rocks-treesitter.nvim" = { version = "1.2.0" }
+"rocks-treesitter.nvim" = "1.2.0"
 "nvim-treesitter-legacy-api" = "scm"
 # +- Treesitter: Modules ------------------------------------+
 "targets.vim" = { git = "wellle/targets.vim", rev = "v0.5.0" }
-"rainbow-delimiters.nvim" = "0.7.0"
+"rainbow-delimiters.nvim" = "0.8.0"
 "nvim-autopairs" = { version = "scm", config = "quitlox.plugins.ide.treesitter.autopairs" }
-"nvim-ts-autotag" = { version = "scm" }
+"nvim-ts-autotag" = "scm"
 "nvim-ts-context-commentstring" = { version = "scm", config = "quitlox.plugins.ide.treesitter.context-commentstring" }
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "8b34305ffc28bd75a22f5a0a9928ee726a85c9a6" }
 "nvim-treesitter-textobjects" = { version = "scm", config = "quitlox.plugins.ide.treesitter.textobjects" }
@@ -115,15 +116,15 @@
 # +----------------------------------------------------------+
 # | Language Support                                         |
 # +----------------------------------------------------------+
-"nvim-lspconfig" = "1.0.0"
-"otter.nvim" = { version = "2.5.0" }
+"nvim-lspconfig" = "1.1.0"
+"otter.nvim" = "2.5.1"
 "nvim-parinfer" = "1.2.0"
 
 # +- Config -------------------------------------------------+
 "schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.schemastore"}
 # +- Go -----------------------------------------------------+
 "go.nvim" = { version = "0.9.0", ft = [ "go", "gomod" ] }
-"guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1^{}", ft = [ "go", "gomod" ] }
+"guihua.lua" = { git = "ray-x/guihua.lua", ft = [ "go", "gomod" ] }
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim"= { git = "mistweaverco/kulala.nvim", rev = "v4.4.1", ft = "http" }
 # +- LaTeX --------------------------------------------------+
@@ -133,16 +134,16 @@
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "57d464c4acb5c2e66bd4145060f5dc9e96a7bbb7" }
 # +- Markdown -----------------------------------------------+
 "markdown.nvim"= { git = "tadmccorkle/markdown.nvim", rev = "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" }
-"markdown-render"  = { git = "meanderingprogrammer/markdown.nvim", rev = "v7.6.0" }
+"markdown-render"  = { git = "meanderingprogrammer/markdown.nvim", rev = "v7.7.0" }
 "vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626", ft = "markdown" }
 # +- Python -------------------------------------------------+
-"neotest-python" = { git = "nvim-neotest/neotest-python", rev = "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e", pin = true } 
-"nvim-dap-python" = { version = "scm" }
+"neotest-python" = { git = "nvim-neotest/neotest-python", rev = "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" }
+"nvim-dap-python" = { git = "mfussenegger/nvim-dap-python", rev = "34282820bb713b9a5fdb120ae8dd85c2b3f49b51", branch = "master", ft = "python" }
 "pymple.nvim"= { git = "alexpasmantier/pymple.nvim", rev = "v0.4.0" }
 "venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "e82594274bf7b54387f9a2abe65f74909ac66e97", branch = "regexp", pin = true }
 # +- Rust ---------------------------------------------------+
-"rustaceanvim" = { version = "5.16.0" }
+"rustaceanvim" = { version = "5.19.2" }
 # +- Vim ----------------------------------------------------+
 "one-small-step-for-vimkind" = { version = "scm", config = "quitlox.plugins.lang.vim" }
 # +- Web ----------------------------------------------------+
@@ -168,7 +169,7 @@
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
 
 # +- File Explorer ------------------------------------------+
-"neo-tree.nvim" = "3.26"
+"neo-tree.nvim" = "3.27"
 "nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.0.3" } # neo-tree.nvim
 "nvim-lsp-file-operation"  = { git = "antosha417/nvim-lsp-file-operations", rev = "9744b738183a5adca0f916527922078a965515ed" }
 "oil.nvim" = "2.13.0"
@@ -180,9 +181,9 @@
 "telescope-helpgrep.nvim" = { git = "catgoose/telescope-helpgrep.nvim", rev = "641b2f1b4559a67731dc42fd84203817ebd6e2ce" }
 "smart-open.nvim" = "scm"
 # Keymaps
-"which-key.nvim" = "3.14.1"
+"which-key.nvim" = "3.15.0"
 # Commands
-"legendary.nvim" = "2.13.11"
+"legendary.nvim" = "2.13.12"
 # Buffers
 "arrow.nvim"  = { git = "otavioschwanck/arrow.nvim", rev = "5438c977e729a29d96bd54c8da3103154e80dbd1" }
 
@@ -209,6 +210,7 @@
 # +- Miscelleneous ------------------------------------------+
 "edgy.nvim" = "1.10.2"
 "dressing.nvim" = "3.1.0"
+"snacks.nvim" = "2.11.0"
 "icon-picker.nvim" = "scm"
 "todo-comments.nvim" = "1.4.0"
 
@@ -218,15 +220,15 @@
 "promise-async" = "scm"
 "nui.nvim" = "0.3.0"
 "sqlite.lua" = "scm"
-"nvim-nio" = "1.10.0"
+"plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "2d9b06177a975543726ce5c73fca176cedbffe9d", branch = "master" }
+"nvim-nio" = { git = "nvim-neotest/nvim-nio", rev = "a428f309119086dc78dd4b19306d2d67be884eee", branch = "master" }
 "fixcursorhold.nvim" = { git = "antoinemadec/FixCursorHold.nvim", rev = "1900f89dc17c603eec29960f57c00bd9ae696495" }
 "image.nvim" = "1.3.0"
-"plenary.nvim" = "scm"
 
 # +- Treesitter: Parsers ------------------------------------+
 tree-sitter-bash = "scm"
 tree-sitter-bibtex = "0.0.29"
-tree-sitter-c = "scm"
+tree-sitter-c = "0.0.35"
 tree-sitter-cpp = "0.0.35"
 tree-sitter-css = "scm"
 tree-sitter-csv = "0.0.29"
@@ -275,13 +277,6 @@ tree-sitter-yaml = "scm"
 tree-sitter-yuck = "scm"
 
 # +----------------------------------------------------------+
-# | New and Unsorted                                         |
-# +----------------------------------------------------------+
-"profile.nvim" = { git = "stevearc/profile.nvim", rev = "d57df512bdade4c7a04a1bb6c89c8b54c5dce52a" }
-"perfanno.nvim" = { git = "t-troebst/perfanno.nvim", rev = "d569f4977b68c6daf810bfc41cd06e24af834dc6" }
-"snacks.nvim" = "2.6.0"
-
-# +----------------------------------------------------------+
 # | Bundles                                                  |
 # +----------------------------------------------------------+
 
@@ -312,6 +307,7 @@ items = [
   "cmp-cmdline",
   "cmp-buffer",
   "cmp-rg",
+  "nvim-html-css",
   "lspkind.nvim",
 ]
 config = "quitlox.plugins.ide.cmp"
@@ -353,7 +349,7 @@ plugins_dir = "quitlox/plugins/"
 auto_setup = false
 
 [dev]
-dir = "~/Workspace/neovim-plugins"
+dir = "/home/quitlox/Workspace/neovim-plugins"
 
 # +----------------------------------------------------------+
 # | Graveyard                                                |

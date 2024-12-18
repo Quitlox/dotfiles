@@ -60,8 +60,6 @@ end
 --+- Setup --------------------------------------------------+
 require("gitsigns").setup({
     trouble = false,
-    _signs_staged_enable = true,
-
     on_attach = function(bufnr)
         -- Buggy on Jinja files
         if vim.api.nvim_buf_get_name(bufnr):match("jinja") then return false end

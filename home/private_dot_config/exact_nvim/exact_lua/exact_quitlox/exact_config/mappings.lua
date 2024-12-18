@@ -103,11 +103,11 @@ vim.keymap.set("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Tab Prev
 -- +---------------------------------------------------------+
 
 -- Command mode mappings:
-vim.keymap.set("c", "<C-A>", "<Home>")
-vim.keymap.set("c", "<C-E>", "<End>")
-vim.keymap.set("c", "<C-K>", "<C-U>")
-vim.keymap.set("c", "<C-P>", "<Up>")
-vim.keymap.set("c", "<C-N>", "<Down>")
+vim.keymap.set("x", "<C-A>", "<Home>")
+vim.keymap.set("x", "<C-E>", "<End>")
+vim.keymap.set("x", "<C-K>", "<C-U>")
+vim.keymap.set("x", "<C-P>", "<Up>")
+vim.keymap.set("x", "<C-N>", "<Down>")
 
 -- +---------------------------------------------------------+
 -- | Miscellaneous                                           |
