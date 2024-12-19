@@ -48,7 +48,8 @@ create_gp_command("MyGpPrepend", "GpPrepend")
 create_gp_command("MyGpImplement", "GpImplement")
 
 --+- Keymaps ------------------------------------------------+
-vim.keymap.set({ "n", "i" }, "<C-g>c", ":GpChatNew popup<cr>", { desc = "NewChat", noremap = true, silent = true, nowait = true })
+vim.keymap.set({ "n", "i" }, "<C-g><C-g>", ":GpChatRespond<cr>", { desc = "Respond", noremap = true, silent = true, nowait = true })
+vim.keymap.set({ "n", "i" }, "<C-g>c", ":GpChatNew vsplit<cr>", { desc = "NewChat", noremap = true, silent = true, nowait = true })
 vim.keymap.set({ "n", "i" }, "<C-g>t", ":GpChatToggle<cr>", { desc = "ToggleChat", noremap = true, silent = true, nowait = true })
 vim.keymap.set({ "n", "i" }, "<C-g>f", ":GpChatFinder<cr>", { desc = "ChatFinder", noremap = true, silent = true, nowait = true })
 

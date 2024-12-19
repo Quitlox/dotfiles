@@ -57,7 +57,7 @@
 "cmp-buffer" = "scm"
 "cmp-rg" = "1.3.11"
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
-"nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } 
+#"nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } 
 "lspkind.nvim" = "scm"
 # Copilot
 "copilot.vim" = { git = "github/copilot.vim", rev = "v1.41.0" } 
@@ -308,7 +308,7 @@ items = [
   "cmp-cmdline",
   "cmp-buffer",
   "cmp-rg",
-  "nvim-html-css",
+  # "nvim-html-css",
   "lspkind.nvim",
 ]
 config = "quitlox.plugins.ide.cmp"

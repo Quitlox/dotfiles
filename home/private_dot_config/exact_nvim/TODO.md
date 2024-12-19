@@ -17,6 +17,10 @@
 - [ ] Performance
     - [ ] Investigate sluggishness when switching windows from terminal into LSP
       enabled window (python)
+- [ ] Bugs:
+    - [ ] targets.vim overlaps with various-textobjs
+        -> solution: replace targets.nvim and textobjects-extra and textobjects
+        with mini.ai / mini.pairs, use gpt
 - [ ] Plugins:
     - [ ] treewalker.nvim
     - [ ] blink.cmp
