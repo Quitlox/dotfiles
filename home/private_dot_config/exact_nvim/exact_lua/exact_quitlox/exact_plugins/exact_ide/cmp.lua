@@ -143,7 +143,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp_signature_help" },
         { name = "nvim_lsp" }, -- TODO: Do we use default_capabilities
-        { name = "html-css" },
+        -- { name = "html-css" }, -- FIXME: https://github.com/Jezda1337/nvim-html-css/issues/34
     }, {
         { name = "path" },
     }, {

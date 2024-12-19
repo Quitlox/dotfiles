@@ -17,6 +17,9 @@
 - [ ] Performance
     - [ ] Investigate sluggishness when switching windows from terminal into LSP
       enabled window (python)
+- [ ] Plugins:
+    - [ ] treewalker.nvim
+    - [ ] blink.cmp
 
 - [ ] Eww: Bar should use fill icons on select
 
