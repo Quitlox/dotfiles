@@ -62,8 +62,12 @@ STARSHIP
 - Make abstract role for adding hook to initramfs
 - Configure swap using swap partition
 
-
 - Log into Zotero automatically and setup sync?
 - Install Zotero browser connector automatically?
 - Log into Obsidian automatically?
 - Configure thunderbird
+
+## Security
+
+Security Issues:
+- SSHD Port is custom but fixed and publicly readable.

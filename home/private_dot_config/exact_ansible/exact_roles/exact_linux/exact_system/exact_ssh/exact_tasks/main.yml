@@ -32,6 +32,16 @@
   notify: restart ssh
   become: true
 
+- name: Set custom SSH port
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/00-custom-port.conf"
+    dest: /etc/ssh/sshd_config.d/00-custom-port.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: restart ssh
+  become: true
+
 - name: Enable and start SSH
   ansible.builtin.systemd:
     name: sshd

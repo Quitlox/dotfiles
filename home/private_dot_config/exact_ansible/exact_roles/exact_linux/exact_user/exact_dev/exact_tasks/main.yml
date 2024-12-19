@@ -75,7 +75,6 @@
     name:
       - ansible-language-server
       - bash-language-server
-      - json-css-languageserver
       - lua-language-server
       - typescript-language-server
       - vscode-json-languageserver
