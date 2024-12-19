@@ -18,7 +18,7 @@ require("neotest").setup({
         }),
         require("rustaceanvim.neotest"),
     },
-    log_level = vim.log.levels.TRACE,
+    log_level = vim.log.levels.WARN,
     summary = {
         mappings = {
             stop = "x",
