@@ -21,6 +21,9 @@
     - [ ] targets.vim overlaps with various-textobjs
         -> solution: replace targets.nvim and textobjects-extra and textobjects
         with mini.ai / mini.pairs, use gpt
+- [ ] Posession
+    - [ ] Cursor should not focus notification on restore
+    - [ ] Not autosaving?
 - [ ] Plugins:
     - [ ] treewalker.nvim
     - [ ] blink.cmp
