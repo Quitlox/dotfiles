@@ -12,7 +12,7 @@
 # +----------------------------------------------------------+
 "nvim"= { git = "catppuccin/nvim", rev = "v1.9.0" }
 "nvim-web-devicons" = "0.100"
-"tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "a39fa4c92268832f6034306793b8acbfec2a7549" }
+"tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "c8f63933ee013c1e0a26091d58131e060546f01f" }
 
 # +----------------------------------------------------------+
 # | Editor                                                   |
@@ -50,14 +50,14 @@
 
 # +- Completion ---------------------------------------------+
 "nvim-cmp" = "scm"
-"cmp-nvim-lsp-signature-help" = { git = "hrsh7th/cmp-nvim-lsp-signature-help", rev = "031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7" }
 "cmp-nvim-lsp" = "scm"
 "cmp-path" = "scm"
 "cmp-cmdline" = "scm"
 "cmp-buffer" = "scm"
 "cmp-rg" = "1.3.11"
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
-#"nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } 
+"cmp-nvim-lsp-signature-help" = { git = "hrsh7th/cmp-nvim-lsp-signature-help", rev = "031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7" }
+"nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } 
 "lspkind.nvim" = "scm"
 # Copilot
 "copilot.vim" = { git = "github/copilot.vim", rev = "v1.41.0" } 
@@ -93,7 +93,7 @@
 # +- Tooling ------------------------------------------------+
 "conform.nvim" = "8.2.0"
 "nvim-lint" = "scm"
-"nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "7325802d4cfdcfd55a51c165290779bc835a0cd3" } 
+"nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "7325802d4cfdcfd55a51c165290779bc835a0cd3" }
 
 # +- Treesitter ---------------------------------------------+
 "rocks-treesitter.nvim" = "1.2.0"
@@ -105,8 +105,8 @@
 "nvim-ts-autotag" = "scm"
 "nvim-ts-context-commentstring" = { version = "scm", config = "quitlox.plugins.ide.treesitter.context-commentstring" }
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "8b34305ffc28bd75a22f5a0a9928ee726a85c9a6" }
-"nvim-treesitter-textobjects" = { version = "scm", config = "quitlox.plugins.ide.treesitter.textobjects" }
 "nvim-treesitter-textsubjects" = { git = "RRethy/nvim-treesitter-textsubjects", rev = "a8d2844bba925d9450ef7ab215f3b054028288ca" }
+"nvim-treesitter-textobjects" = { version = "scm", config = "quitlox.plugins.ide.treesitter.textobjects" }
 "nvim-various-textobjs" = { version = "scm", config = "quitlox.plugins.ide.treesitter.textobjects-extra" }
 "nvim-spectre" = "scm"
 
@@ -154,6 +154,7 @@
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
 "yuck.vim" = { git = "elkowar/yuck.vim", rev = "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
 
+
 # +----------------------------------------------------------+
 # | Components                                               |
 # +----------------------------------------------------------+
@@ -177,7 +178,7 @@
 # +- Finder -------------------------------------------------+
 # Telescope
 "telescope.nvim" = "scm"
-"telescope-fzf-native.nvim" = { git = "nvim-telescope/telescope-fzf-native.nvim", rev = "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b", build = "make" } 
+"telescope-fzf-native.nvim" = { git = "nvim-telescope/telescope-fzf-native.nvim", rev = "dae2eac9d91464448b584c7949a31df8faefec56", build = "make" }
 "telescope-helpgrep.nvim" = { git = "catgoose/telescope-helpgrep.nvim", rev = "641b2f1b4559a67731dc42fd84203817ebd6e2ce" }
 "smart-open.nvim" = "scm"
 # Keymaps
@@ -222,8 +223,8 @@
 "sqlite.lua" = "scm"
 "plenary.nvim" = "scm"
 "nvim-nio" = "1.10.0"
-"fixcursorhold.nvim" = { git = "antoinemadec/FixCursorHold.nvim", rev = "1900f89dc17c603eec29960f57c00bd9ae696495" }
 "image.nvim" = "1.3.0"
+"fixcursorhold.nvim" = { git = "antoinemadec/FixCursorHold.nvim", rev = "1900f89dc17c603eec29960f57c00bd9ae696495" }
 
 # +- Treesitter: Parsers ------------------------------------+
 tree-sitter-bash = "scm"
@@ -263,7 +264,7 @@ tree-sitter-python = "scm"
 tree-sitter-query = "scm"
 tree-sitter-requirements = "scm"
 tree-sitter-rst = "scm"
-tree-sitter-rust = "0.0.37"
+tree-sitter-rust = "0.0.38"
 tree-sitter-scss = "scm"
 tree-sitter-ssh_config = "0.0.30"
 tree-sitter-svelte = "scm"
@@ -308,7 +309,7 @@ items = [
   "cmp-cmdline",
   "cmp-buffer",
   "cmp-rg",
-  # "nvim-html-css",
+  "nvim-html-css",
   "lspkind.nvim",
 ]
 config = "quitlox.plugins.ide.cmp"
