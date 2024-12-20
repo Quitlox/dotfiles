@@ -13,11 +13,11 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     group = vim.api.nvim_create_augroup("MyColorschemeSetup", { clear = true }),
     callback = function()
         -- If terminal is kitty, set the background to transparent
-        if vim.env.TERM == "kitty" or vim.env.TERM == "xterm-kitty" then
+        if vim.env.TERM == "kitty" or vim.env.TERM == "xterm-kitty" and vim.env.KITTY_LISTEN_ON then
             local mocha = require("catppuccin.palettes").get_palette("mocha")
-            vim.system({ "kitty", "@", "set-spacing", "--match", "id:" .. vim.env.KITTY_WINDOW_ID, "--to=" .. vim.env.KITTY_LISTEN_ON, "margin=0" }, { text = true })
-            vim.system({ "kitty", "@", "set-colors", "--match", "id:" .. vim.env.KITTY_WINDOW_ID, "--to=" .. vim.env.KITTY_LISTEN_ON, "background='" .. mocha.base .. "'" })
-            vim.system({ "kitty", "@", "set-background-opacity", "--match", "id:" .. vim.env.KITTY_WINDOW_ID, "--to=" .. vim.env.KITTY_LISTEN_ON, "1.0" })
+            vim.system({ "kitty", "@", "set-spacing", "--match", "id:" .. vim.env.kitty_window_id, "--to=" .. vim.env.kitty_listen_on, "margin=0" }, { text = true }):wait()
+            vim.system({ "kitty", "@", "set-colors", "--match", "id:" .. vim.env.kitty_window_id, "--to=" .. vim.env.kitty_listen_on, "background='" .. mocha.base .. "'" }, { text = true }):wait()
+            vim.system({ "kitty", "@", "set-background-opacity", "--match", "id:" .. vim.env.kitty_window_id, "--to=" .. vim.env.kitty_listen_on, "1.0" }, { text = true }):wait()
         end
     end,
 })
@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
     group = vim.api.nvim_create_augroup("MyColorschemeCleanup", { clear = true }),
     callback = function()
         -- If terminal is kitty, set the background to transparent
-        if vim.env.TERM == "kitty" or vim.env.TERM == "xterm-kitty" then
+        if vim.env.TERM == "kitty" or vim.env.TERM == "xterm-kitty" and vim.env.KITTY_LISTEN_ON then
             local mocha = require("catppuccin.palettes").get_palette("mocha")
             vim.system({ "kitty", "@", "load-config" }, { text = true })
             vim.system({ "kitty", "@", "set-spacing", "--match", "id:" .. vim.env.KITTY_WINDOW_ID, "--to=" .. vim.env.KITTY_LISTEN_ON, "margin=15" }, { text = true })
