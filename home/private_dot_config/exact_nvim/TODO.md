@@ -27,6 +27,9 @@
 - [ ] Plugins:
     - [ ] treewalker.nvim
     - [ ] blink.cmp
+- [ ] Delete other buffers from folke is not what i want (it closes open windows)
+- [ ] make terminals local by tab
+- [ ] Save state DiffView? or close on close
 
 - [ ] Eww: Bar should use fill icons on select
 
