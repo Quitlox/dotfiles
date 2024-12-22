@@ -16,6 +16,12 @@ vim.keymap.set("i", "<C-h>", "<C-w>")
 vim.keymap.set("c", "<C-BS>", "<C-w>")
 vim.keymap.set("c", "<C-h>", "<C-w>")
 
+-- Delete Word
+vim.keymap.set("i", "<C-BS>", "<C-w>")
+vim.keymap.set("i", "<C-h>", "<C-w>")
+vim.keymap.set("c", "<C-BS>", "<C-w>")
+vim.keymap.set("c", "<C-h>", "<C-w>")
+
 -- +---------------------------------------------------------+
 -- | Vim Editing                                             |
 -- +---------------------------------------------------------+
@@ -69,7 +75,9 @@ vim.keymap.set({ "n", "v" }, "<C-l>", "<C-w>l")
 local function window_only()
     local tabpage = vim.api.nvim_get_current_tabpage()
     for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tabpage)) do
-        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then vim.api.nvim_win_close(win, false) end
+        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then
+            vim.api.nvim_win_close(win, false)
+        end
     end
 end
 
@@ -92,11 +100,12 @@ vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Tab Last" })
 vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "Tab First" })
 vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Tab Only" })
 vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Tab New" })
-vim.keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Tab Next" })
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Tab Next" })
 vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Tab Close" })
-vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Tab Previous" })
 vim.keymap.set("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Tab Previous" })
+
+vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Tab Previous" })
+vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Tab Next" })
 
 -- +---------------------------------------------------------+
 -- | Command Mode                                            |

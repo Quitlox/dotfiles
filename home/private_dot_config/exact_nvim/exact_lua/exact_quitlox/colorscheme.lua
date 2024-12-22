@@ -42,17 +42,26 @@ require("catppuccin").setup({
     -- show_end_of_buffer = false,
 
     integrations = {
+        diffview = true,
         fidget = true,
         harpoon = true,
         leap = true,
-        mason = true,
+        mini = { enabled = true },
         neotree = true,
+        neogit = true,
         neotest = true,
         notify = true,
+        navic = { enabled = true },
+        semantic_tokens = true,
+        nvim_surround = true,
         ts_rainbow2 = true,
         window_picker = true,
         octo = true,
         overseer = true,
+        render_markdown = true,
+        snacks = true,
+        telescope = { enabled = true },
+        lsp_trouble = true,
         which_key = true,
 
         native_lsp = {

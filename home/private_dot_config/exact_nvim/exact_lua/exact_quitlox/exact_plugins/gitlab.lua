@@ -4,18 +4,16 @@
 
 --+- Command: TNO Gitlab Token ------------------------------+
 vim.api.nvim_create_user_command("SetTNOGitlabToken", function(args)
-    local Terminal = require("toggleterm.terminal").Terminal
-    Terminal:new({
-        id = 97, -- Random high number
-        direction = "float",
-        close_on_exit = false,
-        cmd = "[[" .. [[ -e .gitlab.nvim ]] .. "]]" .. [[ && rm .gitlab.nvim || \
-                        touch .gitlab.nvim && \
-                        echo -n "auth_token=" >> .gitlab.nvim && \
-                        bw get item "ci.tno.nl" | jq '.fields[] | select(.name == "Access Token (Neovim)").value' >> .gitlab.nvim && \
-                        echo -n "gitlab_url=https://ci.tno.nl" >> .gitlab.nvim
-                        ]],
-    }):open()
+    local cmd = [[
+        if [ -e .gitlab.nvim ]; then
+            rm .gitlab.nvim
+        fi
+        touch .gitlab.nvim
+        echo -n "auth_token=" >> .gitlab.nvim
+        bw get item "ci.tno.nl" | jq '.fields[] | select(.name == "Access Token (Neovim)").value' >> .gitlab.nvim
+        echo -n "gitlab_url=https://ci.tno.nl" >> .gitlab.nvim
+    ]]
+    Snacks.terminal.open(cmd)
 end, {
     desc = "Configure TNO Gitlab in this repository.",
 })

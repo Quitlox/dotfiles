@@ -15,11 +15,15 @@ require("possession").setup({
     prompt_no_cr = true,
     autosave = {
         cwd = function()
-            -- return not require("possession.session").exists(require("possession.paths").cwd_session_name())
+            if require("possession.session").exists(require("possession.paths").cwd_session_name()) then
+                return false
+            end
 
             -- check that path is not ~
             local cwd = vim.fn.getcwd()
-            if cwd == os.getenv("HOME") then return false end
+            if cwd == os.getenv("HOME") then
+                return false
+            end
 
             return true
         end,
@@ -47,9 +51,15 @@ require("possession").setup({
         end,
         after_load = function(name, user_data)
             if user_data then
-                if user_data.venv then require("possession.plugins.venv-selector").after_load(nil, name, user_data.venv) end
-                if user_data.overseer then require("possession.plugins.overseer").after_load(nil, name, user_data.overseer) end
-                if user_data.neotree then require("possession.plugins.neo-tree").after_load(nil, name, user_data.neotree) end
+                if user_data.venv then
+                    require("possession.plugins.venv-selector").after_load(nil, name, user_data.venv)
+                end
+                if user_data.overseer then
+                    require("possession.plugins.overseer").after_load(nil, name, user_data.overseer)
+                end
+                if user_data.neotree then
+                    require("possession.plugins.neo-tree").after_load(nil, name, user_data.neotree)
+                end
             end
 
             -- Exit to normal mode, ensuring we're not in insert mode

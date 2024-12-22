@@ -64,17 +64,23 @@ local filetype = { "filetype", colored = false }
 vim.opt.laststatus = 3
 -- vim.opt.cmdheight = 0
 
+--+- Theme --------------------------------------------------+
+local catppuccin_color_utils = require("catppuccin.utils.colors")
+local catppuccin_pallete = require("catppuccin.palettes").get_palette()
+local catppuccin_theme = require("lualine.themes.catppuccin")
+catppuccin_theme.terminal.a.bg = catppuccin_pallete.teal
+catppuccin_theme.terminal.b.fg = catppuccin_pallete.teal
+
 --+- Setup --------------------------------------------------+
 require("lualine").setup({
     options = {
-        theme = "catppuccin",
+        theme = catppuccin_theme,
         component_separators = " ",
         -- component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
             winbar = {
                 "neo-tree",
-                "NvimTree",
                 "gitlab",
                 "dap-repl",
                 "dapui_scopes",
@@ -107,5 +113,5 @@ require("lualine").setup({
         lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
     },
 
-    extensions = { "man", "nvim-dap-ui", "neo-tree", "toggleterm", "trouble", "overseer" },
+    extensions = { "man", "nvim-dap-ui", "neo-tree", "trouble", "overseer" },
 })

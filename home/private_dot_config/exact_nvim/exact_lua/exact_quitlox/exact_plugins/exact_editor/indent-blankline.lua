@@ -9,6 +9,9 @@ local opts = {
     scope = {
         show_end = false,
     },
+    indent = {
+        tab_char = "▎",
+    },
 }
 
 -- Integration with rainbow-delimiters.nvim

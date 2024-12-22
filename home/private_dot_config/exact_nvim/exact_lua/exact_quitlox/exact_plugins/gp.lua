@@ -91,7 +91,7 @@ vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>MyGpImplement<cr>", { desc = "VisualIm
 -- vim.keymap.set("v", "<C-g>x", ":GpContext<cr>", { desc = "VisualToggleContext", noremap = true, silent = true, nowait = true })
 
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>s", ":GpStop<cr>", { desc = "Stop", noremap = true, silent = true, nowait = true })
-vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>n", ":GpAgentNext<cr>", { desc = "NextAgent", noremap = true, silent = true, nowait = true })
+vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>n", ":GpNextAgent<cr>", { desc = "NextAgent", noremap = true, silent = true, nowait = true })
 
 -- Optional Whisper Commands
 -- vim.keymap.set({"n", "i"}, "<C-g>ww", ":GpWhisper<cr>", { desc = "Whisper", noremap = true, silent = true, nowait = true })

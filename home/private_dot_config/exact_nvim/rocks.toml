@@ -10,7 +10,7 @@
 # +----------------------------------------------------------+
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
-"nvim"= { git = "catppuccin/nvim", rev = "v1.9.0" }
+"nvim" = { git = "catppuccin/nvim", rev = "faf15ab0201b564b6368ffa47b56feefc92ce3f4", branch = "main" } # Release is behind
 "nvim-web-devicons" = "0.100"
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "c8f63933ee013c1e0a26091d58131e060546f01f" }
 
@@ -83,9 +83,12 @@
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim", rev = "573ff93c47898967efdfbc6587a1a39e3c2d365e" }
 
+# +- Search -------------------------------------------------+
+"nvim-spectre" = "scm"
+
 # +- Session and Project Management -------------------------+
 "possession.nvim" = "scm"
-"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "1.0", branch = "master" }
+"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "55a1eb6f5b72e07ee8333898254e113e927180ca", branch = "master" }
 
 # +- Test ---------------------------------------------------+
 "neotest" = "5.6.1"
@@ -101,14 +104,13 @@
 # +- Treesitter: Modules ------------------------------------+
 "targets.vim" = { git = "wellle/targets.vim", rev = "v0.5.0" }
 "rainbow-delimiters.nvim" = "0.8.0"
-"nvim-autopairs" = { version = "scm", config = "quitlox.plugins.ide.treesitter.autopairs" }
+"nvim-autopairs" = { version = "scm" }
 "nvim-ts-autotag" = "scm"
 "nvim-ts-context-commentstring" = { version = "scm", config = "quitlox.plugins.ide.treesitter.context-commentstring" }
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "8b34305ffc28bd75a22f5a0a9928ee726a85c9a6" }
 "nvim-treesitter-textsubjects" = { git = "RRethy/nvim-treesitter-textsubjects", rev = "a8d2844bba925d9450ef7ab215f3b054028288ca" }
 "nvim-treesitter-textobjects" = { version = "scm", config = "quitlox.plugins.ide.treesitter.textobjects" }
 "nvim-various-textobjs" = { version = "scm", config = "quitlox.plugins.ide.treesitter.textobjects-extra" }
-"nvim-spectre" = "scm"
 
 # +- Miscellenous -------------------------------------------+
 "gitignore.nvim"= { git = "wintermute-cell/gitignore.nvim", rev = "2455191ec94da8ed222806a4fe3aa358eac1e558" }
@@ -211,9 +213,9 @@
 # +- Miscelleneous ------------------------------------------+
 "edgy.nvim" = "1.10.2"
 "dressing.nvim" = "3.1.0"
-"snacks.nvim" = "2.11.0"
 "icon-picker.nvim" = "scm"
 "todo-comments.nvim" = "1.4.0"
+"snacks.nvim" = { git = "quitlox/snacks.nvim", rev = "1592c071aad8a9adfd32d1238b3df21bbc51f8bb", branch = "feat-tab-local-terminal" }
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
@@ -277,6 +279,7 @@ tree-sitter-vimdoc = "scm"
 tree-sitter-vue = "0.0.29"
 tree-sitter-yaml = "scm"
 tree-sitter-yuck = "scm"
+nvim-spider = "scm"
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |

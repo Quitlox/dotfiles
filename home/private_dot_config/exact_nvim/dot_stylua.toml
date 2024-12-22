@@ -1,4 +1,4 @@
-collapse_simple_statement = "Always"
+collapse_simple_statement = "Never"
 indent_type = "Spaces"
 column_width = 200
 
