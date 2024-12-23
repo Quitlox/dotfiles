@@ -26,5 +26,8 @@ vim.filetype.add({
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "checkhealth",
-    callback = function() vim.wo.spell = false end,
+    group = vim.api.nvim_create_augroup("MyDisableSpellOnCheckhealth", { clear = true }),
+    callback = function()
+        vim.wo.spell = false
+    end,
 })

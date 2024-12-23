@@ -3,8 +3,10 @@ local trunc = require("quitlox.util.misc").trunc
 --+- Integration: GitSigns ----------------------------------+
 vim.api.nvim_create_autocmd("User", {
     pattern = "GitSignsUpdate",
-    group = vim.api.nvim_create_augroup("LualineRefreshEvents", {}),
-    callback = function() require("lualine").refresh({ place = { "statusline" } }) end,
+    group = vim.api.nvim_create_augroup("LualineRefreshEvents", { clear = true }),
+    callback = function()
+        require("lualine").refresh({ place = { "statusline" } })
+    end,
 })
 
 --+- Define Modules -----------------------------------------+
@@ -20,7 +22,9 @@ end
 
 local active_linters = function()
     local linters = require("lint").get_running()
-    if #linters == 0 then return "󰦕 " end
+    if #linters == 0 then
+        return "󰦕 "
+    end
     return "󱉶  " .. table.concat(linters, ", ")
 end
 

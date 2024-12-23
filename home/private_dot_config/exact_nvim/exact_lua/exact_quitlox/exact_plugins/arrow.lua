@@ -2,15 +2,24 @@
 -- | otavioschwanck/arrow.nvim: Buffer Bookmark              |
 -- +---------------------------------------------------------+
 
-function setup_arrow()
-    require("arrow").setup({
-        show_icons = true,
-        leader_key = "=",
-        mappings = {
-            open_vertical = "b",
-            open_horizontal = "v",
-        },
-    })
-end
+require("arrow").setup({
+    show_icons = true,
 
-require("quitlox.util.lazy").keymap_stub("n", "=", setup_arrow, { noremap = true, silent = true })
+    leader_key = "=",
+    buffer_leader_key = "m",
+
+    per_buffer_config = {
+        lines = 8,
+        treesitter_context = { line_shift_down = -2 },
+    },
+
+    mappings = {
+        open_vertical = "b",
+        open_horizontal = "v",
+    },
+})
+
+vim.keymap.set("n", "H", require("arrow.persist").previous)
+vim.keymap.set("n", "L", require("arrow.persist").next)
+
+-- require("quitlox.util.lazy").keymap_stub("n", "=", setup_arrow, { noremap = true, silent = true })

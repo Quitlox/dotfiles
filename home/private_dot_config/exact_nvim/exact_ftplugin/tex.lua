@@ -67,13 +67,25 @@ if vim.fn.has("unix") == 1 then
         -- Define function to reload sioyek
         SioyekReload = function()
             local cmd = { "sioyek.exe", "--execute-command", "reload" }
-            local job_id = vim.fn.jobstart(cmd, { on_exit = function(_, exit_status) vim.fn.echom("Sioyek exited with code: " .. exit_status) end })
+            local job_id = vim.fn.jobstart(cmd, {
+                on_exit = function(_, exit_status)
+                    vim.fn.echom("Sioyek exited with code: " .. exit_status)
+                end,
+            })
 
-            if job_id == 0 then vim.notify("Failed to reload sioyek", vim.log.levels.ERROR) end
+            if job_id == 0 then
+                vim.notify("Failed to reload sioyek", vim.log.levels.ERROR)
+            end
         end
 
         -- Autocommand for compile success
-        vim.cmd([[ autocmd User VimtexEventCompileSuccess lua SioyekReload() ]])
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "VimtexEventCompileSuccess",
+            group = vim.api.nvim_create_augroup("MySioyekReloadOnCompileSuccess", { clear = true }),
+            callback = function()
+                SioyekReload()
+            end,
+        })
     else
         vim.g.vimtex_quickfix_method = "pplatex"
         vim.g.vimtex_view_method = "zathura"

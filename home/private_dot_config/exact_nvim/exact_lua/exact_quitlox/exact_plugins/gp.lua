@@ -23,6 +23,7 @@ local function create_gp_command(command_name, gp_command)
 
         vim.api.nvim_create_autocmd("User", {
             pattern = "GpDone",
+            group = vim.api.nvim_create_augroup("MyGpDone", { clear = true }),
             once = true,
             desc = "Temporary autocommand to restore previous settings.",
             callback = function()

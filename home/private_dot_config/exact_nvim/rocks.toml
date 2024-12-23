@@ -32,11 +32,12 @@
 "vim-illuminate" = { git = "rrethy/vim-illuminate", rev = "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" }
 
 # +- Vim Motions --------------------------------------------+
-# previously pinned at 2.1.5
 "nvim-surround" = "2.1.5"
 "flash.nvim" = "2.1.0"
 "vim-repeat"  = { git = "tpope/vim-repeat", rev = "v1.2" }
 "nvim-spider" = "scm"
+"treewalker.nvim"= { git = "aaronik/treewalker.nvim", rev = "e591604021cf8be6df081ee4c4853e29d48da9af" }
+"scrollEOF.nvim"= { git = "aasim-a/scrolleof.nvim", rev = "1.2.6", config = true }
 
 # +- Miscellenous -------------------------------------------+
 "guess-indent.nvim" = "scm"

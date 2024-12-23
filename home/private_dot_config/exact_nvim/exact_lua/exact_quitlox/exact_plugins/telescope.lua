@@ -2,7 +2,9 @@
 -- | nvim-telescope/telescope.nvim: Finder                   |
 -- +---------------------------------------------------------+
 
-if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then vim.g.sqlite_clib_path = vim.fn.expand("$HOME/.config/vim/sqlite3.dll") end
+if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+    vim.g.sqlite_clib_path = vim.fn.expand("$HOME/.config/vim/sqlite3.dll")
+end
 
 require("telescope").setup({
     defaults = {
@@ -54,12 +56,14 @@ require("which-key").add({ { "<leader>f", group = "Find" } })
 -- Neovim commit pull request: https://github.com/neovim/neovim/pull/22984
 -- Workaround: Leave insert mode when leaving Telescope prompt.
 -- Ref: https://github.com/nvim-telescope/telescope.nvim/issues/2027#issuecomment-1510001730
-local telescope_augroup_id = vim.api.nvim_create_augroup("telescope_settings", {})
+local telescope_augroup_id = vim.api.nvim_create_augroup("telescope_settings", { clear = true })
 vim.api.nvim_create_autocmd({ "WinLeave" }, {
     group = telescope_augroup_id,
     pattern = "*",
     callback = function()
-        if vim.bo.filetype == "TelescopePrompt" and vim.fn.mode() == "i" then vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false) end
+        if vim.bo.filetype == "TelescopePrompt" and vim.fn.mode() == "i" then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
+        end
     end,
 })
 
@@ -85,4 +89,6 @@ vim.keymap.set("n", "<leader>oa", "<cmd>Telescope find_files cwd=~<cr>", { norem
 -- +---------------------------------------------------------+
 
 require("telescope").load_extension("helpgrep")
-vim.keymap.set("n", "<leader>fh", function() require("telescope-helpgrep").live_grep(require("telescope.themes").get_dropdown({})) end, { noremap = true, silent = true, desc = "Find Help" })
+vim.keymap.set("n", "<leader>fh", function()
+    require("telescope-helpgrep").live_grep(require("telescope.themes").get_dropdown({}))
+end, { noremap = true, silent = true, desc = "Find Help" })

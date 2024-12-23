@@ -12,11 +12,14 @@ require("lint").linters_by_ft = {
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
+    group = vim.api.nvim_create_augroup("MyLinting", { clear = true }),
     callback = function(event)
         local ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
 
         -- Disable linting on InsertLeave for python files due to slow performance
-        if event == "InsertLeave" and ft ~= "python" then return end
+        if event == "InsertLeave" and ft ~= "python" then
+            return
+        end
         -- Default is to lint on all events
         require("lint").try_lint(nil, { ignore_errors = true })
     end,
@@ -24,7 +27,9 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
 
 local lint_progress = function()
     local linters = require("lint").get_running()
-    if #linters == 0 then return "󰦕" end
+    if #linters == 0 then
+        return "󰦕"
+    end
 
     return "󱉶 " .. table.concat(linters, ", ")
 end

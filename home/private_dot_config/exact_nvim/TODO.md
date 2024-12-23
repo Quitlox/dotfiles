@@ -1,7 +1,7 @@
 
 - [ ] Plugins:
     - [x] Replace cmp with blink.cmp
-    - [ ] Add treewalker.nvim
+    - [x] Add treewalker.nvim
 - [ ] Features:
     - [ ] bufferline.nvim: disable
     - [ ] Overseer:
@@ -48,10 +48,11 @@
     - [ ] dap-ui: "DAP Watches" shows up as listed buffer in bufferline if edited
     - [ ] snacks.profile: investigate sluggishness when switching windows from
       terminal into LSP enabled window (python)
-    - [ ] snacks.profile: throws error when profiling
+    - [x] snacks.profile: cannot start profile due to error
     - [ ] hlslens: generally buggy when opening floats (e.g. glance)
 - Requires Contribution:
     - [ ] overseer: map <esc> in help_win (not configurable currently)
+    - [ ] treewalker.nvim: allow skipping certain nodes
 
 Desktop:
 - [ ] Eww: Bar should use fill icons on select

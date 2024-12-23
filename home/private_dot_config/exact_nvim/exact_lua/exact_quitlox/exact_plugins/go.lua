@@ -8,6 +8,7 @@ require("go").setup({
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("MyGoLspAttach", { clear = true }),
     callback = function(args)
         local bufnr = args.bufnr
         local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -36,6 +37,7 @@ require("legendary").commands({
 -- Install the required dependencies
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",
+    group = vim.api.nvim_create_augroup("MyGoInstall", { clear = true }),
     callback = function()
         require("go.install").install()
     end,

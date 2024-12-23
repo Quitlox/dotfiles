@@ -76,6 +76,7 @@ require("legendary").commands({
 --+- LSP: Hyperlang -----------------------------------------+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     pattern = { "*.hl", "hypr*.conf" },
+    group = vim.api.nvim_create_augroup("MyHyprLangLsp", { clear = true }),
     callback = function(event)
         vim.lsp.start({
             name = "hyprlang",

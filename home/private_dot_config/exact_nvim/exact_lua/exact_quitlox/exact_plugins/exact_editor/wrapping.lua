@@ -13,7 +13,7 @@ require("wrapping").setup({
 
 -- Automatically set textwidth=80 (in case of hard wrap)
 vim.api.nvim_create_autocmd("filetype", {
-    group = vim.api.nvim_create_augroup("HardWrapFileType", {}),
+    group = vim.api.nvim_create_augroup("HardWrapFileType", { clear = true }),
     pattern = filetypes,
     command = "setlocal textwidth=80",
 })
@@ -21,7 +21,9 @@ vim.api.nvim_create_autocmd("filetype", {
 -- Toggle
 local toggle = {
     name = "Soft Wrap",
-    get = function() return require("wrapping").get_current_mode() == "soft" end,
+    get = function()
+        return require("wrapping").get_current_mode() == "soft"
+    end,
     set = function(state)
         if state then
             require("wrapping").soft_wrap_mode()

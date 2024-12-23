@@ -104,7 +104,7 @@ end
 -- Disable undo in temporary files
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "/tmp/*", "COMMIT_EDITMSG", "MERGE_MSG", "*.tmp", "*.bak" },
-    group = vim.api.nvim_create_augroup("QuitloxUndo", { clear = true }),
+    group = vim.api.nvim_create_augroup("MyDisableUndoForFileTypes", { clear = true }),
     command = "setlocal noundofile",
 })
 
@@ -113,7 +113,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- so it has to be an autocmd.
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "*",
-    group = vim.api.nvim_create_augroup("QuitloxFormatOptionO", { clear = true }),
+    group = vim.api.nvim_create_augroup("MyDisableFormatO", { clear = true }),
     command = "setlocal formatoptions-=o",
 })
 
@@ -123,10 +123,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "json", "jsonc" },
+    group = vim.api.nvim_create_augroup("MyJsonOptions", { clear = true }),
     command = "set conceallevel=0",
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "lua",
+    group = vim.api.nvim_create_augroup("MyLuaOptions", { clear = true }),
     command = "setlocal nospell",
 })

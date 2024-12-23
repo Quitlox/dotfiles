@@ -5,6 +5,7 @@ require("snacks").setup({
     scratch = {},
     toggle = {},
     quickfile = { exclude = { "latex" } },
+    scroll = {},
     terminal = {},
 })
 
@@ -167,6 +168,7 @@ end
 -- Change the background color of the terminal window when entering and leaving
 -- the terminal.
 vim.api.nvim_create_autocmd({ "TermEnter", "TermLeave" }, {
+    group = vim.api.nvim_create_augroup("MyTerminalBackground", { clear = true }),
     callback = function(args)
         local event = args.event
         local catppuccin_color_utils = require("catppuccin.utils.colors")
@@ -196,6 +198,7 @@ vim.api.nvim_create_autocmd({ "TermEnter", "TermLeave" }, {
 
 -- Close on Exit ----------- ------------------------------+
 vim.api.nvim_create_autocmd("VimLeavePre", {
+    group = vim.api.nvim_create_augroup("MyTerminalCloseOnExit", { clear = true }),
     callback = function(args)
         for _, win in ipairs(vim.api.nvim_list_wins()) do
             if vim.w[win].snacks_win then

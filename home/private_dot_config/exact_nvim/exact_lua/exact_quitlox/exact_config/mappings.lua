@@ -26,6 +26,10 @@ vim.keymap.set("c", "<C-h>", "<C-w>")
 -- | Vim Editing                                             |
 -- +---------------------------------------------------------+
 
+-- Disable { and } because I keep abusing them
+vim.keymap.set("n", "{", "", { noremap = true })
+vim.keymap.set("n", "}", "", { noremap = true })
+
 -- Make paste reselect yank
 vim.keymap.set("x", "p", "pgvy", { noremap = true })
 
@@ -65,10 +69,10 @@ vim.keymap.set("v", ":", ":<C-U>", { noremap = true })
 -- +---------------------------------------------------------+
 
 -- Window navigations
-vim.keymap.set({ "n", "v" }, "<C-h>", "<C-w>h")
-vim.keymap.set({ "n", "v" }, "<C-j>", "<C-w>j")
-vim.keymap.set({ "n", "v" }, "<C-k>", "<C-w>k")
-vim.keymap.set({ "n", "v" }, "<C-l>", "<C-w>l")
+-- vim.keymap.set({ "n", "v" }, "<C-h>", "<C-w>h")
+-- vim.keymap.set({ "n", "v" }, "<C-j>", "<C-w>j")
+-- vim.keymap.set({ "n", "v" }, "<C-k>", "<C-w>k")
+-- vim.keymap.set({ "n", "v" }, "<C-l>", "<C-w>l")
 
 -- Close the window if it is not the current window and
 -- the filetype is not equals to 'NvimTree'

@@ -44,6 +44,7 @@ require("diffview").setup({
 -- Close DiffView on exit (preventing session manager from saving tab)
 vim.api.nvim_create_autocmd("VimLeavePre", {
     pattern = "*",
+    group = vim.api.nvim_create_augroup("MyCloseDiffViewOnExit", { clear = true }),
     callback = function()
         if diffview_state == "open" then
             vim.cmd("DiffviewClose")
