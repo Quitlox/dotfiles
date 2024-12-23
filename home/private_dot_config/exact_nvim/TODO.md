@@ -1,7 +1,6 @@
 
 - [ ] Plugins:
-    - [ ] Replace telescope with fzf/fzy?
-    - [ ] Replace cmp with blink.cmp
+    - [x] Replace cmp with blink.cmp
     - [ ] Add treewalker.nvim
 - [ ] Features:
     - [ ] bufferline.nvim: disable
@@ -41,6 +40,7 @@
             - Keeps opening COMMIT_MSG (or other random files) for some reason
 - [ ] Miscellenous:
     - [ ] Only render window seperators for editor windows
+    - [ ] oil: on file delete, close buffeer
 
 
 - [ ] To Investigate

@@ -1,6 +1,5 @@
 --+- LSP: JSON / YAML----------------------------------------+
 require("lspconfig").jsonls.setup({
-    capabilities = require("quitlox.util.lsp").capabilities,
     settings = {
         json = {
             schemas = require("schemastore").json.schemas(),
@@ -11,7 +10,6 @@ require("lspconfig").jsonls.setup({
 
 -- TODO: try yaml-companion again
 require("lspconfig").yamlls.setup({
-    capabilities = require("quitlox.util.lsp").capabilities,
     settings = {
         yaml = {
             schemaStore = {

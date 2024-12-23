@@ -4,16 +4,16 @@
 
 -- Setup
 require("go").setup({
-    lsp_cfg = {
-        capabilities = require("quitlox.util.lsp").capabilities,
-    },
+    lsp_cfg = {},
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local bufnr = args.bufnr
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client and client.name ~= "gopls" then return end
+        if client and client.name ~= "gopls" then
+            return
+        end
 
         -- Override the default annotation keymap
         vim.keymap.set("n", "<Leader>gca", require("go.comment").gen, { noremap = true, silent = true, desc = "Generate Annotation", buffer = bufnr })
@@ -34,4 +34,9 @@ require("legendary").commands({
 })
 
 -- Install the required dependencies
-vim.api.nvim_create_autocmd("FileType", { pattern = "go", callback = function() require("go.install").install() end })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "go",
+    callback = function()
+        require("go.install").install()
+    end,
+})

@@ -4,8 +4,6 @@ vim.loader.enable()
 -- Bootstrap rocks.nvim
 require("quitlox.rocks_bootstrap")
 
-require("rocks.log").set_level("debug")
-
 -- Load configuration
 require("quitlox.config.options")
 require("quitlox.config.commands")

@@ -1,6 +1,5 @@
 -- Default language server settings
 require("lspconfig").lua_ls.setup({
-    capabilities = require("quitlox.util.lsp").capabilities,
     settings = {
         Lua = {
             completion = {
@@ -25,9 +24,6 @@ require("lazydev").setup({
         -- { path = "luvit-meta/library", words = { "vim%.uv" } },
     },
 })
-
--- Add cmp source
--- see plugin/cmp/add-lazydev.lua
 
 -- Commands
 require("legendary").commands({

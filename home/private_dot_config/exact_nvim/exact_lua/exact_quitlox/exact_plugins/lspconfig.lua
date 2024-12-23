@@ -12,7 +12,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     desc = "Attach LSP inlay hints",
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if not client then return end
+        if not client then
+            return
+        end
         if (client.supports_method and client.supports_method("textDocument/inlayHint")) or (client.server_capabilities and client.server_capabilities.inlayHintProvider) then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
         end
@@ -40,7 +42,9 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("MyLspAttachKeybinding", { clear = true }),
     desc = "Attach LSP keybindings",
-    callback = function(args) set_keybindings(args.buf) end,
+    callback = function(args)
+        set_keybindings(args.buf)
+    end,
 })
 
 require("quitlox.util.toggle").map("<leader>Tl", {
@@ -116,10 +120,14 @@ end
 require("lspconfig").pyright.setup({
     on_attach = function(client, bufnr)
         local function filter_diagnostics(diagnostic)
-            if diagnostic.source ~= "Pyright" then return true end
+            if diagnostic.source ~= "Pyright" then
+                return true
+            end
 
             -- Just disable 'is not accessed' altogether
-            if string.match(diagnostic.message, '".+" is not accessed') then return false end
+            if string.match(diagnostic.message, '".+" is not accessed') then
+                return false
+            end
             return true
         end
 
@@ -130,13 +138,12 @@ require("lspconfig").pyright.setup({
 
         client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
     end,
-    capabilities = require("quitlox.util.lsp").capabilities,
 })
 
 --+- LSP: Other ---------------------------------------------+
-require("lspconfig").ansiblels.setup({ capabilities = require("quitlox.util.lsp").capabilities })
-require("lspconfig").bashls.setup({ capabilities = require("quitlox.util.lsp").capabilities })
-require("lspconfig").cssls.setup({ capabilities = require("quitlox.util.lsp").capabilities })
+require("lspconfig").ansiblels.setup({})
+require("lspconfig").bashls.setup({})
+require("lspconfig").cssls.setup({})
 require("lspconfig").svelte.setup({
     -- Add filetypes for the server to run and share info between files
     filetypes = { "typescript", "javascript", "svelte", "html", "css" },
