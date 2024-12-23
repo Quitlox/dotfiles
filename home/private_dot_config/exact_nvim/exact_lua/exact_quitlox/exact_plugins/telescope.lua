@@ -47,7 +47,6 @@ vim.keymap.set("n", "<leader>fa", function() require("telescope.builtin").live_g
 vim.keymap.set("n", "<leader>fm", function() require("telescope.builtin").man_pages(require("telescope.themes").get_dropdown({})) end, { noremap = true, silent = true, desc = "Find Manpage" })
 vim.keymap.set("n", "<leader>fr", function() require("telescope.builtin").resume(require("telescope.themes").get_ivy({})) end, { noremap = true, silent = true, desc = "Find Resume" })
 vim.keymap.set("n", "<leader>gb", function() require("telescope.builtin").git_branches(require("telescope.themes").get_ivy({})) end, { noremap = true, silent = true, desc = "Git Branches" })
-require("which-key").add({ { "<leader>f", group = "Find" } })
 -- stylua: ignore end
 
 --+- Workaround ---------------------------------------------+
@@ -66,29 +65,3 @@ vim.api.nvim_create_autocmd({ "WinLeave" }, {
         end
     end,
 })
-
--- +---------------------------------------------------------+
--- | nvim-telescope/telescope-fzf-native.nvim                |
--- +---------------------------------------------------------+
-
--- if vim.fn.has("win64") == 0 then require("telescope").load_extension("fzf") end
-require("telescope").load_extension("fzf")
-
--- +---------------------------------------------------------+
--- | danielfalk/smart-open.nvim                              |
--- +---------------------------------------------------------+
-
--- stylua: ignore start
-require("telescope").load_extension("smart_open")
-vim.keymap.set("n", "<leader>of", function() require("telescope").extensions.smart_open.smart_open(require("telescope.themes").get_dropdown({})) end, {noremap = true, silent = true, desc = "Open File"})
-vim.keymap.set("n", "<leader>oa", "<cmd>Telescope find_files cwd=~<cr>", { noremap = true, silent = true, desc = "Open Any File" })
--- stylua: ignore end
-
--- +---------------------------------------------------------+
--- | catgoose/telescope-helpgrep.nvim                        |
--- +---------------------------------------------------------+
-
-require("telescope").load_extension("helpgrep")
-vim.keymap.set("n", "<leader>fh", function()
-    require("telescope-helpgrep").live_grep(require("telescope.themes").get_dropdown({}))
-end, { noremap = true, silent = true, desc = "Find Help" })

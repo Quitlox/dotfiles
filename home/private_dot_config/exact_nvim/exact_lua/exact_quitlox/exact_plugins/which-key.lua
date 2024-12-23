@@ -16,6 +16,7 @@ require("which-key").setup({
         { "<leader>m", group = "Miscelleneous" },
         { "<leader>g", group = "Git" },
 
+        { "<leader><leader>", group = "Lang" },
         { "<localleader>m", group = "Markdown" },
 
         { "<leader>vu", "<cmd>Rocks sync<cr>", desc = "Update Plugins" },

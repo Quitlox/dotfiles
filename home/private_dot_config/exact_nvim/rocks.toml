@@ -21,9 +21,9 @@
 # +- Vim Built-in Enhancements ------------------------------+
 "dial.nvim" = "0.4.0"
 "mini.misc" = "0.14.0"
-"nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "v1.0.0" }
+"nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc" }
 "highlight-undo.nvim"  = { git = "tzachar/highlight-undo.nvim", rev = "5f588b420179a31d7073854bfd07ed9d5f364645" }
-"wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" } # Wrap
+"wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" }
 "yanky.nvim" = "scm"
 
 # +- Visual Enhancements ------------------------------------+
@@ -176,7 +176,7 @@
 
 # +- Finder -------------------------------------------------+
 # Telescope
-"telescope.nvim" = "scm"
+"telescope.nvim"= { git = "nvim-telescope/telescope.nvim", rev = "2eca9ba22002184ac05eddbe47a7fe2d5a384dfc" }
 "telescope-fzf-native.nvim" = { git = "nvim-telescope/telescope-fzf-native.nvim", rev = "dae2eac9d91464448b584c7949a31df8faefec56", build = "make" }
 "telescope-helpgrep.nvim" = { git = "catgoose/telescope-helpgrep.nvim", rev = "641b2f1b4559a67731dc42fd84203817ebd6e2ce" }
 "smart-open.nvim" = "scm"
@@ -212,7 +212,7 @@
 "dressing.nvim" = "3.1.1"
 "icon-picker.nvim" = "scm"
 "todo-comments.nvim" = "1.4.0"
-"snacks.nvim" = { git = "quitlox/snacks.nvim", rev = "1592c071aad8a9adfd32d1238b3df21bbc51f8bb", branch = "feat-tab-local-terminal" }
+"snacks.nvim" = { git = "quitlox/snacks.nvim", rev = "eabbd69651bf81b60dfef59098281c1b729037b1", branch = "feat-tab-local-terminal", opt = true }
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
@@ -320,14 +320,14 @@ items = [
 config = "quitlox.plugins.ide.lsp"
 
 # +- Components ---------------------------------------------+
-[bundles.telescope]
-items = [
-  "telescope.nvim",
-  "telescope-fzf-native.nvim",
-  "smart-open.nvim",
-  "telescope-helpgrep.nvim",
-]
-config = "quitlox.plugins.telescope"
+# [bundles.telescope]
+# items = [
+#   "telescope.nvim",
+#   "telescope-fzf-native.nvim",
+#   "smart-open.nvim",
+#   "telescope-helpgrep.nvim",
+# ]
+# config = "quitlox.plugins.telescope"
 
 # +----------------------------------------------------------+
 # | Config                                                   |

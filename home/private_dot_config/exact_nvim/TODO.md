@@ -3,7 +3,7 @@
     - [x] Replace cmp with blink.cmp
     - [x] Add treewalker.nvim
 - [ ] Features:
-    - [ ] bufferline.nvim: disable
+    - [x] bufferline.nvim: disable
     - [ ] Overseer:
         - [ ] "OverseerQuickAction duplicate" would be convenient
         - [x] Keybinding X to stop all
@@ -41,7 +41,6 @@
 - [ ] Miscellenous:
     - [ ] Only render window seperators for editor windows
     - [ ] oil: on file delete, close buffeer
-
 
 - [ ] To Investigate
     - [ ] osv: error is thrown while debugging neovim through osv

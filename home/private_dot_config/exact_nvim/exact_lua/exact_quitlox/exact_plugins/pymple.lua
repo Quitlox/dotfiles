@@ -14,3 +14,9 @@ require("pymple").setup({
         },
     },
 })
+
+require("which-key").add({
+    ["<leader><leader>"] = {
+        p = { group = "Python" },
+    },
+})

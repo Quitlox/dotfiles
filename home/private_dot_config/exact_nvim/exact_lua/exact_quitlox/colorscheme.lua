@@ -3,7 +3,6 @@
 -- +---------------------------------------------------------+
 local success, mod = pcall(require, "catppuccin")
 if not success then
-    print("Error: catppuccin.nvim not found")
     return
 end
 

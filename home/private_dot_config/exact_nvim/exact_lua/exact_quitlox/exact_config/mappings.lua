@@ -27,8 +27,8 @@ vim.keymap.set("c", "<C-h>", "<C-w>")
 -- +---------------------------------------------------------+
 
 -- Disable { and } because I keep abusing them
-vim.keymap.set("n", "{", "", { noremap = true })
-vim.keymap.set("n", "}", "", { noremap = true })
+-- vim.keymap.set("n", "{", "", { noremap = true })
+-- vim.keymap.set("n", "}", "", { noremap = true })
 
 -- Make paste reselect yank
 vim.keymap.set("x", "p", "pgvy", { noremap = true })

@@ -1,5 +1,5 @@
 -- Experimental Lua loader: https://neovim.io/doc/user/lua.html#vim.loader
-vim.loader.enable()
+-- vim.loader.enable()
 
 -- Bootstrap rocks.nvim
 require("quitlox.rocks_bootstrap")
@@ -26,6 +26,13 @@ end
 
 -- Colorscheme
 require("quitlox.colorscheme")
+-- Snacks.nvim
+local succes, rock_config_mod = pcall(require, "rocks-config")
+if succes then
+    local succes, _ = pcall(vim.cmd.packadd, "snacks.nvim")
+    -- rock_config_mod.configure("snacks.nvim")
+    require("quitlox.plugins.snacks")
+end
 
 -- Load environment specific configuration
 require("quitlox.config.environment.kitty")

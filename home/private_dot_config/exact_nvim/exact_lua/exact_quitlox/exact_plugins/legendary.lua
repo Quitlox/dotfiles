@@ -27,6 +27,7 @@ local function deleteDataFile(path)
 end
 
 --+- Functions ----------------------------------------------+
+-- stylua: ignore start
 local functions = {
     -- Cleanup
     { function() deleteCacheFile("dap.log") end, description = "Clear DAP Log" },
@@ -37,6 +38,7 @@ local functions = {
     { function() require("telescope.builtin").highlights() end, description = "List Highlights" },
     { function() require("telescope.builtin").undo() end, description = "List Undo" },
 }
+-- stylua: ignore end
 
 --+- Legendary ----------------------------------------------+
 -- TODO: I think I should swap out using legendary for wilder.nvim

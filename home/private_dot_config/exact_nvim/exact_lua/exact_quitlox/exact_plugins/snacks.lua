@@ -6,6 +6,7 @@ require("snacks").setup({
     toggle = {},
     quickfile = { exclude = { "latex" } },
     scroll = {},
+    statuscolumn = {},
     terminal = {},
 })
 
