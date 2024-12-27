@@ -21,7 +21,7 @@ require("venv-selector").setup({
 
 --+- Commands -----------------------------------------------+
 require("legendary").commands({
-    { ":VenvSelect", description = "Select Virtual Env", filters = { ft = { "python" } } },
-    { ":VenvDeactivate", require("quitlox.util.python").deactivate, description = "Deactivate Virtual Env", filters = { ft = { "python" } } },
+    { ":VenvSelect", description = "Select Virtual Env" },
+    { ":VenvDeactivate", require("quitlox.util.python").deactivate, description = "Deactivate Virtual Env" },
     { ":VenvCreate", require("quitlox.util.python").create_venv_in_cwd, description = "Create Virtual Env" },
 })

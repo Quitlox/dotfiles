@@ -69,10 +69,10 @@ vim.keymap.set("v", ":", ":<C-U>", { noremap = true })
 -- +---------------------------------------------------------+
 
 -- Window navigations
--- vim.keymap.set({ "n", "v" }, "<C-h>", "<C-w>h")
--- vim.keymap.set({ "n", "v" }, "<C-j>", "<C-w>j")
--- vim.keymap.set({ "n", "v" }, "<C-k>", "<C-w>k")
--- vim.keymap.set({ "n", "v" }, "<C-l>", "<C-w>l")
+vim.keymap.set({ "n", "v" }, "<C-h>", "<C-w>h")
+vim.keymap.set({ "n", "v" }, "<C-j>", "<C-w>j")
+vim.keymap.set({ "n", "v" }, "<C-k>", "<C-w>k")
+vim.keymap.set({ "n", "v" }, "<C-l>", "<C-w>l")
 
 -- Close the window if it is not the current window and
 -- the filetype is not equals to 'NvimTree'
@@ -97,6 +97,40 @@ vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "which_k
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "which_key_ignore" })
 
 -- +---------------------------------------------------------+
+-- | Buffers                                                 |
+-- +---------------------------------------------------------+
+
+--+- Function: Close Other Buffers --------------------------+
+local function close_all_but_current()
+    local current = vim.api.nvim_get_current_buf()
+    local buffers = require("bufferline.utils").get_valid_buffers()
+    for _, bufnr in pairs(buffers) do
+        -- We leave the current buffer open
+        if bufnr == current then
+            goto continue
+        end
+
+        -- We leave buffers that are visible in a window
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+            if vim.api.nvim_win_get_buf(win) == bufnr then
+                goto continue
+            end
+        end
+
+        -- Delete the buffer
+        -- require("bufferline.commands").handle_close(bufnr)
+        pcall(vim.cmd, string.format("bd %d", bufnr))
+
+        ::continue::
+    end
+end
+
+-- stylua: ignore start
+vim.keymap.set("n", "<leader>bd", function() require('snacks').bufdelete() end, { desc = "Buffer Delete" })
+vim.keymap.set("n", "<leader>bo", close_all_but_current, { desc = "Buffer Only" })
+-- stylua: ignore end
+
+-- +---------------------------------------------------------+
 -- | Tab                                                     |
 -- +---------------------------------------------------------+
 
@@ -104,9 +138,7 @@ vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Tab Last" })
 vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "Tab First" })
 vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Tab Only" })
 vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Tab New" })
-vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Tab Next" })
 vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Tab Close" })
-vim.keymap.set("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Tab Previous" })
 
 vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Tab Previous" })
 vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Tab Next" })

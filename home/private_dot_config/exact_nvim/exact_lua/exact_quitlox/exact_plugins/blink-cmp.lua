@@ -26,13 +26,19 @@ end)
 require("blink-cmp").setup({
     keymap = {
         ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
-        ["<Enter>"] = { "accept", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+        ["<Enter>"] = { "accept", "fallback" },
+        cmdline = {
+            ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+            ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+            ["<Enter>"] = {}, -- Ensures that enter both selects and accepts
+        },
     },
     completion = {
+        accept = { auto_brackets = { enabled = true } },
         documentation = { auto_show = true },
         list = { selection = "auto_insert" },
-        -- accept = { auto_brackets = { enabled = true } },
+
         -- Setup mini.icons
         menu = {
             draw = {
@@ -58,7 +64,6 @@ require("blink-cmp").setup({
             lazydev = {
                 name = "LazyDev",
                 module = "lazydev.integrations.blink",
-                -- make lazydev completions top priority (see `:h blink.cmp`)
                 score_offset = 100,
             },
             dap = {

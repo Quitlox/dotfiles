@@ -8,9 +8,7 @@ require("which-key").add({
     { "<leader>A", desc = "Swap Previous" },
 })
 
----@diagnostic disable-next-line: missing-fields
 require("nvim-treesitter.configs").setup({
-    ----- Text Objects -----
     textobjects = {
         move = {
             enable = true,

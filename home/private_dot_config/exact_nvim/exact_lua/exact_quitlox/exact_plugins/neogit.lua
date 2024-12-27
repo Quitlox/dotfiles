@@ -7,7 +7,9 @@ vim.api.nvim_create_autocmd("User", {
     pattern = { "NeogitCommitComplete", "NeogitStatusRefreshed", "NeogitBranchReset", "NeogitRebase", "NeogitReset" },
     group = vim.api.nvim_create_augroup("MyNeogitCommitEvents", { clear = true }),
     desc = "Update the signcolumn on neogit event",
-    callback = function() require("gitsigns").reset_base() end,
+    callback = function()
+        require("gitsigns").reset_base()
+    end,
 })
 
 require("neogit").setup({
@@ -40,4 +42,3 @@ require("neogit").setup({
 
 -- Keymaps
 vim.keymap.set("n", "<leader>og", "<cmd>Neogit<cr>", { noremap = true, silent = true, desc = "Open Git Status" })
-vim.keymap.set("n", "<leader>gs", "<cmd>Neogit<cr>", { noremap = true, silent = true, desc = "Git Status" })

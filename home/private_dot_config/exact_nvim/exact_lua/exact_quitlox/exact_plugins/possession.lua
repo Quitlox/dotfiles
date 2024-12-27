@@ -2,15 +2,17 @@
 -- | jedrzejboczar/possesions.nvim: Session Management       |
 -- +---------------------------------------------------------+
 
-vim.opt.sessionoptions = vim.opt.sessionoptions:remove("buffers")
+vim.opt.sessionoptions = vim.opt.sessionoptions:remove("blank")
 vim.opt.sessionoptions = vim.opt.sessionoptions:remove("folds")
+vim.opt.sessionoptions = vim.opt.sessionoptions:append("buffers")
+vim.opt.sessionoptions = vim.opt.sessionoptions:append("localoptions")
 
 -- When neo-tree is loaded, restore the state of the tree (if any)
 require("possession.plugins.neo-tree").setup_events_for_neotree()
 
 require("possession").setup({
-    silent = true,
-    load_silent = true,
+    silent = false,
+    load_silent = false,
     logfile = false,
     prompt_no_cr = true,
     autosave = {
@@ -67,6 +69,7 @@ require("possession").setup({
         end,
     },
     plugins = {
+        delete_hidden_buffers = {},
         nvim_tree = false,
         neo_tree = true,
         symbols_outline = false,
@@ -75,7 +78,7 @@ require("possession").setup({
         dap = true,
         dapui = true,
         neotest = true,
-        delete_buffers = true,
+        delete_buffers = false,
         stop_lsp_clients = false,
     },
     telescope = {

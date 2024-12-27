@@ -1,3 +1,5 @@
+vim.o.signcolumn = "auto:2-4"
+
 require("snacks").setup({
     bigfile = { notify = true },
     init = {},
@@ -6,7 +8,10 @@ require("snacks").setup({
     toggle = {},
     quickfile = { exclude = { "latex" } },
     scroll = {},
-    statuscolumn = {},
+    -- statuscolumn = {
+    --     left = { "git", "sign" },
+    --     right = { "mark", "fold" },
+    -- },
     terminal = {},
 })
 
@@ -216,3 +221,5 @@ vim.keymap.set("t", [[`]], toggle_terminal_2, { silent = true })
 
 vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { silent = true })
 vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { silent = true })
+-- vim.keymap.set("t", "<C-w>j", [[<Cmd>wincmd j<CR>]], { silent = true })
+-- vim.keymap.set("t", "<C-w>k", [[<Cmd>wincmd k<CR>]], { silent = true })

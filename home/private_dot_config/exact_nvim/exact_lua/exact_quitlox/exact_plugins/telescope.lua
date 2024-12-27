@@ -32,13 +32,6 @@ require("telescope").setup({
             end,
         },
     },
-    extensions = {
-        smart_open = {
-            cwd_only = true,
-            match_algorithm = "fzf",
-            ignore_patterns = { "*.git/*", "*/tmp/*", ".venv/*" },
-        },
-    },
 })
 
 --+- Keymaps ------------------------------------------------+

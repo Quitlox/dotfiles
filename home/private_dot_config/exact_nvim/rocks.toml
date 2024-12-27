@@ -10,10 +10,10 @@
 # +----------------------------------------------------------+
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
-"nvim" = { git = "catppuccin/nvim", rev = "faf15ab0201b564b6368ffa47b56feefc92ce3f4", branch = "main" }
+"nvim" = { git = "catppuccin/nvim", rev = "5d9582dbbe37e465f7f93ca6e3dd60cd20eea44f", branch = "main", pin = true } # pinned because of outdated release (require: f8a155ab5891c5d2fb709b7e85627f1783d5a5d9)
 "nvim-web-devicons" = "0.100"
-"tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "c8f63933ee013c1e0a26091d58131e060546f01f" }
 "mini.icons" = "0.14.0"
+"tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "c8f63933ee013c1e0a26091d58131e060546f01f" }
 
 # +----------------------------------------------------------+
 # | Editor                                                   |
@@ -21,8 +21,8 @@
 # +- Vim Built-in Enhancements ------------------------------+
 "dial.nvim" = "0.4.0"
 "mini.misc" = "0.14.0"
-"nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc" }
-"highlight-undo.nvim"  = { git = "tzachar/highlight-undo.nvim", rev = "5f588b420179a31d7073854bfd07ed9d5f364645" }
+"highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim", rev = "5f588b420179a31d7073854bfd07ed9d5f364645" }
+"nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc", pin = true } # pinned because of outdated release
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" }
 "yanky.nvim" = "scm"
 
@@ -34,10 +34,9 @@
 # +- Vim Motions --------------------------------------------+
 "nvim-surround" = "2.1.5"
 "flash.nvim" = "2.1.0"
-"vim-repeat"  = { git = "tpope/vim-repeat", rev = "v1.2" }
+"vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
 "nvim-spider" = "scm"
-"treewalker.nvim"= { git = "aaronik/treewalker.nvim", rev = "e591604021cf8be6df081ee4c4853e29d48da9af" }
-"scrollEOF.nvim"= { git = "aasim-a/scrolleof.nvim", rev = "1.2.6", config = true }
+"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "e591604021cf8be6df081ee4c4853e29d48da9af" }
 
 # +- Miscellenous -------------------------------------------+
 "guess-indent.nvim" = "scm"
@@ -52,12 +51,12 @@
 "comment-box.nvim" = "scm"
 
 # +- Completion ---------------------------------------------+
-"blink.cmp" = { git = "saghen/blink.cmp", rev = "v0.8.1" } 
+"blink.cmp" = { git = "saghen/blink.cmp", rev = "v0.8.2" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.1.2" }
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
 # "nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } -- not compatible with blink
-"copilot.vim" = { git = "github/copilot.vim", rev = "v1.41.0" } 
+"copilot.vim" = { git = "github/copilot.vim", rev = "v1.41.0" }
 "friendly-snippets" = { git = "rafamadriz/friendly-snippets", rev = "efff286dd74c22f731cdec26a70b46e5b203c619" }
 
 # +- Debugging ----------------------------------------------+
@@ -72,7 +71,7 @@
 "neogit" = "scm"
 "diffview.nvim" = "scm"
 "octo.nvim" = "scm"
-"gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "v3.3.10" } 
+"gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "v3.3.10" }
 # +- Language Server Protocol -------------------------------+
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
 "glance.nvim" = "scm"
@@ -104,14 +103,14 @@
 "rainbow-delimiters.nvim" = "0.8.0"
 "nvim-autopairs" = { version = "scm" }
 "nvim-ts-autotag" = "scm"
-"nvim-ts-context-commentstring" = { version = "scm", config = "quitlox.plugins.ide.treesitter.context-commentstring" }
-"nvim-treesitter-textobjects" = { version = "scm", config = "quitlox.plugins.ide.treesitter.textobjects" }
+"nvim-ts-context-commentstring" = { version = "scm" }
+"nvim-treesitter-textobjects" = { version = "scm" }
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "8b34305ffc28bd75a22f5a0a9928ee726a85c9a6" }
 "nvim-treesitter-textsubjects" = { git = "RRethy/nvim-treesitter-textsubjects", rev = "a8d2844bba925d9450ef7ab215f3b054028288ca" }
-"nvim-various-textobjs" = { version = "scm", config = "quitlox.plugins.ide.treesitter.textobjects-extra" }
+"nvim-various-textobjs" = { version = "scm" }
 
 # +- Miscellenous -------------------------------------------+
-"gitignore.nvim"= { git = "wintermute-cell/gitignore.nvim", rev = "2455191ec94da8ed222806a4fe3aa358eac1e558" }
+"gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "2455191ec94da8ed222806a4fe3aa358eac1e558" }
 
 # +----------------------------------------------------------+
 # | Language Support                                         |
@@ -121,36 +120,36 @@
 "nvim-parinfer" = "1.2.0"
 
 # +- Config -------------------------------------------------+
-"schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.schemastore"}
+"schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.schemastore" }
 # +- Go -----------------------------------------------------+
-"go.nvim" = { version = "0.9.0", ft = [ "go", "gomod" ] }
-"guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1" } 
+"go.nvim" = { version = "0.9.0", ft = ["go", "gomod"] }
+"guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1" }
 # +- HTTP ---------------------------------------------------+
-"kulala.nvim"= { git = "mistweaverco/kulala.nvim", rev = "v4.4.1", ft = "http" }
+"kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v4.4.1", ft = "http" }
 # +- LaTeX --------------------------------------------------+
-"vimtex" = { git = "lervag/vimtex", rev = "v2.15" } 
+"vimtex" = { git = "lervag/vimtex", rev = "v2.15" }
 # +- Lua ----------------------------------------------------+
 "lazydev.nvim" = { version = "1.9.0", config = "quitlox.plugins.lang.lua" }
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "57d464c4acb5c2e66bd4145060f5dc9e96a7bbb7" }
 # +- Markdown -----------------------------------------------+
-"markdown.nvim"= { git = "tadmccorkle/markdown.nvim", rev = "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" }
-"markdown-render"  = { git = "meanderingprogrammer/markdown.nvim", rev = "v7.7.0" }
+"markdown.nvim" = { git = "tadmccorkle/markdown.nvim", rev = "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" }
+"markdown-render" = { git = "meanderingprogrammer/markdown.nvim", rev = "v7.7.0" }
 "vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626" }
 # +- Python -------------------------------------------------+
 "neotest-python" = { git = "nvim-neotest/neotest-python", rev = "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" }
 "nvim-dap-python" = "scm"
 "venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "e82594274bf7b54387f9a2abe65f74909ac66e97", branch = "regexp", pin = true }
-"pymple.nvim"= { git = "alexpasmantier/pymple.nvim", rev = "0.4.1" } 
+"pymple.nvim" = { git = "alexpasmantier/pymple.nvim", rev = "0.4.1" }
 # +- Rust ---------------------------------------------------+
-"rustaceanvim" = { version = "5.19.2" }
+"rustaceanvim" = { version = "5.20.1" }
 # +- Vim ----------------------------------------------------+
 "one-small-step-for-vimkind" = { version = "scm", config = "quitlox.plugins.lang.vim" }
 # +- Web ----------------------------------------------------+
 "typescript-tools.nvim" = { version = "scm", config = "quitlox.plugins.lang.typescript" }
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.3.1" }
 # +- Minor Languages ----------------------------------------+
-"nvim-ansible"  = { git = "mfussenegger/nvim-ansible", rev = "44dabdaa8a9193b7f564a8408ed6d7107705030a" }
+"nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "44dabdaa8a9193b7f564a8408ed6d7107705030a" }
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
 "yuck.vim" = { git = "elkowar/yuck.vim", rev = "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
 
@@ -170,13 +169,13 @@
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.27"
-"nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.0.3" } # neo-tree.nvim
-"nvim-lsp-file-operation"  = { git = "antosha417/nvim-lsp-file-operations", rev = "9744b738183a5adca0f916527922078a965515ed" }
+"nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.0.3" }                                                  # neo-tree.nvim
+"nvim-lsp-file-operation" = { git = "antosha417/nvim-lsp-file-operations", rev = "9744b738183a5adca0f916527922078a965515ed" }
 "oil.nvim" = "2.14.0"
 
 # +- Finder -------------------------------------------------+
 # Telescope
-"telescope.nvim"= { git = "nvim-telescope/telescope.nvim", rev = "2eca9ba22002184ac05eddbe47a7fe2d5a384dfc" }
+"telescope.nvim" = "scm"
 "telescope-fzf-native.nvim" = { git = "nvim-telescope/telescope-fzf-native.nvim", rev = "dae2eac9d91464448b584c7949a31df8faefec56", build = "make" }
 "telescope-helpgrep.nvim" = { git = "catgoose/telescope-helpgrep.nvim", rev = "641b2f1b4559a67731dc42fd84203817ebd6e2ce" }
 "smart-open.nvim" = "scm"
@@ -185,24 +184,21 @@
 # Commands
 "legendary.nvim" = "2.13.12"
 # Buffers
-"arrow.nvim"  = { git = "otavioschwanck/arrow.nvim", rev = "5438c977e729a29d96bd54c8da3103154e80dbd1" }
+"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "5438c977e729a29d96bd54c8da3103154e80dbd1" }
 
 # +- Notifications ------------------------------------------+
 "nvim-notify" = "3.14.0"
 "fidget.nvim" = "1.4.1"
 
 # +- REPL ---------------------------------------------------+
-"molten-nvim" = { git = "benlubas/molten-nvim", rev = "v1.9.0" }
+"molten-nvim" = { git = "benlubas/molten-nvim", rev = "v1.9.1" }
 
 # +- Runner (Overseer) --------------------------------------+
 "overseer.nvim" = "1.5.0"
 
 # +- Statusline (Lualine) -----------------------------------+
 "lualine.nvim" = "scm"
-"lualine-pretty-path"  = { git = "bwpge/lualine-pretty-path", rev = "852cb06f3562bced4776a924e56a9e44d0ce634f" }
-
-# +- Terminal (toggleterm) ----------------------------------+
-"toggleterm.nvim" = "2.13.0"
+"lualine-pretty-path" = { git = "bwpge/lualine-pretty-path", rev = "852cb06f3562bced4776a924e56a9e44d0ce634f" }
 
 # +- Quickfix -----------------------------------------------+
 "trouble.nvim" = "3.6.0"
@@ -212,7 +208,7 @@
 "dressing.nvim" = "3.1.1"
 "icon-picker.nvim" = "scm"
 "todo-comments.nvim" = "1.4.0"
-"snacks.nvim" = { git = "quitlox/snacks.nvim", rev = "eabbd69651bf81b60dfef59098281c1b729037b1", branch = "feat-tab-local-terminal", opt = true }
+"snacks.nvim" = { git = "quitlox/snacks.nvim", rev = "98df370703b3c47a297988f3e55ce99628639590", opt = true, branch = "feat-tab-local-terminal" } # TODO: Switch
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
@@ -302,11 +298,7 @@ config = "quitlox.plugins.editor"
 
 # +- Integrated Developer Environment -----------------------+
 [bundles.dap]
-items = [
-  "nvim-dap-ui",
-  "nvim-dap-virtual-text",
-  "goto-breakpoints.nvim",
-]
+items = ["nvim-dap-ui", "nvim-dap-virtual-text", "goto-breakpoints.nvim"]
 config = "quitlox.plugins.ide.dap"
 
 [bundles.lsp]
@@ -318,16 +310,6 @@ items = [
   "workspace-diagnostics.nvim",
 ]
 config = "quitlox.plugins.ide.lsp"
-
-# +- Components ---------------------------------------------+
-# [bundles.telescope]
-# items = [
-#   "telescope.nvim",
-#   "telescope-fzf-native.nvim",
-#   "smart-open.nvim",
-#   "telescope-helpgrep.nvim",
-# ]
-# config = "quitlox.plugins.telescope"
 
 # +----------------------------------------------------------+
 # | Config                                                   |
