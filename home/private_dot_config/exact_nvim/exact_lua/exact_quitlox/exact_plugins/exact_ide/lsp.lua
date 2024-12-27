@@ -77,7 +77,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client == nil then return end
+        if client == nil then
+            return
+        end
 
         require("lsp_signature").on_attach(lsp_signature_config, bufnr)
     end,
@@ -86,15 +88,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 --+- Toggle -------------------------------------------------+
 vim.g.lsp_signature_toggle_enabled = 1
 
-local lsp_signature_toggle = require("quitlox.util.toggle").wrap({
-    name = "Signature Help",
-    get = function() return vim.g.lsp_signature_toggle_enabled == 1 end,
-    set = function(state) vim.g.lsp_signature_toggle_enabled = require("lsp_signature").toggle_float_win() end,
-})
-
-require("legendary").commands({
-    { ":LspSignatureToggle", lsp_signature_toggle, description = "Toggle LSP Signature Help" },
-})
+Snacks.toggle
+    .new({
+        name = "Signature Help",
+        get = function()
+            return vim.g.lsp_signature_toggle_enabled == 1
+        end,
+        set = function(state)
+            vim.g.lsp_signature_toggle_enabled = require("lsp_signature").toggle_float_win()
+        end,
+    })
+    :map("<leader>Ts")
 
 -- +---------------------------------------------------------+
 -- | icholy/lsplinks.nvim: Support for                       |
@@ -119,7 +123,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local buffer = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client == nil then return end
+        if client == nil then
+            return
+        end
 
         if vim.tbl_contains(workspace_diagnostic_whitelist, client.name) then
             require("workspace-diagnostics").populate_workspace_diagnostics(client, buffer) -- stylua: ignore

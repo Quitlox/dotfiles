@@ -11,7 +11,7 @@
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
 "nvim" = { git = "catppuccin/nvim", rev = "5d9582dbbe37e465f7f93ca6e3dd60cd20eea44f", branch = "main", pin = true } # pinned because of outdated release (require: f8a155ab5891c5d2fb709b7e85627f1783d5a5d9)
-"nvim-web-devicons" = "0.100"
+"nvim-web-devicons" = { git = "nvim-tree/nvim-web-devicons", rev = "63f552a7f59badc6e6b6d22e603150f0d5abebb7" }
 "mini.icons" = "0.14.0"
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "c8f63933ee013c1e0a26091d58131e060546f01f" }
 
@@ -36,7 +36,7 @@
 "flash.nvim" = "2.1.0"
 "vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
 "nvim-spider" = "scm"
-"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "e591604021cf8be6df081ee4c4853e29d48da9af" }
+"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "1fa5cbb697a456a3d501f72e04877931f8687cc1" }
 
 # +- Miscellenous -------------------------------------------+
 "guess-indent.nvim" = "scm"
@@ -47,17 +47,17 @@
 # +----------------------------------------------------------+
 
 # +- Comments / Documentation -------------------------------+
-"neogen" = "2.19.4"
+"neogen" = "2.20.0"
 "comment-box.nvim" = "scm"
 
 # +- Completion ---------------------------------------------+
 "blink.cmp" = { git = "saghen/blink.cmp", rev = "v0.8.2" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.1.2" }
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
-"cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
 # "nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } -- not compatible with blink
-"copilot.vim" = { git = "github/copilot.vim", rev = "v1.41.0" }
+"cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
 "friendly-snippets" = { git = "rafamadriz/friendly-snippets", rev = "efff286dd74c22f731cdec26a70b46e5b203c619" }
+"copilot.vim" = { git = "github/copilot.vim", rev = "v1.41.0" }
 
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = "scm"
@@ -93,7 +93,7 @@
 # +- Tooling ------------------------------------------------+
 "conform.nvim" = "8.3.0"
 "nvim-lint" = "scm"
-"nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "7325802d4cfdcfd55a51c165290779bc835a0cd3" }
+"nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "d4a4b11dd5e9928d222db3ab2292ae0522c521a4" }
 
 # +- Treesitter ---------------------------------------------+
 "rocks-treesitter.nvim" = "1.3.0"
@@ -104,13 +104,14 @@
 "nvim-autopairs" = { version = "scm" }
 "nvim-ts-autotag" = "scm"
 "nvim-ts-context-commentstring" = { version = "scm" }
-"nvim-treesitter-textobjects" = { version = "scm" }
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "8b34305ffc28bd75a22f5a0a9928ee726a85c9a6" }
 "nvim-treesitter-textsubjects" = { git = "RRethy/nvim-treesitter-textsubjects", rev = "a8d2844bba925d9450ef7ab215f3b054028288ca" }
+"nvim-treesitter-textobjects" = { version = "scm" }
 "nvim-various-textobjs" = { version = "scm" }
 
 # +- Miscellenous -------------------------------------------+
 "gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "2455191ec94da8ed222806a4fe3aa358eac1e558" }
+
 
 # +----------------------------------------------------------+
 # | Language Support                                         |
@@ -123,7 +124,7 @@
 "schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.schemastore" }
 # +- Go -----------------------------------------------------+
 "go.nvim" = { version = "0.9.0", ft = ["go", "gomod"] }
-"guihua.lua" = { git = "ray-x/guihua.lua", rev = "v0.1" }
+# "guihua.lua" = { git = "ray-x/guihua.lua", rev = "d783191eaa75215beae0c80319fcce5e6b3beeda" } # NOTE: Overwrites fzy, causing issues
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v4.4.1", ft = "http" }
 # +- LaTeX --------------------------------------------------+
@@ -169,13 +170,13 @@
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.27"
-"nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.0.3" }                                                  # neo-tree.nvim
 "nvim-lsp-file-operation" = { git = "antosha417/nvim-lsp-file-operations", rev = "9744b738183a5adca0f916527922078a965515ed" }
+"nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.0.3" }                                                  # neo-tree.nvim
 "oil.nvim" = "2.14.0"
 
 # +- Finder -------------------------------------------------+
 # Telescope
-"telescope.nvim" = "scm"
+"telescope.nvim" = { git = "nvim-telescope/telescope.nvim", rev = "2eca9ba22002184ac05eddbe47a7fe2d5a384dfc" }
 "telescope-fzf-native.nvim" = { git = "nvim-telescope/telescope-fzf-native.nvim", rev = "dae2eac9d91464448b584c7949a31df8faefec56", build = "make" }
 "telescope-helpgrep.nvim" = { git = "catgoose/telescope-helpgrep.nvim", rev = "641b2f1b4559a67731dc42fd84203817ebd6e2ce" }
 "smart-open.nvim" = "scm"
@@ -208,20 +209,23 @@
 "dressing.nvim" = "3.1.1"
 "icon-picker.nvim" = "scm"
 "todo-comments.nvim" = "1.4.0"
-"snacks.nvim" = { git = "quitlox/snacks.nvim", rev = "98df370703b3c47a297988f3e55ce99628639590", opt = true, branch = "feat-tab-local-terminal" } # TODO: Switch
+"snacks.nvim" = { git = "quitlox/snacks.nvim", rev = "98df370703b3c47a297988f3e55ce99628639590", opt = true, branch = "feat-tab-local-terminal" }
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
 # +----------------------------------------------------------+
-"promise-async" = "scm"
-"nui.nvim" = "0.3.0"
-"sqlite.lua" = "scm"
-"plenary.nvim" = "scm"
-"nvim-nio" = "1.10.0"
-"image.nvim" = "1.3.0"
-"fixcursorhold.nvim" = { git = "antoinemadec/FixCursorHold.nvim", rev = "1900f89dc17c603eec29960f57c00bd9ae696495" }
+# "promise-async" = { git = "kevinhwang91/promise-async", rev = "119e8961014c9bfaf1487bf3c2a393d254f337e2" } # outdated (semver, luarocks)
+# "nui.nvim" = { git = "muniftanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" } # outdated (semver, luarocks)
+# "sqlite.lua" = { git = "kkharji/sqlite.lua", rev = "cf482586c4f24e197375235a6e310b9b9e80ba83" } # outdated (semver, luarocks)
+# "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "2d9b06177a975543726ce5c73fca176cedbffe9d" } # outdated (semver, luarocks)
+# "nvim-nio" = "1.10.0"
+"image.nvim" = { git = "3rd/image.nvim", rev = "v1.3.0" }
+"magick" = "1.6.0"
+# "fixcursorhold.nvim" = { git = "antoinemadec/FixCursorHold.nvim", rev = "1900f89dc17c603eec29960f57c00bd9ae696495" }
 
-# +- Treesitter: Parsers ------------------------------------+
+# +----------------------------------------------------------+
+# | Parsers                                                  |
+# +----------------------------------------------------------+
 tree-sitter-bash = "scm"
 tree-sitter-bibtex = "0.0.29"
 tree-sitter-c = "0.0.35"

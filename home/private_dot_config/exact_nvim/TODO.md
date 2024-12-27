@@ -1,4 +1,5 @@
 
+- [ ] get rid of some bundles
 - [ ] Plugins:
     - [ ] switch from possesion to resession
         - [ ] make neotest behave after switching session
@@ -29,16 +30,10 @@
     - [ ] dap: Debugging leaves typehints once dapui is closed (specifically osv)
     - [x] autopairs: lua functions not being auto-closed
     - [ ] terminal: does not show venv if already activated on startup
-    - [ ] completion bugs:
-        - [ ] help completion throws error
-        - [ ] Rocks completion throws error
 - [ ] Miscellenous:
     - [ ] only render window seperators for editor windows
     - [ ] oil: on file delete, close buffer
     - [ ] neo-tree: figure out how to keep filter
-    - [ ] toggle:
-        - [ ] use snacks.nvim
-        - [ ] add toggle for gitsigns
     - [ ] zsh: <esc>c opens fzf which is frustrating
     - [ ] venv-selector:
         - [ ] cannot find venv when not in python file

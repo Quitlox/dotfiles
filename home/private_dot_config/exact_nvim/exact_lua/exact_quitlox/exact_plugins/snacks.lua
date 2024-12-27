@@ -223,3 +223,29 @@ vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { silent = true })
 vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { silent = true })
 -- vim.keymap.set("t", "<C-w>j", [[<Cmd>wincmd j<CR>]], { silent = true })
 -- vim.keymap.set("t", "<C-w>k", [[<Cmd>wincmd k<CR>]], { silent = true })
+
+-- +---------------------------------------------------------+
+-- | snacks.nvim: Toggle                                     |
+-- +---------------------------------------------------------+
+
+---@param buf_local? boolean Whether to toggle autoformat for the current
+---buffer only, or globally
+local function toggle_format(buf_local)
+    local format = require("quitlox.util.format")
+    return Snacks.toggle.new({
+        name = "Auto Format (" .. (buf_local and "Buffer" or "Global") .. ")",
+        get = function()
+            return format.enabled(vim.api.nvim_get_current_buf())
+        end,
+        set = function(state)
+            format.enable(state, buf_local)
+        end,
+    })
+end
+
+toggle_format(true):map("<leader>Tf")
+toggle_format(false):map("<leader>TF")
+
+Snacks.toggle.treesitter():map("<leader>Tt")
+Snacks.toggle.inlay_hints():map("<leader>Th")
+Snacks.toggle.diagnostics():map("<leader>Td")

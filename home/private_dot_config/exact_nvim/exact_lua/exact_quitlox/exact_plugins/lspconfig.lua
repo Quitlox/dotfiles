@@ -47,25 +47,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
-require("quitlox.util.toggle").map("<leader>Tl", {
-    name = "LSP",
-    set = function()
-        local clients = vim.lsp.get_clients()
-        for _, client in ipairs(clients) do
-            if vim.lsp.buf_is_attached(0, client.id) then
-                vim.lsp.buf_detach_client(0, client.id)
-            else
-                vim.lsp.buf_attach_client(0, client.id)
+--+- LSP: Toggle LSPs ---------------------------------------+
+Snacks.toggle
+    .new({
+        name = "LSP",
+        set = function()
+            local clients = vim.lsp.get_clients()
+            for _, client in ipairs(clients) do
+                if vim.lsp.buf_is_attached(0, client.id) then
+                    vim.lsp.buf_detach_client(0, client.id)
+                else
+                    vim.lsp.buf_attach_client(0, client.id)
+                end
             end
-        end
-    end,
-    get = function()
-        local clients = vim.lsp.get_clients({ bufnr = 0 })
-        return #clients > 0
-    end,
-})
+        end,
+        get = function()
+            local clients = vim.lsp.get_clients({ bufnr = 0 })
+            return #clients > 0
+        end,
+    })
+    :map("<leader>Tl")
 
---+- LSP Commands -------------------------------------------+
+--+- LSP: Commands ------------------------------------------+
 require("legendary").commands({
     { ":LspInfo", description = "Show the status of active and configured language servers." },
     { ":LspStart", description = "Start the requested server name." },

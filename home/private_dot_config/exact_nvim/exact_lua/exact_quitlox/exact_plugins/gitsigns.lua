@@ -13,14 +13,22 @@ local function on_attach(bufnr)
 
     -- Navigation
     local function next_hunk()
-        if vim.wo.diff then return "]h" end
-        vim.schedule(function() gs.next_hunk() end)
+        if vim.wo.diff then
+            return "]h"
+        end
+        vim.schedule(function()
+            gs.next_hunk()
+        end)
         return "<Ignore>"
     end
 
     local function prev_hunk()
-        if vim.wo.diff then return "[h" end
-        vim.schedule(function() gs.prev_hunk() end)
+        if vim.wo.diff then
+            return "[h"
+        end
+        vim.schedule(function()
+            gs.prev_hunk()
+        end)
         return "<Ignore>"
     end
 
@@ -30,17 +38,25 @@ local function on_attach(bufnr)
     -- Actions
     map("n", "<leader>hs", gs.stage_hunk, { desc = "Hunk Stage" })
     map("n", "<leader>hr", gs.reset_hunk, { desc = "Hunk Reset" })
-    map("v", "<leader>hs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Hunk Stage" })
-    map("v", "<leader>hr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Hunk Reset" })
+    map("v", "<leader>hs", function()
+        gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end, { desc = "Hunk Stage" })
+    map("v", "<leader>hr", function()
+        gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end, { desc = "Hunk Reset" })
 
     map("n", "<leader>hS", gs.stage_buffer, { desc = "Hunk Stage Buffer" })
     map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Hunk Reset" })
     map("n", "<leader>hR", gs.reset_buffer, { desc = "Hunk Reset Buffer" })
     map("n", "<leader>hp", gs.preview_hunk, { desc = "Hunk Preview" })
-    map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, { desc = "Hunk Blame" })
+    map("n", "<leader>hb", function()
+        gs.blame_line({ full = true })
+    end, { desc = "Hunk Blame" })
     map("n", "<leader>Tb", gs.toggle_current_line_blame, { desc = "Toggle Blame" })
     map("n", "<leader>hd", gs.diffthis, { desc = "Hunk Diff" })
-    map("n", "<leader>hD", function() gs.diffthis("~") end, { desc = "Hunk Diff Buffer" })
+    map("n", "<leader>hD", function()
+        gs.diffthis("~")
+    end, { desc = "Hunk Diff Buffer" })
     map("n", "<leader>htd", gs.toggle_deleted, { desc = "Toggle Deleted" })
     map("n", "<leader>glc", "<cmd>Gitsigns setqflist<cr>", { desc = "Git Quickfix" })
 
@@ -56,17 +72,33 @@ local function on_attach(bufnr)
 end
 
 --+- Toggle -------------------------------------------------+
+vim.g.toggle_gitsigns = true
+
+Snacks.toggle.new({
+    name = "Git Blame",
+    get = function()
+        return vim.g.toggle_gitsigns
+    end,
+    set = function(state)
+        require("gitsigns").toggle_current_line_blame(state)
+        vim.g.toggle_gitsigns = state
+    end,
+})
 
 --+- Setup --------------------------------------------------+
 require("gitsigns").setup({
     trouble = false,
     on_attach = function(bufnr)
         -- Buggy on Jinja files
-        if vim.api.nvim_buf_get_name(bufnr):match("jinja") then return false end
+        if vim.api.nvim_buf_get_name(bufnr):match("jinja") then
+            return false
+        end
         return on_attach(bufnr)
     end,
 })
 
 --+- Integration --------------------------------------------+
 local success, mod = pcall(require, "scrollbar.handlers.gitsigns")
-if success then mod.setup() end
+if success then
+    mod.setup()
+end

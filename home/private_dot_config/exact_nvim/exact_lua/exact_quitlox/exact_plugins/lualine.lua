@@ -30,6 +30,20 @@ local encoding = function()
     return replaced
 end
 
+local python_venv = function()
+    local cwd = vim.fn.getcwd()
+    local venv = require("venv-selector").venv()
+    if venv == nil then
+        return ""
+    end
+
+    if venv:sub(1, #cwd) == cwd then
+        return "(" .. venv:sub(#cwd + 2) .. ")"
+    end
+
+    return venv
+end
+
 local fileformat = function()
     local ret, _ = vim.bo.fileformat:gsub("^unix$", "")
     return ret
@@ -76,7 +90,7 @@ local git_blame = {
 
 --+- Customize Modules --------------------------------------+
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
-local midsection = { "%=", separator = { left = "" }, color = nil }
+local midsection = { "%=", color = nil }
 local filetype = { "filetype", colored = false }
 
 --+- Options ------------------------------------------------+
@@ -94,7 +108,6 @@ catppuccin_theme.terminal.b.fg = catppuccin_pallete.teal
 require("lualine").setup({
     options = {
         theme = catppuccin_theme,
-        component_separators = " ",
         -- component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
@@ -119,8 +132,8 @@ require("lualine").setup({
         lualine_a = { fancy_cwd },
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, midsection },
-        lualine_x = { "my_fancy_diff", "my_fancy_diagnostics", "overseer", "mixed_indent", active_linters, "my_fancy_lsp_servers", "python_env" },
-        lualine_y = { encoding, fileformat },
+        lualine_x = { "my_fancy_diff", "my_fancy_diagnostics", "overseer", active_linters },
+        lualine_y = { "mixed_indent", encoding, fileformat, "my_fancy_lsp_servers", python_venv },
         lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
     },
     inactive_sections = {
@@ -132,5 +145,5 @@ require("lualine").setup({
         lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
     },
 
-    extensions = { "man", "nvim-dap-ui", "neo-tree", "trouble", "overseer" },
+    extensions = { "fzf", "man", "neo-tree", "nvim-dap-ui", "oi", "overseer", "quickfix", "trouble" },
 })

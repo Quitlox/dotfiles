@@ -19,20 +19,22 @@ vim.api.nvim_create_autocmd("filetype", {
 })
 
 -- Toggle
-local toggle = {
-    name = "Soft Wrap",
-    get = function()
-        return require("wrapping").get_current_mode() == "soft"
-    end,
-    set = function(state)
-        if state then
-            require("wrapping").soft_wrap_mode()
-        else
-            require("wrapping").hard_wrap_mode()
-        end
-    end,
-}
-require("quitlox.util.toggle").map("<leader>Tw", toggle, false)
+Snacks.toggle
+    .new({
+        name = "Hard Wrap",
+        get = function()
+            return require("wrapping").get_current_mode() == "hard"
+        end,
+        set = function(state)
+            if state then
+                require("wrapping").hard_wrap_mode()
+            else
+                require("wrapping").soft_wrap_mode()
+            end
+        end,
+        notify = false,
+    })
+    :map("<leader>Tw")
 
 -- Commands
 require("legendary").commands({
