@@ -79,7 +79,7 @@ vim.keymap.set({ "n", "v" }, "<C-l>", "<C-w>l")
 local function window_only()
     local tabpage = vim.api.nvim_get_current_tabpage()
     for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tabpage)) do
-        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype") ~= "NvimTree" then
+        if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_win_is_valid(win) then
             vim.api.nvim_win_close(win, false)
         end
     end

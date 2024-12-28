@@ -22,8 +22,10 @@ function enable_for_filetype()
     end
     vim.api.nvim_create_autocmd("FileType", {
         pattern = ft,
-        group = vim.api.nvim_create_augroup("MyColorizer", { clear = false }),
-        callback = function() require("colorizer").attach_to_buffer(0, OPTIONS) end,
+        group = vim.api.nvim_create_augroup("MyColorizer", { clear = true }),
+        callback = function()
+            require("colorizer").attach_to_buffer(0, OPTIONS)
+        end,
     })
 end
 

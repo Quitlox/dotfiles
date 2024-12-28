@@ -28,7 +28,7 @@ vim.fn.sign_define("DiagnosticSignHint", { text = " ", texthl = "DiagnosticSi
 vim.keymap.set("n", "<leader>lf", "<cmd>Neotree position=left source=filesystem reveal=true<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>oe", "<cmd>Neotree position=left source=filesystem reveal=false toggle=true<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>oo", "<cmd>Neotree position=right document_symbols reveal=true<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ls", "<cmd>Neotree position=right source=document_symbols reveal=true<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ls", "<cmd>Neotree position=right source=document_symbols <cr>", { noremap = true, silent = true }) -- reveal=true causes annoying prompt
 
 --+- Setup --------------------------------------------------+
 require("neo-tree").setup({

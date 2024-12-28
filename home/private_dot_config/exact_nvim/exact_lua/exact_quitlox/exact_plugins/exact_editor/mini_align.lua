@@ -1,5 +1,4 @@
 -- +---------------------------------------------------------+
--- | fastaction.nvim: LSP Code Actions UI                    |
+-- | mini.align: Align using the 'ga' operator               |
 -- +---------------------------------------------------------+
-
-require("fastaction").setup({})
+require("mini.align").setup({})

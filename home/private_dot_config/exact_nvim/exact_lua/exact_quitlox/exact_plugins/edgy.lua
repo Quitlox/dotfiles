@@ -26,53 +26,46 @@ local function filter_bt(type)
     end
 end
 
+local function filter_terminal_wins(pos)
+    return function(_buf, win)
+        return vim.w[win].snacks_win and vim.w[win].snacks_win.position == pos and vim.w[win].snacks_win.relative == "editor" and not vim.w[win].trouble_preview
+    end
+end
+
 --+- Keymaps ------------------------------------------------+
 -- vim.keymap.set("n", "<leader>os", "<cmd>lua require('edgy').toggle()<cr>", { desc = "Open Sidebar" })
 
 --+- Setup --------------------------------------------------+
 require("edgy").setup({
+    -- stylua: ignore start
     left = {
-        { ft = "neo-tree", filter = filter_nt_source_neq("document_symbols"), wo = { winbar = "    File Explorer" } },
-        { ft = "dapui_scopes", size = { height = 0.125 }, wo = { winbar = " 󰒉  Scopes" } },
-        { ft = "dapui_breakpoints", size = { height = 0.125 }, wo = { winbar = "    Breakpoints" } },
-        { ft = "dapui_stacks", size = { height = 0.125 }, wo = { winbar = "    Call Stack" } },
-        { ft = "dapui_watches", size = { height = 0.125 }, wo = { winbar = "   Watches" } },
+        { title = "Neotree",         ft = "neo-tree",          wo = { winbar = "    File Explorer" },                            filter = filter_nt_source_neq("document_symbols") },
+        { title = "DAP Scopes",      ft = "dapui_scopes",      wo = { winbar = "  󰒉  Scopes" },                                   size = { height = 0.125 } },
+        { title = "DAP Breakpoints", ft = "dapui_breakpoints", wo = { winbar = "    Breakpoints" },                              size = { height = 0.125 } },
+        { title = "DAP Call Stack",  ft = "dapui_stacks",      wo = { winbar = "    Call Stack" },                               size = { height = 0.125 } },
+        { title = "DAP Watches",     ft = "dapui_watches",     wo = { winbar = "    Watches" },                                  size = { height = 0.125 } },
     },
     right = {
-        { ft = "neotest-summary" },
-        { title = "Outline", ft = "neo-tree", filter = filter_nt_source_eq("document_symbols"), wo = { winbar = "  󰙅  Outline" } },
-
-        {
-            ft = "snacks_terminal",
-            size = { width = 80 },
-            wo = { winbar = "  󰜎  Task: %{b:term_title}" },
-            filter = function(_buf, win)
-                return vim.w[win].snacks_win and vim.w[win].snacks_win.position == "right" and vim.w[win].snacks_win.relative == "editor" and not vim.w[win].trouble_preview
-            end,
-        },
+        { title = "Neotest",         ft = "neotest-summary",   wo = { winbar = "    Tests" } },
+        { title = "Outline",         ft = "neo-tree",          wo = { winbar = "  󰙅  Outline" },                                  filter = filter_nt_source_eq("document_symbols") },
+        { title = "Terminal",        ft = "snacks_terminal",   wo = { winbar = "  󰜎  Task: %{b:term_title}" },                    size = { width = 80 },   filter = filter_terminal_wins("right") },
     },
     bottom = {
-        { title = "Overseer", size = { height = 20 }, ft = "OverseerList", wo = { winbar = "    Overseer" } },
-        { ft = "NeogitStatus", size = { height = 20 }, wo = { winbar = "    Neogit" } },
-        { ft = "gitlab", wo = { winbar = "    Gitlab" } },
+        { title = "Overseer",        ft = "OverseerList",      wo = { winbar = "    Overseer" },                                 size = { height = 20 } },
+        { title = "Neogit",          ft = "NeogitStatus",      wo = { winbar = "    Neogit" },                                   size = { height = 20 } },
+        { title = "Gitlab",          ft = "gitlab",            wo = { winbar = "    Gitlab" } },
 
-        { ft = "trouble", size = { height = 15 }, wo = { winbar = "  󰍉  Trouble" } },
-        { ft = "qf", title = "QuickFix", wo = { winbar = "  󰍉  QuickFix" } },
-        { ft = "help", size = { height = 20 }, filter = filter_bt("help"), wo = { winbar = "    Help" } },
-        { ft = "spectre_panel", size = { height = 0.4 } },
+        { title = "Trouble",         ft = "trouble",           wo = { winbar = "  󰍉  Trouble" },                                  size = { height = 15 } },
+        { title = "QuickFix",        ft = "qf",                wo = { winbar = "  󰍉  QuickFix" } },
+        { title = "Help",            ft = "help",              wo = { winbar = "    Help" },                                     size = { height = 20 },  filter = filter_bt("help") },
+        { title = "Spectre",         ft = "spectre_panel",     wo = { winbar = "  󰛔  Find & Replace" },                           size = { height = 0.4 } },
 
-        { ft = "dap-repl", wo = { winbar = "  󰜎 Dap REPL" } },
-        { ft = "dapui_console", wo = { winbar = "  󰆍  DAP Console" } },
+        { title = "DAP REPL",        ft = "dap-repl",          wo = { winbar = "  󰜎  Dap REPL" } },
+        { title = "DAP Console",     ft = "dapui_console",     wo = { winbar = "  󰆍  DAP Console" } },
 
-        {
-            ft = "snacks_terminal",
-            size = { height = 0.4 },
-            wo = { winbar = "    %{b:snacks_terminal.id}: %{b:term_title}" },
-            filter = function(_buf, win)
-                return vim.w[win].snacks_win and vim.w[win].snacks_win.position == "bottom" and vim.w[win].snacks_win.relative == "editor" and not vim.w[win].trouble_preview
-            end,
-        },
+        { title = "Terminal",        ft = "snacks_terminal",   wo = { winbar = "    %{b:snacks_terminal.id}: %{b:term_title}" }, size = { height = 0.4 }, filter = filter_terminal_wins("bottom") },
     },
+    -- stylua: ignore end
 
     animate = {
         enabled = false,

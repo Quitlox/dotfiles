@@ -10,13 +10,14 @@ require("barbecue").setup({
 })
 
 vim.api.nvim_create_autocmd({ "WinResized", "BufWinEnter", "CursorHold", "InsertLeave" }, {
-    group = vim.api.nvim_create_augroup("barbecue.updater", { clear = true }),
+    group = vim.api.nvim_create_augroup("MyBarbecueUpdate", { clear = true }),
     callback = function()
         require("barbecue.ui").update()
     end,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("MyBarbecueAttach", { clear = true }),
     callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)

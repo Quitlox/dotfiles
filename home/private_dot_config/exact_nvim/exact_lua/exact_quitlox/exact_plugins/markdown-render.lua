@@ -5,6 +5,7 @@
 
 require("render-markdown").setup({
     enabled = true,
+    file_types = { "markdown", "Avante" },
     win_options = {
         concealcursor = {
             -- default = vim.api.nvim_get_option_value("concealcursor", {}),

@@ -59,10 +59,6 @@ require("bufferline").setup({
 })
 
 --+- Keymaps ------------------------------------------------+
--- stylua: ignore start
-vim.keymap.set("n", "<leader>bb", "<cmd>BufferLinePick<cr>", { desc = "Buffer Pick" })
--- stylua: ignore end
-
 vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 

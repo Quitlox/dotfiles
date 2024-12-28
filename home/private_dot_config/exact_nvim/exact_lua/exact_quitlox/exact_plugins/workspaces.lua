@@ -24,6 +24,7 @@ local function to_possesion_path(path)
 end
 
 require("workspaces").setup({
+    cd_type = "tab",
     hooks = {
         add = {},
         remove = {},
@@ -35,15 +36,21 @@ require("workspaces").setup({
             local possession_session = require("possession.session")
 
             local curr_path = workspaces.path()
-            if not curr_path then return end
+            if not curr_path then
+                return
+            end
 
             local autosave_info = possession_session.autosave_info()
-            if not possession_config.autosave.on_load or not autosave_info then return end
+            if not possession_config.autosave.on_load or not autosave_info then
+                return
+            end
 
             local next_session = possession_paths.session(to_possesion_path(path))
             if next_session:exists() then
                 local session_data = vim.json.decode(next_session:read())
-                if session_data.name == autosave_info.name then return end
+                if session_data.name == autosave_info.name then
+                    return
+                end
             end
 
             possession_session.autosave()

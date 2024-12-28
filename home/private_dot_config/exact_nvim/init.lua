@@ -9,6 +9,8 @@ require("quitlox.config.options")
 require("quitlox.config.commands")
 require("quitlox.config.autocmds")
 require("quitlox.config.mappings")
+require("quitlox.config.environment.kitty")
+require("quitlox.config.environment.neovide")
 
 -- Debugging
 local osvpath = vim.fn.expand("~") .. "/.local/share/nvim_new/rocks/lib/luarocks/rocks-5.1" .. "/one-small-step-for-vimkind"

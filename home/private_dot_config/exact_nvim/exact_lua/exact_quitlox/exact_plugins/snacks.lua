@@ -7,7 +7,7 @@ require("snacks").setup({
     scratch = {},
     toggle = {},
     quickfile = { exclude = { "latex" } },
-    scroll = {},
+    scroll = { enabled = vim.fn.exists("g:neovide") == 0 },
     -- statuscolumn = {
     --     left = { "git", "sign" },
     --     right = { "mark", "fold" },

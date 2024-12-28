@@ -4,7 +4,7 @@
 
 vim.opt.sessionoptions = vim.opt.sessionoptions:remove("blank")
 vim.opt.sessionoptions = vim.opt.sessionoptions:remove("folds")
-vim.opt.sessionoptions = vim.opt.sessionoptions:append("buffers")
+-- vim.opt.sessionoptions = vim.opt.sessionoptions:append("buffers")
 vim.opt.sessionoptions = vim.opt.sessionoptions:append("localoptions")
 
 -- When neo-tree is loaded, restore the state of the tree (if any)
@@ -69,7 +69,6 @@ require("possession").setup({
         end,
     },
     plugins = {
-        delete_hidden_buffers = {},
         nvim_tree = false,
         neo_tree = true,
         symbols_outline = false,
