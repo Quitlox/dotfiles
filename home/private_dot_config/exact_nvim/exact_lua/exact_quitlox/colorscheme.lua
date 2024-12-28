@@ -88,7 +88,6 @@ require("catppuccin").setup({
         all = function(colors)
             return {
                 NeoTreeCursorLine = { style = { "bold" } },
-                -- WinSeparator = { bg = colors.base, fg = colors.base },
                 EdgyTitle = { bg = colors.crust, fg = colors.blue, style = { "bold" } },
                 EdgyWinBar = { bg = colors.crust },
                 EdgyIconActive = { bg = colors.crust, fg = colors.peach },

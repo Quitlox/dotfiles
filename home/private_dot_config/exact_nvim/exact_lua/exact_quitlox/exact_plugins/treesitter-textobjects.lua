@@ -3,43 +3,30 @@
 -- | Text Objects                                            |
 -- +---------------------------------------------------------+
 
-require("which-key").add({
-    { "<leader>a", desc = "Swap Next" },
-    { "<leader>A", desc = "Swap Previous" },
-})
-
 require("nvim-treesitter.configs").setup({
     textobjects = {
         move = {
             enable = true,
             lookahead = true,
+            set_jumps = false,
 
             goto_next_start = {
                 ["]f"] = "@function.outer",
-                ["]C"] = "@class.outer",
+                ["]]"] = "@class.outer",
                 ["]a"] = "@parameter.inner",
-                -- ["]b"] = "@block.outer", -- Used for breakpoing
-                ["]l"] = "@loop.outer",
             },
             goto_next_end = {
                 ["]F"] = "@function.outer",
-                -- ["]C"] = "@class.outer",
                 ["]A"] = "@parameter.outer",
-                -- ["]B"] = "@block.outer", -- Used for breakpoing
-                ["]L"] = "@loop.outer",
             },
             goto_previous_start = {
                 ["[f"] = "@function.outer",
-                ["[C"] = "@class.outer",
+                ["[["] = "@class.outer",
                 ["[a"] = "@parameter.inner",
-                -- ["[b"] = "@block.outer",
-                ["[l"] = "@loop.outer",
             },
             goto_previous_end = {
                 ["[F"] = "@function.outer",
-                -- ["[C"] = "@class.outer",
                 ["[A"] = "@parameter.outer",
-                -- ["[B"] = "@block.outer",
                 ["[L"] = "@loop.outer",
             },
         },
@@ -50,10 +37,10 @@ require("nvim-treesitter.configs").setup({
             keymaps = {
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
-                ["aC"] = "@class.outer",
-                ["iC"] = "@class.inner",
+                ["a["] = "@class.outer",
+                ["i["] = "@class.inner",
+                ["aa"] = "@parameter.outer",
                 ["ad"] = "@statement.outer",
-                ["id"] = "@statement.inner", -- Not used by any language
             },
             -- You can choose the select mode (default is charwise 'v')
             selection_modes = {
@@ -66,11 +53,32 @@ require("nvim-treesitter.configs").setup({
         swap = {
             enable = true,
             swap_next = {
-                ["<leader>a"] = "@parameter.inner",
+                ["<leader>a"] = { query = "@parameter.inner", desc = "Swap Next" },
             },
             swap_previous = {
-                ["<leader>A"] = "@parameter.inner",
+                ["<leader>A"] = { query = "@parameter.inner", desc = "Swap Previous" },
             },
         },
     },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("MyPythonTextObjects", { clear = true }),
+    pattern = "python",
+    callback = function()
+        require("nvim-treesitter.configs").setup({
+            textobjects = {
+                move = {
+                    goto_next_start = {
+                        ["]f"] = "@function.name",
+                        ["]]"] = "@class.name",
+                    },
+                    goto_previous_start = {
+                        ["[f"] = "@function.name",
+                        ["[["] = "@class.name",
+                    },
+                },
+            },
+        })
+    end,
 })
