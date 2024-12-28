@@ -201,6 +201,7 @@ function __bind_fzf_keys() {
   bindkey '^f' fzf_find_file_current
   bindkey '^d' fzf_find_directory_current
 
+  FZF_ALT_C_COMMAND="" # <A-c> is also <Esc-c>, which is annoying in vim
   source <(fzf --zsh)
 }
 if [[ -n "$commands[fzf]" ]]; then
