@@ -1,5 +1,9 @@
 - Changes
+    - [ ] Adopt remote-nvim.nvim
     - [ ] Adopt edgy-group.nvim
+    - [ ] Adopt nvim-scissors
+    - [ ] Adopt Obsidian.nvim
+    - [ ] Adopt nvim-ufo
     - [ ] replace spectre with grug-far -> integrate in sidebar and trouble
     - [ ] Update gp.nvim configuration -> fix workflow. make it easier to toggle
       float, delete chats, and split mode integration with edgy
