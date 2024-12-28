@@ -163,18 +163,10 @@ function find_file_command() {
     find_cmd+=" -type f -print 2> /dev/null | fzf"
     echo $find_cmd
 }
-export FZF_COMPLETION_TRIGGER=''
+# export FZF_COMPLETION_TRIGGER=''
 function __bind_fzf_keys() {
   function fzf_select_directory_home() {
     local find_cmd=$(open_dir_command ~)
-    local dir=$(eval "$find_cmd")
-    if [ -n "$dir" ]; then
-        cd "$dir"
-        zle reset-prompt
-    fi
-  }
-  function fzf_select_directory_cwd() {
-    local find_cmd=$(open_dir_command .)
     local dir=$(eval "$find_cmd")
     if [ -n "$dir" ]; then
         cd "$dir"
@@ -206,9 +198,10 @@ function __bind_fzf_keys() {
   zle -N fzf_find_file_current
   zle -N fzf_find_directory_current
   bindkey '^o' fzf_select_directory_home
-  # bindkey '^i' fzf_select_directory_cwd
   bindkey '^f' fzf_find_file_current
   bindkey '^d' fzf_find_directory_current
+
+  source <(fzf --zsh)
 }
 if [[ -n "$commands[fzf]" ]]; then
   __bind_fzf_keys
@@ -216,7 +209,7 @@ fi
 zinit ice wait"0b" atload'__bind_fzf_keys' \
   if'[[ -z "$commands[fzf]" ]]' \
   as"command" from"gh-r" pick"fzf"
-zinit load junegunn/fzf-bin
+zinit load junegunn/fzf
 
 ### Git Fuzzy
 zinit ice as"program" pick"bin/git-fuzzy"
@@ -368,6 +361,9 @@ zinit load zsh-users/zsh-completions
 # Fast Syntax Highlighting
 zinit ice wait atinit'zpcompinit; zpcdreplay'
 zinit load zdharma-continuum/fast-syntax-highlighting
+
+# Zsh Window Title
+zinit light olets/zsh-window-title
 
 ############################################################
 ### Starship Prompt                                      ###
