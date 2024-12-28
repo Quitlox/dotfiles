@@ -4,7 +4,7 @@
 
 local config = {
     cwd_only = true,
-    match_algorithm = "fzf",
+    match_algorithm = "fzy",
     ignore_patterns = { "*.git/*", "*/tmp/*", ".venv/*" },
 }
 config = vim.tbl_extend("keep", config, require("telescope.themes").get_dropdown({}))

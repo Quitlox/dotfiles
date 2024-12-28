@@ -32,6 +32,7 @@ require("blink-cmp").setup({
             ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
             ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
             ["<Enter>"] = {}, -- Ensures that enter both selects and accepts
+            ["<C-Space>"] = { "show" },
         },
     },
     completion = {

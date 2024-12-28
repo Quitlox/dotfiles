@@ -51,7 +51,7 @@
 "comment-box.nvim" = "scm"
 
 # +- Completion ---------------------------------------------+
-"blink.cmp" = { git = "saghen/blink.cmp", rev = "v0.8.2" }
+"blink.cmp" = { git = "saghen/blink.cmp", rev = "434ea2b05c2bae0cff6249893c8324fa3a56d865" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.1.2" }
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
 # "nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } -- not compatible with blink
@@ -61,8 +61,9 @@
 
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = "scm"
-"nvim-dap-ui" = "4.0.0"
+"nvim-dap-ui" = { git = "rcarriga/nvim-dap-ui", rev = "e94d98649dccb6a3884b66aabc2e07beb279e535" }
 "nvim-dap-virtual-text" = "scm"
+"nvim-dap-repl-highlights" = { git = "liadoz/nvim-dap-repl-highlights", rev = "a7512fc0a0de0c0be8d58983939856dda6f72451" }
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }
 
 # +- Git ----------------------------------------------------+
@@ -76,7 +77,6 @@
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
 "glance.nvim" = "scm"
 "hover.nvim" = "scm"
-"lsp_signature.nvim" = "0.3.1"
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim", rev = "573ff93c47898967efdfbc6587a1a39e3c2d365e" }
 
@@ -177,7 +177,7 @@
 # +- Finder -------------------------------------------------+
 # Telescope
 "telescope.nvim" = { git = "nvim-telescope/telescope.nvim", rev = "2eca9ba22002184ac05eddbe47a7fe2d5a384dfc" }
-"telescope-fzf-native.nvim" = { git = "nvim-telescope/telescope-fzf-native.nvim", rev = "dae2eac9d91464448b584c7949a31df8faefec56", build = "make" }
+"telescope-fzy-native.nvim"= { git = "nvim-telescope/telescope-fzy-native.nvim", rev = "282f069504515eec762ab6d6c89903377252bf5b" }
 "telescope-helpgrep.nvim" = { git = "catgoose/telescope-helpgrep.nvim", rev = "641b2f1b4559a67731dc42fd84203817ebd6e2ce" }
 "smart-open.nvim" = "scm"
 # Keymaps
@@ -299,21 +299,6 @@ items = [
   "treesj",
 ]
 config = "quitlox.plugins.editor"
-
-# +- Integrated Developer Environment -----------------------+
-[bundles.dap]
-items = ["nvim-dap-ui", "nvim-dap-virtual-text", "goto-breakpoints.nvim"]
-config = "quitlox.plugins.ide.dap"
-
-[bundles.lsp]
-items = [
-  "glance.nvim",
-  "hover.nvim",
-  "lsp_signature.nvim",
-  "lsplinks.nvim",
-  "workspace-diagnostics.nvim",
-]
-config = "quitlox.plugins.ide.lsp"
 
 # +----------------------------------------------------------+
 # | Config                                                   |

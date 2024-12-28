@@ -1,5 +1,4 @@
 
-- [ ] get rid of some bundles
 - [ ] Plugins:
     - [ ] switch from possesion to resession
         - [ ] make neotest behave after switching session
@@ -27,26 +26,21 @@
         - [ ] Replace targets.nvim and treesitter-textobjects with mini.ai and
           <swap plugin>
 - [ ] Bugs:
-    - [ ] dap: Debugging leaves typehints once dapui is closed (specifically osv)
     - [x] autopairs: lua functions not being auto-closed
     - [ ] terminal: does not show venv if already activated on startup
 - [ ] Miscellenous:
     - [ ] only render window seperators for editor windows
-    - [ ] oil: on file delete, close buffer
     - [ ] neo-tree: figure out how to keep filter
     - [ ] zsh: <esc>c opens fzf which is frustrating
     - [ ] venv-selector:
         - [ ] cannot find venv when not in python file
-        - [ ] lualine component missing
     - [ ] python:
         - [ ] skip decorators while navigating functions
 
 - [ ] To Investigate
-    - [ ] osv: error is thrown while debugging neovim through osv
     - [ ] dap-ui: "DAP Watches" shows up as listed buffer in bufferline if edited
     - [ ] snacks.profile: investigate sluggishness when switching windows from
       terminal into LSP enabled window (python)
-    - [x] snacks.profile: cannot start profile due to error
     - [ ] hang while exiting neovim
 - Requires Contribution:
     - [ ] overseer: map <esc> in help_win (not configurable currently)

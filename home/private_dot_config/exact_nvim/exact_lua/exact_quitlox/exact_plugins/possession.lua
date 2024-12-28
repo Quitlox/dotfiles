@@ -52,6 +52,7 @@ require("possession").setup({
             return user_data
         end,
         after_load = function(name, user_data)
+            vim.notify("Session loaded: " .. name, "info", { title = "Possession" })
             if user_data then
                 if user_data.venv then
                     require("possession.plugins.venv-selector").after_load(nil, name, user_data.venv)

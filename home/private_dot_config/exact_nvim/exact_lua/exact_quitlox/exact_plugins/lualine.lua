@@ -145,5 +145,5 @@ require("lualine").setup({
         lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
     },
 
-    extensions = { "fzf", "man", "neo-tree", "nvim-dap-ui", "oi", "overseer", "quickfix", "trouble" },
+    extensions = { "fzf", "man", "neo-tree", "nvim-dap-ui", "oil", "overseer", "quickfix", "trouble" },
 })
