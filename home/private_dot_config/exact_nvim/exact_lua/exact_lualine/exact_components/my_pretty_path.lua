@@ -11,7 +11,9 @@ local icon_padding = {
 setmetatable(icon_padding, {
     __index = function(table, key)
         local value = rawget(table, key)
-        if value ~= nil then return value end
+        if value ~= nil then
+            return value
+        end
 
         return 1
     end,
@@ -27,7 +29,7 @@ function M:init(options)
         modified = "", -- somewhat redundant if using modified highlight
         readonly = " ",
         newfile = "", -- somewhat redundant if using newfile highlight
-        ellipsis = "…", -- used between shortened directory parts
+        ellipsis = "..", -- used between shortened directory parts
     }
 
     self.options.custom_icons = {

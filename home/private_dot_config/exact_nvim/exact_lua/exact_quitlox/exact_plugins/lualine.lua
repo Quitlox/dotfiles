@@ -90,8 +90,15 @@ local git_blame = {
 
 --+- Customize Modules --------------------------------------+
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
-local midsection = { "%=", color = nil }
 local filetype = { "filetype", colored = false }
+local edgy_group = function()
+    local success, mod = pcall(require, "edgy-group.stl")
+    if not success then
+        return ""
+    end
+
+    return table.concat(mod.get_statusline("bottom"))
+end
 
 --+- Options ------------------------------------------------+
 vim.opt.laststatus = 3
@@ -109,6 +116,7 @@ require("lualine").setup({
     options = {
         theme = catppuccin_theme,
         -- component_separators = { left = "", right = "" },
+        component_separators = "",
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
             winbar = {
@@ -131,7 +139,7 @@ require("lualine").setup({
     sections = {
         lualine_a = { fancy_cwd },
         lualine_b = { branch },
-        lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, midsection },
+        lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
         lualine_x = { "my_fancy_diff", "my_fancy_diagnostics", "overseer", active_linters },
         lualine_y = { "mixed_indent", encoding, fileformat, "my_fancy_lsp_servers", python_venv },
         lualine_z = { "my_fancy_searchcount", "my_fancy_location" },

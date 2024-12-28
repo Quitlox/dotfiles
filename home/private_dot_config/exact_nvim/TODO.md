@@ -1,6 +1,5 @@
 - Changes
     - [ ] Adopt remote-nvim.nvim
-    - [ ] Adopt edgy-group.nvim
     - [ ] Adopt nvim-scissors
     - [ ] Adopt Obsidian.nvim
     - [ ] Adopt nvim-ufo
@@ -29,6 +28,7 @@
 - Bugs:
     - [ ] kitty settings are reverted when another neovim instance is opened
     - [ ] completion in cmdline closes after a few seconds / tabs
+    - [ ] tab completion is cmd line is wachy: <tab> completion with paths is janky
 
 - [ ] To Investigate
     - [ ] dap-ui: "DAP Watches" shows up as listed buffer in bufferline if edited

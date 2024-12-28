@@ -10,7 +10,7 @@
 # +----------------------------------------------------------+
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
-"nvim" = { git = "catppuccin/nvim", rev = "5d9582dbbe37e465f7f93ca6e3dd60cd20eea44f", branch = "main", pin = true } # pinned because of outdated release (require: f8a155ab5891c5d2fb709b7e85627f1783d5a5d9)
+"nvim" = { git = "catppuccin/nvim", rev = "5d9582dbbe37e465f7f93ca6e3dd60cd20eea44f", branch = "main", pin = true }                        # pinned because of outdated release (require: f8a155ab5891c5d2fb709b7e85627f1783d5a5d9)
 "nvim-web-devicons" = { git = "nvim-tree/nvim-web-devicons", rev = "63f552a7f59badc6e6b6d22e603150f0d5abebb7" }
 "mini.icons" = "0.14.0"
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "c8f63933ee013c1e0a26091d58131e060546f01f" }
@@ -182,7 +182,7 @@
 # +- Finder -------------------------------------------------+
 # Telescope
 "telescope.nvim" = { git = "nvim-telescope/telescope.nvim", rev = "2eca9ba22002184ac05eddbe47a7fe2d5a384dfc" }
-"telescope-fzy-native.nvim"= { git = "nvim-telescope/telescope-fzy-native.nvim", rev = "282f069504515eec762ab6d6c89903377252bf5b" }
+"telescope-fzy-native.nvim" = { git = "nvim-telescope/telescope-fzy-native.nvim", rev = "282f069504515eec762ab6d6c89903377252bf5b" }
 "telescope-helpgrep.nvim" = { git = "catgoose/telescope-helpgrep.nvim", rev = "641b2f1b4559a67731dc42fd84203817ebd6e2ce" }
 "smart-open.nvim" = "scm"
 # Keymaps
@@ -220,11 +220,11 @@
 # +----------------------------------------------------------+
 # "fixcursorhold.nvim" = { git = "antoinemadec/FixCursorHold.nvim", rev = "1900f89dc17c603eec29960f57c00bd9ae696495" }
 # "promise-async" = { git = "kevinhwang91/promise-async", rev = "119e8961014c9bfaf1487bf3c2a393d254f337e2" } # outdated (semver, luarocks)
-# "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "2d9b06177a975543726ce5c73fca176cedbffe9d" } # outdated (semver, luarocks)
 # "nvim-nio" = "1.10.0"
-"nui.nvim" = { git = "muniftanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" } # avante.nvim, outdated (semver, luarocks)
-"dressing.nvim" = "3.1.1"                                                                       # legendary.nvim, avante.nvim
-"sqlite.lua" = { git = "kkharji/sqlite.lua", rev = "cf482586c4f24e197375235a6e310b9b9e80ba83" } # legendary.nvim, outdated (semver, luarocks)
+"plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "2d9b06177a975543726ce5c73fca176cedbffe9d" } # outdated (semver, luarocks)
+"nui.nvim" = { git = "MunifTanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" }      # avante.nvim, outdated (semver, luarocks)
+"dressing.nvim" = "3.1.1"                                                                            # legendary.nvim, avante.nvim
+"sqlite.lua" = { git = "kkharji/sqlite.lua", rev = "cf482586c4f24e197375235a6e310b9b9e80ba83" }      # legendary.nvim, outdated (semver, luarocks)
 "image.nvim" = { git = "3rd/image.nvim", rev = "v1.3.0" }
 "magick" = "1.6.0"
 
@@ -286,25 +286,6 @@ tree-sitter-yuck = "scm"
 # +----------------------------------------------------------+
 # | Bundles                                                  |
 # +----------------------------------------------------------+
-
-[bundles.editor]
-items = [
-  "dial.nvim",
-  "mini.misc",
-  "mini.align",
-  "highlight-undo.nvim",
-  "wrapping.nvim",
-  "yanky.nvim",
-  "nvim-colorizer.lua",
-  "vim-illuminate",
-  "indent-blankline.nvim",
-  "nvim-surround",
-  "flash.nvim",
-  "vim-repeat",
-  "guess-indent.nvim",
-  "treesj",
-]
-config = "quitlox.plugins.editor"
 
 # +----------------------------------------------------------+
 # | Config                                                   |

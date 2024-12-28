@@ -39,29 +39,29 @@ end
 require("edgy").setup({
     -- stylua: ignore start
     left = {
-        { title = "Neotree",         ft = "neo-tree",          wo = { winbar = "    File Explorer" },                            filter = filter_nt_source_neq("document_symbols") },
+        { title = "Neo-Tree",        ft = "neo-tree",          wo = { winbar = "    File Explorer" },                            filter = filter_nt_source_neq("document_symbols") },
         { title = "DAP Scopes",      ft = "dapui_scopes",      wo = { winbar = "  󰒉  Scopes" },                                   size = { height = 0.125 } },
         { title = "DAP Breakpoints", ft = "dapui_breakpoints", wo = { winbar = "    Breakpoints" },                              size = { height = 0.125 } },
-        { title = "DAP Call Stack",  ft = "dapui_stacks",      wo = { winbar = "    Call Stack" },                               size = { height = 0.125 } },
+        { title = "DAP Call Stack",  ft = "dapui_stacks",      wo = { winbar = "    Call Stack" },                               size = { height = 0.125 } },
         { title = "DAP Watches",     ft = "dapui_watches",     wo = { winbar = "    Watches" },                                  size = { height = 0.125 } },
     },
     right = {
         { title = "Neotest",         ft = "neotest-summary",   wo = { winbar = "    Tests" } },
-        { title = "Outline",         ft = "neo-tree",          wo = { winbar = "  󰙅  Outline" },                                  filter = filter_nt_source_eq("document_symbols") },
-        { title = "Terminal",        ft = "snacks_terminal",   wo = { winbar = "  󰜎  Task: %{b:term_title}" },                    size = { width = 80 },   filter = filter_terminal_wins("right") },
+        { title = "Outline",         ft = "neo-tree",          wo = { winbar = "    Outline" },                                  filter = filter_nt_source_eq("document_symbols") },
+        { title = "Overseer Jobs",   ft = "snacks_terminal",   wo = { winbar = "  󰜎  Task: %{b:term_title}" },                    size = { width = 80 },   filter = filter_terminal_wins("right") },
     },
     bottom = {
         { title = "Overseer",        ft = "OverseerList",      wo = { winbar = "    Overseer" },                                 size = { height = 20 } },
         { title = "Neogit",          ft = "NeogitStatus",      wo = { winbar = "    Neogit" },                                   size = { height = 20 } },
-        { title = "Gitlab",          ft = "gitlab",            wo = { winbar = "    Gitlab" } },
+        { title = "Gitlab",          ft = "gitlab",            wo = { winbar = "  󰮠  Gitlab" } },
 
-        { title = "Trouble",         ft = "trouble",           wo = { winbar = "  󰍉  Trouble" },                                  size = { height = 15 } },
-        { title = "QuickFix",        ft = "qf",                wo = { winbar = "  󰍉  QuickFix" } },
-        { title = "Help",            ft = "help",              wo = { winbar = "    Help" },                                     size = { height = 20 },  filter = filter_bt("help") },
-        { title = "Spectre",         ft = "spectre_panel",     wo = { winbar = "  󰛔  Find & Replace" },                           size = { height = 0.4 } },
+        { title = "Trouble",         ft = "trouble",           wo = { winbar = "    Trouble" },                                  size = { height = 15 } },
+        { title = "QuickFix",        ft = "qf",                wo = { winbar = "    QuickFix" } },
+        { title = "Help",            ft = "help",              wo = { winbar = "    Help" },                                     size = { height = 20 },  filter = filter_bt("help") },
+        { title = "Find & Replace",  ft = "spectre_panel",     wo = { winbar = "    Find & Replace" },                           size = { height = 0.4 } },
 
-        { title = "DAP REPL",        ft = "dap-repl",          wo = { winbar = "  󰜎  Dap REPL" } },
-        { title = "DAP Console",     ft = "dapui_console",     wo = { winbar = "  󰆍  DAP Console" } },
+        { title = "DAP REPL",        ft = "dap-repl",          wo = { winbar = "    Dap REPL" } },
+        { title = "DAP Console",     ft = "dapui_console",     wo = { winbar = "    DAP Console" } },
 
         { title = "Terminal",        ft = "snacks_terminal",   wo = { winbar = "    %{b:snacks_terminal.id}: %{b:term_title}" }, size = { height = 0.4 }, filter = filter_terminal_wins("bottom") },
     },
@@ -98,7 +98,7 @@ require("edgy").setup({
     -- },
 
     icons = {
-        closed = "  ",
-        open = "  ",
+        closed = "  ",
+        open = "  ",
     },
 })

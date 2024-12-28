@@ -3,8 +3,11 @@
 -- +---------------------------------------------------------+
 
 --+- Options ------------------------------------------------+
-vim.g.molten_image_provider = "image.nvim"
 vim.g.molten_output_win_max_height = 20
+vim.g.molten_image_provider = "none"
+if vim.fn.exists("g:neovide") == 0 then
+    vim.g.molten_image_provider = "image.nvim"
+end
 
 --+- Check Requirements -------------------------------------+
 vim.api.nvim_create_autocmd("FileType", {
@@ -15,7 +18,9 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         -- Print message if molten is disabled on windows
         -- because I don't want this message printed for every filetype
-        if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.g.neovide ~= nil then vim.notify("molten-nvim is not supported on Windows", vim.log.levels.WARN, { title = "Molten.nvim" }) end
+        if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.g.neovide ~= nil then
+            vim.notify("molten-nvim is not supported on Windows", vim.log.levels.WARN, { title = "Molten.nvim" })
+        end
 
         -- See python.lua for installation of pynvim
     end,
@@ -69,13 +74,15 @@ require("which-key").add({
 -- | 3rd/image.nvim: Render Image in Terminal                |
 -- +---------------------------------------------------------+
 
-require("image").setup({
-    backend = "kitty",
-    integrations = {},
-    max_width = 100,
-    max_height = 12,
-    max_height_window_percentage = math.huge,
-    max_width_window_percentage = math.huge,
-    window_overlap_clear_enabled = true,
-    window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-})
+if vim.fn.exists("g:neovide") == 0 then
+    require("image").setup({
+        backend = "kitty",
+        integrations = {},
+        max_width = 100,
+        max_height = 12,
+        max_height_window_percentage = math.huge,
+        max_width_window_percentage = math.huge,
+        window_overlap_clear_enabled = true,
+        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+    })
+end
