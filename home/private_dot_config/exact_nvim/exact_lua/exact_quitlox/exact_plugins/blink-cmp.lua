@@ -28,17 +28,22 @@ require("blink-cmp").setup({
         ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
         ["<Enter>"] = { "accept", "fallback" },
+
         cmdline = {
-            ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
-            ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
-            ["<Enter>"] = {}, -- Ensures that enter both selects and accepts
+            ["<Tab>"] = { "select_next" },
+            ["<S-Tab>"] = { "select_prev" },
+            ["<Enter>"] = { "accept", "fallback" },
             ["<C-Space>"] = { "show" },
+            ["/"] = { "accept", "fallback" },
+            ["\\"] = { "accept", "fallback" },
         },
     },
     completion = {
         accept = { auto_brackets = { enabled = true } },
         documentation = { auto_show = true },
-        list = { selection = "auto_insert" },
+        list = {
+            selection = "auto_insert",
+        },
 
         -- Setup mini.icons
         menu = {

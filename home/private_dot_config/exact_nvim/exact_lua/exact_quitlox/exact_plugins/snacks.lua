@@ -1,5 +1,3 @@
-vim.o.signcolumn = "auto:2-4"
-
 require("snacks").setup({
     bigfile = { notify = true },
     init = {},
@@ -8,10 +6,12 @@ require("snacks").setup({
     toggle = {},
     quickfile = { exclude = { "latex" } },
     scroll = { enabled = vim.fn.exists("g:neovide") == 0 },
-    -- statuscolumn = {
-    --     left = { "git", "sign" },
-    --     right = { "mark", "fold" },
-    -- },
+    statuscolumn = {
+        -- left = { "git", "sign" },
+        -- right = { "mark", "fold" },
+        left = { "mark", "sign" },
+        right = { "fold", "git" },
+    },
     terminal = {},
 })
 

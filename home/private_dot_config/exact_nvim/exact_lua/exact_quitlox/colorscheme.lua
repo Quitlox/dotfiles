@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
         -- If terminal is kitty, set the background to transparent
         if (vim.env.TERM == "kitty" or vim.env.TERM == "xterm-kitty") and vim.env.KITTY_WINDOW_ID and vim.env.KITTY_LISTEN_ON then
             local mocha = require("catppuccin.palettes").get_palette("mocha")
-            vim.system({ "kitty", "@", "load-config" }, { text = true })
+            vim.system({ "kitty", "@", "load-config", "--match", "id:" .. vim.env.KITTY_WINDOW_ID, "--to=" .. vim.env.KITTY_LISTEN_ON }, { text = true })
             vim.system({ "kitty", "@", "set-spacing", "--match", "id:" .. vim.env.KITTY_WINDOW_ID, "--to=" .. vim.env.KITTY_LISTEN_ON, "margin=15" }, { text = true })
             vim.system({ "kitty", "@", "set-colors", "--match", "id:" .. vim.env.KITTY_WINDOW_ID, "--to=" .. vim.env.KITTY_LISTEN_ON, "background='" .. "#1f2731" .. "'" }, { text = true }):wait()
             vim.system({ "kitty", "@", "set-background-opacity", "--match", "id:" .. vim.env.KITTY_WINDOW_ID, "--to=" .. vim.env.KITTY_LISTEN_ON, "0.3" }, { text = true }):wait()
@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
 --+- Setup --------------------------------------------------+
 require("catppuccin").setup({
     transparent_background = false,
+    term_colors = true,
     -- show_end_of_buffer = false,
 
     integrations = {

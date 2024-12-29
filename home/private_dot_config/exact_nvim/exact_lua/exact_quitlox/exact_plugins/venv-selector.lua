@@ -25,8 +25,3 @@ require("legendary").commands({
     { ":VenvDeactivate", require("quitlox.util.python").deactivate, description = "Deactivate Virtual Env" },
     { ":VenvCreate", require("quitlox.util.python").create_venv_in_cwd, description = "Create Virtual Env" },
 })
-
--- On startup, check whether VIRTUAL_ENV is set and activate it.
--- if os.getenv("VIRTUAL_ENV") then
---     require("quitlox.util.python").activate_venv(os.getenv("VIRTUAL_ENV"), nil, nil)
--- end

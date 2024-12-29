@@ -2,7 +2,7 @@ if vim.fn.exists("g:neovide") == 0 then
     return
 end
 
-vim.o.guifont = "Iosevka:h12"
+vim.o.guifont = "Iosevka:h11"
 -- vim.g.neovide_window_blurred = true
 
 vim.o.mouse = "a"

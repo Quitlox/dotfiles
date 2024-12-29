@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         -- Print message if molten is disabled on windows
         -- because I don't want this message printed for every filetype
-        if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.g.neovide ~= nil then
+        if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
             vim.notify("molten-nvim is not supported on Windows", vim.log.levels.WARN, { title = "Molten.nvim" })
         end
 

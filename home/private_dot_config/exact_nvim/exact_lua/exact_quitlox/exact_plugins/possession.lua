@@ -4,8 +4,32 @@
 
 vim.opt.sessionoptions = vim.opt.sessionoptions:remove("blank")
 vim.opt.sessionoptions = vim.opt.sessionoptions:remove("folds")
--- vim.opt.sessionoptions = vim.opt.sessionoptions:append("buffers")
 vim.opt.sessionoptions = vim.opt.sessionoptions:append("localoptions")
+
+-- On startup, check whether VIRTUAL_ENV is set and activate it.
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        if os.getenv("VIRTUAL_ENV") then
+            vim.notify("Found VIRTUAL_ENV set in terminal, activating it.", "info", { title = "Possession" })
+            require("quitlox.util.python").activate_venv(os.getenv("VIRTUAL_ENV"), nil, nil)
+            return
+        end
+    end,
+})
+
+-- Toggle
+vim.g.toggle_session_auto_save = true
+Snacks.toggle
+    .new({
+        name = "Session Auto Save",
+        set = function(state)
+            vim.g.toggle_session_auto_save = state
+        end,
+        get = function()
+            return vim.g.toggle_session_auto_save
+        end,
+    })
+    :map("<leader>Ts")
 
 -- When neo-tree is loaded, restore the state of the tree (if any)
 require("possession.plugins.neo-tree").setup_events_for_neotree()
@@ -17,23 +41,39 @@ require("possession").setup({
     prompt_no_cr = true,
     autosave = {
         cwd = function()
+            -- never save a session in the home directory, as this is the default path where neovim starts
+            if require("possession.paths").cwd_session_name() == "~" then
+                return false
+            end
+
+            -- prevent overwriting sessions (from README)
             if require("possession.session").exists(require("possession.paths").cwd_session_name()) then
                 return false
             end
 
-            -- check that path is not ~
-            local cwd = vim.fn.getcwd()
-            if cwd == os.getenv("HOME") then
+            return vim.g.toggle_session_auto_save
+        end,
+        current = function()
+            return vim.g.toggle_session_auto_save
+        end,
+        on_load = function()
+            return vim.g.toggle_session_auto_save
+        end,
+        on_quit = function()
+            -- never save a session in the home directory, as this is the default path where neovim starts
+            if require("possession.paths").cwd_session_name() == "~" then
                 return false
             end
 
-            return true
+            return vim.g.toggle_session_auto_save
         end,
-        current = true,
-        on_load = true,
-        on_quit = true,
     },
-    autoload = "auto_cwd",
+    autoload = function()
+        if not require("possession.session").exists(require("possession.paths").cwd_session_name()) then
+        end
+
+        return require("possession.paths").cwd_session_name()
+    end,
     hooks = {
         before_save = function(name)
             local user_data = {}
@@ -97,6 +137,7 @@ require("possession").setup({
 })
 
 require("telescope").load_extension("possession")
+vim.keymap.set("n", "<leader>os", "<cmd>Telescope possession<cr>", { noremap = true, silent = true, desc = "Open Sessions" })
 
 require("legendary").commands({
     { "PossessionSave", description = "Save current session" },
@@ -118,4 +159,19 @@ require("legendary").commands({
     -- { "PossessionListCwd [name]", description = "List available sessions for given cwd", unfinished = true },
 })
 
-vim.keymap.set("n", "<leader>os", "<cmd>Telescope possession<cr>", { noremap = true, silent = true, desc = "Open Sessions" })
+local function delete_and_exit()
+    vim.g.toggle_session_auto_save = false
+
+    local cwd_session_name = require("possession.paths").cwd_session_name()
+    if not require("possession.session").exists(cwd_session_name) then
+        return vim.notify("No session to delete for " .. path, "warning")
+    end
+
+    require("possession").delete(cwd_session_name)
+
+    vim.schedule(function()
+        vim.cmd("qa")
+    end)
+end
+
+require("legendary").func({ delete_and_exit, description = "Possession: Delete Session and Exit" })

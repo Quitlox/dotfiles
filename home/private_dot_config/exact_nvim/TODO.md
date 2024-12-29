@@ -1,4 +1,5 @@
 - Changes
+    - [ ] configure winbar
     - [ ] Adopt remote-nvim.nvim
     - [ ] Adopt nvim-scissors
     - [ ] Adopt Obsidian.nvim
@@ -13,7 +14,7 @@
             reproduce: knowledge-base, tab 1 (neo-tree, md), tab 2 (python, chatgpt)
         - [ ] Do not ask to save changes to "Neotest Output Panel" and "[dap-repl]"
         - [ ] Restore terminal with sessions
-        - [ ] if no restore, then source venv if active
+        - [x] if no restore, then source venv if active
     - [ ] Overseer:
         - [ ] "OverseerQuickAction duplicate" would be convenient
         - [ ] OverseerSaveBundle opens input in seemingly random location
@@ -26,19 +27,19 @@
         - [ ] neotest: detach when switching projects / sessions
                 neotest has no built-in method for doing this
 - Bugs:
-    - [ ] kitty settings are reverted when another neovim instance is opened
-    - [ ] completion in cmdline closes after a few seconds / tabs
-    - [ ] tab completion is cmd line is wachy: <tab> completion with paths is janky
+    - git
+        -  [ ] switching to non-existant branch should checkout, not detach head
+        - [ ] update gitsigns after switching branches via <leader>gb
 
 - [ ] To Investigate
     - [ ] dap-ui: "DAP Watches" shows up as listed buffer in bufferline if edited
     - [ ] snacks.profile: investigate sluggishness when switching windows from
       terminal into LSP enabled window (python)
-    - [ ] hang while exiting neovim
 - Requires Contribution:
     - [ ] overseer: map <esc> in help_win (not configurable currently)
     - [ ] treewalker.nvim: allow skipping certain nodes
     - [ ] treewalker.nvim: automatically disable in buffers without parsers/lang
+    - [ ] rocks.nvim: provide warning for outdated plugins (both scm vs git and pin vs scm)
 
 Desktop:
 - [ ] Eww: Bar should use fill icons on select

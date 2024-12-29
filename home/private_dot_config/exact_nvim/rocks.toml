@@ -22,12 +22,13 @@
 "dial.nvim" = "0.4.0"
 "mini.misc" = "0.14.0"
 "highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim", rev = "5f588b420179a31d7073854bfd07ed9d5f364645" }
-"nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc", pin = true } # pinned because of outdated release
+# hlslens causes commandline completion to dissapear: https://github.com/kevinhwang91/nvim-hlslens/issues/75
+# "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc", pin = true } # pinned because of outdated release
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" }
-"yanky.nvim" = "scm"
+"yanky.nvim" = { git = "gbprod/yanky.nvim", rev = "f9b905994cccf3c55f41af3a0a1f4c76c844e411" }
 
 # +- Visual Enhancements ------------------------------------+
-"nvim-colorizer.lua" = "scm"
+"nvim-colorizer.lua" = { git = "norcalli/nvim-colorizer.lua", rev = "a065833f35a3a7cc3ef137ac88b5381da2ba302e" }
 "indent-blankline.nvim" = "3.8.6"
 "vim-illuminate" = { git = "rrethy/vim-illuminate", rev = "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" }
 
@@ -35,7 +36,7 @@
 "nvim-surround" = "2.1.5"
 "flash.nvim" = "2.1.0"
 "vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
-"nvim-spider" = "scm"
+"nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "4055f3c82ec3e712b83d8149cbc5489e442b826e" }
 "treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "1fa5cbb697a456a3d501f72e04877931f8687cc1" }
 "mini.align" = "0.14.0"
 
@@ -62,7 +63,7 @@
 "copilot.vim" = { git = "github/copilot.vim", rev = "v1.41.0" }
 
 # +- Debugging ----------------------------------------------+
-"nvim-dap" = "scm"
+"nvim-dap" = { git = "mfussenegger/nvim-dap", rev = "665d3569a86395fe0dab85efbdb26d7d2ee57e49" }
 "nvim-dap-ui" = { git = "rcarriga/nvim-dap-ui", rev = "e94d98649dccb6a3884b66aabc2e07beb279e535" }
 "nvim-dap-virtual-text" = "scm"
 "nvim-dap-repl-highlights" = { git = "liadoz/nvim-dap-repl-highlights", rev = "a7512fc0a0de0c0be8d58983939856dda6f72451" }
@@ -88,15 +89,15 @@
 "nvim-spectre" = "scm"
 
 # +- Session and Project Management -------------------------+
-"possession.nvim" = "scm"
+"possession.nvim" = { git = "jedrzejboczar/possession.nvim", rev = "246050074fa9878ca414badc613e0645867308b5" }
 "workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "55a1eb6f5b72e07ee8333898254e113e927180ca" }
 
 # +- Test ---------------------------------------------------+
-"neotest" = "5.6.1"
+"neotest" = "5.7.0"
 
 # +- Tooling ------------------------------------------------+
 "conform.nvim" = "8.3.0"
-"nvim-lint" = "scm"
+"nvim-lint" = { git = "mfussenegger/nvim-lint", rev = "1fea92f1d9908eaa5eb8bafe08b4293d7aadaa55" }
 "nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "d4a4b11dd5e9928d222db3ab2292ae0522c521a4" }
 
 # +- Treesitter ---------------------------------------------+
@@ -128,7 +129,7 @@
 "schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.schemastore" }
 # +- Go -----------------------------------------------------+
 "go.nvim" = { version = "0.9.0", ft = ["go", "gomod"] }
-# "guihua.lua" = { git = "ray-x/guihua.lua", rev = "d783191eaa75215beae0c80319fcce5e6b3beeda" } # NOTE: Overwrites fzy, causing issues
+# "guihua.lua" = { git = "ray-x/guihua.lua", rev = "d783191eaa75215beae0c80319fcce5e6b3beeda" } # NOTE: Overwrites fzy which may cause issues (fixed for now, but still), maybe switch to use gopher instead if I ever need it
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v4.4.1", ft = "http" }
 # +- LaTeX --------------------------------------------------+
@@ -296,7 +297,7 @@ plugins_dir = "quitlox/plugins/"
 auto_setup = false
 
 [dev]
-dir = "/home/quitlox/Workspace/neovim-plugins"
+path = "/home/quitlox/Workspace/neovim-plugins"
 
 # +----------------------------------------------------------+
 # | Graveyard                                                |

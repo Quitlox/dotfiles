@@ -33,7 +33,10 @@ require("oil").setup({
         ["q"] = "actions.close",
         ["<esc>"] = "actions.close",
         -- stylua: ignore
-        ["<C-s>"] = function() require("oil").save({}, on_save_callback) end,
+        ["<C-s>"] = { callback = function() require("oil").save({}, on_save_callback) end, desc = "Commit the changes", mode = "n" },
+        ["<C-b>"] = "actions.select_vsplit",
+        ["<C-v>"] = "actions.select_split",
+        ["<C-h>"] = false,
     },
 })
 
