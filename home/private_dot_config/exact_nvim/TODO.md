@@ -1,12 +1,6 @@
 - Changes
-    - [ ] configure winbar
     - [ ] Adopt remote-nvim.nvim
-    - [ ] Adopt nvim-scissors
     - [ ] Adopt Obsidian.nvim
-    - [ ] Adopt nvim-ufo
-    - [ ] replace spectre with grug-far -> integrate in sidebar and trouble
-    - [ ] Update gp.nvim configuration -> fix workflow. make it easier to toggle
-      float, delete chats, and split mode integration with edgy
     - [ ] Go over all commands, check if enough are present
     - [ ] Streamline overseer.nvim integration with snacks.terminal (requires testing, heracles would be a good example)
     - [ ] Switch from possesion to resession
@@ -21,15 +15,14 @@
     - [ ] Replace targets.nvim and treesitter-textobjects with mini.ai and <swap plugin>
 
     - Projects per Tab:
-    Quite some changes needed to make this work. Sessions opening/closing
-    buffers would conflict.
-        - [ ] Update Bufferline / Tabline
+        - [ ] sessions: main problem is the integration with a session manager
+            the session manager must handle tcd and only set the window layout of the current tab
+            maybe I should instead move away from autoloading sessions
+            I also have to stop depending on bufferline, as this interferes with
+            the idea of using the tabline to switch between projects
         - [ ] neotest: detach when switching projects / sessions
                 neotest has no built-in method for doing this
 - Bugs:
-    - git
-        -  [ ] switching to non-existant branch should checkout, not detach head
-        - [ ] update gitsigns after switching branches via <leader>gb
 
 - [ ] To Investigate
     - [ ] dap-ui: "DAP Watches" shows up as listed buffer in bufferline if edited

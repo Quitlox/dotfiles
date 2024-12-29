@@ -59,8 +59,9 @@
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
 # "nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } -- not compatible with blink
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
-"friendly-snippets" = { git = "rafamadriz/friendly-snippets", rev = "efff286dd74c22f731cdec26a70b46e5b203c619" }
 "copilot.vim" = { git = "github/copilot.vim", rev = "v1.41.0" }
+# +- Snippets -----------------------------------------------+
+"friendly-snippets" = { git = "rafamadriz/friendly-snippets", rev = "efff286dd74c22f731cdec26a70b46e5b203c619" }
 
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = { git = "mfussenegger/nvim-dap", rev = "665d3569a86395fe0dab85efbdb26d7d2ee57e49" }
@@ -86,7 +87,7 @@
 "garbage-day.nvim" = { git = "zeioth/garbage-day.nvim", rev = "v1.3.1" }
 
 # +- Search -------------------------------------------------+
-"nvim-spectre" = "scm"
+"grug-far.nvim" = { git = "magicduck/grug-far.nvim", rev = "c88435b825a35bfa468b47159709b3221976ecd1" }
 
 # +- Session and Project Management -------------------------+
 "possession.nvim" = { git = "jedrzejboczar/possession.nvim", rev = "246050074fa9878ca414badc613e0645867308b5" }

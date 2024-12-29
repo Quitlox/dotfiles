@@ -35,7 +35,7 @@ function M:init(options)
     self.options.custom_icons = {
         gitrebase = { " ", "DevIconGitCommit" },
         help = { " ", "DevIconTxt" },
-        oil = { "󰏇 ", "OilDir" }, -- 
+        oil = { "󰏇 ", "OilDir" },
         trouble = { " ", "DevIconGitConfig" },
         Trouble = { " ", "DevIconGitConfig" },
     }

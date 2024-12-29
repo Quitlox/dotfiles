@@ -32,7 +32,7 @@ require("blink-cmp").setup({
         cmdline = {
             ["<Tab>"] = { "select_next" },
             ["<S-Tab>"] = { "select_prev" },
-            ["<Enter>"] = { "accept", "fallback" },
+            ["<Enter>"] = {},
             ["<C-Space>"] = { "show" },
             ["/"] = { "accept", "fallback" },
             ["\\"] = { "accept", "fallback" },
@@ -83,6 +83,11 @@ require("blink-cmp").setup({
             html_css = {
                 name = "html-css",
                 module = "blink.compat.source",
+            },
+            snippets = {
+                opts = {
+                    search_paths = { vim.fn.stdpath("config") .. "/nvim/snippets" },
+                },
             },
         },
     },

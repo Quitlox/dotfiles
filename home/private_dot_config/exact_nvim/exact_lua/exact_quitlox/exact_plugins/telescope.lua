@@ -6,18 +6,32 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
     vim.g.sqlite_clib_path = vim.fn.expand("$HOME/.config/vim/sqlite3.dll")
 end
 
+local actions = require("telescope.actions")
+
+local git_switch_branch = function(prompt_bufnr)
+    actions.git_switch_branch(prompt_bufnr)
+
+    vim.schedule(function()
+        -- Integration: reset gitsigns base
+        local success, gitsigns = pcall(require, "gitsigns")
+        if success then
+            gitsigns.reset_base()
+        end
+    end)
+end
+
 require("telescope").setup({
     defaults = {
         path_display = { "smart", "truncate" },
         mappings = {
             i = {
-                ["<ESC>"] = require("telescope.actions").close,
+                ["<ESC>"] = actions.close,
                 ["<C-BS>"] = { "<C-S-w>", type = "command" },
                 ["<C-H>"] = { "<C-S-w>", type = "command" },
-                ["<C-j>"] = require("telescope.actions").move_selection_next,
-                ["<C-k>"] = require("telescope.actions").move_selection_previous,
-                ["<C-v>"] = require("telescope.actions").select_horizontal,
-                ["<C-b>"] = require("telescope.actions").select_vertical,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-v>"] = actions.select_horizontal,
+                ["<C-b>"] = actions.select_vertical,
                 ["<C-t>"] = require("trouble.sources.telescope").open,
             },
             n = {
@@ -30,6 +44,15 @@ require("telescope").setup({
                 local cmd = { "head", "-c", max_bytes, filepath }
                 require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
             end,
+        },
+    },
+    pickers = {
+        git_branches = {
+            mappings = {
+                -- Overwrite default
+                -- Make sure that switching to remote branch actually checks it out as a new local branch
+                i = { ["<cr>"] = git_switch_branch },
+            },
         },
     },
 })
