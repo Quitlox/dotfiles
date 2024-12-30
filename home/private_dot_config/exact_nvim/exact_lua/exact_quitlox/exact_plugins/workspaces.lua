@@ -24,7 +24,7 @@ local function to_possesion_path(path)
 end
 
 require("workspaces").setup({
-    cd_type = "tab",
+    -- cd_type = "tab", -- FIXME: Not compatible with possession.nvim
     hooks = {
         add = {},
         remove = {},

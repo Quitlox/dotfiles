@@ -2,7 +2,7 @@
 -- | Saghen/blink.cmp: Completion                            |
 -- +---------------------------------------------------------+
 
---+- Configure LSP Server Capabilities ----------------------+
+--+- Integration: set LSP capabilities ----------------------+
 require("quitlox.util.lazy").on_module("lspconfig", function()
     local lspconfig = require("lspconfig")
     local configs = require("lspconfig.configs")
@@ -29,13 +29,16 @@ require("blink-cmp").setup({
         ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
         ["<Enter>"] = { "accept", "fallback" },
 
+        ["/"] = { "select_and_accept", "fallback" },
+        ["\\"] = { "select_and_accept", "fallback" },
+
         cmdline = {
             ["<Tab>"] = { "select_next" },
             ["<S-Tab>"] = { "select_prev" },
             ["<Enter>"] = {},
             ["<C-Space>"] = { "show" },
-            ["/"] = { "accept", "fallback" },
-            ["\\"] = { "accept", "fallback" },
+            ["/"] = { "select_and_accept", "fallback" },
+            ["\\"] = { "select_and_accept", "fallback" },
         },
     },
     completion = {

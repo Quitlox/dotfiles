@@ -77,7 +77,7 @@ require("neo-tree").setup({
     },
 
     document_symbols = {
-        follow_cursor = true,
+        follow_cursor = false,
         window = {
             mappings = {
                 ["<cr>"] = "jump_to_symbol",

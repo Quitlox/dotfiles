@@ -20,13 +20,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("MyBarbecueAttach", { clear = true }),
     callback = function(args)
         local bufnr = args.buf
+
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if not client then
             return
         end
+
         if client.server_capabilities.documentSymbolProvider then
-            require("nvim-navic").attach(client, bufnr)
+            local status, navic = pcall(require, "nvim-navic")
+            if not status then
+                vim.notify("nvim-navic not found", vim.log.levels.WARN)
+                return
+            end
+
+            navic.attach(client, bufnr)
         end
+    end,
+})
+
+--+- Integration: Toggle ------------------------------------+
+vim.g.toggle_barbecue = true
+Snacks.toggle.new({
+    name = "Barbecue",
+    set = function(state)
+        require("barbecue.ui").toggle(state)
+        vim.g.toggle_barbecue = state
+    end,
+    get = function()
+        return vim.g.toggle_barbecue
     end,
 })
 

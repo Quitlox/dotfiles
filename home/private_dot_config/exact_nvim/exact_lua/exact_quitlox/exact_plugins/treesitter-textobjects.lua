@@ -11,44 +11,32 @@ require("nvim-treesitter.configs").setup({
             set_jumps = false,
 
             goto_next_start = {
-                ["]f"] = "@function.outer",
-                ["]]"] = "@class.outer",
-                ["]a"] = "@parameter.inner",
+                ["]m"] = { query = "@function.outer", desc = "Function" },
+                ["]f"] = { query = "@function.outer", desc = "Function" },
+                ["]]"] = { query = "@class.outer", desc = "Class" },
+                ["]a"] = { query = "@parameter.inner", desc = "Parameter" },
             },
             goto_next_end = {
-                ["]F"] = "@function.outer",
-                ["]A"] = "@parameter.outer",
+                ["]M"] = { query = "@function.outer", desc = "Function" },
+                ["]F"] = { query = "@function.outer", desc = "Function" },
+                ["]A"] = { query = "@parameter.outer", desc = "Parameter" },
             },
             goto_previous_start = {
-                ["[f"] = "@function.outer",
-                ["[["] = "@class.outer",
-                ["[a"] = "@parameter.inner",
+                ["[m"] = { query = "@function.outer", desc = "Function" },
+                ["[f"] = { query = "@function.outer", desc = "Function" },
+                ["[["] = { query = "@class.outer", desc = "Class" },
+                ["[a"] = { query = "@parameter.inner", desc = "Parameter" },
             },
             goto_previous_end = {
-                ["[F"] = "@function.outer",
-                ["[A"] = "@parameter.outer",
-                ["[L"] = "@loop.outer",
+                ["[M"] = { query = "@function.outer", desc = "Function" },
+                ["[F"] = { query = "@function.outer", desc = "Function" },
+                ["[A"] = { query = "@parameter.outer", desc = "Parameter" },
+                ["[L"] = { query = "@loop.outer", desc = "Loop" },
             },
         },
         select = {
-            enable = true,
-            lookahead = true,
-
-            keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["a["] = "@class.outer",
-                ["i["] = "@class.inner",
-                ["aa"] = "@parameter.outer",
-                ["ad"] = "@statement.outer",
-            },
-            -- You can choose the select mode (default is charwise 'v')
-            selection_modes = {
-                ["@parameter.outer"] = "v", -- charwise
-                ["@function.outer"] = "v", -- linewise
-                ["@class.outer"] = "v", -- blockwise
-                ["@statement.outer"] = "v", -- blockwise
-            },
+            -- replaced by mini.ai
+            enable = false,
         },
         swap = {
             enable = true,
@@ -70,10 +58,12 @@ vim.api.nvim_create_autocmd("FileType", {
             textobjects = {
                 move = {
                     goto_next_start = {
+                        ["]m"] = "@function.name",
                         ["]f"] = "@function.name",
                         ["]]"] = "@class.name",
                     },
                     goto_previous_start = {
+                        ["[m"] = "@function.name",
                         ["[f"] = "@function.name",
                         ["[["] = "@class.name",
                     },

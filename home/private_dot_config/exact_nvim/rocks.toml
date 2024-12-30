@@ -39,6 +39,7 @@
 "nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "4055f3c82ec3e712b83d8149cbc5489e442b826e" }
 "treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "1fa5cbb697a456a3d501f72e04877931f8687cc1" }
 "mini.align" = "0.14.0"
+"mini.ai" = "0.14.0"
 
 # +- Miscellenous -------------------------------------------+
 "guess-indent.nvim" = "scm"
@@ -72,7 +73,7 @@
 
 # +- Git ----------------------------------------------------+
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
-"gitsigns.nvim" = "0.9.0"
+"gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "5f808b5e4fef30bd8aca1b803b4e555da07fc412" }
 "neogit" = "scm"
 "diffview.nvim" = "scm"
 "octo.nvim" = "scm"
@@ -105,7 +106,6 @@
 "rocks-treesitter.nvim" = "1.3.0"
 "nvim-treesitter-legacy-api" = "scm"
 # +- Treesitter: Modules ------------------------------------+
-"targets.vim" = { git = "wellle/targets.vim", rev = "v0.5.0" }
 "rainbow-delimiters.nvim" = "0.8.0"
 "nvim-autopairs" = { version = "scm" }
 "nvim-ts-autotag" = "scm"
@@ -127,7 +127,7 @@
 "nvim-parinfer" = "1.2.0"
 
 # +- Config -------------------------------------------------+
-"schemastore.nvim" = { version = "scm", config = "quitlox.plugins.lang.schemastore" }
+"schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "e43f3e47991bc9f6cbc1d8b4d0f6a0d8d6c29284", config = "quitlox.plugins.lang.schemastore" }
 # +- Go -----------------------------------------------------+
 "go.nvim" = { version = "0.9.0", ft = ["go", "gomod"] }
 # "guihua.lua" = { git = "ray-x/guihua.lua", rev = "d783191eaa75215beae0c80319fcce5e6b3beeda" } # NOTE: Overwrites fzy which may cause issues (fixed for now, but still), maybe switch to use gopher instead if I ever need it
@@ -164,13 +164,6 @@
 # | Components                                               |
 # +----------------------------------------------------------+
 
-# +- Breadcrumbs --------------------------------------------+
-"barbecue.nvim" = "scm"
-"nvim-navic" = "scm"
-
-# +- Bufferline ---------------------------------------------+
-"bufferline.nvim" = { version = "4.9.0", opt = true } # TODO: Remove?
-
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
 "avante.nvim" = { git = "yetone/avante.nvim", rev = "be92be6124f743c30ba4b52ded908d02cfb80a1b", branch = "main", buid = "make" }
@@ -204,9 +197,13 @@
 # +- Runner (Overseer) --------------------------------------+
 "overseer.nvim" = "1.5.0"
 
-# +- Statusline (Lualine) -----------------------------------+
+# +- Statusline ---------------------------------------------+
 "lualine.nvim" = "scm"
 "lualine-pretty-path" = { git = "bwpge/lualine-pretty-path", rev = "852cb06f3562bced4776a924e56a9e44d0ce634f" }
+# -- Breadcrumbs
+"nvim-navic" = "scm"
+# -- Context
+"nvim-treesitter-context" = { git = "nvim-treesitter/nvim-treesitter-context", rev = "2bcf700b59bc92850ca83a1c02e86ba832e0fae0" }
 
 # +- Quickfix -----------------------------------------------+
 "trouble.nvim" = "3.6.0"
@@ -221,7 +218,7 @@
 # | Dependencies                                             |
 # +----------------------------------------------------------+
 # "fixcursorhold.nvim" = { git = "antoinemadec/FixCursorHold.nvim", rev = "1900f89dc17c603eec29960f57c00bd9ae696495" }
-# "promise-async" = { git = "kevinhwang91/promise-async", rev = "119e8961014c9bfaf1487bf3c2a393d254f337e2" } # outdated (semver, luarocks)
+"promise-async" = { git = "kevinhwang91/promise-async", rev = "119e8961014c9bfaf1487bf3c2a393d254f337e2" } # nvim-ufo, outdated (semver, luarocks)
 # "nvim-nio" = "1.10.0"
 "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "2d9b06177a975543726ce5c73fca176cedbffe9d" } # outdated (semver, luarocks)
 "nui.nvim" = { git = "MunifTanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" }      # avante.nvim, outdated (semver, luarocks)

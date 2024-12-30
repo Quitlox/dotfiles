@@ -10,8 +10,14 @@ require("nvim-treesitter.configs").setup({
         prev_selection = ",",
         keymaps = {
             ["<cr>"] = "textsubjects-smart",
-            [";"] = { "textsubjects-container-outer", desc = "Select outside containers (classes, functions, etc.)" },
-            ["i;"] = { "textsubjects-container-inner", desc = "Select inside containers (classes, functions, etc.)" },
+            [";"] = "textsubjects-container-outer",
+            ["i;"] = "textsubjects-container-inner",
         },
     },
+})
+
+require("which-key").add({
+    { "<cr>", "Select more" },
+    { ";", "Select outside containers", mode = "v" },
+    { "i;", "Select inside containers", mode = "v" },
 })

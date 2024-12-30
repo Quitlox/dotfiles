@@ -56,24 +56,10 @@ require("possession").setup({
         current = function()
             return vim.g.toggle_session_auto_save
         end,
-        on_load = function()
-            return vim.g.toggle_session_auto_save
-        end,
-        on_quit = function()
-            -- never save a session in the home directory, as this is the default path where neovim starts
-            if require("possession.paths").cwd_session_name() == "~" then
-                return false
-            end
-
-            return vim.g.toggle_session_auto_save
-        end,
+        on_load = true,
+        on_quit = true,
     },
-    autoload = function()
-        if not require("possession.session").exists(require("possession.paths").cwd_session_name()) then
-        end
-
-        return require("possession.paths").cwd_session_name()
-    end,
+    autoload = "auto_cwd",
     hooks = {
         before_save = function(name)
             local user_data = {}
@@ -164,7 +150,7 @@ local function delete_and_exit()
 
     local cwd_session_name = require("possession.paths").cwd_session_name()
     if not require("possession.session").exists(cwd_session_name) then
-        return vim.notify("No session to delete for " .. path, "warning")
+        return vim.notify("No session to delete for " .. cwd_session_name, "warning")
     end
 
     require("possession").delete(cwd_session_name)

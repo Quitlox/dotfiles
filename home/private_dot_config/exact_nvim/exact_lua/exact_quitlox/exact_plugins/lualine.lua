@@ -27,6 +27,7 @@ end
 --+- Customize Modules --------------------------------------+
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
 local git_blame = { "b:gitsigns_blame_line", icon = " ", fmt = trunc(180, 40, 140, true) }
+local navic = { "navic", color_correction = "static" }
 
 --+- Options ------------------------------------------------+
 vim.opt.laststatus = 3
@@ -53,6 +54,7 @@ require("lualine").setup({
                 "dapui_stacks",
                 "dapui_watches",
                 "dapui_console",
+                "Avante",
                 "jinja", -- buggy
             },
             statusline = {
@@ -76,7 +78,7 @@ require("lualine").setup({
     winbar = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { "my_pretty_path" },
+        lualine_c = { "my_pretty_path", "navic" },
         lualine_x = { "my_fancy_diff" },
         lualine_y = { "my_fancy_diagnostics" },
         lualine_z = {},

@@ -20,9 +20,9 @@ end
 local actions = require("glance").actions
 ---@diagnostic disable-next-line: missing-fields
 require("glance").setup({
-    hooks = {
-        before_open = custom_before_open,
-    },
+    -- hooks = {
+    --     before_open = custom_before_open,
+    -- },
     mappings = {
         list = {
             ["<leader>l"] = false,
@@ -39,7 +39,8 @@ require("glance").setup({
     use_trouble_qf = true,
 })
 
-vim.keymap.set("n", "gd", "<CMD>Glance definitions<CR>", { desc = "Go Definition" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go Definition" })
+vim.keymap.set("n", "gD", "<CMD>Glance definitions<CR>", { desc = "Go Definition" })
 vim.keymap.set("n", "gi", "<CMD>Glance implementations<CR>", { desc = "Go Implementation" })
 vim.keymap.set("n", "gt", "<CMD>Glance type_definitions<CR>", { desc = "Go Type Definition" })
 vim.keymap.set("n", "gr", "<CMD>Glance references<CR>", { desc = "Go References" })

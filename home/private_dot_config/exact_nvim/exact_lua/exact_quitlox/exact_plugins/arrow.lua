@@ -10,7 +10,6 @@ require("arrow").setup({
 
     per_buffer_config = {
         lines = 8,
-        treesitter_context = { line_shift_down = -2 },
     },
 
     mappings = {
@@ -21,5 +20,3 @@ require("arrow").setup({
 
 vim.keymap.set("n", "[b", require("arrow.persist").previous)
 vim.keymap.set("n", "]b", require("arrow.persist").next)
-
--- require("quitlox.util.lazy").keymap_stub("n", "=", setup_arrow, { noremap = true, silent = true })

@@ -1,5 +1,5 @@
 ; extends
-;
+
 ((decorated_definition)?
   (function_definition
     name: (identifier) @function.name

@@ -3,11 +3,7 @@
 local M = require("lualine.components.pretty_path"):extend()
 
 -- Always pad the icon
-local icon_padding = {
-    [""] = 0,
-    [""] = 0,
-    ["󰏇"] = 0,
-}
+local icon_padding = {}
 setmetatable(icon_padding, {
     __index = function(table, key)
         local value = rawget(table, key)
@@ -22,6 +18,7 @@ setmetatable(icon_padding, {
 function M:init(options)
     M.super.init(self, options)
 
+    self.options.icon_show_inactive = true
     self.options.use_color = true
     self.options.icon_padding = icon_padding
 
@@ -33,11 +30,11 @@ function M:init(options)
     }
 
     self.options.custom_icons = {
-        gitrebase = { " ", "DevIconGitCommit" },
-        help = { " ", "DevIconTxt" },
-        oil = { "󰏇 ", "OilDir" },
-        trouble = { " ", "DevIconGitConfig" },
-        Trouble = { " ", "DevIconGitConfig" },
+        gitrebase = { "", "DevIconGitCommit" },
+        help = { "", "DevIconTxt" },
+        oil = { "󰏇", "OilDir" },
+        trouble = { "", "DevIconGitConfig" },
+        Trouble = { "", "DevIconGitConfig" },
     }
 end
 

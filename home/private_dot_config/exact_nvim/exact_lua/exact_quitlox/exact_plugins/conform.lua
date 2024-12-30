@@ -79,7 +79,7 @@ local function should_format_on_save()
 end
 
 --+- Helper Functions: Slow Formatters Async ----------------+
-local slow_format_filetypes = {}
+local slow_format_filetypes = { "python" }
 local format_on_save_if_not_slow = function(bufnr)
     if slow_format_filetypes[vim.bo[bufnr].filetype] then
         return

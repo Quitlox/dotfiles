@@ -14,15 +14,16 @@ local function filter_nt_source_neq(source)
     end
 end
 
-local function filter_not_relative()
-    return function(_buf, win)
-        return vim.api.nvim_win_get_config(win).relative == ""
-    end
-end
-
 local function filter_bt(type)
     return function(buf)
         return vim.bo[buf].buftype == type
+    end
+end
+
+local function filter_has_bufopt(opt)
+    return function(buf)
+        local success, result = pcall(vim.api.nvim_buf_get_var, buf, opt)
+        return success and result ~= nil
     end
 end
 
@@ -51,7 +52,9 @@ require("edgy").setup({
         { title = "Overseer Jobs",   ft = "snacks_terminal",   wo = { winbar = "  󰜎  Task: %{b:term_title}" },                    size = { width = 80 },   filter = filter_terminal_wins("right") },
     },
     bottom = {
-        { title = "Overseer",        ft = "OverseerList",      wo = { winbar = "    Overseer" },                                 size = { height = 20 } },
+        { title = "Overseer",        ft = "OverseerList",      wo = { winbar = "    Overseer (Task List)" },                     size = { width = 40 } },
+        { title = "Overseer Task Buffer", ft = "",             wo = { winbar = "    Overseer (Task Buffer)" },                   size = { height = 15 },  filter = filter_has_bufopt("overseer_task") }, -- TODO: replace with ft
+
         { title = "Neogit",          ft = "NeogitStatus",      wo = { winbar = "    Neogit" },                                   size = { height = 20 } },
         { title = "Gitlab",          ft = "gitlab",            wo = { winbar = "  󰮠  Gitlab" } },
 
@@ -63,7 +66,7 @@ require("edgy").setup({
         { title = "DAP REPL",        ft = "dap-repl",          wo = { winbar = "    Dap REPL" } },
         { title = "DAP Console",     ft = "dapui_console",     wo = { winbar = "    DAP Console" } },
 
-        { title = "Terminal",        ft = "snacks_terminal",   wo = { winbar = "    %{b:snacks_terminal.id}: %{b:term_title}" }, size = { height = 0.4 }, filter = filter_terminal_wins("bottom") },
+        { title = "Terminal",        ft = "snacks_terminal",   wo = { winbar = "    %{b:snacks_terminal.id}: %{b:term_title}" }, size = { height = 0.35 }, filter = filter_terminal_wins("bottom") },
     },
     -- stylua: ignore end
 

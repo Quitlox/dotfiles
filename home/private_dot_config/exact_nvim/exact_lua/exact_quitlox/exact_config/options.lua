@@ -11,6 +11,7 @@ vim.opt.formatoptions = vim.opt.formatoptions + "r" -- Automatically insert the 
 -- vim.opt.formatoptions = vim.opt.formatoptions + "v" -- Vi-compatible auto-wrapping in insert mode: Only break a line at a blank that you have entered during the current insert command.
 vim.opt.formatoptions = vim.opt.formatoptions + "p" -- Don't break lines at single spaces that follow periods.
 vim.opt.formatoptions = vim.opt.formatoptions + "1" -- Don't break a line after a one-letter word.
+vim.opt.indentkeys = vim.opt.indentkeys - "o" -- Don't wrap the fucking parentheses in comments (especially python)
 --- Tab behaviour ---
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -43,7 +44,8 @@ vim.opt.termguicolors = true
 vim.opt.pumheight = 10
 vim.opt.showmode = false
 vim.g.have_nerd_font = true -- Maybe kickstart.nvim specific
--- vim.showtabline = 2 -- TODO: Is this necessary?
+vim.cmd([[aunmenu PopUp.How-to\ disable\ mouse]])
+vim.cmd([[aunmenu PopUp.-1-]])
 --- Splits ---
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -66,6 +68,14 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300 -- FIXME: was 800
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.shada = vim.opt.shada + "'0,f0"
+
+--- Folding ---
+vim.opt.foldlevel = 99 -- FIXME:: Slows down legendary
+vim.opt.foldenable = true
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()" -- alt "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = ""
+vim.opt.fillchars = vim.opt.fillchars + "fold: "
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0 -- WARNING: NEW

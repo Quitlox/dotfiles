@@ -2,19 +2,26 @@
 -- | stevearc/overseer.nvim: Runner                          |
 -- +---------------------------------------------------------+
 
-function stop_all()
+local function stop_all()
     local tasks = require("overseer").list_tasks()
     for _, task in ipairs(tasks) do
         require("overseer").run_action(task, "stop")
     end
 end
 
+local function restart_all()
+    local tasks = require("overseer").list_tasks()
+    for _, task in ipairs(tasks) do
+        require("overseer").run_action(task, "restart")
+    end
+end
+
 --+- Setup --------------------------------------------------+
 require("overseer").setup({
     ---@diagnostic disable-next-line: assign-type-mismatch
-    strategy = {
-        "snacks_terminal",
-    },
+    -- strategy = {
+    --     "snacks_terminal",
+    -- },
     task_list = {
         default_detail = 2,
         bindings = {
@@ -33,6 +40,7 @@ require("overseer").setup({
             ["r"] = "<cmd>OverseerQuickAction restart<cr>",
             ["x"] = "<cmd>OverseerQuickAction stop<cr>",
             ["X"] = stop_all,
+            ["R"] = restart_all,
         },
     },
 })
@@ -43,7 +51,6 @@ vim.keymap.set("n", "<leader>ep", "<cmd>OverseerQuickAction open float<cr>", { n
 vim.keymap.set("n", "<leader>ec", "<cmd>OverseerClose<cr>", { noremap = true, silent = true, desc = "Overseer Close" })
 vim.keymap.set("n", "<leader>et", "<cmd>OverseerToggle<cr>", { noremap = true, silent = true, desc = "Overseer Toggle" })
 vim.keymap.set("n", "<leader>er", "<cmd>OverseerRun<cr>", { noremap = true, silent = true, desc = "Overseer Run" })
-vim.keymap.set("n", "<leader>ei", "<cmd>OverseerInfo<cr>", { noremap = true, silent = true, desc = "Overseer Info" })
 vim.keymap.set("n", "<leader>em", "<cmd>OverseerBuild<cr>", { noremap = true, silent = true, desc = "Overseer Build" })
 vim.keymap.set("n", "<leader>eq", "<cmd>OverseerQuickAction<cr>", { noremap = true, silent = true, desc = "Overseer Quick Action" })
 vim.keymap.set("n", "<leader>ea", "<cmd>OverseerTaskAction<cr>", { noremap = true, silent = true, desc = "Overseer Task Action" })
@@ -69,7 +76,7 @@ require("legendary").commands({
     { ":OverseerClose", description = "Overseer Close" },
     { ":OverseerToggle", description = "Overseer Toggle" },
     { ":OverseerSaveBundle", description = "Overseer Save Bundle" },
-    { ":OverseerLoadBundle~", description = "Overseer Load Bundle" },
+    { ":OverseerLoadBundle", description = "Overseer Load Bundle" },
     { ":OverseerDeleteBundle", description = "Overseer Delete Bundle" }, -- FIXME: Not working
     { ":OverseerRun", description = "Overseer Run" },
     { ":OverseerInfo", description = "Overseer Info" },

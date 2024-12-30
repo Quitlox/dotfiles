@@ -1,10 +1,39 @@
 local M = {}
 
+local function has_uv(venv_path)
+    local file_path = venv_path .. "/pyvenv.cfg"
+    local file = io.open(file_path, "r")
+    if not file then
+        return false, "Unable to open " .. file_path
+    end
+
+    for line in file:lines() do
+        if line:find("uv") then
+            file:close()
+            return true
+        end
+    end
+
+    file:close()
+    return false
+end
+
 M.install_package_in_venv = function(name, on_success)
     local venv_path = vim.fn.getenv("VIRTUAL_ENV")
 
     -- Check if running in a virtual environment
-    if venv_path == vim.v.null or venv_path == "" then return end
+    if venv_path == vim.v.null or venv_path == "" then
+        return
+    end
+
+    local uv_present = false
+    local ok, err = pcall(function()
+        uv_present = has_uv(venv_path)
+    end)
+
+    if not ok then
+        return vim.notify("Error reading 'pyvenv.cfg': " .. err, vim.log.levels.ERROR, { title = "Python Support" })
+    end
 
     local handle = require("fidget.progress").handle.create({
         title = name,
@@ -12,16 +41,20 @@ M.install_package_in_venv = function(name, on_success)
         lsp_client = { name = "python-support" },
     })
 
-    -- Check if package is already installed
-    vim.uv.spawn(venv_path .. "/bin/pip", { args = { "show", name } }, function(code, signal)
-        if code == 0 then
-            handle.message = "Present"
-            handle:cancel()
-            return
-        end
+    local function check_if_installed(callback)
+        local python_command = (uv_present and "uv pip show " or venv_path .. "/bin/python -m pip show ") .. name
+        vim.uv.spawn("/bin/sh", {
+            args = { "-c", python_command },
+        }, function(code, signal)
+            callback(code)
+        end)
+    end
 
-        -- Attempt to install package using pip
-        vim.uv.spawn(venv_path .. "/bin/pip", { args = { "install", name } }, function(code, signal)
+    local function install_package()
+        local install_command = (uv_present and "uv pip install " or venv_path .. "/bin/python -m pip install ") .. name
+        vim.uv.spawn("/bin/sh", {
+            args = { "-c", install_command },
+        }, function(code, signal)
             if code ~= 0 then
                 handle.message = "Failed!"
                 handle:cancel()
@@ -31,21 +64,31 @@ M.install_package_in_venv = function(name, on_success)
             handle.message = "Installed!"
             handle:finish()
 
-            if on_success then on_success() end
+            if on_success then
+                on_success()
+            end
         end)
+    end
+
+    -- Check if package is already installed, then try installing it
+    check_if_installed(function(code)
+        if code == 0 then
+            handle.message = "Present"
+            handle:cancel()
+        else
+            install_package()
+        end
     end)
 end
 
 M.install_dependencies = function()
-    -- Install debugpy
     M.install_package_in_venv("debugpy")
-    -- Install black
     M.install_package_in_venv("black")
-    -- Install isort
     M.install_package_in_venv("isort")
-    -- Install pynvim
     M.install_package_in_venv("pynvim", function()
-        vim.schedule(function() vim.cmd("UpdateRemotePlugins") end)
+        vim.schedule(function()
+            vim.cmd("UpdateRemotePlugins")
+        end)
     end)
 end
 
@@ -56,9 +99,13 @@ M.activate_venv = function(venv_path, source, type)
         return
     end
 
+    -- Activate the virtual environment
     require("venv-selector").activate_from_path(python_path)
+    -- Restart the LSP
+    vim.cmd([[LspRestart]])
+    -- Notify the user
     vim.notify("Virtual environment activated.\n" .. require("venv-selector").venv(), vim.log.levels.INFO, { title = "Python Support" })
-
+    -- Install dependencies into the virtual environment
     M.install_dependencies()
 end
 

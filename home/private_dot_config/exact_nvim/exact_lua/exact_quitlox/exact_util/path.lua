@@ -19,24 +19,26 @@ local M = {}
 -- from: mason-core.path
 ---@param path_components string[]
 ---@return string
-function M.concat(path_components) return table.concat(path_components, sep) end
+function M.concat(path_components)
+    return table.concat(path_components, sep)
+end
 
 -- from mason-core.path
 ---@path root_path string
 ---@path path string
-function M.is_subdirectory(root_path, path) return root_path == path or path:sub(1, #root_path + 1) == root_path .. sep end
+function M.is_subdirectory(root_path, path)
+    return root_path == path or path:sub(1, #root_path + 1) == root_path .. sep
+end
 
 -- from: https://stackoverflow.com/questions/1340230/check-if-directory-exists-in-lua
 --- Check if a file or directory exists in this path
 function M.exists(file)
     local ok, err, code = os.rename(file, file)
-    if not ok then
-        if code == 13 then
-            -- Permission denied, but it exists
-            return true
-        end
+    if ok or code == 13 then
+        return true
     end
-    return ok, err
+
+    return false
 end
 
 --- Check if a directory exists in this path
