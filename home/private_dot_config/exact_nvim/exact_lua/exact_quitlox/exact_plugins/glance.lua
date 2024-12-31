@@ -2,19 +2,20 @@
 -- | dnlhc/glance.nvim: Code Lens                            |
 -- +---------------------------------------------------------+
 
-local custom_before_open = function(results, open, jump, method)
-    -- Always show Glance for references | implementations
-    if method == "references" or method == "implementations" then
-        open(results)
-        return
-    end
-
-    -- For definitions | type definitions, jump to the first result
+local before_open_definition = function(results, open, jump, method)
     if #results == 1 then
         jump(results[1])
     else
         open(results)
     end
+end
+
+local open_definition = function()
+    require("glance").open("definitions", {
+        hooks = {
+            before_open = before_open_definition,
+        },
+    })
 end
 
 local actions = require("glance").actions
@@ -39,7 +40,7 @@ require("glance").setup({
     use_trouble_qf = true,
 })
 
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go Definition" })
+vim.keymap.set("n", "gd", open_definition, { desc = "Go Definition" })
 vim.keymap.set("n", "gD", "<CMD>Glance definitions<CR>", { desc = "Go Definition" })
 vim.keymap.set("n", "gi", "<CMD>Glance implementations<CR>", { desc = "Go Implementation" })
 vim.keymap.set("n", "gt", "<CMD>Glance type_definitions<CR>", { desc = "Go Type Definition" })

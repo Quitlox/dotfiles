@@ -2,10 +2,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- +---------------------------------------------------------+
--- | Modifier Shortcuts                                      |
--- +---------------------------------------------------------+
-
 -- Save
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR>")
 vim.keymap.set({ "n", "i" }, "<C-S>", "<cmd>wa<CR>")
@@ -21,6 +17,10 @@ vim.keymap.set("i", "<C-BS>", "<C-w>")
 vim.keymap.set("i", "<C-h>", "<C-w>")
 vim.keymap.set("c", "<C-BS>", "<C-w>")
 vim.keymap.set("c", "<C-h>", "<C-w>")
+
+-- Disable defaults
+vim.keymap.set("n", "<C-w>d", "<nop>")
+vim.keymap.set("n", "<C-w><C-d>", "<nop>")
 
 -- +---------------------------------------------------------+
 -- | Vim Editing                                             |

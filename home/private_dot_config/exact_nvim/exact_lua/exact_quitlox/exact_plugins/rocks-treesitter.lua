@@ -18,11 +18,6 @@ for _, filetype in ipairs(filetypes) do
     })
 end
 
-require("nvim-treesitter.configs").setup({
-    highlight = { enable = true },
-    indent = { enable = true },
-})
-
 require("legendary").commands({
     {
         ":TreesitterStart",

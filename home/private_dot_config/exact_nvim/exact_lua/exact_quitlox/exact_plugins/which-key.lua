@@ -22,10 +22,6 @@ require("which-key").setup({
         { "<leader>vu", "<cmd>Rocks sync<cr>", desc = "Update Plugins" },
 
         { "<leader><cr>", hidden = true },
-        { "<C-W>h", hidden = true },
-        { "<C-W>l", hidden = true },
-        { "<C-W>j", hidden = true },
-        { "<C-W>k", hidden = true },
         { "H", hidden = true },
         { "L", hidden = true },
         { "p", hidden = true },
@@ -35,6 +31,16 @@ require("which-key").setup({
         { "gj", hidden = true, mode = { "n", "x" } },
         { "k", hidden = true, mode = { "n", "x" } },
         { "j", hidden = true, mode = { "n", "x" } },
+        { "J", desc = "Join Lines" },
+
+        -- Windows
+        { "<C-W>h", hidden = true },
+        { "<C-W>l", hidden = true },
+        { "<C-W>j", hidden = true },
+        { "<C-W>k", hidden = true },
+        { "<C-W>d", hidden = true },
+        -- Unmapped Defaults (see mapping.lua)
+        { "<C-W><C-d>", hidden = true },
     },
     plugins = {
         marks = true,
@@ -43,7 +49,7 @@ require("which-key").setup({
             operators = true,
             motions = false,
             text_objects = false,
-            windows = false,
+            windows = true,
             nav = false,
             z = true,
             g = false,
@@ -58,6 +64,7 @@ require("which-key").setup({
         group = " ", -- symbol prepended to a group
         ellipsis = "…",
         colors = false,
+        mappings = false,
     },
     keys = {
         scroll_down = "<c-d>", -- binding to scroll down inside the popup

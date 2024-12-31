@@ -13,11 +13,12 @@ function M.after_save(opts, name, plugin_data) end
 function M.before_load(opts, name) end
 
 function M.after_load(opts, name, plugin_data)
-    if plugin_data and plugin_data.path then
-        require("quitlox.util.python").deactivate()
-        require("quitlox.util.python").activate_venv(plugin_data.path, plugin_data.source, nil)
+    if plugin_data == nil or plugin_data.path == nil then
         return
     end
+
+    require("quitlox.util.python").deactivate()
+    require("quitlox.util.python").activate_venv(plugin_data.path, plugin_data.source, nil)
 end
 
 return M

@@ -87,8 +87,8 @@ require("lualine").setup({
         lualine_a = {},
         lualine_b = {},
         lualine_c = { "my_pretty_path" },
-        lualine_x = { "my_fancy_diff" },
-        lualine_y = { "my_fancy_diagnostics" },
+        lualine_x = {},
+        lualine_y = {},
         lualine_z = {},
     },
 

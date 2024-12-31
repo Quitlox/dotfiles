@@ -23,7 +23,9 @@ end
 local function filesystem_state()
     -- Returns a table with filesystem source state of neo-tree
     local installed, sm = pcall(require, "neo-tree.sources.manager")
-    if not installed or sm == nil then return nil end
+    if not installed or sm == nil then
+        return nil
+    end
     local ok, state = pcall(sm.get_state, "filesystem")
     if ok then
         return state
@@ -47,15 +49,23 @@ end
 local function restore_neotree()
     if M.dirs_to_restore ~= nil and #M.dirs_to_restore > 0 then
         local state = filesystem_state()
-        if state == nil then return end
-        if state.tree == nil then return end -- filesystem not ready
-        if state.explicitly_opened_directories == nil then state.explicitly_opened_directories = {} end
+        if state == nil then
+            return
+        end
+        if state.tree == nil then
+            return
+        end -- filesystem not ready
+        if state.explicitly_opened_directories == nil then
+            state.explicitly_opened_directories = {}
+        end
 
         -- Pop the first directory from the list and expand it
         local dir = table.remove(M.dirs_to_restore, 1)
         state.explicitly_opened_directories[dir] = true
         local node = state.tree:get_node(dir)
-        if node ~= nil then node:expand() end
+        if node ~= nil then
+            node:expand()
+        end
 
         -- Refresh tree to load children
         state.commands["refresh"](state)
@@ -81,7 +91,9 @@ local get_neotree_state = function()
     -- Include explicitly opened directories from the current state
     if state and state.explicitly_opened_directories then
         for path, opened in pairs(state.explicitly_opened_directories) do
-            if opened then restore[path] = true end
+            if opened then
+                restore[path] = true
+            end
         end
     end
 
@@ -89,7 +101,9 @@ local get_neotree_state = function()
     local data = {}
     local cwd = vim.loop.cwd()
     for dir in pairs(restore) do
-        if vim.startswith(dir, cwd) and vim.fn.isdirectory(vim.fn.expand(short_path(dir))) == 1 then table.insert(data, short_path(dir)) end
+        if vim.startswith(dir, cwd) and vim.fn.isdirectory(vim.fn.expand(short_path(dir))) == 1 then
+            table.insert(data, short_path(dir))
+        end
     end
 
     -- Filter out hidden directories (those that are in closed nodes)
@@ -108,7 +122,9 @@ local get_neotree_state = function()
             end
         end
 
-        if has_parent then table.insert(filtered_data, path) end
+        if has_parent then
+            table.insert(filtered_data, path)
+        end
     end
 
     return next(filtered_data) == nil and nil or filtered_data
@@ -125,7 +141,9 @@ end
 ---@param dirs_relative table The directories that were opened in the neo-tree in the previous session (produced by get_neotree_state)
 local set_state_from_session = function(dirs_relative)
     -- Call this function after session load
-    if dirs_relative == nil or #dirs_relative == 0 then return end
+    if dirs_relative == nil or #dirs_relative == 0 then
+        return
+    end
     local dirs_absolute = {}
     for _, path in ipairs(dirs_relative) do
         path = vim.fn.expand(path)
@@ -153,6 +171,9 @@ function M.before_save(opts, name)
 end
 
 function M.after_load(opts, name, plugin_data)
+    if plugin_data == nil then
+        return
+    end
     -- Set the state of neo-tree
     set_state_from_session(plugin_data.opened_directories)
 end

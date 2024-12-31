@@ -7,6 +7,9 @@ require("legendary").commands({
 })
 
 require("pymple").setup({
+    logging = {
+        level = "trace",
+    },
     keymaps = {
         resolve_import_under_cursor = {
             desc = "Resolve import under cursor",

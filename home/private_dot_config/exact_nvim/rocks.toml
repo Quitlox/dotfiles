@@ -84,7 +84,6 @@
 "hover.nvim" = "scm"
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim", rev = "573ff93c47898967efdfbc6587a1a39e3c2d365e" }
-"tiny-inline-diagnostic.nvim" = { git = "rachartier/tiny-inline-diagnostic.nvim", rev = "90610e55f438d833c052867d022ff11f27647210" }
 "garbage-day.nvim" = { git = "zeioth/garbage-day.nvim", rev = "v1.3.1" }
 
 # +- Search -------------------------------------------------+

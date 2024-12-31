@@ -17,7 +17,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 require("which-key").add({
-    { "<cr>", "Select more" },
-    { ";", "Select outside containers", mode = "v" },
-    { "i;", "Select inside containers", mode = "v" },
+    { "<cr>", desc = "Select more" },
+    { ";", desc = "Select outside containers", mode = "v" },
+    { "i;", desc = "Select inside containers", mode = "v" },
 })

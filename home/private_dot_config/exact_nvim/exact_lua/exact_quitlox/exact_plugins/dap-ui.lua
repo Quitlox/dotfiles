@@ -8,7 +8,6 @@ require("dapui").setup({ expand_lines = true })
 -- State
 local state = {
     neo_tree_open = false,
-    gitsigns_enabled = false,
 }
 
 local function is_neotree_open()
@@ -21,23 +20,30 @@ local function is_neotree_open()
     return false
 end
 
--- Logic
-local function on_open()
+local function neo_tree_open()
+    if state.neo_tree_open then
+        require("neo-tree.command").execute({ action = "open" })
+        state.neo_tree_open = false
+    end
+end
+
+local function neo_tree_close()
     if is_neotree_open() then
         state.neo_tree_open = true
         require("neo-tree.command").execute({ action = "close" })
     end
+end
 
+-- Logic
+local function on_open()
+    neo_tree_close()
+    require("overseer").close()
     require("gitsigns").toggle_signs(false)
     require("dapui").open()
 end
 
 local function on_close()
-    if state.neo_tree_open then
-        require("neo-tree.command").execute({ action = "open" })
-        state.neo_tree_open = false
-    end
-
+    neo_tree_open()
     require("dapui").close()
     require("gitsigns").toggle_signs(true)
 end
@@ -55,13 +61,11 @@ local evaluate = function()
 end
 
 -- Keymaps
-vim.keymap.set("n", "<leader>do", function()
-    require("dapui").open()
-end, { noremap = true, silent = true, desc = "Debug UI Open" })
-vim.keymap.set("n", "<leader>dc", function()
-    require("dapui").close()
-end, { noremap = true, silent = true, desc = "Debug UI Close" })
+-- stylua: ignore start
+vim.keymap.set("n", "<leader>do", function() require("dapui").open() end, { noremap = true, silent = true, desc = "Debug UI Open" })
+vim.keymap.set("n", "<leader>dc", function() require("dapui").close() end, { noremap = true, silent = true, desc = "Debug UI Close" })
 vim.keymap.set("n", "<leader>de", evaluate, { noremap = true, silent = true, desc = "Evaluate Expression" })
+-- stylua: ignore end
 
 -- Signs (required by Catppuccin)
 vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
@@ -73,3 +77,35 @@ require("which-key").add({
     { "<leader>db", group = "Breakpoint" },
     { "<leader>dl", group = "List" },
 })
+
+--+- Workaround ---------------------------------------------+
+-- https://github.com/neovim/neovim/issues/14116
+
+function PromptBackspace()
+    -- Allows backspacing through previously set text when in a prompt.
+    --
+    -- Note 1: Insert mode cursor is after (+1) the column as opposed to in normal mode it would be on (+0) the column.
+    -- Note 2: nvim_win_[get|set]_cursor is (1, 0) indexed for (line, column) while nvim_buf_[get|set]_[lines|text] is 0 indexed for both.
+
+    local currentCursor = vim.api.nvim_win_get_cursor(0)
+    local currentLineNumber = currentCursor[1]
+    local currentColumnNumber = currentCursor[2]
+    local promptLength = vim.str_utfindex(vim.fn["prompt_getprompt"]("%"))
+
+    if currentColumnNumber ~= promptLength then
+        vim.api.nvim_buf_set_text(0, currentLineNumber - 1, currentColumnNumber - 1, currentLineNumber - 1, currentColumnNumber, { "" })
+        vim.api.nvim_win_set_cursor(0, { currentLineNumber, currentColumnNumber - 1 })
+    end
+end
+
+vim.cmd([[
+fun! PromptBackspaceSetup()
+    if v:option_new == 'prompt'
+      inoremap <buffer> <backspace> <Cmd>lua PromptBackspace()<cr>
+      " Fix <C-BS> in prompt
+      inoremap <buffer> <C-BS> <Cmd>normal! bcw<cr>
+    endif
+endfun
+
+autocmd OptionSet * call PromptBackspaceSetup() "not using a lua function here because of error when accessing :help
+]])

@@ -28,5 +28,9 @@ require("mini.ai").setup({
             a = { "@loop.outer", "@block.outer" },
             i = { "@loop.inner", "@block.inner" },
         }),
+        a = spec_treesitter({
+            a = { "@parameter.outer", "@attribute.outer" },
+            i = { "@parameter.inner", "@attribute.inner" },
+        }),
     },
 })
