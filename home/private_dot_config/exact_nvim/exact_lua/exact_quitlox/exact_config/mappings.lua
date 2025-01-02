@@ -164,3 +164,6 @@ vim.cmd([[
     command Z wa | qa
     cabbrev xa Z
 ]])
+
+-- Copy error message
+vim.keymap.set("n", "<leader>vm", "<cmd>let @*=trim(execute('1messages'))<CR><cmd>echo 'copied'<CR>", { desc = "Copy Messages" })
