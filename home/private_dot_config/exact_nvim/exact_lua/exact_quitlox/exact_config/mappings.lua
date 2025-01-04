@@ -103,8 +103,7 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "which_
 --+- Function: Close Other Buffers --------------------------+
 local function close_all_but_current()
     local current = vim.api.nvim_get_current_buf()
-    local buffers = require("bufferline.utils").get_valid_buffers()
-    for _, bufnr in pairs(buffers) do
+    for _, bufnr in pairs(vim.api.nvim_list_bufs()) do
         -- We leave the current buffer open
         if bufnr == current then
             goto continue
@@ -117,8 +116,6 @@ local function close_all_but_current()
             end
         end
 
-        -- Delete the buffer
-        -- require("bufferline.commands").handle_close(bufnr)
         pcall(vim.cmd, string.format("bd %d", bufnr))
 
         ::continue::

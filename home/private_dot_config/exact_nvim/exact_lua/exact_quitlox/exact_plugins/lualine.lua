@@ -55,6 +55,7 @@ require("lualine").setup({
                 "dapui_watches",
                 "dapui_console",
                 "Avante",
+                "AvanteInput",
                 "jinja", -- buggy
             },
             statusline = {

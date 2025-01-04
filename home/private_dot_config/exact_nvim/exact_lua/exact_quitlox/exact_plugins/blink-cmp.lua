@@ -29,16 +29,11 @@ require("blink-cmp").setup({
         ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
         ["<Enter>"] = { "accept", "fallback" },
 
-        ["/"] = { "select_and_accept", "fallback" },
-        ["\\"] = { "select_and_accept", "fallback" },
-
         cmdline = {
             ["<Tab>"] = { "select_next" },
             ["<S-Tab>"] = { "select_prev" },
             ["<Enter>"] = {},
             ["<C-Space>"] = { "show" },
-            ["/"] = { "select_and_accept", "fallback" },
-            ["\\"] = { "select_and_accept", "fallback" },
         },
     },
     completion = {
@@ -70,11 +65,6 @@ require("blink-cmp").setup({
     sources = {
         default = { "lazydev", "lsp", "path", "snippets", "buffer" },
         providers = {
-            lazydev = {
-                name = "LazyDev",
-                module = "lazydev.integrations.blink",
-                score_offset = 100,
-            },
             dap = {
                 name = "dap",
                 module = "blink.compat.source",
@@ -86,6 +76,17 @@ require("blink-cmp").setup({
             html_css = {
                 name = "html-css",
                 module = "blink.compat.source",
+            },
+            lazydev = {
+                name = "LazyDev",
+                module = "lazydev.integrations.blink",
+                score_offset = 100,
+            },
+            path = {
+                opts = {
+                    trailing_slash = false,
+                    label_trailing_slash = true,
+                },
             },
             snippets = {
                 opts = {

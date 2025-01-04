@@ -46,6 +46,9 @@ vim.opt.showmode = false
 vim.g.have_nerd_font = true -- Maybe kickstart.nvim specific
 vim.cmd([[aunmenu PopUp.How-to\ disable\ mouse]])
 vim.cmd([[aunmenu PopUp.-1-]])
+vim.opt.shortmess = vim.opt.shortmess + "F" -- Don't print the filename when opening a file
+vim.opt.shortmess = vim.opt.shortmess + "s" -- Don't print the search wraparound message
+vim.opt.shortmess = vim.opt.shortmess + "S" -- Don't print the search count when searching
 --- Splits ---
 vim.opt.splitright = true
 vim.opt.splitbelow = true

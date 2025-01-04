@@ -23,6 +23,13 @@ local function dispose_all()
     end
 end
 
+local function start_all()
+    local tasks = require("overseer").list_tasks()
+    for _, task in ipairs(tasks) do
+        require("overseer").run_action(task, "start")
+    end
+end
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = "Overseer*",
     callback = function()
@@ -56,6 +63,7 @@ require("overseer").setup({
             ["X"] = stop_all,
             ["R"] = restart_all,
             ["D"] = dispose_all,
+            ["S"] = start_all,
         },
     },
     bundles = {
