@@ -8,6 +8,16 @@ require("gp").setup({
     toggle_target = "popup",
     chat_user_prefix = "󰭹 :",
     chat_assistant_prefix = { "󰚩 :", "[{{agent}}]" },
+    providers = {
+        openai = {
+            endpoint = "https://api.openai.com/v1/chat/completions",
+            secret = os.getenv("OPENAI_API_KEY"),
+        },
+        anthropic = {
+            endpoint = "https://api.anthropic.com/v1/messages",
+            secret = os.getenv("ANTHROPIC_API_KEY"),
+        },
+    },
 })
 
 --+- Helper: Change settings during writing -----------------+

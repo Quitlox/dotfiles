@@ -50,25 +50,5 @@ require("nvim-treesitter.configs").setup({
     },
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("MyPythonTextObjects", { clear = true }),
-    pattern = "python",
-    callback = function()
-        require("nvim-treesitter.configs").setup({
-            textobjects = {
-                move = {
-                    goto_next_start = {
-                        ["]m"] = "@function.name",
-                        ["]f"] = "@function.name",
-                        ["]]"] = "@class.name",
-                    },
-                    goto_previous_start = {
-                        ["[m"] = "@function.name",
-                        ["[f"] = "@function.name",
-                        ["[["] = "@class.name",
-                    },
-                },
-            },
-        })
-    end,
-})
+-- NOTE: Filetype specific textobjects currently configured in:
+-- - ftplugin/python.lua

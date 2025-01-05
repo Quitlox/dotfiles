@@ -3,7 +3,7 @@
 -- +---------------------------------------------------------+
 
 -- Setup
-require("dapui").setup({ expand_lines = true })
+require("dapui").setup({ expand_lines = true, mappings = { remove = "dd" } })
 
 -- State
 local state = {

@@ -21,17 +21,16 @@
         - [ ] neotest: detach when switching projects / sessions
                 neotest has no built-in method for doing this
 - Bugs:
-    - [ ] dap: cmp integration
     - [ ] possession: wrong tab being opened on restore (due to notify, neo-tree?)
             reproduce: knowledge-base, tab 1 (neo-tree, md), tab 2 (python, chatgpt)
+    - [ ] jsonls not starting?
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from
-      terminal into LSP enabled window (python)
-    - [ ] which-key: add description to mini.ai
+      terminal into LSP enabled window (python) -> its linting, but why
+    - [x] which-key: add description to mini.ai
     - [ ] edgy: on open explorer, windows should be resized
-    - [ ] mini.ai: in python ci" should also capture f-strings
-    - [ ] mini.ai: no query for lua functions?
+    - [x] mini.ai: in python ci" should also capture f-strings
     - [ ] pymple: not working, probably due to virtual environment
 
 - Requires Contribution:
@@ -41,17 +40,29 @@
     - [ ] navic: should provide symbol filter, but maintainer is inactive
     - [ ] overseer: map <esc> in help_win (not configurable currently)
     - [ ] overseer: jk should move to job in OverseerTaskList, not step around
-    - [ ] overseer: attach debugger
     - [ ] overseer: term should scroll to bottom automatically
     - [ ] overseer: background tasks should not be awaited for completion
+    - [ ] overseer: add option to not autorestart isBackground tasks 
     - [x] blink.cmp: the char / should be a trigger for the path source
     - [ ] navic: doesn't work with arrow, same context in all windows
     - [ ] rocks:
         - [ ] should not update git to older version tag if ver is specified to be a newer commit
         - [ ] toml-edit should keep inline items as inline
         - [ ] toml edit should not move the comments  
-    - [ ] blink.cmp: rewrite cmp-dap for blink.cmp. (it's quite a small plugin) 
-
+    - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing
+      the windows not to resize properly
+        - https://github.com/rcarriga/nvim-dap-ui/issues/175
+        - https://github.com/rcarriga/nvim-dap-ui/issues/260
+    - [ ] hover.nvim: allow changing priority of providers
+        I want LSP to be higher than Diagnostic, as I can already directly open
+        the diagnostic using ]d and [d
+    - [ ] nvim-dap-ui / overseer: after using debugging, the mappings over the
+        overseer window are no longer available (or its because cannot make changes,
+        'modifiable' is off)
+    - [ ] nvim-dap-ui: on second debug session, repl is not available
+        there is a repl window, but it has the generic name "dap-repl-198" and
+        doesn't show anything.
+    - [ ] dap-ui: watches window should allow delete on partial line (with ">")
 
 - Requires Contribution (hard-to-fix):
     - [ ] nvim: <BS> and <C-BS> have odd behaviour in DAP REPL and DAP Watches
@@ -61,10 +72,12 @@
         - https://github.com/neovide/neovide/issues/2491
     - [ ] resession: plugin for restoring shell contents
         should be doable?
+    - [ ] blink.cmp: rewrite cmp-dap for blink.cmp. (it's quite a small plugin) 
 
-- Contribute, sane defaults, low priority:
+- Contribute back, sane defaults, low priority:
     - [ ] overseer.nvim: task view has not filetype
     - [ ] overseer.nvim: my custom dispose_all, restart_all commands
+    - [ ] nvim-treesitter-textobjects / mini.ai: python @string.inner / @string.outer
 
 Desktop:
 - [ ] Eww: Bar should use fill icons on select

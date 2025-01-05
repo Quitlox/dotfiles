@@ -6,7 +6,6 @@ local dap = require("dap")
 
 -- dap.defaults.fallback
 dap.defaults.fallback.switchbuf = "useopen,uselast"
--- dap.defaults.fallback.stepping_granularity = "line"
 
 --+- Launch.json --------------------------------------------+
 -- Command: Reload launch.json

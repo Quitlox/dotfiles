@@ -1,5 +1,9 @@
 [rocks]
 
+[treesitter]
+auto_highlight = "all"
+auto_install = "prompt"
+
 [plugins]
 "rocks.nvim" = "2.43.0"
 "rocks-git.nvim" = "2.5.2"
@@ -55,8 +59,7 @@
 "comment-box.nvim" = "scm"
 
 # +- Completion ---------------------------------------------+
-# "blink.cmp" = { git = "saghen/blink.cmp", rev = "4c63b4e29738268950911bb0c70ffaaba26b53d7" }
-"blink.cmp" = { git = "quitlox/blink.cmp", rev = "68537adf1f898aec1770ca8368a05ffdf0687a26" }
+"blink.cmp" = { git = "saghen/blink.cmp", rev = "0d1e3c34b172bf93380f8675ec962c301f2b5aaa" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.2.0" }
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
 # "nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } -- not compatible with blink
@@ -104,7 +107,7 @@
 
 # +- Treesitter ---------------------------------------------+
 "rocks-treesitter.nvim" = "1.3.0"
-"nvim-treesitter-legacy-api" = "scm"
+"nvim-treesitter-legacy-api" = { git = "nvim-treesitter/nvim-treesitter", rev = "v0.9.3" }
 # +- Treesitter: Modules ------------------------------------+
 "rainbow-delimiters.nvim" = "0.8.0"
 "nvim-autopairs" = "scm"
@@ -231,7 +234,6 @@
 # +----------------------------------------------------------+
 tree-sitter-bash = "scm"
 tree-sitter-bibtex = "0.0.29"
-tree-sitter-c = "0.0.36"
 tree-sitter-cpp = "0.0.35"
 tree-sitter-css = "scm"
 tree-sitter-csv = "0.0.29"
@@ -263,7 +265,7 @@ tree-sitter-pem = "0.0.30"
 tree-sitter-perl = "scm"
 tree-sitter-php = "0.0.35"
 tree-sitter-pug = "0.0.30"
-tree-sitter-python = "scm"
+tree-sitter-python = "0.0.36"
 tree-sitter-query = "scm"
 tree-sitter-requirements = "scm"
 tree-sitter-rst = "scm"

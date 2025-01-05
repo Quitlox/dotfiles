@@ -11,7 +11,7 @@ vim.opt.formatoptions = vim.opt.formatoptions + "r" -- Automatically insert the 
 -- vim.opt.formatoptions = vim.opt.formatoptions + "v" -- Vi-compatible auto-wrapping in insert mode: Only break a line at a blank that you have entered during the current insert command.
 vim.opt.formatoptions = vim.opt.formatoptions + "p" -- Don't break lines at single spaces that follow periods.
 vim.opt.formatoptions = vim.opt.formatoptions + "1" -- Don't break a line after a one-letter word.
-vim.opt.indentkeys = vim.opt.indentkeys - "o" -- Don't wrap the fucking parentheses in comments (especially python)
+-- vim.opt.indentkeys = vim.opt.indentkeys - "o" -- Don't wrap the fucking parentheses in comments (especially python)
 --- Tab behaviour ---
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -71,6 +71,7 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300 -- FIXME: was 800
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.shada = vim.opt.shada + "'0,f0"
+vim.opt.backspace = "indent,eol,start"
 
 --- Folding ---
 vim.opt.foldlevel = 99 -- FIXME:: Slows down legendary

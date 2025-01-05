@@ -35,6 +35,14 @@ if succes then
     -- rock_config_mod.configure("snacks.nvim")
     require("quitlox.plugins.snacks")
 end
+-- Treesitter
+local ok, mod = pcall(require, 'nvim-treesitter.configs')
+if ok then
+
+    mod.setup({
+        indent = { enable = true },
+    })
+end
 
 -- Load environment specific configuration
 require("quitlox.config.environment.kitty")
