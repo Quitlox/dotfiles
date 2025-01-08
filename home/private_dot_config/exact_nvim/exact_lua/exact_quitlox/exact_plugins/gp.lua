@@ -63,18 +63,17 @@ vim.keymap.set({ "n", "i" }, "<C-g><C-g>", ":GpChatRespond<cr>", { desc = "Respo
 vim.keymap.set({ "n", "i" }, "<C-g>f", ":GpChatFinder<cr>", { desc = "ChatFinder", noremap = true, silent = true, nowait = true })
 
 vim.keymap.set({ "n", "i" }, "<C-g>t", ":GpChatToggle<cr>", { desc = "ToggleChat", noremap = true, silent = true, nowait = true })
-vim.keymap.set({ "n", "i" }, "<C-g>c", ":GpChatNew vsplit<cr>", { desc = "NewChat", noremap = true, silent = true, nowait = true })
-vim.keymap.set({ "n", "i" }, "<C-g>p", ":GpChatNew popup<cr>", { desc = "NewChat popup", noremap = true, silent = true, nowait = true })
+vim.keymap.set({ "n", "i" }, "<C-g>c", ":GpChatNew popup<cr>", { desc = "NewChat", noremap = true, silent = true, nowait = true })
 vim.keymap.set({ "n", "i" }, "<C-g>v", ":GpChatNew split<cr>", { desc = "NewChat vsplit", noremap = true, silent = true, nowait = true })
 vim.keymap.set({ "n", "i" }, "<C-g>b", ":GpChatNew vsplit<cr>", { desc = "NewChat split", noremap = true, silent = true, nowait = true })
 vim.keymap.set({ "n", "i" }, "<C-g><Tab>", ":GpChatNew tabnew<cr>", { desc = "NewChat tabnew", noremap = true, silent = true, nowait = true })
 
-vim.keymap.set("v", "<C-g>c", ":<C-u>'<,'>GpChatNew<cr>", { desc = "VisualChatNew", noremap = true, silent = true, nowait = true })
-vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpChatPaste<cr>", { desc = "VisualChatPaste", noremap = true, silent = true, nowait = true })
 vim.keymap.set("v", "<C-g>t", ":<C-u>'<,'>GpChatToggle<cr>", { desc = "VisualToggleChat", noremap = true, silent = true, nowait = true })
+vim.keymap.set("v", "<C-g>c", ":<C-u>'<,'>GpChatNew popup<cr>", { desc = "VisualChatNew", noremap = true, silent = true, nowait = true })
 vim.keymap.set("v", "<C-g>v", ":<C-u>'<,'>GpChatNew split<cr>", { desc = "VisualChatNew split", noremap = true, silent = true, nowait = true })
 vim.keymap.set("v", "<C-g>b", ":<C-u>'<,'>GpChatNew vsplit<cr>", { desc = "VisualChatNew vsplit", noremap = true, silent = true, nowait = true })
 vim.keymap.set("v", "<C-g><Tab>", ":<C-u>'<,'>GpChatNew tabnew<cr>", { desc = "VisualChatNew tabnew", noremap = true, silent = true, nowait = true })
+vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpChatPaste<cr>", { desc = "VisualChatPaste", noremap = true, silent = true, nowait = true })
 
 -- Prompt Commands
 vim.keymap.set({ "n", "i" }, "<C-g>r", ":MyGpRewrite<cr>", { desc = "InlineRewrite", noremap = true, silent = true, nowait = true })
@@ -89,7 +88,7 @@ vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>MyGpImplement<cr>", { desc = "VisualIm
 -- vim.keymap.set({"n", "i"}, "<C-g>x", ":GpContext<cr>", { desc = "ToggleContext", noremap = true, silent = true, nowait = true })
 -- vim.keymap.set("v", "<C-g>x", ":GpContext<cr>", { desc = "VisualToggleContext", noremap = true, silent = true, nowait = true })
 
-vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>s", ":GpStop<cr>", { desc = "Stop", noremap = true, silent = true, nowait = true })
+vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>x", ":GpStop<cr>", { desc = "Stop", noremap = true, silent = true, nowait = true })
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>n", ":GpNextAgent<cr>", { desc = "NextAgent", noremap = true, silent = true, nowait = true })
 
 --+- Commands -----------------------------------------------+

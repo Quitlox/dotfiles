@@ -30,6 +30,7 @@ auto_install = "prompt"
 # "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc", pin = true } # pinned because of outdated release
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" }
 "yanky.nvim" = { git = "gbprod/yanky.nvim", rev = "f9b905994cccf3c55f41af3a0a1f4c76c844e411" }
+"vim-matchup" = { git = "andymass/vim-matchup", rev = "aca23ce53ebfe34e02c4fe07e29e9133a2026481" } 
 
 # +- Visual Enhancements ------------------------------------+
 "nvim-colorizer.lua" = { git = "norcalli/nvim-colorizer.lua", rev = "a065833f35a3a7cc3ef137ac88b5381da2ba302e" }
@@ -116,7 +117,6 @@ auto_install = "prompt"
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "8b34305ffc28bd75a22f5a0a9928ee726a85c9a6" }
 "nvim-treesitter-textsubjects" = { git = "RRethy/nvim-treesitter-textsubjects", rev = "a8d2844bba925d9450ef7ab215f3b054028288ca" }
 "nvim-treesitter-textobjects" = { git = "nvim-treesitter/nvim-treesitter-textobjects", rev = "ad8f0a472148c3e0ae9851e26a722ee4e29b1595" }
-"nvim-various-textobjs" = "scm"
 
 # +- Miscellenous -------------------------------------------+
 "gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "2455191ec94da8ed222806a4fe3aa358eac1e558" }
