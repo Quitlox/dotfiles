@@ -58,9 +58,8 @@ auto_install = "prompt"
 # +- Comments / Documentation -------------------------------+
 "neogen" = "2.20.0"
 "comment-box.nvim" = "scm"
-
 # +- Completion ---------------------------------------------+
-"blink.cmp" = { git = "saghen/blink.cmp", rev = "0d1e3c34b172bf93380f8675ec962c301f2b5aaa" }
+"blink.cmp" = { git = "saghen/blink.cmp", rev = "v0.11.0" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.2.0" }
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
 # "nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } -- not compatible with blink
