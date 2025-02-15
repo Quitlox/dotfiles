@@ -75,7 +75,12 @@ require("which-key").add({
 -- +---------------------------------------------------------+
 
 if vim.fn.exists("g:neovide") == 0 then
-    require("image").setup({
+    local ok, mod_image = pcall(require, "image")
+    if not ok then
+        return
+    end
+
+    mod_image.setup({
         backend = "kitty",
         integrations = {},
         max_width = 100,
