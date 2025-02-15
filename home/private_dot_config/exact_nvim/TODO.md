@@ -20,12 +20,38 @@
             the idea of using the tabline to switch between projects
         - [ ] neotest: detach when switching projects / sessions
                 neotest has no built-in method for doing this
+
+    - [ ] Switch to SemVer for Gitsigns (v1.0.0) is out.   
 - Bugs:
     - [ ] possession: wrong tab being opened on restore (due to notify, neo-tree?)
             reproduce: knowledge-base, tab 1 (neo-tree, md), tab 2 (python, chatgpt)
-    - [ ] jsonls not working?
-    - [ ] enabling lua.vim.treesitter.foldexpr()  slows down legendary
-    - [ ] <C-BS> should not delete space
+    - [ ] jsonls not starting?
+    - [ ] markdown documents seem to have incorrect whitespace chars (example, '~/.config/nvim/rocks.toml').
+        related seems that backspace on first column of line in these files doesn't work
+    - <esc> in lazygit doesn't work
+
+- stacktrace on startup, sometimes:
+```log
+Error executing vim.schedule lua callback: ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:407: Error executing lua: ...e-pretty-path/lua/lualine-pr
+etty-path/providers/base.lua:87: attempt to index field 'path' (a nil value)                                                                                    
+stack traceback:                                                                                                                                                
+        ...e-pretty-path/lua/lualine-pretty-path/providers/base.lua:87: in function 'extract_scheme'                                                            
+        ...e-pretty-path/lua/lualine-pretty-path/providers/base.lua:74: in function 'parse'                                                                     
+        ...e-pretty-path/lua/lualine-pretty-path/providers/base.lua:44: in function 'init'                                                                      
+        ...l/share/nvim/rocks/rocks_rtp/lua/lualine/utils/class.lua:34: in function 'new'                                                                       
+        ...aline-pretty-path/lua/lualine/components/pretty_path.lua:155: in function 'update_status'                                                            
+        ...cal/share/nvim/rocks/rocks_rtp/lua/lualine/component.lua:273: in function 'draw'                                                                     
+        ...share/nvim/rocks/rocks_rtp/lua/lualine/utils/section.lua:26: in function 'draw_section'                                                              
+        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:167: in function 'statusline'                                                               
+        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:295: in function <...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:276>          
+        [C]: in function 'nvim_win_call'                                                                                                                        
+        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:407: in function 'refresh'                                                                  
+        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:523: in function <...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:520>          
+stack traceback:                                                                                                                                                
+        [C]: in function 'nvim_win_call'                                                                                                                        
+        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:407: in function 'refresh'                                                                  
+        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:523: in function <...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:520>
+```
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from
@@ -38,6 +64,7 @@
 - Requires Contribution:
     - [ ] treewalker.nvim: allow skipping certain nodes
     - [ ] treewalker.nvim: automatically disable in buffers without parsers/lang
+    - [ ] rocks.nvim: provide warning for outdated plugins (both scm vs git and pin vs scm)
     - [ ] navic: should provide symbol filter, but maintainer is inactive
     - [ ] overseer: map <esc> in help_win (not configurable currently)
     - [ ] overseer: jk should move to job in OverseerTaskList, not step around
@@ -46,9 +73,10 @@
     - [ ] overseer: add option to not autorestart isBackground tasks 
     - [x] blink.cmp: the char / should be a trigger for the path source
     - [ ] navic: doesn't work with arrow, same context in all windows
-    - [ ] rocks: should not update git to older version tag if ver is specified to be a newer commit
-    - [ ] rocks: toml-edit should keep inline items as inline
-    - [ ] rocks: toml edit should not move the comments  
+    - [ ] rocks:
+        - [ ] should not update git to older version tag if ver is specified to be a newer commit
+        - [ ] toml-edit should keep inline items as inline
+        - [ ] toml edit should not move the comments  
     - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing
       the windows not to resize properly
         - https://github.com/rcarriga/nvim-dap-ui/issues/175
@@ -73,36 +101,11 @@
     - [ ] resession: plugin for restoring shell contents
         should be doable?
     - [ ] blink.cmp: rewrite cmp-dap for blink.cmp. (it's quite a small plugin) 
-    - [ ] rocks.nvim: provide warning for outdated plugins (both scm vs git and pin vs scm)
 
 - Contribute back, sane defaults, low priority:
     - [ ] overseer.nvim: task view has not filetype
     - [ ] overseer.nvim: my custom dispose_all, restart_all commands
     - [ ] nvim-treesitter-textobjects / mini.ai: python @string.inner / @string.outer
-
-- Errors
-```log
-Error detected while processing BufWritePre Autocommands for "*":                                                                                                                                                                                    
-Error executing luv callback:                                                                                                                                                                                                                        
-...te/pack/rocks/start/gitsigns.nvim/lua/gitsigns/async.lua:95: The async coroutine failed: ...pack/rocks/start/gitsigns.nvim/lua/gitsigns/git/repo.lua:145: table index is nil                                                                      
-stack traceback:                                                                                                                                                                                                                                     
-        ...pack/rocks/start/gitsigns.nvim/lua/gitsigns/git/repo.lua: in function 'get'                                                                                                                                                               
-        ...site/pack/rocks/start/gitsigns.nvim/lua/gitsigns/git.lua:408: in function 'new'                                                                                                                                                           
-        ...e/pack/rocks/start/gitsigns.nvim/lua/gitsigns/attach.lua:281: in function 'fn'                                                                                                                                                            
-        ...pack/rocks/start/gitsigns.nvim/lua/gitsigns/debounce.lua:68: in function 'attach_throttled'                                                                                                                                               
-        ...e/pack/rocks/start/gitsigns.nvim/lua/gitsigns/attach.lua:432: in function <...e/pack/rocks/start/gitsigns.nvim/lua/gitsigns/attach.lua:431>                                                                                               
-stack traceback:                                                                                                                                                                                                                                     
-        [C]: in function 'error'                                                                                                                                                                                                                     
-        ...te/pack/rocks/start/gitsigns.nvim/lua/gitsigns/async.lua:95: in function 'cb'                                                                                                                                                             
-        ...te/pack/rocks/start/gitsigns.nvim/lua/gitsigns/async.lua:145: in function 'on_exit'                                                                                                                                                       
-        /usr/share/nvim/runtime/lua/vim/_system.lua:301: in function </usr/share/nvim/runtime/lua/vim/_system.lua:271>                                                                                                                               
-        [C]: in function 'wait'                                                                                                                                                                                                                      
-        ....local/share/nvim/rocks/rocks_rtp/lua/conform/runner.lua:676: in function 'format_lines_sync'                                                                                                                                             
-        ....local/share/nvim/rocks/rocks_rtp/lua/conform/runner.lua:616: in function 'format_sync'                                                                                                                                                   
-        ...x/.local/share/nvim/rocks/rocks_rtp/lua/conform/init.lua:532: in function 'run_cli_formatters'                                                                                                                                            
-        ...x/.local/share/nvim/rocks/rocks_rtp/lua/conform/init.lua:562: in function 'format'                                                                                                                                                        
-        ...x/.local/share/nvim/rocks/rocks_rtp/lua/conform/init.lua:114: in function <...x/.local/share/nvim/rocks/rocks_rtp/lua/conform/init.lua:99>
-```
 
 Desktop:
 - [ ] Eww: Bar should use fill icons on select
