@@ -44,7 +44,7 @@ require("overseer").setup({
     --     "snacks_terminal",
     -- },
     task_list = {
-        default_detail = 2,
+        default_detail = 1,
         bindings = {
             ["<C-l>"] = false,
             ["<C-h>"] = false,
@@ -60,10 +60,21 @@ require("overseer").setup({
             ["s"] = "<cmd>OverseerQuickAction start<cr>",
             ["r"] = "<cmd>OverseerQuickAction restart<cr>",
             ["x"] = "<cmd>OverseerQuickAction stop<cr>",
+            ["j"] = "NextTask",
+            ["k"] = "PrevTask",
             ["X"] = stop_all,
             ["R"] = restart_all,
             ["D"] = dispose_all,
             ["S"] = start_all,
+        },
+    },
+    component_aliases = {
+        default = {
+            { "display_duration", detail_level = 2 },
+            "on_output_summarize",
+            "on_exit_set_status",
+            "on_complete_notify",
+            -- { "on_complete_dispose", require_view = { "SUCCESS", "FAILURE" } }, -- Disabled to prevent auto-dispose
         },
     },
     bundles = {
