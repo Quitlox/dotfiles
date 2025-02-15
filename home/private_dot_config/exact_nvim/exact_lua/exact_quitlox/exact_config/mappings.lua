@@ -122,9 +122,31 @@ local function close_all_but_current()
     end
 end
 
+local function close_all_but_current_force()
+    local current = vim.api.nvim_get_current_buf()
+    for _, bufnr in pairs(vim.api.nvim_list_bufs()) do
+        -- We leave the current buffer open
+        if bufnr == current then
+            goto continue
+        end
+
+        -- We leave buffers that are visible in a window
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+            if vim.api.nvim_win_get_buf(win) == bufnr then
+                goto continue
+            end
+        end
+
+        pcall(vim.cmd, string.format("bw! %d", bufnr))
+
+        ::continue::
+    end
+end
+
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>bd", function() require('snacks').bufdelete() end, { desc = "Buffer Delete" })
 vim.keymap.set("n", "<leader>bo", close_all_but_current, { desc = "Buffer Only" })
+vim.keymap.set("n", "<leader>bw", close_all_but_current_force, { desc = "Buffer Only (Force)" })
 -- stylua: ignore end
 
 -- +---------------------------------------------------------+
