@@ -28,7 +28,13 @@
     - [ ] jsonls not starting?
     - [ ] markdown documents seem to have incorrect whitespace chars (example, '~/.config/nvim/rocks.toml').
         related seems that backspace on first column of line in these files doesn't work
+        - it also happens in for example secure counterfactuals (python)
+        - it may also be the cause of the copilot completions not using the
+        correct indent 
     - <esc> in lazygit doesn't work
+    - [ ] venv-selector: doesn't work without python file open
+    - [ ] dap-ui: enter and i should also open location in "Call Stack" window
+    - [ ] dap-ui: repl icons background color wrong (should be darkest, as in edgy)
 
 - stacktrace on startup, sometimes:
 ```log
