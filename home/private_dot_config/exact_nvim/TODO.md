@@ -1,18 +1,17 @@
 - Changes
     - [ ] when going to a definition outside of the cwd, open a new tab and set the tcd
     - [ ] Go over all commands, check if enough are present
-    - [ ] Go over all plugins and contribute sane defaults
     - [ ] Go over all plugins and use Snacks.on_module for integrations to prevent errors if module uninstalled
         - I need a shorthand for throwing an error if a module is not present,
           optionally with a message
 
     - [ ] Adopt remote-nvim.nvim
     - [ ] Adopt Obsidian.nvim
-    - [ ] Switch from possesion to resession
     - [ ] Overseer:
         - [ ] "OverseerQuickAction duplicate" would be convenient
 
     - Projects per Tab:
+        - [ ] Switch from possesion to resession
         - [ ] sessions: main problem is the integration with a session manager
             the session manager must handle tcd and only set the window layout of the current tab
             maybe I should instead move away from autoloading sessions
@@ -20,63 +19,25 @@
             the idea of using the tabline to switch between projects
         - [ ] neotest: detach when switching projects / sessions
                 neotest has no built-in method for doing this
-
-    - [ ] Switch to SemVer for Gitsigns (v1.0.0) is out.   
+        - [ ] possession: wrong tab being opened on restore (due to notify, neo-tree?)
+                reproduce: knowledge-base, tab 1 (neo-tree, md), tab 2 (python, chatgpt)
 - Bugs:
-    - [ ] possession: wrong tab being opened on restore (due to notify, neo-tree?)
-            reproduce: knowledge-base, tab 1 (neo-tree, md), tab 2 (python, chatgpt)
-    - [ ] jsonls not starting?
-    - [ ] markdown documents seem to have incorrect whitespace chars (example, '~/.config/nvim/rocks.toml').
-        related seems that backspace on first column of line in these files doesn't work
-        - it also happens in for example secure counterfactuals (python)
-        - it may also be the cause of the copilot completions not using the
-        correct indent 
-    - <esc> in lazygit doesn't work
+    - [x] snacks.terminal: `<esc>` in lazygit unbound
     - [ ] venv-selector: doesn't work without python file open
     - [ ] dap-ui: enter and i should also open location in "Call Stack" window
     - [ ] dap-ui: repl icons background color wrong (should be darkest, as in edgy)
-
-- stacktrace on startup, sometimes:
-```log
-Error executing vim.schedule lua callback: ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:407: Error executing lua: ...e-pretty-path/lua/lualine-pr
-etty-path/providers/base.lua:87: attempt to index field 'path' (a nil value)                                                                                    
-stack traceback:                                                                                                                                                
-        ...e-pretty-path/lua/lualine-pretty-path/providers/base.lua:87: in function 'extract_scheme'                                                            
-        ...e-pretty-path/lua/lualine-pretty-path/providers/base.lua:74: in function 'parse'                                                                     
-        ...e-pretty-path/lua/lualine-pretty-path/providers/base.lua:44: in function 'init'                                                                      
-        ...l/share/nvim/rocks/rocks_rtp/lua/lualine/utils/class.lua:34: in function 'new'                                                                       
-        ...aline-pretty-path/lua/lualine/components/pretty_path.lua:155: in function 'update_status'                                                            
-        ...cal/share/nvim/rocks/rocks_rtp/lua/lualine/component.lua:273: in function 'draw'                                                                     
-        ...share/nvim/rocks/rocks_rtp/lua/lualine/utils/section.lua:26: in function 'draw_section'                                                              
-        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:167: in function 'statusline'                                                               
-        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:295: in function <...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:276>          
-        [C]: in function 'nvim_win_call'                                                                                                                        
-        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:407: in function 'refresh'                                                                  
-        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:523: in function <...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:520>          
-stack traceback:                                                                                                                                                
-        [C]: in function 'nvim_win_call'                                                                                                                        
-        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:407: in function 'refresh'                                                                  
-        ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:523: in function <...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:520>
-```
-- gp.nvim stacktrace during normal question in float:
-```log
-Error executing luv callback:                                                                                                                                                                                                                        
-...nvim/site/pack/rocks/start/gp.nvim/lua/gp/dispatcher.lua:228: attempt to index field 'choices' (a nil value)                                                                                                                                      
-stack traceback:                                                                                                                                                                                                                                     
-        ...nvim/site/pack/rocks/start/gp.nvim/lua/gp/dispatcher.lua:228: in function 'process_lines'                                                                                                                                                 
-        ...nvim/site/pack/rocks/start/gp.nvim/lua/gp/dispatcher.lua:276: in function 'out_reader'                                                                                                                                                    
-        ...are/nvim/site/pack/rocks/start/gp.nvim/lua/gp/tasker.lua:166: in function <...are/nvim/site/pack/rocks/start/gp.nvim/lua/gp/tasker.lua:158>
-```
-- gp.nvim <C-g>f (find) always opens selected chat in first window, should use window picker
-- <C-<TAB>> instead of <leader><Tab>?
-- ci" ignores comment lines, annoying
+    - [ ] mini-ai: mapping `ci"` in python on final `"` goes to next
+    - [ ] mini-ai: mapping `ci"` in python doesn't not respected in comments or docstrings 
+    - [ ] gp.nvim: `<C-g>f` (find) opens selected chat in first window, should use window picker
+    - [ ] grug-far.nvim: cannot search on char `<` / `>`
+    - [ ] possesion: do not print when no session is found
+    - [ ] keymap: `<leader>dt` seems to be bound to something else
+    - [ ] bug: searching to the next query with `n` doesn't work because of scrolling animation
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from
       terminal into LSP enabled window (python) -> its linting, but why
-    - [x] which-key: add description to mini.ai
     - [ ] edgy: on open explorer, windows should be resized
-    - [x] mini.ai: in python ci" should also capture f-strings
     - [ ] pymple: not working, probably due to virtual environment
 
 - Requires Contribution:

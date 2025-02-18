@@ -22,3 +22,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
     end,
 })
+
+vim.api.nvim_set_keymap("n", "<leader><leader>d", "", {
+    noremap = true,
+    callback = function()
+        for _, client in ipairs(vim.lsp.get_clients()) do
+            require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+        end
+    end,
+    desc = "Populate Workspace Diagnostics",
+})

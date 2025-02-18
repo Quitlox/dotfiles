@@ -13,10 +13,10 @@ vim.keymap.set("c", "<C-BS>", "<C-w>")
 vim.keymap.set("c", "<C-h>", "<C-w>")
 
 -- Delete Word
-vim.keymap.set("i", "<C-BS>", "<C-w>")
-vim.keymap.set("i", "<C-h>", "<C-w>")
-vim.keymap.set("c", "<C-BS>", "<C-w>")
-vim.keymap.set("c", "<C-h>", "<C-w>")
+vim.keymap.set("i", "<C-BS>", "<C-w>", { noremap = true })
+vim.keymap.set("i", "<C-h>", "<C-w>", { noremap = true })
+vim.keymap.set("c", "<C-BS>", "<C-w>", { noremap = true })
+vim.keymap.set("c", "<C-h>", "<C-w>", { noremap = true })
 
 -- Disable defaults
 vim.keymap.set("n", "<C-w>d", "<nop>")

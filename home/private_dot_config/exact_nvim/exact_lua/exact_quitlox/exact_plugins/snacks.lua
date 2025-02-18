@@ -37,13 +37,6 @@ require("which-key").add({
 
 Snacks.config.style("lazygit", {
     keys = {
-        -- Disable the escape key for lazygit
-        term_normal = {
-            "<esc>",
-            function(self) end,
-            mode = "t",
-            expr = true,
-        },
         ["`"] = "hide",
     },
 })
