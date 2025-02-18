@@ -52,6 +52,18 @@ stack traceback:
         ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:407: in function 'refresh'                                                                  
         ...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:523: in function <...uitlox/.local/share/nvim/rocks/rocks_rtp/lua/lualine.lua:520>
 ```
+- gp.nvim stacktrace during normal question in float:
+```log
+Error executing luv callback:                                                                                                                                                                                                                        
+...nvim/site/pack/rocks/start/gp.nvim/lua/gp/dispatcher.lua:228: attempt to index field 'choices' (a nil value)                                                                                                                                      
+stack traceback:                                                                                                                                                                                                                                     
+        ...nvim/site/pack/rocks/start/gp.nvim/lua/gp/dispatcher.lua:228: in function 'process_lines'                                                                                                                                                 
+        ...nvim/site/pack/rocks/start/gp.nvim/lua/gp/dispatcher.lua:276: in function 'out_reader'                                                                                                                                                    
+        ...are/nvim/site/pack/rocks/start/gp.nvim/lua/gp/tasker.lua:166: in function <...are/nvim/site/pack/rocks/start/gp.nvim/lua/gp/tasker.lua:158>
+```
+- gp.nvim <C-g>f (find) always opens selected chat in first window, should use window picker
+- <C-<TAB>> instead of <leader><Tab>?
+- ci" ignores comment lines, annoying
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from

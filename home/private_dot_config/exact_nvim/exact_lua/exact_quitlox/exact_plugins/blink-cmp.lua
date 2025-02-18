@@ -28,8 +28,9 @@ require("blink-cmp").setup({
         ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
         ["<Enter>"] = { "accept", "fallback" },
-
-        cmdline = {
+    },
+    cmdline = {
+        keymap = {
             ["<Tab>"] = { "select_next" },
             ["<S-Tab>"] = { "select_prev" },
             ["<Enter>"] = {},
@@ -40,7 +41,7 @@ require("blink-cmp").setup({
         accept = { auto_brackets = { enabled = true } },
         documentation = { auto_show = true },
         list = {
-            selection = "auto_insert",
+            selection = { preselect = false, auto_insert = true },
         },
 
         -- Setup mini.icons
