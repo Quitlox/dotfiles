@@ -161,6 +161,7 @@ auto_install = "prompt"
 "nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "149986b4fc409c1b258ff5b1671d03b5094b3c74" }
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
 "yuck.vim" = { git = "elkowar/yuck.vim", rev = "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
+"csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "545da7939fd295c4c95e606173f5d00658d66abc" }
 
 # +----------------------------------------------------------+
 # | Components                                               |
