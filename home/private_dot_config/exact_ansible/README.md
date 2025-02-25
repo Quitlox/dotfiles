@@ -62,8 +62,12 @@ STARSHIP
 - Make abstract role for adding hook to initramfs
 - Configure swap using swap partition
 
-- Log into Zotero automatically and setup sync?
-- Install Zotero browser connector automatically?
+- Zotero
+    - Log into Zotero automatically and setup sync?
+    - Install Zotero browser connector automatically?
+    - Zotero Marketplace
+    - Zotero better bibtex
+    - Zotero obsidian integration
 - Log into Obsidian automatically?
 - Configure thunderbird
 
