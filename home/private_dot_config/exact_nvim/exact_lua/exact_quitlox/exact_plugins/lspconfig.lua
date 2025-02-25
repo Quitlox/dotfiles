@@ -139,6 +139,7 @@ require("lspconfig").pyright.setup({
 --+- LSP: Other ---------------------------------------------+
 require("lspconfig").ansiblels.setup({})
 require("lspconfig").bashls.setup({})
+require("lspconfig").ccls.setup({})
 require("lspconfig").cssls.setup({})
 require("lspconfig").svelte.setup({
     -- Add filetypes for the server to run and share info between files
