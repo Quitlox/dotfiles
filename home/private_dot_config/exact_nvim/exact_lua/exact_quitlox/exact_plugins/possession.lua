@@ -35,7 +35,7 @@ Snacks.toggle
 require("possession.plugins.neo-tree").setup_events_for_neotree()
 
 require("possession").setup({
-    silent = false,
+    silent = true,
     load_silent = false,
     logfile = false,
     prompt_no_cr = true,

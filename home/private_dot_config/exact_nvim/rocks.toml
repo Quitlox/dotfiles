@@ -142,7 +142,6 @@ auto_install = "prompt"
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "1df30b60b1b4aecfebc785aa98943db6c6989716" }
 # +- Markdown -----------------------------------------------+
 "markdown.nvim" = { git = "tadmccorkle/markdown.nvim", rev = "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" }
-"markdown-render" = { git = "meanderingprogrammer/markdown.nvim", rev = "v8.0.0" }
 "vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626" }
 # +- Python -------------------------------------------------+
@@ -215,7 +214,7 @@ auto_install = "prompt"
 "edgy.nvim" = "1.10.2"
 "icon-picker.nvim" = "scm"
 "todo-comments.nvim" = "1.4.0"
-"snacks.nvim" = { git = "quitlox/snacks.nvim", rev = "98df370703b3c47a297988f3e55ce99628639590", opt = true, branch = "feat-tab-local-terminal" }
+"snacks.nvim" = { version = "2.21.0", opt = true }
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
@@ -282,6 +281,8 @@ tree-sitter-vimdoc = "scm"
 tree-sitter-vue = "0.0.29"
 tree-sitter-yaml = "scm"
 tree-sitter-yuck = "scm"
+"markview.nvim" = "25.3.1"
+"obsidian.nvim" = "3.9.0"
 
 # +----------------------------------------------------------+
 # | Bundles                                                  |

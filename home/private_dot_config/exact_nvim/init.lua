@@ -36,9 +36,8 @@ if succes then
     require("quitlox.plugins.snacks")
 end
 -- Treesitter
-local ok, mod = pcall(require, 'nvim-treesitter.configs')
+local ok, mod = pcall(require, "nvim-treesitter.configs")
 if ok then
-
     mod.setup({
         indent = { enable = true },
     })

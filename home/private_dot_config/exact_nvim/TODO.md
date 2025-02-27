@@ -6,9 +6,15 @@
           optionally with a message
 
     - [ ] Adopt remote-nvim.nvim
-    - [ ] Adopt Obsidian.nvim
+    - [X] Adopt Obsidian.nvim
     - [ ] Overseer:
         - [ ] "OverseerQuickAction duplicate" would be convenient
+    - [ ] Cheatsheets:
+        - [ ] Add cheatsheets for infrequently used workflows:
+            - [ ] Markdown: Editing Tables
+            - [ ] CSV: Viewing / Editing 
+            - [ ] Molten: Python REPL
+            - [ ] Infrequently used languages: Go / Rust
 
     - Projects per Tab:
         - [ ] Switch from possesion to resession
@@ -29,16 +35,17 @@
     - [ ] mini-ai: mapping `ci"` in python on final `"` goes to next
     - [ ] mini-ai: mapping `ci"` in python doesn't not respected in comments or docstrings 
     - [ ] gp.nvim: `<C-g>f` (find) opens selected chat in first window, should use window picker
-    - [ ] grug-far.nvim: cannot search on char `<` / `>`
-    - [ ] possesion: do not print when no session is found
-    - [ ] keymap: `<leader>dt` seems to be bound to something else
-    - [ ] bug: searching to the next query with `n` doesn't work because of scrolling animation
+    - [x] grug-far.nvim: cannot search on char `<` / `>` (https://github.com/MagicDuck/grug-far.nvim/issues/360)
+    - [X] possesion: do not print when no session is found
+    - [X] bug: searching to the next query with `n` doesn't work because of scrolling animation
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from
       terminal into LSP enabled window (python) -> its linting, but why
     - [ ] edgy: on open explorer, windows should be resized
     - [ ] pymple: not working, probably due to virtual environment
+    - [ ] gp.nvim: floating window has margin that disappears in insert mode, which is annoying
+    - [ ] keymap: `<leader>dt` seems to be bound to something else
 
 - Requires Contribution:
     - [ ] treewalker.nvim: allow skipping certain nodes

@@ -66,6 +66,9 @@ local function should_format_on_save()
     if filename == "pyproject.toml" then
         return false
     end
+    if filename == "__init__.py" then
+        return false
+    end
     -- Don't format on save for certain filetypes
     if excluded_filetypes[vim.bo.filetype] then
         return false
