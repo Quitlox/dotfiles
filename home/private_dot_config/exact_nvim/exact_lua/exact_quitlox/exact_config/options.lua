@@ -20,7 +20,7 @@ vim.opt.expandtab = true
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l"
-vim.opt.breakindent = true -- WARNING: NEW
+vim.opt.breakindent = true
 --- Cursor ---
 vim.opt.scrolloff = 7
 vim.opt.sidescrolloff = 10
@@ -74,7 +74,7 @@ vim.opt.shada = vim.opt.shada + "'0,f0"
 vim.opt.backspace = "indent,eol,start"
 
 --- Folding ---
-vim.opt.foldlevel = 99 -- FIXME:: Slows down legendary
+vim.opt.foldlevel = 99 -- FIXME: Slows down legendary
 vim.opt.foldenable = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()" -- alt "v:lua.vim.treesitter.foldexpr()" slows down legendary for some fucking reason
@@ -82,7 +82,7 @@ vim.opt.foldtext = ""
 vim.opt.fillchars = vim.opt.fillchars + "fold: "
 
 -- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0 -- WARNING: NEW
+vim.g.markdown_recommended_style = 0
 -- Disable unused providers
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0

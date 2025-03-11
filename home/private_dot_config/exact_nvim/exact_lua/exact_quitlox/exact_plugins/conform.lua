@@ -6,6 +6,7 @@
 
 local default_opts = { timeout_ms = 500, lsp_format = "fallback" }
 local excluded_filetypes = { toml = true, yaml = true, markdown = true, json = true, jsonc = true, tex = true }
+local excluded_filenames = { "pyproject.toml", "__init__.py" }
 
 --+- Helper Functions: Fidget Integration -------------------+
 local function display_fidget(title, msg)
@@ -63,10 +64,7 @@ local function should_format_on_save()
     local filename = vim.fn.expand("%:t")
 
     -- Don't format on save for certain filenames
-    if filename == "pyproject.toml" then
-        return false
-    end
-    if filename == "__init__.py" then
+    if vim.tbl_contains(excluded_filenames, filename) then
         return false
     end
     -- Don't format on save for certain filetypes

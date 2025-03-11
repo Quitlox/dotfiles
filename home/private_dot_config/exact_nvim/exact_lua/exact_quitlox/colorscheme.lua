@@ -43,8 +43,10 @@ require("catppuccin").setup({
     -- show_end_of_buffer = false,
 
     integrations = {
+        blink_cmp = true,
         diffview = true,
         fidget = true,
+        grug_far = true,
         harpoon = true,
         leap = true,
         mini = { enabled = true },
@@ -55,15 +57,14 @@ require("catppuccin").setup({
         navic = { enabled = true },
         semantic_tokens = true,
         nvim_surround = true,
-        ts_rainbow2 = true,
         window_picker = true,
         octo = true,
         overseer = true,
-        render_markdown = true,
-        snacks = true,
+        snacks = { enabled = true },
         telescope = { enabled = true },
         lsp_trouble = true,
         which_key = true,
+        window_picker = true,
 
         native_lsp = {
             enabled = true,
@@ -123,7 +124,3 @@ require("nvim-web-devicons").setup({
 -- end
 
 require("tiny-devicons-auto-colors").setup({ colors = theme_colors, autoreload = true })
-
-require("legendary").commands({
-    { ":NvimWebDeviconsHiTest", description = "Test nvim-web-devicons" },
-})

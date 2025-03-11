@@ -1,20 +1,8 @@
-- Changes
-    - [ ] when going to a definition outside of the cwd, open a new tab and set the tcd
-    - [ ] Go over all commands, check if enough are present
-    - [ ] Go over all plugins and use Snacks.on_module for integrations to prevent errors if module uninstalled
-        - I need a shorthand for throwing an error if a module is not present,
-          optionally with a message
-
-    - [ ] Adopt remote-nvim.nvim
-    - [X] Adopt Obsidian.nvim
-    - [ ] Overseer:
-        - [ ] "OverseerQuickAction duplicate" would be convenient
-    - [ ] Cheatsheets:
-        - [ ] Add cheatsheets for infrequently used workflows:
-            - [ ] Markdown: Editing Tables
-            - [ ] CSV: Viewing / Editing 
-            - [ ] Molten: Python REPL
-            - [ ] Infrequently used languages: Go / Rust
+- Features
+    - [ ] When going to a definition outside of the cwd, open a new tab and set the tcd
+    - [ ] Add cheatsheets for infrequently used workflows:
+        - [ ] Markdown: Editing Tables
+        - [ ] CSV: Viewing / Editing 
 
     - Projects per Tab:
         - [ ] Switch from possesion to resession
@@ -54,22 +42,14 @@
     - [ ] navic: should provide symbol filter, but maintainer is inactive
     - [ ] overseer: map <esc> in help_win (not configurable currently)
     - [ ] overseer: jk should move to job in OverseerTaskList, not step around
-    - [ ] overseer: term should scroll to bottom automatically
     - [ ] overseer: background tasks should not be awaited for completion
     - [ ] overseer: add option to not autorestart isBackground tasks 
     - [x] blink.cmp: the char / should be a trigger for the path source
     - [ ] navic: doesn't work with arrow, same context in all windows
-    - [ ] rocks:
-        - [ ] should not update git to older version tag if ver is specified to be a newer commit
-        - [ ] toml-edit should keep inline items as inline
-        - [ ] toml edit should not move the comments  
     - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing
       the windows not to resize properly
         - https://github.com/rcarriga/nvim-dap-ui/issues/175
         - https://github.com/rcarriga/nvim-dap-ui/issues/260
-    - [ ] hover.nvim: allow changing priority of providers
-        I want LSP to be higher than Diagnostic, as I can already directly open
-        the diagnostic using ]d and [d
     - [ ] nvim-dap-ui / overseer: after using debugging, the mappings over the
         overseer window are no longer available (or its because cannot make changes,
         'modifiable' is off)
@@ -87,11 +67,21 @@
     - [ ] resession: plugin for restoring shell contents
         should be doable?
     - [ ] blink.cmp: rewrite cmp-dap for blink.cmp. (it's quite a small plugin) 
+    - [ ] hover.nvim: allow changing priority of providers (https://github.com/lewis6991/hover.nvim/issues/77)
+
+    - [ ] rocks.nvim:
+        - [ ] should not update git to older version tag if ver is specified to be a newer commit
+        - [ ] toml-edit should keep inline items as inline
+        - [ ] toml-edit should not move the comments  
 
 - Contribute back, sane defaults, low priority:
     - [ ] overseer.nvim: task view has not filetype
     - [ ] overseer.nvim: my custom dispose_all, restart_all commands
     - [ ] nvim-treesitter-textobjects / mini.ai: python @string.inner / @string.outer
+
+When need arises:
+- [molten.nvim] for Python REPL / Jupyter Notebook
+- [remote-nvim.nvim] when working on remote machines.
 
 Desktop:
 - [ ] Eww: Bar should use fill icons on select

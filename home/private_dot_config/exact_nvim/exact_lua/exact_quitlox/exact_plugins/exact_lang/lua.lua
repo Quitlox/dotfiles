@@ -19,13 +19,13 @@ require("lspconfig").lua_ls.setup({
 -- Setup
 require("lazydev").setup({
     library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        -- { path = "luvit-meta/library", words = { "vim%.uv" } },
+        -- It can also be a table with trigger words / mods
+        -- Only load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        -- Only load the lazyvim library when the `LazyVim` global is found
+        { path = "LazyVim", words = { "LazyVim" } },
     },
-})
-
--- Commands
-require("legendary").commands({
-    { ":LazyDev", description = "Show LazyDev Settings", filters = { ft = { "lua" } } },
+    integrations = {
+        cmp = false,
+    },
 })

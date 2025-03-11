@@ -28,21 +28,16 @@ require("blink-cmp").setup({
         ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
         ["<Enter>"] = { "accept", "fallback" },
+        ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+        ["<C-u>"] = { "scroll_documentation_up", "fallback" },
     },
     cmdline = {
-        keymap = {
-            ["<Tab>"] = { "select_next" },
-            ["<S-Tab>"] = { "select_prev" },
-            ["<Enter>"] = {},
-            ["<C-Space>"] = { "show" },
-        },
+        keymap = { preset = "cmdline" },
     },
     completion = {
         accept = { auto_brackets = { enabled = true } },
         documentation = { auto_show = true },
-        list = {
-            selection = { preselect = false, auto_insert = true },
-        },
+        list = { selection = { preselect = false, auto_insert = true } },
 
         -- Setup mini.icons
         menu = {
@@ -64,19 +59,39 @@ require("blink-cmp").setup({
         },
     },
     sources = {
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        default = { "git", "conventional_commits", "lazydev", "lsp", "path", "snippets", "buffer", "env" },
         providers = {
+            conventional_commits = {
+                name = "Conventional Commits",
+                module = "blink-cmp-conventional-commits",
+                enabled = function()
+                    return vim.bo.filetype == "gitcommit"
+                end,
+                ---@module 'blink-cmp-conventional-commits'
+                ---@type blink-cmp-conventional-commits.Options
+                opts = {},
+            },
             dap = {
                 name = "dap",
                 module = "blink.compat.source",
-
                 enabled = function()
                     return require("cmp_dap").is_dap_buffer()
                 end,
             },
-            html_css = {
-                name = "html-css",
-                module = "blink.compat.source",
+            env = {
+                name = "Env",
+                module = "blink-cmp-env",
+                --- @type blink-cmp-env.Options
+                opts = {},
+                override = {
+                    get_trigger_characters = function()
+                        return { "$" }
+                    end,
+                },
+            },
+            git = {
+                module = "blink-cmp-git",
+                name = "Git",
             },
             lazydev = {
                 name = "LazyDev",

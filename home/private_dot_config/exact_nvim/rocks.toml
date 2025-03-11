@@ -14,7 +14,7 @@ auto_install = "prompt"
 # +----------------------------------------------------------+
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
-"nvim" = { git = "catppuccin/nvim", rev = "5d9582dbbe37e465f7f93ca6e3dd60cd20eea44f", branch = "main", pin = true }                        # pinned because of outdated release (require: f8a155ab5891c5d2fb709b7e85627f1783d5a5d9)
+"nvim" = { git = "catppuccin/nvim", rev = "5b5e3aef9ad7af84f463d17b5479f06b87d5c429", branch = "main", pin = true } # pinned because of outdated release (require: f8a155ab5891c5d2fb709b7e85627f1783d5a5d9)
 "nvim-web-devicons" = { git = "nvim-tree/nvim-web-devicons", rev = "1020869742ecb191f260818234517f4a1515cfe8" }
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "51f548421f8a74680eff27d283c9d5ea6e8d0074" }
 "mini.icons" = "0.15.0"
@@ -62,7 +62,9 @@ auto_install = "prompt"
 "blink.cmp" = { git = "saghen/blink.cmp", rev = "v0.13.1" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.4.0" }
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
-# "nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "6446297ef6cdbe89923f4d8025bf0b75d453286b" } -- not compatible with blink
+"blink-cmp-conventional-commits" = { git = "disrupted/blink-cmp-conventional-commits", rev = "e7ce3ddcc6d4044067d6d77ab41d480202e814ad" }
+"blink-cmp-env" = { git = "bydlw98/blink-cmp-env", rev = "8214e71250427acc3a83c02bfc76c96b233af77c" }
+"blink-cmp-git" = { git = "kaiser-yang/blink-cmp-git", rev = "v2.4.0" }
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
 "copilot.vim" = { git = "github/copilot.vim", rev = "v1.43.0" }
 # +- Snippets -----------------------------------------------+
@@ -138,7 +140,7 @@ auto_install = "prompt"
 # +- LaTeX --------------------------------------------------+
 "vimtex" = { git = "lervag/vimtex", rev = "v2.16" }
 # +- Lua ----------------------------------------------------+
-"lazydev.nvim" = { git = "folke/lazydev.nvim", rev = "v1.9.0" }
+"lazydev.nvim" = { git = "folke/lazydev.nvim", rev = "v1.9.0", config = "quitlox.plugins.lang.lua" }
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "1df30b60b1b4aecfebc785aa98943db6c6989716" }
 # +- Markdown -----------------------------------------------+
 "markdown.nvim" = { git = "tadmccorkle/markdown.nvim", rev = "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" }
@@ -257,7 +259,6 @@ tree-sitter-latex = "scm"
 tree-sitter-lua = "scm"
 tree-sitter-luadoc = "scm"
 tree-sitter-markdown = "scm"
-tree-sitter-markdown_inline = "scm"
 tree-sitter-pem = "0.0.30"
 tree-sitter-perl = "scm"
 tree-sitter-php = "0.0.40"
