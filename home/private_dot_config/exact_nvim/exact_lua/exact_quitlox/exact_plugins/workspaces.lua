@@ -2,18 +2,6 @@
 -- | natecraddock/workspaces.nvim: Workspace Selector        |
 -- +---------------------------------------------------------+
 
-require("legendary").commands({
-    { ":WorkspacesAdd [name] [path]", description = "Add a workspace (project)", unfinished = true },
-    { ":WorkspacesAddDir [name]", description = "Add a workspace directory", unfinished = true },
-    { ":WorkspacesRemove [name]", description = "Remove a workspace", unfinished = true },
-    { ":WorkspacesRemoveDir [name]", description = "Remove a workspace directory", unfinished = true },
-    { ":WorkspacesRename [name] [new_name]", description = "Rename a workspace", unfinished = true },
-    { ":WorkspacesList", description = "List all workspaces" },
-    { ":WorkspacesListDirs", description = "List all workspace directories" },
-    { ":WorkspacesOpen [name]", description = "Open a workspace", unfinished = true },
-    { ":WorkspacesSyncDirs", description = "Synchronize workspaces from registered directories" },
-})
-
 vim.keymap.set("n", "<leader>op", "<cmd>Telescope workspaces<cr>", { noremap = true, silent = true, desc = "Open Projects" })
 
 --- Convert the given workspace.nvim path to a possession.nvim path

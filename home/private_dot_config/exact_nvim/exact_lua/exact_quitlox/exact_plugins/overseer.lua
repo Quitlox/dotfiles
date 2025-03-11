@@ -108,20 +108,3 @@ vim.api.nvim_create_user_command("OverseerRestartLast", function()
         overseer.run_action(tasks[1], "restart")
     end
 end, { desc = "Overseer Restart Last" })
-
-require("legendary").commands({
-    { ":OverseerOpen", description = "Overseer Open" },
-    { ":OverseerClose", description = "Overseer Close" },
-    { ":OverseerToggle", description = "Overseer Toggle" },
-    { ":OverseerSaveBundle", description = "Overseer Save Bundle" },
-    { ":OverseerLoadBundle", description = "Overseer Load Bundle" },
-    { ":OverseerDeleteBundle", description = "Overseer Delete Bundle" }, -- FIXME: Not working
-    { ":OverseerRun", description = "Overseer Run" },
-    { ":OverseerInfo", description = "Overseer Info" },
-    { ":OverseerBuild", description = "Overseer Build" },
-    { ":OverseerQuickAction", description = "Overseer Quick Action" },
-    { ":OverseerTaskAction", description = "Overseer Task Action" },
-    { ":OverseerClearCache", description = "Overseer Clear Cache" },
-
-    { ":OverseerRestartLast", description = "Overseer Restart Last" },
-})

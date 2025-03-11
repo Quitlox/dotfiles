@@ -20,8 +20,12 @@ require("venv-selector").setup({
 })
 
 --+- Commands -----------------------------------------------+
-require("legendary").commands({
-    { ":VenvSelect", description = "Select Virtual Env" },
-    { ":VenvDeactivate", require("quitlox.util.python").deactivate, description = "Deactivate Virtual Env" },
-    { ":VenvCreate", require("quitlox.util.python").create_venv_in_cwd, description = "Create Virtual Env" },
-})
+vim.api.nvim_create_user_command("VenvSelect", function()
+    require("venv-selector").select_venv()
+end, { desc = "Select Virtual Env" })
+vim.api.nvim_create_user_command("VenvDeactivate", function()
+    require("quitlox.util.python").deactivate()
+end, { desc = "Deactivate Virtual Env" })
+vim.api.nvim_create_user_command("VenvCreate", function()
+    require("quitlox.util.python").create_venv_in_cwd()
+end, { desc = "Create Virtual Env" })

@@ -119,26 +119,6 @@ require("possession").setup({
 require("telescope").load_extension("possession")
 vim.keymap.set("n", "<leader>os", "<cmd>Telescope possession<cr>", { noremap = true, silent = true, desc = "Open Sessions" })
 
-require("legendary").commands({
-    { "PossessionSave", description = "Save current session" },
-    { "PossessionSave [name]", description = "Save current session as", unfinished = true },
-    -- { "PossessionLoad", description = "Load last session" },
-    { "PossessionLoad [name]", description = "Load session", unfinished = true },
-    -- { "PossessionSaveCwd", description = "Save session in current working directory" },
-    -- { "PossessionLoadCwd", description = "Load last session from current working directory" },
-    -- { "PossessionLoadCwd [name]", description = "Load session from current working directory", unfinished = true },
-    -- { "PossessionRename", description = "Rename current session" },
-    -- { "PossessionRename [name]", description = "Rename given session", unfinished = true },
-    { "PossessionDelete", description = "Delete current session" },
-    -- { "PossessionDelete [name]", description = "Delete given session", unfinished = true },
-    { "PosessionShow", description = "Show current session info" },
-    -- { "PosessionShow [name]", description = "Show given session info", unfinished = true },
-    { "PossessionClose", description = "Close current session" },
-    { "PossessionList", description = "List available sessions" },
-    { "PossessionListCwd", description = "List available sessions for current cwd" },
-    -- { "PossessionListCwd [name]", description = "List available sessions for given cwd", unfinished = true },
-})
-
 local function delete_and_exit()
     vim.g.toggle_session_auto_save = false
 
@@ -154,4 +134,5 @@ local function delete_and_exit()
     end)
 end
 
-require("legendary").func({ delete_and_exit, description = "Possession: Delete Session and Exit" })
+-- Commands
+vim.api.nvim_create_user_command("DeleteSessionAndExit", delete_and_exit, { desc = "Possession: Delete Session and Exit" })

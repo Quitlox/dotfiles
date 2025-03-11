@@ -2,17 +2,15 @@
 -- | sindrets/diffview.nvim: Diffview                        |
 -- +---------------------------------------------------------+
 
--- Commands
-require("legendary").commands({
-    { ":DiffviewCurrentFileHistory", "DiffviewFileHistory %", description = "Diffview File History" },
-    { ":DiffviewOpen", description = "Diffview Open (compare against current index)" },
-    { ":DiffviewClose", description = "Diffview Close" },
-    { ":DiffviewToggleFiles", description = "Diffview Toggle files" },
-    { ":DiffviewFocusFiles", description = "Diffview Locate (focus) files" },
-    { ":DiffviewRefresh", description = "Diffview Refresh" },
-    -- See https://github.com/sindrets/diffview.nvim/blob/main/USAGE.md
-    { ":DiffviewReviewPR", "DiffviewOpen origin/HEAD...HEAD --imply-local", description = "Diffview to review a Pull Request" },
-    { ":DiffviewReviewPRByCommit", "DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges", description = "Diffview to review a Pull Request" },
+-- Extra Commands
+vim.api.nvim_create_user_command("DiffviewCurrentFileHistory", "DiffviewFileHistory %", {
+    desc = "Diffview File History",
+})
+vim.api.nvim_create_user_command("DiffviewReviewPR", "DiffviewOpen origin/HEAD...HEAD --imply-local", {
+    desc = "Diffview to review a Pull Request",
+})
+vim.api.nvim_create_user_command("DiffviewReviewPRByCommit", "DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges", {
+    desc = "Diffview to review a Pull Request",
 })
 
 -- State

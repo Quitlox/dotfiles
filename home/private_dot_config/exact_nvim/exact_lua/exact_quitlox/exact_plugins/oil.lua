@@ -45,10 +45,18 @@ require("oil").setup({
 vim.keymap.set("n", "-", function() require("oil").open_float() end, { noremap = true, silent = true })
 
 --+- Commands -----------------------------------------------+
-require("legendary").commands({
-    -- stylua: ignore start
-    { ":Oil", function() require("oil").open_float() end, description = "oil: Open", },
-    { ":OilRoot", function() require("oil").open_float(vim.fn.getcwd()) end, description = "oil: Open in project root" },
-    { ":OilDiscard", function() require("oil").discard_all_changes() end, description = "oil: Discard changes" },
-    -- stylua: ignore end
+vim.api.nvim_create_user_command("Oil", function()
+    require("oil").open_float()
+end, {
+    desc = "oil: Open",
+})
+vim.api.nvim_create_user_command("OilRoot", function()
+    require("oil").open_float(vim.fn.getcwd())
+end, {
+    desc = "oil: Open in project root",
+})
+vim.api.nvim_create_user_command("OilDiscard", function()
+    require("oil").discard_all_changes()
+end, {
+    desc = "oil: Discard changes",
 })

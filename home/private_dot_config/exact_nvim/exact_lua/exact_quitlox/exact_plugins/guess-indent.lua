@@ -3,4 +3,3 @@
 -- +---------------------------------------------------------+
 
 require("guess-indent").setup({})
-require("legendary").command({ ":GuessIndent", description = "Guess Indent" })

@@ -35,11 +35,3 @@ Snacks.toggle
         notify = false,
     })
     :map("<leader>Tw")
-
--- Commands
-require("legendary").commands({
-    { ":HardWrapMode", description = "wrapping.nvim: toggle hard wrap mode" },
-    { ":SoftWrapMode", description = "wrapping.nvim: toggle soft wrap mode" },
-    { ":ToggleWrapMode", description = "wrapping.nvim: toggle wrap mode" },
-    { ":WrappingOpenLog", description = "wrapping.nvim: open log file" },
-})

@@ -58,15 +58,3 @@ require("avante").setup(
         },
     }
 )
-
-require("legendary").commands({
-    { ":AvanteAsk [question]", desc = "Ask AI about your code", unfinished = true },
-    { ":AvanteBuild", desc = "Build dependencies for the project" },
-    { ":AvanteChat", desc = "Start a chat session with AI about your codebase" },
-    { ":AvanteEdit", desc = "Edit the selected code blocks" },
-    { ":AvanteFocus", desc = "Switch focus to/from the sidebar" },
-    { ":AvanteRefresh", desc = "Refresh all Avante windows" },
-    { ":AvanteSwitchProvider", desc = "Switch AI provider (e.g. openai)" },
-    { ":AvanteShowRepoMap", desc = "Show repo map for project's structure" },
-    { ":AvanteToggle", desc = "Toggle the Avante sidebar" },
-})

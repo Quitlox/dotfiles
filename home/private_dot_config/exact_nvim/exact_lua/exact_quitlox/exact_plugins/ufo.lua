@@ -18,17 +18,6 @@ vim.keymap.set("n", "[z", function() require("ufo").goPreviousClosedFold() end, 
 vim.keymap.set("n", "]z", function() require("ufo").goNextClosedFold() end, { desc = "Next fold" })
 -- stylua: ignore end
 
--- Commands
-require("legendary").commands({
-    { ":UfoEnable", description = "Enable ufo" },
-    { ":UfoDisable", description = "Disable ufo" },
-    { ":UfoInspect", description = "Inspect current buffer information" },
-    { ":UfoAttach", description = "Attach current buffer to enable all features" },
-    { ":UfoDetach", description = "Detach current buffer to disable all features" },
-    { ":UfoEnableFold", description = "Enable to get folds and update them at once for current buffer" },
-    { ":UfoDisableFold", description = "Disable to get folds for current buffer" },
-})
-
 -- Hover
 require("hover").register({
     priority = 1002,

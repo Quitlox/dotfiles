@@ -18,10 +18,6 @@ end, {
     desc = "Configure TNO Gitlab in this repository.",
 })
 
-require("legendary").commands({
-    { ":SetTNOGitlabToken", description = "Configure TNO Gitlab in this repository." },
-})
-
 --+- Setup --------------------------------------------------+
 local function setup_gitlab()
     require("gitlab.server").build(true)

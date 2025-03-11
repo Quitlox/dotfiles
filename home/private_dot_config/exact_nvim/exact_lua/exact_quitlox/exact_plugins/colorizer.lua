@@ -15,11 +15,12 @@ function enable_for_filetype()
     -- Attach to the current buffer
     require("colorizer").attach_to_buffer(0, OPTIONS)
 
-    -- Attach to buffers of the current filetype
     if not ft then
         vim.notify("No filetype set!", vim.log.levels.WARN, { title = "Colorizer" })
         return
     end
+
+    -- Attach to buffers of the current filetype
     vim.api.nvim_create_autocmd("FileType", {
         pattern = ft,
         group = vim.api.nvim_create_augroup("MyColorizer", { clear = true }),
@@ -29,6 +30,6 @@ function enable_for_filetype()
     })
 end
 
-require("legendary").commands({
-    { ":ColorizerEnableForFT", enable_for_filetype, description = "Enable colorizer for the current filetype" },
+vim.api.nvim_create_user_command("ColorizerEnableForFT", enable_for_filetype, {
+    desc = "Enable colorizer for the current filetype",
 })

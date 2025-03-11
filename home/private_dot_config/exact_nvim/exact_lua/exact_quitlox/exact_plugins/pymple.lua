@@ -2,10 +2,6 @@
 -- | alexpasmantier/pymple.nvim: Refactor Python Imports     |
 -- +---------------------------------------------------------+
 
-require("legendary").commands({
-    { ":PympleLogs", description = "Show Pymple Logs" },
-})
-
 require("pymple").setup({
     logging = {
         level = "trace",

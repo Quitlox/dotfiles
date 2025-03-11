@@ -21,19 +21,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
--- Commands
-require("legendary").commands({
-    -- Autofill
-    { ":GoFillStruct", description = "Auto fill struct", filters = { ft = { "go", "gomod" } } },
-    { ":GoFillSwitch", description = "Auto fill switch", filters = { ft = { "go", "gomod" } } },
-    { ":GoIfErr", description = "Add if err", filters = { ft = { "go", "gomod" } } },
-    { ":GoFixPlurals", description = "Simply function parameter types", filters = { ft = { "go", "gomod" } } },
-    -- Build and test
-    { ":GoMake", description = "Async make", filters = { ft = { "go", "gomod" } } },
-    { ":GoTest", description = "Go Test", filters = { ft = { "go", "gomod" } } },
-    -- TODO: Incomplete
-})
-
 -- Install the required dependencies
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",

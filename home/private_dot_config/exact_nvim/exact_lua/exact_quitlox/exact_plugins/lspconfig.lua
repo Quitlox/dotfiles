@@ -68,14 +68,6 @@ Snacks.toggle
     })
     :map("<leader>Tl")
 
---+- LSP: Commands ------------------------------------------+
-require("legendary").commands({
-    { ":LspInfo", description = "Show the status of active and configured language servers." },
-    { ":LspStart", description = "Start the requested server name." },
-    { ":LspStop", description = "Stop the requested server name." },
-    { ":LspRestart", description = "Restart the requested server name." },
-})
-
 --+- LSP: Hyperlang -----------------------------------------+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     pattern = { "*.hl", "hypr*.conf" },
