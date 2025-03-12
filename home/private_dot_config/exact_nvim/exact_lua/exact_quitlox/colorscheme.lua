@@ -61,7 +61,6 @@ require("catppuccin").setup({
         octo = true,
         overseer = true,
         snacks = { enabled = true },
-        telescope = { enabled = true },
         lsp_trouble = true,
         which_key = true,
         window_picker = true,

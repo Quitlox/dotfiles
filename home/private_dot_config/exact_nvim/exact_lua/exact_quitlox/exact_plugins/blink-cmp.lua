@@ -21,8 +21,8 @@ require("quitlox.util.lazy").on_module("lspconfig", function()
     end
 end)
 
---+- Setup --------------------------------------------------+
 -- TODO: at end of completion, tab should be used to escape parenthesis
+
 require("blink-cmp").setup({
     keymap = {
         ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
@@ -33,6 +33,10 @@ require("blink-cmp").setup({
     },
     cmdline = {
         keymap = { preset = "cmdline" },
+        completion = {
+            menu = { auto_show = true },
+            list = { selection = { preselect = false, auto_insert = true } },
+        },
     },
     completion = {
         accept = { auto_brackets = { enabled = true } },
@@ -59,8 +63,11 @@ require("blink-cmp").setup({
         },
     },
     sources = {
-        default = { "git", "conventional_commits", "lazydev", "lsp", "path", "snippets", "buffer", "env" },
+        default = { "git", "conventional_commits", "lazydev", "lsp", "path", "buffer", "env" },
         providers = {
+            buffer = {
+                score_offset = -3,
+            },
             conventional_commits = {
                 name = "Conventional Commits",
                 module = "blink-cmp-conventional-commits",
@@ -87,28 +94,16 @@ require("blink-cmp").setup({
                     get_trigger_characters = function()
                         return { "$" }
                     end,
+                    should_show_items = function(source, context, items)
+                        return vim.startswith(context.get_keyword(), "$")
+                    end,
                 },
+                min_keyword_length = 1,
             },
-            git = {
-                module = "blink-cmp-git",
-                name = "Git",
-            },
-            lazydev = {
-                name = "LazyDev",
-                module = "lazydev.integrations.blink",
-                score_offset = 100,
-            },
-            path = {
-                opts = {
-                    trailing_slash = false,
-                    label_trailing_slash = true,
-                },
-            },
-            snippets = {
-                opts = {
-                    search_paths = { vim.fn.stdpath("config") .. "/nvim/snippets" },
-                },
-            },
+            git = { module = "blink-cmp-git", name = "Git" },
+            lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+            path = { opts = { trailing_slash = false, label_trailing_slash = true } },
+            snippets = { opts = { search_paths = { vim.fn.stdpath("config") .. "/nvim/snippets" } } },
         },
     },
     -- Experimental signature help support

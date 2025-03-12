@@ -96,7 +96,7 @@ auto_install = "prompt"
 "grug-far.nvim" = { git = "magicduck/grug-far.nvim", rev = "1.4.14" }
 
 # +- Session and Project Management -------------------------+
-"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "55a1eb6f5b72e07ee8333898254e113e927180ca" } # Telescope
+"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "55a1eb6f5b72e07ee8333898254e113e927180ca" }
 "possession.nvim" = { git = "jedrzejboczar/possession.nvim", rev = "72770fc056c43d795ad374988c0ef2290bec34fb" }
 
 # +- Test ---------------------------------------------------+
@@ -140,7 +140,7 @@ auto_install = "prompt"
 # +- LaTeX --------------------------------------------------+
 "vimtex" = { git = "lervag/vimtex", rev = "v2.16" }
 # +- Lua ----------------------------------------------------+
-"lazydev.nvim" = { git = "folke/lazydev.nvim", rev = "v1.9.0", config = "quitlox.plugins.lang.lua" }
+"lazydev.nvim" = { git = "folke/lazydev.nvim", rev = "v1.9.0", config = "quitlox.plugins.lang.lazydev" }
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "1df30b60b1b4aecfebc785aa98943db6c6989716" }
 # +- Markdown -----------------------------------------------+
 "markview.nvim" = "25.4.0"
@@ -153,11 +153,11 @@ auto_install = "prompt"
 "venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "e82594274bf7b54387f9a2abe65f74909ac66e97", branch = "regexp", pin = true }
 "pymple.nvim" = { git = "alexpasmantier/pymple.nvim", rev = "0.4.1" }
 # +- Rust ---------------------------------------------------+
-"rustaceanvim" = { version = "5.25.0" }
+"rustaceanvim" = { version = "5.25.0", config = "quitlox.plugins.lang.rustaceanvim" }
 # +- Vim ----------------------------------------------------+
-"one-small-step-for-vimkind" = { version = "scm", config = "quitlox.plugins.lang.vim" }
+"one-small-step-for-vimkind" = { version = "scm", config = "quitlox.plugins.lang.vim_dap" }
 # +- Web ----------------------------------------------------+
-"typescript-tools.nvim" = { version = "scm", config = "quitlox.plugins.lang.typescript" }
+"typescript-tools.nvim" = { version = "scm", config = "quitlox.plugins.lang.typescript_tools" }
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.3.2" }
 # +- Minor Languages ----------------------------------------+
 "nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "149986b4fc409c1b258ff5b1671d03b5094b3c74" }
@@ -180,17 +180,6 @@ auto_install = "prompt"
 "nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.4.0" }
 "oil.nvim" = "2.15.0"
 
-# +- Finder -------------------------------------------------+
-# Telescope
-"telescope.nvim" = { git = "nvim-telescope/telescope.nvim", rev = "78857db9e8d819d3cc1a9a7bdc1d39d127a36495" }
-"telescope-fzy-native.nvim" = { git = "nvim-telescope/telescope-fzy-native.nvim", rev = "282f069504515eec762ab6d6c89903377252bf5b" }
-"telescope-helpgrep.nvim" = { git = "catgoose/telescope-helpgrep.nvim", rev = "f600baab96d36b91cdd4b0beb63414a01e1b9403" }
-"smart-open.nvim" = "scm"
-# Keymaps
-"which-key.nvim" = "3.17.0"
-# Buffers
-"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "5438c977e729a29d96bd54c8da3103154e80dbd1" }
-
 # +- Notifications ------------------------------------------+
 "nvim-notify" = "3.15.0"
 "fidget.nvim" = "1.6.0"
@@ -210,10 +199,12 @@ auto_install = "prompt"
 "trouble.nvim" = "3.7.1"
 
 # +- Miscelleneous ------------------------------------------+
+"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "5438c977e729a29d96bd54c8da3103154e80dbd1" }
 "edgy.nvim" = "1.10.2"
 "icon-picker.nvim" = "scm"
 "todo-comments.nvim" = "1.4.0"
 "snacks.nvim" = { version = "2.22.0", opt = true }
+"which-key.nvim" = "3.17.0"
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
@@ -222,10 +213,6 @@ auto_install = "prompt"
 "nvim-nio" = "1.10.1"
 "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "857c5ac632080dba10aae49dba902ce3abf91b35" }
 "nui.nvim" = { git = "MunifTanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" } # avante.nvim, outdated (semver, luarocks)
-"dressing.nvim" = "3.1.1"
-"sqlite.lua" = { git = "kkharji/sqlite.lua", rev = "b487fcc8937b683942a1f7d9662fcf50ca5acd58" } # legendary.nvim, outdated (semver, luarocks)
-"image.nvim" = { git = "3rd/image.nvim", rev = "6ffafab2e98b5bda46bf227055aa84b90add8cdc" }
-"magick" = "1.6.0"
 
 # +----------------------------------------------------------+
 # | Parsers                                                  |

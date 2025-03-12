@@ -20,12 +20,7 @@ require("venv-selector").setup({
 })
 
 --+- Commands -----------------------------------------------+
-vim.api.nvim_create_user_command("VenvSelect", function()
-    require("venv-selector").select_venv()
-end, { desc = "Select Virtual Env" })
-vim.api.nvim_create_user_command("VenvDeactivate", function()
-    require("quitlox.util.python").deactivate()
-end, { desc = "Deactivate Virtual Env" })
-vim.api.nvim_create_user_command("VenvCreate", function()
-    require("quitlox.util.python").create_venv_in_cwd()
-end, { desc = "Create Virtual Env" })
+-- stylua: ignore start
+vim.api.nvim_create_user_command("VenvDeactivate", function() require("quitlox.util.python").deactivate() end, { desc = "Deactivate Virtual Env" })
+vim.api.nvim_create_user_command("VenvCreate", function() require("quitlox.util.python").create_venv_in_cwd() end, { desc = "Create Virtual Env" })
+-- stylua: ignore end

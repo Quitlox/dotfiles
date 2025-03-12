@@ -1,19 +1,72 @@
+-- +---------------------------------------------------------+
+-- | folke/snacks.nvim                                       |
+-- +---------------------------------------------------------+
+
 require("snacks").setup({
-    bigfile = { notify = true },
     init = {},
+    bigfile = { notify = true },
+    image = {},
+    picker = {
+        ui_select = true,
+        formatters = {
+            file = {
+                filename_first = true,
+            },
+        },
+        layout = "custom_vertical",
+        layouts = {
+            custom_vertical = {
+                layout = {
+                    backdrop = false,
+                    width = 0.8,
+                    min_width = 80,
+                    max_width = 120,
+                    height = 0.8,
+                    min_height = 30,
+                    box = "vertical",
+                    border = "rounded",
+                    title = "{title} {live} {flags}",
+                    title_pos = "center",
+                    { win = "input", height = 1, border = "bottom" },
+                    { win = "list", border = "none", height = 0.4 },
+                    { win = "preview", title = "{preview}", border = "top" },
+                },
+            },
+        },
+        win = {
+            input = {
+                b = {
+                    -- buffer local variables
+                },
+                keys = {
+                    ["<esc>"] = { "close", mode = { "n", "i" } },
+                    ["<c-space>"] = { "select", mode = { "i", "n" } },
+                    ["<tab>"] = { "list_down", mode = { "i", "n" } },
+                    ["<s-tab>"] = { "list_up", mode = { "i", "n" } },
+                    ["<c-v>"] = { "edit_split", mode = { "i", "n" } },
+                    ["<c-b>"] = { "edit_vsplit", mode = { "i", "n" } },
+                    ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },
+                },
+            },
+        },
+    },
     profiler = {},
     scratch = {},
-    toggle = {},
-    quickfile = { exclude = { "latex" } },
     scroll = { enabled = vim.fn.exists("g:neovide") == 0 },
     statuscolumn = {
-        -- left = { "git", "sign" },
-        -- right = { "mark", "fold" },
         left = { "mark", "sign" },
         right = { "fold", "git" },
     },
     terminal = {},
+    toggle = {},
+    quickfile = { exclude = { "latex" } },
 })
+
+-- +---------------------------------------------------------+
+-- | snacks.nvim: Profile                                    |
+-- +---------------------------------------------------------+
+
+vim.keymap.set("n", "<leader>ps", require("snacks").profiler.scratch, { desc = "Profiler Scratch Buffer" })
 
 -- Toggle the profiler
 Snacks.toggle.profiler():map("<leader>pp")
@@ -22,14 +75,86 @@ Snacks.toggle.profiler_highlights():map("<leader>ph")
 
 require("which-key").add({
     { "<leader>p", group = "Profile" },
-    {
-        "<leader>ps",
-        function()
-            require("snacks").profiler.scratch()
-        end,
-        desc = "Profiler Scratch Buffem",
-    },
 })
+
+-- +---------------------------------------------------------+
+-- | snacks.nvim: Picker                                     |
+-- +---------------------------------------------------------+
+
+--+- Define Pickers -----------------------------------------+
+---@class snacks.picker.Config
+local picker_commands = {
+    layout = "vscode",
+    matcher = {
+        frecency = true,
+    },
+}
+---@class snacks.picker.Config
+local picker_command_history = {
+    preview = "none",
+}
+
+---@class snacks.picker.Config
+local picker_grep = {
+    hidden = true,
+    layout = "dropdown",
+    layouts = {
+        dropdown = {
+            layout = {
+                width = 0.8,
+                max_width = 160,
+            },
+        },
+    },
+    matcher = {
+        cwd_bonus = true,
+        frecency = true,
+    },
+}
+---@class snacks.picker.Config
+local picker_files = {
+    matcher = {
+        cwd_bonus = true,
+        frecency = true,
+    },
+}
+---@class snacks.picker.Config
+local picker_man = {
+    matcher = {
+        frecency = true,
+    },
+}
+---@class snacks.picker.Config
+local picker_resume = {}
+---@class snacks.picker.Config
+local picker_help = {}
+---@class snacks.picker.Config
+local picker_highlight = {}
+---@class snacks.picker.Config
+local picker_keymap = {}
+
+---@class snacks.picker.Config
+local picker_git_branches = {}
+---@class snacks.picker.Config
+local picker_smart = {
+    layout = "dropdown",
+}
+
+--+- Configure Pickers --------------------------------------+
+-- stylua: ignore start
+vim.keymap.set({ "n", "v" }, "<leader>vK", function() Snacks.picker.command_history(picker_command_history) end, { noremap = true, silent = true, desc = "Command History" })
+vim.keymap.set({ "n", "v" }, "<leader>vk", function() Snacks.picker.commands(picker_commands) end, { noremap = true, silent = true, desc = "Commands" })
+
+vim.keymap.set({ "n", "v" }, "<leader>fa", function() Snacks.picker.grep(picker_grep) end, { noremap = true, silent = true, desc = "Find All (Grep)" })
+vim.keymap.set({ "n", "v" }, "<leader>fm", function() Snacks.picker.man(picker_man) end, { noremap = true, silent = true, desc = "Find Man Page" })
+vim.keymap.set({ "n", "v" }, "<leader>fr", function() Snacks.picker.resume(picker_resume) end, { noremap = true, silent = true, desc = "Finder Resume" })
+vim.keymap.set({ "n", "v" }, "<leader>fh", function() Snacks.picker.help(picker_help) end, { noremap = true, silent = true, desc = "Find Help" })
+vim.keymap.set({ "n", "v" }, "<leader>fi", function() Snacks.picker.highlights(picker_highlight) end, { noremap = true, silent = true, desc = "Find Highlights" })
+vim.keymap.set({ "n", "v" }, "<leader>fk", function() Snacks.picker.keymaps(picker_keymap) end, { noremap = true, silent = true, desc = "Find Keymap" })
+
+vim.keymap.set({ "n", "v" }, "<leader>gb", function() Snacks.picker.git_branches(picker_git_branches) end, { noremap = true, silent = true, desc = "Git Branches" })
+vim.keymap.set({ "n", "v" }, "<leader>of", function() Snacks.picker.smart(picker_smart) end, { noremap = true, silent = true, desc = "Open File" })
+-- stylua: ignore end
 
 -- +---------------------------------------------------------+
 -- | snacks.nvim: Terminal                                   |
@@ -214,8 +339,6 @@ vim.keymap.set("t", [[`]], toggle_terminal_2, { silent = true })
 
 vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { silent = true })
 vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { silent = true })
--- vim.keymap.set("t", "<C-w>j", [[<Cmd>wincmd j<CR>]], { silent = true })
--- vim.keymap.set("t", "<C-w>k", [[<Cmd>wincmd k<CR>]], { silent = true })
 
 -- +---------------------------------------------------------+
 -- | snacks.nvim: Toggle                                     |
