@@ -1,3 +1,7 @@
+-- +---------------------------------------------------------+
+-- | windwp/nvim-ts-autotag: Auto close HTML tags            |
+-- +---------------------------------------------------------+
+
 require("nvim-ts-autotag").setup({
     opts = {
         -- Defaults

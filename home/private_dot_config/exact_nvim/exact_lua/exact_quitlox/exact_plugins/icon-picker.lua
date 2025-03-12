@@ -1,6 +1,7 @@
 -- +---------------------------------------------------------+
 -- | ziontee133/icon-picker.nvim: Icon Picker                |
 -- +---------------------------------------------------------+
+-- TODO: Replace plugin, as it is archived
 
 vim.g.initialized_icon_picker = 0
 

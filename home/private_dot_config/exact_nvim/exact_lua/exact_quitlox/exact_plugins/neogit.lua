@@ -14,9 +14,6 @@ vim.api.nvim_create_autocmd("User", {
 
 require("neogit").setup({
     kind = "split",
-    integrations = {
-        diffview = true,
-    },
     mappings = {
         commit_editor = {
             ["<C-k>"] = "Abort",

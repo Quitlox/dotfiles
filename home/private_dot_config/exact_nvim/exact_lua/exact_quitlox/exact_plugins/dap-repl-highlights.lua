@@ -1,3 +1,9 @@
+-- +---------------------------------------------------------+
+-- | LiadOz/nvim-dap-repl-highlights: Syntax highlighting    |
+-- | for nvim-dap REPL buffer                                |
+-- +---------------------------------------------------------+
+-- TODO: this plugin may not be necessary with nvim-dap-view
+
 require("nvim-dap-repl-highlights").setup()
 
 -- Install treesitter parser for dap_repl

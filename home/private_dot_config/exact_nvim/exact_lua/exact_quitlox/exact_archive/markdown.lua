@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     desc = "Setup markdown.nvim",
     group = vim.api.nvim_create_augroup("MyMarkdownGroup", { clear = true }),
     callback = function()
-        require("markdown").setup({
+        require("home.private_dot_config.exact_nvim.exact_lua.exact_quitlox.exact_archive.markdown").setup({
             mappings = {
                 inline_surround_toggle = "gs", -- (string|boolean) toggle inline style
                 inline_surround_toggle_line = "gss", -- (string|boolean) line-wise toggle inline style

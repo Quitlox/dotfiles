@@ -38,7 +38,7 @@ auto_install = "prompt"
 "vim-illuminate" = { git = "rrethy/vim-illuminate", rev = "19cb21f513fc2b02f0c66be70107741e837516a1" }
 
 # +- Vim Motions --------------------------------------------+
-"nvim-surround" = "2.1.5"
+"nvim-surround" = { version = "2.1.5", options = {} }
 "flash.nvim" = "2.1.0"
 "vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
 "nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "9b9a1cf88a10790de69d3b0562d7d612f23561d5" }
@@ -47,7 +47,7 @@ auto_install = "prompt"
 "mini.ai" = "0.15.0"
 
 # +- Miscellenous -------------------------------------------+
-"guess-indent.nvim" = "scm"
+"guess-indent.nvim" = { version = "scm", options = {} }
 "treesj" = "scm"
 "no-neck-pain.nvim" = "2.2.0"
 
@@ -73,7 +73,7 @@ auto_install = "prompt"
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = { git = "mfussenegger/nvim-dap", rev = "52302f02fea3a490e55475de52fa4deb8af2eb11" }
 "nvim-dap-ui" = { git = "rcarriga/nvim-dap-ui", rev = "bc81f8d3440aede116f821114547a476b082b319" }
-"nvim-dap-virtual-text" = { git = "theHamsta/nvim-dap-virtual-text", rev = "df66808cd78b5a97576bbaeee95ed5ca385a9750" }
+"nvim-dap-virtual-text" = { git = "theHamsta/nvim-dap-virtual-text", rev = "df66808cd78b5a97576bbaeee95ed5ca385a9750", options = {} }
 "nvim-dap-repl-highlights" = { git = "liadoz/nvim-dap-repl-highlights", rev = "a7512fc0a0de0c0be8d58983939856dda6f72451" }
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }
 
@@ -85,7 +85,7 @@ auto_install = "prompt"
 "octo.nvim" = "scm"
 "gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "v3.3.12" }
 # +- Language Server Protocol -------------------------------+
-"fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
+"fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1", options = {} }
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "glance.nvim" = { git = "DNLHC/glance.nvim", rev = "cb19b86349cbe634eec0ea768b9a27fdd6d24f34" }
 "hover.nvim" = { git = "lewis6991/hover.nvim", rev = "140c4d0ae9397b76baa46b87c574f5377de09309" }
@@ -143,11 +143,10 @@ auto_install = "prompt"
 "lazydev.nvim" = { git = "folke/lazydev.nvim", rev = "v1.9.0", config = "quitlox.plugins.lang.lua" }
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "1df30b60b1b4aecfebc785aa98943db6c6989716" }
 # +- Markdown -----------------------------------------------+
-"markdown.nvim" = { git = "tadmccorkle/markdown.nvim", rev = "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" }
-"vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
-"table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626" }
 "markview.nvim" = "25.4.0"
 "obsidian.nvim" = "3.9.0"
+"vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
+"table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626" }
 # +- Python -------------------------------------------------+
 "neotest-python" = { git = "nvim-neotest/neotest-python", rev = "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" }
 "nvim-dap-python" = "scm"

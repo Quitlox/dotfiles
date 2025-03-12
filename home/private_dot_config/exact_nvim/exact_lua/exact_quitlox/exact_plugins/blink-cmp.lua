@@ -21,8 +21,8 @@ require("quitlox.util.lazy").on_module("lspconfig", function()
     end
 end)
 
+--+- Setup --------------------------------------------------+
 -- TODO: at end of completion, tab should be used to escape parenthesis
-
 require("blink-cmp").setup({
     keymap = {
         ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },

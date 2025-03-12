@@ -1,3 +1,7 @@
+-- +---------------------------------------------------------+
+-- | mistweaverco/kulala.nvim: HTTP-client                   |
+-- +---------------------------------------------------------+
+
 require("kulala").setup()
 
 vim.api.nvim_create_autocmd("FileType", {

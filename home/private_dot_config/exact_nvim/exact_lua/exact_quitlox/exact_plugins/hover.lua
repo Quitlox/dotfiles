@@ -2,8 +2,10 @@
 -- | lewis6991/hover.nvim: Hover                             |
 -- +---------------------------------------------------------+
 
+--+- Neovim Options -----------------------------------------+
 vim.o.mousemoveevent = true
 
+--+- Setup --------------------------------------------------+
 require("hover").setup({
     init = function()
         -- Require providers
@@ -15,6 +17,6 @@ require("hover").setup({
     end,
 })
 
--- vim.keymap.set("n", "gh", "<cmd>lua require('hover').hover()<cr>", { desc = "Hover" })
+--+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "K", "<cmd>lua require('hover').hover()<cr>", { desc = "Hover" })
 vim.keymap.set("n", "gK", "<cmd>lua require('hover').hover_select()<cr>", { desc = "Hover Select" })

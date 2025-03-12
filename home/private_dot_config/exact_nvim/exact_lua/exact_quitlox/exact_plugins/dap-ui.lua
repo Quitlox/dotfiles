@@ -3,7 +3,7 @@
 -- +---------------------------------------------------------+
 
 -- Setup
-require("dapui").setup({ expand_lines = true, mappings = { remove = "dd" } })
+require("dapui").setup({ expand_lines = true, mappings = { remove = "dd" } }) ---@diagnostic disable-line: missing-fields
 
 -- State
 local state = {
@@ -53,6 +53,7 @@ require("dap").listeners.after.event_initialized["dapui_config"] = on_open
 require("dap").listeners.before.event_terminated["dapui_config"] = on_close
 require("dap").listeners.before.event_exited["dapui_config"] = on_close
 
+--+- Keymaps ------------------------------------------------+
 -- Keymap helper: Evaluate expression
 local evaluate = function()
     vim.ui.input({ prompt = "Expression to evaluate: " }, function(input)
@@ -60,23 +61,23 @@ local evaluate = function()
     end)
 end
 
--- Keymaps
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>do", function() require("dapui").open() end, { noremap = true, silent = true, desc = "Debug UI Open" })
 vim.keymap.set("n", "<leader>dc", function() require("dapui").close() end, { noremap = true, silent = true, desc = "Debug UI Close" })
 vim.keymap.set("n", "<leader>de", evaluate, { noremap = true, silent = true, desc = "Evaluate Expression" })
 -- stylua: ignore end
 
--- Signs (required by Catppuccin)
-vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
-vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
-
 require("which-key").add({
     { "<leader>d", group = "Debug" },
     { "<leader>db", group = "Breakpoint" },
     { "<leader>dl", group = "List" },
 })
+
+--+- Signs --------------------------------------------------+
+-- Signs (required by Catppuccin)
+vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
 
 --+- Workaround ---------------------------------------------+
 -- https://github.com/neovim/neovim/issues/14116
