@@ -4,6 +4,9 @@
 
 require("which-key").setup({
     preset = "modern",
+    delay = function(ctx)
+        return ctx.plugin and 0 or 400
+    end,
     spec = {
         { "<leader><tab>", group = "Tab" },
         { "<leader>b", group = "Buffer" },

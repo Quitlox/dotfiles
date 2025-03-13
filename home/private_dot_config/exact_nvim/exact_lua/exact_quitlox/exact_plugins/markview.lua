@@ -9,6 +9,7 @@ require("markview").setup({
         icon_provider = "mini",
     },
     markdown = {},
+    latex = {},
 })
 
 -- Load the checkboxes module.

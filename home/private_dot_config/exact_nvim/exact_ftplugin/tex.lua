@@ -5,6 +5,8 @@
 -- +- Options ------------------------------------------------+
 vim.opt.formatoptions:remove("t")
 vim.opt.concealcursor = "c"
+vim.opt.conceallevel = 2
+vim.opt.linespace = 5
 vim.opt.foldexpr = "manual"
 
 -- +- Quickfix -----------------------------------------------+

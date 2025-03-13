@@ -1,3 +1,7 @@
+-- +---------------------------------------------------------+
+-- | stevearc/oil.nvim                                       |
+-- +---------------------------------------------------------+
+
 --- Should be called after saving an oil buffer.
 ---
 --- This function will check if all open buffers still match a file on disk.

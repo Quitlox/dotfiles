@@ -3,10 +3,15 @@
 -- +---------------------------------------------------------+
 
 require("snacks").setup({
-    init = {},
-    bigfile = { notify = true },
-    image = {},
+    init = { enabled = true },
+    bigfile = { enabled = true, notify = true },
+    image = {
+        enabled = true,
+        doc = { inline = false, float = true, conceal = true },
+        math = { enabled = true, latex = { font_size = "Large" } },
+    },
     picker = {
+        enabled = true,
         ui_select = true,
         formatters = {
             file = {
@@ -50,16 +55,13 @@ require("snacks").setup({
             },
         },
     },
-    profiler = {},
-    scratch = {},
+    profiler = { enabled = true },
+    scratch = { enabled = true },
     scroll = { enabled = vim.fn.exists("g:neovide") == 0 },
-    statuscolumn = {
-        left = { "mark", "sign" },
-        right = { "fold", "git" },
-    },
-    terminal = {},
-    toggle = {},
-    quickfile = { exclude = { "latex" } },
+    statuscolumn = { enabled = true, left = { "mark", "sign" }, right = { "fold", "git" } },
+    terminal = { enabled = true },
+    toggle = { enabled = true },
+    quickfile = { enabled = true, exclude = { "latex" } },
 })
 
 -- +---------------------------------------------------------+
@@ -69,9 +71,9 @@ require("snacks").setup({
 vim.keymap.set("n", "<leader>ps", require("snacks").profiler.scratch, { desc = "Profiler Scratch Buffer" })
 
 -- Toggle the profiler
-Snacks.toggle.profiler():map("<leader>pp")
+-- Snacks.toggle.profiler():map("<leader>pp")
 -- Toggle the profiler highlights
-Snacks.toggle.profiler_highlights():map("<leader>ph")
+-- Snacks.toggle.profiler_highlights():map("<leader>ph")
 
 require("which-key").add({
     { "<leader>p", group = "Profile" },

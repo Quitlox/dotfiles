@@ -100,24 +100,7 @@ require("possession").setup({
         delete_buffers = false,
         stop_lsp_clients = false,
     },
-    telescope = {
-        previewer = {
-            enabled = false,
-        },
-        -- list = {
-        --     default_action = "load",
-        --     mappings = {
-        --         save = { n = "<c-x>", i = "<c-x>" },
-        --         load = { n = "<c-v>", i = "<c-v>" },
-        --         delete = { n = "<c-t>", i = "<c-t>" },
-        --         rename = { n = "<c-r>", i = "<c-r>" },
-        --     },
-        -- },
-    },
 })
-
-require("telescope").load_extension("possession")
-vim.keymap.set("n", "<leader>os", "<cmd>Telescope possession<cr>", { noremap = true, silent = true, desc = "Open Sessions" })
 
 local function delete_and_exit()
     vim.g.toggle_session_auto_save = false

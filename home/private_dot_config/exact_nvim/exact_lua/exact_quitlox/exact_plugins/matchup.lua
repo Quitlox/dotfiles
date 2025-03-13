@@ -20,3 +20,9 @@ require("nvim-treesitter.configs").setup({
 -- FIXME: I had to completely disable vim-matchup due to problems with rust completion.
 -- NOTE:? I re-enabled due to switch to blink.cmp, is it now fixed?
 -- https://github.com/hrsh7th/nvim-cmp/issues/1940
+
+--+- Keymap -------------------------------------------------+
+require("which-key").add({
+    { "[%", desc = "Prev Parenthesis" },
+    { "]%", desc = "Next Parenthesis" },
+})

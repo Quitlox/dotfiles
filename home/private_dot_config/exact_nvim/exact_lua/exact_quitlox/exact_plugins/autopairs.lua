@@ -8,7 +8,9 @@ local npairs = require("nvim-autopairs")
 local ts_conds = require("nvim-autopairs.ts-conds")
 
 --+- Setup --------------------------------------------------+
-npairs.setup()
+npairs.setup({
+    disable_filetype = { "TelescopePrompt", "spectre_panel", "snacks_picker_input" },
+})
 
 --+- Custom Rules: Rust -------------------------------------+
 npairs.add_rules({

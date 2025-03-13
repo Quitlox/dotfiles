@@ -18,5 +18,5 @@ require("arrow").setup({
     },
 })
 
-vim.keymap.set("n", "[b", require("arrow.persist").previous)
-vim.keymap.set("n", "]b", require("arrow.persist").next)
+vim.keymap.set("n", "[b", require("arrow.persist").previous, { desc = "Prev Buffer (Arrow)" })
+vim.keymap.set("n", "]b", require("arrow.persist").next, { desc = "Next Buffer (Arrow)" })

@@ -33,21 +33,22 @@ auto_install = "prompt"
 "vim-matchup" = { git = "andymass/vim-matchup", rev = "aca23ce53ebfe34e02c4fe07e29e9133a2026481" }
 
 # +- Visual Enhancements ------------------------------------+
-"nvim-colorizer.lua" = { git = "norcalli/nvim-colorizer.lua", rev = "a065833f35a3a7cc3ef137ac88b5381da2ba302e" }
 "indent-blankline.nvim" = "3.8.7"
 "vim-illuminate" = { git = "rrethy/vim-illuminate", rev = "19cb21f513fc2b02f0c66be70107741e837516a1" }
 
 # +- Vim Motions --------------------------------------------+
-"nvim-surround" = { version = "2.1.5", options = {} }
 "flash.nvim" = "2.1.0"
-"vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
-"nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "9b9a1cf88a10790de69d3b0562d7d612f23561d5" }
-"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "0bad88a449642fca1080930260482628b692841a" }
 "mini.align" = "0.15.0"
 "mini.ai" = "0.15.0"
+"mini.extra" = "0.15.0" # only used for mini.ai text object
+"nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "9b9a1cf88a10790de69d3b0562d7d612f23561d5" }
+"nvim-surround" = { version = "2.1.5" }
+"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "0bad88a449642fca1080930260482628b692841a" }
+"unimpaired.nvim" = { git = "tummetott/unimpaired.nvim", rev = "v0.3.0" }
+"vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
 
 # +- Miscellenous -------------------------------------------+
-"guess-indent.nvim" = { version = "scm", options = {} }
+"guess-indent.nvim" = "scm"
 "treesj" = "scm"
 "no-neck-pain.nvim" = "2.2.0"
 
@@ -73,7 +74,7 @@ auto_install = "prompt"
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = { git = "mfussenegger/nvim-dap", rev = "52302f02fea3a490e55475de52fa4deb8af2eb11" }
 "nvim-dap-ui" = { git = "rcarriga/nvim-dap-ui", rev = "bc81f8d3440aede116f821114547a476b082b319" }
-"nvim-dap-virtual-text" = { git = "theHamsta/nvim-dap-virtual-text", rev = "df66808cd78b5a97576bbaeee95ed5ca385a9750", options = {} }
+"nvim-dap-virtual-text" = { git = "theHamsta/nvim-dap-virtual-text", rev = "df66808cd78b5a97576bbaeee95ed5ca385a9750" }
 "nvim-dap-repl-highlights" = { git = "liadoz/nvim-dap-repl-highlights", rev = "a7512fc0a0de0c0be8d58983939856dda6f72451" }
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }
 
@@ -85,11 +86,12 @@ auto_install = "prompt"
 "octo.nvim" = "scm"
 "gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "v3.3.12" }
 # +- Language Server Protocol -------------------------------+
-"fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1", options = {} }
+"fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "glance.nvim" = { git = "DNLHC/glance.nvim", rev = "cb19b86349cbe634eec0ea768b9a27fdd6d24f34" }
 "hover.nvim" = { git = "lewis6991/hover.nvim", rev = "140c4d0ae9397b76baa46b87c574f5377de09309" }
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim", rev = "573ff93c47898967efdfbc6587a1a39e3c2d365e" }
+"output-panel.nvim" = { git = "mhanberg/output-panel.nvim", rev = "v1.0.0" }
 "garbage-day.nvim" = { git = "zeioth/garbage-day.nvim", rev = "v1.3.1" }
 
 # +- Search -------------------------------------------------+
@@ -172,7 +174,7 @@ auto_install = "prompt"
 
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
-"avante.nvim" = { git = "yetone/avante.nvim", rev = "v0.0.23", branch = "main", build = "make" }
+"copilotchat.nvim" = { git = "copilotc-nvim/copilotchat.nvim", rev = "v3.9.1" }
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.31"
@@ -202,8 +204,9 @@ auto_install = "prompt"
 "arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "5438c977e729a29d96bd54c8da3103154e80dbd1" }
 "edgy.nvim" = "1.10.2"
 "icon-picker.nvim" = "scm"
+"key-analyzer.nvim" = { git = "meznaric/key-analyzer.nvim", rev = "72d301fb8843c19d8e69e16e0a0b42256edc25cc" }
+"snacks.nvim" = { git = "folke/snacks.nvim", rev = "bc0630e43be5699bb94dadc302c0d21615421d93", opt = true } # waiting for >2.22.0 to drop
 "todo-comments.nvim" = "1.4.0"
-"snacks.nvim" = { version = "2.22.0", opt = true }
 "which-key.nvim" = "3.17.0"
 
 # +----------------------------------------------------------+
@@ -213,6 +216,7 @@ auto_install = "prompt"
 "nvim-nio" = "1.10.1"
 "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "857c5ac632080dba10aae49dba902ce3abf91b35" }
 "nui.nvim" = { git = "MunifTanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" } # avante.nvim, outdated (semver, luarocks)
+tiktoken_core = "0.2.3" # CopilotChat.nvim
 
 # +----------------------------------------------------------+
 # | Parsers                                                  |
@@ -245,6 +249,7 @@ tree-sitter-latex = "scm"
 tree-sitter-lua = "scm"
 tree-sitter-luadoc = "scm"
 tree-sitter-markdown = "scm"
+tree-sitter-markdown_inline = "0.0.37"
 tree-sitter-pem = "0.0.30"
 tree-sitter-perl = "scm"
 tree-sitter-php = "0.0.40"

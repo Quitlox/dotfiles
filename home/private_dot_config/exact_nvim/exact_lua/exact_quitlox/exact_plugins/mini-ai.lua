@@ -42,17 +42,18 @@ local mini_ai_opts = {
         o = gen_spec.treesitter({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-        }, {}),
-
-        -- From LazyVim
-        t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
-        u = gen_spec.function_call(), -- u for "Usage"
-        U = gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
+        }),
+        i = require("mini.extra").gen_ai_spec.indent(),
 
         -- a = spec_treesitter({
         --     a = { "@attribute.outer", "@parameter.outer" },
         --     i = { "@attribute.inner", "@parameter.inner" },
         -- }),
+
+        -- From LazyVim
+        t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+        u = gen_spec.function_call(), -- u for "Usage"
+        U = gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
     },
 }
 require("mini.ai").setup(mini_ai_opts)

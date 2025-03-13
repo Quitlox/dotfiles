@@ -14,5 +14,5 @@ end
 
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>vd", function() require("notify").dismiss({ pedning = true, silent = true }) end, { desc = "Dismiss Notifications" })
-vim.keymap.set("n", "<leader>vln", function() require("telescope").extensions.notify.notify(require("telescope.themes").get_dropdown()) end, { desc = "List Notifications", nowait = true })
+-- vim.keymap.set("n", "<leader>vln", function() require("telescope").extensions.notify.notify(require("telescope.themes").get_dropdown()) end, { desc = "List Notifications", nowait = true })
 -- stylua: ignore end

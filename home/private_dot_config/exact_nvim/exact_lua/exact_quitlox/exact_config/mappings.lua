@@ -159,8 +159,8 @@ vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Tab Only" })
 vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Tab New" })
 vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Tab Close" })
 
-vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Tab Previous" })
-vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Tab Next" })
+vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Prev Tabpage" })
+vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next Tabpage" })
 
 -- +---------------------------------------------------------+
 -- | Command Mode                                            |

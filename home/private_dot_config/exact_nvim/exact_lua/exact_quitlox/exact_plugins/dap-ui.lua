@@ -3,7 +3,17 @@
 -- +---------------------------------------------------------+
 
 -- Setup
-require("dapui").setup({ expand_lines = true, mappings = { remove = "dd" } }) ---@diagnostic disable-line: missing-fields
+require("dapui").setup({
+    expand_lines = true,
+    mappings = {
+        remove = "dd",
+    },
+    element_mappings = {
+        stacks = {
+            open = { "<cr>", "i", "o" },
+        },
+    },
+}) ---@diagnostic disable-line: missing-fields
 
 -- State
 local state = {
@@ -79,8 +89,35 @@ vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", li
 vim.fn.sign_define("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
 vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
 
+--+- Fix Highlights -----------------------------------------+
+-- Fix DAP UI icon highlighting in Edgy windows
+vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
+    group = vim.api.nvim_create_augroup("DapUiFixHighlights", { clear = true }),
+    callback = function()
+        local winbar_bg = vim.api.nvim_get_hl(0, { name = "EdgyWinBar" }).bg
+        if winbar_bg then
+            local control_hl_groups = {
+                "DapUIPlayPause",
+                "DapUIRestart",
+                "DapUIStop",
+                "DapUIUnavailable",
+                "DapUIStepOver",
+                "DapUIStepInto",
+                "DapUIStepBack",
+                "DapUIStepOut",
+            }
+            for _, hl_group in ipairs(control_hl_groups) do
+                local current = vim.api.nvim_get_hl(0, { name = hl_group })
+                current.bg = winbar_bg
+                vim.api.nvim_set_hl(0, hl_group, current)
+            end
+        end
+    end,
+})
+
 --+- Workaround ---------------------------------------------+
 -- https://github.com/neovim/neovim/issues/14116
+-- https://github.com/rcarriga/nvim-dap-ui/issues/31
 
 function PromptBackspace()
     -- Allows backspacing through previously set text when in a prompt.

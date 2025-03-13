@@ -57,5 +57,3 @@ require("workspaces").setup({
         end,
     },
 })
-
-require("telescope").load_extension("workspaces")

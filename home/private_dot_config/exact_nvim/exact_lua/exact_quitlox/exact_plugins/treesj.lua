@@ -8,9 +8,9 @@ local function setup()
         use_default_keymaps = false,
     })
 
-    vim.keymap.set("n", "<leader>j", require("treesj").join, { noremap = true, desc = "Join" })
-    vim.keymap.set("n", "<leader>s", require("treesj").split, { noremap = true, desc = "Split" })
+    vim.keymap.set("n", "<leader>j", require("treesj").toggle, { noremap = true, desc = "Join" })
+    -- vim.keymap.set("n", "<leader>s", require("treesj").split, { noremap = true, desc = "Split" })
 end
 
 require("quitlox.util.lazy").keymap_stub("n", "<leader>j", setup, { noremap = true, desc = "Join" })
-require("quitlox.util.lazy").keymap_stub("n", "<leader>s", setup, { noremap = true, desc = "Split" })
+-- require("quitlox.util.lazy").keymap_stub("n", "<leader>s", setup, { noremap = true, desc = "Split" })

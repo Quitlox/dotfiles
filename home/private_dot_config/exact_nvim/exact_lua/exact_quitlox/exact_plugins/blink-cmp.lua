@@ -23,7 +23,11 @@ end)
 
 -- TODO: at end of completion, tab should be used to escape parenthesis
 
+local ft_blacklist = { "copilot-chat" }
 require("blink-cmp").setup({
+    enabled = function()
+        return not vim.tbl_contains(ft_blacklist, vim.bo.filetype) and vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
+    end,
     keymap = {
         ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },

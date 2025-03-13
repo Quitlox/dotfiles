@@ -33,9 +33,6 @@ local function filter_terminal_wins(pos)
     end
 end
 
---+- Keymaps ------------------------------------------------+
--- vim.keymap.set("n", "<leader>os", "<cmd>lua require('edgy').toggle()<cr>", { desc = "Open Sidebar" })
-
 --+- Setup --------------------------------------------------+
 require("edgy").setup({
     -- stylua: ignore start
@@ -50,6 +47,7 @@ require("edgy").setup({
         { title = "Neotest",         ft = "neotest-summary",   wo = { winbar = "    Tests" } },
         { title = "Outline",         ft = "neo-tree",          wo = { winbar = "    Outline" },                                  filter = filter_nt_source_eq("document_symbols") },
         { title = "Overseer Jobs",   ft = "snacks_terminal",   wo = { winbar = "  󰜎  Task: %{b:term_title}" },                    size = { width = 80 },   filter = filter_terminal_wins("right") },
+        { title = "Copilot Chat",    ft = "copilot-chat",      wo = { winbar = "    Copilot Chat" },                             size = { width = 70 } },
     },
     bottom = {
         { title = "Overseer",        ft = "OverseerList",      wo = { winbar = "    Overseer (Task List)" },                     size = { width = 40 } },
@@ -67,6 +65,7 @@ require("edgy").setup({
         { title = "DAP Console",     ft = "dapui_console",     wo = { winbar = "    DAP Console" } },
 
         { title = "Terminal",        ft = "snacks_terminal",   wo = { winbar = "    %{b:snacks_terminal.id}: %{b:term_title}" }, size = { height = 0.35 }, filter = filter_terminal_wins("bottom") },
+        { title = "LSP Output",      ft = "outputpanel",       wo = { winbar = "    LSP Output" } },
     },
     -- stylua: ignore end
 
