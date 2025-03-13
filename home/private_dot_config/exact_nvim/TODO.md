@@ -31,6 +31,7 @@
         - This would also be solved if I could only map `ca` and not `ci`, but this doesn't seem possible.
     - [ ] mini-ai: mapping `ca"` in python doesn't not respected in comments or docstrings 
         - This is unfortunately also a consequence of my custom text object, as strings in comments are not recognized as strings.
+    - [ ] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
 
 - Requires Contribution:
     - [ ] workspaces.nvim: create `snacks.picker` based picker
