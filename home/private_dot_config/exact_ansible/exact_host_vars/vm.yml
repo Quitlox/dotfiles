@@ -1,0 +1,6 @@
+system:
+  features:
+    wifi: false
+    bluetooth: false
+    gpu: "none"
+    laptop: false
