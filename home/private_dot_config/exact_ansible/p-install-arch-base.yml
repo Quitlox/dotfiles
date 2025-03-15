@@ -48,11 +48,11 @@
     # +- Common user utilities -----------------------------------------------+
     - { role: linux/user/cmdline }
     - { role: linux/user/desktop }
-    - { role: linux/user/dotfiles }
+    # - { role: linux/user/dotfiles }
 
     # +- Machine dependent ---------------------------------------------------+
     # Video Card Drivers (executed based on system.features.gpu)
-    - { role: arch/system/video-drivers, gpu: "{{ system.features.gpu }}" }
+    - { role: arch/system/video-drivers, gpu_type: "{{ system.features.gpu }}" }
 
     # Machine: Desktop
     - { role: machines/desktop/firmware, when: inventory_hostname == 'desktop' }
