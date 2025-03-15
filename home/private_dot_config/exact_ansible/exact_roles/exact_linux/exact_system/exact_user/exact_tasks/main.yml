@@ -10,8 +10,8 @@
 - name: Create default user
   become: true
   ansible.builtin.user:
-    name: "{{ user_name }}"
-    shell: /bin/zsh
+    name: "{{ user.name }}"
+    shell: "{{ user.shell }}"
     create_home: true
     move_home: false
     update_password: on_create
@@ -29,6 +29,6 @@
 - name: Add default user to wheel group
   become: true
   ansible.builtin.user:
-    name: "{{ user_name }}"
+    name: "{{ user.name }}"
     groups: wheel
     append: true

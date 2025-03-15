@@ -24,7 +24,7 @@
       # if you intend to connect to a Bluetooth tether.
     - name: Add user to lp group
       ansible.builtin.user:
-        name: "{{ user_name }}"
+        name: "{{ user.name }}"
         groups: lp
         append: true
       become: true

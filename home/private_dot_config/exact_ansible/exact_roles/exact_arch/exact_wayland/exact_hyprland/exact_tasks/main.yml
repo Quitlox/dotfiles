@@ -71,7 +71,7 @@
 # FIXME: Can only run within Hyprland
 # - name: Initialize/Update Hyprland plugin manager
 #   become: true
-#   become_user: " {{ user_name }}"
+#   become_user: " {{ user.name }}"
 #   ansible.builtin.command: hyprpm update
 #   changed_when: true
 
@@ -79,7 +79,7 @@
 
 # - name: Check if Hyprland hy3 plugin repository is installed
 #   become: true
-#   become_user: "{{ user_name }}"
+#   become_user: "{{ user.name }}"
 #   ansible.builtin.shell: hyprpm list | grep hy3
 #   register: has_hy3
 #   changed_when: false
@@ -87,7 +87,7 @@
 #
 # - name: Add Hyprland hy3 plugin repository
 #   become: true
-#   become_user: "{{ user_name }}"
+#   become_user: "{{ user.name }}"
 #   ansible.builtin.shell: yes | hyprpm add https://github.com/outfoxxed/hy3
 #   register: hy3
 #   changed_when: hy3.rc == 0
@@ -95,7 +95,7 @@
 #
 # - name: Check if Hyprland hyprland-plugins repository is installed
 #   become: true
-#   become_user: "{{ user_name }}"
+#   become_user: "{{ user.name }}"
 #   ansible.builtin.shell: hyprpm list | grep hyprland-plugins
 #   register: has_hyprland_plugins
 #   changed_when: false
@@ -103,7 +103,7 @@
 #
 # - name: Add Hyprland hyprland-plugins repository
 #   become: true
-#   become_user: "{{ user_name }}"
+#   become_user: "{{ user.name }}"
 #   ansible.builtin.shell: yes | hyprpm add https://github.com/hyprwm/hyprland-plugins
 #   register: hyprland_plugins
 #   changed_when: hyprland_plugins.rc == 0

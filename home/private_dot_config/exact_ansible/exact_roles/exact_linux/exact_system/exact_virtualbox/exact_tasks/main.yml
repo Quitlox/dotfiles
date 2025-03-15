@@ -47,13 +47,13 @@
 
 - name: Install oracle extension pack
   become: true
-  become_user: "{{ user_name }}"
+  become_user: "{{ user.name }}"
   kewlfft.aur.aur:
     name: virtualbox-ext-oracle
 
 - name: Add user to vboxusers group
   ansible.builtin.user:
-    name: "{{ user_name }}"
+    name: "{{ user.name }}"
     groups: vboxusers
     append: true
   become: true

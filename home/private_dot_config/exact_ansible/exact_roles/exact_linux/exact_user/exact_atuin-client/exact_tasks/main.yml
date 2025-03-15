@@ -31,12 +31,12 @@
 - name: Install atuin
   ansible.builtin.command: cargo install atuin
   become: true
-  become_user: "{{ user_name }}"
+  become_user: "{{ user.name }}"
   when: ansible_facts['os_family'] != "Archlinux"
 
 - name: Place configuration file
   ansible.builtin.copy:
     src: "{{ role_path }}/files/config.toml"
-    dest: "/home/{{ user_name }}/.config/atuin/config.toml"
-    owner: "{{ user_name }}"
-    group: "{{ user_name }}"
+    dest: "/home/{{ user.name }}/.config/atuin/config.toml"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"

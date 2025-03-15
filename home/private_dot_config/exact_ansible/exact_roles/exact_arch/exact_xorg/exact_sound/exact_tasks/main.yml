@@ -37,13 +37,13 @@
       become: true
     - name: Ensure ~/.config/pipewire exists
       ansible.builtin.file:
-        path: /home/{{ user_name }}/.config/pipewire/pipewire.conf.d/
+        path: /home/{{ user.name }}/.config/pipewire/pipewire.conf.d/
         state: directory
         mode: "0755"
     - name: Copy over configuration file # TODO: Move this config to /etc
       ansible.builtin.copy:
         src: "{{ role_path }}/files/99-input-denoising.conf"
-        dest: "/home/{{ user_name }}/.config/pipewire/pipewire.conf.d/99-input-denoising.conf"
-        owner: "{{ user_name }}"
-        group: "{{ user_name }}"
+        dest: "/home/{{ user.name }}/.config/pipewire/pipewire.conf.d/99-input-denoising.conf"
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
         mode: "0644"

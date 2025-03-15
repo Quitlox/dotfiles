@@ -3,12 +3,12 @@
 
 - name: Ensure configuration folder exists
   become: true
-  become_user: "{{ user_name }}"
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
-    path: "/home/{{ user_name }}/.config/home-assistant"
+    path: "/home/{{ user.name }}/.config/home-assistant"
     state: directory
-    group: "{{ user_name }}"
-    owner: "{{ user_name }}"
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
     mode: "0755"
 
 - name: Create the homeassistant container
@@ -21,9 +21,9 @@
     network: host
     restart_policy: "unless-stopped"
     env:
-      TZ: "{{ system_timezone }}"
+      TZ: "{{ system.timezone }}"
     volumes:
-      - "/home/{{ user_name }}/.config/home-assistant:/config"
+      - "/home/{{ user.name }}/.config/home-assistant:/config"
       - "/run/dbus:/run/dbus:ro"
 
 - name: Create home-assistant systemd unit file

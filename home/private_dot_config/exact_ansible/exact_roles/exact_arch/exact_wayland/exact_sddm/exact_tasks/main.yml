@@ -61,7 +61,7 @@
     dest: /etc/sddm.conf.d/autologin.conf
     content: |
       [Autologin]
-      User={{ user_name }}
+      User={{ user.name }}
       Session=Hyprland
     owner: root
     group: root

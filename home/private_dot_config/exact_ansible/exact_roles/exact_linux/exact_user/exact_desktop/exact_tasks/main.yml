@@ -11,7 +11,7 @@
   block:
     - name: Set mimetype 'x-scheme-handler/http' for Firefox
       community.general.ini_file:
-        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
         section: Default Applications
         create: true
         option: x-scheme-handler/http
@@ -19,7 +19,7 @@
         mode: "0644"
     - name: Set mimetype 'x-scheme-handler/https' for Firefox
       community.general.ini_file:
-        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
         section: Default Applications
         create: true
         option: x-scheme-handler/https
@@ -27,7 +27,7 @@
         mode: "0644"
     - name: Set mimetype 'text/html' for Firefox
       community.general.ini_file:
-        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
         section: Default Applications
         create: true
         option: text/html
@@ -35,7 +35,7 @@
         mode: "0644"
     - name: Set mimetype 'application/xhtml+xml' for Firefox
       community.general.ini_file:
-        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
         section: Default Applications
         create: true
         option: application/xhtml+xml
@@ -55,12 +55,12 @@
 
     - name: Set zathura as default pdf reader
       community.general.ini_file:
-        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
         section: Default Applications
         value: org.pwmt.zathura.desktop
         option: x-scheme-handler/pdf
-        owner: "{{ user_name }}"
-        group: "{{ user_name }}"
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
         mode: "0644"
 
 - name: Install obsidian

@@ -28,9 +28,9 @@
 
 - name: Set hostname
   ansible.builtin.hostname:
-    name: "{{ system_hostname }}"
+    name: "{{ system.hostname }}"
   become: true
-  when: system_hostname is defined
+  when: system.hostname is defined
 
 - name: Setup OpenVPN
   become: true

@@ -8,7 +8,7 @@
 
 - name: Install VSCode
   become: true
-  become_user: "{{ user_name }}"
+  become_user: "{{ user.name }}"
   kewlfft.aur.aur:
     name: visual-studio-code-bin
   when: ansible_facts['os_family'] == "Archlinux"
@@ -17,7 +17,7 @@
   ansible.builtin.command:
     cmd: "code --install-extension {{ item }} --force"
   loop: "{{ vscode_extensions }}"
-  become_user: "{{ user_name }}"
+  become_user: "{{ user.name }}"
   environment:
     DISPLAY: ":0"
   when: ansible_facts['os_family'] == "Archlinux"

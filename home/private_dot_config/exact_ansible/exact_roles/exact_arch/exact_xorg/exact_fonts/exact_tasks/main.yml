@@ -20,7 +20,7 @@
 
 - name: Install siji font
   become: true
-  become_user: "{{ user_name }}"
+  become_user: "{{ user.name }}"
   kewlfft.aur.aur:
     # An iconic bitmap font based on Stlarch with additional glyphs.
     # > Used in polybar

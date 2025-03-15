@@ -43,7 +43,7 @@
       ansible.builtin.command: /tmp/sh.rustup.rs -y
       when: cargo_exists is failed
       changed_when: true
-      become_user: " {{ user_name }}"
+      become_user: " {{ user.name }}"
       become: true
 
 - name: Install tools for development
