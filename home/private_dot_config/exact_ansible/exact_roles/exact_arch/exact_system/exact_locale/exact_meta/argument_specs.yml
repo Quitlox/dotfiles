@@ -1,0 +1,9 @@
+---
+argument_specs:
+  main:
+    short_description: Configure the locales to generate on the system
+    options:
+      locale_list:
+        type: list
+        default:
+          - en_US.UTF-8

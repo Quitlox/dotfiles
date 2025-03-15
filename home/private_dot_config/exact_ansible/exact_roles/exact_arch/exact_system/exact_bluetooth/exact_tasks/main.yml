@@ -1,28 +1,30 @@
 ---
-- name: Install Bluetooth packages
-  community.general.pacman:
-    name:
-      - bluez
-      - bluez-utils
-      - bluez-obex # Required for File Transfer
-      - blueman
-    state: present
-  become: true
+- name: Configure Bluetooth
+  block:
+    - name: Install Bluetooth packages
+      community.general.pacman:
+        name:
+          - bluez
+          - bluez-utils
+          - bluez-obex # Required for File Transfer
+          - blueman
+        state: present
+      become: true
 
-- name: Start and enable bluetooth.service
-  ansible.builtin.systemd:
-    name: bluetooth.service
-    state: started
-    enabled: true
-  become: true
+    - name: Start and enable bluetooth.service
+      ansible.builtin.systemd:
+        name: bluetooth.service
+        state: started
+        enabled: true
+      become: true
 
-  # NOTE: Required for Bluetooth Tether
-  # By default the Bluetooth daemon will only give out bnep0 devices to users
-  # that are a member of the lp group. Make sure to add your user to that group
-  # if you intend to connect to a Bluetooth tether.
-- name: Add user to lp group
-  ansible.builtin.user:
-    name: "{{ user_name }}"
-    groups: lp
-    append: true
-  become: true
+      # NOTE: Required for Bluetooth Tether
+      # By default the Bluetooth daemon will only give out bnep0 devices to users
+      # that are a member of the lp group. Make sure to add your user to that group
+      # if you intend to connect to a Bluetooth tether.
+    - name: Add user to lp group
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        groups: lp
+        append: true
+      become: true

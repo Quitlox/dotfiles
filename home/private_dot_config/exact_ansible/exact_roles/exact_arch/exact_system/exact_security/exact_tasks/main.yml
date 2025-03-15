@@ -1,0 +1,7 @@
+---
+- name: Change allowed login retries
+  ansible.builtin.lineinfile:
+    path: /etc/security/faillock.conf
+    regexp: "^# deny = 3$"
+    line: "deny = 7"
+  become: true

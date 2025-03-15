@@ -7,6 +7,41 @@
       - firefox
   become: true
 
+- name: Set mimetypes for Firefox
+  block:
+    - name: Set mimetype 'x-scheme-handler/http' for Firefox
+      community.general.ini_file:
+        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        section: Default Applications
+        create: true
+        option: x-scheme-handler/http
+        value: firefox.desktop
+        mode: "0644"
+    - name: Set mimetype 'x-scheme-handler/https' for Firefox
+      community.general.ini_file:
+        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        section: Default Applications
+        create: true
+        option: x-scheme-handler/https
+        value: firefox.desktop
+        mode: "0644"
+    - name: Set mimetype 'text/html' for Firefox
+      community.general.ini_file:
+        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        section: Default Applications
+        create: true
+        option: text/html
+        value: firefox.desktop
+        mode: "0644"
+    - name: Set mimetype 'application/xhtml+xml' for Firefox
+      community.general.ini_file:
+        path: "/home/{{ user_name }}/.config/mimeapps.list"
+        section: Default Applications
+        create: true
+        option: application/xhtml+xml
+        value: firefox.desktop
+        mode: "0644"
+
 - name: Install and configure zathura
   block:
     - name: Install zathura as pdf reader
@@ -19,7 +54,7 @@
       become: true
 
     - name: Set zathura as default pdf reader
-      ansible.builtin.ini_file:
+      community.general.ini_file:
         path: "/home/{{ user_name }}/.config/mimeapps.list"
         section: Default Applications
         value: org.pwmt.zathura.desktop

@@ -12,40 +12,64 @@
     state: started
   become: true
 
-- name: Enable Multilib
-  community.general.ini_file:
-    path: /etc/pacman.conf
-    section: multilib
-    option: Include
-    value: /etc/pacman.d/mirrorlist
-    mode: "0644"
-  become: true
+- name: Configure Pacman
+  block:
+    - name: Pacman > Enable Multilib
+      community.general.ini_file:
+        path: /etc/pacman.conf
+        section: multilib
+        option: Include
+        value: /etc/pacman.d/mirrorlist
+        mode: "0644"
+      become: true
 
-- name: Enable VerbosePkgLists in /etc/pacman.conf
-  ansible.builtin.lineinfile:
-    path: /etc/pacman.conf
-    regexp: "^#VerbosePkgLists"
-    line: "VerbosePkgLists"
-    state: present
-  become: true
+    - name: Configure Pacman > Enable VerbosePkgLists in /etc/pacman.conf
+      ansible.builtin.lineinfile:
+        path: /etc/pacman.conf
+        regexp: "^#VerbosePkgLists"
+        line: "VerbosePkgLists"
+        state: present
+      become: true
 
-- name: Enable ParallelDownloads in /etc/pacman.conf
-  ansible.builtin.lineinfile:
-    path: /etc/pacman.conf
-    regexp: "^#ParallelDownloads = 5"
-    line: "ParallelDownloads = 5"
-    state: present
-  become: true
+    - name: Configure Pacman > Enable ParallelDownloads in /etc/pacman.conf
+      ansible.builtin.lineinfile:
+        path: /etc/pacman.conf
+        regexp: "^#ParallelDownloads = 5"
+        line: "ParallelDownloads = 5"
+        state: present
+      become: true
 
-- name: Enable Color in /etc/pacman.conf
-  ansible.builtin.lineinfile:
-    path: /etc/pacman.conf
-    regexp: "^#Color$"
-    line: "Color"
-    state: present
-  become: true
+    - name: Configure Pacman > Enable Color in /etc/pacman.conf
+      ansible.builtin.lineinfile:
+        path: /etc/pacman.conf
+        regexp: "^#Color$"
+        line: "Color"
+        state: present
+      become: true
 
-- name: Improve compression speed of pacman operations
+- name: Configure Pacman Mirrorlist
+  block:
+    - name: Install Reflector
+      community.general.pacman:
+        name: reflector
+        update_cache: true
+      become: true
+    - name: Configure Reflector
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/reflector.conf"
+        dest: /etc/xdg/reflector/reflector.conf
+        owner: root
+        group: root
+        mode: "0644"
+      become: true
+    - name: Enable and start reflector service
+      ansible.builtin.systemd:
+        name: reflector.timer
+        enabled: true
+        state: started
+      become: true
+
+- name: Configure faster compression for makepkg
   block:
     - name: Install pigz
       community.general.pacman:
@@ -79,26 +103,4 @@
         path: /etc/makepkg.conf
         regexp: "^COMPRESSZST=(zstd -c -z -q -)"
         line: "COMPRESSZST=(zstd -c -z -q --threads=0 -)"
-      become: true
-
-- name: Configure Mirrorlist
-  block:
-    - name: Install Reflector
-      community.general.pacman:
-        name: reflector
-        update_cache: true
-      become: true
-    - name: Configure Reflector
-      ansible.builtin.copy:
-        src: "{{ role_path }}/files/reflector.conf"
-        dest: /etc/xdg/reflector/reflector.conf
-        owner: root
-        group: root
-        mode: "0644"
-      become: true
-    - name: Enable and start reflector service
-      ansible.builtin.systemd:
-        name: reflector.timer
-        enabled: true
-        state: started
       become: true

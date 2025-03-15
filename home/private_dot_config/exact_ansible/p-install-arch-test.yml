@@ -1,0 +1,16 @@
+---
+- name: Install base Arch Linux system
+  hosts: all
+  gather_facts: true
+  handlers:
+    - name: Handler Grub
+      ansible.builtin.import_tasks: handlers/grub.yml
+    - name: Handler Mkinitcpio
+      ansible.builtin.import_tasks: handlers/mkinitcpio.yml
+
+  pre_tasks:
+    - name: Validate variables
+      ansible.builtin.import_tasks: roles/validate_vars.yml
+
+  roles:
+    - { role: arch/system/video-drivers, gpu_type: "{{ system.features.gpu }}" }

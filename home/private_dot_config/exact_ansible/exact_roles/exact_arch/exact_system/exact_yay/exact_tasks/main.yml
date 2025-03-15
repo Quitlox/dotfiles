@@ -15,7 +15,7 @@
     create_home: true
     group: wheel
     system: true
-    shell: /usr/bin/nologin
+    shell: /bin/bash
 
 - name: Allow the `aur_builder` user to run `sudo pacman` without a password
   become: true

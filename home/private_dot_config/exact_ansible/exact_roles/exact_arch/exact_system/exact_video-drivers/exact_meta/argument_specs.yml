@@ -1,0 +1,14 @@
+---
+argument_specs:
+  main:
+    short_description: Install video drivers for the specified GPU
+    options:
+      gpu_type:
+        description: The GPU for which to install the video drivers
+        required: false
+        type: str
+        choices:
+          - amd
+          - intel
+          - nvidia
+          - none

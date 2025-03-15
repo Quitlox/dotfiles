@@ -3,7 +3,7 @@
   community.general.locale_gen:
     name: "{{ item }}"
     state: present
-  loop: "{{ system_locale }}"
+  loop: "{{ locale_list }}"
   become: true
 
   # The recommended and default way is to save

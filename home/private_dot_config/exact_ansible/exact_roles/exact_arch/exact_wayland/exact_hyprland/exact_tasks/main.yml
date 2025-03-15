@@ -27,6 +27,7 @@
       - udiskie # USB Automounter
       - xdg-desktop-portal-gtk # General desktop integration
       - xdg-desktop-portal-hyprland # Screensharing
+      - xdg-user-dirs # User Directories
       - polkit-kde-agent # GUI Authentication
       - hyprshot # Screenshot
       # Desktop Applications (Foreground)

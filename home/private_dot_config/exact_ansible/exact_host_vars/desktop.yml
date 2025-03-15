@@ -1,9 +1,8 @@
 system:
-  hostname: quitlox-laptop
+  hostname: "quitlox-Desktop-Arch"
   features:
     headless: false
     wifi: true
     bluetooth: true
     gpu: "amd"
-  swap:
-    method: "partition"
+    laptop: false

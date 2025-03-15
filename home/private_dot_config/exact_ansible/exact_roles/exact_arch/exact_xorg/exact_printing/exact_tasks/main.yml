@@ -1,7 +1,6 @@
-
 ### PRINTING ###########################
 # Scanning
-# sudo pacman -S --needed -q sane sane-airscan 
+# sudo pacman -S --needed -q sane sane-airscan
 # Fort PullenStein EPSON XP 200 SERIES
 #	You might need to configure the printer as follows
 #	Find printer ip using: `sudo arp-scan -I wlp4s0 -l`

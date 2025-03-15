@@ -1,0 +1,158 @@
+---
+- name: Gather and validate playbook variables
+  block: 
+  - name: Check 'system.hostname' fact
+    block:
+    - name: Prompt for "system.hostname" variable
+      pause:
+        prompt: "Enter hostname"
+      when: system.hostname is not defined or system.hostname == none or system.hostname == ""
+      register: system_hostname_input
+    
+    - name: Set "system.hostname" variable
+      set_fact:
+        system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
+      vars:
+        system_set:
+          hostname: "{{ system_hostname_input.user_input }}"
+      when: system_hostname_input is defined and system_hostname_input.user_input is defined
+    when: system.hostname is not defined or system.hostname == none or system.hostname == ""
+
+  - name: Validate 'system.hostname' fact
+    fail:
+      msg: "Hostname must be at least 3 characters long"
+    when: system.hostname | length < 3
+
+  - name: Check 'system.features.headless' fact
+    block:
+    - name: Prompt for "system.features.headless" variable
+      pause:
+        prompt: "Is the system headless?"
+      register: system_features_headless_input
+    
+    - name: Set "system.features.headless" variable
+      set_fact:
+        system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
+      vars:
+        system_set:
+          features:
+            headless: "{{ system_features_headless_input.user_input | bool }}"
+      when: system_features_headless_input is defined and system_features_headless_input.user_input is defined
+    when: system.features.headless is not defined or system.features.headless == none
+    
+  - name: Validate 'system.features.headless' input
+    fail:
+      msg: "Input for 'headless' must be a valid boolean value (yes, no, true, false, y, n)"
+    when: >
+      system_features_headless_input is defined and 
+      system_features_headless_input.user_input is defined and
+      system_features_headless_input.user_input | lower not in ['yes', 'no', 'true', 'false', 'y', 'n', '0', '1']
+
+  - name: Check 'system.features.wifi' fact
+    block:
+    - name: Prompt for "system.features.wifi" variable
+      pause:
+        prompt: "Does the system have wifi?"
+      register: system_features_wifi_input
+    
+    - name: Set "system.features.wifi" variable
+      set_fact:
+        system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
+      vars:
+        system_set:
+          features:
+            wifi: "{{ system_features_wifi_input.user_input | bool }}"
+      when: system_features_wifi_input is defined and system_features_wifi_input.user_input is defined
+    when: system.features.wifi is not defined or system.features.wifi == none
+    
+  - name: Validate 'system.features.wifi' input
+    fail:
+      msg: "Input for 'wifi' must be a valid boolean value (yes, no, true, false, y, n)"
+    when: >
+      system_features_wifi_input is defined and 
+      system_features_wifi_input.user_input is defined and
+      system_features_wifi_input.user_input | lower not in ['yes', 'no', 'true', 'false', 'y', 'n', '0', '1']
+
+  - name: Check 'system.features.bluetooth' fact
+    block:
+    - name: Prompt for "system.features.bluetooth" variable
+      pause:
+        prompt: "Does the system have bluetooth?"
+      register: system_features_bluetooth_input
+    
+    - name: Set "system.features.bluetooth" variable
+      set_fact:
+        system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
+      vars:
+        system_set:
+          features:
+            bluetooth: "{{ system_features_bluetooth_input.user_input | bool }}"
+      when: system_features_bluetooth_input is defined and system_features_bluetooth_input.user_input is defined
+    when: system.features.bluetooth is not defined or system.features.bluetooth == none
+    
+  - name: Validate 'system.features.bluetooth' input
+    fail:
+      msg: "Input for 'bluetooth' must be a valid boolean value (yes, no, true, false, y, n)"
+    when: >
+      system_features_bluetooth_input is defined and 
+      system_features_bluetooth_input.user_input is defined and
+      system_features_bluetooth_input.user_input | lower not in ['yes', 'no', 'true', 'false', 'y', 'n', '0', '1']
+
+  - name: Check 'system.features.gpu' fact
+    block:
+    - name: Prompt for "system.features.gpu" variable
+      pause:
+        prompt: "What GPU does the system have? (none, nvidia, intel, amd)"
+      register: system_features_gpu_input
+    
+    - name: Set "system.features.gpu" variable
+      set_fact:
+        system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
+      vars:
+        system_set:
+          features:
+            gpu: "{{ system_features_gpu_input.user_input }}"
+      when: system_features_gpu_input is defined and system_features_gpu_input.user_input is defined
+    when: system.features.gpu is not defined or system.features.gpu == none
+    
+  - name: Validate 'system.features.gpu' fact
+    fail:
+      msg: "GPU must be one of: none, nvidia, intel, amd"
+    when: system.features.gpu not in ['none', 'nvidia', 'intel', 'amd']
+
+  - name: Check 'system.features.laptop' fact
+    block:
+    - name: Prompt for "system.features.laptop" variable
+      pause:
+        prompt: "Is the system a laptop?"
+      register: system_features_laptop_input
+    
+    - name: Set "system.features.laptop" variable
+      set_fact:
+        system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
+      vars:
+        system_set:
+          features:
+            laptop: "{{ system_features_laptop_input.user_input | bool }}"
+      when: system_features_laptop_input is defined and system_features_laptop_input.user_input is defined
+    when: system.features.laptop is not defined or system.features.laptop == none
+    
+  - name: Validate 'system.features.laptop' input
+    fail:
+      msg: "Input for 'laptop' must be a valid boolean value (yes, no, true, false, y, n)"
+    when: >
+      system_features_laptop_input is defined and 
+      system_features_laptop_input.user_input is defined and
+      system_features_laptop_input.user_input | lower not in ['yes', 'no', 'true', 'false', 'y', 'n', '0', '1']
+
+- name: Display playbook variables
+  ansible.builtin.debug:
+    msg:
+      - "system:"
+      - "  hostname: {{ system.hostname }}"
+      - "  features:"
+      - "    headless: {{ system.features.headless }}"
+      - "    wifi: {{ system.features.wifi }}"
+      - "    bluetooth: {{ system.features.bluetooth }}"
+      - "    gpu: {{ system.features.gpu }}"
+      - "    laptop: {{ system.features.laptop }}"

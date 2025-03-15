@@ -17,16 +17,14 @@
     update_password: on_create
   notify: Notify passwd
 
-# FIXME: Place file in /etc/sudoers.d/ instead
-- name: Configure wheel group
-  become: true
+- name: Allow members of wheel group to run sudo
   ansible.builtin.lineinfile:
-    dest: /etc/sudoers
+    path: /etc/sudoers.d/98_wheel_allow_sudo
     state: present
-    regexp: '^#?\s?%wheel ALL=(ALL:ALL) ALL'
     line: "%wheel ALL=(ALL:ALL) ALL"
-    validate: "/usr/sbin/visudo -cf %s"
-  when: ansible_facts['os_family'] == 'Archlinux'
+    validate: /usr/sbin/visudo -cf %s
+    create: true
+    mode: "0644"
 
 - name: Add default user to wheel group
   become: true
@@ -34,4 +32,3 @@
     name: "{{ user_name }}"
     groups: wheel
     append: true
-  when: ansible_facts['os_family'] == 'Archlinux'

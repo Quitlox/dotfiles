@@ -1,14 +1,14 @@
 ungrouped:
   hosts:
-    lenovo-t14:
-      ansible_host: 192.168.2.7
-      ansible_ssh_user: quitlox
-    desktop-linux:
+    localhost:
       ansible_connection: local
       ansible_ssh_user: quitlox
-    hetzner:
-      ansible_host: 162.55.47.225
-      ansible_ssh_user: root
+    lenovo-t14:
+      ansible_connection: local
+      ansible_ssh_user: quitlox
+    desktop:
+      ansible_connection: local
+      ansible_ssh_user: quitlox
     raspberry-pi:
       ansible_host: 192.168.2.12
       ansible_ssh_user: quitlox

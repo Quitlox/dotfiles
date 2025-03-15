@@ -4,18 +4,27 @@
 
 # User configuration
 # ==================
-user_name: quitlox
-user_shell: /bin/zsh
+user:
+  name: "quitlox"
+  shell: "/bin/zsh"
 
 # System configuration
 # ====================
-system_locale:
-  - "en_US.UTF-8"
-  - "nl_NL.UTF-8"
-  - "ko_KR.UTF-8"
-system_timezone: "Europe/Amsterdam"
-system_hostname: quitlox-unnamed
-system_headless: true
-system_swap_method: "partition" # 'off', 'file', 'partition'
-system_swap_size: 4294967296 # 4.0 GiB
-system_has_wifi: false
+system:
+  locale:
+    - "en_US.UTF-8"
+    - "nl_NL.UTF-8"
+    - "ko_KR.UTF-8"
+  timezone: "Europe/Amsterdam"
+  hostname: null
+
+  features:
+    headless: null
+    laptop: null
+    wifi: null
+    bluetooth: null
+    gpu: null # 'none', 'nvidia', 'intel', 'amd'
+
+  swap:
+    method: "off" # 'off', 'file', 'partition'
+    size: 4294967296 # 4.0 GiB

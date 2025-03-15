@@ -1,0 +1,65 @@
+---
+- name: Install base Arch Linux system
+  hosts: all
+  gather_facts: true
+  handlers:
+    - name: Handler Grub
+      ansible.builtin.import_tasks: handlers/grub.yml
+    - name: Handler Mkinitcpio
+      ansible.builtin.import_tasks: handlers/mkinitcpio.yml
+
+  pre_tasks:
+    - name: Validate variables
+      ansible.builtin.import_tasks: roles/validate_vars.yml
+
+  roles:
+    # +- Base system setup ---------------------------------------------------+
+    - { role: linux/system/user }
+    - { role: arch/system/pacman }
+    - { role: arch/system/yay }
+    - { role: arch/system/chaotic-aur }
+    - { role: linux/system/update }
+
+    # +- Core system components ----------------------------------------------+
+    - { role: arch/system/beep }
+    - { role: arch/system/bluetooth, when: system.features.bluetooth }
+    - { role: arch/system/fonts }
+    - { role: arch/system/filesystem }
+    - { role: arch/system/hibernate, when: system.swap.method != 'off' }
+    - { role: arch/system/locale, locale_list: "{{ system.locale }}" }
+    - { role: arch/system/microcode }
+    - { role: arch/system/mkinitcpio }
+    - { role: arch/system/networking }
+    - { role: arch/system/security }
+    - { role: arch/system/sound }
+    - { role: arch/system/timesync }
+    - { role: arch/system/timezone }
+
+    # +- Common utilities ----------------------------------------------------+
+    - { role: linux/system/ssd }
+    - { role: linux/system/ssh }
+    - { role: linux/system/sshfs }
+    - { role: linux/common/docker, tags: 'docker', when: not system.features.headless }
+
+    # +- Desktop Environment -------------------------------------------------+
+    - { role: arch/wayland/sddm, tags: 'DE', when: not system.features.headless }
+    - { role: arch/wayland/hyprland, tags: 'DE', when: not system.features.headless }
+
+    # +- Common user utilities -----------------------------------------------+
+    - { role: linux/user/cmdline }
+    - { role: linux/user/desktop }
+    - { role: linux/user/dotfiles }
+
+    # +- Machine dependent ---------------------------------------------------+
+    # Video Card Drivers (executed based on system.features.gpu)
+    - { role: arch/system/video-drivers, gpu: "{{ system.features.gpu }}" }
+
+    # Machine: Desktop
+    - { role: machines/desktop/firmware, when: inventory_hostname == 'desktop' }
+    # Machine: Lenovo-T14
+    - { role: arch/system/laptop, when: inventory_hostname == 'lenovo-t14' }
+    - { role: machines/lenovo-t14/firmware, when: inventory_hostname == 'lenovo-t14' }
+    - { role: fixes/firefox_touchscreen, when: inventory_hostname == 'lenovo-t14' }
+
+    # Optional / Extra
+    - { role: linux/user/dev, tags: ['dev'], when: inventory_hostname == 'lenovo-t14' or inventory_hostname == 'desktop' }

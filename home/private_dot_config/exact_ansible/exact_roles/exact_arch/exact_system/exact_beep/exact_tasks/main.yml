@@ -1,5 +1,6 @@
 ---
 # https://wiki.archlinux.org/title/PC_speaker#Globally
+
 - name: Disable computer speaker at boot
   become: true
   ansible.builtin.copy:
@@ -10,7 +11,10 @@
 - name: Disable computer speaker now
   block:
     - name: Check if 'pcspkr' module is loaded
-      ansible.builtin.shell: lsmod | grep '^pcspkr'
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          lsmod | grep '^pcspkr'
       register: pcspkr
       failed_when: false
       changed_when: false
@@ -23,7 +27,10 @@
       ansible.builtin.command: rmmod pcspkr
 
     - name: Check if 'snd_pcsp' module is loaded
-      ansible.builtin.shell: lsmod | grep '^snd_pcsp'
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          lsmod | grep '^snd_pcsp'
       register: snd_pcsp
       failed_when: false
       changed_when: false

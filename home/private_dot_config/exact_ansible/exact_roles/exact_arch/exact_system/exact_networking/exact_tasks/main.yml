@@ -1,5 +1,6 @@
 ---
 - name: Ensure NetworkManager is installed and enabled
+  become: true
   block:
     - name: Install NetworkManager
       community.general.pacman:
@@ -10,7 +11,6 @@
         name: NetworkManager
         enabled: true
         state: started
-  become: true
 
 - name: Ensure systemd-resolved is enabled
   ansible.builtin.service:
@@ -24,7 +24,7 @@
     name: wpa_supplicant
     update_cache: true
   become: true
-  when: system_has_wifi
+  when: system.features.wifi
 
 - name: Set hostname
   ansible.builtin.hostname:
@@ -32,12 +32,10 @@
   become: true
   when: system_hostname is defined
 
-
 - name: Setup OpenVPN
+  become: true
   block:
     - name: Install OpenVPN
       community.general.pacman:
         name: networkmanager-openvpn
         update_cache: true
-  become: true
-

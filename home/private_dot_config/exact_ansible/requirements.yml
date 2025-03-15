@@ -1,5 +1,5 @@
 ---
-roles: 
+roles:
   - name: gantsign.visual-studio-code
   - name: geerlingguy.docker
 
@@ -7,4 +7,3 @@ collections:
   - community.general
   - kewlfft.aur # For AUR
   - containers.podman
-

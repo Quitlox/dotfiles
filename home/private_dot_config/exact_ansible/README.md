@@ -1,4 +1,5 @@
-## Install
+
+## Setup Ansible (Controller / Local Only)
 
 To install the required roles, run the following commands:
 
@@ -7,71 +8,87 @@ sudo ansible-galaxy install -r requirements.yml -p /usr/local/share/ansible/role
 sudo ansible-galaxy collection install -r requirements.yml -p /usr/local/share/ansible/roles
 ```
 
-> [!WARNING]
-> `/usr/local/share` is not included in the default paths of ansible (`/usr/share/ansible` is).
+> [!WARNING] > `/usr/local/share` is not included in the default paths of ansible (`/usr/share/ansible` is).
 > Therefore, `ansible.cfg` modifies the defaults paths.
 
-## Setting up a host
+## Remotely Configure a New Host
+
+### Prepare the New Host
 
 A few manual steps need to be performed before managing a linux host:
+
 1. Setup networking
-    - If LAN is available, `systemctl enable --now NetworkManager.service`
-      should suffice.
+   - If LAN is available, `systemctl enable --now NetworkManager.service`
+     should suffice.
 1. Install and enable ssh
-    - `pacman -Syu openssh`
-    - `systemctl enable --now sshd.service`
+   - `pacman -Syu openssh`
+   - `systemctl enable --now sshd.service`
 1. Create a user account
-    - `useradd -m -G wheel quitlox`
+   - `useradd -m -G wheel quitlox`
 1. Give sudo permissions to new user
-    - `pacman -Syu sudo vi`
-    - Using `visudo`, uncomment the line `% WHEEL ...`
+   - `pacman -Syu sudo vi`
+   - Using `visudo`, uncomment the line `% WHEEL ...`
 1. From the controller, copy over the ssh key
-    - `ssh-copy-id -i ~/.ssh/key_quitlox quitlox@192.168.2.x`
+   - `ssh-copy-id -i ~/.ssh/key_quitlox quitlox@192.168.2.x`
 
 Now you're good to go.
 
 ## Playbooks
 
 - `ansible-playbook maintenance-dotfiles.yml -u quitlox -l '<host>' -K`
-    - Installs the dotfiles repository on the target host.
-    - Note: You may need to restart in order for starship to be able to load.
+  - Installs the dotfiles repository on the target host.
+
+> [!NOTE] Starship
+> You may need to restart in order for starship to be able to load.
 
 ## Post Installation
 
-To setup dotfiles:
+### Dotfiles
+
 1. Install requirements
-    - `sudo pacman -Syu bitwarden-cli chemzoi`
+   - `sudo pacman -Syu bitwarden-cli chemzoi`
 1. Log-in to Bitwarden
-    - `bw login`
+   - `bw login`
 1. Retrieve decryption key
-    ```bash
-    bw get item "ChezMoi Dotfiles Manager" | jq ".fields[1].value" | tr -d \" > ~/.ssh/.age_private_key.txt
-    ```
+   ```bash
+   bw get item "ChezMoi Dotfiles Manager" | jq ".fields[1].value" | tr -d \" > ~/.ssh/.age_private_key.txt
+   ```
 1. Place dotfiles
-    - `chezmoi init quitlox --apply`
+   - `chezmoi init quitlox --apply`
 1. Change repo to ssh
-    - `git remote set-url origin git@github.com:quitlox/dotfiles`
+   - `git remote set-url origin git@github.com:quitlox/dotfiles`
+
+### Applications
+
+1. Install Hyprland Plugins and update plugin manager
+1. Log into Zotero and enable synchronization
+   1. Install the Zotero browser connector
+1. Log into Obsidian and synchronize the vault
+1. Log into Thunderbird
 
 ## TODO
 
-/etc/udev/rules.d/99-wacom.rules
-~/.config/systemd
-- Atuin: Server out of sync and misconfigured
-STARSHIP
-
-- Make abstract role for adding hook to initramfs
-- Configure swap using swap partition
-
-- Zotero
-    - Log into Zotero automatically and setup sync?
-    - Install Zotero browser connector automatically?
-    - Zotero Marketplace
-    - Zotero better bibtex
-    - Zotero obsidian integration
-- Log into Obsidian automatically?
-- Configure thunderbird
+- Desktop:
+   - Wacom Tablet:
+         - see: /etc/udev/rules.d/99-wacom.rules)
+         - ~/.config/systemd/wacom.service
+   - OpenVPN / DNS
+- Improvements:
+   - Make abstract role for adding hooks to initramfs
+   - Automatically set governor to ondemand/performance for lenovo based on
+   charging state via udev events
 
 ## Security
 
 Security Issues:
 - SSHD Port is custom but fixed and publicly readable.
+
+## Memorandum
+
+- Example `fstab` entry for mounting network drivers:
+   * ```bash /etc/fstab
+      root@162.55.47.225:/mnt/data /mnt/data fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/home/quitlox/.ssh/key_hetzner,allow_other,default_permissions,uid=1000,gid=1000,entry_timeout=1800,attr_timeout=1800,reconnect 0 0
+      ```
+   * `_netdev` => wait for network
+     `allow_other` => allow other users to use the filesystem (other than root)
+
