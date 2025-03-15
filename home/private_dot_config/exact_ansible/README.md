@@ -11,6 +11,32 @@ sudo ansible-galaxy collection install -r requirements.yml -p /usr/local/share/a
 > [!WARNING] > `/usr/local/share` is not included in the default paths of ansible (`/usr/share/ansible` is).
 > Therefore, `ansible.cfg` modifies the defaults paths.
 
+## Locally Configure a New Host
+
+### Archinstall
+
+1. **Boot**: Insert the Arch boot device and boot into the live environment.
+1. **Install Arch**: Run `archinstall` and follow the instructions.
+   1. Set the mirror region
+   1. Set the parition layout
+   1. Set the root password
+   1. Add `quitlox` user with password and root privileges
+   1. Set installation type to `minimal`
+   1. Set network configuration to `NetworkManager`
+   1. Additional packages: `git`, `rbw`, `chemzoi`, `ansible`
+   1. TODO: Move this configuration file to my USB
+1. **Setup Bitwarden**
+   1. `rbw config set email kevin.witlox@upcmail.nl`
+   1. `rbw login`
+1. **Setup dotfiles**
+   1. `chezmoi init quitlox --apply`
+1. **Setup system using Ansible**
+   1. `cd ~/.config/ansible`
+   1. `sudo ansible-galaxy install -r requirements.yml -p /usr/local/share/ansible/roles`
+   1. `sudo ansible-galaxy collection install -r requirements.yml -p /usr/local/share/ansible/roles`
+   1. `ansible-playbook -u quitlox -l localhost -K p-install-arch-base.yml`
+      - substitute `localhost` with `vm` or another name matching inventory (to load corresponding variables in `./host_vars/`)
+
 ## Remotely Configure a New Host
 
 ### Prepare the New Host
@@ -33,7 +59,7 @@ A few manual steps need to be performed before managing a linux host:
 
 Now you're good to go.
 
-## Playbooks
+### Run Playbook
 
 - `ansible-playbook maintenance-dotfiles.yml -u quitlox -l '<host>' -K`
   - Installs the dotfiles repository on the target host.
@@ -41,9 +67,7 @@ Now you're good to go.
 > [!NOTE] Starship
 > You may need to restart in order for starship to be able to load.
 
-## Post Installation
-
-### Dotfiles
+### Install Dotfiles
 
 1. Install requirements
    - `sudo pacman -Syu bitwarden-cli chemzoi`
@@ -57,6 +81,8 @@ Now you're good to go.
    - `chezmoi init quitlox --apply`
 1. Change repo to ssh
    - `git remote set-url origin git@github.com:quitlox/dotfiles`
+
+## Post Installation
 
 ### Applications
 
