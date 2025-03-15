@@ -28,5 +28,8 @@ encryption = "age"
 
 [age]
     identity = {{ joinPath .chezmoi.homeDir ".ssh/.age_private_key.txt" | quote }}
-    recipient = {{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_public_key.value | quote }}
+    recipient = {{ (rbwFields "ChezMoi Dotfiles Manager").age_public_key.value | quote }}
 
+[hooks.read-source-state.pre]
+command = "sh"
+args = ["-c", "rbw get -f age_private_key 'ChezMoi Dotfiles Manager' > {{ joinPath .chezmoi.homeDir ".ssh/.age_private_key.txt" | squote }}"]
