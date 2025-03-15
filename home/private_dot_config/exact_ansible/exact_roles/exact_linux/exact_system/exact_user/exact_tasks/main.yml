@@ -18,8 +18,9 @@
   notify: Notify passwd
 
 - name: Allow members of wheel group to run sudo
+  become: true
   ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/98_wheel_allow_sudo
+    path: /etc/sudoers.d/01_wheel_allow_sudo
     state: present
     line: "%wheel ALL=(ALL:ALL) ALL"
     validate: /usr/sbin/visudo -cf %s
