@@ -21,6 +21,7 @@ vim.filetype.add({
     },
     pattern = {
         ["~/.config/hypr/.*%.conf"] = "hyprlang",
+        ["~/.config/ansible/.*%.yml"] = "yaml.ansible",
     },
 })
 

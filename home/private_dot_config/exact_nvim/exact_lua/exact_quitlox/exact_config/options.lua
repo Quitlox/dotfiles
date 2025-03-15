@@ -49,6 +49,8 @@ vim.cmd([[aunmenu PopUp.-1-]])
 vim.opt.shortmess = vim.opt.shortmess + "F" -- Don't print the filename when opening a file
 vim.opt.shortmess = vim.opt.shortmess + "s" -- Don't print the search wraparound message
 vim.opt.shortmess = vim.opt.shortmess + "S" -- Don't print the search count when searching
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = "c"
 --- Splits ---
 vim.opt.splitright = true
 vim.opt.splitbelow = true
