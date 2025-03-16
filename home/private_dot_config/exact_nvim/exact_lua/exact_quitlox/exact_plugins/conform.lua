@@ -5,7 +5,7 @@
 -- +---------------------------------------------------------+
 
 local default_opts = { timeout_ms = 500, lsp_format = "fallback" }
-local excluded_filetypes = { toml = true, yaml = true, markdown = true, json = true, jsonc = true, tex = true, ansible = true }
+local excluded_filetypes = { "toml", "yaml", "markdown", "json", "jsonc", "tex", "yaml.ansible" }
 local excluded_filenames = { "pyproject.toml", "__init__.py" }
 
 --+- Helper Functions: Fidget Integration -------------------+
@@ -68,7 +68,7 @@ local function should_format_on_save()
         return false
     end
     -- Don't format on save for certain filetypes
-    if excluded_filetypes[vim.bo.filetype] then
+    if vim.tbl_contains(excluded_filetypes, vim.bo.filetype) then
         return false
     end
     -- Don't format on save in the chezmoi directory

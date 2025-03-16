@@ -20,6 +20,7 @@
     - [ ] gp.nvim: `<C-g>f` (find) opens selected chat in first window, should use window picker
     - [ ] toggle: fix toggle of buffer local formatting
     - [ ] ultimate-autopairs: switch to this plugin, as it support multiline and wrapping of nodes
+    - [ ] configure `@parameter` in yaml as sibling node
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from
@@ -28,10 +29,10 @@
     - [ ] gp.nvim: floating window has margin that disappears in insert mode, which is annoying
     - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
     - [ ] mini-ai: mapping `ca"` in python on final `"` goes to next
-        - This is due to my custom text object. But it may still be a bug in mini-ai, as it seems my text object is correct
-        - This would also be solved if I could only map `ca` and not `ci`, but this doesn't seem possible.
+        This is due to my custom text object. But it may still be a bug in mini-ai, as it seems my text object is correct
+        This would also be solved if I could only map `ca` and not `ci`, but this doesn't seem possible.
     - [ ] mini-ai: mapping `ca"` in python doesn't not respected in comments or docstrings 
-        - This is unfortunately also a consequence of my custom text object, as strings in comments are not recognized as strings.
+        This is unfortunately also a consequence of my custom text object, as strings in comments are not recognized as strings.
     - [ ] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
 
 - Requires Contribution:
