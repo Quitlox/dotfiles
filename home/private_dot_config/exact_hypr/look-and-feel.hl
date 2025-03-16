@@ -29,20 +29,7 @@ decoration {
     active_opacity = 1.0
     inactive_opacity = 1.0
 
-    # Window Blur
-    # blur {
-    #     enabled = yes
-    #     size = 2
-    #     passes = 6
-    #     new_optimizations = yes
-    #     xray = no
-    #     noise = 0.0117
-    #     contrast = 0.97
-    #     brightness = 1
-
-    #     ignore_opacity = true
-    # }
-
+    # Window blur
     blur {
         enabled = true
         size = 5
