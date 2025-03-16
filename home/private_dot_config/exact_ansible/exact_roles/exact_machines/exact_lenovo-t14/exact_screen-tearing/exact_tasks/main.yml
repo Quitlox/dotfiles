@@ -1,6 +1,0 @@
----
-- name: Fix screen-tearing issue
-  ansible.builtin.copy:
-    src: "{{ role_path }}/files/20-amdgpu.conf"
-    dest: /etc/X11/xorg.conf.d/20-amdgpu.conf
-  when: ansible_product_name == "20UES06X00"
