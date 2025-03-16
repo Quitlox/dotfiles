@@ -1,14 +1,33 @@
 -- +---------------------------------------------------------+
 -- | epwalsh/obsidian.nvim: Obsidian in Neovim               |
 -- +---------------------------------------------------------+
+local workspaces = {}
 
-require("obsidian").setup({
+if vim.fn.has("win32") == 1 then
+    workspaces = {
+        {
+            name = "Personal (Windows)",
+            path = "C:/Users/witloxkhd/Obsidian/Knowledge/",
+        },
+    }
+elseif vim.fn.has("wsl") == 1 then
+    workspaces = {
+        {
+            name = "Personal (WSL)",
+            path = "/mnt/c/Users/witloxkhd/Obsidian/Knowledge/",
+        },
+    }
+else
     workspaces = {
         {
             name = "Personal (Linux)",
             path = "~/obsidian/Knowledge",
         },
-    },
+    }
+end
+
+require("obsidian").setup({
+    workspaces = workspaces,
     daily_notes = {
         folder = "./Daily Notes/",
         template = "./Resources/Templates/Daily Note Template.md",

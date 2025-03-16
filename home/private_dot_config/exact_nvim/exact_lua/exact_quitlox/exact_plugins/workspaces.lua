@@ -2,7 +2,7 @@
 -- | natecraddock/workspaces.nvim: Workspace Selector        |
 -- +---------------------------------------------------------+
 
-vim.keymap.set("n", "<leader>op", "<cmd>Telescope workspaces<cr>", { noremap = true, silent = true, desc = "Open Projects" })
+vim.keymap.set("n", "<leader>op", "<cmd>WorkspacesOpen<cr>", { noremap = true, silent = true, desc = "Open Projects" })
 
 --- Convert the given workspace.nvim path to a possession.nvim path
 local function to_possesion_path(path)

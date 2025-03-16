@@ -19,6 +19,7 @@
     - [ ] venv-selector: doesn't work without python file open
     - [ ] gp.nvim: `<C-g>f` (find) opens selected chat in first window, should use window picker
     - [ ] toggle: fix toggle of buffer local formatting
+    - [ ] ultimate-autopairs: switch to this plugin, as it support multiline and wrapping of nodes
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from
