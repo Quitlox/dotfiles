@@ -1,5 +1,0 @@
----
-- name: Install xdg-user-dirs
-  ansible.builtin.package:
-    name: xdg-user-dirs
-  become: true

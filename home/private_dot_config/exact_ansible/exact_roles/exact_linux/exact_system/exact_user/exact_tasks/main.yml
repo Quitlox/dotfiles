@@ -1,4 +1,5 @@
 ---
+
 - name: Install sudo package and shell
   become: true
   ansible.builtin.package:
@@ -33,3 +34,15 @@
     name: "{{ user.name }}"
     groups: wheel
     append: true
+
+- name: Create XDG Home directories
+  ansible.builtin.file:
+    path: /home/{{ user_name }}/{{ item }}
+    state: directory
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: "0755"
+  with_items:
+    - .local/src
+    - .local/bin
+

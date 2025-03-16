@@ -14,11 +14,11 @@
 
   roles:
     # +- Base system setup ---------------------------------------------------+
-    - { role: linux/system/user }
-    - { role: arch/system/pacman }
-    - { role: arch/system/yay }
-    - { role: arch/system/chaotic-aur }
-    - { role: linux/system/update }
+    - { role: linux/system/user, tags: 'user' }
+    - { role: arch/system/pacman, tags: 'pacman' }
+    - { role: arch/system/yay, tags: 'pacman' }
+    - { role: arch/system/chaotic-aur, tags: 'pacman' }
+    - { role: linux/system/update, tags: 'pacman' }
 
     # +- Core system components ----------------------------------------------+
     - { role: arch/system/beep }
@@ -48,9 +48,10 @@
     # +- Common user utilities -----------------------------------------------+
     - { role: linux/user/cmdline }
     - { role: linux/user/desktop }
-    # - { role: linux/user/dotfiles }
 
     # +- Machine dependent ---------------------------------------------------+
+    # VirtualBox (guest)
+    - { role: arch/system/virtualbox, tags: 'virtualbox' } # auto-detects if running in VirtualBox
     # Video Card Drivers (executed based on system.features.gpu)
     - { role: arch/system/video-drivers, gpu_type: "{{ system.features.gpu }}" }
 

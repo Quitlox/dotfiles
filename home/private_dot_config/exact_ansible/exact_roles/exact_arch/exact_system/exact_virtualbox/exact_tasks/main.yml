@@ -1,8 +1,8 @@
 ---
-- name: As virtualbox guest, install guest additions NON-X version
+- name: As virtualbox guest, install guest additions
   community.general.pacman:
     name:
-      - virtualbox-guest-utils-nox
+      - virtualbox-guest-utils
   when:
     - ansible_facts['virtualization_role'] == 'guest'
     - ansible_facts['virtualization_type'] == 'virtualbox'
