@@ -5,7 +5,7 @@
 -- +---------------------------------------------------------+
 
 local default_opts = { timeout_ms = 500, lsp_format = "fallback" }
-local excluded_filetypes = { toml = true, yaml = true, markdown = true, json = true, jsonc = true, tex = true }
+local excluded_filetypes = { toml = true, yaml = true, markdown = true, json = true, jsonc = true, tex = true, ansible = true }
 local excluded_filenames = { "pyproject.toml", "__init__.py" }
 
 --+- Helper Functions: Fidget Integration -------------------+
