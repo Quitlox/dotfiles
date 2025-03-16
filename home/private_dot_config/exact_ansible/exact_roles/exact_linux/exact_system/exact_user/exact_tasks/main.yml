@@ -37,10 +37,10 @@
 
 - name: Create XDG Home directories
   ansible.builtin.file:
-    path: /home/{{ user_name }}/{{ item }}
+    path: /home/{{ user.name }}/{{ item }}
     state: directory
-    owner: "{{ user_name }}"
-    group: "{{ user_name }}"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
     mode: "0755"
   with_items:
     - .local/src

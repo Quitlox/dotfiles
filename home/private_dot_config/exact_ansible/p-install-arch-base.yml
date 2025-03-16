@@ -32,23 +32,17 @@
     - { role: arch/system/networking }
     - { role: arch/system/security }
     - { role: arch/system/sound }
-    - { role: arch/system/timesync, when: not sytem.is_vm_guest }
-    - { role: arch/system/timezone, when: not sytem.is_vm_guest }
+    - { role: arch/system/timesync, when: not system.is_vm_guest }
+    - { role: arch/system/timezone, when: not system.is_vm_guest }
 
     # +- Common utilities ----------------------------------------------------+
     - { role: linux/system/ssd, tags: 'ssd' }
     - { role: linux/system/ssh }
-    - { role: linux/system/sshfs, tags: 'sshfs', when: not sytem.is_vm_guest }
+    - { role: linux/system/sshfs, tags: 'sshfs', when: not system.is_vm_guest }
 
     # +- Desktop Environment -------------------------------------------------+
     - { role: arch/wayland/sddm, tags: 'DE', when: not system.is_headless }
     - { role: arch/wayland/hyprland, tags: 'DE', when: not system.is_headless }
-
-    # Kitty is too heavy for VMs
-    - name: Install Terminal (kitty)
-      { become: true, community.general.pacman: name=kitty, when: not sytem.is_vm_guest }
-    - name: Install Terminal (foot)
-      { become: true, community.general.pacman: name=foot, when: sytem.is_vm_guest }
 
     # +- Common user utilities -----------------------------------------------+
     - { role: linux/user/cmdline }
@@ -70,3 +64,8 @@
     - { role: linux/user/dev, tags: ['dev'], when: inventory_hostname == 'lenovo-t14' or inventory_hostname == 'desktop' }
     - { role: linux/common/docker, tags: ['docker'], when: inventory_hostname == 'lenovo-t14' or inventory_hostname == 'desktop' }
     - { role: linux/user/apps, tags: ['apps'], when: inventory_hostname == 'lenovo-t14' or inventory_hostname == 'desktop' }
+
+  tasks:
+    # +- Install: Terminal ---------------------------------------------------+
+    - { name: Install Terminal (kitty), become: true, community.general.pacman: name=kitty, when: not system.is_vm_guest }
+    - { name: Install Terminal (foot), become: true, community.general.pacman: name=foot, when: system.is_vm_guest }

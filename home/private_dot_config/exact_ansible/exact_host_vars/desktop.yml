@@ -1,8 +1,9 @@
 system:
   hostname: "quitlox-Desktop-Arch"
+
+  is_headless: false
+
   features:
-    headless: false
     wifi: true
     bluetooth: true
     gpu: "amd"
-    laptop: false
