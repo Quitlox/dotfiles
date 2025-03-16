@@ -5,7 +5,7 @@ auto_highlight = "all"
 auto_install = "prompt"
 
 [plugins]
-"rocks.nvim" = "2.43.1"
+"rocks.nvim" = "2.44.0"
 "rocks-git.nvim" = "2.5.3"
 "rocks-config.nvim" = "3.1.0"
 "rocks-lazy.nvim" = "1.2.0"
@@ -42,7 +42,7 @@ auto_install = "prompt"
 "mini.ai" = "0.15.0"
 "mini.extra" = "0.15.0" # only used for mini.ai text object
 "nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "9b9a1cf88a10790de69d3b0562d7d612f23561d5" }
-"nvim-surround" = { version = "2.1.5" }
+"nvim-surround" = { version = "3.0.2" }
 "treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "0bad88a449642fca1080930260482628b692841a" }
 "unimpaired.nvim" = { git = "tummetott/unimpaired.nvim", rev = "v0.3.0" }
 "vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
@@ -80,7 +80,7 @@ auto_install = "prompt"
 
 # +- Git ----------------------------------------------------+
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
-"gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.1" }
+"gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.2" }
 "neogit" = "scm"
 "diffview.nvim" = "scm"
 "octo.nvim" = "scm"
@@ -95,7 +95,7 @@ auto_install = "prompt"
 "garbage-day.nvim" = { git = "zeioth/garbage-day.nvim", rev = "v1.3.1" }
 
 # +- Search -------------------------------------------------+
-"grug-far.nvim" = { git = "magicduck/grug-far.nvim", rev = "1.4.14" }
+"grug-far.nvim" = { git = "magicduck/grug-far.nvim", rev = "1.5.1" }
 
 # +- Session and Project Management -------------------------+
 "workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "55a1eb6f5b72e07ee8333898254e113e927180ca" }
@@ -117,7 +117,7 @@ auto_install = "prompt"
 "nvim-autopairs" = "scm"
 "nvim-ts-autotag" = "scm"
 "nvim-ts-context-commentstring" = "scm"
-"nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "cb718aab7fa66e43187674e875713097492a6618" }
+"nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "57d52841a966be6ff9a998a6d3dc1ac9cc9d95fc" }
 "nvim-treesitter-textsubjects" = { git = "RRethy/nvim-treesitter-textsubjects", rev = "abcbb0e537c9c24800b03b9ca33bee5806604629" }
 "nvim-treesitter-textobjects" = { git = "nvim-treesitter/nvim-treesitter-textobjects", rev = "143856b1cee509a190cc8c17ddb0638002171235" }
 
@@ -133,7 +133,7 @@ auto_install = "prompt"
 "nvim-parinfer" = "1.2.0"
 
 # +- Config -------------------------------------------------+
-"schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "e03b50ce453b1ce9f6b7805239c52db604d740dc", config = "quitlox.plugins.lang.schemastore" }
+"schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "56d8ed0fa1516242085ba5e95d7f49fad50d5754", config = "quitlox.plugins.lang.schemastore" }
 # +- Go -----------------------------------------------------+
 "go.nvim" = { version = "0.10.0", ft = ["go", "gomod"] }
 # "guihua.lua" = { git = "ray-x/guihua.lua", rev = "d783191eaa75215beae0c80319fcce5e6b3beeda" } # NOTE: Overwrites fzy which may cause issues (fixed for now, but still), maybe switch to use gopher instead if I ever need it
@@ -145,7 +145,7 @@ auto_install = "prompt"
 "lazydev.nvim" = { git = "folke/lazydev.nvim", rev = "v1.9.0", config = "quitlox.plugins.lang.lazydev" }
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "1df30b60b1b4aecfebc785aa98943db6c6989716" }
 # +- Markdown -----------------------------------------------+
-"markview.nvim" = "25.4.0"
+"markview.nvim" = "25.5.0"
 "obsidian.nvim" = "3.9.0"
 "vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626" }
@@ -155,17 +155,17 @@ auto_install = "prompt"
 "venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "e82594274bf7b54387f9a2abe65f74909ac66e97", branch = "regexp", pin = true }
 "pymple.nvim" = { git = "alexpasmantier/pymple.nvim", rev = "0.4.1" }
 # +- Rust ---------------------------------------------------+
-"rustaceanvim" = { version = "5.25.0", config = "quitlox.plugins.lang.rustaceanvim" }
+"rustaceanvim" = { version = "5.25.1", config = "quitlox.plugins.lang.rustaceanvim" }
 # +- Vim ----------------------------------------------------+
 "one-small-step-for-vimkind" = { version = "scm", config = "quitlox.plugins.lang.vim_dap" }
 # +- Web ----------------------------------------------------+
 "typescript-tools.nvim" = { version = "scm", config = "quitlox.plugins.lang.typescript_tools" }
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.3.2" }
 # +- Minor Languages ----------------------------------------+
-"nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "149986b4fc409c1b258ff5b1671d03b5094b3c74" }
+"nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "bba61168b7aef735e7f950fdfece5ef6c388eacf" }
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
 "yuck.vim" = { git = "elkowar/yuck.vim", rev = "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
-"csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "ed446a55b4ff9297d9b94a955db3a2eca6cdb2b2" }
+"csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "67b6347090dfc58583c3dd774535a1960ccc19a9" }
 
 
 # +----------------------------------------------------------+
@@ -177,7 +177,7 @@ auto_install = "prompt"
 "copilotchat.nvim" = { git = "copilotc-nvim/copilotchat.nvim", rev = "v3.9.1" }
 
 # +- File Explorer ------------------------------------------+
-"neo-tree.nvim" = "3.31"
+"neo-tree.nvim" = "3.31.1"
 "nvim-lsp-file-operation" = { git = "antosha417/nvim-lsp-file-operations", rev = "9744b738183a5adca0f916527922078a965515ed" }
 "nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.4.0" }
 "oil.nvim" = "2.15.0"
@@ -195,7 +195,7 @@ auto_install = "prompt"
 # -- Breadcrumbs
 "nvim-navic" = "scm"
 # -- Context
-"nvim-treesitter-context" = { git = "nvim-treesitter/nvim-treesitter-context", rev = "198720b4016af04c9590f375d714d5bf8afecc1a" }
+"nvim-treesitter-context" = { git = "nvim-treesitter/nvim-treesitter-context", rev = "572e534c9f881bb9bf9f388e4c87f360446c72d4" }
 
 # +- Quickfix -----------------------------------------------+
 "trouble.nvim" = "3.7.1"
@@ -222,7 +222,7 @@ tiktoken_core = "0.2.3" # CopilotChat.nvim
 # | Parsers                                                  |
 # +----------------------------------------------------------+
 tree-sitter-bash = "scm"
-tree-sitter-bibtex = "0.0.30"
+tree-sitter-bibtex = "0.0.31"
 tree-sitter-cpp = "0.0.41"
 tree-sitter-css = "scm"
 tree-sitter-csv = "0.0.29"
@@ -255,7 +255,7 @@ tree-sitter-pem = "0.0.30"
 tree-sitter-perl = "scm"
 tree-sitter-php = "0.0.40"
 tree-sitter-pug = "0.0.30"
-tree-sitter-python = "0.0.41"
+tree-sitter-python = "0.0.44"
 tree-sitter-query = "scm"
 tree-sitter-requirements = "scm"
 tree-sitter-rst = "scm"
