@@ -1,0 +1,112 @@
+---
+
+- name: Desktop > Thunderbird > Install
+  ansible.builtin.package: name=thunderbird
+  become: true
+  tags: thunderbird
+
+- name: Desktop > Firefox > Install
+  become: true
+  ansible.builtin.package: name=firefox
+  tags: firefox
+
+- name: Desktop > Firefox > Set mimetypes
+  tags: firefox
+  block:
+    - name: Set mimetype 'x-scheme-handler/http' for Firefox
+      community.general.ini_file:
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
+        section: Default Applications
+        create: true
+        option: x-scheme-handler/http
+        value: firefox.desktop
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
+        mode: "0644"
+    - name: Set mimetype 'x-scheme-handler/https' for Firefox
+      community.general.ini_file:
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
+        section: Default Applications
+        create: true
+        option: x-scheme-handler/https
+        value: firefox.desktop
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
+        mode: "0644"
+    - name: Set mimetype 'text/html' for Firefox
+      community.general.ini_file:
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
+        section: Default Applications
+        create: true
+        option: text/html
+        value: firefox.desktop
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
+        mode: "0644"
+    - name: Set mimetype 'application/xhtml+xml' for Firefox
+      community.general.ini_file:
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
+        section: Default Applications
+        create: true
+        option: application/xhtml+xml
+        value: firefox.desktop
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
+        mode: "0644"
+
+- name: Desktop > Zathura
+  tags: zathura
+  block:
+    - name: Desktop > Zathura > Install
+      community.general.pacman:
+        name:
+          # Zathura is a highly customizable and functional document viewer.
+          - zathura
+          # PDF support for Zathura
+          - zathura-pdf-mupdf
+      become: true
+
+    - name: Desktop > Zathura > Set mimetype
+      community.general.ini_file:
+        path: "/home/{{ user.name }}/.config/mimeapps.list"
+        section: Default Applications
+        option: x-scheme-handler/pdf
+        value: org.pwmt.zathura.desktop
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
+        mode: "0644"
+
+- name: Desktop > Obsidian > Install
+  tags: obsidian
+  ansible.builtin.package: name=obsidian
+  become: true
+
+- name: Desktop > Zotero > Install
+  tags: zotero
+  kewlfft.aur.aur: name=zotero-bin
+  become: true
+  become_user: aur_builder
+
+  # TODO: Zotero addons
+
+- name: Desktop > LaTeX distribution
+  tags: latex
+  block:
+    - name: Desktop > LaTeX distribution > Install
+      community.general.pacman:
+        name:
+          # A modernized, complete, self-contained TeX/LaTeX engine,
+          # powered by XeTeX and TeXLive.
+          # > Used by ~/.config/vim/settings/plugins/vimtex.vim
+          - texlive-basic
+          # > Needed for biblatex files
+          - biber
+      become: true
+    - name: Desktop > LaTeX distribution > Dependencies
+      # Pretty-Print LaTeX: A tool to reformat the output of latex
+      # and friends into readable messages.
+      # > Used by ~/.config/vim/settings/plugins/vimtex.vim
+      kewlfft.aur.aur:
+        name: pplatex-git
+      become: true
+      become_user: aur_builder

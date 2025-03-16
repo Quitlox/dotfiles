@@ -5,7 +5,10 @@
     update_cache: true
   become: true
   notify: regenerate grub
-  when: "'GenuineIntel' in ansible_processor"
+  when: 
+    - "'GenuineIntel' in ansible_processor"
+    - virtualization_role != "guest"
+    - virtualization_type != "docker"
 
 - name: Install microcode updates for amd
   community.general.pacman:
@@ -14,4 +17,7 @@
   become: true
   register: task_result
   notify: regenerate grub
-  when: "'AuthenticAMD' in ansible_processor"
+  when: 
+    - "'AuthenticAMD' in ansible_processor"
+    - virtualization_role != "guest"
+    - virtualization_type != "docker"

@@ -17,3 +17,4 @@
     - name: Warn user that SSD must support TRIM
       ansible.builtin.debug:
         msg: https://wiki.archlinux.org/title/Solid_state_drive#TRIM
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"

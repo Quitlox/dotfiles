@@ -87,10 +87,28 @@ Now you're good to go.
 ### Applications
 
 1. Install Hyprland Plugins and update plugin manager
+   1. `hyprpm update`
+   1. `hyprpm add http://github.com/outfoxxed/hy3`
+   1. `hyprpm enable hy3`
+   1. Restart
 1. Log into Zotero and enable synchronization
    1. Install the Zotero browser connector
 1. Log into Obsidian and synchronize the vault
 1. Log into Thunderbird
+
+## Setting up a Virtual Machine
+
+This section is dedicated to configuring a Virtual Machine to run my Arch
+Linux desktop configuration. These steps were tested on my work laptop, which
+may have some limitations. 
+
+1. Create a new VM in VirtualBox
+   - Use the following settings:
+         - Enable Hardware Acceleration (*required* for Hyprland)
+         - Graphics Controller: VMSVGA is recommended and more stable, but guest additions only seem to work on VBoxSVGA.
+         - DO NOT: Change the virtualisation type (leave default)
+         - DO NOT: Check EFI (should work, but doesn't seem to)
+         - NOTE: It seems that the VM requires focus / keyboard input to boot
 
 ## TODO
 

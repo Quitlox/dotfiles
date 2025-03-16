@@ -18,9 +18,11 @@ system:
   timezone: "Europe/Amsterdam"
   hostname: null
 
+  is_headless: null
+  is_laptop: null
+  is_vm_guest: null
+
   features:
-    headless: null
-    laptop: null
     wifi: null
     bluetooth: null
     gpu: null # 'none', 'nvidia', 'intel', 'amd'

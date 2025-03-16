@@ -93,6 +93,9 @@ When need arises:
 Desktop:
 - [ ] Eww: Bar should use fill icons on select
 - [ ] Hypr: Configure coding workspace with auto-centered neovide?
+- [ ] Chezmoi:
+    - [ ] `~/Documents/PowerShell` should only be created on Windows
+    - [ ] `~/.mozilla` script should not run in headless mode
 
 
 ### Memorandum

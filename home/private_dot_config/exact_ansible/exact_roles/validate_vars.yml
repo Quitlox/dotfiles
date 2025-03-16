@@ -23,30 +23,29 @@
       msg: "Hostname must be at least 3 characters long"
     when: system.hostname | length < 3
 
-  - name: Check 'system.features.headless' fact
+  - name: Check 'system.is_headless' fact
     block:
-    - name: Prompt for "system.features.headless" variable
+    - name: Prompt for "system.is_headless" variable
       pause:
         prompt: "Is the system headless?"
-      register: system_features_headless_input
+      register: system_is_headless_input
     
-    - name: Set "system.features.headless" variable
+    - name: Set "system.is_headless" variable
       set_fact:
         system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
       vars:
         system_set:
-          features:
-            headless: "{{ system_features_headless_input.user_input | bool }}"
-      when: system_features_headless_input is defined and system_features_headless_input.user_input is defined
-    when: system.features.headless is not defined or system.features.headless == none
+          is_headless: "{{ system_is_headless_input.user_input | bool }}"
+      when: system_is_headless_input is defined and system_is_headless_input.user_input is defined
+    when: system.is_headless is not defined or system.is_headless == none
     
-  - name: Validate 'system.features.headless' input
+  - name: Validate 'system.is_headless' input
     fail:
       msg: "Input for 'headless' must be a valid boolean value (yes, no, true, false, y, n)"
     when: >
-      system_features_headless_input is defined and 
-      system_features_headless_input.user_input is defined and
-      system_features_headless_input.user_input | lower not in ['yes', 'no', 'true', 'false', 'y', 'n', '0', '1']
+      system_is_headless_input is defined and 
+      system_is_headless_input.user_input is defined and
+      system_is_headless_input.user_input | lower not in ['yes', 'no', 'true', 'false', 'y', 'n', '0', '1']
 
   - name: Check 'system.features.wifi' fact
     block:
@@ -120,39 +119,21 @@
       msg: "GPU must be one of: none, nvidia, intel, amd"
     when: system.features.gpu not in ['none', 'nvidia', 'intel', 'amd']
 
-  - name: Check 'system.features.laptop' fact
-    block:
-    - name: Prompt for "system.features.laptop" variable
-      pause:
-        prompt: "Is the system a laptop?"
-      register: system_features_laptop_input
-    
-    - name: Set "system.features.laptop" variable
-      set_fact:
-        system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
-      vars:
-        system_set:
-          features:
-            laptop: "{{ system_features_laptop_input.user_input | bool }}"
-      when: system_features_laptop_input is defined and system_features_laptop_input.user_input is defined
-    when: system.features.laptop is not defined or system.features.laptop == none
-    
-  - name: Validate 'system.features.laptop' input
-    fail:
-      msg: "Input for 'laptop' must be a valid boolean value (yes, no, true, false, y, n)"
-    when: >
-      system_features_laptop_input is defined and 
-      system_features_laptop_input.user_input is defined and
-      system_features_laptop_input.user_input | lower not in ['yes', 'no', 'true', 'false', 'y', 'n', '0', '1']
-
 - name: Display playbook variables
   ansible.builtin.debug:
     msg:
       - "system:"
       - "  hostname: {{ system.hostname }}"
+      - "  is_headless: {{ system.is_headless }}"
+      - "  is_vm_guest: {{ system.is_vm_guest }}"
       - "  features:"
-      - "    headless: {{ system.features.headless }}"
       - "    wifi: {{ system.features.wifi }}"
       - "    bluetooth: {{ system.features.bluetooth }}"
       - "    gpu: {{ system.features.gpu }}"
-      - "    laptop: {{ system.features.laptop }}"
+
+- name: Detect whether system is a VM Guest
+  ansible.builtin.set_fact:
+    system: "{{ system | default({}) | combine(system_set, recursive=True) }}"
+  vars:
+    system_set:
+      is_vm_guest: "{{ ansible_virtualization_role == 'guest' }}"

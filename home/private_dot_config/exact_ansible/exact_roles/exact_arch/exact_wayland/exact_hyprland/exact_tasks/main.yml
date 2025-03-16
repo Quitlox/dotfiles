@@ -33,6 +33,7 @@
       # Desktop Applications (Foreground)
       - kitty # Terminal
   become: true
+
 # TODO:
 # - hyprshade: blue light filter
 # - hyprgrass: touch gestures plugin
