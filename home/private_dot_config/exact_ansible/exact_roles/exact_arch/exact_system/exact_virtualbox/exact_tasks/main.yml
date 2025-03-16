@@ -1,5 +1,6 @@
 ---
 - name: As virtualbox guest, install guest additions
+  become: true
   community.general.pacman:
     name:
       - virtualbox-guest-utils
@@ -8,6 +9,7 @@
     - ansible_facts['virtualization_type'] == 'virtualbox'
 
 - name: As virtualbox guest, enable and start vboxservice
+  become: true
   ansible.builtin.systemd:
     name: vboxservice.service
     enabled: true
