@@ -6,6 +6,7 @@ local presets = require("markview.presets")
 
 require("markview").setup({
     preview = {
+        filetypes = { "markdown", "codecompanion" },
         icon_provider = "mini",
         modes = { "n", "no", "c" },
         hybrid_modes = { "n" },

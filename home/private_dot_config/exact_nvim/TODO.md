@@ -21,6 +21,8 @@
     - [ ] toggle: fix toggle of buffer local formatting
     - [ ] ultimate-autopairs: switch to this plugin, as it support multiline and wrapping of nodes
     - [ ] configure `@parameter` in yaml as sibling node
+    - [ ] add `vectorcode.nvim`
+    - [ ] add `aerial.nvim`
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from

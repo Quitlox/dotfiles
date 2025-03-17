@@ -174,7 +174,7 @@ auto_install = "prompt"
 
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
-"copilotchat.nvim" = { git = "copilotc-nvim/copilotchat.nvim", rev = "v3.9.1" }
+"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v14.1.1" }
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.31.1"
@@ -214,8 +214,8 @@ auto_install = "prompt"
 # +----------------------------------------------------------+
 "promise-async" = { git = "kevinhwang91/promise-async", rev = "119e8961014c9bfaf1487bf3c2a393d254f337e2" } # outdated (semver, luarocks)
 "nvim-nio" = "1.10.1"
-"plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "857c5ac632080dba10aae49dba902ce3abf91b35" }
-"nui.nvim" = { git = "MunifTanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" } # avante.nvim, outdated (semver, luarocks)
+"plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "857c5ac632080dba10aae49dba902ce3abf91b35" } # codecompanion
+# "nui.nvim" = { git = "MunifTanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" } # avante.nvim, outdated (semver, luarocks)
 tiktoken_core = "0.2.3" # CopilotChat.nvim
 
 # +----------------------------------------------------------+
