@@ -4,38 +4,28 @@
         - [ ] Markdown: Editing Tables
         - [ ] CSV: Viewing / Editing 
 
-    - Projects per Tab:
-        - [ ] Switch from possesion to resession
-        - [ ] sessions: main problem is the integration with a session manager
-            the session manager must handle tcd and only set the window layout of the current tab
-            maybe I should instead move away from autoloading sessions
-            I also have to stop depending on bufferline, as this interferes with
-            the idea of using the tabline to switch between projects
-        - [ ] neotest: detach when switching projects / sessions
-                neotest has no built-in method for doing this
-        - [ ] possession: wrong tab being opened on restore (due to notify, neo-tree?)
-                reproduce: knowledge-base, tab 1 (neo-tree, md), tab 2 (python, chatgpt)
 - To Change / Bugs:
     - [ ] venv-selector: doesn't work without python file open
     - [ ] gp.nvim: `<C-g>f` (find) opens selected chat in first window, should use window picker
-    - [ ] toggle: fix toggle of buffer local formatting
+    - [X] toggle: fix toggle of buffer local formatting
     - [ ] ultimate-autopairs: switch to this plugin, as it support multiline and wrapping of nodes
     - [ ] configure `@parameter` in yaml as sibling node
     - [ ] add `vectorcode.nvim`
     - [ ] add `aerial.nvim`
+    - [X] `oil.nvim`: Deleting a file should close its attached buffer
+    - [ ] neotest: detach when switching projects / sessions neotest has no built-in method for doing this
+    - [ ] replace `workspaces.nvim`
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from
       terminal into LSP enabled window (python) -> its linting, but why
-    - [ ] edgy: on open explorer, windows should be resized
+    - [X] edgy: on open explorer, windows should be resized
     - [ ] gp.nvim: floating window has margin that disappears in insert mode, which is annoying
-    - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
     - [ ] mini-ai: mapping `ca"` in python on final `"` goes to next
         This is due to my custom text object. But it may still be a bug in mini-ai, as it seems my text object is correct
         This would also be solved if I could only map `ca` and not `ci`, but this doesn't seem possible.
     - [ ] mini-ai: mapping `ca"` in python doesn't not respected in comments or docstrings 
         This is unfortunately also a consequence of my custom text object, as strings in comments are not recognized as strings.
-    - [ ] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
 
 - Requires Contribution:
     - [ ] workspaces.nvim: create `snacks.picker` based picker
@@ -49,6 +39,8 @@
     - [ ] blink.cmp: it seems that the `trailing_slash` option of the path source doesn't listen in cmdline mode
     - [ ] navic: doesn't work with arrow, same context in all windows
     - [ ] navic: should provide symbol filter, but maintainer is inactive
+    - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
+    - [ ] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
 
     - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing
       the windows not to resize properly
@@ -64,7 +56,6 @@
 
 - Requires Contribution (hard-to-fix):
     - [ ] resession: plugin for restoring shell contents
-        should be doable?
     - [ ] blink.cmp: rewrite cmp-dap for blink.cmp. (it's quite a small plugin) 
     - [ ] hover.nvim: allow changing priority of providers (https://github.com/lewis6991/hover.nvim/issues/77)
 

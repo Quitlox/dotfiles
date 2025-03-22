@@ -14,7 +14,7 @@ require("venv-selector").setup({
             activate_venv_in_terminal = true,
             notify_user_on_venv_activation = false,
             require_lsp_activation = false,
-            debug = true,
+            debug = false,
         },
     },
 })

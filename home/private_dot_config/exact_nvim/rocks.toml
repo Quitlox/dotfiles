@@ -99,7 +99,7 @@ auto_install = "prompt"
 
 # +- Session and Project Management -------------------------+
 "workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "55a1eb6f5b72e07ee8333898254e113e927180ca" }
-"possession.nvim" = { git = "jedrzejboczar/possession.nvim", rev = "72770fc056c43d795ad374988c0ef2290bec34fb" }
+"resession.nvim" = { git = "stevearc/resession.nvim", rev = "v1.2.1" }
 
 # +- Test ---------------------------------------------------+
 "neotest" = "5.8.0"

@@ -9,7 +9,7 @@ require("codecompanion").setup({
             slash_commands = {
                 ["file"] = {
                     opts = {
-                        provider = "telescope",
+                        provider = "snacks",
                     },
                 },
             },

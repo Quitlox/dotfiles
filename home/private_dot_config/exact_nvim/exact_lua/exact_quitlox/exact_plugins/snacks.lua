@@ -356,7 +356,12 @@ local function toggle_format(buf_local)
             return format.enabled(vim.api.nvim_get_current_buf())
         end,
         set = function(state)
-            format.enable(state, buf_local)
+            local bufnr = vim.api.nvim_get_current_buf()
+            if buf_local then
+                vim.b[bufnr].autoformat = state
+            else
+                vim.g.autoformat = state
+            end
         end,
     })
 end

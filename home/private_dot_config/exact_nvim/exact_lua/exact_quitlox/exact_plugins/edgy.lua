@@ -93,13 +93,6 @@ require("edgy").setup({
     --     ["q"] = false,
     -- },
 
-    -- wo = {
-    --     winbar = true,
-    --     winhighlight = "WinBar:EdgyWinBar,Normal:EdgyNormal",
-    --     -- foldcolumn = "1",
-    --     -- foldenable = false,
-    -- },
-
     icons = {
         closed = "  ",
         open = "  ",

@@ -35,6 +35,15 @@ require("neo-tree").setup({
     open_files_do_not_replace_types = ignore_ft,
     enable_diagnostics = false,
 
+    event_handlers = {
+        {
+            event = "neo_tree_window_after_open",
+            handler = function(arg)
+                vim.cmd([[wincmd =|]])
+            end,
+        },
+    },
+
     default_component_configs = {
         container = {
             left_padding = 1, -- Padding after icon

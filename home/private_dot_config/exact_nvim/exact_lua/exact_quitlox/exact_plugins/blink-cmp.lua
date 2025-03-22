@@ -67,7 +67,7 @@ require("blink-cmp").setup({
         },
     },
     sources = {
-        default = { "git", "conventional_commits", "lazydev", "lsp", "path", "buffer", "env" },
+        default = { "git", "conventional_commits", "lazydev", "lsp", "path", "env" },
         providers = {
             buffer = {
                 score_offset = -3,

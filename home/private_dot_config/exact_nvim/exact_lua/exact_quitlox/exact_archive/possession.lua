@@ -32,7 +32,7 @@ Snacks.toggle
     :map("<leader>Ts")
 
 -- When neo-tree is loaded, restore the state of the tree (if any)
-require("possession.plugins.neo-tree").setup_events_for_neotree()
+require("quitlox.archive.possession.plugins.neo-tree").setup_events_for_neotree()
 
 require("possession").setup({
     silent = true,
@@ -64,24 +64,24 @@ require("possession").setup({
         before_save = function(name)
             local user_data = {}
 
-            user_data.venv = require("possession.plugins.venv-selector").before_save(nil, name)
-            user_data.overseer = require("possession.plugins.overseer").before_save(nil, name)
-            user_data.neotree = require("possession.plugins.neo-tree").before_save(nil, name)
+            user_data.venv = require("quitlox.archive.possession.plugins.venv-selector").before_save(nil, name)
+            user_data.overseer = require("quitlox.archive.possession.plugins.overseer").before_save(nil, name)
+            user_data.neotree = require("quitlox.archive.possession.plugins.neo-tree").before_save(nil, name)
 
             return user_data
         end,
         after_save = function(name, user_data, aborted) end,
         before_load = function(name, user_data)
-            require("possession.plugins.venv-selector").before_load()
-            require("possession.plugins.overseer").before_load()
+            require("quitlox.archive.possession.plugins.venv-selector").before_load()
+            require("quitlox.archive.possession.plugins.overseer").before_load()
 
             return user_data
         end,
         after_load = function(name, user_data)
             if user_data then
-                require("possession.plugins.venv-selector").after_load(nil, name, user_data.venv)
-                require("possession.plugins.overseer").after_load(nil, name, user_data.overseer)
-                require("possession.plugins.neo-tree").after_load(nil, name, user_data.neotree)
+                require("quitlox.archive.possession.plugins.venv-selector").after_load(nil, name, user_data.venv)
+                require("quitlox.archive.possession.plugins.overseer").after_load(nil, name, user_data.overseer)
+                require("quitlox.archive.possession.plugins.neo-tree").after_load(nil, name, user_data.neotree)
             end
 
             -- Exit to normal mode, ensuring we're not in insert mode

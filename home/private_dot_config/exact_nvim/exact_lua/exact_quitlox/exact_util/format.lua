@@ -6,7 +6,7 @@ local M = {}
 ---@param buf? number
 function M.enabled(buf)
     local gaf = vim.g.autoformat
-    local baf = buf and vim.b[buf].autoformat or nil
+    local baf = vim.b[buf].autoformat
 
     -- If the buffer has a local value, use that
     if baf ~= nil then
@@ -15,20 +15,6 @@ function M.enabled(buf)
 
     -- Otherwise use the global value if set, or true by default
     return gaf == nil or gaf
-end
-
----@param enable? boolean
----@param buf? boolean
-function M.enable(enable, buf)
-    if enable == nil then
-        enable = true
-    end
-    if buf then
-        vim.b.autoformat = enable
-    else
-        vim.g.autoformat = enable
-        vim.b.autoformat = nil
-    end
 end
 
 return M

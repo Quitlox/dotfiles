@@ -6,26 +6,29 @@
 ---
 --- This function will check if all open buffers still match a file on disk.
 --- If the file on disk has been deleted, and the buffer is unmodified, delete the buffer.
-function on_save_callback()
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        local path = vim.api.nvim_buf_get_name(buf)
-        if not path or path == "" then
-            goto continue
-        end
-        if vim.startswith(path, "oil://") then
-            goto continue
-        end
+local function on_save_callback()
+    -- Use a small delay to ensure file operations are complete
+    vim.defer_fn(function()
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            local path = vim.api.nvim_buf_get_name(buf)
+            if not path or path == "" then
+                goto continue
+            end
+            if vim.startswith(path, "oil://") then
+                goto continue
+            end
 
-        if not vim.loop.fs_stat(path) then
-            vim.schedule(function()
-                require("snacks").bufdelete(buf)
-            end)
+            -- Normalize path for more reliable checking
+            local normalized_path = vim.fn.fnamemodify(path, ":p")
+            if not vim.loop.fs_stat(normalized_path) then
+                vim.schedule(function()
+                    require("snacks").bufdelete(buf)
+                end)
+            end
+
+            ::continue::
         end
-
-        ::continue::
-    end
-
-    require("oil").close()
+    end, 100) -- 100ms delay to give the filesystem time to update
 end
 
 --+- Setup --------------------------------------------------+
@@ -36,12 +39,24 @@ require("oil").setup({
     keymaps = {
         ["q"] = "actions.close",
         ["<esc>"] = "actions.close",
-        -- stylua: ignore
-        ["<C-s>"] = { callback = function() require("oil").save({}, on_save_callback) end, desc = "Commit the changes", mode = "n" },
+        ["<C-s>"] = { callback = require("oil").save, desc = "Commit the changes", mode = "n" },
         ["<C-b>"] = "actions.select_vsplit",
         ["<C-v>"] = "actions.select_split",
         ["<C-h>"] = false,
     },
+})
+
+-- Run on_save_callback when saving an oil buffer through :w
+vim.api.nvim_create_autocmd("BufLeave", {
+    group = vim.api.nvim_create_augroup("OilOnSave", { clear = true }),
+    desc = "Clean up buffers for deleted files after saving oil buffer",
+    callback = function(event)
+        local filetype = vim.api.nvim_get_option_value("filetype", { buf = event.buf })
+        if filetype == "oil_preview" then
+            vim.notify("Cleaning up deleted files after saving oil buffer", "info")
+            on_save_callback()
+        end
+    end,
 })
 
 --+- Keymaps ------------------------------------------------+
