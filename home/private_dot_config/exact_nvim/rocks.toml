@@ -58,7 +58,7 @@ auto_install = "prompt"
 
 # +- Comments / Documentation -------------------------------+
 "neogen" = "2.20.0"
-"comment-box.nvim" = "scm"
+"comment-box.nvim" = { git = "LudoPinelli/comment-box.nvim", rev = "v1.0.2" }
 # +- Completion ---------------------------------------------+
 "blink.cmp" = { git = "saghen/blink.cmp", rev = "v0.14.0" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.5.0" }
@@ -83,8 +83,6 @@ auto_install = "prompt"
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.2" }
 "neogit" = "scm"
 "diffview.nvim" = "scm"
-"octo.nvim" = "scm"
-"gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "v3.3.12" }
 # +- Language Server Protocol -------------------------------+
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }

@@ -15,12 +15,29 @@
 
 -- Notes --------------------------------------------------+
 -- NOTE: Possible objects to implement:
--- - subword
 -- - mdlink
 -- - pytriplequotes
 
 -- NOTE: Filetype specific textobjects currently configured in:
 -- - ftplugin/python.lua
+
+-- Config: Buffer -----------------------------------------+
+-- taken from MiniExtra.gen_ai_spec.buffer
+local function ai_buffer(ai_type)
+    local start_line, end_line = 1, vim.fn.line("$")
+    if ai_type == "i" then
+        -- Skip first and last blank lines for `i` textobject
+        local first_nonblank, last_nonblank = vim.fn.nextnonblank(start_line), vim.fn.prevnonblank(end_line)
+        -- Do nothing for buffer with all blanks
+        if first_nonblank == 0 or last_nonblank == 0 then
+            return { from = { line = start_line, col = 1 } }
+        end
+        start_line, end_line = first_nonblank, last_nonblank
+    end
+
+    local to_col = math.max(vim.fn.getline(end_line):len(), 1)
+    return { from = { line = start_line, col = 1 }, to = { line = end_line, col = to_col } }
+end
 
 -- Setup --------------------------------------------------+
 local gen_spec = require("mini.ai").gen_spec
@@ -52,6 +69,12 @@ local mini_ai_opts = {
 
         -- From LazyVim
         t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+        g = ai_buffer, -- buffer
+        d = { "%f[%d]%d+" }, -- digits
+        s = { -- Subword (CamelCase, snake_case)
+            { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
+            "^().*()$",
+        },
         u = gen_spec.function_call(), -- u for "Usage"
         U = gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
     },
@@ -85,7 +108,7 @@ local function ai_whichkey(opts)
         { "b", desc = ")]} block" },
         { "c", desc = "class" },
         { "d", desc = "digit(s)" },
-        { "e", desc = "CamelCase / snake_case" },
+        { "s", desc = "CamelCase / snake_case" },
         { "f", desc = "function" },
         { "g", desc = "entire file" },
         { "i", desc = "indent" },
