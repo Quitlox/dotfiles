@@ -1,0 +1,18 @@
+version: '3.9'
+
+networks:
+  net:
+    driver: bridge
+services:
+  chromadb:
+    image: chromadb/chroma:0.6.3
+    volumes:
+      - /home/quitlox/.cache/chromadb:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma # this is the default path, change it as needed
+      - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
+    ports:
+      - 8297:8000
+    networks:
+      - net

@@ -1,0 +1,14 @@
+# Just run `systemctl --user enable --now chroma.service` to enable the service
+[Unit]
+Description=Chroma Service
+After=network.target
+
+[Service]
+Type=forking
+WorkingDirectory=%h/.config/systemd/user/
+ExecStart=/usr/bin/docker compose -f ./chroma.docker-compose.yml up -d
+ExecStop=/usr/bin/docker compose -f ./chroma.docker-compose.yml down
+RemainAfterExit=true
+
+[Install]
+WantedBy=default.target
