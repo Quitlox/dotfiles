@@ -173,6 +173,7 @@ auto_install = "prompt"
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
 "codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v14.2.2" }
+"vectorcode" = { git = "davidyz/vectorcode", rev = "0.5.1" }
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.31.1"
