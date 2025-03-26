@@ -33,8 +33,8 @@ local function set_keybindings(bufnr)
     vim.keymap.set("n", "]e", function() vim.diagnostic.goto_next({ float = true, severity = vim.diagnostic.severity.ERROR }) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
     vim.keymap.set("n", "gs", "<cmd> Telescope lsp_dynamic_workspace_symbols ignore_symbols='variable'<cr>", { desc = "Workspace Symbols", buffer = bufnr, silent = true, noremap = true })
     -- stylua: ignore end
-    vim.keymap.set("n", "g<Enter>", "<cmd>lua require('fastaction').code_action()<cr>", { buffer = bufnr })
-    vim.keymap.set("v", "g<Enter>", "<cmd>lua require('fastaction').range_code_action()<cr>", { buffer = bufnr })
+    vim.keymap.set("n", "g<Enter>", "<cmd>lua require('fastaction').code_action()<cr>", { buffer = bufnr, silent = true, desc = "Code Action" })
+    vim.keymap.set("v", "g<Enter>", "<cmd>lua require('fastaction').range_code_action()<cr>", { buffer = bufnr, silent = true, desc = "Code Action (Range)" })
 
     vim.keymap.set("i", "<C-p>", vim.lsp.buf.signature_help, { desc = "Signature Help", buffer = bufnr, silent = true, noremap = true })
 end

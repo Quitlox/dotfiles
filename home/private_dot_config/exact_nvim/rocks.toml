@@ -58,7 +58,6 @@ auto_install = "prompt"
 
 # +- Comments / Documentation -------------------------------+
 "neogen" = "2.20.0"
-"comment-box.nvim" = { git = "LudoPinelli/comment-box.nvim", rev = "v1.0.2" }
 # +- Completion ---------------------------------------------+
 "blink.cmp" = { git = "saghen/blink.cmp", rev = "v0.14.0" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.5.0" }
@@ -113,6 +112,7 @@ auto_install = "prompt"
 # +- Treesitter: Modules ------------------------------------+
 "rainbow-delimiters.nvim" = "0.9.0"
 "nvim-autopairs" = "scm"
+"tabout.nvim" = "scm"
 "nvim-ts-autotag" = "scm"
 "nvim-ts-context-commentstring" = "scm"
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "57d52841a966be6ff9a998a6d3dc1ac9cc9d95fc" }

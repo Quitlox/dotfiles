@@ -7,19 +7,14 @@
 - To Change / Bugs:
     - [ ] venv-selector: doesn't work without python file open
     - [ ] gp.nvim: `<C-g>f` (find) opens selected chat in first window, should use window picker
-    - [X] toggle: fix toggle of buffer local formatting
-    - [ ] ultimate-autopairs: switch to this plugin, as it support multiline and wrapping of nodes
     - [ ] configure `@parameter` in yaml as sibling node
     - [ ] add `vectorcode.nvim`
     - [ ] add `aerial.nvim`
-    - [X] `oil.nvim`: Deleting a file should close its attached buffer
     - [ ] neotest: detach when switching projects / sessions neotest has no built-in method for doing this
-    - [ ] replace `workspaces.nvim`
 
 - [ ] To Investigate
     - [ ] snacks.profile: investigate sluggishness when switching windows from
       terminal into LSP enabled window (python) -> its linting, but why
-    - [X] edgy: on open explorer, windows should be resized
     - [ ] gp.nvim: floating window has margin that disappears in insert mode, which is annoying
     - [ ] mini-ai: mapping `ca"` in python on final `"` goes to next
         This is due to my custom text object. But it may still be a bug in mini-ai, as it seems my text object is correct
@@ -28,14 +23,12 @@
         This is unfortunately also a consequence of my custom text object, as strings in comments are not recognized as strings.
 
 - Requires Contribution:
-    - [ ] workspaces.nvim: create `snacks.picker` based picker
     - [ ] treewalker.nvim: allow skipping certain nodes
     - [ ] treesj: join should look for parent nodes
     - [ ] overseer: map <esc> in help_win (not configurable currently)
     - [ ] overseer: jk should move to job in OverseerTaskList, not step around
     - [ ] overseer: background tasks should not be awaited for completion
     - [ ] overseer: add option to not autorestart isBackground tasks 
-    - [x] blink.cmp: the char / should be a trigger for the path source
     - [ ] blink.cmp: it seems that the `trailing_slash` option of the path source doesn't listen in cmdline mode
     - [ ] navic: doesn't work with arrow, same context in all windows
     - [ ] navic: should provide symbol filter, but maintainer is inactive
@@ -56,7 +49,6 @@
 
 - Requires Contribution (hard-to-fix):
     - [ ] resession: plugin for restoring shell contents
-    - [ ] blink.cmp: rewrite cmp-dap for blink.cmp. (it's quite a small plugin) 
     - [ ] hover.nvim: allow changing priority of providers (https://github.com/lewis6991/hover.nvim/issues/77)
 
 - Blocked:
