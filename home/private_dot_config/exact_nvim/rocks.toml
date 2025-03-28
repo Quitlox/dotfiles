@@ -44,7 +44,6 @@ auto_install = "prompt"
 "nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "9b9a1cf88a10790de69d3b0562d7d612f23561d5" }
 "nvim-surround" = { version = "3.1.0" }
 "treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "b9e6520a08dc8e62891dcb759fce29f988e68da9" }
-"unimpaired.nvim" = { git = "tummetott/unimpaired.nvim", rev = "v0.3.0" }
 "vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
 
 # +- Miscellenous -------------------------------------------+
@@ -216,7 +215,7 @@ auto_install = "prompt"
 "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "857c5ac632080dba10aae49dba902ce3abf91b35" } # codecompanion
 # "nui.nvim" = { git = "MunifTanjim/nui.nvim", rev = "53e907ffe5eedebdca1cd503b00aa8692068ca46" } # avante.nvim, outdated (semver, luarocks)
 "telescope.nvim" = "scm"
-tiktoken_core = "0.2.3" # CopilotChat.nvim
+"tiktoken_core" = "0.2.3" # CopilotChat.nvim
 
 # +----------------------------------------------------------+
 # | Parsers                                                  |
