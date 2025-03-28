@@ -1,5 +1,5 @@
--- Experimental Lua loader: https://neovim.io/doc/user/lua.html#vim.loader
--- vim.loader.enable()
+-- Delay notifications on startup
+require("quitlox.util.notify").lazy_notify()
 
 -- Bootstrap rocks.nvim
 require("quitlox.rocks_bootstrap")

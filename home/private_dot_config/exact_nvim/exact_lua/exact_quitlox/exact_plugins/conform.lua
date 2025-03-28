@@ -53,10 +53,24 @@ local function format()
 end
 
 --+- Helper Functions: Disable Autoformat on conditions -----+
+-- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/format.lua#L99
+local function enabled(buf)
+    local gaf = vim.g.autoformat
+    local baf = vim.b[buf].autoformat
+
+    -- If the buffer has a local value, use that
+    if baf ~= nil then
+        return baf
+    end
+
+    -- Otherwise use the global value if set, or true by default
+    return gaf == nil or gaf
+end
+
 local function should_format_on_save()
     local bufnr = vim.api.nvim_get_current_buf()
     -- Don't autosave if disabled
-    if not require("quitlox.util.format").enabled(bufnr) then
+    if not enabled(bufnr) then
         return
     end
 
@@ -172,7 +186,27 @@ require("conform").setup({
 })
 
 --+- Keymaps ------------------------------------------------+
-vim.keymap.set("n", "gf", function()
-    format()
-end, { desc = "Format Buffer" })
+vim.keymap.set("n", "gf", format, { desc = "Format Buffer" })
 vim.keymap.set("v", "gf", "<cmd>Format<cr>", { desc = "Format Range" })
+
+--+- Integration: snacks.nvim (Toggle) ----------------------+
+---@param buf_local? boolean Whether to toggle autoformat for the current buffer only, or globally
+local function toggle_format(buf_local)
+    return Snacks.toggle.new({
+        name = "Auto Format (" .. (buf_local and "Buffer" or "Global") .. ")",
+        get = function()
+            return enabled(vim.api.nvim_get_current_buf())
+        end,
+        set = function(state)
+            local bufnr = vim.api.nvim_get_current_buf()
+            if buf_local then
+                vim.b[bufnr].autoformat = state
+            else
+                vim.g.autoformat = state
+            end
+        end,
+    })
+end
+
+toggle_format(true):map("<leader>Tf")
+toggle_format(false):map("<leader>TF")

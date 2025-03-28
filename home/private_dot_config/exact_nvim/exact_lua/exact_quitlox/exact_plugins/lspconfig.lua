@@ -2,10 +2,6 @@
 -- | neovim/nvim-lspconfig: Collection of LSP Configurations |
 -- +---------------------------------------------------------+
 
-vim.diagnostic.config({
-    virtual_text = false,
-})
-
 --+- Inlay Hints --------------------------------------------+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("MyLspAttachInlayHints", { clear = true }),
@@ -82,8 +78,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 })
 
 --+- LSP: Javascript / Typescript ---------------------------+
-local path = require("quitlox.util.path")
-
 require("dap").adapters["pwa-node"] = {
     type = "server",
     host = "localhost",
@@ -91,7 +85,7 @@ require("dap").adapters["pwa-node"] = {
     executable = {
         command = "node",
         ---@diagnostic disable-next-line: assign-type-mismatch
-        args = { path.concat({ vim.fn.stdpath("data"), "lazy", "vscode-js-debug" }), "${port}" },
+        args = { vim.fs.joinpath(vim.fn.stdpath("data"), "lazy", "vscode-js-debug"), "${port}" },
     },
 }
 

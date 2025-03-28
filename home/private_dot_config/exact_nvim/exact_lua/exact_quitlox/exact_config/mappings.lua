@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Save
-vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR>")
-vim.keymap.set({ "n", "i" }, "<C-S>", "<cmd>wa<CR>")
+vim.keymap.set({ "n" }, "<C-s>", "<cmd>w<CR>")
+vim.keymap.set({ "n" }, "<C-S>", "<cmd>wa<CR>")
 
 -- Delete Word
 vim.keymap.set("i", "<C-BS>", "<C-w>")

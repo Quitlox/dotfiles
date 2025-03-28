@@ -50,7 +50,7 @@ export GITHUB_TOKEN={{ (rbwFields "github.com").GITHUB_TOKEN_NEOVIM.value | quot
 ########################################
 
 # NECESSARY
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+# export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket # Broke since nvim 0.11
 
 # XDG_CONFIG_HOME
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java

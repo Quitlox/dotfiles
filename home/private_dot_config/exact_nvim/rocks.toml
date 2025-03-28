@@ -47,9 +47,8 @@ auto_install = "prompt"
 "vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
 
 # +- Miscellenous -------------------------------------------+
-"guess-indent.nvim" = "scm"
 "treesj" = "scm"
-"no-neck-pain.nvim" = "2.2.0"
+"guess-indent.nvim" = "scm"
 
 # +----------------------------------------------------------+
 # | Integrated Development Environment                       |
@@ -118,16 +117,13 @@ auto_install = "prompt"
 "nvim-treesitter-textsubjects" = { git = "RRethy/nvim-treesitter-textsubjects", rev = "abcbb0e537c9c24800b03b9ca33bee5806604629" }
 "nvim-treesitter-textobjects" = { git = "nvim-treesitter/nvim-treesitter-textobjects", rev = "9937e5e356e5b227ec56d83d0a9d0a0f6bc9cad4" }
 
-# +- Miscellenous -------------------------------------------+
-"gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "2455191ec94da8ed222806a4fe3aa358eac1e558" }
-
-
 # +----------------------------------------------------------+
 # | Language Support                                         |
 # +----------------------------------------------------------+
+
+# +- LSP ----------------------------------------------------+
 "nvim-lspconfig" = "1.7.0"
 "otter.nvim" = "2.9.0"
-"nvim-parinfer" = "1.2.0"
 
 # +- Config -------------------------------------------------+
 "schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "bffbd2279c8376c6d72b5057e0660c7a5b8a6728", config = "quitlox.plugins.lang.schemastore" }
@@ -163,11 +159,16 @@ auto_install = "prompt"
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
 "yuck.vim" = { git = "elkowar/yuck.vim", rev = "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
 "csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "v1.1.0" }
-
+"nvim-parinfer" = "1.2.0"
 
 # +----------------------------------------------------------+
-# | Components                                               |
+# | User Interface                                           |
 # +----------------------------------------------------------+
+
+"edgy.nvim" = "1.10.2"
+
+# +- Buffer Switcher ----------------------------------------+
+"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "9608ce6d7e6935efd423946a319f7f4041cbde93" }
 
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
@@ -181,7 +182,6 @@ auto_install = "prompt"
 "oil.nvim" = "2.15.0"
 
 # +- Notifications ------------------------------------------+
-"nvim-notify" = "3.15.0"
 "fidget.nvim" = "1.6.0"
 
 # +- Runner (Overseer) --------------------------------------+
@@ -199,13 +199,17 @@ auto_install = "prompt"
 "trouble.nvim" = "3.7.1"
 
 # +- Miscelleneous ------------------------------------------+
-"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "9608ce6d7e6935efd423946a319f7f4041cbde93" }
-"edgy.nvim" = "1.10.2"
 "icon-picker.nvim" = "scm"
-"key-analyzer.nvim" = { git = "meznaric/key-analyzer.nvim", rev = "72d301fb8843c19d8e69e16e0a0b42256edc25cc" }
-"snacks.nvim" = { git = "folke/snacks.nvim", rev = "bc0630e43be5699bb94dadc302c0d21615421d93", opt = true } # waiting for >2.22.0 to drop
 "todo-comments.nvim" = "1.4.0"
 "which-key.nvim" = "3.17.0"
+
+# +----------------------------------------------------------+
+# | Miscelleneous                                            |
+# +----------------------------------------------------------+
+"snacks.nvim" = { git = "folke/snacks.nvim", rev = "bc0630e43be5699bb94dadc302c0d21615421d93", opt = true } # waiting for >2.22.0 to drop
+"key-analyzer.nvim" = { git = "meznaric/key-analyzer.nvim", rev = "72d301fb8843c19d8e69e16e0a0b42256edc25cc" }
+"no-neck-pain.nvim" = "2.2.0"
+"gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "2455191ec94da8ed222806a4fe3aa358eac1e558" }
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
@@ -271,6 +275,7 @@ tree-sitter-vimdoc = "scm"
 tree-sitter-vue = "0.0.29"
 tree-sitter-yaml = "scm"
 tree-sitter-yuck = "scm"
+"aerial.nvim" = "2.5.0"
 
 # +----------------------------------------------------------+
 # | Config                                                   |

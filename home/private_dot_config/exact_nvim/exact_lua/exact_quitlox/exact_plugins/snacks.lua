@@ -10,6 +10,16 @@ require("snacks").setup({
         doc = { inline = false, float = true, conceal = true },
         math = { enabled = true, latex = { font_size = "Large" } },
     },
+    notifier = {
+        enabled = true,
+        icons = {
+            error = " ",
+            warn = " ",
+            info = " ",
+            debug = " ",
+            trace = " ",
+        },
+    },
     picker = {
         enabled = true,
         ui_select = true,
@@ -65,21 +75,6 @@ require("snacks").setup({
 })
 
 -- +---------------------------------------------------------+
--- | snacks.nvim: Profile                                    |
--- +---------------------------------------------------------+
-
-vim.keymap.set("n", "<leader>ps", require("snacks").profiler.scratch, { desc = "Profiler Scratch Buffer" })
-
--- Toggle the profiler
-Snacks.toggle.profiler():map("<leader>pp")
--- Toggle the profiler highlights
-Snacks.toggle.profiler_highlights():map("<leader>ph")
-
-require("which-key").add({
-    { "<leader>p", group = "Profile" },
-})
-
--- +---------------------------------------------------------+
 -- | snacks.nvim: Picker                                     |
 -- +---------------------------------------------------------+
 
@@ -95,6 +90,8 @@ local picker_commands = {
 local picker_command_history = {
     preview = "none",
 }
+---@class snacks.picker.Config
+local picker_notifications = {}
 
 ---@class snacks.picker.Config
 local picker_grep = {
@@ -146,6 +143,7 @@ local picker_smart = {
 -- stylua: ignore start
 vim.keymap.set({ "n", "v" }, "<leader>vK", function() Snacks.picker.command_history(picker_command_history) end, { noremap = true, silent = true, desc = "Command History" })
 vim.keymap.set({ "n", "v" }, "<leader>vk", function() Snacks.picker.commands(picker_commands) end, { noremap = true, silent = true, desc = "Commands" })
+vim.keymap.set({ "n" },"<leader>vln", function() Snacks.picker.notifications(picker_notifications) end, { noremap = true, silent = true, desc = "List Notifications" })
 
 vim.keymap.set({ "n", "v" }, "<leader>fa", function() Snacks.picker.grep(picker_grep) end, { noremap = true, silent = true, desc = "Find All (Grep)" })
 vim.keymap.set({ "n", "v" }, "<leader>fm", function() Snacks.picker.man(picker_man) end, { noremap = true, silent = true, desc = "Find Man Page" })
@@ -157,6 +155,21 @@ vim.keymap.set({ "n", "v" }, "<leader>fk", function() Snacks.picker.keymaps(pick
 vim.keymap.set({ "n", "v" }, "<leader>gb", function() Snacks.picker.git_branches(picker_git_branches) end, { noremap = true, silent = true, desc = "Git Branches" })
 vim.keymap.set({ "n", "v" }, "<leader>of", function() Snacks.picker.smart(picker_smart) end, { noremap = true, silent = true, desc = "Open File" })
 -- stylua: ignore end
+
+-- +---------------------------------------------------------+
+-- | snacks.nvim: Profile                                    |
+-- +---------------------------------------------------------+
+
+vim.keymap.set("n", "<leader>ps", require("snacks").profiler.scratch, { desc = "Profiler Scratch Buffer" })
+
+-- Toggle the profiler
+Snacks.toggle.profiler():map("<leader>pp")
+-- Toggle the profiler highlights
+Snacks.toggle.profiler_highlights():map("<leader>ph")
+
+require("which-key").add({
+    { "<leader>p", group = "Profile" },
+})
 
 -- +---------------------------------------------------------+
 -- | snacks.nvim: Terminal                                   |
@@ -345,29 +358,6 @@ vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { silent = true })
 -- +---------------------------------------------------------+
 -- | snacks.nvim: Toggle                                     |
 -- +---------------------------------------------------------+
-
----@param buf_local? boolean Whether to toggle autoformat for the current
----buffer only, or globally
-local function toggle_format(buf_local)
-    local format = require("quitlox.util.format")
-    return Snacks.toggle.new({
-        name = "Auto Format (" .. (buf_local and "Buffer" or "Global") .. ")",
-        get = function()
-            return format.enabled(vim.api.nvim_get_current_buf())
-        end,
-        set = function(state)
-            local bufnr = vim.api.nvim_get_current_buf()
-            if buf_local then
-                vim.b[bufnr].autoformat = state
-            else
-                vim.g.autoformat = state
-            end
-        end,
-    })
-end
-
-toggle_format(true):map("<leader>Tf")
-toggle_format(false):map("<leader>TF")
 
 Snacks.toggle.treesitter():map("<leader>Tt")
 Snacks.toggle.inlay_hints():map("<leader>Th")
