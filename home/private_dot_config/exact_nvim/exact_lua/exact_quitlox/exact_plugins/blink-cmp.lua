@@ -36,7 +36,7 @@ require("blink-cmp").setup({
         ["<C-u>"] = { "scroll_documentation_up", "fallback" },
     },
     cmdline = {
-        keymap = { preset = "cmdline" },
+        keymap = { preset = "cmdline", ["/"] = { "accept", "fallback" } },
         completion = {
             menu = { auto_show = true },
             list = { selection = { preselect = false, auto_insert = true } },
