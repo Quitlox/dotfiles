@@ -155,6 +155,7 @@ auto_install = "prompt"
 "typescript-tools.nvim" = { version = "scm", config = "quitlox.plugins.lang.typescript_tools" }
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.3.2" }
 # +- Minor Languages ----------------------------------------+
+"chezmoi.vim" = { git = "alker0/chezmoi.vim", rev = "abf37336437867cbd99ce2f8849b717415391cc3" }
 "nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "bba61168b7aef735e7f950fdfece5ef6c388eacf" }
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
 "yuck.vim" = { git = "elkowar/yuck.vim", rev = "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
