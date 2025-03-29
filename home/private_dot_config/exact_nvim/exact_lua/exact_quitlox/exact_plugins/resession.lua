@@ -1,6 +1,7 @@
 -- +---------------------------------------------------------+
 -- | stevearc/resession.nvim: Session Management             |
 -- +---------------------------------------------------------+
+local get_session_name = require("quitlox.util.session").get_session_name
 
 --+- Setup --------------------------------------------------+
 local resession = require("resession")
@@ -27,6 +28,10 @@ resession.setup({
     },
 })
 
+resession.add_hook("pre_load", function()
+    require("quitlox.util.session").notify('Loading session: "' .. get_session_name() .. '"', "info")
+end)
+
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader>os", resession.load)
 
@@ -39,28 +44,18 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 })
 
 --+- Config: Session per Git Branch -------------------------+
-local function get_session_name()
-    local name = vim.fn.getcwd()
-    local branch = vim.trim(vim.fn.system("git branch --show-current"))
-    if vim.v.shell_error == 0 then
-        return name .. ":" .. branch
-    else
-        return name
-    end
-end
-
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         -- Only load the session if nvim was started with no args
         if vim.fn.argc(-1) == 0 then
-            resession.load(get_session_name(), { dir = "dirsession", silence_errors = true })
+            resession.load(get_session_name(), { silence_errors = true })
         end
     end,
 })
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
     callback = function()
-        resession.save_tab(get_session_name(), { dir = "dirsession", notify = true })
+        resession.save_tab(get_session_name(), { notify = true })
     end,
 })
 
@@ -68,8 +63,8 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 -- On startup, check whether VIRTUAL_ENV is set and activate it.
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
-        if os.getenv("VIRTUAL_ENV") then
-            vim.notify("Found VIRTUAL_ENV set in terminal, activating it.", "info", { title = "Possession" })
+        local venv = require("venv-selector").venv()
+        if venv == nil and os.getenv("VIRTUAL_ENV") and os.getenv("VIRTUAL_ENV") ~= "" then
             require("quitlox.util.python").activate_venv(os.getenv("VIRTUAL_ENV"), nil, nil)
             return
         end
