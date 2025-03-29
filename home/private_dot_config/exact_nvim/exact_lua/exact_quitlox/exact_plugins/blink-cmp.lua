@@ -69,8 +69,26 @@ require("blink-cmp").setup({
     sources = {
         default = { "git", "conventional_commits", "lazydev", "lsp", "path", "env" },
         providers = {
+            lsp = {
+                transform_items = function(ctx, items)
+                    -- Filter out keyword items
+                    local filtered_items = vim.tbl_filter(function(item)
+                        return item.kind ~= 14 -- 14 is CompletionItemKind.Keyword
+                    end, items)
+
+                    -- Boost score for table keys
+                    for _, item in ipairs(filtered_items) do
+                        if item.kind == 5 then -- CompletionItemKind.Field
+                            item.score_offset = (item.score_offset or 0) + 100
+                        end
+                    end
+
+                    return filtered_items
+                end,
+            },
             buffer = {
                 score_offset = -3,
+                max_items = 3,
             },
             conventional_commits = {
                 name = "Conventional Commits",
