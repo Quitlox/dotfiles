@@ -103,7 +103,7 @@ vim.g.matchup_override_vimtex = 1
 vim.g.vimtex_matchparen_enabled = 0
 
 -- Use treesitter
-vim.g.vimtex_syntax_enabled = 1
+vim.g.vimtex_syntax_enabled = 0
 vim.g.vimtex_indent_enabled = 0
 vim.g.vimtex_indent_bib_enabled = 0
 
