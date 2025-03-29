@@ -19,6 +19,10 @@ require("aerial").setup({
         "Struct",
     },
 
+    keymaps = {
+        ["i"] = "actions.jump",
+    },
+
     -- HACK: fix lua's weird choice for `Package` for control structures like if/else/for/etc.
     icons = {
         lua = {
@@ -36,5 +40,15 @@ require("aerial").setup({
     },
 })
 
-vim.keymap.set("n", "<leader>ls", "<cmd>AerialOpen<cr>", { desc = "Locate Symbols" })
-vim.keymap.set("n", "<leader>oo", "<cmd>AerialOpen<cr>", { desc = "Open Outline" })
+-- vim.keymap.set("n", "<leader>ls", "<cmd>AerialOpen<cr>", { desc = "Locate Symbols" })
+-- vim.keymap.set("n", "<leader>oo", "<cmd>AerialOpen<cr>", { desc = "Open Outline" })
+vim.keymap.set("n", "gO", "<cmd>AerialOpen<cr>", { desc = "Open Outline" })
+
+--+- Keymaps: Override Defaults -----------------------------+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown", "codecompanion" },
+    callback = function()
+        -- Overwrite ftplugin/markdown.lua
+        vim.keymap.set("n", "gO", "<cmd>AerialOpen<cr>", { desc = "Open Outline", buffer = 0 })
+    end,
+})
