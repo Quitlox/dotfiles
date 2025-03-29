@@ -107,10 +107,12 @@ auto_install = "prompt"
 # +- Treesitter ---------------------------------------------+
 "rocks-treesitter.nvim" = "1.3.0"
 "nvim-treesitter-legacy-api" = { git = "nvim-treesitter/nvim-treesitter", rev = "v0.9.3" }
+# +- Treesitter: Pairs --------------------------------------+
+"nvim-autopairs" = "scm"
+"clasp.nvim" = { git = "xzbdmw/clasp.nvim", rev = "25442429aae1b1de0627f358740613f77ec57410" }
+"tabout.nvim" = "scm"
 # +- Treesitter: Modules ------------------------------------+
 "rainbow-delimiters.nvim" = "0.9.0"
-"nvim-autopairs" = "scm"
-"tabout.nvim" = "scm"
 "nvim-ts-autotag" = "scm"
 "nvim-ts-context-commentstring" = "scm"
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "57d52841a966be6ff9a998a6d3dc1ac9cc9d95fc" }
