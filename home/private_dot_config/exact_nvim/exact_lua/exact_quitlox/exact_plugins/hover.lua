@@ -18,5 +18,15 @@ require("hover").setup({
 })
 
 --+- Keymaps ------------------------------------------------+
-vim.keymap.set("n", "K", "<cmd>lua require('hover').hover()<cr>", { desc = "Hover" })
-vim.keymap.set("n", "gK", "<cmd>lua require('hover').hover_select()<cr>", { desc = "Hover Select" })
+local function hover_or_enter()
+    local api = vim.api
+    local hover_win = vim.b.hover_preview
+
+    if hover_win and api.nvim_win_is_valid(hover_win) then
+        api.nvim_set_current_win(hover_win)
+    else
+        require("hover").hover({})
+    end
+end
+
+vim.keymap.set("n", "K", hover_or_enter, { desc = "Hover" })
