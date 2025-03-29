@@ -21,12 +21,19 @@ vim.api.nvim_create_autocmd("FileType", {
 --     },
 -- }
 
-vim.keymap.set("n", "<localleader>rp", "<cmd>RustLsp parentModule<cr>", { desc = "Open Parent" })
-vim.keymap.set("n", "<localleader>rd", "<cmd>RustLsp openDocs<cr>", { desc = "Open Docs" })
-vim.keymap.set("n", "<localleader>rc", "<cmd>RustLsp openCargo<cr>", { desc = "Open Cargo" })
-vim.keymap.set("n", "<localleader>re", "<cmd>RustLsp explainError<cr>", { desc = "Open Explain Error" })
-vim.keymap.set("n", "<localleader>rr", "<cmd>RustLsp run<cr>", { desc = "Open Run" })
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("MyRustKeymaps", { clear = true }),
+    desc = "Set keymaps for Rust",
+    pattern = "rust",
+    callback = function()
+        vim.keymap.set("n", "<localleader>rp", "<cmd>RustLsp parentModule<cr>", { desc = "Open Parent", buffer = 0 })
+        vim.keymap.set("n", "<localleader>rd", "<cmd>RustLsp openDocs<cr>", { desc = "Open Docs", buffer = 0 })
+        vim.keymap.set("n", "<localleader>rc", "<cmd>RustLsp openCargo<cr>", { desc = "Open Cargo", buffer = 0 })
+        vim.keymap.set("n", "<localleader>re", "<cmd>RustLsp explainError<cr>", { desc = "Open Explain Error", buffer = 0 })
+        vim.keymap.set("n", "<localleader>rr", "<cmd>RustLsp run<cr>", { desc = "Open Run", buffer = 0 })
 
-require("which-key").add({
-    { "<localleader>r", group = "Rust", icon = "󱘗" },
+        require("which-key").add({
+            { "<localleader>r", group = "Rust", icon = "󱘗" },
+        })
+    end,
 })

@@ -4,42 +4,40 @@
   - [ ] Add cheatsheets for infrequently used workflows:
     - [ ] Markdown: Editing Tables
     - [ ] CSV: Viewing / Editing
+  - [ ] Inspiration:
+    - [ ] mini.bracketed
+    - [ ] mini.basics
+    - [ ] tab is still unmapped
+    - [ ] experiment with folding
+  - [ ] Learning
+    - [ ] Read about jumplist
+    - [ ] Read about default mappings (index.txt), especially % g% g[ [(
 
 - To Change / Bugs:
 
-  - [ ] venv-selector: doesn't work without python file open
-  - [ ] gp.nvim: `<C-g>f` (find) opens selected chat in first window, should use window picker
-  - [ ] configure `@parameter` in yaml as sibling node
-  - [ ] neotest: detach when switching projects / sessions neotest has no built-in method for doing this
-  - [ ] fix commenting in vimtex
-  - [ ] check lazyvim for which key config for operator pending mode
-  - [ ] fix codecompanion spinner fidget
-  - [ ] chezmoi plugins
+  - [ ] add a tabbar
+  - [ ] add `nvim-scissors`
 
 - [ ] To Investigate
 
   - [ ] snacks.profile: investigate sluggishness when switching windows from
         terminal into LSP enabled window (python) -> its linting, but why
-  - [ ] gp.nvim: floating window has margin that disappears in insert mode, which is annoying
-  - [ ] mini-ai: mapping `ca"` in python on final `"` goes to next
-        This is due to my custom text object. But it may still be a bug in mini-ai, as it seems my text object is correct
-        This would also be solved if I could only map `ca` and not `ci`, but this doesn't seem possible.
-  - [ ] mini-ai: mapping `ca"` in python doesn't not respected in comments or docstrings
-        This is unfortunately also a consequence of my custom text object, as strings in comments are not recognized as strings.
+  - [ ] `snacks.picker`: `lsp_workspace_symbols` sorting is not good
+         - in `tno.mpc.communication`, searching for `Pool` does not retrieve the `Pool` class
+  - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
 
 - Requires Contribution:
 
-  - [ ] treewalker.nvim: allow skipping certain nodes
-  - [ ] treesj: join should look for parent nodes
+  - [ ] aerial: improve keymap window (group related mappings, remove duplicates)
   - [ ] overseer: map <esc> in help_win (not configurable currently)
   - [ ] overseer: jk should move to job in OverseerTaskList, not step around
   - [ ] overseer: background tasks should not be awaited for completion
   - [ ] overseer: add option to not autorestart isBackground tasks
-  - [ ] blink.cmp: it seems that the `trailing_slash` option of the path source doesn't listen in cmdline mode
   - [ ] navic: doesn't work with arrow, same context in all windows
   - [ ] navic: should provide symbol filter, but maintainer is inactive
   - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
   - [ ] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
+  - [ ] venv-selector: doesn't work without python file open
 
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing
         the windows not to resize properly
@@ -72,11 +70,15 @@
         for another key, but there are no duplicate mappings.
   - [ ] pymple: just refuses to work
     - it finds seemingly correct candidates for imports, but then doesn't pick one
+  - [ ] neotest:
+    - [ ] tab-scoped: should support multiple tabs, and attaching/detaching from cwd's
+  - [ ] `venv-selector.nvim`: switch out with `joshzcold/python.nvim` once mature (and supporting `uv`)
 
 - Contribute back, sane defaults, low priority:
   - [ ] overseer.nvim: task view has not filetype
   - [ ] overseer.nvim: my custom dispose_all, restart_all commands
   - [ ] nvim-treesitter-textobjects / mini.ai: python @string.inner / @string.outer
+    - I would need to find a way around the "@string.inner" problem
 
 When need arises:
 

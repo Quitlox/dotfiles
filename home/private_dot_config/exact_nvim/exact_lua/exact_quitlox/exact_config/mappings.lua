@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Save
-vim.keymap.set({ "n" }, "<C-s>", "<cmd>w<CR>")
-vim.keymap.set({ "n" }, "<C-S>", "<cmd>wa<CR>")
+vim.keymap.set({ "n" }, "<C-s>", "<cmd>w<CR>", { desc = "Save" })
+vim.keymap.set({ "n" }, "<C-S>", "<cmd>wa<CR>", { desc = "Save All" })
 
 -- Delete Word
 vim.keymap.set("i", "<C-BS>", "<C-w>")
@@ -21,6 +21,11 @@ vim.keymap.set("c", "<C-h>", "<C-w>", { noremap = true })
 -- Disable defaults
 vim.keymap.set("n", "<C-w>d", "<nop>")
 vim.keymap.set("n", "<C-w><C-d>", "<nop>")
+
+-- LSP Defaults
+-- vim.keymap.set("n", "grr", vim.lsp.buf.references, { desc = "References" }) -- Overwritten by glance
+-- vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" }) -- Overwritten by glance
+vim.keymap.set("n", "grn", vim.lsp.buf.rename, { desc = "Rename" })
 
 -- +---------------------------------------------------------+
 -- | Vim Editing                                             |

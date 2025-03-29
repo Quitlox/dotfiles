@@ -61,6 +61,16 @@ require("snacks").setup({
                     ["<c-v>"] = { "edit_split", mode = { "i", "n" } },
                     ["<c-b>"] = { "edit_vsplit", mode = { "i", "n" } },
                     ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },
+
+                    -- ["<c-u>"] = { "list_scroll_up", mode = { "i", "n" } },
+                    -- ["<c-d>"] = { "list_scroll_down", mode = { "i", "n" } },
+                    -- ["}"] = { "preview_scroll_down", mode = { "i", "n" } },
+                    -- ["{"] = { "preview_scroll_up", mode = { "i", "n" } },
+
+                    ["{{"] = { "list_scroll_up", mode = { "i", "n" } },
+                    ["}}"] = { "list_scroll_down", mode = { "i", "n" } },
+                    ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+                    ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
                 },
             },
         },
@@ -79,6 +89,17 @@ require("snacks").setup({
 -- +---------------------------------------------------------+
 
 --+- Define Pickers -----------------------------------------+
+---@class snacks.picker.Config
+local picker_workspace_symbols = {
+    tree = true,
+    matcher = {
+        frecency = true,
+        smartcase = true,
+        ignorecase = false,
+        filename_bonus = false,
+        file_pos = false,
+    },
+}
 ---@class snacks.picker.Config
 local picker_commands = {
     layout = "vscode",
@@ -111,29 +132,12 @@ local picker_grep = {
     },
 }
 ---@class snacks.picker.Config
-local picker_files = {
-    matcher = {
-        cwd_bonus = true,
-        frecency = true,
-    },
-}
----@class snacks.picker.Config
 local picker_man = {
     matcher = {
         frecency = true,
     },
 }
----@class snacks.picker.Config
-local picker_resume = {}
----@class snacks.picker.Config
-local picker_help = {}
----@class snacks.picker.Config
-local picker_highlight = {}
----@class snacks.picker.Config
-local picker_keymap = {}
 
----@class snacks.picker.Config
-local picker_git_branches = {}
 ---@class snacks.picker.Config
 local picker_smart = {
     layout = "dropdown",
@@ -141,18 +145,20 @@ local picker_smart = {
 
 --+- Configure Pickers --------------------------------------+
 -- stylua: ignore start
-vim.keymap.set({ "n", "v" }, "<leader>vK", function() Snacks.picker.command_history(picker_command_history) end, { noremap = true, silent = true, desc = "Command History" })
+vim.keymap.set({ "n" }, "gs", function() Snacks.picker.lsp_workspace_symbols(picker_workspace_symbols) end, { noremap = true, silent = true, desc = "Workspace Symbols" })
+
 vim.keymap.set({ "n", "v" }, "<leader>vk", function() Snacks.picker.commands(picker_commands) end, { noremap = true, silent = true, desc = "Commands" })
-vim.keymap.set({ "n" },"<leader>vln", function() Snacks.picker.notifications(picker_notifications) end, { noremap = true, silent = true, desc = "List Notifications" })
+vim.keymap.set({ "n", "v" }, "<leader>vK", function() Snacks.picker.command_history(picker_command_history) end, { noremap = true, silent = true, desc = "Command History" })
+vim.keymap.set({ "n", "v" }, "<leader>vln", function() Snacks.picker.notifications(picker_notifications) end, { noremap = true, silent = true, desc = "List Notifications" })
 
 vim.keymap.set({ "n", "v" }, "<leader>fa", function() Snacks.picker.grep(picker_grep) end, { noremap = true, silent = true, desc = "Find All (Grep)" })
 vim.keymap.set({ "n", "v" }, "<leader>fm", function() Snacks.picker.man(picker_man) end, { noremap = true, silent = true, desc = "Find Man Page" })
-vim.keymap.set({ "n", "v" }, "<leader>fr", function() Snacks.picker.resume(picker_resume) end, { noremap = true, silent = true, desc = "Finder Resume" })
-vim.keymap.set({ "n", "v" }, "<leader>fh", function() Snacks.picker.help(picker_help) end, { noremap = true, silent = true, desc = "Find Help" })
-vim.keymap.set({ "n", "v" }, "<leader>fi", function() Snacks.picker.highlights(picker_highlight) end, { noremap = true, silent = true, desc = "Find Highlights" })
-vim.keymap.set({ "n", "v" }, "<leader>fk", function() Snacks.picker.keymaps(picker_keymap) end, { noremap = true, silent = true, desc = "Find Keymap" })
+vim.keymap.set({ "n", "v" }, "<leader>fr", function() Snacks.picker.resume() end, { noremap = true, silent = true, desc = "Finder Resume" })
+vim.keymap.set({ "n", "v" }, "<leader>fh", function() Snacks.picker.help() end, { noremap = true, silent = true, desc = "Find Help" })
+vim.keymap.set({ "n", "v" }, "<leader>fi", function() Snacks.picker.highlights() end, { noremap = true, silent = true, desc = "Find Highlights" })
+vim.keymap.set({ "n", "v" }, "<leader>fk", function() Snacks.picker.keymaps() end, { noremap = true, silent = true, desc = "Find Keymap" })
 
-vim.keymap.set({ "n", "v" }, "<leader>gb", function() Snacks.picker.git_branches(picker_git_branches) end, { noremap = true, silent = true, desc = "Git Branches" })
+vim.keymap.set({ "n", "v" }, "<leader>gb", function() Snacks.picker.git_branches() end, { noremap = true, silent = true, desc = "Git Branches" })
 vim.keymap.set({ "n", "v" }, "<leader>of", function() Snacks.picker.smart(picker_smart) end, { noremap = true, silent = true, desc = "Open File" })
 -- stylua: ignore end
 
@@ -348,9 +354,9 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 })
 
 -- Keymaps ------------------------------------------------+
-vim.keymap.set("n", [[`]], toggle_terminal_2, { silent = true })
-vim.keymap.set("v", [[`]], toggle_terminal_2, { silent = true })
-vim.keymap.set("t", [[`]], toggle_terminal_2, { silent = true })
+vim.keymap.set("n", [[`]], toggle_terminal_2, { silent = true, desc = "Toggle Terminal" })
+vim.keymap.set("v", [[`]], toggle_terminal_2, { silent = true, desc = "Toggle Terminal" })
+vim.keymap.set("t", [[`]], toggle_terminal_2, { silent = true, desc = "Toggle Terminal" })
 
 vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { silent = true })
 vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { silent = true })

@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
     callback = function(event)
         local filetype = vim.api.nvim_get_option_value("filetype", { buf = event.buf })
         if filetype == "oil_preview" then
-            vim.notify("Cleaned up buffers for deleted files.", "info")
+            vim.notify("Cleaned up buffers for deleted files.", "info", { title = "Oil Support" })
             on_save_callback()
         end
     end,

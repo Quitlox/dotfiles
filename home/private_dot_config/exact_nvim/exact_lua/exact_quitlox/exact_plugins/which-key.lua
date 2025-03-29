@@ -4,10 +4,16 @@
 
 require("which-key").setup({
     preset = "modern",
+    sort = { "order", "group", "natural" },
     delay = function(ctx)
         return ctx.plugin and 0 or 400
     end,
     spec = {
+        { "<leader>vu", "<cmd>Rocks sync<cr>", desc = "Update Plugins" },
+
+        { "J", desc = "Join Lines" },
+
+        -- Groups
         { "<leader><tab>", group = "Tab" },
         { "<leader>b", group = "Buffer" },
         { "<leader>f", group = "Find" },
@@ -21,32 +27,22 @@ require("which-key").setup({
 
         { "<leader><leader>", group = "Lang" },
         { "<localleader>m", group = "Markdown" },
+        { "gr", group = "LSP" },
 
-        { "<leader>vu", "<cmd>Rocks sync<cr>", desc = "Update Plugins" },
-
+        -- Hide defaults / editor
+        { hidden = true, mode = { "n" }, { "Y" }, { "p" }, { "P" }, { "j" }, { "k" }, { ";" }, { "," }, { "n" }, { "N" } },
+        { hidden = true, mode = { "n" }, { "r" }, { "t" }, { "T" }, { "f" }, { "t" }, { "T" }, { "<" }, { ">" } },
+        { hidden = true, mode = { "n" }, { "<C-w>h" }, { "<C-w>l" }, { "<C-w>j" }, { "<C-w>k" }, { "<C-w>d" } },
+        { hidden = true, mode = { "n" }, { "<C-h>" }, { "<C-l>" }, { "<C-j>" }, { "<C-k>" } },
         { "<leader><cr>", hidden = true },
-        { "H", hidden = true },
-        { "L", hidden = true },
-        { "p", hidden = true },
-        { "P", hidden = true },
-        { "Y", hidden = true },
-        { "gk", hidden = true, mode = { "n", "x" } },
-        { "gj", hidden = true, mode = { "n", "x" } },
-        { "k", hidden = true, mode = { "n", "x" } },
-        { "j", hidden = true, mode = { "n", "x" } },
-        { "J", desc = "Join Lines" },
+        { "<2-LeftMouse>", hidden = true },
 
-        -- Windows
-        { "<C-W>h", hidden = true },
-        { "<C-W>l", hidden = true },
-        { "<C-W>j", hidden = true },
-        { "<C-W>k", hidden = true },
-        { "<C-W>d", hidden = true },
         -- Unmapped Defaults (see mapping.lua)
         { "<C-W><C-d>", hidden = true },
+        -- Misc
     },
     plugins = {
-        marks = true,
+        marks = false,
         registers = true,
         presets = {
             operators = true,

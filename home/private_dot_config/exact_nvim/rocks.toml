@@ -26,8 +26,6 @@ auto_install = "prompt"
 "dial.nvim" = "0.4.0"
 "mini.misc" = "0.15.0"
 "highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim", rev = "a5e2e2d43f6d131bf526619baeeeec32397b0789" }
-# hlslens causes commandline completion to dissapear: https://github.com/kevinhwang91/nvim-hlslens/issues/75
-# "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc", pin = true } # pinned because of outdated release
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" }
 "yanky.nvim" = { git = "gbprod/yanky.nvim", rev = "80d9385dbebe7049fd1961d7909b835a58ce9dcc" }
 "vim-matchup" = { git = "andymass/vim-matchup", rev = "aca23ce53ebfe34e02c4fe07e29e9133a2026481" }
@@ -158,11 +156,11 @@ auto_install = "prompt"
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.3.2" }
 # +- Minor Languages ----------------------------------------+
 "chezmoi.vim" = { git = "alker0/chezmoi.vim", rev = "abf37336437867cbd99ce2f8849b717415391cc3" }
+"csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "v1.1.0" }
 "nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "bba61168b7aef735e7f950fdfece5ef6c388eacf" }
+"nvim-parinfer" = "1.2.0"
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
 "yuck.vim" = { git = "elkowar/yuck.vim", rev = "9b5e0370f70cc30383e1dabd6c215475915fe5c3" }
-"csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "v1.1.0" }
-"nvim-parinfer" = "1.2.0"
 
 # +----------------------------------------------------------+
 # | User Interface                                           |
@@ -186,6 +184,9 @@ auto_install = "prompt"
 
 # +- Notifications ------------------------------------------+
 "fidget.nvim" = "1.6.0"
+
+# +- Outline (Aerial) ---------------------------------------+
+"aerial.nvim" = "2.5.0"
 
 # +- Runner (Overseer) --------------------------------------+
 "overseer.nvim" = { git = "stevearc/overseer.nvim", rev = "v1.6.0" }
@@ -278,7 +279,6 @@ tree-sitter-vimdoc = "scm"
 tree-sitter-vue = "0.0.29"
 tree-sitter-yaml = "scm"
 tree-sitter-yuck = "scm"
-"aerial.nvim" = "2.5.0"
 
 # +----------------------------------------------------------+
 # | Config                                                   |
@@ -295,3 +295,6 @@ path = "/home/quitlox/Workspace/neovim-plugins"
 # | Graveyard                                                |
 # +----------------------------------------------------------+
 # "marks.nvim" = { git = "chentoast/marks.nvim" }
+
+# hlslens causes commandline completion to dissapear: https://github.com/kevinhwang91/nvim-hlslens/issues/75
+# "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc", pin = true } # pinned because of outdated release

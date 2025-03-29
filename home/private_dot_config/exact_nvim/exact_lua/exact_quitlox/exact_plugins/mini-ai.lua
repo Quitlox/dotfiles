@@ -57,7 +57,7 @@ local mini_ai_opts = {
             i = "@statement.inner",
         }),
         o = gen_spec.treesitter({
-            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+            a = { "@conditional.outer", "@block.outer", "@loop.outer" },
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
         }),
         i = require("mini.extra").gen_ai_spec.indent(),
