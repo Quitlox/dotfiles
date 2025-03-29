@@ -70,7 +70,7 @@ require("lualine").setup({
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
         lualine_x = { "overseer", "my_active_linters" },
         lualine_y = { "my_mixed_indent", encoding, fileformat, "my_fancy_lsp_servers", "my_python_venv" },
-        lualine_z = { "my_fancy_location", "my_fancy_searchcount" },
+        lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
     },
     inactive_sections = {
         lualine_a = { "my_cwd" },
