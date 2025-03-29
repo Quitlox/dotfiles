@@ -18,6 +18,7 @@ vim.filetype.add({
         pyx = "python",
         -- Misc
         sbatch = "bash", -- Slurm
+        gp = "markdown", -- Slurm
     },
     pattern = {
         ["~/.config/hypr/.*%.conf"] = "hyprlang",

@@ -90,3 +90,17 @@ vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>MyGpImplement<cr>", { desc = "VisualIm
 
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>x", ":GpStop<cr>", { desc = "Stop", noremap = true, silent = true, nowait = true })
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>n", ":GpNextAgent<cr>", { desc = "NextAgent", noremap = true, silent = true, nowait = true })
+
+--+- Filetype -----------------------------------------------+
+-- Add custom filetype
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown", -- Only check markdown files
+    callback = function(opts)
+        local filepath = vim.api.nvim_buf_get_name(opts.buf)
+
+        -- Check if this file is in the GP.nvim chats directory
+        if filepath:match(vim.fs.joinpath(vim.fn.stdpath("data"), "/gp/chats/")) then
+            vim.api.nvim_set_option_value("filetype", "gp", { buf = opts.buf })
+        end
+    end,
+})
