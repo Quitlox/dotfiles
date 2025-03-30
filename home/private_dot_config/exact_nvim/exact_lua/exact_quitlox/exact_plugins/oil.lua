@@ -61,8 +61,8 @@ vim.api.nvim_create_autocmd("BufLeave", {
 
 --+- Keymaps ------------------------------------------------+
 -- stylua: ignore start
-vim.keymap.set("n", "-", function() require("oil").open_float() end, { noremap = true, silent = true })
-vim.keymap.set("n", "_", function() require("oil").open() end, { noremap = true, silent = true })
+vim.keymap.set("n", "-", function() require("oil").open_float() end, { noremap = true, silent = true, desc = "oil: Open" })
+vim.keymap.set("n", "_", function() require("oil").open() end, { noremap = true, silent = true, desc = "oil: Open (as Buffer)" })
 
 --+- Commands -----------------------------------------------+
 vim.api.nvim_create_user_command("Oil", function() require("oil").open_float() end, { desc = "oil: Open" })

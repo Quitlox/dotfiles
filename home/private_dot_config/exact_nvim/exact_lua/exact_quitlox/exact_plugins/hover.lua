@@ -29,4 +29,8 @@ local function hover_or_enter()
     end
 end
 
+-- stylua: ignore start
 vim.keymap.set("n", "K", hover_or_enter, { desc = "Hover" })
+vim.keymap.set("n", "]h", function() require("hover").hover_switch("next", {}) end, { desc = "Hover" })
+vim.keymap.set("n", "[h", function() require("hover").hover_switch("previous", {}) end, { desc = "Hover" })
+-- stylua: ignore end

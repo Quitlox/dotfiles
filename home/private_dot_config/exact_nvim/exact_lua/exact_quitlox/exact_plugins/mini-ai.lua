@@ -70,7 +70,6 @@ local mini_ai_opts = {
         -- From LazyVim
         t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
         g = ai_buffer, -- buffer
-        d = { "%f[%d]%d+" }, -- digits
         s = { -- Subword (CamelCase, snake_case)
             { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
             "^().*()$",

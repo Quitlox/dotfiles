@@ -13,14 +13,13 @@ require("flash").setup({
 
 -- Keymaps
 -- stylua: ignore start
-vim.keymap.set({ "n", "v" }, "s", function() require("flash").jump() end, { desc = "Flash" })
-vim.keymap.set({ "n", "v" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
+vim.keymap.set({ "n", "v", }, "s", function() require("flash").jump() end, { desc = "Flash" })
+vim.keymap.set({ "n", }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
 vim.keymap.set({ "o" }, "r", function() require("flash").remote() end, { desc = "Remote Flash" })
 vim.keymap.set({ "o", "x" }, "R", function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
-vim.keymap.set({ "c" }, "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
 -- stylua: ignore end
 
--- NOTE: I explicitly removed mode "x" for the "s" mapping, as this would conflict with nvim-surround.
---          namely, surrounding the selection
--- NOTE: I explicitly removed mode "x" for the "S" mapping, as this would conflict with nvim-surround.
---          namely, surrounding the selection
+-- NOTE: There are some limitations due to `mini.ai` and `nvim-surround`:
+-- 1. I cannot map `S` in `v` mode, as this would override `nvim-surround`'s functionality of surrounding a selection.
+-- 2. Mapping `s` or `S` in `o` mode is a no-op, as `mini.ai` overwrite the whole `o` mode.
+-- 3. I also don't map `x` mode, but I don't remember why.

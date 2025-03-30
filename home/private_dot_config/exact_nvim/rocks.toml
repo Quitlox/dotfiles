@@ -22,6 +22,7 @@ auto_install = "prompt"
 # +----------------------------------------------------------+
 # | Editor                                                   |
 # +----------------------------------------------------------+
+
 # +- Vim Built-in Enhancements ------------------------------+
 "dial.nvim" = "0.4.0"
 "mini.misc" = "0.15.0"
@@ -127,9 +128,6 @@ auto_install = "prompt"
 
 # +- Config -------------------------------------------------+
 "schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "bffbd2279c8376c6d72b5057e0660c7a5b8a6728", config = "quitlox.plugins.lang.schemastore" }
-# +- Go -----------------------------------------------------+
-"go.nvim" = { version = "0.10.0", ft = ["go", "gomod"] }
-# "guihua.lua" = { git = "ray-x/guihua.lua", rev = "d783191eaa75215beae0c80319fcce5e6b3beeda" } # NOTE: Overwrites fzy which may cause issues (fixed for now, but still), maybe switch to use gopher instead if I ever need it
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v5.1.0", ft = "http" }
 # +- LaTeX --------------------------------------------------+
@@ -167,6 +165,7 @@ auto_install = "prompt"
 # +----------------------------------------------------------+
 
 "edgy.nvim" = "1.10.2"
+"no-neck-pain.nvim" = "2.2.0"
 
 # +- Buffer Switcher ----------------------------------------+
 "arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "9608ce6d7e6935efd423946a319f7f4041cbde93" }
@@ -210,10 +209,9 @@ auto_install = "prompt"
 # +----------------------------------------------------------+
 # | Miscelleneous                                            |
 # +----------------------------------------------------------+
-"snacks.nvim" = { git = "folke/snacks.nvim", rev = "bc0630e43be5699bb94dadc302c0d21615421d93", opt = true } # waiting for >2.22.0 to drop
-"key-analyzer.nvim" = { git = "meznaric/key-analyzer.nvim", rev = "72d301fb8843c19d8e69e16e0a0b42256edc25cc" }
-"no-neck-pain.nvim" = "2.2.0"
 "gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "2455191ec94da8ed222806a4fe3aa358eac1e558" }
+"key-analyzer.nvim" = { git = "meznaric/key-analyzer.nvim", rev = "72d301fb8843c19d8e69e16e0a0b42256edc25cc" }
+"snacks.nvim" = { git = "folke/snacks.nvim", rev = "bc0630e43be5699bb94dadc302c0d21615421d93", opt = true } # waiting for >2.22.0 to drop
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
@@ -298,3 +296,7 @@ path = "/home/quitlox/Workspace/neovim-plugins"
 
 # hlslens causes commandline completion to dissapear: https://github.com/kevinhwang91/nvim-hlslens/issues/75
 # "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc", pin = true } # pinned because of outdated release
+
+# +- Go -----------------------------------------------------+
+# "go.nvim" = { version = "0.10.0", ft = ["go", "gomod"] }
+# "guihua.lua" = { git = "ray-x/guihua.lua", rev = "d783191eaa75215beae0c80319fcce5e6b3beeda" } # NOTE: Overwrites fzy which may cause issues (fixed for now, but still), maybe switch to use gopher instead if I ever need it

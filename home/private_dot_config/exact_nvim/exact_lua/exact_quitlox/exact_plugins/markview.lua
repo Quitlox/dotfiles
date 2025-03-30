@@ -9,11 +9,12 @@ require("markview").setup({
     preview = {
         filetypes = filetypes,
         icon_provider = "mini",
+
         modes = { "n", "no", "c" },
         hybrid_modes = { "n" },
         linewise_hybrid_mode = true,
-        -- edit_range = { 1, 1 },
-        callback = function() end,
+
+        headings = { shift_width = 0 },
     },
     markdown = {},
     latex = {},
