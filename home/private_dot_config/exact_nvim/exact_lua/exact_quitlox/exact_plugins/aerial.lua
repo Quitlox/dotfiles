@@ -42,6 +42,11 @@ require("aerial").setup({
 
 -- vim.keymap.set("n", "<leader>ls", "<cmd>AerialOpen<cr>", { desc = "Locate Symbols" })
 -- vim.keymap.set("n", "<leader>oo", "<cmd>AerialOpen<cr>", { desc = "Open Outline" })
+
+-- stylua: ignore start
+vim.keymap.set("n", "<leader>ls", function() vim.notify('noop', 'info') end, { desc = "Locate Symbols" })
+vim.keymap.set("n", "<leader>oo", function() vim.notify('noop', 'info') end, { desc = "Open Outline" })
+-- stylua: ignore end
 vim.keymap.set("n", "gO", "<cmd>AerialOpen<cr>", { desc = "Open Outline" })
 
 --+- Keymaps: Override Defaults -----------------------------+

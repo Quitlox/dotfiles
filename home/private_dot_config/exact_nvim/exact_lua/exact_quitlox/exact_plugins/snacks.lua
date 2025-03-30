@@ -150,6 +150,7 @@ vim.keymap.set({ "n" }, "gs", function() Snacks.picker.lsp_workspace_symbols(pic
 vim.keymap.set({ "n", "v" }, "<leader>vk", function() Snacks.picker.commands(picker_commands) end, { noremap = true, silent = true, desc = "Commands" })
 vim.keymap.set({ "n", "v" }, "<leader>vK", function() Snacks.picker.command_history(picker_command_history) end, { noremap = true, silent = true, desc = "Command History" })
 vim.keymap.set({ "n", "v" }, "<leader>vln", function() Snacks.picker.notifications(picker_notifications) end, { noremap = true, silent = true, desc = "List Notifications" })
+vim.keymap.set({ "n", "v" }, "<leader>vd", function() vim.notify('noop', 'info') end, { noremap = true, silent = true, desc = "List Notifications" })
 
 vim.keymap.set({ "n", "v" }, "<leader>fa", function() Snacks.picker.grep(picker_grep) end, { noremap = true, silent = true, desc = "Find All (Grep)" })
 vim.keymap.set({ "n", "v" }, "<leader>fm", function() Snacks.picker.man(picker_man) end, { noremap = true, silent = true, desc = "Find Man Page" })
