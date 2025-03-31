@@ -44,6 +44,10 @@ require("lualine").setup({
         theme = catppuccin_theme,
         component_separators = " ",
         section_separators = { left = "", right = "" },
+
+        globalstatus = true,
+        always_show_tabline = false,
+
         disabled_filetypes = {
             winbar = {
                 "neo-tree",
@@ -62,7 +66,6 @@ require("lualine").setup({
                 "jinja", -- buggy
             },
         },
-        globalstatus = true,
     },
     sections = {
         lualine_a = { "my_cwd" },
@@ -93,5 +96,37 @@ require("lualine").setup({
         lualine_z = {},
     },
 
-    extensions = { "fzf", "man", "neo-tree", "nvim-dap-ui", "oil", "overseer", "quickfix", "trouble" },
+    tabline = {
+        lualine_a = {
+            {
+                "tabs",
+                mode = 2,
+                show_modified_status = false,
+                max_length = function()
+                    return vim.o.columns
+                end,
+            },
+        },
+    },
+
+    extensions = {
+        "aerial",
+        "fzf",
+        "man",
+        "neo-tree",
+        "nvim-dap-ui",
+        "oil",
+        "overseer",
+        "quickfix",
+        "trouble",
+    },
+})
+
+--+- Behaviour: Auto Rename Tabs ----------------------------+
+vim.api.nvim_create_autocmd({ "TabNew", "TabEnter", "TabLeave", "DirChanged" }, {
+    group = vim.api.nvim_create_augroup("MyLualineTabRename", { clear = true }),
+    callback = function()
+        local tcd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+        pcall(vim.cmd, [[LualineRenameTab ]] .. tcd .. [[]])
+    end,
 })

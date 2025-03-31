@@ -132,6 +132,6 @@ require("lspconfig").ccls.setup({})
 require("lspconfig").cssls.setup({})
 require("lspconfig").svelte.setup({
     -- Add filetypes for the server to run and share info between files
-    filetypes = { "typescript", "javascript", "svelte", "html", "css" },
+    -- filetypes = { "typescript", "javascript", "svelte", "html", "css" },
 })
 require("lspconfig").texlab.setup({})

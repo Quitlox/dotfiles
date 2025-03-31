@@ -48,6 +48,7 @@ require("snacks").setup({
                 },
             },
         },
+        actions = { vim.tbl_deep_extend("force", {}, require("trouble.sources.snacks").actions) },
         win = {
             input = {
                 b = {
