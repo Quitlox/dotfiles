@@ -184,8 +184,9 @@ auto_install = "prompt"
 # +- Notifications ------------------------------------------+
 "fidget.nvim" = "1.6.0"
 
-# +- Outline (Aerial) ---------------------------------------+
+# +- Outline ------------------------------------------------+
 "aerial.nvim" = "2.5.0"
+"namu.nvim" = { git = "bassamsdata/namu.nvim", rev = "v0.3.0" }
 
 # +- Runner (Overseer) --------------------------------------+
 "overseer.nvim" = { git = "stevearc/overseer.nvim", rev = "v1.6.0" }
