@@ -95,6 +95,7 @@ Now you're good to go.
    1. Install the Zotero browser connector
 1. Log into Obsidian and synchronize the vault
 1. Log into Thunderbird
+   1. Install Dutch Dictionary
 
 ## Setting up a Virtual Machine
 
