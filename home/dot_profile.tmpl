@@ -115,7 +115,7 @@ export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
 # Nvm
 export NVM_DIR="$HOME/.local/share/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Java
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.name "Arch Linux")) }}
@@ -130,7 +130,7 @@ export JAVA_HOME=/usr/lib/jvm/default
 
 # OCAML
 export OPAMROOT=$XDG_DATA_HOME/opam
-[[ ! -r /home/quitlox/.local/share/opam/opam-init/init.zsh ]] || source /home/quitlox/.local/share/opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r /home/quitlox/.local/share/opam/opam-init/init.zsh ]] || source /home/quitlox/.local/share/opam/opam-init/init.zsh >/dev/null 2>/dev/null
 
 # Added by Toolbox App
 export PATH="$PATH:/home/quitlox/.local/share/JetBrains/Toolbox/scripts"
