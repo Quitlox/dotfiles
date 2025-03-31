@@ -62,9 +62,8 @@ animations {
     animation = workspaces, 1, 6, myBezier
 }
 
-windowrule = opacity 0.99 0.99, obsidian
-windowrule = opacity 0.99 0.99, Electron
-
+windowrule = opacity 0.99, title:obsidian
+windowrule = opacity 0.99, title:Electron
 
 misc {
     force_default_wallpaper = 0 # Set to 0 or 1 to disable the anime mascot wallpapers
