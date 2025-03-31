@@ -5,12 +5,41 @@
 	email = kevin.witlox@upcmail.nl
 [credential]
 	helper = cache --timeout=10800
+
 [core]
 	excludesFile = ~/.config/gitignore
 	editor = nvim
 	autocrlf = input
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[merge]
+	conflictStyle = zdiff3
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+
+[commit]
+	verbose = true
 [rerere]
 	enabled = true
+	autoupdate = true
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true # ?
+	renames = true # ?
+
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
 
 [includeIf "gitdir:~/Workspace/tno/"]
   path = config-tno
