@@ -13,7 +13,6 @@
 
 - To Change / Bugs:
 
-  - [ ] add a tabbar
   - [ ] add `nvim-scissors`
 
 - To Investigate:

@@ -28,7 +28,7 @@ auto_install = "prompt"
 "mini.misc" = "0.15.0"
 "highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim", rev = "a5e2e2d43f6d131bf526619baeeeec32397b0789" }
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "v1.2.0" }
-"yanky.nvim" = { git = "gbprod/yanky.nvim", rev = "80d9385dbebe7049fd1961d7909b835a58ce9dcc" }
+"yanky.nvim" = { git = "gbprod/yanky.nvim", rev = "98b9c21d3c06d79f68fd9d471dcc28fc6d2d72ef" }
 "vim-matchup" = { git = "andymass/vim-matchup", rev = "ea2ff43e09e68b63fc6d9268fc5d82d82d433cb3" }
 
 # +- Visual Enhancements ------------------------------------+
@@ -43,7 +43,7 @@ auto_install = "prompt"
 "mini.splitjoin" = "0.15.0"
 "nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "9b9a1cf88a10790de69d3b0562d7d612f23561d5" }
 "nvim-surround" = { version = "3.1.0" }
-"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "b9e6520a08dc8e62891dcb759fce29f988e68da9" }
+"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "7ff3efc7f9e78186e83d3294b6773f951ba78b1d" }
 "vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
 
 # +- Miscellenous -------------------------------------------+
@@ -56,7 +56,7 @@ auto_install = "prompt"
 # +- Comments / Documentation -------------------------------+
 "neogen" = "2.20.0"
 # +- Completion ---------------------------------------------+
-"blink.cmp" = { git = "saghen/blink.cmp", rev = "v1.0.0" }
+"blink.cmp" = { git = "saghen/blink.cmp", rev = "v1.1.1" }
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.5.0" }
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
 "blink-cmp-conventional-commits" = { git = "disrupted/blink-cmp-conventional-commits", rev = "e7ce3ddcc6d4044067d6d77ab41d480202e814ad" }
@@ -101,7 +101,7 @@ auto_install = "prompt"
 
 # +- Tooling ------------------------------------------------+
 "conform.nvim" = "9.0.0"
-"nvim-lint" = { git = "mfussenegger/nvim-lint", rev = "936197073214c26a347fb933c9459c8766376b23" }
+"nvim-lint" = { git = "mfussenegger/nvim-lint", rev = "81e8ba7655cc4395b1092ef4e1b6e83f54cd54ad" }
 "nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "daeb662a331af495a0ff98ca8bd6bc66b5f97db8" }
 
 # +- Treesitter ---------------------------------------------+
@@ -125,10 +125,10 @@ auto_install = "prompt"
 
 # +- LSP ----------------------------------------------------+
 "nvim-lspconfig" = "1.7.0"
-"otter.nvim" = "2.11.0"
+"otter.nvim" = "2.11.1"
 
 # +- Config -------------------------------------------------+
-"schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "bffbd2279c8376c6d72b5057e0660c7a5b8a6728", config = "quitlox.plugins.lang.schemastore" }
+"schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "87cf380f6ecc0b5aed0cba353fd6d8a1397e1167", config = "quitlox.plugins.lang.schemastore" }
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v5.1.0", ft = "http" }
 # +- LaTeX --------------------------------------------------+
@@ -147,7 +147,7 @@ auto_install = "prompt"
 "venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "e82594274bf7b54387f9a2abe65f74909ac66e97", branch = "regexp", pin = true }
 "pymple.nvim" = { git = "alexpasmantier/pymple.nvim", rev = "0.4.1" }
 # +- Rust ---------------------------------------------------+
-"rustaceanvim" = { version = "5.25.2", config = "quitlox.plugins.lang.rustaceanvim" }
+"rustaceanvim" = { version = "6.0.0", config = "quitlox.plugins.lang.rustaceanvim" }
 # +- Vim ----------------------------------------------------+
 "one-small-step-for-vimkind" = { version = "scm", config = "quitlox.plugins.lang.vim_dap" }
 # +- Web ----------------------------------------------------+
@@ -155,7 +155,7 @@ auto_install = "prompt"
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.3.2" }
 # +- Minor Languages ----------------------------------------+
 "chezmoi.vim" = { git = "alker0/chezmoi.vim", rev = "abf37336437867cbd99ce2f8849b717415391cc3" }
-"csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "v1.1.0" }
+"csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "v1.2.0" }
 "nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "bba61168b7aef735e7f950fdfece5ef6c388eacf" }
 "nvim-parinfer" = "1.2.0"
 "vim-sage" = { git = "petRUShka/vim-sage", rev = "4b036eead948e3ae1d414efdeefe11f7543fc366" }
@@ -169,12 +169,12 @@ auto_install = "prompt"
 "no-neck-pain.nvim" = "2.2.0"
 
 # +- Buffer Switcher ----------------------------------------+
-"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "9608ce6d7e6935efd423946a319f7f4041cbde93" }
+"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "6e0f726f55f99332dd726a53effd6813786b6d49" }
 
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
-"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v14.5.0" }
-"vectorcode" = { git = "davidyz/vectorcode", rev = "0.5.3" }
+"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v14.6.0" }
+"vectorcode" = { git = "davidyz/vectorcode", rev = "0.5.5" }
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.31.1"
@@ -198,7 +198,7 @@ auto_install = "prompt"
 # -- Breadcrumbs
 "nvim-navic" = "scm"
 # -- Context
-"nvim-treesitter-context" = { git = "nvim-treesitter/nvim-treesitter-context", rev = "93b29a32d5f4be10e39226c6b796f28d68a8b483" }
+"nvim-treesitter-context" = { git = "nvim-treesitter/nvim-treesitter-context", rev = "439789a9a8df9639ecd749bb3286b77117024a6f" }
 
 # +- Quickfix -----------------------------------------------+
 "trouble.nvim" = "3.7.1"
@@ -260,13 +260,13 @@ tree-sitter-markdown = "scm"
 tree-sitter-markdown_inline = "0.0.38"
 tree-sitter-pem = "0.0.30"
 tree-sitter-perl = "scm"
-tree-sitter-php = "0.0.40"
+tree-sitter-php = "0.0.41"
 tree-sitter-pug = "0.0.30"
-tree-sitter-python = "0.0.45"
+tree-sitter-python = "0.0.46"
 tree-sitter-query = "scm"
 tree-sitter-requirements = "scm"
 tree-sitter-rst = "scm"
-tree-sitter-rust = "0.0.47"
+tree-sitter-rust = "0.0.49"
 tree-sitter-scss = "scm"
 tree-sitter-ssh_config = "0.0.32"
 tree-sitter-svelte = "scm"
