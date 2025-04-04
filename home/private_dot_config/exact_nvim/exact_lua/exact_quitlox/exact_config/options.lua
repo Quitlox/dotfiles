@@ -77,9 +77,9 @@ vim.opt.backspace = "indent,eol,start"
 
 --- Folding ---
 vim.opt.foldlevel = 99 -- FIXME: Slows down legendary
-vim.opt.foldenable = true
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()" -- alt "v:lua.vim.treesitter.foldexpr()" slows down legendary for some fucking reason
+-- vim.opt.foldenable = true
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()" -- alt "v:lua.vim.treesitter.foldexpr()" slows down legendary for some fucking reason
 vim.opt.foldtext = ""
 vim.opt.fillchars = vim.opt.fillchars + "fold: "
 

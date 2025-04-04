@@ -62,7 +62,7 @@ auto_install = "prompt"
 "blink-cmp-conventional-commits" = { git = "disrupted/blink-cmp-conventional-commits", rev = "e7ce3ddcc6d4044067d6d77ab41d480202e814ad" }
 "blink-cmp-env" = { git = "bydlw98/blink-cmp-env", rev = "8214e71250427acc3a83c02bfc76c96b233af77c" }
 "blink-cmp-git" = { git = "kaiser-yang/blink-cmp-git", rev = "v2.4.0" }
-"colorful-menu.nvim" = { git = "xzbdmw/colorful-menu.nvim", rev = "f80feb8a6706f965321aff24d0ed3849f02a7f77", opt = true }
+"colorful-menu.nvim" = { git = "xzbdmw/colorful-menu.nvim", rev = "f80feb8a6706f965321aff24d0ed3849f02a7f77" }
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
 "copilot.vim" = { git = "github/copilot.vim", rev = "v1.44.0" }
 # +- Snippets -----------------------------------------------+
