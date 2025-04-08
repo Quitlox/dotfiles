@@ -81,7 +81,7 @@ auto_install = "prompt"
 # +- Git ----------------------------------------------------+
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.2" }
-"neogit" = "scm"
+"neogit" = { git = "NeogitOrg/neogit", rev = "81bbefa40a49c1c00a8c31292889b1e078321ecc" }
 "diffview.nvim" = "scm"
 # +- Language Server Protocol -------------------------------+
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }

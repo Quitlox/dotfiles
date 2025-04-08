@@ -3,9 +3,21 @@
 -- +---------------------------------------------------------+
 
 require("codecompanion").setup({
+    adapters = {
+        gemini_pro = function()
+            return require("codecompanion.adapters").extend("gemini", {
+                name = "gemini_pro",
+                schema = {
+                    model = {
+                        default = "gemini-2.5-pro-exp-03-25",
+                    },
+                },
+            })
+        end,
+    },
     strategies = {
         chat = {
-            adapter = "anthropic",
+            adapter = "gemini_pro",
             keymaps = {
                 completion = { modes = { i = "<C-space>" } }, -- FIXME: doesn't work
             },
@@ -27,7 +39,7 @@ require("codecompanion").setup({
             },
         },
         inline = {
-            adapter = "anthropic",
+            adapter = "gemini_pro",
         },
     },
 })

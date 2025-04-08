@@ -3,7 +3,6 @@ local M = require("lualine.component"):extend()
 function M:init(options)
     options.icon = options.icon or " "
     options.split = options.split or " "
-    options.separator = { right = "" }
     M.super.init(self, options)
 end
 
@@ -19,7 +18,9 @@ function M:update_status()
     local null_ls_installed, null_ls = pcall(require, "null-ls")
     local buf_client_names = {}
     for _, client in pairs(buf_clients) do
-        if client.name ~= "GitHub Copilot" then table.insert(buf_client_names, client.name) end
+        if client.name ~= "GitHub Copilot" then
+            table.insert(buf_client_names, client.name)
+        end
     end
     return table.concat(buf_client_names, self.options.split)
 end

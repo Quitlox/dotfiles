@@ -58,8 +58,12 @@ require("snacks").setup({
                 keys = {
                     ["<esc>"] = { "close", mode = { "n", "i" } },
                     ["<c-space>"] = { "select", mode = { "i", "n" } },
+
                     ["<tab>"] = { "list_down", mode = { "i", "n" } },
                     ["<s-tab>"] = { "list_up", mode = { "i", "n" } },
+                    ["<c-j>"] = { "list_down", mode = { "i", "n" } },
+                    ["<c-k>"] = { "list_up", mode = { "i", "n" } },
+
                     ["<c-v>"] = { "edit_split", mode = { "i", "n" } },
                     ["<c-b>"] = { "edit_vsplit", mode = { "i", "n" } },
                     ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },
