@@ -13,8 +13,8 @@
 
 - To Change / Bugs:
 
-  - [ ] add `nvim-scissors`
-  - [ ] fix style of notification (shouldn't wrap)
+  - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
+  - [ ] add back in `nvim-ufo`? plugin has been updated
 
 - To Investigate:
 

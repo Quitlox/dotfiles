@@ -16,9 +16,4 @@ require("dap").adapters.nlua = function(callback, config)
 end
 
 -- + Keymaps ------------------------------------------------+
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "lua",
-    callback = function()
-        vim.keymap.set({ "n" }, "<F5>", "<cmd>lua require'osv'.launch({port = 8086})<cr>", { noremap = true, buffer = 0, desc = "Launch Debugger (nvim)" })
-    end,
-})
+vim.keymap.set({ "n" }, "<F5>", "<cmd>lua require'osv'.launch({port = 8086})<cr>", { noremap = true, buffer = 0, desc = "Launch Debugger (nvim)" })
