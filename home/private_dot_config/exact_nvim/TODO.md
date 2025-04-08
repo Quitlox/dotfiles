@@ -14,6 +14,7 @@
 - To Change / Bugs:
 
   - [ ] add `nvim-scissors`
+  - [ ] fix style of notification (shouldn't wrap)
 
 - To Investigate:
 

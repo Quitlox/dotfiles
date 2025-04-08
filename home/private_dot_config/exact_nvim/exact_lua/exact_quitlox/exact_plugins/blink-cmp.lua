@@ -134,7 +134,7 @@ require("blink-cmp").setup({
             git = { module = "blink-cmp-git", name = "Git" },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
             path = { opts = { trailing_slash = false, label_trailing_slash = true }, min_keyword_length = 1 },
-            snippets = { opts = { search_paths = { vim.fn.stdpath("config") .. "/nvim/snippets" } } },
+            snippets = { opts = { search_paths = { vim.fn.stdpath("config") .. "/snippets" } } },
         },
     },
     -- Experimental signature help support

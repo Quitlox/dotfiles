@@ -6,6 +6,7 @@
 vim.g.loaded_matchit = 1
 -- Provided by surround.nvim
 vim.g.matchup_surround_enabled = 1
+
 -- Conflicts with mini.ai
 vim.g.matchup_text_obj_enabled = 0
 

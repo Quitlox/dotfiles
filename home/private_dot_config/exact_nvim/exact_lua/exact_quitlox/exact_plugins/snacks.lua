@@ -3,6 +3,16 @@
 -- +---------------------------------------------------------+
 
 require("snacks").setup({
+    -- TODO: This isn't working yet
+    styles = {
+        my_compact = {
+            style = "compact",
+            wo = {
+                wrap = true,
+            },
+        },
+    },
+
     init = { enabled = true },
     bigfile = { enabled = true, notify = true },
     image = {
@@ -12,6 +22,7 @@ require("snacks").setup({
     },
     notifier = {
         enabled = true,
+        style = "my_compact",
         icons = {
             error = " ",
             warn = " ",
