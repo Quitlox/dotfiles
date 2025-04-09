@@ -29,6 +29,9 @@
   - [ ] `snacks.picker`: `lsp_workspace_symbols` sorting is not good
         in `tno.mpc.communication`, searching for `Pool` does not retrieve the `Pool` class
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
+  - [ ] replace `vim.ui.input` with `snacks.input` (used during LSP rename)
+  - [ ] `edgy.nvim`: grug far not in sidebar
+      
 
 - Requires Contribution:
 

@@ -71,7 +71,7 @@ if vim.fn.has("unix") == 1 then
             local cmd = { "sioyek.exe", "--execute-command", "reload" }
             local job_id = vim.fn.jobstart(cmd, {
                 on_exit = function(_, exit_status)
-                    vim.fn.echom("Sioyek exited with code: " .. exit_status)
+                    vim.notify("Sioyek exited with code: " .. exit_status, "info")
                 end,
             })
 

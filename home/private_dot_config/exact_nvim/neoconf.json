@@ -17,19 +17,10 @@
       "basedpyright.disableOrganizeImports": true,
       "basedpyright.analysis.typeCheckingMode": "recommended",
       "basedpyright.analysis.diagnosticSeverityOverrides": {
-        "reportAny": "none",
-        "reportConstantRedefinition": "none",
-        "reportExplicitAny": "none",
-        "reportImplicitStringConcatenation": "none",
-        "reportIncompatibleMethodOverride": "none",
-        "reportPossiblyUnboundVariable": "none",
-        "reportPrivateUsage": "none",
-        "reportUnannotatedClassAttribute": "none",
-        "reportUnnecessaryComparison": "none",
-        "reportUnsafeMultipleInheritance": "none",
-        "reportIncompatibleVariableOverride": "none",
-        "reportUnknownMemberType": "none",
-        "reportUnnecessaryIsInstance": "none",
+        "reportAttributeAccessIssue": "none", // incorrect
+        "reportReturnType": "none", // often incorrect
+        "reportUnreachable": "hint",
+        "reportUnusedParameter": "hint",
       }
     }
   },
