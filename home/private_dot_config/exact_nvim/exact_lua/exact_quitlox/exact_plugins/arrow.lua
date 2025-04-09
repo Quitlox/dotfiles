@@ -6,7 +6,7 @@ require("arrow").setup({
     show_icons = true,
 
     leader_key = "=",
-    buffer_leader_key = "+",
+    buffer_leader_key = "M",
 
     per_buffer_config = {
         lines = 8,
@@ -23,5 +23,5 @@ vim.keymap.set("n", "]b", require("arrow.persist").next, { desc = "Next Buffer (
 
 require("which-key").add({
     { "=", desc = "Arrow" },
-    { "+", desc = "Arrow (Buffer)" },
+    { "M", desc = "Arrow (Buffer)" },
 })

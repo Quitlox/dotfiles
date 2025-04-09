@@ -37,7 +37,6 @@
 
   - [ ] aerial: improve keymap window (group related mappings, remove duplicates)
   - [ ] overseer: map <esc> in help_win (not configurable currently)
-  - [ ] overseer: jk should move to job in OverseerTaskList, not step around
   - [ ] overseer: background tasks should not be awaited for completion
   - [ ] overseer: add option to not autorestart isBackground tasks
   - [ ] navic: doesn't work with arrow, same context in all windows

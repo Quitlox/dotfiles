@@ -18,9 +18,17 @@
       "basedpyright.analysis.typeCheckingMode": "recommended",
       "basedpyright.analysis.diagnosticSeverityOverrides": {
         "reportAttributeAccessIssue": "none", // incorrect
-        "reportReturnType": "none", // often incorrect
+        "reportReturnType": "none", // incorrect
+
+        "reportAny": "none", // we use mypy for typing
+        "reportUnannotatedClassAttribute": "none", // we use mypy for typing
+        "reportUnknownMemberType": "none", // we use mypy for typing
+        "reportUnknownVariableType": "none", // we use mypy for typing
+        "reportUnknownArgumentType": "none", // we use mypy for typing
+
         "reportUnreachable": "hint",
         "reportUnusedParameter": "hint",
+        "reportUnusedVariable": "hint"
       }
     }
   },
