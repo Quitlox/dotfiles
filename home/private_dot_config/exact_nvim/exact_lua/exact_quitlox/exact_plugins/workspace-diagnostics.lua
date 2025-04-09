@@ -4,7 +4,7 @@
 -- +---------------------------------------------------------+
 
 --+- Settings -----------------------------------------------+
-local workspace_diagnostic_whitelist = { "tsserver", "pyright" }
+local workspace_diagnostic_whitelist = { "tsserver", "pyright", "basedpyright" }
 
 --+- Enable Workspace Diagnostics ---------------------------+
 vim.api.nvim_create_autocmd("LspAttach", {

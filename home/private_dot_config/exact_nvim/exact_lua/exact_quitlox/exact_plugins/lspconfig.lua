@@ -2,6 +2,14 @@
 -- | neovim/nvim-lspconfig: Collection of LSP Configurations |
 -- +---------------------------------------------------------+
 
+--+- Integration: Neoconf -----------------------------------+
+local neoconf, success = pcall(require, "neoconf")
+if not success then
+    vim.notify("Failed to `require('neoconf')`!", vim.log.levels.WARN)
+else
+    require("neoconf").setup({})
+end
+
 --+- Inlay Hints --------------------------------------------+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("MyLspAttachInlayHints", { clear = true }),
@@ -21,13 +29,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local function set_keybindings(bufnr)
     -- stylua: ignore start
     -- vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol", buffer = bufnr, silent = true, noremap = true })
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ float = true, severity = { min = vim.diagnostic.severity.INFO } }) end, { desc = "Prev Diagnostic", buffer = bufnr, silent = true, noremap = true })
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = true, severity = { min = vim.diagnostic.severity.INFO } }) end, { desc = "Next Diagnostic", buffer = bufnr, silent = true, noremap = true })
-    vim.keymap.set("n", "[w", function() vim.diagnostic.goto_prev({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Prev Diagnostic", buffer = bufnr, silent = true, noremap = true })
-    vim.keymap.set("n", "]w", function() vim.diagnostic.goto_next({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Next Diagnostic", buffer = bufnr, silent = true, noremap = true })
-    vim.keymap.set("n", "[D", function() vim.diagnostic.goto_prev({ float = true, severity = vim.diagnostic.severity.ERROR }) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
-    vim.keymap.set("n", "]D", function() vim.diagnostic.goto_next({ float = true, severity = vim.diagnostic.severity.ERROR }) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
+    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Prev Diagnostic", buffer = bufnr, silent = true, noremap = true })
+    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Next Diagnostic", buffer = bufnr, silent = true, noremap = true })
+    -- vim.keymap.set("n", "[w", function() vim.diagnostic.goto_prev({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Prev Diagnostic", buffer = bufnr, silent = true, noremap = true })
+    -- vim.keymap.set("n", "]w", function() vim.diagnostic.goto_next({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Next Diagnostic", buffer = bufnr, silent = true, noremap = true })
+    vim.keymap.set("n", "[D", function() vim.diagnostic.goto_prev({ float = true, severity = vim.diagnostic.severity.HINT }) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
+    vim.keymap.set("n", "]D", function() vim.diagnostic.goto_next({ float = true, severity = vim.diagnostic.severity.HINT }) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
     -- stylua: ignore end
+    vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "Code Action", buffer = bufnr, silent = true, noremap = true })
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -102,27 +111,41 @@ end
 
 --+- LSP: Python --------------------------------------------+
 ---@diagnostic disable-next-line: missing-fields
-require("lspconfig").pyright.setup({
-    on_attach = function(client, bufnr)
-        local function filter_diagnostics(diagnostic)
-            if diagnostic.source ~= "Pyright" then
-                return true
-            end
+-- require("lspconfig").pyright.setup({
+--     on_attach = function(client, bufnr)
+--         local function filter_diagnostics(diagnostic)
+--             if diagnostic.source ~= "Pyright" then
+--                 return true
+--             end
+--
+--             -- Just disable 'is not accessed' altogether
+--             if string.match(diagnostic.message, '".+" is not accessed') then
+--                 return false
+--             end
+--             return true
+--         end
+--
+--         local function custom_on_publish_diagnostics(a, params, client_id, c, config)
+--             vim.tbl_filter(filter_diagnostics, params.diagnostics)
+--             vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
+--         end
+--
+--         client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
+--     end,
+-- })
 
-            -- Just disable 'is not accessed' altogether
-            if string.match(diagnostic.message, '".+" is not accessed') then
-                return false
-            end
-            return true
-        end
-
-        local function custom_on_publish_diagnostics(a, params, client_id, c, config)
-            vim.tbl_filter(filter_diagnostics, params.diagnostics)
-            vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
-        end
-
-        client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
-    end,
+--+- LSP: Lua -----------------------------------------------+
+require("lspconfig").lua_ls.setup({
+    settings = {
+        Lua = {
+            completion = {
+                callSnippet = "Replace",
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
 })
 
 --+- LSP: Other ---------------------------------------------+
@@ -130,6 +153,7 @@ require("lspconfig").ansiblels.setup({})
 require("lspconfig").bashls.setup({})
 require("lspconfig").ccls.setup({})
 require("lspconfig").cssls.setup({})
+require("lspconfig").basedpyright.setup({})
 require("lspconfig").svelte.setup({
     -- Add filetypes for the server to run and share info between files
     -- filetypes = { "typescript", "javascript", "svelte", "html", "css" },

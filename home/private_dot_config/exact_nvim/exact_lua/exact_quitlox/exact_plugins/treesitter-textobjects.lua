@@ -12,24 +12,20 @@ require("nvim-treesitter.configs").setup({
 
             goto_next_start = {
                 ["]m"] = { query = "@function.outer", desc = "Next Function" },
-                -- ["]f"] = { query = "@function.outer", desc = "Next Function" },
                 ["]]"] = { query = "@class.outer", desc = "Next Class" },
                 ["]a"] = { query = "@parameter.inner", desc = "Next Parameter" },
             },
             goto_next_end = {
                 ["]M"] = { query = "@function.outer", desc = "Next Function" },
-                -- ["]F"] = { query = "@function.outer", desc = "Next Function" },
                 ["]A"] = { query = "@parameter.outer", desc = "Next Parameter" },
             },
             goto_previous_start = {
                 ["[m"] = { query = "@function.outer", desc = "Prev Function" },
-                -- ["[f"] = { query = "@function.outer", desc = "Prev Function" },
                 ["[["] = { query = "@class.outer", desc = "Prev Class" },
                 ["[a"] = { query = "@parameter.inner", desc = "Prev Parameter" },
             },
             goto_previous_end = {
                 ["[M"] = { query = "@function.outer", desc = "Prev Function" },
-                -- ["[F"] = { query = "@function.outer", desc = "Prev Function" },
                 ["[A"] = { query = "@parameter.outer", desc = "Prev Parameter" },
                 ["[L"] = { query = "@loop.outer", desc = "Prev Loop" },
             },

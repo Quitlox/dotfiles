@@ -129,6 +129,7 @@ auto_install = "prompt"
 # +- LSP ----------------------------------------------------+
 "nvim-lspconfig" = "1.8.0"
 "otter.nvim" = "2.11.1"
+"neoconf.nvim" = { git = "folke/neoconf.nvim", rev = "d98bc15590b30f3a020c0e7d0fa49e3467064a87" }
 
 # +- Config -------------------------------------------------+
 "schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "87cf380f6ecc0b5aed0cba353fd6d8a1397e1167", config = "quitlox.plugins.lang.schemastore" }

@@ -153,3 +153,12 @@ function create_quote_textobject()
         return best_region
     end
 end
+
+-- set up our custom textobjects
+vim.b.miniai_config = {
+    custom_textobjects = {
+        ['"'] = create_quote_textobject(),
+        ["'"] = create_quote_textobject(),
+        ["`"] = create_quote_textobject(),
+    },
+}

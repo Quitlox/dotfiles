@@ -44,11 +44,11 @@ local gen_spec = require("mini.ai").gen_spec
 local mini_ai_opts = {
     -- search_method = "cover_or_nearest",
     custom_textobjects = {
-        f = gen_spec.treesitter({
+        m = gen_spec.treesitter({
             a = "@function.outer",
             i = "@function.inner",
         }),
-        c = gen_spec.treesitter({
+        C = gen_spec.treesitter({
             a = "@class.outer",
             i = "@class.inner",
         }),
