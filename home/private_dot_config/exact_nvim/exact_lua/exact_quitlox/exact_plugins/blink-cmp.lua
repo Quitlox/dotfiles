@@ -76,7 +76,7 @@ require("blink-cmp").setup({
         },
     },
     sources = {
-        default = { "git", "conventional_commits", "lazydev", "lsp", "path", "env", "html-css" },
+        default = { "snippets", "git", "conventional_commits", "lazydev", "lsp", "path", "env", "html-css" },
         providers = {
             lsp = {
                 transform_items = function(ctx, items)
@@ -135,7 +135,10 @@ require("blink-cmp").setup({
             ["html-css"] = { name = "html-css", module = "blink.compat.source" },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
             path = { opts = { trailing_slash = false, label_trailing_slash = true }, min_keyword_length = 1 },
-            snippets = { opts = { search_paths = { vim.fn.stdpath("config") .. "/snippets" } } },
+            snippets = {
+                score_offset = 100,
+                opts = { search_paths = { vim.fn.stdpath("config") .. "/snippets" } },
+            },
         },
     },
     -- Experimental signature help support

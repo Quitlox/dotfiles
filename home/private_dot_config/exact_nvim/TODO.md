@@ -17,6 +17,11 @@
   - [ ] add back in `nvim-ufo`? plugin has been updated
   - [ ] adopt `mason` again
 
+  - autocommand of otter is causing errors on session switching
+  - switch to luasnip for autotriggered snippets
+  - open pull request on nvim-scissors for autotriggering snippet
+  - auto format snippets files
+
 - To Investigate:
 
   - [ ] snacks.profile: investigate sluggishness when switching windows from

@@ -21,7 +21,7 @@ else
     workspaces = {
         {
             name = "Personal (Linux)",
-            path = "~/obsidian/Knowledge",
+            path = "~/Obsidian/Knowledge",
         },
     }
 end
