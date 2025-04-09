@@ -2,12 +2,13 @@
 -- | luckasRanarison/tailwind-tools: Tailwind Support        |
 -- +---------------------------------------------------------+
 
--- Setup
-require("tailwind-tools").setup({
-    conceal = {
-        enabled = true,
-    },
-})
+require("quitlox.util.lazy").on_module("lspconfig", function()
+    require("tailwind-tools").setup({
+        conceal = {
+            enabled = true,
+        },
+    })
+end)
 
 -- Keymaps
 vim.keymap.set("n", "[c", "<cmd>TailwindPrevClass<cr>", { noremap = true, silent = true, desc = "Next Tailwind class" })
