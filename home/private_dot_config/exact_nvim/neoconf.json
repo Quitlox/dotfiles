@@ -27,8 +27,10 @@
         "reportUnknownArgumentType": "none", // we use mypy for typing
 
         "reportUnreachable": "hint",
+        "reportUnusedImport": "hint",
         "reportUnusedParameter": "hint",
-        "reportUnusedVariable": "hint"
+        "reportUnusedVariable": "hint",
+        "reportDeprecated": "hint",
       }
     }
   },

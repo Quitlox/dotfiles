@@ -16,6 +16,8 @@
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
   - [ ] add back in `nvim-ufo`? plugin has been updated
   - [ ] adopt `mason` again
+  - [ ] after selecting an item from overseer (through snacks.picker?), it keeps insert mode, but should switch back to original mode
+  - [ ] hydra mode for git staging
 
   - autocommand of otter is causing errors on session switching
   - switch to luasnip for autotriggered snippets
