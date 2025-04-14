@@ -11,6 +11,7 @@ require("snacks").setup({
         doc = { inline = false, float = true, conceal = true },
         math = { enabled = true, latex = { font_size = "Large" } },
     },
+    input = { enabled = true },
     notifier = {
         enabled = true,
         icons = {

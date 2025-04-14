@@ -76,12 +76,12 @@ vim.opt.shada = vim.opt.shada + "'0,f0"
 vim.opt.backspace = "indent,eol,start"
 
 --- Folding ---
-vim.opt.foldlevel = 99 -- FIXME: Slows down legendary
+-- vim.opt.foldlevel = 99 -- FIXME: Slows down legendary
 -- vim.opt.foldenable = true
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()" -- alt "v:lua.vim.treesitter.foldexpr()" slows down legendary for some fucking reason
-vim.opt.foldtext = ""
-vim.opt.fillchars = vim.opt.fillchars + "fold: "
+-- vim.opt.foldtext = ""
+-- vim.opt.fillchars = vim.opt.fillchars + "fold: "
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

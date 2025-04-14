@@ -14,15 +14,7 @@
 - To Change / Bugs:
 
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
-  - [ ] add back in `nvim-ufo`? plugin has been updated
-  - [ ] adopt `mason` again
-  - [ ] after selecting an item from overseer (through snacks.picker?), it keeps insert mode, but should switch back to original mode
-  - [ ] hydra mode for git staging
-
-  - autocommand of otter is causing errors on session switching
-  - switch to luasnip for autotriggered snippets
-  - open pull request on nvim-scissors for autotriggering snippet
-  - auto format snippets files
+  - [ ] adopt mason?
 
 - To Investigate:
 
@@ -31,9 +23,8 @@
   - [ ] `snacks.picker`: `lsp_workspace_symbols` sorting is not good
         in `tno.mpc.communication`, searching for `Pool` does not retrieve the `Pool` class
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
-  - [ ] replace `vim.ui.input` with `snacks.input` (used during LSP rename)
-  - [ ] `edgy.nvim`: grug far not in sidebar
-      
+        hard-to-fix. Tried using AI to fix it, but it didn't work.
+  - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
 
 - Requires Contribution:
 
@@ -44,6 +35,7 @@
   - [ ] navic: doesn't work with arrow, same context in all windows
   - [ ] navic: should provide symbol filter, but maintainer is inactive
   - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
+  - [ ] `scissors.nvim`: add option to toggle autosnippet
   - [ ] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
   - [ ] venv-selector: doesn't work without python file open
 
@@ -108,6 +100,7 @@ Desktop:
 - In insert mode, use `<C-o>` to execute a normal mode command.
 - Use 'g==' to execute a block of code (or a terminal escape sequence).
 
-*Resources*
+_Resources_
+
 - cheat.sh
 - devdocs.io

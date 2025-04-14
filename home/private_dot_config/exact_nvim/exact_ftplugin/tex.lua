@@ -110,6 +110,11 @@ vim.g.vimtex_indent_bib_enabled = 0
 -- +- Integration: Wrapping.nvim -----------------------------+
 require("wrapping").soft_wrap_mode()
 
+-- +- Integration: Luasnip -----------------------------------+
+require("luasnip").setup({
+    enable_autosnippets = true,
+})
+
 -- +- Integration: Which-key.nvim ----------------------------+
 require("which-key").add({
     { "<localleader>l", group = "LaTeX" },

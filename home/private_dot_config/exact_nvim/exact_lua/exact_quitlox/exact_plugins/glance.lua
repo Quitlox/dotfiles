@@ -65,3 +65,15 @@ vim.keymap.set("n", "gD", open_definition_existing_win_or_peek, { desc = "Go Def
 vim.keymap.set("n", "gri", "<CMD>Glance implementations<CR>", { desc = "Go Implementation" })
 vim.keymap.set("n", "grt", "<CMD>Glance type_definitions<CR>", { desc = "Go Type Definition" })
 vim.keymap.set("n", "grr", "<CMD>Glance references<CR>", { desc = "Go References" })
+
+-- FIXME:
+-- Error executing vim.schedule lua callback: ...im/site/pack/rocks/start/glance.nvim/lua/glance/init.lua:498: Cursor position outside b uffer
+-- stack traceback:
+--         [C]: in function 'nvim_win_set_cursor'
+--         ...im/site/pack/rocks/start/glance.nvim/lua/glance/init.lua:498: in function 'scroll_into_view'
+--         ...im/site/pack/rocks/start/glance.nvim/lua/glance/init.lua:443: in function 'create'
+--         ...im/site/pack/rocks/start/glance.nvim/lua/glance/init.lua:171: in function 'create'
+--         ...im/site/pack/rocks/start/glance.nvim/lua/glance/init.lua:271: in function '_open'
+--         ...im/site/pack/rocks/start/glance.nvim/lua/glance/init.lua:295: in function 'handler'
+--         /usr/share/nvim/runtime/lua/vim/lsp/client.lua:679: in function ''
+--         vim/_editor.lua: in function <vim/_editor.lua:0>

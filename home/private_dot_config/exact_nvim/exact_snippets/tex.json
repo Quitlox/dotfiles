@@ -1,1 +1,1 @@
-{"RR":{"body":"\\mathbb{R}","prefix":"\\RR"},"\\secret":{"prefix":"\\secret","body":"\\langle #0 \\rangle"}}
+{"RR":{"body":"\\mathbb{R}","prefix":"RR", "luasnip": {"autotrigger": true, "wordTrig":false}},"\\secret":{"prefix":"\\secret","body":"\\langle #0 \\rangle"}}

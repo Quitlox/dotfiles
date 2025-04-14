@@ -40,6 +40,7 @@ require("blink-cmp").setup({
         completion = {
             menu = { auto_show = true },
             list = { selection = { preselect = false, auto_insert = true } },
+            -- accept = { auto_brackets = { enabled = false } },
         },
     },
     completion = {
@@ -50,7 +51,7 @@ require("blink-cmp").setup({
         -- Setup mini.icons
         menu = {
             draw = {
-                columns = { { "kind_icon" }, { "label", gap = 1 } },
+                columns = { { "kind_icon" }, { "label", gap = 1 }, { "source_name", gap = 1 } },
                 components = {
                     label = {
                         text = function(ctx)
@@ -71,30 +72,22 @@ require("blink-cmp").setup({
                             return hl
                         end,
                     },
+                    source_name = {
+                        text = function(ctx)
+                            return "(" .. ctx.source_name .. ")"
+                        end,
+                        highlight = function(ctx)
+                            return "BlinkCmpSourceName"
+                        end,
+                    },
                 },
             },
         },
     },
+    snippets = { preset = "luasnip" },
     sources = {
-        default = { "snippets", "git", "conventional_commits", "lazydev", "lsp", "path", "env", "html-css" },
+        default = { "snippets", "vimtex", "git", "conventional_commits", "lazydev", "lsp", "path", "env", "html-css" },
         providers = {
-            lsp = {
-                transform_items = function(ctx, items)
-                    -- Filter out keyword items
-                    local filtered_items = vim.tbl_filter(function(item)
-                        return item.kind ~= 14 -- 14 is CompletionItemKind.Keyword
-                    end, items)
-
-                    -- Boost score for table keys
-                    for _, item in ipairs(filtered_items) do
-                        if item.kind == 5 then -- CompletionItemKind.Field
-                            item.score_offset = (item.score_offset or 0) + 100
-                        end
-                    end
-
-                    return filtered_items
-                end,
-            },
             buffer = {
                 score_offset = -3,
                 max_items = 3,
@@ -134,11 +127,29 @@ require("blink-cmp").setup({
             git = { module = "blink-cmp-git", name = "Git" },
             ["html-css"] = { name = "html-css", module = "blink.compat.source" },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+            lsp = {
+                transform_items = function(ctx, items)
+                    -- Filter out keyword items
+                    local filtered_items = vim.tbl_filter(function(item)
+                        return item.kind ~= 14 -- 14 is CompletionItemKind.Keyword
+                    end, items)
+
+                    -- Boost score for table keys
+                    for _, item in ipairs(filtered_items) do
+                        if item.kind == 5 then -- CompletionItemKind.Field
+                            item.score_offset = (item.score_offset or 0) + 100
+                        end
+                    end
+
+                    return filtered_items
+                end,
+            },
+            otter = { name = "otter", module = "blink.compat.source" },
             path = { opts = { trailing_slash = false, label_trailing_slash = true }, min_keyword_length = 1 },
             snippets = {
                 score_offset = 100,
-                opts = { search_paths = { vim.fn.stdpath("config") .. "/snippets" } },
             },
+            vimtex = { name = "vimtex", module = "blink.compat.source" },
         },
     },
     -- Experimental signature help support

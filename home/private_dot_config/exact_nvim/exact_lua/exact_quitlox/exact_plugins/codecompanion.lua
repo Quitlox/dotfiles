@@ -19,7 +19,8 @@ require("codecompanion").setup({
         chat = {
             adapter = "gemini_pro",
             keymaps = {
-                completion = { modes = { i = "<C-space>" } }, -- FIXME: doesn't work
+                -- completion = { modes = { i = "<C-space>" } }, -- FIXME: doesn't work
+                change_adapter = { modes = { n = "gA" } },
             },
             slash_commands = {
                 --+- Integration: snacks.nvim

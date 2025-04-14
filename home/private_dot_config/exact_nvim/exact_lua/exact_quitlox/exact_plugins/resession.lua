@@ -13,6 +13,23 @@ resession.setup({
         dir = dir:sub(-1) ~= "/" and dir .. "/" or dir
         return vim.startswith(vim.api.nvim_buf_get_name(bufnr), dir)
     end,
+    -- Save and restore these options
+    options = {
+        -- Default
+        "binary",
+        "bufhidden",
+        "buflisted",
+        "cmdheight",
+        "diff",
+        "filetype",
+        "modifiable",
+        "previewwindow",
+        "readonly",
+        "scrollbind",
+        "winfixheight",
+        "winfixwidth",
+        -- Custom
+    },
     -- Config: Extensions
     extensions = {
         venv_selector = {

@@ -109,31 +109,6 @@ end
 -- See https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
 -- { "microsoft/vscode-js-debug", build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out && git reset --hard HEAD", version = "v1.*" },
 
---+- LSP: Python --------------------------------------------+
----@diagnostic disable-next-line: missing-fields
--- require("lspconfig").pyright.setup({
---     on_attach = function(client, bufnr)
---         local function filter_diagnostics(diagnostic)
---             if diagnostic.source ~= "Pyright" then
---                 return true
---             end
---
---             -- Just disable 'is not accessed' altogether
---             if string.match(diagnostic.message, '".+" is not accessed') then
---                 return false
---             end
---             return true
---         end
---
---         local function custom_on_publish_diagnostics(a, params, client_id, c, config)
---             vim.tbl_filter(filter_diagnostics, params.diagnostics)
---             vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
---         end
---
---         client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
---     end,
--- })
-
 --+- LSP: Lua -----------------------------------------------+
 require("lspconfig").lua_ls.setup({
     settings = {
@@ -150,12 +125,17 @@ require("lspconfig").lua_ls.setup({
 
 --+- LSP: Other ---------------------------------------------+
 require("lspconfig").ansiblels.setup({})
+require("lspconfig").autotools_ls.setup({})
 require("lspconfig").bashls.setup({})
-require("lspconfig").ccls.setup({})
-require("lspconfig").cssls.setup({})
 require("lspconfig").basedpyright.setup({})
+require("lspconfig").ccls.setup({})
+require("lspconfig").cmake.setup({})
+require("lspconfig").cssls.setup({})
+require("lspconfig").css_variables.setup({})
+require("lspconfig").docker_compose_language_service.setup({})
+require("lspconfig").dockerls.setup({})
+require("lspconfig").pug.setup({})
 require("lspconfig").svelte.setup({
     -- Add filetypes for the server to run and share info between files
     -- filetypes = { "typescript", "javascript", "svelte", "html", "css" },
 })
-require("lspconfig").texlab.setup({})
