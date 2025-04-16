@@ -1,0 +1,10 @@
+[font]
+normal = { family = "Iosevka NF", style = "Regular" }
+
+[terminal]
+shell = { program = "C:\\Windows\\System32\\wsl.exe", args = [ "-d", "Arch", "--cd", "~" ] }
+
+[keyboard]
+bindings= [
+    {key= "Back", mods= "Control",       chars= "\u001b[127;5u"},
+]
