@@ -42,7 +42,6 @@ end
 -- Setup --------------------------------------------------+
 local gen_spec = require("mini.ai").gen_spec
 local mini_ai_opts = {
-    -- search_method = "cover_or_nearest",
     custom_textobjects = {
         m = gen_spec.treesitter({
             a = "@function.outer",
@@ -61,11 +60,6 @@ local mini_ai_opts = {
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
         }),
         i = require("mini.extra").gen_ai_spec.indent(),
-
-        -- a = spec_treesitter({
-        --     a = { "@attribute.outer", "@parameter.outer" },
-        --     i = { "@attribute.inner", "@parameter.inner" },
-        -- }),
 
         -- From LazyVim
         t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
