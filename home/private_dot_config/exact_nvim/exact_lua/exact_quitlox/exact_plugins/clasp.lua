@@ -4,10 +4,10 @@
 
 require("clasp").setup({})
 
-vim.keymap.set({ "n", "i" }, "<c-e>", function()
-    require("clasp").wrap("prev")
+vim.keymap.set({ "i" }, "<c-l>", function()
+    require("clasp").wrap("next")
 end, { desc = "Wrap Next" })
 
-vim.keymap.set({ "n", "i" }, "<c-;>", function()
-    require("clasp").wrap("next")
+vim.keymap.set({ "i" }, "<c-;>", function()
+    require("clasp").wrap("prev")
 end, { desc = "Wrap Previous" })

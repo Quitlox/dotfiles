@@ -27,6 +27,7 @@
         "reportUnknownArgumentType": "none", // we use mypy for typing
 
         "reportUnreachable": "hint",
+        "reportUnusedCallResult": "none",
         "reportUnusedImport": "hint",
         "reportUnusedParameter": "hint",
         "reportUnusedVariable": "hint",

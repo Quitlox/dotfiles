@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 --+- Keybindings --------------------------------------------+
+vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "Code Action", silent = true, noremap = true }) -- FIXME: keeps getting overwritten by default ga action of vim (ascii)
 local function set_keybindings(bufnr)
     -- stylua: ignore start
     -- vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol", buffer = bufnr, silent = true, noremap = true })

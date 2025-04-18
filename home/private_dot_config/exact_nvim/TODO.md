@@ -94,6 +94,10 @@ Desktop:
   - [ ] `~/Documents/PowerShell` should only be created on Windows
   - [ ] `~/.mozilla` script should not run in headless mode
 
+- [ ] GlazeWM
+  - [ ] toggle floating
+  - [ ] ensure that rbw popup is considered floating always
+
 ### Memorandum
 
 - Help File Navigation: Hit `gO` to open an outline in the help file.

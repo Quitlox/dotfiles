@@ -53,22 +53,46 @@ vim.g.vimtex_syntax_conceal = {
 }
 
 -- +- Compilation --------------------------------------------+
+-- Linux
+if vim.fn.has("unix") == 1 then
+    vim.g.vimtex_quickfix_method = "pplatex"
+    vim.g.vimtex_view_method = "zathura"
+end
+
+-- Windows
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
     -- Ensure sioyek is in the system PATH, otherwise specify complete path
     -- vim.g.vimtex_view_sioyek_exe = "C:\\Users\\witloxkhd\\Applications\\sioyek\\sioyek.exe"
     vim.g.vimtex_view_method = "sioyek"
 end
 
-if vim.fn.has("unix") == 1 then
-    if vim.fn.executable("sioyek.exe") == 1 then
-        -- Only available in Windows WSL
+-- WSL2
+if vim.fn.has("unix") == 1 and vim.fn.has("wsl") then
+    -- Possible locations for sioyek.exe across different systems
+    local sioyek_paths = {
+        "/mnt/c/Users/witloxkhd/Applications/sioyek/sioyek.exe",
+        -- "/mnt/c/Users/witloxkhd/AppData/Local/sioyek/sioyek.exe",
+        -- "/mnt/c/Program Files/sioyek/sioyek.exe",
+    }
+
+    -- Find the first valid sioyek path
+    local sioyek_exe = nil
+    for _, path in ipairs(sioyek_paths) do
+        if vim.fn.filereadable(path) == 1 then
+            sioyek_exe = path
+            break
+        end
+    end
+
+    if sioyek_exe then
+        -- Configure vimtex with the found sioyek path
         vim.g.vimtex_view_method = "sioyek"
-        vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
+        vim.g.vimtex_view_sioyek_exe = sioyek_exe
         vim.g.vimtex_callback_progpath = "wsl nvim"
 
         -- Define function to reload sioyek
         SioyekReload = function()
-            local cmd = { "sioyek.exe", "--execute-command", "reload" }
+            local cmd = { sioyek_exe, "--execute-command", "reload" }
             local job_id = vim.fn.jobstart(cmd, {
                 on_exit = function(_, exit_status)
                     vim.notify("Sioyek exited with code: " .. exit_status, "info")
@@ -89,8 +113,7 @@ if vim.fn.has("unix") == 1 then
             end,
         })
     else
-        vim.g.vimtex_quickfix_method = "pplatex"
-        vim.g.vimtex_view_method = "zathura"
+        vim.notify("Sioyek not found in any of the expected locations", vim.log.levels.WARN)
     end
 end
 

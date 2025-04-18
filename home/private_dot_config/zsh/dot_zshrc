@@ -1,6 +1,8 @@
 
 # Source Base16 Theme
 [ -f "$HOME/.config/zsh/theme.sh" ] && . ~/.config/zsh/theme.sh
+# Source WSL specific configuration if available
+[ -f "$HOME/.config/zsh/wsl.zsh" ] && . ~/.config/zsh/wsl.zsh
 # Colors
 autoload colors && colors
 
