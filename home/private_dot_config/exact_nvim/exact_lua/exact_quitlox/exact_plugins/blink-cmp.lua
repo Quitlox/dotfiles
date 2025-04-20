@@ -101,6 +101,7 @@ require("blink-cmp").setup({
                 ---@module 'blink-cmp-conventional-commits'
                 ---@type blink-cmp-conventional-commits.Options
                 opts = {},
+                override = {},
             },
             dap = {
                 name = "dap",
@@ -124,7 +125,34 @@ require("blink-cmp").setup({
                 },
                 min_keyword_length = 1,
             },
-            git = { module = "blink-cmp-git", name = "Git" },
+            git = {
+                module = "blink-cmp-git",
+                name = "Git",
+                override = {
+                    should_show_items = function(self, context, items)
+                        -- First check original conditions
+                        local is_trigger = context.trigger.initial_kind == "trigger_character" and vim.tbl_contains(self:get_trigger_characters(), context.trigger.initial_character)
+                        if not is_trigger or context.mode ~= "cmdline" then
+                            return false
+                        end
+
+                        -- We only want to show the source after whitespace
+                        -- TODO: This should probably be fixed in the plugin itself
+
+                        -- Get the line up to the cursor (includes the trigger character)
+                        local line_before_cursor = context.line:sub(1, context.cursor[2])
+
+                        -- If the line only has the colon or it's at the beginning, it's fine
+                        if #line_before_cursor == 1 then
+                            return true
+                        end
+
+                        -- Check if the character before the colon is whitespace
+                        local char_before_colon = line_before_cursor:sub(#line_before_cursor - 1, #line_before_cursor - 1)
+                        return char_before_colon:match("%s") ~= nil
+                    end,
+                },
+            },
             ["html-css"] = { name = "html-css", module = "blink.compat.source" },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
             lsp = {
