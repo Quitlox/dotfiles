@@ -15,19 +15,24 @@ history = os.path.abspath(history)
 _dir, _ = os.path.split(history)
 os.makedirs(_dir, exist_ok=True)
 
-
 print("[pythonrc] setting history path to", history)
-try:
-    readline.read_history_file(history)
-    # default history len is -1 (infinite), which may grow unruly
-    readline.set_history_length(1000)
-except FileNotFoundError:
-    pass
+# Check if file exists before attempting to read it
+if os.path.exists(history):
+    try:
+        readline.read_history_file(history)
+        # default history len is -1 (infinite), which may grow unruly
+        readline.set_history_length(1000)
+    except (FileNotFoundError, OSError):
+        pass
+else:
+    # Create empty file if it doesn't exist
+    open(history, 'a').close()
 
 atexit.register(readline.write_history_file, history)
 
 # Use ptpython as default REPL
 import sys
+
 try:
     from ptpython.repl import embed
 except ImportError:
