@@ -14,7 +14,17 @@
 - To Change / Bugs:
 
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
-  - [ ] adopt mason?
+
+  - [ ] Optimize AI for Research:
+    - Introduce system prompt for research
+    - Add MCP Tool calling for searching web and papers.
+    - voeg simpele system prompt toe voor het helpen met vertalen van woorden
+  - [ ] Latex
+    - [ ] Do not do double quote upon \" or \'
+    - [ ] configure formatters and linters for bibtex and latex
+
+  - [ ] `lualine-pretty-path`: crash (only neovide?) upon opening neovim with directory
+  - `markdown`: Add keymap `<C-i>` to toggle italics
 
 - To Investigate:
 
