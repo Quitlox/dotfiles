@@ -1,7 +1,7 @@
--- Initialize vimtex in markdown files
+-- +- Integration: VimTex ------------------------------------+
 vim.cmd([[call vimtex#init()]])
 
--- Detect snippets in embedded filetypes
+-- +- Integration: Luasnip - Detect Snippets in Embeds -------+
 require("luasnip").setup({
     enable_autosnippets = true,
     ft_func = require("luasnip.extras.filetype_functions").from_cursor_pos,
