@@ -139,9 +139,12 @@ end
 vim.cmd([[
 fun! PromptBackspaceSetup()
     if v:option_new == 'prompt'
-      inoremap <buffer> <backspace> <Cmd>lua PromptBackspace()<cr>
-      " Fix <C-BS> in prompt
-      inoremap <buffer> <C-BS> <Cmd>normal! bcw<cr>
+      " Only apply if the filetype is not 'codecompanion'
+      if getbufvar(bufnr(), '&filetype') !=# 'codecompanion'
+        inoremap <buffer><silent> <backspace> <Cmd>lua PromptBackspace()<cr>
+        " Fix <C-BS> in prompt
+        inoremap <buffer><silent> <C-BS> <Cmd>normal! bcw<cr>
+      endif
     endif
 endfun
 

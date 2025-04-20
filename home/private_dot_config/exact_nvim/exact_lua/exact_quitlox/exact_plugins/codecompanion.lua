@@ -19,8 +19,10 @@ require("codecompanion").setup({
         chat = {
             adapter = "gemini_pro",
             keymaps = {
-                -- completion = { modes = { i = "<C-space>" } }, -- FIXME: doesn't work
+                completion = { modes = { i = "<leader>cx" } },
                 change_adapter = { modes = { n = "gA" } },
+                previous_chat = { modes = { n = "[c" } },
+                next_chat = { modes = { n = "]c" } },
             },
             slash_commands = {
                 --+- Integration: snacks.nvim
@@ -41,6 +43,10 @@ require("codecompanion").setup({
         },
         inline = {
             adapter = "gemini_pro",
+            keymaps = {
+                accept_change = { modes = { n = "<leader>ca" } },
+                reject_change = { modes = { n = "<leader>cr" } },
+            },
         },
     },
 })
@@ -51,7 +57,7 @@ require("integrations.codecompanion-fidget"):init()
 --+- Keymaps ------------------------------------------------+
 -- vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>c", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true, desc = "Toggle Chat" })
-vim.keymap.set("v", "<leader>c", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "<leader>c", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 
 --+- Commands -----------------------------------------------+
 -- Expand 'cc' into 'CodeCompanion' in the command line
