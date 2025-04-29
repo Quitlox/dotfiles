@@ -25,6 +25,10 @@
 
   - [ ] `lualine-pretty-path`: crash (only neovide?) upon opening neovim with directory
   - `markdown`: Add keymap `<C-i>` to toggle italics
+||||||| parent of 2ea86df ([nvim] very minor fixes)
+  - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
+  - [ ] adopt mason?
+  - [ ] <C-BS> is being weird with slashes
 
 - To Investigate:
 
@@ -89,6 +93,7 @@
   - [ ] nvim-treesitter-textobjects / mini.ai: python @string.inner / @string.outer
         I would need to find a way around the "@string.inner" problem
 
+
 When need arises:
 
 - [molten.nvim] for Python REPL / Jupyter Notebook
@@ -99,7 +104,6 @@ When need arises:
 Desktop:
 
 - [ ] Eww: Bar should use fill icons on select
-- [ ] Hypr: Configure coding workspace with auto-centered neovide?
 - [ ] Chezmoi:
   - [ ] `~/Documents/PowerShell` should only be created on Windows
   - [ ] `~/.mozilla` script should not run in headless mode
@@ -107,6 +111,21 @@ Desktop:
 - [ ] GlazeWM
   - [ ] toggle floating
   - [ ] ensure that rbw popup is considered floating always
+
+Plugin Ideas:
+    - Rewrite of neotest:
+        - support both simple configuration through cli and advanced configuration through adapter
+        - streaming of results
+        - automatic detection of test framework
+        - more consistent interface
+    - VimTex for Neovim / TexLab plugin
+        - Provide extensions for many popular plugins (i.e. mini.ai for textobjects)
+        - Provide automatic setup of TexLab
+    - Python for Neovim
+        - More comprehensive support for Python development
+        - support virtual envs robustly, auto detect and activate
+        - provide library functions
+        - integrate with mason
 
 ### Memorandum
 

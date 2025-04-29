@@ -190,4 +190,4 @@ vim.cmd([[
 ]])
 
 -- Copy error message
-vim.keymap.set("n", "<leader>vm", "<cmd>let @*=trim(execute('1messages'))<CR><cmd>echo 'copied'<CR>", { desc = "Copy Messages" })
+vim.keymap.set("n", "<leader>vM", "<cmd>let @*=trim(execute('1messages'))<CR><cmd>echo 'copied'<CR>", { desc = "Copy Messages" })

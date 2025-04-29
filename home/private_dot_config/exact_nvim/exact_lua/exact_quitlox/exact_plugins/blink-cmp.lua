@@ -173,7 +173,7 @@ require("blink-cmp").setup({
                 end,
             },
             otter = { name = "otter", module = "blink.compat.source" },
-            path = { opts = { trailing_slash = false, label_trailing_slash = true }, min_keyword_length = 1 },
+            path = { opts = { trailing_slash = false, label_trailing_slash = true }, min_keyword_length = 0 },
             snippets = {
                 score_offset = 100,
             },

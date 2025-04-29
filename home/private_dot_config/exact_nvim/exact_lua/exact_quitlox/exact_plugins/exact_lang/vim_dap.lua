@@ -16,4 +16,4 @@ require("dap").adapters.nlua = function(callback, config)
 end
 
 -- + Keymaps ------------------------------------------------+
-vim.keymap.set({ "n" }, "<F5>", "<cmd>lua require'osv'.launch({port = 8086})<cr>", { noremap = true, buffer = 0, desc = "Launch Debugger (nvim)" })
+vim.keymap.set({ "n" }, "<F5>", "<cmd>lua require'osv'.launch({port = 8086})<cr>", { noremap = true, silent = false, desc = "Launch Debugger (nvim)" })

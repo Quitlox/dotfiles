@@ -17,7 +17,7 @@ require("codecompanion").setup({
     },
     strategies = {
         chat = {
-            adapter = "gemini_pro",
+            adapter = "anthropic",
             keymaps = {
                 completion = { modes = { i = "<leader>cx" } },
                 change_adapter = { modes = { n = "gA" } },
@@ -42,7 +42,7 @@ require("codecompanion").setup({
             },
         },
         inline = {
-            adapter = "gemini_pro",
+            adapter = "anthropic",
             keymaps = {
                 accept_change = { modes = { n = "<leader>ca" } },
                 reject_change = { modes = { n = "<leader>cr" } },
