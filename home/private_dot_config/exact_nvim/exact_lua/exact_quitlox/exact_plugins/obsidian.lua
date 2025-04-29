@@ -1,6 +1,8 @@
 -- +---------------------------------------------------------+
 -- | epwalsh/obsidian.nvim: Obsidian in Neovim               |
 -- +---------------------------------------------------------+
+
+--+- Config: Workspaces -------------------------------------+
 local workspaces = {}
 
 if vim.fn.has("win32") == 1 then
@@ -26,12 +28,10 @@ else
     }
 end
 
+--+- Setup --------------------------------------------------+
 require("obsidian").setup({
+    --+- Behaviour --------------------+
     workspaces = workspaces,
-    daily_notes = {
-        folder = "./Daily Notes/",
-        template = "./Resources/Templates/Daily Note Template.md",
-    },
     mappings = {
         ["X"] = {
             action = function()
@@ -45,12 +45,36 @@ require("obsidian").setup({
             end,
             opts = { noremap = false, expr = true, buffer = true },
         },
+        -- Smart action depending on context: follow link, show notes with tag, toggle checkbox, or toggle heading fold
+        ["<cr>"] = {
+            action = function()
+                return require("obsidian").util.smart_action()
+            end,
+            opts = { buffer = true, expr = true },
+        },
+    },
+
+    --+- Obsidian ---------------------+
+    daily_notes = {
+        folder = "./Daily Notes/",
+        template = "./Resources/Templates/Daily Note Template.md",
     },
     new_notes_location = "notes_subdir",
     notes_subdir = "./Zettelkasten/",
+    attachments = {
+        img_folder = "./Resources/Attachments/",
+    },
 
+    templates = {
+        folder = "./Resources/Templates/",
+    },
+
+    --+- User Inferface ---------------+
+    completion = {
+        blink = true,
+    },
     picker = {
-        name = "telescope.nvim",
+        name = "snacks.pick",
         note_mappings = {
             new = "<C-x>",
             insert_link = "<C-l>",
@@ -60,23 +84,13 @@ require("obsidian").setup({
             insert_tag = "<C-l>",
         },
     },
-
     ui = {
         enable = false, -- We use markview.nvim / markdown-render.nvim
     },
-
-    attachments = {
-        img_folder = "./Resources/Attachments/",
-    },
-
-    templates = {
-        folder = "./Resources/Templates/",
-    },
 })
 
-require("which-key").add({
-    { "<leader><leader>o", group = "Obsidian" },
-})
+--+- Keymaps ------------------------------------------------+
+require("which-key").add({ { "<leader><leader>o", group = "Obsidian" } })
 vim.keymap.set("n", "<leader><leader>oo", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick Switcher" })
 vim.keymap.set("n", "<leader><leader>os", "<cmd>ObsidianSearch<cr>", { desc = "Open Note" })
 vim.keymap.set("n", "<leader><leader>on", "<cmd>ObsidianNew<cr>", { desc = "New Note" })
