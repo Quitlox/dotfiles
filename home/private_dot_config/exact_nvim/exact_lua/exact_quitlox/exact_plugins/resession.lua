@@ -32,6 +32,9 @@ resession.setup({
     },
     -- Config: Extensions
     extensions = {
+        arrow = {
+            enable_in_tab = true,
+        },
         neo_tree = {
             enable_in_tab = true,
         },
