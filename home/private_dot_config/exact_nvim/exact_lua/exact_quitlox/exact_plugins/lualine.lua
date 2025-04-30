@@ -90,7 +90,7 @@ require("lualine").setup({
     inactive_winbar = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { "my_pretty_path" },
+        lualine_c = { "my_pretty_path", "navic" },
         lualine_x = {},
         lualine_y = {},
         lualine_z = {},

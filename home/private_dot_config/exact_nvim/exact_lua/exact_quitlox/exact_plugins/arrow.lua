@@ -9,7 +9,11 @@ require("arrow").setup({
     buffer_leader_key = "M",
 
     per_buffer_config = {
-        lines = 8,
+        treesitter_context = {
+            line_shift_down = 4,
+        },
+        lines = 10,
+        zindex = 10,
     },
 
     mappings = {

@@ -32,16 +32,21 @@ resession.setup({
     },
     -- Config: Extensions
     extensions = {
-        venv_selector = {
-            enable_in_tab = true,
-        },
         neo_tree = {
             enable_in_tab = true,
         },
         neotest = {
             enable_in_tab = true,
         },
-        overseer = {},
+        overseer = {
+            enable_in_tab = true,
+        },
+        ["treesitter-context"] = {
+            enable_in_tab = true,
+        },
+        venv_selector = {
+            enable_in_tab = true,
+        },
     },
 })
 

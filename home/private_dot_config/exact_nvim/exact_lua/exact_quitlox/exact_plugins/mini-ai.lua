@@ -42,6 +42,7 @@ end
 -- Setup --------------------------------------------------+
 local gen_spec = require("mini.ai").gen_spec
 local mini_ai_opts = {
+    n_lines = 250,
     custom_textobjects = {
         m = gen_spec.treesitter({
             a = "@function.outer",

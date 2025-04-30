@@ -21,6 +21,7 @@
         "reportReturnType": "none", // incorrect
 
         "reportAny": "none", // we use mypy for typing
+        "reportExplicitAny": "none", // we use mypy for typing
         "reportUnannotatedClassAttribute": "none", // we use mypy for typing
         "reportUnknownMemberType": "none", // we use mypy for typing
         "reportUnknownVariableType": "none", // we use mypy for typing

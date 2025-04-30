@@ -30,6 +30,10 @@
   - [ ] adopt mason?
   - [ ] <C-BS> is being weird with slashes
 
+  - [ ] `resession.nvim` arrow plugin
+  - [ ] `nvim-treesitter-context`: my keybinding `<leader>wo` closes it.
+  - [ ] `aerial.nvim` should have name of linked file in winbar title
+
 - To Investigate:
 
   - [ ] snacks.profile: investigate sluggishness when switching windows from
