@@ -25,7 +25,6 @@
 
   - [ ] `lualine-pretty-path`: crash (only neovide?) upon opening neovim with directory
   - `markdown`: Add keymap `<C-i>` to toggle italics
-||||||| parent of 2ea86df ([nvim] very minor fixes)
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
   - [ ] adopt mason?
   - [ ] <C-BS> is being weird with slashes

@@ -31,14 +31,6 @@ require("codecompanion").setup({
                         provider = "snacks",
                     },
                 },
-                --+- Integration: VectorCode
-                codebase = require("vectorcode.integrations").codecompanion.chat.make_slash_command(),
-            },
-            tools = {
-                vectorcode = {
-                    description = "Run VectorCode to retrieve the project context.",
-                    callback = require("vectorcode.integrations").codecompanion.chat.make_tool(),
-                },
             },
         },
         inline = {
@@ -46,6 +38,14 @@ require("codecompanion").setup({
             keymaps = {
                 accept_change = { modes = { n = "<leader>ca" } },
                 reject_change = { modes = { n = "<leader>cr" } },
+            },
+        },
+    },
+    opts = {
+        extensions = {
+            --+- Integration: VectorCode
+            vectorcode = {
+                opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
             },
         },
     },
