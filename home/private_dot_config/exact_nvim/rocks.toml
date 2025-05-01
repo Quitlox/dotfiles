@@ -180,8 +180,8 @@ auto_install = "prompt"
 
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
-"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v15.0.0" }
-"vectorcode" = { git = "davidyz/vectorcode", rev = "0.6.2" }
+"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "29ded250b186c550222aa6a4a648e52ad49dd85f" }
+"vectorcode" = { git = "davidyz/vectorcode", rev = "0.6.3" }
 "mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "v5.0.0" }
 
 # +- File Explorer ------------------------------------------+
