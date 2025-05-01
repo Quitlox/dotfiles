@@ -49,16 +49,31 @@ function M:update_status(is_focused)
 
     if path == nil then
         vim.notify('vim.fn.expand("%:~:.") returned nil. Current cwd: ' .. vim.fn.getcwd(), vim.log.levels.ERROR)
+        path = "" -- This is the key fix - ensure path is never nil
     end
 
-    path = path or "" -- This is the key fix - ensure path is never nil
+    -- Early return with empty string for problematic cases
+    -- This avoids the nil indexing error in the provider
+    if path == "" then
+        self.options.icon = nil
+        return ""
+    end
 
     local provider = self:get_provider(path)
     local hl_fn = function(text, group)
         return self:_hl(text, group)
     end
 
-    local p = provider:new(path, is_focused, hl_fn, self.options)
+    -- Catch any errors during provider initialization
+    local ok, p = pcall(function()
+        return provider:new(path, is_focused, hl_fn, self.options)
+    end)
+
+    if not ok then
+        self.options.icon = nil
+        return ""
+    end
+
     if not self.options.icon_show or not (self.is_focused or self.options.icon_show_inactive) or not p.icon[1] then
         self.options.icon = nil
     else
@@ -67,7 +82,12 @@ function M:update_status(is_focused)
         self.options.icon = self:_hl(icon .. string.rep(" ", padding), p.icon[2])
     end
 
-    return p:render()
+    -- Safely render the path
+    local ok2, result = pcall(function()
+        return p:render()
+    end)
+
+    return ok2 and result or ""
 end
 
 return M

@@ -23,13 +23,11 @@
     - [ ] Do not do double quote upon \" or \'
     - [ ] configure formatters and linters for bibtex and latex
 
-  - [ ] `lualine-pretty-path`: crash (only neovide?) upon opening neovim with directory
   - `markdown`: Add keymap `<C-i>` to toggle italics
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
   - [ ] adopt mason?
   - [ ] <C-BS> is being weird with slashes
 
-  - [ ] `resession.nvim` arrow plugin
   - [ ] `nvim-treesitter-context`: my keybinding `<leader>wo` closes it.
   - [ ] `aerial.nvim` should have name of linked file in winbar title
 
