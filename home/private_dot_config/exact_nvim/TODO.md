@@ -31,6 +31,9 @@
   - [ ] `nvim-treesitter-context`: my keybinding `<leader>wo` closes it.
   - [ ] `aerial.nvim` should have name of linked file in winbar title
 
+  - [ ] folds of multiline decorators are ugly in python
+  - [ ] when opening right sidebar, vsplits are not sized properly
+
 - To Investigate:
 
   - [ ] snacks.profile: investigate sluggishness when switching windows from
@@ -124,7 +127,12 @@ Plugin Ideas:
         - Provide automatic setup of TexLab
     - Python for Neovim
         - More comprehensive support for Python development
-        - support virtual envs robustly, auto detect and activate
+        - support virtual envs robustly
+            - auto detect virtual envs. 
+            - auto-activate (if one found in shell, or if only one in project)
+            - set venv per tab / project root
+            - inform lsp server
+            - (maybe I should track virtualenvs per buffer, like attaching lsps to buffers)
         - provide library functions
         - integrate with mason
 

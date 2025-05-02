@@ -18,6 +18,7 @@
       "basedpyright.analysis.typeCheckingMode": "recommended",
       "basedpyright.analysis.diagnosticSeverityOverrides": {
         "reportAttributeAccessIssue": "none", // incorrect
+        "reportConstantRedefinition": "none", // I know what I am doing
         "reportReturnType": "none", // incorrect
 
         "reportAny": "none", // we use mypy for typing
