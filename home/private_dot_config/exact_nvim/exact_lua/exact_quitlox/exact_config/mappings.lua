@@ -89,7 +89,11 @@ local function window_only()
     local tabpage = vim.api.nvim_get_current_tabpage()
     for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tabpage)) do
         if win ~= vim.api.nvim_get_current_win() and vim.api.nvim_win_is_valid(win) then
-            vim.api.nvim_win_close(win, false)
+            -- Check if the window is a floating window
+            local config = vim.api.nvim_win_get_config(win)
+            if config.relative == "" then -- Not a floating window
+                vim.api.nvim_win_close(win, false)
+            end
         end
     end
 end

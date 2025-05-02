@@ -91,7 +91,7 @@ require("gitsigns").setup({
     end,
 })
 
---+- Integration --------------------------------------------+
+--+- Integration: Scrollbar ---------------------------------+
 local success, mod = pcall(require, "scrollbar.handlers.gitsigns")
 if success then
     mod.setup()

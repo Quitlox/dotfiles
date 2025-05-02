@@ -35,6 +35,7 @@ function M:init(options)
         oil = { "󰏇", "OilDir" },
         trouble = { "", "DevIconGitConfig" },
         Trouble = { "", "DevIconGitConfig" },
+        -- codecompanion = { "✨", "DevIconGitConfig" },
     }
 end
 

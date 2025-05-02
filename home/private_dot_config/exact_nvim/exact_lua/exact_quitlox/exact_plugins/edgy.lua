@@ -34,6 +34,7 @@ local function filter_terminal_wins(pos)
 end
 
 --+- Setup --------------------------------------------------+
+-- NOTE: The titles are only shown when the winbar of lualine has been disabled.
 require("edgy").setup({
     -- stylua: ignore start
     left = {

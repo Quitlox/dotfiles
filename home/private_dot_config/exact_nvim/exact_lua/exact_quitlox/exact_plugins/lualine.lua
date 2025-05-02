@@ -24,6 +24,26 @@ local fileformat = function()
     return ret
 end
 
+local vector_code = {
+    function()
+        return require("vectorcode.integrations").lualine({})[1]()
+    end,
+    cond = function()
+        if package.loaded["vectorcode"] == nil then
+            return false
+        else
+            return require("vectorcode.integrations").lualine({}).cond()
+        end
+    end,
+}
+
+local mcp_hub = {
+    require("mcphub.extensions.lualine"),
+    cond = function()
+        return package.loaded["mcphub"] ~= nil
+    end,
+}
+
 --+- Customize Modules --------------------------------------+
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
 local git_blame = { "b:gitsigns_blame_line", icon = " ", fmt = trunc(180, 40, 140, true) }
@@ -71,9 +91,9 @@ require("lualine").setup({
         lualine_a = { "my_cwd" },
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
-        lualine_x = { { require("mcphub.extensions.lualine") }, "overseer", "my_active_linters" },
-        lualine_y = { "my_mixed_indent", encoding, fileformat, "my_fancy_lsp_servers", "my_python_venv" },
-        lualine_z = { "my_fancy_searchcount", "my_fancy_location" },
+        lualine_x = { "overseer" },
+        lualine_y = { "my_active_linters", "my_fancy_lsp_servers", "my_python_venv" },
+        lualine_z = { "my_mixed_indent", encoding, fileformat, "my_fancy_searchcount", "my_fancy_location" },
     },
     inactive_sections = {
         lualine_a = { "my_cwd" },
@@ -91,8 +111,8 @@ require("lualine").setup({
         lualine_a = {},
         lualine_b = {},
         lualine_c = { "my_pretty_path", "navic" },
-        lualine_x = {},
-        lualine_y = {},
+        lualine_x = { "my_fancy_diff" },
+        lualine_y = { "my_fancy_diagnostics" },
         lualine_z = {},
     },
 
@@ -119,6 +139,19 @@ require("lualine").setup({
         "overseer",
         "quickfix",
         "trouble",
+
+        -- Custom
+        {
+            filetypes = { "codecompanion" },
+            winbar = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { "my_pretty_path" },
+                lualine_x = { mcp_hub, vector_code },
+                lualine_y = {},
+                lualine_z = {},
+            },
+        },
     },
 })
 

@@ -24,11 +24,8 @@
     - [ ] configure formatters and linters for bibtex and latex
 
   - `markdown`: Add keymap `<C-i>` to toggle italics
-  - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
-  - [ ] adopt mason?
   - [ ] <C-BS> is being weird with slashes
 
-  - [ ] `nvim-treesitter-context`: my keybinding `<leader>wo` closes it.
   - [ ] `aerial.nvim` should have name of linked file in winbar title
 
   - [ ] folds of multiline decorators are ugly in python

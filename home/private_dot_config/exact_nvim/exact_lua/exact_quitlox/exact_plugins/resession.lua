@@ -19,7 +19,7 @@ resession.setup({
         "binary",
         "bufhidden",
         "buflisted",
-        "cmdheight",
+        -- "cmdheight",
         "diff",
         "filetype",
         "modifiable",
