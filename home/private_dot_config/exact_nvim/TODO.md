@@ -24,6 +24,7 @@
     - [ ] configure formatters and linters for bibtex and latex
 
   - `markdown`: Add keymap `<C-i>` to toggle italics
+  - `markdown`: I want a motion for selecting a code block (triple quotes, but excluding ft)
   - [ ] <C-BS> is being weird with slashes
 
   - [ ] `aerial.nvim` should have name of linked file in winbar title

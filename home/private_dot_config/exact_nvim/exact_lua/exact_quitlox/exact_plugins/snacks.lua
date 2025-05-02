@@ -152,7 +152,7 @@ local picker_smart = {
 
 --+- Configure Pickers --------------------------------------+
 -- stylua: ignore start
-vim.keymap.set({ "n" }, "gs", function() Snacks.picker.lsp_workspace_symbols(picker_workspace_symbols) end, { noremap = true, silent = true, desc = "Workspace Symbols" })
+-- vim.keymap.set({ "n" }, "gs", function() Snacks.picker.lsp_workspace_symbols(picker_workspace_symbols) end, { noremap = true, silent = true, desc = "Workspace Symbols" })
 
 vim.keymap.set({ "n", "v" }, "<leader>vk", function() Snacks.picker.commands(picker_commands) end, { noremap = true, silent = true, desc = "Commands" })
 vim.keymap.set({ "n", "v" }, "<leader>vK", function() Snacks.picker.command_history(picker_command_history) end, { noremap = true, silent = true, desc = "Command History" })

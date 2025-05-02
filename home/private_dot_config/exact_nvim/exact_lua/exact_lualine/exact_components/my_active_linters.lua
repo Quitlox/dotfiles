@@ -23,19 +23,12 @@ function M:update_status()
     -- Get running linters for current buffer
     local running_linters = lint.get_running(bufnr)
 
-    -- Filter running linters to only those registered for this filetype
-    local filtered_running = {}
-    for _, running in ipairs(running_linters) do
-        for _, registered in ipairs(registered_linters) do
-            if running == registered then
-                table.insert(filtered_running, running)
-                break
-            end
-        end
+    if #running_linters == 0 then
+        return string.format("  %d", #registered_linters)
     end
 
     -- Show running count and total registered count
-    return string.format("󱉶 %d (%d)", #filtered_running, #registered_linters)
+    return string.format("  %d", #running_linters)
 end
 
 return M
