@@ -75,7 +75,7 @@ local mini_ai_opts = {
 }
 require("mini.ai").setup(mini_ai_opts)
 
--- Integration: Which-Key ---------------------------------+
+--+- Integration: Which-Key ---------------------------------+
 -- Note that due to the inherent design of `mini.ai`, the which-key popup won't
 -- show if entering operator-pending mode without waiting for the which-key
 -- popup timeout. This is because mini.ai takes control over the input.

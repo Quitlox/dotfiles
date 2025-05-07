@@ -16,8 +16,10 @@ require("trouble").setup({
             mode = "diagnostics",
             filter = function(items)
                 return vim.tbl_filter(function(item)
-                    if item.item.source == "Pyright" then
-                        return false
+                    if item.item.source == "Pyright" or item.item.source == "basedpyright" then
+                        if item.item.severity == vim.diagnostic.severity.HINT then
+                            return false
+                        end
                     end
                     return true
                 end, items)

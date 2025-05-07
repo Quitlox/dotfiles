@@ -17,13 +17,11 @@
 
   - [ ] Optimize AI for Research:
     - Introduce system prompt for research
-    - Add MCP Tool calling for searching web and papers.
     - voeg simpele system prompt toe voor het helpen met vertalen van woorden
   - [ ] Latex
     - [ ] Do not do double quote upon \" or \'
     - [ ] configure formatters and linters for bibtex and latex
 
-  - `markdown`: Add keymap `<C-i>` to toggle italics
   - `markdown`: I want a motion for selecting a code block (triple quotes, but excluding ft)
   - [ ] <C-BS> is being weird with slashes
 
@@ -52,8 +50,9 @@
   - [ ] navic: should provide symbol filter, but maintainer is inactive
   - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
   - [ ] `scissors.nvim`: add option to toggle autosnippet
-  - [ ] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
+  - [X] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
   - [ ] venv-selector: doesn't work without python file open
+  - [ ] `workspaces.nvim`: Replace with finder that automatically detects workspaces (and has snacks support)
 
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
     - https://github.com/rcarriga/nvim-dap-ui/issues/175
@@ -105,7 +104,7 @@ When need arises:
 
 Desktop:
 
-- [ ] Eww: Bar should use fill icons on select
+- [ ] Eww: Bar use fill icons on select
 - [ ] Chezmoi:
   - [ ] `~/Documents/PowerShell` should only be created on Windows
   - [ ] `~/.mozilla` script should not run in headless mode
@@ -113,6 +112,9 @@ Desktop:
 - [ ] GlazeWM
   - [ ] toggle floating
   - [ ] ensure that rbw popup is considered floating always
+- [ ] Hyprland
+  - [ ] Automatically restore eDP upon disconnect
+  - [ ] Automatically reload eww upon connect new monitor
 
 Plugin Ideas:
     - Rewrite of neotest:
@@ -136,9 +138,10 @@ Plugin Ideas:
 
 ### Memorandum
 
-- Help File Navigation: Hit `gO` to open an outline in the help file.
 - In insert mode, use `<C-o>` to execute a normal mode command.
 - Use 'g==' to execute a block of code (or a terminal escape sequence).
+- `vim.keymap.set("n", "ycc", "yygccp", { remap = true }) -- copy and comment`
+- `vim.keymap.set("n", ",,", "A,<ESC>")
 
 _Resources_
 

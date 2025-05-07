@@ -42,6 +42,10 @@ local function on_attach(bufnr)
     -- stylua: ignore end
 
     -- stylua: ignore start
+    map("n", "<leader>ga", gs.stage_buffer, { desc = "Stage Buffer" })
+    -- stylua: ignore end
+
+    -- stylua: ignore start
     map("n", "<leader>hS", gs.stage_buffer, { desc = "Hunk Stage Buffer" })
     map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Hunk Reset" })
     map("n", "<leader>hR", gs.reset_buffer, { desc = "Hunk Reset Buffer" })

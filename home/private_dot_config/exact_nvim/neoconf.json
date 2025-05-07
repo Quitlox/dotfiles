@@ -17,19 +17,31 @@
       "basedpyright.disableOrganizeImports": true,
       "basedpyright.analysis.typeCheckingMode": "recommended",
       "basedpyright.analysis.diagnosticSeverityOverrides": {
-        "reportAttributeAccessIssue": "none", // incorrect
-        "reportConstantRedefinition": "none", // I know what I am doing
-        "reportReturnType": "none", // incorrect
+        // found to be incorrect
+        "reportAttributeAccessIssue": "none", 
+        "reportReturnType": "none", 
+        "reportUnusedFunction": "none", // not correct in single file mode, annoying
+        "reportUnknownParameterType": "none",
+        // I know what I am doing
+        "reportConstantRedefinition": "none", 
+        "reportUnusedCallResult": "none", 
+        // not useful
+        "reportUntypedClassDecorator": "none", 
+        "reportUntypedFunctionDecorator": "none", 
+        "reportImplicitStringConcatenation": "none", 
+        "reportImportCycles": "none", 
 
-        "reportAny": "none", // we use mypy for typing
-        "reportExplicitAny": "none", // we use mypy for typing
-        "reportUnannotatedClassAttribute": "none", // we use mypy for typing
-        "reportUnknownMemberType": "none", // we use mypy for typing
-        "reportUnknownVariableType": "none", // we use mypy for typing
-        "reportUnknownArgumentType": "none", // we use mypy for typing
+        // we use mypy for typing
+        "reportAny": "none", 
+        "reportExplicitAny": "none", 
+        "reportUnannotatedClassAttribute": "none", 
+        "reportUnknownMemberType": "none", 
+        "reportUnknownVariableType": "none",
+        "reportUnknownArgumentType": "none",
+        "reportMissingTypeStubs": "none",
 
+        // redefine severity
         "reportUnreachable": "hint",
-        "reportUnusedCallResult": "none",
         "reportUnusedImport": "hint",
         "reportUnusedParameter": "hint",
         "reportUnusedVariable": "hint",

@@ -6,6 +6,10 @@ require("namu").setup({
     namu_symbols = {
         enable = true,
         options = {
+            AllowKinds = {
+                python = { "Function", "Class", "Method" },
+            },
+
             movement = {
                 next = { "<C-n>", "<C-j>", "<DOWN>" },
                 previous = { "<C-p>", "<C-k>", "<UP>" },
