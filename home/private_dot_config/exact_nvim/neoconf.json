@@ -19,6 +19,7 @@
       "basedpyright.analysis.diagnosticSeverityOverrides": {
         // found to be incorrect
         "reportAttributeAccessIssue": "none", 
+        "reportArgumentType": "none",
         "reportReturnType": "none", 
         "reportUnusedFunction": "none", // not correct in single file mode, annoying
         "reportUnknownParameterType": "none",

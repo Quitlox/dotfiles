@@ -4,6 +4,7 @@
 
 require("aerial").setup({
     backends = { "lsp", "treesitter", "markdown", "man" },
+    attach_mode = "global",
 
     -- A list of all symbols to display. Set to false to display all symbols.
     -- This can be a filetype map (see :help aerial-filetype-map)

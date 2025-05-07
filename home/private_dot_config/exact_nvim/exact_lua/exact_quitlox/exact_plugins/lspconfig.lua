@@ -34,8 +34,8 @@ local function set_keybindings(bufnr)
     vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Next Diagnostic", buffer = bufnr, silent = true, noremap = true })
     -- vim.keymap.set("n", "[w", function() vim.diagnostic.goto_prev({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Prev Diagnostic", buffer = bufnr, silent = true, noremap = true })
     -- vim.keymap.set("n", "]w", function() vim.diagnostic.goto_next({ float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Next Diagnostic", buffer = bufnr, silent = true, noremap = true })
-    vim.keymap.set("n", "[D", function() vim.diagnostic.goto_prev({ float = true, severity = vim.diagnostic.severity.HINT }) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
-    vim.keymap.set("n", "]D", function() vim.diagnostic.goto_next({ float = true, severity = vim.diagnostic.severity.HINT }) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
+    vim.keymap.set("n", "[D", function() vim.diagnostic.goto_prev({ float = true, severity = { min = vim.diagnostic.severity.HINT }}) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
+    vim.keymap.set("n", "]D", function() vim.diagnostic.goto_next({ float = true, severity = { min = vim.diagnostic.severity.HINT }}) end, { desc = "Prev Error", buffer = bufnr, silent = true, noremap = true })
     -- stylua: ignore end
     vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "Code Action", buffer = bufnr, silent = true, noremap = true })
 end

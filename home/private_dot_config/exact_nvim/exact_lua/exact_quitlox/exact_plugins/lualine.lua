@@ -80,6 +80,7 @@ require("lualine").setup({
                 "dapui_console",
                 "Avante",
                 "AvanteInput",
+                "aerial",
                 "jinja", -- buggy
             },
             statusline = {

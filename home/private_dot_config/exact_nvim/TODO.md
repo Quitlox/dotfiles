@@ -25,14 +25,13 @@
   - `markdown`: I want a motion for selecting a code block (triple quotes, but excluding ft)
   - [ ] <C-BS> is being weird with slashes
 
-  - [ ] `aerial.nvim` should have name of linked file in winbar title
-
   - [ ] folds of multiline decorators are ugly in python
   - [ ] when opening right sidebar, vsplits are not sized properly
 
+
 - To Investigate:
 
-  - [ ] snacks.profile: investigate sluggishness when switching windows from
+  - [ ] `snacks.profile`: investigate sluggishness when switching windows from
         terminal into LSP enabled window (python) -> its linting, but why
   - [ ] `snacks.picker`: `lsp_workspace_symbols` sorting is not good
         in `tno.mpc.communication`, searching for `Pool` does not retrieve the `Pool` class
@@ -53,7 +52,12 @@
   - [X] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
   - [ ] venv-selector: doesn't work without python file open
   - [ ] `workspaces.nvim`: Replace with finder that automatically detects workspaces (and has snacks support)
+  - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
+  - [ ] maybe add window picker shortcut to `<C-w>` so I can jump from e.g. aerial to a desired window?
 
+  - [ ] `lint.nvim`: filter `pylint` warning `logging-fstring-interpolation`
+
+  - [ ] `nvim-dap-ui`: consider replacing with `nvim-dap-view` or `debugmaster.nvim`
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
     - https://github.com/rcarriga/nvim-dap-ui/issues/175
     - https://github.com/rcarriga/nvim-dap-ui/issues/260
