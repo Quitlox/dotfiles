@@ -1,0 +1,21 @@
+general:
+  startup_commands: []
+  toggle_workspace_on_refocus: true
+
+keybindings:
+  - commands: ["alacrity.exe"]
+    bindings: ["alt+enter"]
+  - commands: ["PowerShell 7 (x64).exe"]
+    bindings: ["alt+shift+enter"]
+
+window_rules:
+  - commands: ["set-floating"]
+    match:
+      - window_title: { equals: "rbw (Arch)" }
+  - commands: ["set-floating"]
+    match:
+      - window_title: { equals: "Bitwarden" }
+      - window_process: { equals: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" }
+  - commands: ["set-floating"]
+    match:
+      - window_process: { equals: "C:\\Windows\\explorer.exe" }
