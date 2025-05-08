@@ -39,38 +39,27 @@ local function ai_buffer(ai_type)
     return { from = { line = start_line, col = 1 }, to = { line = end_line, col = to_col } }
 end
 
--- Setup --------------------------------------------------+
+--+- Setup --------------------------------------------------+
 local gen_spec = require("mini.ai").gen_spec
 local mini_ai_opts = {
-    n_lines = 250,
+    n_lines = 1000,
     custom_textobjects = {
-        m = gen_spec.treesitter({
-            a = "@function.outer",
-            i = "@function.inner",
-        }),
-        C = gen_spec.treesitter({
-            a = "@class.outer",
-            i = "@class.inner",
-        }),
-        d = gen_spec.treesitter({
-            a = "@statement.outer",
-            i = "@statement.inner",
-        }),
-        o = gen_spec.treesitter({
-            a = { "@conditional.outer", "@block.outer", "@loop.outer" },
-            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-        }),
+        C = gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
         i = require("mini.extra").gen_ai_spec.indent(),
+        l = gen_spec.treesitter({ a = "@statement.outer", i = "@statement.inner" }),
+        m = gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+        o = gen_spec.treesitter({ a = { "@conditional.outer", "@block.outer", "@loop.outer" }, i = { "@block.inner", "@conditional.inner", "@loop.inner" } }),
 
-        -- From LazyVim
+        -- Buffer
+        g = ai_buffer,
+        -- Tag (From LazyVim)
         t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
-        g = ai_buffer, -- buffer
-        s = { -- Subword (CamelCase, snake_case)
-            { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
-            "^().*()$",
-        },
-        u = gen_spec.function_call(), -- u for "Usage"
-        U = gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
+        -- Subword (CamelCase, snake_case)
+        s = { { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" }, "^().*()$" }, -- fmt: skip
+        -- Usage of a function
+        u = gen_spec.function_call(),
+        -- Usage of a function (without dot in function name)
+        U = gen_spec.function_call({ name_pattern = "[%w_]" }),
     },
 }
 require("mini.ai").setup(mini_ai_opts)
@@ -80,40 +69,46 @@ require("mini.ai").setup(mini_ai_opts)
 -- show if entering operator-pending mode without waiting for the which-key
 -- popup timeout. This is because mini.ai takes control over the input.
 
+local objects = {
+
+    { " ", desc = "whitespace" },
+    -- { '"', desc = '" string' },
+    -- { "'", desc = "' string" },
+    -- { "(", desc = "() block" },
+    -- { ")", desc = "() block with ws" },
+    -- { "<", desc = "<> block" },
+    -- { ">", desc = "<> block with ws" },
+    -- { "[", desc = "[] block" },
+    -- { "]", desc = "[] block with ws" },
+    -- { "{", desc = "{} block" },
+    -- { "}", desc = "{} with ws" },
+    { "_", desc = "underscore" },
+    -- { "`", desc = "` string" },
+    { "a", desc = "argument" },
+    { "b", desc = ")]} block" },
+    { "q", desc = "quote `\"'" },
+
+    -- Custom: Treesitter
+    { "C", desc = "class" },
+    { "i", desc = "indent" },
+    { "l", desc = "statement" },
+    { "m", desc = "function" },
+    { "o", desc = "block, conditional, loop" },
+
+    -- Custom: Miscelleneous
+    { "g", desc = "buffer" },
+    { "t", desc = "tag" },
+    { "s", desc = "CamelCase / snake_case" },
+    { "u", desc = "use/call" },
+    { "U", desc = "use/call without dot" },
+    { "?", desc = "user prompt" },
+    -- { "d", desc = "digit(s)" },
+}
+
 --- Register all text objects from mini.ai with which-key for the `a` and `i` operators.
 --- Taken from LazyVim (https://github.com/LazyVim/LazyVim/blob/d0c366e4d861b848bdc710696d5311dca2c6d540/lua/lazyvim/util/mini.lua#L23)
 ---@param opts table
 local function ai_whichkey(opts)
-    local objects = {
-        { " ", desc = "whitespace" },
-        { '"', desc = '" string' },
-        { "'", desc = "' string" },
-        { "(", desc = "() block" },
-        { ")", desc = "() block with ws" },
-        { "<", desc = "<> block" },
-        { ">", desc = "<> block with ws" },
-        { "?", desc = "user prompt" },
-        { "U", desc = "use/call without dot" },
-        { "[", desc = "[] block" },
-        { "]", desc = "[] block with ws" },
-        { "_", desc = "underscore" },
-        { "`", desc = "` string" },
-        { "a", desc = "argument" },
-        { "b", desc = ")]} block" },
-        { "c", desc = "class" },
-        { "d", desc = "digit(s)" },
-        { "s", desc = "CamelCase / snake_case" },
-        { "f", desc = "function" },
-        { "g", desc = "entire file" },
-        { "i", desc = "indent" },
-        { "o", desc = "block, conditional, loop" },
-        { "q", desc = "quote `\"'" },
-        { "t", desc = "tag" },
-        { "u", desc = "use/call" },
-        { "{", desc = "{} block" },
-        { "}", desc = "{} with ws" },
-    }
-
     ---@type wk.Spec[]
     local ret = { mode = { "o", "x" } }
     ---@type table<string, string>

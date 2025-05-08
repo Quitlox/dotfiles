@@ -27,7 +27,7 @@ auto_install = "prompt"
 # "dial.nvim" = "0.4.0"
 "highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim", rev = "a5e2e2d43f6d131bf526619baeeeec32397b0789" }
 "mini.misc" = "0.15.0"
-"nvim-ufo" = "1.5.0"
+"nvim-ufo" = { git = "kevinhwang91/nvim-ufo", rev = "3c7a3570e9c9dc198a2ad4491b0b0e51c4d4ba08" }
 "vim-matchup" = { git = "andymass/vim-matchup", rev = "ea2ff43e09e68b63fc6d9268fc5d82d82d433cb3" }
 "yanky.nvim" = { git = "gbprod/yanky.nvim", rev = "04775cc6e10ef038c397c407bc17f00a2f52b378" }
 "wrapping.nvim" = { git = "andrewferrier/wrapping.nvim", rev = "f26fdeabd17cf1bf5197badbdadc2e2f08b6ab0f" }

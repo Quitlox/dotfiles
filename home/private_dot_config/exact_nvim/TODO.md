@@ -23,9 +23,7 @@
     - [ ] configure formatters and linters for bibtex and latex
 
   - `markdown`: I want a motion for selecting a code block (triple quotes, but excluding ft)
-  - [ ] <C-BS> is being weird with slashes
 
-  - [ ] folds of multiline decorators are ugly in python
   - [ ] when opening right sidebar, vsplits are not sized properly
 
 

@@ -10,13 +10,13 @@ require("nvim-treesitter.configs").setup({
         move = {
             goto_next_start = {
                 ["]m"] = "@function.name",
-                ["]f"] = "@function.name",
                 ["]]"] = "@class.name",
+                ["]C"] = "@class.name",
             },
             goto_previous_start = {
                 ["[m"] = "@function.name",
-                ["[f"] = "@function.name",
                 ["[["] = "@class.name",
+                ["[C"] = "@class.name",
             },
         },
     },
