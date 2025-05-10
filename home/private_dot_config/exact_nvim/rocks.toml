@@ -129,6 +129,8 @@ auto_install = "prompt"
 # | Language Support                                         |
 # +----------------------------------------------------------+
 
+"mason.nvim" = { git = "mason-org/mason.nvim", rev = "v2.0.0" }
+
 # +- LSP ----------------------------------------------------+
 "nvim-lspconfig" = "2.1.0"
 "neoconf.nvim" = { git = "folke/neoconf.nvim", rev = "698aa83e28b22018e31993d70c53cece6d9a4292" }

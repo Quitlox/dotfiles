@@ -48,10 +48,10 @@ vim.keymap.set("n", "<leader>to", function() require("neotest").output.open({ en
 vim.keymap.set("n", "<leader>ts", function() require("neotest").summary.toggle() end, { noremap = true, desc = "Test Summary toggle" })
 vim.keymap.set("n", "<leader>lt", function() require("neotest").summary.open() end, { noremap = true, desc = "Locate Test" })
 
-vim.keymap.set("n", "[T", function() require("neotest").jump.prev({ status = "failed" }) end, { buffer = args.buf, noremap = true, desc = "Prev Failed Test" })
-vim.keymap.set("n", "]T", function() require("neotest").jump.next({ status = "failed" }) end, { buffer = args.buf, noremap = true, desc = "Next Failed Test" })
-vim.keymap.set("n", "[t", function() require("neotest").jump.prev() end, { buffer = args.buf, noremap = true, desc = "Prev Test" })
-vim.keymap.set("n", "]t", function() require("neotest").jump.next() end, { buffer = args.buf, noremap = true, desc = "Next Test" })
+vim.keymap.set("n", "[T", function() require("neotest").jump.prev({ status = "failed" }) end, { noremap = true, desc = "Prev Failed Test" })
+vim.keymap.set("n", "]T", function() require("neotest").jump.next({ status = "failed" }) end, { noremap = true, desc = "Next Failed Test" })
+vim.keymap.set("n", "[t", function() require("neotest").jump.prev() end, { noremap = true, desc = "Prev Test" })
+vim.keymap.set("n", "]t", function() require("neotest").jump.next() end, { noremap = true, desc = "Next Test" })
 -- stylua: ignore end
 
 --+- Keybindings: DAP ---------------------------------------+

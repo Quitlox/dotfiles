@@ -46,9 +46,13 @@
         "reportUnusedImport": "hint",
         "reportUnusedParameter": "hint",
         "reportUnusedVariable": "hint",
-        "reportDeprecated": "hint",
+        "reportDeprecated": "hint"
       }
-    }
+    },
+    "lua_ls": {
+      "Lua.completion.callSnippet": "Replace",
+      "Lua.telemetry.enable": false
+    },
   },
   "neoconf": {}
 }

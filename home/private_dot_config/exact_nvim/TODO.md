@@ -36,6 +36,8 @@
   - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
   - [ ] maybe add window picker shortcut to `<C-w>` so I can jump from e.g. aerial to a desired window?
   - [ ] `lint.nvim`: filter `pylint` warning `logging-fstring-interpolation`
+  - [ ] `clasp.nvim`: not working inside lua tables?
+  - [ ] `codecompanion.nvim`: visual mode inserts text twice for some reason
 
 - Requires Contribution:
 
