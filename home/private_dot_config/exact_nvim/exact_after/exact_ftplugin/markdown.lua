@@ -11,6 +11,7 @@ require("luasnip").setup({
 })
 
 -- +- Integration: Treesitter --------------------------------+
+-- textobject: code fence
 require("nvim-treesitter.configs").setup({
     textobjects = {
         move = {
@@ -24,15 +25,13 @@ require("nvim-treesitter.configs").setup({
     },
 })
 
---+- Integration: MiniAI - Code Block text object -----------+
--- Create treesitter-based markdown code block textobject for mini.ai
-local spec = require("mini.ai").gen_spec.treesitter({
-    a = "@fenced_code_block.outer",
-    i = "@code_fence_content",
-})
-
+--+- Integration: MiniAI ------------------------------------+
+-- textobject: code fence
 vim.b.miniai_config = {
     custom_textobjects = {
-        t = spec,
+        t = require("mini.ai").gen_spec.treesitter({
+            a = "@fenced_code_block.outer",
+            i = "@code_fence_content",
+        }),
     },
 }

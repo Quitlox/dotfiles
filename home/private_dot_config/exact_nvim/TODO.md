@@ -13,8 +13,6 @@
 
 - To Change / Bugs:
 
-  - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
-
   - [ ] Optimize AI for Research:
     - Introduce system prompt for research
     - voeg simpele system prompt toe voor het helpen met vertalen van woorden
@@ -22,13 +20,10 @@
     - [ ] Do not do double quote upon \" or \'
     - [ ] configure formatters and linters for bibtex and latex
 
-  - `markdown`: I want a motion for selecting a code block (triple quotes, but excluding ft)
-
-  - [ ] when opening right sidebar, vsplits are not sized properly
-
 
 - To Investigate:
 
+  - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
   - [ ] `snacks.profile`: investigate sluggishness when switching windows from
         terminal into LSP enabled window (python) -> its linting, but why
   - [ ] `snacks.picker`: `lsp_workspace_symbols` sorting is not good
@@ -36,6 +31,11 @@
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
+  - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
+  - [ ] `workspaces.nvim`: Replace with finder that automatically detects workspaces (and has snacks support)
+  - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
+  - [ ] maybe add window picker shortcut to `<C-w>` so I can jump from e.g. aerial to a desired window?
+  - [ ] `lint.nvim`: filter `pylint` warning `logging-fstring-interpolation`
 
 - Requires Contribution:
 
@@ -49,11 +49,6 @@
   - [ ] `scissors.nvim`: add option to toggle autosnippet
   - [X] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
   - [ ] venv-selector: doesn't work without python file open
-  - [ ] `workspaces.nvim`: Replace with finder that automatically detects workspaces (and has snacks support)
-  - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
-  - [ ] maybe add window picker shortcut to `<C-w>` so I can jump from e.g. aerial to a desired window?
-
-  - [ ] `lint.nvim`: filter `pylint` warning `logging-fstring-interpolation`
 
   - [ ] `nvim-dap-ui`: consider replacing with `nvim-dap-view` or `debugmaster.nvim`
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
