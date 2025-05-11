@@ -26,11 +26,7 @@ require("namu").setup({
 })
 
 --+- FileType: lua ------------------------------------------+
-vim.keymap.set("n", "go", ":Namu symbols<cr>", {
-    desc = "Jump to symbol",
-    silent = true,
-})
-vim.keymap.set("n", "gs", ":Namu workspace<cr>", {
-    desc = "Jump to workspace symbol",
-    silent = true,
-})
+-- stylua: ignore start
+vim.keymap.set("n", "go", ":Namu symbols<cr>", { desc = "Jump to symbol", silent = true })
+vim.keymap.set("n", "gs", ":Namu workspace<cr>", { desc = "Jump to workspace symbol", silent = true })
+-- stylua: ignore end

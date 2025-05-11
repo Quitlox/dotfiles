@@ -21,7 +21,7 @@
 -- NOTE: Filetype specific textobjects currently configured in:
 -- - ftplugin/python.lua
 
--- Config: Buffer -----------------------------------------+
+-- Util: Text Objects -------------------------------------+
 -- taken from MiniExtra.gen_ai_spec.buffer
 local function ai_buffer(ai_type)
     local start_line, end_line = 1, vim.fn.line("$")
@@ -55,7 +55,7 @@ local mini_ai_opts = {
         -- Tag (From LazyVim)
         t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
         -- Subword (CamelCase, snake_case)
-        s = { { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" }, "^().*()$" }, -- fmt: skip
+        s = { { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" }, "^().*()$" },
         -- Usage of a function
         u = gen_spec.function_call(),
         -- Usage of a function (without dot in function name)
@@ -63,6 +63,20 @@ local mini_ai_opts = {
     },
 }
 require("mini.ai").setup(mini_ai_opts)
+
+--+- FileType -----------------------------------------------+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown", "text", "help" },
+    group = vim.api.nvim_create_augroup("MiniAIFileType", { clear = true }),
+    callback = function()
+        vim.b.miniai_config = {
+            custom_textobjects = {
+                ["*"] = gen_spec.pair("*", "*", { type = "greedy" }),
+                ["`"] = gen_spec.pair("`", "`", { type = "greedy" }),
+            },
+        }
+    end,
+})
 
 --+- Integration: Which-Key ---------------------------------+
 -- Note that due to the inherent design of `mini.ai`, the which-key popup won't

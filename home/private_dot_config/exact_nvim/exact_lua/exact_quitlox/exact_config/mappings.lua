@@ -21,11 +21,9 @@ vim.keymap.set("n", "<C-w><C-d>", "<nop>")
 -- vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" }) -- Overwritten by glance
 vim.keymap.set("n", "grn", vim.lsp.buf.rename, { desc = "Rename" })
 
--- Automatically add semicolon or comma at the end of the line in INSERT and NORMAL modes
+-- Automatically add semicolon or comma at the end of the line in INSERT mode
 vim.keymap.set("i", ";;", "<ESC>A;")
 vim.keymap.set("i", ",,", "<ESC>A,")
-vim.keymap.set("n", ";;", "A;<ESC>")
-vim.keymap.set("n", ",,", "A,<ESC>")
 
 -- Misc
 vim.keymap.set("n", "ycc", "yygccp", { remap = true }) -- copy and comment

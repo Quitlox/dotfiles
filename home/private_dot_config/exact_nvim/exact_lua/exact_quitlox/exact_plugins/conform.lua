@@ -211,3 +211,53 @@ end
 
 toggle_format(true):map("<leader>Tf")
 toggle_format(false):map("<leader>TF")
+
+--+- Support: Check Installation Status ------------------------+
+local formatter_blacklist = { "trim_whitespace", "injected" }
+local checked_formatter_filetypes = {}
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("ConformCheckInstallation", { clear = true }),
+    callback = function(event)
+        local conform = require("conform")
+        local ft = vim.bo[event.buf].filetype
+
+        -- Skip if we've already checked this filetype
+        if checked_formatter_filetypes[ft] then
+            return
+        end
+
+        -- Mark this filetype as checked
+        checked_formatter_filetypes[ft] = true
+
+        -- Get formatters for this filetype
+        local formatters = conform.formatters_by_ft[ft]
+        if not formatters then
+            return
+        end
+
+        local missing_formatters = {}
+        for _, formatter_name in ipairs(formatters) do
+            if not vim.tbl_contains(formatter_blacklist, formatter_name) then
+                -- Use get_formatter_info instead of directly accessing conform.formatters
+                local formatter_info = require("conform").get_formatter_info(formatter_name)
+
+                -- If formatter exists and has a command
+                if formatter_info and formatter_info.command then
+                    if vim.fn.executable(formatter_info.command) == 0 then
+                        table.insert(missing_formatters, { name = formatter_name, cmd = formatter_info.command })
+                    end
+                end
+            end
+        end
+
+        -- Notify user about missing formatters
+        if #missing_formatters > 0 then
+            local message = "Missing formatters for " .. ft .. ":\n"
+            for _, formatter in ipairs(missing_formatters) do
+                message = message .. "  - " .. formatter.name .. ": " .. formatter.cmd .. "\n"
+            end
+            vim.notify(message, vim.log.levels.WARN)
+        end
+    end,
+})

@@ -12,6 +12,8 @@ vim.opt.formatoptions = vim.opt.formatoptions + "r" -- Automatically insert the 
 vim.opt.formatoptions = vim.opt.formatoptions + "p" -- Don't break lines at single spaces that follow periods.
 vim.opt.formatoptions = vim.opt.formatoptions + "1" -- Don't break a line after a one-letter word.
 -- vim.opt.indentkeys = vim.opt.indentkeys - "o" -- Don't wrap the fucking parentheses in comments (especially python)
+--- Editing ---
+vim.opt.jumpoptions = "stack,clean"
 --- Tab behaviour ---
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -24,8 +26,6 @@ vim.opt.breakindent = true
 --- Cursor ---
 vim.opt.scrolloff = 7
 vim.opt.sidescrolloff = 10
--- vim.opt.mat=2 -- Tenths of a second to show the matching paren
--- vim.opt.showmatch = true -- TODO: Do I need this (and line above)
 vim.opt.cursorline = true
 vim.opt.culopt = "number"
 --- Searching ---
@@ -43,7 +43,6 @@ vim.opt.mouse = "a"
 vim.opt.termguicolors = true
 vim.opt.pumheight = 10
 vim.opt.showmode = false
-vim.g.have_nerd_font = true -- Maybe kickstart.nvim specific
 vim.cmd([[aunmenu PopUp.How-to\ disable\ mouse]])
 vim.cmd([[aunmenu PopUp.-1-]])
 vim.opt.shortmess = vim.opt.shortmess + "F" -- Don't print the filename when opening a file
@@ -54,7 +53,7 @@ vim.opt.concealcursor = "c"
 --- Splits ---
 vim.opt.splitright = true
 vim.opt.splitbelow = true
--- vim.opt.splitkeep = "screen"
+vim.opt.splitkeep = "screen"
 vim.opt.eadirection = "hor"
 --- Title ---
 vim.opt.title = true
@@ -74,14 +73,6 @@ vim.opt.timeoutlen = 300 -- FIXME: was 800
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.shada = vim.opt.shada + "'0,f0"
 vim.opt.backspace = "indent,eol,start"
-
---- Folding ---
--- vim.opt.foldlevel = 99 -- FIXME: Slows down legendary
--- vim.opt.foldenable = true
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()" -- alt "v:lua.vim.treesitter.foldexpr()" slows down legendary for some fucking reason
--- vim.opt.foldtext = ""
--- vim.opt.fillchars = vim.opt.fillchars + "fold: "
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

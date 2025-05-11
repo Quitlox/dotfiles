@@ -141,12 +141,12 @@ fun! PromptBackspaceSetup()
     if v:option_new == 'prompt'
       " Only apply if the filetype is not 'codecompanion'
       if getbufvar(bufnr(), '&filetype') !=# 'codecompanion'
-        inoremap <buffer><silent> <backspace> <Cmd>lua PromptBackspace()<cr>
+        silent! inoremap <buffer><silent> <backspace> <Cmd>lua PromptBackspace()<cr>
         " Fix <C-BS> in prompt
-        inoremap <buffer><silent> <C-BS> <Cmd>normal! bcw<cr>
+        silent! inoremap <buffer><silent> <C-BS> <Cmd>normal! bcw<cr>
       endif
     endif
 endfun
 
-autocmd OptionSet * call PromptBackspaceSetup() "not using a lua function here because of error when accessing :help
+silent! autocmd OptionSet * call PromptBackspaceSetup() "not using a lua function here because of error when accessing :help
 ]])

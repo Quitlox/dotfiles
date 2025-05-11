@@ -5,9 +5,6 @@
     - [ ] Markdown: Editing Tables
     - [ ] CSV: Viewing / Editing
     - [ ] Kulala
-  - [ ] Learning:
-    - [ ] Read about jumplist
-    - [ ] Read about default mappings (index.txt), especially % g% g[ [(
   - [ ] Which-Key:
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
@@ -16,28 +13,24 @@
   - [ ] Optimize AI for Research:
     - Introduce system prompt for research
     - voeg simpele system prompt toe voor het helpen met vertalen van woorden
-  - [ ] Latex
-    - [ ] Do not do double quote upon \" or \'
-    - [ ] configure formatters and linters for bibtex and latex
 
 
 - To Investigate:
 
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
-  - [ ] `snacks.profile`: investigate sluggishness when switching windows from
-        terminal into LSP enabled window (python) -> its linting, but why
-  - [ ] `snacks.picker`: `lsp_workspace_symbols` sorting is not good
-        in `tno.mpc.communication`, searching for `Pool` does not retrieve the `Pool` class
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
-  - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
   - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
   - [ ] `workspaces.nvim`: Replace with finder that automatically detects workspaces (and has snacks support)
   - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
-  - [ ] maybe add window picker shortcut to `<C-w>` so I can jump from e.g. aerial to a desired window?
-  - [ ] `lint.nvim`: filter `pylint` warning `logging-fstring-interpolation`
-  - [ ] `clasp.nvim`: not working inside lua tables?
-  - [ ] `codecompanion.nvim`: visual mode inserts text twice for some reason
+
+  - [ ] `matchup`: unwelcome matching of `[` in strings
+```lua
+require("which-key").add({
+    { "[%", desc = "Prev Match" },
+    { "]%", desc = "Next Match" },
+})
+```
 
 - Requires Contribution:
 
