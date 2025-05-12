@@ -137,3 +137,6 @@ Security Issues:
    * `_netdev` => wait for network
      `allow_other` => allow other users to use the filesystem (other than root)
 
+
+- On Work Laptop, I need to set GLAZEWM_CONFIG_PATH to `C:\Users\witloxkhd\AppData\Local\glazewm\config.yaml` in User Environment Variables
+   - On Windows, I can use `GUIPropView` to inspect windows (a la xprop on linux)
