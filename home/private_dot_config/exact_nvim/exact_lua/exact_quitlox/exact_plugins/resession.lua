@@ -58,7 +58,7 @@ resession.add_hook("pre_load", function()
 end)
 
 --+- Keymaps ------------------------------------------------+
-vim.keymap.set("n", "<leader>os", resession.load)
+vim.keymap.set("n", "<leader>os", resession.load, { desc = "Open Session " })
 
 --+- Config: Auto-Save on Exit ------------------------------+
 vim.api.nvim_create_autocmd("VimLeavePre", {

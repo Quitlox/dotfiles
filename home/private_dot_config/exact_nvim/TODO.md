@@ -8,13 +8,6 @@
   - [ ] Which-Key:
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
-- To Change / Bugs:
-
-  - [ ] Optimize AI for Research:
-    - Introduce system prompt for research
-    - voeg simpele system prompt toe voor het helpen met vertalen van woorden
-
-
 - To Investigate:
 
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
@@ -39,7 +32,6 @@ require("which-key").add({
   - [ ] overseer: background tasks should not be awaited for completion
   - [ ] overseer: add option to not autorestart isBackground tasks
   - [ ] navic: doesn't work with arrow, same context in all windows
-  - [ ] navic: should provide symbol filter, but maintainer is inactive
   - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
   - [ ] `scissors.nvim`: add option to toggle autosnippet
   - [X] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
@@ -102,7 +94,6 @@ Desktop:
   - [ ] `~/.mozilla` script should not run in headless mode
 
 - [ ] GlazeWM
-  - [ ] toggle floating
   - [ ] ensure that rbw popup is considered floating always
 - [ ] Hyprland
   - [ ] Automatically restore eDP upon disconnect
