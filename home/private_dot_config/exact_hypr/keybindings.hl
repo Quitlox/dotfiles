@@ -133,6 +133,7 @@ bindel=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindl=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 # Requires playerctl
 bindl=, XF86AudioPlay, exec, playerctl play-pause
+bindl=, XF86AudioPause, exec, playerctl play-pause
 bindl=, XF86AudioPrev, exec, playerctl previous
 bindl=, XF86AudioNext, exec, playerctl next
 
@@ -143,5 +144,8 @@ bind = ,XF86MonBrightnessDown, exec, brightnessctl --exponent=3 s 10%-
 #bind = ,XF86MonBrightnessDown, exec, eww update var-brightness-percent=$(brightnessctl -m | awk -F, '{ print $4 }' | tr -d '%')
 
 # +- Screenshot -------------------------------------------+
-# Screenshot a region
-bind = $mainMod SHIFT, s, exec, hyprshot -m region
+# PrintScreen for full screen screenshot
+bind = , Print, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Full screen screenshot saved to: $FILENAME and copied to clipboard"
+
+# Shift+PrintScreen for selected region screenshot
+bind = SHIFT, Print, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim -g "$(slurp)" "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Selection screenshot saved to: $FILENAME"

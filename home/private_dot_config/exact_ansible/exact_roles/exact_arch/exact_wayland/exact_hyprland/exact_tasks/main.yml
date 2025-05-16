@@ -29,7 +29,8 @@
       - xdg-desktop-portal-hyprland # Screensharing
       - xdg-user-dirs # User Directories
       - polkit-kde-agent # GUI Authentication
-      - hyprshot # Screenshot
+      - slurp # Screenshot
+      - grim # Screenshot
       # Desktop Applications (Foreground)
       - kitty # Terminal
   become: true
