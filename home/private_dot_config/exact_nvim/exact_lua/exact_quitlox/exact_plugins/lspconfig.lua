@@ -29,10 +29,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 --+- Keybindings --------------------------------------------+
 -- stylua: ignore start
-vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Prev Diagnostic", silent = true, noremap = true })
-vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Next Diagnostic", silent = true, noremap = true })
-vim.keymap.set("n", "[D", function() vim.diagnostic.jump({ count = -1, float = true, severity = { min = vim.diagnostic.severity.HINT }}) end, { desc = "Prev Error", silent = true, noremap = true })
-vim.keymap.set("n", "]D", function() vim.diagnostic.jump({ count = 1, float = true, severity = { min = vim.diagnostic.severity.HINT }}) end, { desc = "Prev Error", silent = true, noremap = true })
+vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1, float = true, severity = { min = vim.diagnostic.severity.ERROR } }) end, { desc = "Prev Diagnostic", silent = true, noremap = true })
+vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1, float = true, severity = { min = vim.diagnostic.severity.ERROR } }) end, { desc = "Next Diagnostic", silent = true, noremap = true })
+vim.keymap.set("n", "[w", function() vim.diagnostic.jump({ count = -1, float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Prev Diagnostic", silent = true, noremap = true })
+vim.keymap.set("n", "]w", function() vim.diagnostic.jump({ count = 1, float = true, severity = { min = vim.diagnostic.severity.WARN } }) end, { desc = "Next Diagnostic", silent = true, noremap = true })
+vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true, severity = { min = vim.diagnostic.severity.INFO } }) end, { desc = "Prev Diagnostic", silent = true, noremap = true })
+vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true, severity = { min = vim.diagnostic.severity.INFO } }) end, { desc = "Next Diagnostic", silent = true, noremap = true })
+-- vim.keymap.set("n", "[D", function() vim.diagnostic.jump({ count = -1, float = true, severity = { min = vim.diagnostic.severity.HINT }}) end, { desc = "Prev Error", silent = true, noremap = true })
+-- vim.keymap.set("n", "]D", function() vim.diagnostic.jump({ count = 1, float = true, severity = { min = vim.diagnostic.severity.HINT }}) end, { desc = "Prev Error", silent = true, noremap = true })
 vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "Code Action", silent = true, noremap = true }) -- Do not use LSPAttach, will be overwritten by default (vim ascii)
 -- stylua: ignore end
 

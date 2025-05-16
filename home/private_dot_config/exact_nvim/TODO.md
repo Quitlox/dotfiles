@@ -27,14 +27,10 @@ require("which-key").add({
 
 - Requires Contribution:
 
-  - [ ] aerial: improve keymap window (group related mappings, remove duplicates)
-  - [ ] overseer: map <esc> in help_win (not configurable currently)
   - [ ] overseer: background tasks should not be awaited for completion
-  - [ ] overseer: add option to not autorestart isBackground tasks
   - [ ] navic: doesn't work with arrow, same context in all windows
   - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
   - [ ] `scissors.nvim`: add option to toggle autosnippet
-  - [X] markview.nvim: add `\mod` and `\bmod` symbols (I have no clue how to add new symbols)
   - [ ] venv-selector: doesn't work without python file open
 
   - [ ] `nvim-dap-ui`: consider replacing with `nvim-dap-view` or `debugmaster.nvim`
@@ -51,25 +47,26 @@ require("which-key").add({
 
 - Requires Contribution (hard-to-fix):
 
+  - [ ] aerial: improve keymap window (group related mappings, remove duplicates)
+    - https://github.com/stevearc/aerial.nvim/pull/469
   - [ ] resession: plugin for restoring shell contents
   - [ ] hover.nvim: allow changing priority of providers (https://github.com/lewis6991/hover.nvim/issues/77)
 
 - Blocked:
 
-  - [ ] rocks.nvim: rocks related issues should wait for lux
+  - [ ] overseer: (will be refactored)
+      - [ ] overseer: map <esc> in help_win (not configurable currently)
+  - [ ] rocks.nvim: (awaiting lux)
     - [ ] provide warning for outdated plugins (both scm vs git and pin vs scm)
     - [ ] should not update git to older version tag if ver is specified to be a newer commit
     - [ ] toml-edit should keep inline items as inline
     - [ ] toml-edit should not move the comments
-  - [ ] neovide: misalignment character rendered in lualine (powershell symbol)
-    - https://github.com/neovide/neovide/issues/2491
-  - [ ] dap.nvim: I can't for the life of me figure it out, but `<leader>dt`
-    - sometimes gets stuck in toggling the breakpoint. It seems as if it's
+  - [ ] dap.nvim: 
+    - [ ] I can't for the life of me figure it out, but `<leader>dt`
+      sometimes gets stuck in toggling the breakpoint. It seems as if it's
       waiting for another key, but there are no duplicate mappings.
   - [ ] pymple: just refuses to work
     - it finds seemingly correct candidates for imports, but then doesn't pick one
-  - [ ] neotest:
-    - tab-scoped: should support multiple tabs, and attaching/detaching from cwd's
   - [ ] `venv-selector.nvim`: switch out with `joshzcold/python.nvim` once mature (and supporting `uv`)
 
 - Contribute back, sane defaults, low priority:
@@ -89,10 +86,6 @@ When need arises:
 Desktop:
 
 - [ ] Eww: Bar use fill icons on select
-- [ ] Chezmoi:
-  - [ ] `~/Documents/PowerShell` should only be created on Windows
-  - [ ] `~/.mozilla` script should not run in headless mode
-
 - [ ] GlazeWM
   - [ ] ensure that rbw popup is considered floating always
 - [ ] Hyprland
