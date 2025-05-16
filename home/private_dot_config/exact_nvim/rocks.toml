@@ -77,6 +77,7 @@ auto_install = "prompt"
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = { git = "mfussenegger/nvim-dap", rev = "8df427aeba0a06c6577dc3ab82de3076964e3b8d" }
 "nvim-dap-ui" = { git = "rcarriga/nvim-dap-ui", rev = "881a69e25bd6658864fab47450025490b74be878" }
+"debugmaster.nvim" = { git = "miroshqa/debugmaster.nvim", rev = "0981ecf7c16182fbc726da49bd39b4d937ca9f94" }
 "nvim-dap-virtual-text" = { git = "theHamsta/nvim-dap-virtual-text", rev = "df66808cd78b5a97576bbaeee95ed5ca385a9750" }
 "nvim-dap-repl-highlights" = { git = "liadoz/nvim-dap-repl-highlights", rev = "a7512fc0a0de0c0be8d58983939856dda6f72451" }
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }

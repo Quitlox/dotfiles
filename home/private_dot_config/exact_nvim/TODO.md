@@ -33,7 +33,6 @@ require("which-key").add({
   - [ ] `scissors.nvim`: add option to toggle autosnippet
   - [ ] venv-selector: doesn't work without python file open
 
-  - [ ] `nvim-dap-ui`: consider replacing with `nvim-dap-view` or `debugmaster.nvim`
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
     - https://github.com/rcarriga/nvim-dap-ui/issues/175
     - https://github.com/rcarriga/nvim-dap-ui/issues/260

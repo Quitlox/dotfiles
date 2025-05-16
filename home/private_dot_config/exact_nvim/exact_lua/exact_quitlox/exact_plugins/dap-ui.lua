@@ -59,9 +59,9 @@ local function on_close()
 end
 
 -- Autmatically open/close DAP UI and Nvim-Tree
-require("dap").listeners.after.event_initialized["dapui_config"] = on_open
-require("dap").listeners.before.event_terminated["dapui_config"] = on_close
-require("dap").listeners.before.event_exited["dapui_config"] = on_close
+-- require("dap").listeners.after.event_initialized["dapui_config"] = on_open
+-- require("dap").listeners.before.event_terminated["dapui_config"] = on_close
+-- require("dap").listeners.before.event_exited["dapui_config"] = on_close
 
 --+- Keymaps ------------------------------------------------+
 -- Keymap helper: Evaluate expression
@@ -82,12 +82,6 @@ require("which-key").add({
     { "<leader>db", group = "Breakpoint" },
     { "<leader>dl", group = "List" },
 })
-
---+- Signs --------------------------------------------------+
--- Signs (required by Catppuccin)
-vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
-vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
 
 --+- Fix Highlights -----------------------------------------+
 -- Fix DAP UI icon highlighting in Edgy windows
@@ -114,39 +108,3 @@ vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
         end
     end,
 })
-
---+- Workaround ---------------------------------------------+
--- https://github.com/neovim/neovim/issues/14116
--- https://github.com/rcarriga/nvim-dap-ui/issues/31
-
-function PromptBackspace()
-    -- Allows backspacing through previously set text when in a prompt.
-    --
-    -- Note 1: Insert mode cursor is after (+1) the column as opposed to in normal mode it would be on (+0) the column.
-    -- Note 2: nvim_win_[get|set]_cursor is (1, 0) indexed for (line, column) while nvim_buf_[get|set]_[lines|text] is 0 indexed for both.
-
-    local currentCursor = vim.api.nvim_win_get_cursor(0)
-    local currentLineNumber = currentCursor[1]
-    local currentColumnNumber = currentCursor[2]
-    local promptLength = vim.str_utfindex(vim.fn["prompt_getprompt"]("%"))
-
-    if currentColumnNumber ~= promptLength then
-        vim.api.nvim_buf_set_text(0, currentLineNumber - 1, currentColumnNumber - 1, currentLineNumber - 1, currentColumnNumber, { "" })
-        vim.api.nvim_win_set_cursor(0, { currentLineNumber, currentColumnNumber - 1 })
-    end
-end
-
-vim.cmd([[
-fun! PromptBackspaceSetup()
-    if v:option_new == 'prompt'
-      " Only apply if the filetype is not 'codecompanion'
-      if getbufvar(bufnr(), '&filetype') !=# 'codecompanion'
-        silent! inoremap <buffer><silent> <backspace> <Cmd>lua PromptBackspace()<cr>
-        " Fix <C-BS> in prompt
-        silent! inoremap <buffer><silent> <C-BS> <Cmd>normal! bcw<cr>
-      endif
-    endif
-endfun
-
-silent! autocmd OptionSet * call PromptBackspaceSetup() "not using a lua function here because of error when accessing :help
-]])
