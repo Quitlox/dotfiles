@@ -1,13 +1,14 @@
+# +- Gloabl Ignores -----------------------------------------+
 README.md
 
 settings.json
 keybindings.json
 
-.config/zsh/theme.sh
-.config/nvim/lazy-lock.json
-
 .config/ansible/.ansible
+.config/nvim/lazy-lock.json
+.config/zsh/theme.sh
 
+# +- Windows ------------------------------------------------+
 {{ if (eq .chezmoi.os "windows") }}
 ** # Default to ignore all (whitelist instead of blacklist)
 
@@ -61,12 +62,24 @@ keybindings.json
 
 {{ else }}
 
+# +- Linux --------------------------------------------------+
+
 # If not on windows, ignore Windows-specific files and folders
+Documents
 Documents/PowerShell/Profile.ps1
 Documents/PowerToys/
+Pictures
+Pictures/Screenshots
+Pictures/Wallpapers
+AppData
+AppData/Roaming
+AppData/Local
+AppData/Local/neovide
+AppData/Local/glazewm
 
 {{ if (eq .headless "true") }}
 
+# +- Linux: Headless ----------------------------------------+
 # Ignore GUI-specific files and folders
 .config/eww
 .config/hypr
@@ -78,6 +91,7 @@ Documents/PowerToys/
 .config/qutebrowser
 .config/zathura
 .mozilla
+
 {{ end }}
 
 {{ end }}
