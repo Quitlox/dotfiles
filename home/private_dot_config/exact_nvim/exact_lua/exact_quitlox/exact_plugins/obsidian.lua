@@ -67,6 +67,12 @@ require("obsidian").setup({
 
     templates = {
         folder = "./Resources/Templates/",
+        substitutions = {
+            ["<% tp.file.creation_date() %>"] = function()
+                -- Return the date and time in the format YYYY-MM-DD HH:MM
+                return os.date("%Y-%m-%d %H:%M", os.time())
+            end,
+        },
     },
 
     --+- User Inferface ---------------+
@@ -90,8 +96,9 @@ require("obsidian").setup({
 })
 
 --+- Keymaps ------------------------------------------------+
-require("which-key").add({ { "<leader><leader>o", group = "Obsidian" } })
-vim.keymap.set("n", "<leader><leader>oo", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick Switcher" })
-vim.keymap.set("n", "<leader><leader>os", "<cmd>ObsidianSearch<cr>", { desc = "Open Note" })
-vim.keymap.set("n", "<leader><leader>on", "<cmd>ObsidianNew<cr>", { desc = "New Note" })
-vim.keymap.set("n", "<leader><leader>ox", "<cmd>ObsidianOpen<cr>", { desc = "Open in Obsidian" })
+require("which-key").add({ { "<localleader>o", group = "Obsidian" } })
+vim.keymap.set("n", "<localleader>oo", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick Switcher" })
+vim.keymap.set("n", "<localleader>os", "<cmd>ObsidianSearch<cr>", { desc = "Open Note" })
+vim.keymap.set("n", "<localleader>on", "<cmd>ObsidianNew<cr>", { desc = "New Note" })
+vim.keymap.set("n", "<localleader>ox", "<cmd>ObsidianOpen<cr>", { desc = "Open in Obsidian" })
+vim.keymap.set("n", "<localleader>ot", "<cmd>ObsidianNewFromTemplate<cr>", { desc = "Open in Obsidian" })
