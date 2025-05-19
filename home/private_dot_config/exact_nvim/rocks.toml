@@ -18,6 +18,7 @@ auto_install = "prompt"
 "nvim" = { git = "catppuccin/nvim", rev = "8162a4bd9afb42837a655e404d1f937a87ba95e6" }
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "51f548421f8a74680eff27d283c9d5ea6e8d0074" }
 "mini.icons" = "0.15.0"
+"mini.hipatterns" = "0.15.0"
 
 # +----------------------------------------------------------+
 # | Editor                                                   |
@@ -56,6 +57,7 @@ auto_install = "prompt"
 
 # +- Comments / Documentation -------------------------------+
 "neogen" = "2.20.0"
+"debugprint.nvim" = { git = "andrewferrier/debugprint.nvim", rev = "v6.0.0" }
 # +- Completion ---------------------------------------------+
 "blink.cmp" = { git = "saghen/blink.cmp", rev = "v1.3.0" }
 # +- Completion: Sources ------------------------------------+

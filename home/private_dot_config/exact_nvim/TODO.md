@@ -16,7 +16,6 @@
   - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
   - [ ] `workspaces.nvim`: Replace with finder that automatically detects workspaces (and has snacks support)
   - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
-  - [ ] add `debugprint.nvim`
 
   - [ ] `matchup`: unwelcome matching of `[` in strings
 ```lua
