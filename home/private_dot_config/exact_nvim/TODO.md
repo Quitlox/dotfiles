@@ -10,6 +10,9 @@
 
 - To Investigate:
 
+  - [ ] marks: adopt `recall.nvim` and `marks.nvim`? instead of `arrow.nvim`
+  - [ ] `smart-motion.nvim`: adopt?
+
   - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
@@ -78,7 +81,9 @@ When need arises:
 - [molten.nvim] for Python REPL / Jupyter Notebook
 - [remote-nvim.nvim] when working on remote machines.
 - language-spectic:
-  - web: colortils.nvim (replacement of colorizer)
+  - [ ] web: colortils.nvim (replacement of colorizer)
+  - [ ] enable `textDocument/documentColor`
+    - https://github.com/neovim/neovim/pull/33440
 
 Desktop:
 
