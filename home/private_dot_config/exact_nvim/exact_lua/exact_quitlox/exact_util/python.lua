@@ -1,3 +1,5 @@
+-- NOTE: Remove this file, no longer used
+
 local M = {}
 
 local function has_uv(venv_path)
@@ -100,11 +102,11 @@ M.activate_venv = function(venv_path, source, type)
     end
 
     -- Activate the virtual environment
-    require("venv-selector").activate_from_path(python_path)
+    require("lua.quitlox.archive.venv-selector").activate_from_path(python_path)
     -- Restart the LSP
     vim.cmd([[LspRestart]])
     -- Notify the user
-    vim.notify("Virtual environment activated.\n" .. require("venv-selector").venv(), vim.log.levels.INFO, { title = "Python Support" })
+    vim.notify("Virtual environment activated.\n" .. require("lua.quitlox.archive.venv-selector").venv(), vim.log.levels.INFO, { title = "Python Support" })
     -- Install dependencies into the virtual environment
     M.install_dependencies()
 end
@@ -140,7 +142,7 @@ M.create_venv_in_cwd = function()
 end
 
 M.deactivate = function()
-    require("venv-selector").deactivate()
+    require("lua.quitlox.archive.venv-selector").deactivate()
     require("venv-selector.path").current_python_path = nil
     require("venv-selector.path").current_venv_path = nil
 end

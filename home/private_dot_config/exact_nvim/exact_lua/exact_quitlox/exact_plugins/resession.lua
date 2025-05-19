@@ -47,9 +47,6 @@ resession.setup({
         ["treesitter-context"] = {
             enable_in_tab = true,
         },
-        venv_selector = {
-            enable_in_tab = true,
-        },
     },
 })
 
@@ -81,17 +78,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("VimLeavePre", {
     callback = function()
         resession.save_tab(get_session_name(), { notify = true })
-    end,
-})
-
---+- Integration: Venv-selector -----------------------------+
--- On startup, check whether VIRTUAL_ENV is set and activate it.
-vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function()
-        local venv = require("venv-selector").venv()
-        if venv == nil and os.getenv("VIRTUAL_ENV") and os.getenv("VIRTUAL_ENV") ~= "" then
-            require("quitlox.util.python").activate_venv(os.getenv("VIRTUAL_ENV"), nil, nil)
-            return
-        end
     end,
 })

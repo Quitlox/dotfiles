@@ -7,11 +7,6 @@ require("neotest").setup({
             runner = "pytest",
             pytest_discover_instances = true,
             python = function()
-                local venv = require("venv-selector").venv()
-                if venv ~= nil then
-                    return venv .. "/bin/python"
-                end
-
                 -- If no venv-selector, manullay check if '.venv/bin/python' exists
                 if vim.fn.filereadable(".venv/bin/python") == 1 then
                     return ".venv/bin/python"

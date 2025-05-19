@@ -152,10 +152,9 @@ auto_install = "prompt"
 "vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "18ba8b46f4cbe6c49c5de0e47cdc51bee1513aa3" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626" }
 # +- Python -------------------------------------------------+
+"python.nvim" = { git = "joshzcold/python.nvim", rev = "04f5ff0f95e15a02a0e847c0e22e2578d0fcccc4" }
 "neotest-python" = { git = "nvim-neotest/neotest-python", rev = "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" }
 "nvim-dap-python" = "scm"
-"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "e82594274bf7b54387f9a2abe65f74909ac66e97", branch = "regexp", pin = true }
-"pymple.nvim" = { git = "alexpasmantier/pymple.nvim", rev = "0.4.1" }
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "6.1.0", config = "quitlox.plugins.lang.rustaceanvim" }
 # +- Vim ----------------------------------------------------+

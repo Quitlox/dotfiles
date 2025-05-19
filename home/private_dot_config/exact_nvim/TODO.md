@@ -31,7 +31,6 @@ require("which-key").add({
   - [ ] navic: doesn't work with arrow, same context in all windows
   - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
   - [ ] `scissors.nvim`: add option to toggle autosnippet
-  - [ ] venv-selector: doesn't work without python file open
 
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
     - https://github.com/rcarriga/nvim-dap-ui/issues/175
@@ -66,7 +65,6 @@ require("which-key").add({
       waiting for another key, but there are no duplicate mappings.
   - [ ] pymple: just refuses to work
     - it finds seemingly correct candidates for imports, but then doesn't pick one
-  - [ ] `venv-selector.nvim`: switch out with `joshzcold/python.nvim` once mature (and supporting `uv`)
 
 - Contribute back, sane defaults, low priority:
   - [ ] overseer.nvim: task view has not filetype
