@@ -43,6 +43,7 @@ require("catppuccin").setup({
     -- show_end_of_buffer = false,
 
     integrations = {
+        aerial = true,
         blink_cmp = true,
         copilot_vim = true,
         diffview = true,
@@ -51,6 +52,8 @@ require("catppuccin").setup({
         harpoon = true,
         leap = true,
         lsp_trouble = true,
+        mason = true,
+        markview = true,
         mini = { enabled = true },
         neotree = true,
         neogit = true,
@@ -62,6 +65,7 @@ require("catppuccin").setup({
         overseer = true,
         semantic_tokens = true,
         snacks = { enabled = true },
+        ufo = true,
         which_key = true,
         window_picker = true,
 

@@ -15,7 +15,7 @@ auto_install = "prompt"
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
 "nvim-web-devicons" = { git = "nvim-tree/nvim-web-devicons", rev = "d360317f8f509b99229bb31d42269987696df6ff" }
-"nvim" = { git = "catppuccin/nvim", rev = "v1.10.0" }
+"nvim" = { git = "catppuccin/nvim", rev = "8162a4bd9afb42837a655e404d1f937a87ba95e6" }
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "51f548421f8a74680eff27d283c9d5ea6e8d0074" }
 "mini.icons" = "0.15.0"
 

@@ -18,6 +18,9 @@ local function on_save_callback()
             if vim.startswith(path, "oil://") then
                 goto continue
             end
+            if vim.startswith(path, "neo-tree") then
+                goto continue
+            end
 
             -- Normalize path for more reliable checking
             local normalized_path = vim.fn.fnamemodify(path, ":p")

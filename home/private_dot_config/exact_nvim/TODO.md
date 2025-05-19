@@ -16,6 +16,7 @@
   - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
   - [ ] `workspaces.nvim`: Replace with finder that automatically detects workspaces (and has snacks support)
   - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
+  - [ ] add `debugprint.nvim`
 
   - [ ] `matchup`: unwelcome matching of `[` in strings
 ```lua
@@ -45,13 +46,13 @@ require("which-key").add({
 
 - Requires Contribution (hard-to-fix):
 
-  - [ ] aerial: improve keymap window (group related mappings, remove duplicates)
-    - https://github.com/stevearc/aerial.nvim/pull/469
   - [ ] resession: plugin for restoring shell contents
   - [ ] hover.nvim: allow changing priority of providers (https://github.com/lewis6991/hover.nvim/issues/77)
 
 - Blocked:
 
+  - [ ] `aerial.nvim`: improve keymap window (group related mappings, remove duplicates)
+      - https://github.com/stevearc/aerial.nvim/pull/469
   - [ ] overseer: (will be refactored)
       - [ ] overseer: map <esc> in help_win (not configurable currently)
   - [ ] rocks.nvim: (awaiting lux)

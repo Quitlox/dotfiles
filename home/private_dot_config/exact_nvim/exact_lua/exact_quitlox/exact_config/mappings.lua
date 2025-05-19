@@ -4,7 +4,7 @@ vim.g.maplocalleader = "\\"
 
 -- Save
 vim.keymap.set({ "n" }, "<C-s>", "<cmd>w<CR>", { desc = "Save" })
-vim.keymap.set({ "n" }, "<C-S>", "<cmd>wa<CR>", { desc = "Save All" })
+vim.keymap.set({ "n" }, "<C-S-s>", "<cmd>wa<CR>", { desc = "Save All" })
 
 -- Delete Word
 vim.keymap.set("i", "<C-BS>", "<C-w>", { noremap = true })
