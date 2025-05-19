@@ -149,13 +149,10 @@ window_rules:
         window_class: { regex: 'HwndWrapper' }
 
         # Ignores: custom
-      - window_title: { equals: "rbw (Arch)" }
-      - window_title: { equals: "Bitwarden" }
-        window_process: { equals: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' }
-
-  - commands: ['set-floating']
-    match:
-      - window_process: { equals: 'C:\Windows\explorer.exe' }
+      - window_title: { regex: 'PowerToys' }
+      - window_title: { regex: "rbw" }
+      - window_title: { regex: "File Explorer" }
+      - window_title: { regex: "Bitwarden" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
