@@ -1,5 +1,13 @@
 ---
 - name: Configure Bluetooth
+
+  handlers:
+    - name: restart bluetooth
+      ansible.builtin.systemd:
+        name: bluetooth.service
+        state: restarted
+      become: true
+
   block:
     - name: Install Bluetooth packages
       community.general.pacman:
@@ -28,3 +36,12 @@
         groups: lp
         append: true
       become: true
+
+    - name: Disable automatic reconnection of Bluetooth devices
+      ansible.builtin.lineinfile:
+        path: /etc/bluetooth/main.conf
+        regexp: '^#?ReconnectAttempts=.*'
+        line: 'ReconnectAttempts=0'
+        state: present
+      become: true
+      notify: Restart bluetooth

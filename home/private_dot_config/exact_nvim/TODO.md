@@ -88,8 +88,6 @@ When need arises:
 Desktop:
 
 - [ ] Eww: Bar use fill icons on select
-- [ ] GlazeWM
-  - [ ] ensure that rbw popup is considered floating always
 - [ ] Hyprland
   - [ ] Automatically restore eDP upon disconnect
   - [ ] Automatically reload eww upon connect new monitor
@@ -119,7 +117,7 @@ Plugin Ideas:
 - In insert mode, use `<C-o>` to execute a normal mode command.
 - Use 'g==' to execute a block of code (or a terminal escape sequence).
 - `vim.keymap.set("n", "ycc", "yygccp", { remap = true }) -- copy and comment`
-- `vim.keymap.set("n", ",,", "A,<ESC>")
+- `vim.keymap.set("n", ",,", "A,<ESC>")`
 
 _Resources_
 
