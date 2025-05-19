@@ -187,6 +187,7 @@ auto_install = "prompt"
 "codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v15.4.1" }
 "vectorcode" = { git = "davidyz/vectorcode", rev = "0.6.7" }
 "mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "v5.2.0" }
+"goose.nvim" = { git = "azorng/goose.nvim", rev = "v1.0.1" } 
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.33"
