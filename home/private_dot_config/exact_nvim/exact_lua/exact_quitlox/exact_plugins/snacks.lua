@@ -86,6 +86,15 @@ require("snacks").setup({
     scratch = { enabled = true },
     scroll = { enabled = (vim.fn.exists("g:neovide") == 0) },
     statuscolumn = { enabled = true, left = { "mark", "sign" }, right = { "fold", "git" } },
+    styles = {
+        notification = {
+            wo = {
+                -- NOTE: I added this to make the helper window of `scissors.nvim` look nice.
+                -- Check if this is desired for all notfications.
+                wrap = true,
+            },
+        },
+    },
     terminal = { enabled = true },
     toggle = { enabled = true },
     quickfile = { enabled = true, exclude = { "latex" } },

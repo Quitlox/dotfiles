@@ -15,7 +15,6 @@
   - [ ] window only should not close neovim
   - [ ] the oil discard thing doesn't work very nicely. Also, it closes stuff like neo-tree
 
-  - [ ] `snacks.notifier`: The help notification of `<leader>sa` (scissors) is ellipsed, but it should be wrapped.
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
   - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
