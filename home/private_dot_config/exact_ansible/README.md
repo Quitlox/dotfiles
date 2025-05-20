@@ -120,23 +120,40 @@ may have some limitations.
    - OpenVPN / DNS
 - Improvements:
    - Make abstract role for adding hooks to initramfs
-   - Automatically set governor to ondemand/performance for lenovo based on
-   charging state via udev events
+   - Automatically set governor to ondemand/performance for lenovo based on charging state via udev events
 
-## Security
-
-Security Issues:
+**Security Issues**
 - SSHD Port is custom but fixed and publicly readable.
 
-## Memorandum
+## Memorandum (Arch)
 
-- Example `fstab` entry for mounting network drivers:
-   * ```bash /etc/fstab
-      root@162.55.47.225:/mnt/data /mnt/data fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/home/quitlox/.ssh/key_hetzner,allow_other,default_permissions,uid=1000,gid=1000,entry_timeout=1800,attr_timeout=1800,reconnect 0 0
-      ```
-   * `_netdev` => wait for network
-     `allow_other` => allow other users to use the filesystem (other than root)
+#### `fstab`
+Example `fstab` entry for mounting network drivers:
+```bash /etc/fstab
+  root@162.55.47.225:/mnt/data /mnt/data fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/home/quitlox/.ssh/key_hetzner,allow_other,default_permissions,uid=1000,gid=1000,entry_timeout=1800,attr_timeout=1800,reconnect 0 0
+```
+* `_netdev` => wait for network
+* `allow_other` => allow other users to use the filesystem (other than root)
 
+#### Managing `/etc/`
+Find files not owned by packages (many config files)
+```bash
+sudo find /etc /usr /opt \
+	| LC_ALL=C pacman -Qqo - 2>&1 >&- >/dev/null | cut -d ' ' -f 5- \
+	| grep -vE \
+	'/mime/|/icons/|/ssl/|/ca-certificates/|/ssh/|/fonts/|/6.1.1-arch1-1/|/gnupg/|/__pycache__/'
+```
+Show modified owned files (edited config files)
+```bash
+pacman -Qii | grep "^MODIFIED" | cut -f 2
+```
+
+#### Eduroam
+Should be documented in `/.local/share/eduroam/README`
+
+
+
+## Memorandum (Work)
 
 - On Work Laptop, I need to set GLAZEWM_CONFIG_PATH to `C:\Users\witloxkhd\AppData\Local\glazewm\config.yaml` in User Environment Variables
    - On Windows, I can use `GUIPropView` to inspect windows (a la xprop on linux)
