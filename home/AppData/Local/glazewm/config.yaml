@@ -154,6 +154,7 @@ window_rules:
       - window_title: { regex: "File Explorer" }
       - window_title: { regex: "Bitwarden" }
       - window_title: { regex: "Todoist" }
+      - window_title: { regex: "Copilot" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
