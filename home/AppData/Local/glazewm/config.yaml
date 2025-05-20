@@ -148,6 +148,8 @@ window_rules:
       - window_process: { equals: 'Lively' }
         window_class: { regex: 'HwndWrapper' }
 
+  - commands: ['set-floating']
+    match:
         # Ignores: custom
       - window_title: { regex: 'PowerToys' }
       - window_title: { regex: "rbw" }
