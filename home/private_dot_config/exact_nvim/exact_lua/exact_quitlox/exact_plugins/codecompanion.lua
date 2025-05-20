@@ -9,7 +9,7 @@ require("codecompanion").setup({
                 name = "gemini_pro",
                 schema = {
                     model = {
-                        default = "gemini-2.5-pro-exp-03-25",
+                        default = "gemini-2.5-pro-preview-05-06",
                     },
                 },
             })
@@ -19,7 +19,7 @@ require("codecompanion").setup({
         chat = {
             adapter = "anthropic",
             keymaps = {
-                completion = { modes = { i = "<leader>cx" } },
+                completion = { modes = { i = "<c-space>" } },
                 change_adapter = { modes = { n = "gA" } },
                 previous_chat = { modes = { n = "[c" } },
                 next_chat = { modes = { n = "]c" } },
