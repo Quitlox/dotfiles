@@ -26,7 +26,17 @@ local function on_save_callback()
             local normalized_path = vim.fn.fnamemodify(path, ":p")
             if not vim.loop.fs_stat(normalized_path) then
                 vim.schedule(function()
-                    local res, success = pcall(Snacks.bufdelete, buf, { force = true })
+                    -- Try to directly delete the buffer using vim.api
+                    local success, res = pcall(function()
+                        -- Check if buffer is loaded and exists
+                        if vim.api.nvim_buf_is_valid(buf) then
+                            -- Handle unmodified buffers (force delete)
+                            vim.api.nvim_buf_delete(buf, { force = true })
+                            return true
+                        end
+                        return false
+                    end)
+
                     if not success then
                         vim.notify("Failed to delete buffer: " .. vim.inspect(res), vim.log.levels.ERROR, { title = "Oil Support" })
                     end

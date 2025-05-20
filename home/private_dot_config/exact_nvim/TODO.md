@@ -10,16 +10,17 @@
 
 - To Investigate:
 
-  - [ ] marks: adopt `recall.nvim` and `marks.nvim`? instead of `arrow.nvim`
-  - [ ] `smart-motion.nvim`: adopt?
-  - [ ] window only should not close neovim
-  - [ ] the oil discard thing doesn't work very nicely. Also, it closes stuff like neo-tree
+  - [ ] replace `arrow.nvim`: 
+    - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
+  - [ ] `smart-motion.nvim`: 
+    - Could be interesting to adopt, seems like it could be "less in the way". I should first notice if `flash` (f/t) ever gets in the way and document this.
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
   - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
   - [ ] `workspaces.nvim`: Replace with finder that automatically detects workspaces (and has snacks support)
   - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
+
 
   - [ ] `matchup`: unwelcome matching of `[` in strings
 ```lua
@@ -75,7 +76,6 @@ require("which-key").add({
   - [ ] overseer.nvim: my custom dispose_all, restart_all commands
   - [ ] nvim-treesitter-textobjects / mini.ai: python @string.inner / @string.outer
         I would need to find a way around the "@string.inner" problem
-
 
 When need arises:
 

@@ -96,10 +96,19 @@ local function window_only()
     end
 end
 
+-- Safe window close function
+local function safe_window_close()
+    if #vim.api.nvim_list_wins() > 1 then
+        vim.cmd("close")
+    else
+        vim.notify("Cannot close last window", vim.log.levels.WARN)
+    end
+end
+
 vim.keymap.set("n", "<leader>wo", window_only, { desc = "Window Only" })
 vim.keymap.set("n", "<leader>wv", "<C-W>s", { desc = "Window vSplit" })
 vim.keymap.set("n", "<leader>wb", "<C-W>v", { desc = "Window Split" })
-vim.keymap.set("n", "<leader>wd", "<C-W>q", { desc = "Window Delete" })
+vim.keymap.set("n", "<leader>wd", safe_window_close, { desc = "Window Delete" })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "which_key_ignore" })
