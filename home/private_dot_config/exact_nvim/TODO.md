@@ -14,6 +14,7 @@
     - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
   - [ ] `smart-motion.nvim`: 
     - Could be interesting to adopt, seems like it could be "less in the way". I should first notice if `flash` (f/t) ever gets in the way and document this.
+  - [ ] figure out how to consistently open tab sessions
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.

@@ -173,11 +173,11 @@ vim.keymap.set("n", "<leader>bw", close_all_but_current_force, { desc = "Buffer 
 -- | Tab                                                     |
 -- +---------------------------------------------------------+
 
-vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Tab Last" })
-vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "Tab First" })
-vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Tab Only" })
-vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Tab New" })
-vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Tab Close" })
+vim.keymap.set("n", "<tab>l", "<cmd>tablast<cr>", { desc = "Tab Last" })
+vim.keymap.set("n", "<tab>f", "<cmd>tabfirst<cr>", { desc = "Tab First" })
+vim.keymap.set("n", "<tab>o", "<cmd>tabonly<cr>", { desc = "Tab Only" })
+vim.keymap.set("n", "<tab><tab>", "<cmd>tabnew<cr>", { desc = "Tab New" })
+vim.keymap.set("n", "<tab>d", "<cmd>tabclose<cr>", { desc = "Tab Close" })
 
 vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Prev Tabpage" })
 vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next Tabpage" })

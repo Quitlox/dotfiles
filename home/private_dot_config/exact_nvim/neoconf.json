@@ -15,7 +15,7 @@
     },
     "basedpyright": {
       "basedpyright.disableOrganizeImports": true,
-      "basedpyright.analysis.typeCheckingMode": "recommended",
+      "basedpyright.analysis.typeCheckingMode": "basic",
       "basedpyright.analysis.diagnosticSeverityOverrides": {
         // found to be incorrect
         "reportAttributeAccessIssue": "none", 
