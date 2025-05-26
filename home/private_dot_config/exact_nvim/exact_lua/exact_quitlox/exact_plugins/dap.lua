@@ -10,27 +10,23 @@ dap.defaults.fallback.switchbuf = "useopen,uselast"
 --+- Launch.json --------------------------------------------+
 -- Command: Reload launch.json
 local function load_launch_json()
-	local status, err = pcall(require("dap.ext.vscode").load_launchjs)
-	if not status then
-		require("notify")(
-			"Is there a typo in the config?\n\n" .. err,
-			"ERROR",
-			{ title = "Error while loading .vscode/launch.json" }
-		)
-	end
+    local status, err = pcall(require("dap.ext.vscode").load_launchjs)
+    if not status then
+        require("notify")("Is there a typo in the config?\n\n" .. err, "ERROR", { title = "Error while loading .vscode/launch.json" })
+    end
 end
 
 -- Load launch.json when edited
 local launch_group = vim.api.nvim_create_augroup("LaunchJson", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
-	group = launch_group,
-	desc = "Reload launch.json on save",
-	pattern = "launch.json",
-	callback = load_launch_json,
+    group = launch_group,
+    desc = "Reload launch.json on save",
+    pattern = "launch.json",
+    callback = load_launch_json,
 })
 
 vim.api.nvim_create_user_command("LoadLaunchJson", load_launch_json, {
-	desc = "Reload launch.json",
+    desc = "Reload launch.json",
 })
 
 --+- Keymaps ------------------------------------------------+
@@ -54,26 +50,26 @@ vim.keymap.set("n", "<leader>dv", "<cmd>LoadLaunchJson<cr>", { noremap = true, s
 
 --+- DAP: Javascript / Typescript ---------------------------+
 require("dap").adapters["pwa-node"] = {
-	type = "server",
-	host = "localhost",
-	port = "${port}",
-	executable = {
-		command = "node",
-		---@diagnostic disable-next-line: assign-type-mismatch
-		args = { vim.fs.joinpath(vim.fn.stdpath("data"), "lazy", "vscode-js-debug"), "${port}" },
-	},
+    type = "server",
+    host = "localhost",
+    port = "${port}",
+    executable = {
+        command = "node",
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        args = { vim.fs.joinpath(vim.fn.stdpath("data"), "lazy", "vscode-js-debug"), "${port}" },
+    },
 }
 
 for _, language in ipairs({ "typescript", "javascript" }) do
-	require("dap").configurations[language] = {
-		{
-			type = "pwa-node",
-			request = "launch",
-			name = "Launch file",
-			program = "${file}",
-			cwd = "${workspaceFolder}",
-		},
-	}
+    require("dap").configurations[language] = {
+        {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+        },
+    }
 end
 
 -- FIXME: To be able to use these configurations again, install the required dependencies.
@@ -82,42 +78,29 @@ end
 
 --+- Signs --------------------------------------------------+
 -- Signs (required by Catppuccin)
-vim.diagnostic.config({
-	signs = {
-		text = {
-			["DapBreakpoint"] = "●",
-			["DapBreakpointCondition"] = "●",
-			["DapLogPoint"] = "◆",
-		},
-	},
-})
+vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "●", texthl = "DiagnosticSignWarn", linehl = "", numhl = "" })
+vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DiagnosticSignInfo", linehl = "", numhl = "" })
 
 --+- Workaround ---------------------------------------------+
 -- https://github.com/neovim/neovim/issues/14116
 -- https://github.com/rcarriga/nvim-dap-ui/issues/31
 
 function PromptBackspace()
-	-- Allows backspacing through previously set text when in a prompt.
-	--
-	-- Note 1: Insert mode cursor is after (+1) the column as opposed to in normal mode it would be on (+0) the column.
-	-- Note 2: nvim_win_[get|set]_cursor is (1, 0) indexed for (line, column) while nvim_buf_[get|set]_[lines|text] is 0 indexed for both.
+    -- Allows backspacing through previously set text when in a prompt.
+    --
+    -- Note 1: Insert mode cursor is after (+1) the column as opposed to in normal mode it would be on (+0) the column.
+    -- Note 2: nvim_win_[get|set]_cursor is (1, 0) indexed for (line, column) while nvim_buf_[get|set]_[lines|text] is 0 indexed for both.
 
-	local currentCursor = vim.api.nvim_win_get_cursor(0)
-	local currentLineNumber = currentCursor[1]
-	local currentColumnNumber = currentCursor[2]
-	local promptLength = vim.str_utfindex(vim.fn["prompt_getprompt"]("%"))
+    local currentCursor = vim.api.nvim_win_get_cursor(0)
+    local currentLineNumber = currentCursor[1]
+    local currentColumnNumber = currentCursor[2]
+    local promptLength = vim.str_utfindex(vim.fn["prompt_getprompt"]("%"))
 
-	if currentColumnNumber ~= promptLength then
-		vim.api.nvim_buf_set_text(
-			0,
-			currentLineNumber - 1,
-			currentColumnNumber - 1,
-			currentLineNumber - 1,
-			currentColumnNumber,
-			{ "" }
-		)
-		vim.api.nvim_win_set_cursor(0, { currentLineNumber, currentColumnNumber - 1 })
-	end
+    if currentColumnNumber ~= promptLength then
+        vim.api.nvim_buf_set_text(0, currentLineNumber - 1, currentColumnNumber - 1, currentLineNumber - 1, currentColumnNumber, { "" })
+        vim.api.nvim_win_set_cursor(0, { currentLineNumber, currentColumnNumber - 1 })
+    end
 end
 
 vim.cmd([[
