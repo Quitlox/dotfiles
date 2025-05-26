@@ -157,10 +157,32 @@ require("lualine").setup({
 })
 
 --+- Behaviour: Auto Rename Tabs ----------------------------+
-vim.api.nvim_create_autocmd({ "TabNew", "TabEnter", "TabLeave", "DirChanged" }, {
-    group = vim.api.nvim_create_augroup("MyLualineTabRename", { clear = true }),
-    callback = function()
-        local tcd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+require("quitlox.util.lazy").on_module("resession", function()
+    require("resession").add_hook("post_load", function()
+        local tcd = vim.fn.fnamemodify(vim.fn.getcwd(-1, 0), ":t")
         pcall(vim.cmd, [[LualineRenameTab ]] .. tcd .. [[]])
+    end)
+end)
+
+vim.api.nvim_create_autocmd({ "DirChanged" }, {
+    pattern = "tabpage",
+    group = vim.api.nvim_create_augroup("MyLualineTabRenameTcd", { clear = true }),
+    callback = function(event)
+        local tcd = vim.fn.fnamemodify(vim.fn.getcwd(-1, 0), ":t")
+        pcall(vim.cmd, [[LualineRenameTab ]] .. tcd .. [[]])
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "TabNewEntered" }, {
+    group = vim.api.nvim_create_augroup("MyLualineTabRenameTab", { clear = true }),
+    callback = function(event)
+        vim.schedule(function()
+            -- Wait for the tab to be fully initialized
+            vim.defer_fn(function()
+                -- Trigger the rename after a short delay
+                local tcd = vim.fn.fnamemodify(vim.fn.getcwd(-1, 0), ":t")
+                pcall(vim.cmd, [[LualineRenameTab ]] .. tcd .. [[]])
+            end, 100)
+        end)
     end,
 })

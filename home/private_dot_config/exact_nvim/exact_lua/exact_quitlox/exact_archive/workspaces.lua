@@ -2,7 +2,7 @@
 -- | natecraddock/workspaces.nvim: Workspace Selector        |
 -- +---------------------------------------------------------+
 
-vim.keymap.set("n", "<leader>op", "<cmd>WorkspacesOpen<cr>", { noremap = true, silent = true, desc = "Open Projects" })
+-- vim.keymap.set("n", "<leader>op", "<cmd>WorkspacesOpen<cr>", { noremap = true, silent = true, desc = "Open Projects" })
 
 local function substitute_home(path)
     path = path:gsub("^" .. os.getenv("HOME"), "~")
@@ -14,7 +14,7 @@ local resession = require("resession")
 local resession_util = require("resession.util")
 local util = require("quitlox.util.session")
 
-require("workspaces").setup({
+require("lua.quitlox.archive.workspaces").setup({
     cd_type = "tab",
     hooks = {
         add = {},

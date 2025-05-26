@@ -24,6 +24,7 @@ require("which-key").setup({
         { "<leader>w", group = "Window" },
         { "<leader>m", group = "Miscelleneous" },
         { "<leader>g", group = "Git" },
+        { "<leader>s", group = "Snippet / Session" },
 
         { "<leader><leader>", group = "Lang" },
         { "<localleader>m", group = "Markdown" },

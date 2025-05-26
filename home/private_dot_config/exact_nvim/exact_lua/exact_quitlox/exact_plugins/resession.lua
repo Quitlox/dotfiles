@@ -55,7 +55,101 @@ resession.add_hook("pre_load", function()
 end)
 
 --+- Keymaps ------------------------------------------------+
-vim.keymap.set("n", "<leader>os", resession.load, { desc = "Open Session " })
+vim.keymap.set("n", "<leader>os", function()
+    -- Only show tab-scoped sessions
+    local sessions = resession.list()
+    local tab_sessions = {}
+
+    -- Filter for tab-scoped sessions only
+    local files = require("resession.files")
+    local resession_util = require("resession.util")
+
+    for _, session_name in ipairs(sessions) do
+        local session_filename = resession_util.get_session_file(session_name)
+        local session_data = files.load_json_file(session_filename)
+        if session_data and session_data.tab_scoped then
+            table.insert(tab_sessions, session_name)
+        end
+    end
+
+    if #tab_sessions == 0 then
+        vim.notify("No tab-scoped sessions found", vim.log.levels.INFO)
+        return
+    end
+
+    vim.ui.select(tab_sessions, {
+        prompt = "Select tab session:",
+        format_item = function(session)
+            return session
+        end,
+    }, function(session)
+        if session then
+            resession.load(session, { attach = true, reset = false })
+        end
+    end)
+end, { desc = "Open Tab Session" })
+
+vim.keymap.set("n", "<leader>oS", function()
+    -- Only show named/global sessions (non-tab-scoped)
+    local sessions = resession.list()
+    local global_sessions = {}
+
+    -- Filter for global/named sessions only
+    local files = require("resession.files")
+    local resession_util = require("resession.util")
+
+    for _, session_name in ipairs(sessions) do
+        local session_filename = resession_util.get_session_file(session_name)
+        local session_data = files.load_json_file(session_filename)
+        if not session_data or not session_data.tab_scoped then
+            table.insert(global_sessions, session_name)
+        end
+    end
+
+    if #global_sessions == 0 then
+        vim.notify("No global sessions found", vim.log.levels.INFO)
+        return
+    end
+
+    vim.ui.select(global_sessions, {
+        prompt = "Select global session:",
+        format_item = function(session)
+            return session
+        end,
+    }, function(session)
+        if session then
+            resession.load(session, { attach = true, reset = true })
+        end
+    end)
+end, { desc = "Open Global Session" })
+
+vim.keymap.set("n", "<leader>sn", function()
+    vim.ui.input({
+        prompt = "Session name: ",
+        default = "",
+    }, function(name)
+        if name and name ~= "" then
+            resession.save(name, { notify = true, attach = true })
+        end
+    end)
+end, { desc = "Session: Save Named" })
+
+vim.keymap.set("n", "<leader>sc", function()
+    local util = require("quitlox.util.session")
+
+    -- Save current session
+    resession.save_tab(get_session_name(), { notify = false, attach = true })
+
+    -- Close current session
+    resession.detach()
+    util.close_everything()
+
+    -- Return to home directory
+    vim.cmd("tcd " .. vim.fn.fnameescape(vim.fn.expand("~")))
+
+    -- Open dashboard
+    Snacks.dashboard.open()
+end, { desc = "Session: Close" })
 
 --+- Config: Auto-Save on Exit ------------------------------+
 vim.api.nvim_create_autocmd("VimLeavePre", {
@@ -70,7 +164,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         -- Only load the session if nvim was started with no args
         if vim.fn.argc(-1) == 0 then
-            resession.load(get_session_name(), { silence_errors = true })
+            -- Don't auto-load session in home or nvim config directory - show dashboard instead
+            local cwd = vim.fn.getcwd()
+            local home_dir = vim.fn.expand("~")
+            local nvim_config_dir = vim.fn.expand("~/.config/nvim")
+            if cwd ~= home_dir and cwd ~= nvim_config_dir then
+                resession.load(get_session_name(), { silence_errors = true })
+            end
         end
     end,
 })
