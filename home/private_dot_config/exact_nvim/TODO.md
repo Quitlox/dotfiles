@@ -69,8 +69,6 @@ require("which-key").add({
     - [ ] I can't for the life of me figure it out, but `<leader>dt`
       sometimes gets stuck in toggling the breakpoint. It seems as if it's
       waiting for another key, but there are no duplicate mappings.
-  - [ ] pymple: just refuses to work
-    - it finds seemingly correct candidates for imports, but then doesn't pick one
 
 - Contribute back, sane defaults, low priority:
   - [ ] overseer.nvim: task view has not filetype
@@ -88,11 +86,7 @@ When need arises:
     - https://github.com/neovim/neovim/pull/33440
 
 Desktop:
-
 - [ ] Eww: Bar use fill icons on select
-- [ ] Hyprland
-  - [ ] Automatically restore eDP upon disconnect
-  - [ ] Automatically reload eww upon connect new monitor
 
 Plugin Ideas:
     - Rewrite of neotest:
