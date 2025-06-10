@@ -173,7 +173,7 @@ local function create_projects_picker_config(opts)
 
     return {
         dev = { "~/Workspace/activism", "~/Workspace/contrib", "~/Workspace/hobby", "~/Workspace/neovim-plugins", "~/Workspace/tno/pet-lab/", "~/Workspace/tno/projects/" },
-        projects = { "~/.config/nvim", "~/.config/hypr", "~/.config/ansible" },
+        projects = { "~/.config/nvim", "~/.config/hypr", "~/.config/ansible", "~/Obsidian/Knowledge" },
         matcher = {
             frecency = true,
         },
@@ -191,7 +191,7 @@ local function create_projects_picker_config(opts)
                             end)
                         end,
                         desc = "Open in new tab",
-                        mode = { "i", "n" }
+                        mode = { "i", "n" },
                     },
                 },
             },
@@ -230,14 +230,14 @@ local function create_projects_picker_config(opts)
                 -- Check if we need to confirm for non-tab sessions
                 local reset_to_use = should_reset
                 local is_tab_session = false
-                
+
                 if confirm_non_tab_sessions and not should_reset then
                     -- Check if the session is tab-scoped by examining the session file
                     local files = require("resession.files")
                     local session_filename = resession_util.get_session_file(final_session_name)
                     local session_data = files.load_json_file(session_filename)
                     is_tab_session = session_data and session_data.tab_scoped or false
-                    
+
                     if not is_tab_session then
                         local choice = vim.fn.confirm(
                             "This session '" .. final_session_name .. "' appears to be a global session.\nLoading it will overwrite your entire editor state.\n\nDo you want to continue?",
@@ -250,10 +250,10 @@ local function create_projects_picker_config(opts)
                         reset_to_use = true
                     end
                 end
-                
+
                 -- For tab-scoped sessions when we don't want to reset
                 if is_tab_session and not reset_to_use then
-                    if vim.fn.tabpagenr('$') > 1 then
+                    if vim.fn.tabpagenr("$") > 1 then
                         -- Multiple tabs: close current tab and let resession create a new one
                         vim.cmd("tabclose")
                         resession.load(final_session_name, { attach = true, reset = false })
@@ -290,7 +290,7 @@ local picker_projects_dashboard = create_projects_picker_config({
     close_everything_when_no_session = true,
 })
 
----@class snacks.picker.Config  
+---@class snacks.picker.Config
 local picker_projects_keymap = create_projects_picker_config({
     should_reset = false,
     confirm_non_tab_sessions = true,

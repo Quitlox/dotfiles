@@ -55,13 +55,12 @@ local function on_attach(bufnr)
     map("n", "<leader>hd", gs.diffthis, { desc = "Hunk Diff" })
     map("n", "<leader>hD", function() gs.diffthis("~") end, { desc = "Hunk Diff Buffer" })
     map("n", "<leader>htd", gs.toggle_deleted, { desc = "Toggle Deleted" })
-    map("n", "<leader>glc", "<cmd>Gitsigns setqflist<cr>", { desc = "Git Quickfix" })
+    map("n", "<leader>hq", "<cmd>Gitsigns setqflist<cr>", { desc = "Git Quickfix" })
     -- stylua: ignore end
 
     -- Whickey
     require("which-key").add({
         { "<leader>g", group = "Git" },
-        { "<leader>gl", group = "List" },
         { "<leader>gh", group = "Hunk" },
     })
 

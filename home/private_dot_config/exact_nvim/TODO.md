@@ -12,8 +12,6 @@
 
   - [ ] replace `arrow.nvim`: 
     - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
-  - [ ] `smart-motion.nvim`: 
-    - Could be interesting to adopt, seems like it could be "less in the way". I should first notice if `flash` (f/t) ever gets in the way and document this.
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
@@ -82,6 +80,9 @@ When need arises:
   - [ ] web: colortils.nvim (replacement of colorizer)
   - [ ] enable `textDocument/documentColor`
     - https://github.com/neovim/neovim/pull/33440
+- `smart-motion.nvim`: flexible and extensible motion plugin, but I am satisfied with flash
+- optional plugins:
+  - `nvim-scrollbar`: not very necessary, but very well maintained
 
 Desktop:
 - [ ] Eww: Bar use fill icons on select
@@ -105,13 +106,18 @@ Plugin Ideas:
             - (maybe I should track virtualenvs per buffer, like attaching lsps to buffers)
         - provide library functions
         - integrate with mason
+    - Extend `neoconf` to handle formatters/linters/debuggers/testers
+    - Custom Outline plugin
+        - Harpoon, but for symbols
+        - Easily add symbols all over your project to an outline for easy navigation
+    - Extend `overseer.nvim` to support generation of `launch.json` files
 
 ### Memorandum
 
 - In insert mode, use `<C-o>` to execute a normal mode command.
 - Use 'g==' to execute a block of code (or a terminal escape sequence).
 - `vim.keymap.set("n", "ycc", "yygccp", { remap = true }) -- copy and comment`
-- `vim.keymap.set("n", ",,", "A,<ESC>")`
+- `vim.keymap.set("i", ",,", "A,<ESC>")`
 
 _Resources_
 

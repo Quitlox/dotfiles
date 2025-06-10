@@ -85,9 +85,9 @@ auto_install = "prompt"
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }
 
 # +- Git ----------------------------------------------------+
+"neogit" = { git = "NeogitOrg/neogit", rev = "7a3daecbfdd4b6338a94dea49ad7802b3ca5fd9b" }
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.2" }
-"neogit" = { git = "NeogitOrg/neogit", rev = "7a3daecbfdd4b6338a94dea49ad7802b3ca5fd9b" }
 "diffview.nvim" = "scm"
 # +- Language Server Protocol -------------------------------+
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
