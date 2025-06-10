@@ -149,3 +149,4 @@ bind = , Print, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Scr
 
 # Shift+PrintScreen for selected region screenshot
 bind = SHIFT, Print, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim -g "$(slurp)" "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Selection screenshot saved to: $FILENAME"
+bind = SUPER SHIFT, s, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim -g "$(slurp)" "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Selection screenshot saved to: $FILENAME"
