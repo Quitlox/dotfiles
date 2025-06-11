@@ -81,6 +81,7 @@
           - imagemagick # Required for image.nvim
           - github-cli # Required for octo.nvim
           - glab # Required for gitlab.nvim ?
+          - chafa # Used by dashboard
           # Dependencies of rocks.nvim
           - luajit
           - luarocks
