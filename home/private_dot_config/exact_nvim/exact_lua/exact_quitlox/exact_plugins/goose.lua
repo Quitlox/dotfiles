@@ -36,6 +36,19 @@ require("goose").setup({
             next_prompt_history = "<down>", -- Navigate to next prompt in history
         },
     },
+    providers = {
+        -- Define available providers and their models for quick model switching
+        -- anthropic|azure|bedrock|databricks|google|groq|ollama|openai|openrouter
+        google = {
+            "gemini-2.5-pro-preview-06-05",
+            "gemini-2.5-flash-preview-05-20",
+        },
+        anthropic = {
+            "claude-3-7-sonnet-latest",
+            "claude-sonnet-4-0",
+            "claude-opus-4-0",
+        },
+    },
 })
 
 require("which-key").add({
