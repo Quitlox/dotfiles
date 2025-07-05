@@ -37,3 +37,8 @@
   community.general.pacman:
     name: noto-fonts-emoji
   become: true
+
+- name: Install hangul font
+  community.general.pacman:
+    name: noto-fonts-cjk
+  become: true
