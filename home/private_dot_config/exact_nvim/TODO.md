@@ -76,7 +76,12 @@ When need arises:
 
 - [molten.nvim] for Python REPL / Jupyter Notebook
 - [remote-nvim.nvim] when working on remote machines.
-- language-spectic:
+- replacements:
+  - [ ] `nvzone/floatterm` -> pretty cool way of managing terminals. I currently
+    stuggle with managing multiple terminals..
+  - [ ] `rachartier/tiny-code-action.nvim` -> nicer code action?
+  supports both preview and quick keybindings.
+- language-specific:
   - [ ] web: colortils.nvim (replacement of colorizer)
   - [ ] enable `textDocument/documentColor`
     - https://github.com/neovim/neovim/pull/33440
