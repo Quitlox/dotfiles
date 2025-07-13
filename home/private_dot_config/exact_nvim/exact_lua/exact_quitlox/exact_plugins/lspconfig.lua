@@ -78,6 +78,7 @@ local lsps = {
     "dockerls",
     "lua_ls",
     "hyprls",
+    "nil_ls",
     "pug",
     "svelte",
 }

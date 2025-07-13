@@ -148,6 +148,7 @@ require("conform").setup({
         jsonc = { "prettierd" },
         lua = { "stylua" },
         markdown = { "prettierd", "injected" },
+        nix = { "nixfmt" },
         python = { "pycln", "black", "isort" },
         rust = { "rustfmt" },
         sh = { "shfmt" },
