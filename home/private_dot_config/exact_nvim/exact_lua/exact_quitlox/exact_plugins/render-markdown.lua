@@ -8,6 +8,12 @@ require("render-markdown").setup({
     render_modes = { "n", "c", "t" }, -- Render in normal, command, and terminal modes
     max_file_size = 10.0, -- Maximum file size in MB to render
     file_types = { "markdown", "codecompanion" },
+
+    html = {
+        comment = {
+            conceal = false, -- Do not hide comments
+        },
+    },
 })
 
 -- Keymaps for toggling markdown rendering
@@ -17,3 +23,4 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle Markdown Rendering", buffer = 0 })
     end,
 })
+
