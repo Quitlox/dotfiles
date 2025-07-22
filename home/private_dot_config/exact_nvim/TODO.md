@@ -10,6 +10,12 @@
 
 - To Investigate:
 
+  - [ ] `python.nvim`: It should be possible to set a custom venv path, maybe via a custom command.
+  - [ ] figure out why Neoconf no longer works, I want to be able to set the typeCheckingMode of basedpyright
+  - [ ] `smart-motion.nvim`:
+    - Could be interesting to adopt, seems like it could be "less in the way". I should first notice if `flash` (f/t) ever gets in the way and document this.
+
+  - [ ] `snacks.nvim`: terminal should not map `<C-j>` and `<C-k>` for lazygit.
   - [ ] replace `arrow.nvim`: 
     - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
 
