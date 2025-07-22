@@ -65,23 +65,27 @@ Snacks.toggle
 vim.lsp.config("hyprls", { root_marker = { "hyprland.conf" } })
 
 --+- LSP: Enable --------------------------------------------+
+-- stylua: ignore start
 local lsps = {
-    "ansiblels",
-    "autotools_ls",
-    "bashls",
-    "basedpyright",
-    "ccls",
-    "cmake",
-    "cssls",
-    "css_variables",
-    "docker_compose_language_service",
-    "dockerls",
-    "lua_ls",
-    "hyprls",
-    "nil_ls",
-    "pug",
-    "svelte",
+    "ansiblels",                        -- Ansible
+    "autotools_ls",                     -- C/C++ (Autotools)
+    "bashls",                           -- Bash
+    "basedpyright",                     -- Python
+    "ccls",                             -- C/C++
+    "cmake",                            -- C/C++ (CMake)
+    "cssls",                            -- Web (CSS)
+    "css_variables",                    -- Web (CSS Variables)
+    "docker_compose_language_service",  -- Docker Compose
+    "dockerls",                         -- Docker
+    "harper-ls",                        -- Prose (grammarly-like support)
+    "hyprls",                           -- Hyprland
+    "lua_ls",                           -- Lua
+    "marksman",                         -- Markdown (provides support for go-to, references, etc...) (may interfere with obsidian.nvim?)
+    "nil_ls",                           -- Nix
+    "pug",                              -- Web (Template: Pug)
+    "svelte",                           -- Web (JS: Svelte)
 }
+-- stylua: ignore end
 
 for _, lsp in ipairs(lsps) do
     vim.lsp.enable(lsp)
