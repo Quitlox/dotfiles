@@ -2,6 +2,11 @@
 -- | gbprod/yanky.nvim: Improved Yank and Put                |
 -- +---------------------------------------------------------+
 
+-- TODO: Add support for WSL
+if vim.fn.exists("g:neovide") == 1 and _G.IS_WSL then
+    return
+end
+
 -- Setup
 require("yanky").setup({
     preserve_cursor_position = {

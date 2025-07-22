@@ -8,6 +8,15 @@ if current_path then
     vim.env.PATH = table.concat(filtered_parts, ":")
 end
 
+--+- Setup: Detect Environments -----------------------------+
+local uname = vim.uv.os_uname()
+
+_G.OS = uname.sysname
+_G.IS_MAC = OS == 'Darwin'
+_G.IS_LINUX = OS == 'Linux'
+_G.IS_WINDOWS = OS:find 'Windows' and true or false
+_G.IS_WSL = IS_LINUX and uname.release:lower():find 'microsoft' and true or false
+
 --+- Setup: Delay Notifications -----------------------------+
 require("quitlox.util.notify").lazy_notify()
 
