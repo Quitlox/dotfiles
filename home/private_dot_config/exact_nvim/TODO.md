@@ -10,6 +10,8 @@
 
 - To Investigate:
 
+  - [ ] toggle formatter globally not working
+
   - [ ] replace `arrow.nvim`: 
     - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
 
