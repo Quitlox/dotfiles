@@ -295,6 +295,7 @@ tree-sitter-vimdoc = "scm"
 tree-sitter-vue = "0.0.29"
 tree-sitter-yaml = "scm"
 tree-sitter-yuck = "scm"
+tree-sitter-nix = "0.0.59"
 
 # +----------------------------------------------------------+
 # | Config                                                   |
