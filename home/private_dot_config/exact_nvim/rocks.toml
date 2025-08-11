@@ -233,6 +233,7 @@ auto_install = "prompt"
 # +----------------------------------------------------------+
 # | Dependencies                                             |
 # +----------------------------------------------------------+
+"nui.nvim" = { git = "muniftanjim/nui.nvim", rev = "0.4.0" } # gitlab.nvim
 "promise-async" = { git = "kevinhwang91/promise-async", rev = "119e8961014c9bfaf1487bf3c2a393d254f337e2" } # outdated (semver, luarocks)
 "nvim-nio" = "1.10.1"
 "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "857c5ac632080dba10aae49dba902ce3abf91b35" } # codecompanion
