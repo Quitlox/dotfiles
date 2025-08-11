@@ -91,9 +91,6 @@ When need arises:
 - optional plugins:
   - `nvim-scrollbar`: not very necessary, but very well maintained
 
-Desktop:
-- [ ] Eww: Bar use fill icons on select
-
 Plugin Ideas:
     - Rewrite of neotest:
         - support both simple configuration through cli and advanced configuration through adapter
