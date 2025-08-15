@@ -63,6 +63,15 @@ Snacks.toggle
 
 --+- LSP: Configure -----------------------------------------+
 vim.lsp.config("hyprls", { root_marker = { "hyprland.conf" } })
+vim.lsp.config("basedpyright", {
+    settings = {
+        basedpyright = {
+            analysis = {
+                typeCheckingMode = "basic",
+            },
+        },
+    },
+})
 
 --+- LSP: Enable --------------------------------------------+
 local lsps = {
