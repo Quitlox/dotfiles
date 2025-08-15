@@ -11,6 +11,14 @@
 - To Investigate:
 
   - [ ] toggle formatter globally not working
+  - neoconf configuration currently broken
+  - mcphub lualine component needs to be reconfigured
+  - <c-space> not working
+  - <c-k> not working in lazygit (focusses other window)
+  - <c-k> on outline conflicts with window switching (eg with test window)
+    -> swap with <a-k>?
+  - grug-far is annoying when u forget to save a changed for before hitting sync
+    all, as it will edit the on-disk file and not the buffer
 
   - [ ] replace `arrow.nvim`: 
     - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
