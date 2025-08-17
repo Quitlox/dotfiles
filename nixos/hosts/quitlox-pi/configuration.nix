@@ -9,6 +9,7 @@
     ./filesystem.nix
     ./networking.nix
     ./user.nix
+    ../../modules/sops.nix
   ];
 
   environment.systemPackages = with pkgs; [

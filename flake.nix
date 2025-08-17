@@ -19,6 +19,10 @@
     nixos-raspberrypi = {
       url = "github:nvmd/nixos-raspberrypi/main";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -26,6 +30,7 @@
       self,
       nixpkgs,
       nixos-raspberrypi,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -38,6 +43,7 @@
           specialArgs = inputs;
           modules = [
             ./nixos/hosts/quitlox-pi/configuration.nix
+            sops-nix.nixosModules.sops
           ];
         };
       };

@@ -1,0 +1,9 @@
+keys:
+  - &user_quitlox age1l3s5vhuzyfc4gcj4ceuh9z8e93cnsxfed6vdwxw2ct8u3smmugeqvsmszr
+  - &ssh_host_ed25519_quitlox-pi age1djjlf4knk5vnjq8hg79sdyscgufj7zyu6e76gnf6e6zu8fvuceaqgj9a5n
+creation_rules:
+  - path_regex: nixos/secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *user_quitlox
+      - *ssh_host_ed25519_quitlox-pi
