@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   # This is mostly portions of safe network configuration defaults that
   # nixos-images and srvos provide
@@ -21,16 +22,18 @@
     systemd-resolved.stopIfChanged = false;
   };
 
-  # Use iwd instead of wpa_supplicant. It has a user friendly CLI
-  networking.wireless.enable = false;
-  networking.wireless.iwd = {
+  # Disable iwd since we're using wpa_supplicant
+  networking.wireless.iwd.enable = false;
+  networking.wireless.userControlled.enable = true;
+  # Use wpa_supplicant for declarative WiFi configuration
+  networking.wireless = {
     enable = true;
-    settings = {
-      Network = {
-        EnableIPv6 = true;
-        RoutePriorityOffset = 300;
+    secretsFile = config.sops.templates."wifi".path;
+    networks = {
+      "Wifi in de Trein" = {
+        pskRaw = "ext:psk_wifi_home";
       };
-      Settings.AutoConnect = true;
     };
   };
+  
 }
