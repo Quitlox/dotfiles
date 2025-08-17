@@ -39,5 +39,5 @@ encryption = "age"
     recipient = {{ (rbwFields "ChezMoi Dotfiles Manager").age_public_key.value | quote }}
 
 [hooks.read-source-state.pre]
-script = {{ joinPath .chezmoi.sourceDir "/../install_age_key.bash" | quote }}
+script = {{ joinPath .chezmoi.sourceDir "/../scripts/install_age_key.bash" | quote }}
 args = [{{ .chezmoi.homeDir | quote }}]
