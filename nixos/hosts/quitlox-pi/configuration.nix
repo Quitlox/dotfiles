@@ -10,6 +10,7 @@
     ./networking.nix
     ./user.nix
     ../../modules/sops.nix
+    ../../modules/openssh.nix
   ];
 
   environment.systemPackages = with pkgs; [

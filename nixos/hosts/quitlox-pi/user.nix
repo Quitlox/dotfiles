@@ -19,12 +19,6 @@
   # Locale
   time.timeZone = "UTC";
 
-  # SSH
-  services.openssh = {
-    enable = true;
-    settings.PermitRootLogin = "yes";
-  };
-
   users.users.quitlox.openssh.authorizedKeys.keys = [
     # YOUR SSH PUB KEY HERE #
   ];
