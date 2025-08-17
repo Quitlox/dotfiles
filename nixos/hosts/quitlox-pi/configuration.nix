@@ -7,14 +7,18 @@
 }:
 {
   imports = [
+    # system configuration
     ./hardware/configuration.nix
     ./system/filesystem.nix
     ./system/networking.nix
+    # user configuration
     ./system/user.nix
     ../../modules/sops.nix
     ../../modules/openssh.nix
     ../../modules/bundle-cli.nix
-    # Some nice-to-haves from srvos
+    # applications
+    ./applications/tailscale.nix
+    # server defaults (nice-to-haves) from srvos
     (srvos.outPath + "/nixos/common/detect-hostname-change.nix")
     (srvos.outPath + "/nixos/common/update-diff.nix")
   ];
