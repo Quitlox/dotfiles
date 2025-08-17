@@ -11,15 +11,7 @@
     ./user.nix
     ../../modules/sops.nix
     ../../modules/openssh.nix
-  ];
-
-  environment.systemPackages = with pkgs; [
-    tree
-    curl
-    wget
-    git
-    vim
-    neovim
+    ../../modules/bundle-cli.nix
   ];
 
   # ----- System -----
