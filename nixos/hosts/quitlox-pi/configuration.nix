@@ -8,9 +8,9 @@
 {
   imports = [
     ./hardware/configuration.nix
-    ./filesystem.nix
-    ./networking.nix
-    ./user.nix
+    ./system/filesystem.nix
+    ./system/networking.nix
+    ./system/user.nix
     ../../modules/sops.nix
     ../../modules/openssh.nix
     ../../modules/bundle-cli.nix
