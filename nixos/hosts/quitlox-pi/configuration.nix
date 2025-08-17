@@ -22,8 +22,9 @@
     neovim
   ];
 
-  # System
+  # ----- System -----
   networking.hostName = "quitlox-pi";
+  time.timeZone = "UTC"; # Locale
 
   # Nix
   nix.settings.trusted-users = [ "quitlox" ];

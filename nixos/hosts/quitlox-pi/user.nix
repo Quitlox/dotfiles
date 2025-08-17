@@ -6,18 +6,16 @@
       "wheel"
       "networkmanager"
     ];
-    # Allow the graphical user to login without password
-    initialHashedPassword = "";
   };
 
-  # Security
+  # First time login
   # Allow the user to log in as root without a passwd.
   users.users.root.initialHashedPassword = "";
+  users.users.quitlox.initialHashedPassword = "";
+
+  # Security
   # Don't require sudo/root to `reboot` or `poweroff`.
   security.polkit.enable = true;
-
-  # Locale
-  time.timeZone = "UTC";
 
   users.users.quitlox.openssh.authorizedKeys.keys = [
     # YOUR SSH PUB KEY HERE #
