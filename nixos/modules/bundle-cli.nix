@@ -27,6 +27,7 @@ in
       git
       vim
       neovim
+      kitty.terminfo
     ];
   };
 }
