@@ -127,6 +127,9 @@ export JAVA_HOME=/usr/lib/jvm/default
 ########################################
 # Environment variables for random applications
 
+# SOPS (used by NixOS)
+SOPS_AGE_KEY_FILE=~/.ssh/.age_private_key.txt
+
 # OCAML
 export OPAMROOT=$XDG_DATA_HOME/opam
 [[ ! -r /home/quitlox/.local/share/opam/opam-init/init.zsh ]] || source /home/quitlox/.local/share/opam/opam-init/init.zsh >/dev/null 2>/dev/null
