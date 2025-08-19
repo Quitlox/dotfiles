@@ -58,9 +58,50 @@ $surface0: rgba(204, 208, 218, 0.1);
     font-weight: bold;
 }
 
-.workspace-occupied {}
+.workspace-occupied {
+    opacity: 1;
+}
 
-.workspace-empty {}
+.workspace-empty {
+    opacity: 0.4;
+}
+
+// Workspace apps tooltip
+.workspace-apps-tooltip {
+    background: rgba(30, 30, 46, 0.95); // dark background with transparency
+    border: 1px solid rgba(204, 208, 218, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+.workspace-app-entry {
+    padding: 4px 8px;
+    border-radius: 4px;
+    
+    &:hover {
+        background: rgba(204, 208, 218, 0.1);
+    }
+}
+
+.workspace-app-icon {
+    margin-right: 8px;
+}
+
+.workspace-app-title {
+    color: rgb(204, 208, 218);
+    font-size: 12px;
+    font-family: 'Iosevka';
+}
+
+.workspace-tooltip-header {
+    color: rgb(204, 208, 218);
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(204, 208, 218, 0.2);
+}
 
 // +--- Widget: Music Player --------------------------------------------------+
 .music-player-container {

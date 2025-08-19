@@ -38,15 +38,68 @@
 (deflisten var-workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
 (defvar var-workspace-icons "󰚡󱆀󰅴󰦅󰭤󰒍󰻭󰂞󰎈󰂕") ; Home, Study, Code, Search, Documentation, Servers, Scratch, Communication, Music
+(defpoll workspace-apps-1 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 1`)
+(defpoll workspace-apps-2 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 2`)
+(defpoll workspace-apps-3 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 3`)
+(defpoll workspace-apps-4 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 4`)
+(defpoll workspace-apps-5 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 5`)
+(defpoll workspace-apps-6 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 6`)
+(defpoll workspace-apps-7 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 7`)
+(defpoll workspace-apps-8 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 8`)
+(defpoll workspace-apps-9 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 9`)
+(defpoll workspace-apps-10 :interval "1s" :initial "[]" `bash ~/.config/eww/scripts/get-workspace-apps.sh 10`)
+
+(defwidget workspace-apps-tooltip [apps]
+  (box :orientation "vertical"
+       :class "workspace-apps-tooltip"
+       :spacing 5
+    (for app in apps
+      (box :class "workspace-app-entry"
+           :orientation "horizontal"
+           :spacing 5
+        (image :path {app.icon_path}
+               :image-width 24
+               :image-height 24
+               :class "workspace-app-icon")
+        (label :text {app.title}
+               :limit-width 20
+               :class "workspace-app-title")))))
+
 (defwidget w-workspaces []
   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
     (box :space-evenly true
          :class "workspaces"
       (label :text "${var-workspaces}${current_workspace}" :visible false)
       (for workspace in var-workspaces
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (box :class "workspace-entry ${workspace.id == current_workspace ? "workspace-current" : ""} ${workspace.windows > 0 ? "workspace-occupied" : "workspace-empty"}"
-            (label :text "${substring(var-workspace-icons, workspace.id - 1, 1)}")))))))
+        (tooltip
+          (box :orientation "vertical"
+               :class "workspace-apps-tooltip"
+               :spacing 5
+            (label :text "Workspace ${workspace.id}"
+                   :class "workspace-tooltip-header")
+            (for app in {workspace.id == 1 ? workspace-apps-1 :
+                        workspace.id == 2 ? workspace-apps-2 :
+                        workspace.id == 3 ? workspace-apps-3 :
+                        workspace.id == 4 ? workspace-apps-4 :
+                        workspace.id == 5 ? workspace-apps-5 :
+                        workspace.id == 6 ? workspace-apps-6 :
+                        workspace.id == 7 ? workspace-apps-7 :
+                        workspace.id == 8 ? workspace-apps-8 :
+                        workspace.id == 9 ? workspace-apps-9 :
+                        workspace-apps-10}
+              (box :class "workspace-app-entry"
+                   :orientation "horizontal"
+                   :spacing 5
+                (image :path {app.icon_path}
+                       :image-width 24
+                       :image-height 24
+                       :class "workspace-app-icon")
+                (label :text {app.title}
+                       :limit-width 20
+                       :class "workspace-app-title"))))
+          (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+            (box :class "workspace-entry ${workspace.id == current_workspace ? "workspace-current" : ""} ${workspace.windows > 0 ? "workspace-occupied" : "workspace-empty"}"
+              (label :text "${substring(var-workspace-icons, workspace.id - 1, 1)}"))))))))
 
 ; +--- Widget: Music ----------------------------------------------------------+
 (defpoll var-music :interval "1s" "bash scripts/getmusic.sh")
@@ -169,6 +222,7 @@
 
 ; +--- Window -----------------------------------------------------------------+
 (defwindow bar
+           :monitor 0
            :geometry (geometry :x "0px"
                                :y "0px"
                                :width "100%"
@@ -180,3 +234,32 @@
            :focusable false
            :namespace "quitlox-bar"
  (bar-container))
+
+; Test window to debug workspace apps
+(defwindow workspace-test
+           :monitor 0
+           :geometry (geometry :x "20px"
+                               :y "100px"
+                               :width "300px"
+                               :height "200px"
+                               :anchor "bottom left")
+           :stacking "fg"
+           :focusable false
+  (box :orientation "vertical"
+       :class "workspace-apps-tooltip"
+       :spacing 5
+    (label :text "Workspace 1 Apps (Test)"
+           :class "workspace-tooltip-header")
+    (label :text "Apps count: ${arraylength(workspace-apps-1)}"
+           :class "workspace-app-title")
+    (for app in workspace-apps-1
+      (box :class "workspace-app-entry"
+           :orientation "horizontal"
+           :spacing 5
+        (image :path {app.icon_path}
+               :image-width 24
+               :image-height 24
+               :class "workspace-app-icon")
+        (label :text {app.title}
+               :limit-width 20
+               :class "workspace-app-title")))))
