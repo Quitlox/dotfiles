@@ -39,7 +39,6 @@
           specialArgs = inputs;
           modules = [
             ./nixos/hosts/quitlox-pi/configuration.nix
-            sops-nix.nixosModules.sops
           ];
         };
       };
