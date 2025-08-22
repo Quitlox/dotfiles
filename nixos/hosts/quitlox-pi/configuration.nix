@@ -19,6 +19,7 @@
     ../../modules/bundle-chezmoi.nix
     ../../modules/bundle-neovim.nix
     # applications
+    ./applications/arion-whoami.nix
     ./applications/tailscale.nix
     ./applications/traefik.nix
     # server defaults (nice-to-haves) from srvos
@@ -29,11 +30,6 @@
   # ----- System -----
   networking.hostName = "quitlox-pi";
   time.timeZone = "UTC"; # Locale
-
-  # ----- Virtualization -----
-  virtualisation.arion.projects = {
-    whoami.settings.imports = [ ./applications/arion/whoami.nix ];
-  };
 
   # ----- Nix -----
   nix.settings.trusted-users = [ "@wheel" ];
