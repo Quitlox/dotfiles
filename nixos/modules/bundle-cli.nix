@@ -33,6 +33,7 @@ in
       git
       vim
       kitty.terminfo
+      fd
     ];
   };
 }
