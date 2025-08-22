@@ -42,11 +42,7 @@ require("codecompanion").setup({
         },
     },
 
-    extensions = {
-        --+- Integration: VectorCode
-        vectorcode = {
-            opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
-        },
+    extensions = vim.tbl_extend("force", {
         --+- Integration: MCPHub
         mcphub = {
             callback = "mcphub.extensions.codecompanion",
@@ -56,7 +52,12 @@ require("codecompanion").setup({
                 make_slash_commands = true,
             },
         },
-    },
+    }, vim.fn.executable("vectorcode") == 1 and {
+        --+- Integration: VectorCode
+        vectorcode = {
+            opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
+        },
+    } or {}),
 
     prompt_library = {
         ["Research Paper Analysis"] = {
