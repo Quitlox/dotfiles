@@ -2,10 +2,15 @@
 {
   services.traefik = {
     enable = true;
+    group = "docker";
 
     staticConfigOptions = {
       api.dashboard = true;
       api.insecure = true;
+
+      providers = {
+        docker = {};
+      };
 
       entryPoints = {
         web = {
