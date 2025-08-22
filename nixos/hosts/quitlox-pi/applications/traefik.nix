@@ -9,6 +9,7 @@
     staticConfigOptions = {
       api.dashboard = true;
       api.insecure = true;
+      ping = {};
 
       providers = {
         docker = {};
