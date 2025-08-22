@@ -33,6 +33,7 @@ in
             lua51Packages.luarocks 
             lua51Packages.rocks-nvim 
             unzip # for installing tree-sitter parsers
+            chafa # for dashboard image
         ];
   };
 }
