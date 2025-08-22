@@ -30,6 +30,11 @@
   networking.hostName = "quitlox-pi";
   time.timeZone = "UTC"; # Locale
 
+  # ----- Virtualization -----
+  virtualisation.arion.projects = {
+    whoami.settings.imports = [ ./applications/arion/whoami.nix ];
+  };
+
   # ----- Nix -----
   nix.settings.trusted-users = [ "@wheel" ];
   nix.settings.experimental-features = [
