@@ -26,12 +26,6 @@
           asDefault = true;
         };
       };
-
-      log = {
-        level = "INFO";
-        filePath = "${config.services.traefik.dataDir}/traefik.log";
-        format = "json";
-      };
     };
   };
 }
