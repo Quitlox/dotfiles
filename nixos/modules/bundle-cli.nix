@@ -9,7 +9,6 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
-    mkDefault
     ;
   cfg = config.bundles.cli;
 in
@@ -21,10 +20,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Neovim
-    programs.neovim.enable = true;
-    programs.neovim.defaultEditor = true;
-
     # Install packages
     environment.systemPackages = with pkgs; [
       tree

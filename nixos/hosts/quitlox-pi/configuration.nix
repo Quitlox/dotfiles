@@ -17,6 +17,7 @@
     ../../modules/openssh.nix
     ../../modules/bundle-cli.nix
     ../../modules/bundle-chezmoi.nix
+    ../../modules/bundle-neovim.nix
     # applications
     ./applications/tailscale.nix
     ./applications/traefik.nix
