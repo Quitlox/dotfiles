@@ -20,6 +20,7 @@
     ../../modules/bundle-neovim.nix
     # applications
     ./applications/arion-whoami.nix
+    ./applications/media.nix
     ./applications/tailscale.nix
     ./applications/traefik.nix
     # server defaults (nice-to-haves) from srvos

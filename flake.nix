@@ -17,6 +17,8 @@
   inputs = {
     arion.url = "github:hercules-ci/arion";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # FIXME: nixos-raspberrypi (and by extension me) is stuck on a modified version of nixpkgs
+    # see: https://github.com/NixOS/nixpkgs/pull/398456
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     sops-nix.url = "github:Mic92/sops-nix";
     srvos.url = "github:nix-community/srvos";
@@ -36,7 +38,7 @@
     in
     {
       nixosConfigurations = {
-        quitlox-pi = nixos-raspberrypi.lib.nixosSystemFull {
+        quitlox-pi = nixos-raspberrypi.lib.nixosSystem {
           specialArgs = inputs;
           modules = [
             ./nixos/hosts/quitlox-pi/configuration.nix

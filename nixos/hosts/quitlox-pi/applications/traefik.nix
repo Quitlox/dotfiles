@@ -49,6 +49,13 @@
 
     dynamicConfigOptions = {
       http = {
+        services = {
+          jellyfin = {
+            loadBalancer.servers = [
+              { url = "http://127.0.0.1:8096"; }
+            ];
+          };
+        };
         routers = {
           # Dashboard: Lock to Internal IPs
           dashboard = {
@@ -56,6 +63,12 @@
             rule = "(PathPrefix(`/api`) || PathPrefix(`/dashboard`))";
             service = "api@internal";
             middlewares = [ "ip-internal" ];
+          };
+          # Jellyfin: Port forwarding
+          jellyfin = {
+            entryPoints = [ "web" ];
+            rule = "Host(`media.quitlox-pi.local`)";
+            service = "jellyfin";
           };
         };
         middlewares = {
