@@ -25,6 +25,18 @@
           address = ":80";
           asDefault = true;
         };
+        websecure = {
+          address = ":443";
+          asDefault = true;
+          http.tls.certResolver = "letsencrypt";
+        };
+      };
+
+      certificatesResolvers.letsencrypt.acme = {
+        email = "kevin.witlox@upcmail.nl";
+        storage = "${config.services.traefik.dataDir}/acme.json";
+        caServer = "https://acme-staging-v02.api.letsencrypt.org/directory";
+        httpChallenge.entryPoint = "web";
       };
     };
   };
