@@ -12,7 +12,11 @@
       ping = {};
 
       providers = {
-        docker = {};
+        docker = {
+          network = "proxy";
+          watch = true;
+          exposedByDefault = false;
+        };
       };
 
       entryPoints = {
@@ -27,11 +31,6 @@
         filePath = "${config.services.traefik.dataDir}/traefik.log";
         format = "json";
       };
-    };
-
-    dynamicConfigOptions = {
-      http.routers = { };
-      http.services = { };
     };
   };
 }
