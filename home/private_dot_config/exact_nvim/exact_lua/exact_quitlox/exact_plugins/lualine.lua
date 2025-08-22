@@ -37,13 +37,6 @@ local vector_code = {
     end,
 }
 
-local mcp_hub = {
-    require("mcphub.extensions.lualine"),
-    cond = function()
-        return package.loaded["mcphub"] ~= nil
-    end,
-}
-
 --+- Customize Modules --------------------------------------+
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
 local git_blame = { "b:gitsigns_blame_line", icon = " ", fmt = trunc(180, 40, 140, true) }
@@ -148,7 +141,7 @@ require("lualine").setup({
                 lualine_a = {},
                 lualine_b = {},
                 lualine_c = { "my_pretty_path" },
-                lualine_x = { mcp_hub, vector_code },
+                lualine_x = { vector_code },
                 lualine_y = {},
                 lualine_z = {},
             },

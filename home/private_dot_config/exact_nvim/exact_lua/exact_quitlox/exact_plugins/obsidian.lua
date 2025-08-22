@@ -28,31 +28,10 @@ else
     }
 end
 
---+- Setup --------------------------------------------------+
 require("obsidian").setup({
     --+- Behaviour --------------------+
     workspaces = workspaces,
-    mappings = {
-        ["X"] = {
-            action = function()
-                return require("obsidian").util.toggle_checkbox()
-            end,
-            opts = { buffer = true },
-        },
-        ["gd"] = {
-            action = function()
-                return require("obsidian").util.gf_passthrough()
-            end,
-            opts = { noremap = false, expr = true, buffer = true },
-        },
-        -- Smart action depending on context: follow link, show notes with tag, toggle checkbox, or toggle heading fold
-        ["<cr>"] = {
-            action = function()
-                return require("obsidian").util.smart_action()
-            end,
-            opts = { buffer = true, expr = true },
-        },
-    },
+    legacy_commands = false,
 
     --+- Obsidian ---------------------+
     daily_notes = {
@@ -134,18 +113,39 @@ require("obsidian").setup({
     },
 })
 
---+- Keymaps ------------------------------------------------+
+--+- Keymaps: ObsidianNoteEnter ------------------------------+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "ObsidianNoteEnter",
+    callback = function(ev)
+        -- Toggle checkbox
+        vim.keymap.set("n", "X", function()
+            return require("obsidian").util.toggle_checkbox()
+        end, { buffer = ev.buf, desc = "Toggle checkbox" })
+
+        -- Follow link (passthrough to default gf behavior when not on a link)
+        vim.keymap.set("n", "gd", function()
+            return require("obsidian").util.gf_passthrough()
+        end, { noremap = false, expr = true, buffer = ev.buf, desc = "Follow link" })
+
+        -- Smart action depending on context
+        vim.keymap.set("n", "<cr>", function()
+            return require("obsidian").util.smart_action()
+        end, { buffer = ev.buf, expr = true, desc = "Smart action" })
+    end,
+})
+
+--+- Keymaps -------------------------------------------------+
 require("which-key").add({ { "<localleader>o", group = "Obsidian" } })
-vim.keymap.set("n", "<localleader>oo", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick Switcher" })
-vim.keymap.set("n", "<localleader>os", "<cmd>ObsidianSearch<cr>", { desc = "Open Note" })
-vim.keymap.set("n", "<localleader>on", "<cmd>ObsidianNew<cr>", { desc = "New Note" })
-vim.keymap.set("n", "<localleader>ox", "<cmd>ObsidianOpen<cr>", { desc = "Open in Obsidian" })
-vim.keymap.set("n", "<localleader>ot", "<cmd>ObsidianNewFromTemplate<cr>", { desc = "New from Template" })
+vim.keymap.set("n", "<localleader>oo", "<cmd>Obsidian quick_switch<cr>", { desc = "Quick Switcher" })
+vim.keymap.set("n", "<localleader>os", "<cmd>Obsidian search<cr>", { desc = "Search Notes" })
+vim.keymap.set("n", "<localleader>on", "<cmd>Obsidian new<cr>", { desc = "New Note" })
+vim.keymap.set("n", "<localleader>ox", "<cmd>Obsidian open<cr>", { desc = "Open in Obsidian" })
+vim.keymap.set("n", "<localleader>ot", "<cmd>Obsidian new_from_template<cr>", { desc = "New from Template" })
 vim.keymap.set("n", "<localleader>oz", function()
     vim.ui.input({ prompt = "Zettel name: " }, function(name)
         if name then
             -- Create a new zettel with the given name using the Zettel template
-            vim.cmd(string.format("ObsidianNew 05\\ Zettelkasten/%s", name))
+            vim.cmd(string.format("Obsidian new 05\\ Zettelkasten/%s", name))
             -- vim.cmd("ObsidianTemplate Zettel.md")
         end
     end)
