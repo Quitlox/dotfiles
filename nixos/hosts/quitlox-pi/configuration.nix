@@ -11,6 +11,7 @@
     ./hardware/configuration.nix
     ./system/filesystem.nix
     ./system/networking.nix
+    ./system/virtualization.nix
     ./system/user.nix
     ../../modules/sops.nix
     ../../modules/openssh.nix

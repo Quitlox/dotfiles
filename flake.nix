@@ -15,6 +15,7 @@
   };
 
   inputs = {
+    arion.url = "github:hercules-ci/arion";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     sops-nix.url = "github:Mic92/sops-nix";
