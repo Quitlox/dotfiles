@@ -15,10 +15,16 @@ let
 in
 {
   options.bundles.cli = {
-    enable = mkEnableOption "bundle: cli";
+    enable = mkEnableOption "bundle: cli" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
+    # Neovim
+    programs.neovim.enable = true;
+    programs.neovim.defaultEditor = true;
+
     # Install packages
     environment.systemPackages = with pkgs; [
       tree
@@ -26,7 +32,6 @@ in
       wget
       git
       vim
-      neovim
       kitty.terminfo
     ];
   };
