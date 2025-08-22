@@ -17,7 +17,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
-    sops-nix.url = "github:Mic92/sops-nix"; 
+    sops-nix.url = "github:Mic92/sops-nix";
     srvos.url = "github:nix-community/srvos";
   };
 
@@ -43,5 +43,7 @@
           ];
         };
       };
+
+      formatter = forSystems allSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
     };
 }

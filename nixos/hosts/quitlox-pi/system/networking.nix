@@ -31,7 +31,7 @@
   # Keep dmesg/journalctl -k output readable by NOT logging
   # each refused connection on the open internet.
   networking.firewall.logRefusedConnections = lib.mkDefault false;
-  
+
   # Do not take down the network for too long when upgrading,
   # This also prevents failures of services that are restarted instead of stopped.
   # It will use `systemctl restart` rather than stopping it with `systemctl stop`
