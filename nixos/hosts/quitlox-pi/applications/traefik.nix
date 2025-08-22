@@ -1,5 +1,7 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
+  environment.systemPackages = [ pkgs.traefik ];
+
   services.traefik = {
     enable = true;
     group = "docker";
