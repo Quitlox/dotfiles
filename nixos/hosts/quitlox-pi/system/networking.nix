@@ -23,6 +23,13 @@
     };
   };
 
+  # WiFi Password
+  sops.templates."wifi" = {
+    content = ''
+      psk_wifi_home=${config.sops.placeholder.pass-wifi}
+    '';
+  };
+
   # ----- Lifted from srvos -----
 
   # Allow PMTU / DHCP
