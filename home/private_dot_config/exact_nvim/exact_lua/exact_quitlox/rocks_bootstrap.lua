@@ -4,7 +4,7 @@
 
 local rocks_config = {
     rocks_path = vim.env.HOME .. "/.local/share/nvim/rocks",
-    luarocks_binary = "luarocks" -- Just default to system luarocks, I always get problems with the included binary on both Arch and NixOS
+    luarocks_binary = "/usr/bin/luarocks" -- Just default to system luarocks, I always get problems with the included binary on both Arch and NixOS
 }
 
 vim.g.rocks_nvim = rocks_config
