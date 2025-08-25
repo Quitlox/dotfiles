@@ -144,7 +144,7 @@ auto_install = "prompt"
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v5.3.2", ft = "http" }
 # +- LaTeX --------------------------------------------------+
-"vimtex" = { git = "lervag/vimtex", rev = "v2.16" }
+"vimtex" = { git = "lervag/vimtex", rev = "dc90feacb86f7b85b0b791d8073eefc769a23725" }
 # +- Lua ----------------------------------------------------+
 "lazydev.nvim" = { git = "folke/lazydev.nvim", rev = "v1.9.0", config = "quitlox.plugins.lang.lazydev" }
 "luvit-meta" = { git = "Bilal2453/luvit-meta", rev = "1df30b60b1b4aecfebc785aa98943db6c6989716" }
@@ -269,7 +269,7 @@ tree-sitter-json = "0.0.36"
 tree-sitter-jsonc = "0.0.29"
 tree-sitter-jsx = "0.0.30"
 tree-sitter-jq = "0.0.30"
-tree-sitter-latex = "0.0.38"
+# tree-sitter-latex = "scm"
 tree-sitter-lua = "0.0.36"
 tree-sitter-luadoc = "0.0.29"
 tree-sitter-markdown = "0.0.44"
