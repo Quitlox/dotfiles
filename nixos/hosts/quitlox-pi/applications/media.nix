@@ -1,12 +1,13 @@
 # Media Server
 #
-# Systemd Unit             Port  User      Data               Description
-# jellyfin.service         8096  jellyfin  /var/lib/jellyfin  The Media Server
-# prowlarr.service         2101  prowlarr  /var/lib/prowlarr  Torrent index manager
-# radarr.service           2102  radarr    /var/lib/radarr    Movie collection manager
-# sonarr.service           2103  sonarr    /var/lib/sonarr    Series collection manager
-# arion-profilarr.service  2109  -         /var/lib/profilarr Configuration manager (for profiles, quality)
-# qbittorent.service       2111  -         /var/lib/profilarr QBittorrent Web UI
+# Systemd Unit             Port  User       Data                 Description
+# jellyfin.service         8096  jellyfin   /var/lib/jellyfin    The Media Server
+# prowlarr.service         2101  prowlarr   /var/lib/prowlarr    Torrent index manager
+# radarr.service           2102  radarr     /var/lib/radarr      Movie collection manager
+# sonarr.service           2103  sonarr     /var/lib/sonarr      Series collection manager
+# jellyseerr.service       2108  jellyseer  /var/lib/jellyseerr  Media Discovery 
+# arion-profilarr.service  2109  -          /var/lib/profilarr   Configuration manager (for profiles, quality)
+# qbittorent.service       2111  -          /var/lib/profilarr   QBittorrent Web UI
 #
 # Storage
 #   - /srv/media/movies
@@ -29,7 +30,6 @@
 #
 # TODO:
 # - bazarr for subtitles
-# - jellyseerr? (https://github.com/Fallenbagel/jellyseerr)
 # - ombi? (https://github.com/Ombi-app/Ombi)
 # - Inspiration: https://github.com/rasmus-kirk/nixarr/tree/main/nixarr
 #
@@ -179,8 +179,44 @@ in
   };
 
   ##############################################################################
-  ### Profilarr                                                              ###
+  ### Jellyseerr - Media Discovery                                           ###
   ##############################################################################
+  # Description:
+  #   Integrates Jellyfin with Sonarr and Radarr to let users request media to
+  #   be downloaded from Jellyfin.
+  #
+  # Setup:
+  #   1. Walk through first-time setup
+  #       1. Setup Jellyfin integration
+  #           Jellyfin at "localhost:8096", log in with "jellyfin" user. 
+  #       2. Setup Radarr
+  #           Set as default server
+  #           Server Name "Movies"
+  #           Radarr at http://localhost:2102, with apikey from secrets.yaml
+  #           Select Quality Profile "2160p Balanced"
+  #           Enable Scan
+  #       2. Setup Sonarr
+  #           Server Name "Series"
+  #           Sonarr at http://localhost:2103, with apikey from secrets.yaml
+  #           Select Quality Profile "1080p Quality"
+  #           Enable Scan
+  #       3. Settings
+  #           Default Permissions > Manage Requests = "true"
+  #           Streaming Region = "Netherlands"
+
+  services.jellyseerr.enable = true;
+  services.jellyseerr.port = 2108;
+  services.jellyseerr.openFirewall = true;
+
+  ##############################################################################
+  ### Profilarr - Configuration manager                                      ###
+  ##############################################################################
+  # Description:
+  #   This service automatically downloads "quality profiles" from a database
+  #   and syncs these with instances of sonarr and radarr. The quality profiles
+  #   take care of selecting the best (or most fitting) torrent for the desired
+  #   quality (1080p, 2160p, ...).
+
   # Setup:
   # 1. First Time Setup
   #     - on first login, you will be prompted to create a username and password
