@@ -34,15 +34,9 @@
 
   # ----- Nix -----
   nix.settings.trusted-users = [ "@wheel" ];
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = config.system.nixos.release;
-  system.nixos.tags = [
-    "raspberry-pi-5"
-    config.boot.kernelPackages.kernel.version
-  ];
+  system.nixos.tags = [ "raspberry-pi-5" config.boot.kernelPackages.kernel.version ];
 
   # Disable nix channels. Use flakes instead.
   nix.channel.enable = false;

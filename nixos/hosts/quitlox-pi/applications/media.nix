@@ -249,14 +249,16 @@ in
 
     LegalNotice.Accepted = true;
     BitTorrent.Session = {
+      AddTorrentToTopOfQueue = true;                          # Free to set: newest torrent first
       BTProtocol = "TCP";                                     # Use TCP for performance
       DefaultSavePath = "/srv/media/torrents";
       DisableAutoTMMByDefault = false;                        # Automatic Torrent Management
       DisableAutoTMMTriggers.CategorySavePathChanged = false; # When Category Save Path changed: Relocate affected torrents
       DisableAutoTMMTriggers.DefaultSavePathChanged = false;  # When Default Save Path changed: Relocate affected torrents
+      GlobalMaxRatio = 2;                                     # Free to set: seeding ratio
       Interface = "airvpn0";                                  # [AirVPN] as configured below
       InterfaceName = "airvpn0";                              # [AirVPN] as configured below
-      InterfaceAddress=0.0.0.0                                # [AirVPN] won't work without it
+      InterfaceAddress= "0.0.0.0";                            # [AirVPN] won't work without it
       # GlobalDLSpeedLimit = 85449;                             # 700 Mbps (70% of connection)
       # GlobalUPSpeedLimit = 8545;                              # 70 Mbps (70% of connection)
       Preallocation = true;                                   # Pre-allocate disk space
