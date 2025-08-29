@@ -477,7 +477,7 @@ in
             PresharedKeyFile = config.sops.secrets."airvpn/presharedkey".path;
             PublicKey = "PyLCXAQT8KkM4T+dUsOQfn+Ub3pGxfGlxkIApuig+hk=";
             AllowedIPs = [ "0.0.0.0/0" "::/0" ];
-            Endpoint = "213.152.161.213:1637";
+            Endpoint = "europe3.vpn.airdns.org:1637";
             # Install the AllowedIPs rules to table 1000 *instead of the main table*.
             RouteTable = 1000;
             PersistentKeepalive = 15;
@@ -522,10 +522,7 @@ in
             Priority = 30001;
             Family = "both";
           }
-          {
-            To = "213.152.161.213/32";
-            Priority = 5;
-          }
+          # Exemptions - Always route through main
           {
             To = "192.168.178.0/24";
             Priority = 5;
