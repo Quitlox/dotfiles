@@ -19,6 +19,7 @@
 # 
 # Notes:
 #   - All services share the `media` group for access to /srv/media
+#     - NOTE - I think this may not actually be necessary for some services
 #   - Passwords for services can be found in `nixos/secrets/secrets.yaml`
 #   - The services cannot be fully declaratively my setup unfortunately, so we use a combination of hacks
 #       - `radarr-settings-sync.service`: one-off script that configures UI settings
@@ -29,7 +30,6 @@
 #   https://web.archive.org/web/20250822223330/https://www.fuzzygrim.com/posts/media-server
 #
 # TODO:
-# - bazarr for subtitles
 # - ombi? (https://github.com/Ombi-app/Ombi)
 # - Inspiration: https://github.com/rasmus-kirk/nixarr/tree/main/nixarr
 #
@@ -177,6 +177,45 @@ in
       SONARR__AUTH__REQUIRED=DisabledForLocalAddresses
     '';
   };
+
+  ##############################################################################
+  ### Bazarr - Manage and download subtitles                                 ###
+  ##############################################################################
+  # Description:
+  #   Companion application to Sonarr and Radarr that manages and downloads   
+  #   subtitles based on your requirements.
+  # Setup:
+  #   1. Languages:
+  #       - Languages Filter = [ "English" "Dutch" "Korean" ]
+  #       - Languages Profile > Add New Profile
+  #           - name = "en ko nl"
+  #           - Add Language 3x: "English" "Dutch" "Korean"
+  #           - Save
+  #       - Default Language Profiles for Newly Added Shows
+  #           - Series = true
+  #           - Movies = true
+  #   2. Providers > Enabled Providers
+  #       - Add "OpenSubtitles.com" (see Bitwarden for credentials)
+  #       - Add "OpenSubtitles.org"
+  #           - Requires VIP membership (16,09 yearly)
+  #   3. Subtitles
+  #       - > Sub-Zero Subtitle Content Modifications
+  #           - "Hearing Impaired" = true
+  #           - "Remove Tags" = true
+  #           - "OCR Fixes" = true
+  #           - "Common Fixes" = true
+  #           - "Fix Uppercase" = true
+  #       - > Audio Synchronization / Alignment
+  #         - "Automatic Subtitles Audio Synchronization" = true
+  #         - "Series Score Threshold For Audio Syncs" = 50
+  #         - "Movies Score Threshold For Audio Syncs" = 50
+  #    4. Sonarr
+  #       - Enabled = true, Port = 2103, API Key
+
+  services.bazarr.enable = true;
+  services.bazarr.group = "media";
+  services.bazarr.openFirewall = true;
+  services.bazarr.listenPort = 2107;
 
   ##############################################################################
   ### Jellyseerr - Media Discovery                                           ###
