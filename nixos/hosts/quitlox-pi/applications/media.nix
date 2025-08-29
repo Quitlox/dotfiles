@@ -29,10 +29,6 @@
 #   It doesn't cover exactly my setup, but it's a good starting point for catching up.
 #   https://web.archive.org/web/20250822223330/https://www.fuzzygrim.com/posts/media-server
 #
-# TODO:
-# - ombi? (https://github.com/Ombi-app/Ombi)
-# - Inspiration: https://github.com/rasmus-kirk/nixarr/tree/main/nixarr
-#
 # Notes:
 { nixpkgs, config, lib, pkgs, ... }:
 let
