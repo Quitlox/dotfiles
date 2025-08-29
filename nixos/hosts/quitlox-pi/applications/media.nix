@@ -454,9 +454,9 @@ in
 
   sops.secrets."airvpn/privatekey" = { group = "systemd-network"; mode = "0640"; };
   sops.secrets."airvpn/presharedkey" = { group = "systemd-network"; mode = "0640"; };
-  # boot.kernelModules = [ "wireguard" ]; # stated on wiki, but not necessary?
+  networking.firewall.interfaces.airvpn0.allowedTCPPorts = [ 19279 ];
+  networking.firewall.checkReversePath = "loose";
   systemd.network = {
-    # enable = true; should already be true
     netdevs = {
       # Create the virtual interface
       "50-airvpn0" = {
