@@ -155,7 +155,7 @@ auto_install = "prompt"
 "vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "99a1539a440633ee7a164e094a736c04acc2335d" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626" }
 # +- Python -------------------------------------------------+
-"python.nvim" = { git = "joshzcold/python.nvim", rev = "52183eaf7d129db09a9b8f251b79ba33285fc14d" }
+"python.nvim" = { git = "joshzcold/python.nvim", rev = "edfbadc64db3b094646860147262a4b778841943" }
 "neotest-python" = { git = "nvim-neotest/neotest-python", rev = "ed9b4d794b89044cc32e5476e637936331473c6e" }
 "nvim-dap-python" = "scm"
 # +- Rust ---------------------------------------------------+

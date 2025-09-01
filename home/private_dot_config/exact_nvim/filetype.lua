@@ -6,7 +6,6 @@ vim.filetype.add({
         ["~/.config/Code/User/settings.json"] = "jsonc",
         -- Misc
         ["launch.json"] = "jsonc",
-        ["pyproject.toml"] = "toml.python",
     },
     extension = {
         http = "http", -- required for kulala.nvim
