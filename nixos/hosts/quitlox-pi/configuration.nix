@@ -30,7 +30,7 @@
 
   # ----- System -----
   networking.hostName = "quitlox-pi";
-  time.timeZone = "UTC"; # Locale
+  time.timeZone = "Europe/Amsterdam";
 
   # ----- Nix -----
   nix.settings.trusted-users = [ "@wheel" ];
