@@ -5,7 +5,7 @@
 require("lint").linters_by_ft = {
     -- Major Languages
     python = { "pylint", "mypy", "codespell" },
-    rust = { "clippy", "codespell" },
+    rust = { "codespell" },
 
     -- Web Development
     javascript = { "eslint_d", "codespell" },
