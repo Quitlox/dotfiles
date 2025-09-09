@@ -28,6 +28,11 @@
   - [ ] navigate to next hunk with ]h should open the preview
   - [ ] i still want my custom git navigation mode
    
+
+  - https://github.com/DrKJeff16/project.nvim
+  - https://github.com/andrewferrier/wrapping.nvim/releases/tag/v2.0.0
+  - https://github.com/lewis6991/hover.nvim/pull/93
+
   - [ ] replace `arrow.nvim`: 
     - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
 
