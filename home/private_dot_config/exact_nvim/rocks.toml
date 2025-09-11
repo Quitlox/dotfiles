@@ -211,6 +211,7 @@ auto_install = "prompt"
 # +- Statusline ---------------------------------------------+
 "lualine.nvim" = "scm"
 "lualine-pretty-path" = { git = "bwpge/lualine-pretty-path", rev = "852cb06f3562bced4776a924e56a9e44d0ce634f" }
+"dart.nvim" = { git = "iofq/dart.nvim", rev = "v0.1.1" }
 # -- Breadcrumbs
 "nvim-navic" = { git = "SmiteshP/nvim-navic", rev = "f887d794a0f4594882814d7780980a949200a238" }
 # -- Context

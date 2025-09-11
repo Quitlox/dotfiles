@@ -104,7 +104,7 @@ require("lualine").setup({
         section_separators = { left = "", right = "" },
 
         globalstatus = true,
-        always_show_tabline = false,
+        always_show_tabline = true,
 
         disabled_filetypes = {
             winbar = {
@@ -156,14 +156,20 @@ require("lualine").setup({
     },
 
     tabline = {
-        lualine_a = {
+        lualine_c = {
+            function()
+                return Dart.gen_tabline()
+            end,
+            -- "%!v:lua.Dart.gen_tabline()",
+        },
+        lualine_x = {
             {
                 "tabs",
                 mode = 2,
                 show_modified_status = false,
-                max_length = function()
-                    return vim.o.columns
-                end,
+                -- max_length = function()
+                --     return 30
+                -- end,
             },
         },
     },
