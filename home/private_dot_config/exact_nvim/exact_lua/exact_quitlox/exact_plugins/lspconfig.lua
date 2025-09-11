@@ -78,7 +78,6 @@ local lsps = {
     "ansiblels",
     "autotools_ls",
     "bashls",
-    "basedpyright",
     "ccls",
     "cmake",
     "cssls",
@@ -89,7 +88,9 @@ local lsps = {
     "hyprls",
     "nil_ls",
     "pug",
+    "pyrefly",
     "svelte",
+    "ty",
 }
 
 for _, lsp in ipairs(lsps) do

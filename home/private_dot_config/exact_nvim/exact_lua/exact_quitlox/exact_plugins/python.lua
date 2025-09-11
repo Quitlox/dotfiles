@@ -18,7 +18,7 @@ require("python").setup(
         end,
 
         auto_venv_lsp_attach_patterns = { "*.py", "requirements.txt", "pyproject.toml" },
-        command_setup_buf_patter = { "*.py", "requirements.txt", "pyproject.toml" },
+        command_setup_buf_pattern = { "*.py", "requirements.txt", "pyproject.toml" },
 
         test = {
             test_runner = "pytest",
