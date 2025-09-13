@@ -2,6 +2,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Fix - for some reason the default "<C-I>" binding doesn't work without this (given that I map "<Tab>")
+vim.keymap.set("n", "<C-I>", "<C-I>", { noremap = true })
+
 -- Save
 vim.keymap.set({ "n" }, "<C-s>", "<cmd>w<CR>", { desc = "Save" })
 vim.keymap.set({ "n" }, "<C-S-s>", "<cmd>wa<CR>", { desc = "Save All" })

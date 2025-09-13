@@ -5,10 +5,13 @@
     - [ ] Markdown: Editing Tables
     - [ ] CSV: Viewing / Editing
     - [ ] Kulala
+    - NVIM TIPS PLUGIN FOR CHEATS?!
   - [ ] Which-Key:
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
 - To Investigate:
+
+  - [ ] mcp lualine component
 
   - [ ] toggle formatter globally not working
   - neoconf configuration currently broken
@@ -19,7 +22,12 @@
     -> swap with <a-k>?
   - grug-far is annoying when u forget to save a changed for before hitting sync
     all, as it will edit the on-disk file and not the buffer
-
+  - [ ] toggle formatter globally not working
+      - [ ] maybe also add a lualine component in case disabled
+  - [ ] flash f/t should not repeat (it should be a new command)
+  - [ ] navigate to next hunk with ]h should open the preview
+  - [ ] i still want my custom git navigation mode
+   
   - [ ] replace `arrow.nvim`: 
     - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
 
@@ -124,6 +132,14 @@ Plugin Ideas:
         - Easily add symbols all over your project to an outline for easy navigation
     - Extend `overseer.nvim` to support generation of `launch.json` files
 
+### Stuff I can do
+
+- Nix: 
+  - Home Manager
+  - Package Servarr better
+  - help rocks.nvim development
+
+
 ### Memorandum
 
 - In insert mode, use `<C-o>` to execute a normal mode command.
@@ -135,3 +151,4 @@ _Resources_
 
 - cheat.sh
 - devdocs.io
+
