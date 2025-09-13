@@ -76,8 +76,22 @@ in
   services.jellyfin.enable = true;
   services.jellyfin.group = "media";
   services.jellyfin.openFirewall = true;
+
   # Always prioritise Jellyfin IO
   systemd.services.jellyfin.serviceConfig.IOSchedulingPriority = 0;
+
+  # Expose through traefik
+  services.traefik.dynamicConfigOptions = {
+    http.services.jellyfin = {
+      loadBalancer.servers.url = [ "http://127.0.0.1:8920" ]; # HTTP 8096, HTTPS 8920
+    };
+    http.routers.jellyfin = {
+      entryPoints = [ "websecure" ];
+      rule = "Host(`jellyfin.${config.quitlox.home.domain}`)";
+      service = "jellyfin";
+      middlewares = [ "ip-internal" ];
+    };
+  };
 
   ##############################################################################
   ### Prowlarr - Indexer manager                                             ###
