@@ -8,6 +8,17 @@ require("flash").setup({
         search = {
             enabled = false, -- Annoying when searching for something that may not exist.
         },
+        char = {
+            char_actions = function(motion)
+                return {
+                    [";"] = "next", -- set to `right` to always go right
+                    [","] = "prev", -- set to `left` to always go left
+                    -- I do not like repeat of f/t (I want to always be able to initiate a new search)
+                    -- [motion:lower()] = "next",
+                    -- [motion:upper()] = "prev",
+                }
+            end,
+        },
     },
 })
 
