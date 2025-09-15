@@ -11,10 +11,12 @@
 
 - To Investigate:
 
+  - the picker for help tags in codecompanion should be vertical (now preview is to the right)
+  - ]h should keep preview open
+  - i need a hydra mode for git staging
 
   - [ ] toggle formatter globally not working
   - neoconf configuration currently broken
-  - mcphub lualine component needs to be reconfigured
   - <c-space> not working
   - <c-k> not working in lazygit (focusses other window)
   - [ ] toggle formatter globally not working
@@ -100,8 +102,9 @@ When need arises:
   - [ ] enable `textDocument/documentColor`
     - https://github.com/neovim/neovim/pull/33440
 - `smart-motion.nvim`: flexible and extensible motion plugin, but I am satisfied with flash
+- better marks: `recall.nvim` + `marks.nvim` (harpoon/grapple/arrow-like solution?)
 - optional plugins:
-  - `nvim-scrollbar`: not very necessary, but very well maintained
+  - `nvim-scrollbar`: not very necessary, but well maintained
 
 Plugin Ideas:
     - Rewrite of neotest:
