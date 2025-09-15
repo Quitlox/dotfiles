@@ -181,7 +181,6 @@ auto_install = "prompt"
 "no-neck-pain.nvim" = "2.4.6"
 
 # +- Buffer Switcher ----------------------------------------+
-"arrow.nvim" = { git = "otavioschwanck/arrow.nvim", rev = "6e0f726f55f99332dd726a53effd6813786b6d49" }
 
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }

@@ -29,9 +29,6 @@
   - https://github.com/DrKJeff16/project.nvim
   - https://github.com/lewis6991/hover.nvim/pull/93
 
-  - [ ] replace `arrow.nvim`: 
-    - I don't quite like `arrow.nvim`. I should really pay attention to how I would like to use "file/buffer bookmarks". It could be worth to try `recall.nvim` + `marks.nvim`.
-
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
   - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
