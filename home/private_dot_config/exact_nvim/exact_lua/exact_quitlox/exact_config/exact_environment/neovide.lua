@@ -2,7 +2,7 @@ if vim.fn.exists("g:neovide") == 0 then
     return
 end
 
-vim.o.guifont = "Iosevka:h11"
+vim.o.guifont = "Iosevka,Symbols Nerd Font:h11"
 
 vim.o.mouse = "a"
 vim.keymap.set("n", "<C-S-c>", '"+y', { noremap = true })
