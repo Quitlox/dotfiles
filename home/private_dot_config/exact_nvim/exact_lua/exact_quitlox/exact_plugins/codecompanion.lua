@@ -4,16 +4,25 @@
 
 require("codecompanion").setup({
     adapters = {
-        gemini_pro = function()
-            return require("codecompanion.adapters").extend("gemini", {
-                name = "gemini_pro",
-                schema = {
-                    model = {
-                        default = "gemini-2.5-pro-preview-05-06",
+        http = {
+            gemini_pro = function()
+                return require("codecompanion.adapters").extend("gemini", {
+                    name = "gemini_pro",
+                    schema = {
+                        model = {
+                            default = "gemini-2.5-pro-preview-05-06",
+                        },
                     },
-                },
-            })
-        end,
+                })
+            end,
+            acp = {
+                claude_code = function()
+                    return require("codecompanion.adapters").extend("claude_code", {
+                        env = "ANTHROPIC_API_KEY",
+                    })
+                end,
+            },
+        },
     },
     strategies = {
         chat = {
@@ -268,6 +277,7 @@ Avoid:
 --+- Keymaps ------------------------------------------------+
 -- vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>c", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true, desc = "Toggle Chat" })
+vim.keymap.set("v", "<leader>c", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>C", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 
 --+- Commands -----------------------------------------------+
