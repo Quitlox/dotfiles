@@ -7,6 +7,13 @@ local M = {}
 --- return function that can format the component accordingly
 M.trunc = function(trunc_width, trunc_len, hide_width, no_ellipsis)
     return function(str)
+        -- Handle non-string values
+        if str == nil then
+            return ""
+        elseif type(str) ~= "string" then
+            str = tostring(str)
+        end
+        
         local win_width = vim.fn.winwidth(0)
         if hide_width and win_width < hide_width then
             return ""

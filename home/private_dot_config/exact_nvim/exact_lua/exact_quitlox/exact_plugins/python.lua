@@ -17,8 +17,8 @@ require("python").setup(
             return global
         end,
 
-        auto_venv_lsp_attach_patterns = { "*.py", "requirements.txt", "pyproject.toml" },
-        command_setup_buf_pattern = { "*.py", "requirements.txt", "pyproject.toml" },
+        auto_venv_lsp_attach_patterns = { "*.py" }, -- FIXME: for some reason, I cannot add pyproject.toml here without setup complaining
+        command_setup_buf_pattern = { "*.py" },
 
         test = {
             test_runner = "pytest",

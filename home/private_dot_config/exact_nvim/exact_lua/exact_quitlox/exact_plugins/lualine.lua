@@ -87,7 +87,7 @@ require("lualine").setup({
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
         lualine_x = { "overseer" },
-        lualine_y = { "my_active_linters", "my_fancy_lsp_servers" },
+        lualine_y = { "my_active_linters", "my_fancy_lsp_servers", { "python", fmt = trunc(4 * 80, 10, nil, false) } },
         lualine_z = { "my_mixed_indent", encoding, fileformat, "my_fancy_searchcount", "my_fancy_location" },
     },
     inactive_sections = {
