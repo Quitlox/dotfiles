@@ -29,7 +29,6 @@
    
 
   - https://github.com/DrKJeff16/project.nvim
-  - https://github.com/andrewferrier/wrapping.nvim/releases/tag/v2.0.0
   - https://github.com/lewis6991/hover.nvim/pull/93
 
   - [ ] replace `arrow.nvim`: 
