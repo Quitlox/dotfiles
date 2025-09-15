@@ -99,3 +99,21 @@ local success, mod = pcall(require, "scrollbar.handlers.gitsigns")
 if success then
     mod.setup()
 end
+
+--+- Integration: Resession ---------------------------------+
+local success, resession = pcall(require, "resession")
+if success then
+    resession.add_hook("post_load", function()
+        local tabpage = vim.api.nvim_get_current_tabpage()
+        local windows = vim.api.nvim_tabpage_list_wins(tabpage)
+
+        -- Loop over open editor buffers (active windows only) and attach gitsigns
+        for _, win in ipairs(windows) do
+            local bufnr = vim.api.nvim_win_get_buf(win)
+            -- Only attach to valid and loaded buffers
+            if vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_is_loaded(bufnr) then
+                pcall(require("gitsigns").attach, bufnr)
+            end
+        end
+    end)
+end
