@@ -11,7 +11,6 @@
 
 - To Investigate:
 
-  - [ ] mcp lualine component
 
   - [ ] toggle formatter globally not working
   - neoconf configuration currently broken
