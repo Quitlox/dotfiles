@@ -19,8 +19,6 @@
   - <c-k> not working in lazygit (focusses other window)
   - <c-k> on outline conflicts with window switching (eg with test window)
     -> swap with <a-k>?
-  - grug-far is annoying when u forget to save a changed for before hitting sync
-    all, as it will edit the on-disk file and not the buffer
   - [ ] toggle formatter globally not working
       - [ ] maybe also add a lualine component in case disabled
   - [ ] flash f/t should not repeat (it should be a new command)
