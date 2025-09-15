@@ -186,6 +186,7 @@ auto_install = "prompt"
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
 "codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v17.16.0" }
+"codecompanion-history.nvim" = { git = "ravitemer/codecompanion-history.nvim", rev = "eb99d256352144cf3b6a1c45608ec25544a0813d" }
 "vectorcode" = { git = "davidyz/vectorcode", rev = "0.7.14" }
 "mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "v6.2.0" }
 "goose.nvim" = { git = "azorng/goose.nvim", rev = "v1.0.1" } 

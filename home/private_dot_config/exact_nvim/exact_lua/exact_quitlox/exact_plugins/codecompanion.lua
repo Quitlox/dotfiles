@@ -52,10 +52,17 @@ require("codecompanion").setup({
                 make_slash_commands = true,
             },
         },
+        --+- Integration: codecompanion-history
+        history = {
+            enabled = true,
+            opts = {
+                picker = "snacks",
+            },
+        },
     }, vim.fn.executable("vectorcode") == 1 and {
         --+- Integration: VectorCode
         vectorcode = {
-            opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
+            opts = {},
         },
     } or {}),
 

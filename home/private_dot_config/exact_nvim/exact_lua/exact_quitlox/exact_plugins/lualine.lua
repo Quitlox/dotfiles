@@ -35,6 +35,7 @@ local vector_code = {
             return require("vectorcode.integrations").lualine({}).cond()
         end
     end,
+    filetypes = { "codecompanion" },
 }
 
 --+- Customize Modules --------------------------------------+
@@ -97,7 +98,7 @@ require("lualine").setup({
         lualine_a = {},
         lualine_b = {},
         lualine_c = { "my_pretty_path", "navic" },
-        lualine_x = { "my_fancy_diff" },
+        lualine_x = { "my_fancy_diff", vector_code },
         lualine_y = { "my_fancy_diagnostics" },
         lualine_z = {},
     },
@@ -105,7 +106,7 @@ require("lualine").setup({
         lualine_a = {},
         lualine_b = {},
         lualine_c = { "my_pretty_path", "navic" },
-        lualine_x = { "my_fancy_diff" },
+        lualine_x = { "my_fancy_diff", vector_code },
         lualine_y = { "my_fancy_diagnostics" },
         lualine_z = {},
     },
@@ -127,25 +128,13 @@ require("lualine").setup({
         "aerial",
         "fzf",
         "man",
+        "mason",
         "neo-tree",
         "nvim-dap-ui",
         "oil",
         "overseer",
         "quickfix",
         "trouble",
-
-        -- Custom
-        {
-            filetypes = { "codecompanion" },
-            winbar = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = { "my_pretty_path" },
-                lualine_x = { vector_code },
-                lualine_y = {},
-                lualine_z = {},
-            },
-        },
     },
 })
 
