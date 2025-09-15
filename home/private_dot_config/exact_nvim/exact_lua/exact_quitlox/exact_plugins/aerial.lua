@@ -22,6 +22,8 @@ require("aerial").setup({
 
     keymaps = {
         ["i"] = "actions.jump",
+        ["<S-j>"] = "actions.down_and_scroll",
+        ["<S-k>"] = "actions.up_and_scroll",
     },
 
     -- HACK: fix lua's weird choice for `Package` for control structures like if/else/for/etc.

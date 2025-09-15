@@ -17,8 +17,6 @@
   - mcphub lualine component needs to be reconfigured
   - <c-space> not working
   - <c-k> not working in lazygit (focusses other window)
-  - <c-k> on outline conflicts with window switching (eg with test window)
-    -> swap with <a-k>?
   - [ ] toggle formatter globally not working
       - [ ] maybe also add a lualine component in case disabled
   - [ ] flash f/t should not repeat (it should be a new command)
