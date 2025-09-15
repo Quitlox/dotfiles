@@ -59,6 +59,8 @@ require("codecompanion").setup({
                 picker = "snacks",
             },
         },
+        --+- Integration: codecompanion-spinner
+        spinner = {},
     }, vim.fn.executable("vectorcode") == 1 and {
         --+- Integration: VectorCode
         vectorcode = {
@@ -262,9 +264,6 @@ Avoid:
         },
     },
 })
-
---+- Integration: fidget.nvim -------------------------------+
-require("integrations.codecompanion-fidget"):init()
 
 --+- Keymaps ------------------------------------------------+
 -- vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
