@@ -31,6 +31,7 @@
       - polkit-kde-agent # GUI Authentication
       - slurp # Screenshot
       - grim # Screenshot
+      - wf-recorder # Screencast
       # Desktop Applications (Foreground)
       - kitty # Terminal
   become: true
