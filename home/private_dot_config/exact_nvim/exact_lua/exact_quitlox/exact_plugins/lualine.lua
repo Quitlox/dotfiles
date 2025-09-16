@@ -183,16 +183,23 @@ require("lualine").setup({
 
     winbar = {
         lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "my_pretty_path", "navic" },
+        lualine_b = { "my_pretty_path" },
+        lualine_c = { "navic" },
         lualine_x = { "my_fancy_diff", vector_code, mcp_hub },
         lualine_y = { "my_fancy_diagnostics" },
         lualine_z = {},
     },
     inactive_winbar = {
         lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "my_pretty_path", "navic" },
+        lualine_b = { "my_pretty_path" },
+        lualine_c = {
+            {
+                "navic",
+                color_correction = "static",
+                -- Disable navic's custom highlights for inactive winbar so it uses lualine's inactive colors
+                navic_opts = { highlight = false },
+            },
+        },
         lualine_x = { "my_fancy_diff", vector_code, mcp_hub },
         lualine_y = { "my_fancy_diagnostics" },
         lualine_z = {},
