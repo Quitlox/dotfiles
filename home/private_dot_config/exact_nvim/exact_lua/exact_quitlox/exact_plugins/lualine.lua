@@ -114,6 +114,21 @@ local mcp_hub = {
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
 local git_blame = { "b:gitsigns_blame_line", icon = " ", fmt = trunc(180, 40, 140, true) }
 local navic = { "navic", color_correction = "static" }
+local python_venv = {
+    "python",
+    fmt = function(str)
+        -- Handle various "no venv" states with a user-friendly message
+        if str == "vim.NIL" or str == "no venv" or str == "" or str == nil or tostring(str) == "vim.NIL" then
+            str = " (system)"
+        end
+        return trunc(4 * 80, 10, nil, false)(str)
+    end,
+    cond = function()
+        local ft = vim.bo.filetype
+        local filename = vim.fn.expand("%:t")
+        return ft == "python" or filename == "pyproject.toml"
+    end,
+}
 
 --+- Options ------------------------------------------------+
 vim.opt.laststatus = 3
@@ -159,7 +174,7 @@ require("lualine").setup({
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
         lualine_x = { "overseer" },
-        lualine_y = { autoformat_status, "my_active_linters", "my_fancy_lsp_servers", { "python", fmt = trunc(4 * 80, 10, nil, false) } },
+        lualine_y = { autoformat_status, "my_active_linters", "my_fancy_lsp_servers", python_venv },
         lualine_z = { "my_mixed_indent", encoding, fileformat, "my_fancy_searchcount", "my_fancy_location" },
     },
     inactive_sections = {
