@@ -6,6 +6,7 @@
 local simple_snack_opts = {
     bigfile = { enabled = true, notify = true },
     input = { enabled = true },
+    lazygit = { win = { style = "my_lazygit" } },
     profiler = { enabled = true },
     scratch = { enabled = true },
     -- scroll = { enabled = (vim.fn.exists("g:neovide") == 0) }, -- FIXME: scroll interferes with ]d
@@ -360,32 +361,37 @@ require("which-key").add({
 local terminal_opts = {
     auto_insert = false,
     auto_close = true,
-    win = {
-        keys = {
-            -- Override the default 'i' key to enter insert mode in both terminal and shell
-            i = function(self)
-                -- Send 'i' to shell to enter vi insert mode, then enter terminal insert mode
-                vim.api.nvim_feedkeys("i", "n", false)
-                vim.cmd.startinsert()
-            end,
-            -- Override 'a' key to append in both terminal and shell
-            a = function(self)
-                -- Send 'a' to shell to enter vi insert mode (append), then enter terminal insert mode
-                vim.api.nvim_feedkeys("a", "n", false)
-                vim.cmd.startinsert()
-            end,
-            -- Override 'A' key to append at end of line in both terminal and shell
-            A = function(self)
-                -- Send 'A' to shell to enter vi insert mode (append at end), then enter terminal insert mode
-                vim.api.nvim_feedkeys("A", "n", false)
-                vim.cmd.startinsert()
-            end,
-        },
-    },
+    win = { style = "my_terminal" },
 }
 
 -- Tab-local Terminals ------------------------------------+
-Snacks.config.style("lazygit", {
+Snacks.config.style("my_terminal", {
+    keys = {
+        term_win_j = { "<C-j>", "<cmd>wincmd j<cr>", mode = "t", expr = true },
+        term_win_k = { "<C-k>", "<cmd>wincmd k<cr>", mode = "t", expr = true },
+        -- Override the default 'i' key to enter insert mode in both terminal and shell
+        i = function(self)
+            -- Send 'i' to shell to enter vi insert mode, then enter terminal insert mode
+            vim.api.nvim_feedkeys("i", "n", false)
+            vim.cmd.startinsert()
+        end,
+        -- Override 'a' key to append in both terminal and shell
+        a = function(self)
+            -- Send 'a' to shell to enter vi insert mode (append), then enter terminal insert mode
+            vim.api.nvim_feedkeys("a", "n", false)
+            vim.cmd.startinsert()
+        end,
+        -- Override 'A' key to append at end of line in both terminal and shell
+        A = function(self)
+            -- Send 'A' to shell to enter vi insert mode (append at end), then enter terminal insert mode
+            vim.api.nvim_feedkeys("A", "n", false)
+            vim.cmd.startinsert()
+        end,
+    },
+})
+
+-- Configure lazygit style without window navigation (keys pass through)
+Snacks.config.style("my_lazygit", {
     keys = {
         ["`"] = "hide",
     },
@@ -507,8 +513,6 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 
 -- Keymaps ------------------------------------------------+
 vim.keymap.set({ "n", "v", "t" }, [[`]], toggle_terminal, { silent = true, desc = "Toggle Terminal" })
-vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { silent = true })
-vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { silent = true })
 
 -- +---------------------------------------------------------+
 -- | snacks.nvim: Toggle                                     |

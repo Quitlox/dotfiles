@@ -15,7 +15,6 @@
   - i need a hydra mode for git staging
 
   - neoconf configuration currently broken
-  - <c-k> not working in lazygit (focusses other window)
   - [ ] toggle formatter globally not working
       - [ ] maybe also add a lualine component in case disabled
 
