@@ -267,6 +267,7 @@ tree-sitter-javascript = "0.0.37"
 tree-sitter-jinja = "0.0.9"
 tree-sitter-jsx = "0.0.30"
 tree-sitter-jq = "0.0.30"
+tree-sitter-kitty = { git = "oxy2dev/tree-sitter-kitty", rev = "v0.0.1" }
 # tree-sitter-latex = "scm"
 tree-sitter-lua = "0.0.36"
 tree-sitter-luadoc = "0.0.29"
