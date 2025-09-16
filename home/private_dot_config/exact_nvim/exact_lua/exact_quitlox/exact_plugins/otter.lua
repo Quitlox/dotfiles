@@ -44,7 +44,7 @@ if success then
 
             -- Check if otter-lsp is attached to the buffer
             if vim.lsp.buf_is_attached(bufnr, client_id) then
-                vim.notify("Detaching otter-lsp from buffer " .. bufnr, vim.log.levels.INFO, { title = "Otter.nvim" })
+                -- vim.notify("Detaching otter-lsp from buffer " .. bufnr, vim.log.levels.INFO, { title = "Otter.nvim" })
                 vim.api.nvim_set_current_buf(bufnr)
                 require("otter").deactivate()
             end

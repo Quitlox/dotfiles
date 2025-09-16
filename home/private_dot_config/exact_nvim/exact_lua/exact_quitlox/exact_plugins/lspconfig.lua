@@ -2,14 +2,6 @@
 -- | neovim/nvim-lspconfig: Collection of LSP Configurations |
 -- +---------------------------------------------------------+
 
---+- Integration: Neoconf -----------------------------------+
-local neoconf, success = pcall(require, "neoconf")
-if not success then
-    vim.notify("Failed to `require('neoconf')`!", vim.log.levels.WARN)
-else
-    require("neoconf").setup({})
-end
-
 --+- Config: Inlay Hints ------------------------------------+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("MyLspAttachInlayHints", { clear = true }),
@@ -84,7 +76,6 @@ local lsps = {
     "css_variables",
     "docker_compose_language_service",
     "dockerls",
-    "lua_ls",
     "hyprls",
     "nil_ls",
     "pug",

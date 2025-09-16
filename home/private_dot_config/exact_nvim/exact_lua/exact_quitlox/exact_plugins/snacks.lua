@@ -8,7 +8,7 @@ local simple_snack_opts = {
     input = { enabled = true },
     profiler = { enabled = true },
     scratch = { enabled = true },
-    scroll = { enabled = (vim.fn.exists("g:neovide") == 0) },
+    -- scroll = { enabled = (vim.fn.exists("g:neovide") == 0) }, -- FIXME: scroll interferes with ]d
     statuscolumn = { enabled = true, left = { "mark", "sign" }, right = { "fold", "git" } },
     terminal = { enabled = true },
     toggle = { enabled = true },
@@ -299,6 +299,9 @@ local picker_projects_keymap = create_projects_picker_config({
 ---@class snacks.picker.Config
 local picker_smart = {
     layout = "dropdown",
+    matcher = {
+        cwd_bonus = true,
+    },
 }
 ---@class snacks.picker.Config
 local picker_workspace_symbols = {

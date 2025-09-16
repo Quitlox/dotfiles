@@ -12,26 +12,20 @@
 - To Investigate:
 
   - the picker for help tags in codecompanion should be vertical (now preview is to the right)
-  - ]h should keep preview open
   - i need a hydra mode for git staging
 
   - [ ] toggle formatter globally not working
   - neoconf configuration currently broken
-  - <c-space> not working
   - <c-k> not working in lazygit (focusses other window)
   - [ ] toggle formatter globally not working
       - [ ] maybe also add a lualine component in case disabled
-  - [ ] flash f/t should not repeat (it should be a new command)
-  - [ ] navigate to next hunk with ]h should open the preview
-  - [ ] i still want my custom git navigation mode
-   
 
   - https://github.com/DrKJeff16/project.nvim
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
   - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
-  - [ ] `snacks.scroll?`: navigating to a next diagnostic (`]d`) does not show popup if the window is scrolled
+  - dont show "vim.NIL" in python environment
 
 
   - [ ] `matchup`: unwelcome matching of `[` in strings
@@ -79,6 +73,8 @@ require("which-key").add({
     - [ ] I can't for the life of me figure it out, but `<leader>dt`
       sometimes gets stuck in toggling the breakpoint. It seems as if it's
       waiting for another key, but there are no duplicate mappings.
+  - [ ] `snacks.scroll`: scoll prevents diagnostic popup while jumping outside of view 
+      - https://github.com/folke/snacks.nvim/issues/2185
 
 - Contribute back, sane defaults, low priority:
   - [ ] overseer.nvim: task view has not filetype

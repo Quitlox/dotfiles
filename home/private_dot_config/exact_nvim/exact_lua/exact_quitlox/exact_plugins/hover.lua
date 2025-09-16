@@ -44,6 +44,4 @@ end
 -- stylua: ignore start
 vim.keymap.set("n", "K", require('hover').hover, { desc = "Hover" })
 vim.keymap.set("n", "gK", enter_hover, { desc = "Hover Enter" })
-vim.keymap.set("n", "]h", function() require("hover").hover_switch("next", {}) end, { desc = "Hover" })
-vim.keymap.set("n", "[h", function() require("hover").hover_switch("previous", {}) end, { desc = "Hover" })
 -- stylua: ignore end

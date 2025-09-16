@@ -102,7 +102,6 @@ auto_install = "prompt"
 "grug-far.nvim" = { git = "magicduck/grug-far.nvim", rev = "1.6.48" }
 
 # +- Session and Project Management -------------------------+
-"workspaces.nvim" = { git = "natecraddock/workspaces.nvim", rev = "55a1eb6f5b72e07ee8333898254e113e927180ca" }
 "resession.nvim" = { git = "stevearc/resession.nvim", rev = "v1.2.1" }
 
 # +- Test ---------------------------------------------------+
@@ -247,7 +246,7 @@ tree-sitter-asm = "0.0.31"
 tree-sitter-bash = "0.0.43"
 tree-sitter-bibtex = "0.0.32"
 tree-sitter-cpp = "0.0.45"
-tree-sitter-css = "0.0.29"
+tree-sitter-css = "0.0.38"
 tree-sitter-csv = "0.0.29"
 tree-sitter-diff = "0.0.32"
 tree-sitter-dockerfile = "0.0.30"
@@ -266,8 +265,6 @@ tree-sitter-hyprlang = "0.0.36"
 tree-sitter-ini = "0.0.32"
 tree-sitter-javascript = "0.0.37"
 tree-sitter-jinja = "0.0.9"
-tree-sitter-json = "0.0.29"
-tree-sitter-jsonc = "0.0.29"
 tree-sitter-jsx = "0.0.30"
 tree-sitter-jq = "0.0.30"
 # tree-sitter-latex = "scm"
@@ -284,7 +281,6 @@ tree-sitter-query = "0.0.43"
 tree-sitter-requirements = "0.0.31"
 tree-sitter-rst = "0.0.33"
 tree-sitter-rust = "0.0.50"
-tree-sitter-scss = "0.0.29"
 tree-sitter-ssh_config = "0.0.33"
 tree-sitter-svelte = "0.0.33"
 tree-sitter-tsx = "0.0.36"

@@ -67,7 +67,7 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 end
 
 -- WSL2
-if vim.fn.has("unix") == 1 and vim.fn.has("wsl") then
+if vim.fn.has("unix") == 1 and vim.fn.has("wsl") == 1 then
     -- Possible locations for sioyek.exe across different systems
     local sioyek_paths = {
         "/mnt/c/Users/witloxkhd/Applications/sioyek/sioyek.exe",
