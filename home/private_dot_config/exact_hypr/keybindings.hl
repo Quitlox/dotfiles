@@ -144,8 +144,10 @@ bind = ,XF86MonBrightnessDown, exec, brightnessctl --exponent=3 s 10%-
 
 # +- Screenshot -------------------------------------------+
 # PrintScreen for full screen screenshot
-bind = , Print, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Full screen screenshot saved to: $FILENAME and copied to clipboard"
+bind = , Print, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Full screen screenshot saved to $FILENAME and copied to clipboard."
 
 # Shift+PrintScreen for selected region screenshot
-bind = SHIFT, Print, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim -g "$(slurp)" "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Selection screenshot saved to: $FILENAME"
-bind = SUPER SHIFT, s, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim -g "$(slurp)" "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Selection screenshot saved to: $FILENAME"
+bind = SHIFT, Print, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim -g "$(slurp)" "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Selection screenshot saved to $FILENAME and copied to clipboard."
+bind = SUPER SHIFT, s, exec, mkdir -p ~/Pictures/Screenshots && FILENAME=~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H-%M-%S').png && grim -g "$(slurp)" "$FILENAME" && wl-copy < "$FILENAME" && notify-send "Screenshot Saved" "Selection screenshot saved to $FILENAME and copied to clipboard."
+# This doesn't really work, as you cannot stop the recording
+# bind = SUPER SHIFT, r, exec, mkdir -p ~/Videos/Screencasts && FILENAME=~/Videos/Screencasts/screencast-$(date +'%Y-%m-%d-%H-%M-%S').mp4 && grim -g "$(slurp)" "$FILENAME" && notify-send "Screencast Saved" "Screencast saved to $FILENAME"
