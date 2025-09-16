@@ -197,7 +197,12 @@ local function toggle_format(buf_local)
     return Snacks.toggle.new({
         name = "Auto Format (" .. (buf_local and "Buffer" or "Global") .. ")",
         get = function()
-            return enabled(vim.api.nvim_get_current_buf())
+            if buf_local then
+                return enabled(vim.api.nvim_get_current_buf())
+            else
+                -- For global toggle, show the actual global state
+                return vim.g.autoformat == nil or vim.g.autoformat
+            end
         end,
         set = function(state)
             local bufnr = vim.api.nvim_get_current_buf()
@@ -205,13 +210,19 @@ local function toggle_format(buf_local)
                 vim.b[bufnr].autoformat = state
             else
                 vim.g.autoformat = state
+                -- Clear all buffer-local overrides when setting global
+                for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                    if vim.api.nvim_buf_is_valid(buf) then
+                        vim.b[buf].autoformat = nil
+                    end
+                end
             end
         end,
     })
 end
 
-toggle_format(true):map("<leader>Tf")
-toggle_format(false):map("<leader>TF")
+toggle_format(true):map("yof")
+toggle_format(false):map("yog")
 
 --+- Support: Check Installation Status ------------------------+
 local formatter_blacklist = { "trim_whitespace", "injected" }

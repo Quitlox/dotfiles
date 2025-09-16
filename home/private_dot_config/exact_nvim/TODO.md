@@ -14,7 +14,6 @@
   - the picker for help tags in codecompanion should be vertical (now preview is to the right)
   - i need a hydra mode for git staging
 
-  - [ ] toggle formatter globally not working
   - neoconf configuration currently broken
   - <c-k> not working in lazygit (focusses other window)
   - [ ] toggle formatter globally not working
