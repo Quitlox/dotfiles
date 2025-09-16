@@ -40,6 +40,26 @@ require("codecompanion").setup({
                         provider = "snacks",
                     },
                 },
+                ["help"] = {
+                    opts = {
+                        provider = "snacks",
+                    },
+                },
+                ["buffer"] = {
+                    opts = {
+                        provider = "snacks",
+                    },
+                },
+                ["fetch"] = {
+                    opts = {
+                        provider = "snacks",
+                    },
+                },
+                ["image"] = {
+                    opts = {
+                        provider = "snacks",
+                    },
+                },
             },
         },
         inline = {
