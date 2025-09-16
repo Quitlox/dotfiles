@@ -14,6 +14,34 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 --+- Define Modules -----------------------------------------+
+local autoformat_status = {
+    function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local gaf = vim.g.autoformat
+        local baf = vim.b[bufnr].autoformat
+
+        -- Check if autoformat is enabled (same logic as conform.lua)
+        local enabled
+        if baf ~= nil then
+            enabled = baf
+            -- Buffer-local setting exists
+            if not enabled then
+                return "󱓁 B" -- Buffer-local disabled (use <leader>Tf)
+            end
+        else
+            enabled = gaf == nil or gaf
+            -- No buffer-local setting, using global
+            if not enabled then
+                return "󱓁 G" -- Global disabled (use <leader>TF)
+            end
+        end
+
+        -- Enabled - show nothing
+        return ""
+    end,
+    color = { fg = "#ff5555" }, -- Red color when disabled
+}
+
 local encoding = function()
     local replaced, _count = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
     return replaced
@@ -131,7 +159,7 @@ require("lualine").setup({
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
         lualine_x = { "overseer" },
-        lualine_y = { "my_active_linters", "my_fancy_lsp_servers", { "python", fmt = trunc(4 * 80, 10, nil, false) } },
+        lualine_y = { autoformat_status, "my_active_linters", "my_fancy_lsp_servers", { "python", fmt = trunc(4 * 80, 10, nil, false) } },
         lualine_z = { "my_mixed_indent", encoding, fileformat, "my_fancy_searchcount", "my_fancy_location" },
     },
     inactive_sections = {
