@@ -6,15 +6,14 @@
 vim.o.mousemoveevent = true
 
 --+- Setup --------------------------------------------------+
-require("hover").setup({
-    init = function()
-        -- Require providers
-        require("hover.providers.lsp")
-        require("hover.providers.dap")
-        require("hover.providers.fold_preview")
-        require("hover.providers.diagnostic")
-        require("hover.providers.man")
-    end,
+require("hover").config({
+    providers = {
+        { module = "hover.providers.fold_preview", priority = 1004 },
+        { module = "hover.providers.diagnostic", priority = 1003 },
+        { module = "hover.providers.lsp", priority = 1001 },
+        { module = "hover.providers.dap", priority = 1001 },
+        { module = "hover.providers.man", priority = 150 },
+    },
 })
 
 --+- Keymaps ------------------------------------------------+

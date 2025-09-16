@@ -93,7 +93,7 @@ auto_install = "prompt"
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "glance.nvim" = { git = "DNLHC/glance.nvim", rev = "bf86d8b79dce808e65fdb6e9269d0b4ed6d2eefc" }
-"hover.nvim" = { git = "lewis6991/hover.nvim", rev = "24a43e0eda924f1f32361c76ee9a1f0e8cc25650" }
+"hover.nvim" = { git = "lewis6991/hover.nvim", rev = "15533855dcf3c6a35a09c118c4169e531847b4cc" }
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim", rev = "60f9175b2501ae3f8b1aba9719c0df8827610c8e" }
 "output-panel.nvim" = { git = "mhanberg/output-panel.nvim", rev = "85a205595f1b3904d701ce98aad4df5abbff420b" }
 "garbage-day.nvim" = { git = "zeioth/garbage-day.nvim", rev = "v1.3.1" }

@@ -27,7 +27,6 @@
    
 
   - https://github.com/DrKJeff16/project.nvim
-  - https://github.com/lewis6991/hover.nvim/pull/93
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
         hard-to-fix. Tried using AI to fix it, but it didn't work.
@@ -64,7 +63,6 @@ require("which-key").add({
 - Requires Contribution (hard-to-fix):
 
   - [ ] resession: plugin for restoring shell contents
-  - [ ] hover.nvim: allow changing priority of providers (https://github.com/lewis6991/hover.nvim/issues/77)
 
 - Blocked:
 
