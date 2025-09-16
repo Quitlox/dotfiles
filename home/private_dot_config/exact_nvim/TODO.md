@@ -11,33 +11,30 @@
 
 - To Investigate:
 
-  - the picker for help tags in codecompanion should be vertical (now preview is to the right)
+  - prettify all which-key mappings using claude
   - i need a hydra mode for git staging
-
-  - neoconf configuration currently broken
-  - [ ] toggle formatter globally not working
-      - [ ] maybe also add a lualine component in case disabled
 
   - https://github.com/DrKJeff16/project.nvim
 
-  - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window
-        hard-to-fix. Tried using AI to fix it, but it didn't work.
+
+  - dart.nvim on session restore: restored buffers aren't added to list
+  - ripgreph through help
+
+
+  - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window.
+        Hard-to-fix. Tried using AI to fix it, but it didn't work.
   - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
-  - dont show "vim.NIL" in python environment
-
-
   - [ ] `matchup`: unwelcome matching of `[` in strings
-```lua
-require("which-key").add({
-    { "[%", desc = "Prev Match" },
-    { "]%", desc = "Next Match" },
-})
-```
+  ```lua
+  require("which-key").add({
+      { "[%", desc = "Prev Match" },
+      { "]%", desc = "Next Match" },
+  })
+  ```
 
 - Requires Contribution:
 
   - [ ] overseer: background tasks should not be awaited for completion
-  - [ ] navic: doesn't work with arrow, same context in all windows
   - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
   - [ ] `scissors.nvim`: add option to toggle autosnippet
 
@@ -52,27 +49,24 @@ require("which-key").add({
         doesn't show anything.
   - [ ] nvim-dap-ui: watches window should allow delete on partial line (with ">")
 
-- Requires Contribution (hard-to-fix):
-
-  - [ ] resession: plugin for restoring shell contents
-
 - Blocked:
 
   - [ ] `aerial.nvim`: improve keymap window (group related mappings, remove duplicates)
       - https://github.com/stevearc/aerial.nvim/pull/469
-  - [ ] overseer: (will be refactored)
+  - [ ] `overseer.nvim`: (will be refactored)
       - [ ] overseer: map <esc> in help_win (not configurable currently)
-  - [ ] rocks.nvim: (awaiting lux)
+  - [ ] `rocks.nvim`: (awaiting lux)
     - [ ] provide warning for outdated plugins (both scm vs git and pin vs scm)
     - [ ] should not update git to older version tag if ver is specified to be a newer commit
     - [ ] toml-edit should keep inline items as inline
     - [ ] toml-edit should not move the comments
-  - [ ] dap.nvim: 
+  - [ ] `dap.nvim`: 
     - [ ] I can't for the life of me figure it out, but `<leader>dt`
       sometimes gets stuck in toggling the breakpoint. It seems as if it's
       waiting for another key, but there are no duplicate mappings.
   - [ ] `snacks.scroll`: scoll prevents diagnostic popup while jumping outside of view 
       - https://github.com/folke/snacks.nvim/issues/2185
+  - [ ] `neoconf.nvim`: broken as of lspconfig v2
 
 - Contribute back, sane defaults, low priority:
   - [ ] overseer.nvim: task view has not filetype
@@ -122,6 +116,7 @@ Plugin Ideas:
         - Harpoon, but for symbols
         - Easily add symbols all over your project to an outline for easy navigation
     - Extend `overseer.nvim` to support generation of `launch.json` files
+    - Add extension to `resession.nvim`: extension for restoring shell contents
 
 ### Stuff I can do
 
