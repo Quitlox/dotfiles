@@ -13,11 +13,6 @@
 
   - prettify all which-key mappings using claude
   - i need a hydra mode for git staging
-
-  - https://github.com/DrKJeff16/project.nvim
-
-
-  - dart.nvim on session restore: restored buffers aren't added to list
   - ripgreph through help
 
 
@@ -89,8 +84,11 @@ When need arises:
     - https://github.com/neovim/neovim/pull/33440
 - `smart-motion.nvim`: flexible and extensible motion plugin, but I am satisfied with flash
 - better marks: `recall.nvim` + `marks.nvim` (harpoon/grapple/arrow-like solution?)
+- instead of `snacks.nvim` home-rolled projects picker: https://github.com/DrKJeff16/project.nvim
 - optional plugins:
   - `nvim-scrollbar`: not very necessary, but well maintained
+  - `overlook.nvim`: cool idea (editable, stackable popups) for browsing code
+  hiearchies, but built-in `<C-i>` and `<C-o>` should suffice.
 
 Plugin Ideas:
     - Rewrite of neotest:
