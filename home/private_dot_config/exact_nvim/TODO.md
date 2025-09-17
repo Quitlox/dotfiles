@@ -13,7 +13,7 @@
 
   - prettify all which-key mappings using claude
   - i need a hydra mode for git staging
-  - ripgreph through help
+  - ripgrep through help
 
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window.
@@ -26,6 +26,7 @@
       { "]%", desc = "Next Match" },
   })
   ```
+  - [ ] `flash.nvim`: incremental selection (https://github.com/folke/flash.nvim/commit/59fc862d43dba249456c93c70ebabfa460c9db84)
 
 - Requires Contribution:
 
