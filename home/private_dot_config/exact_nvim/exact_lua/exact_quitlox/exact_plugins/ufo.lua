@@ -10,12 +10,12 @@ vim.opt.foldenable = true
 
 -- Keymaps
 -- stylua: ignore start
-vim.keymap.set("n", "zR", function() require("ufo").openAllFolds() end, { desc = "Open all folds" })
-vim.keymap.set("n", "zM", function() require("ufo").closeAllFolds() end, { desc = "Close all folds" })
-vim.keymap.set("n", "zr", function() require("ufo").openFoldsExceptKinds() end, { desc = "Fold less" })
-vim.keymap.set("n", "zm", function() require("ufo").closeFoldsWith() end, { desc = "Fold more" })
-vim.keymap.set("n", "[z", function() require("ufo").goPreviousClosedFold() end, { desc = "Next fold" })
-vim.keymap.set("n", "]z", function() require("ufo").goNextClosedFold() end, { desc = "Next fold" })
+vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
+vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds, { desc = "Fold less" })
+vim.keymap.set("n", "zm", require("ufo").closeFoldsWith, { desc = "Fold more" })
+vim.keymap.set("n", "[z", require("ufo").goPreviousClosedFold, { desc = "Next fold" })
+vim.keymap.set("n", "]z", require("ufo").goNextClosedFold, { desc = "Next fold" })
 -- stylua: ignore end
 
 --+- Integration: Set LSP capabilities ----------------------+

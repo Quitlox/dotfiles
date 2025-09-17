@@ -35,31 +35,11 @@ require("codecompanion").setup({
             },
             slash_commands = {
                 --+- Integration: snacks.nvim
-                ["file"] = {
-                    opts = {
-                        provider = "snacks",
-                    },
-                },
-                ["help"] = {
-                    opts = {
-                        provider = "snacks",
-                    },
-                },
-                ["buffer"] = {
-                    opts = {
-                        provider = "snacks",
-                    },
-                },
-                ["fetch"] = {
-                    opts = {
-                        provider = "snacks",
-                    },
-                },
-                ["image"] = {
-                    opts = {
-                        provider = "snacks",
-                    },
-                },
+                ["file"] = { opts = { provider = "snacks" } },
+                ["help"] = { opts = { provider = "snacks" } },
+                ["buffer"] = { opts = { provider = "snacks" } },
+                ["fetch"] = { opts = { provider = "snacks" } },
+                ["image"] = { opts = { provider = "snacks" } },
             },
         },
         inline = {
@@ -86,6 +66,7 @@ require("codecompanion").setup({
             enabled = true,
             opts = {
                 picker = "snacks",
+                title_generation_opts = { adapter = "anthropic" },
             },
         },
         --+- Integration: codecompanion-spinner

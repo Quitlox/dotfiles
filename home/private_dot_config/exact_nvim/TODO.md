@@ -28,6 +28,31 @@
   ```
   - [ ] `flash.nvim`: incremental selection (https://github.com/folke/flash.nvim/commit/59fc862d43dba249456c93c70ebabfa460c9db84)
 
+  - when hitting "w" on a folded line, it opens, which I do not like  
+  - tabs are ugly right now and I don't want the tab number in the middle of the bar
+  - the fold elipsis is ugly, at least in neovim
+  - ideally, in python, folds would fold entire function definitions, not parameters seperately  
+  - underline of dart.nvim is ugly
+  - [ ] very specific python indentation behaviour:
+  ```python
+  class MpycFunction(Function):
+
+      def _spawn_party_process_with_streaming(
+          self, party_id: int, n_parties: int, temp_dir: Path
+      ) -> subprocess.Popen:
+          ...
+
+          def subprocess_logger(pipe: IO[bytes]):
+              with pipe:
+                  for line in iter(pipe.readline, b""):
+                      self.stash[MPYC_LOG_KEY].append(line.decode("ascii").strip())
+                      # 2. cursor jumps to this indentation level
+
+          # 1. <cursor here> press <C-S-O>
+          thread = Thread(target=subprocess_logger, args=(process.stdout,), daemon=True)
+          thread.start()
+  ```
+
 - Requires Contribution:
 
   - [ ] overseer: background tasks should not be awaited for completion

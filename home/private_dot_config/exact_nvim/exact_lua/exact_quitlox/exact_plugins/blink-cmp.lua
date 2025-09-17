@@ -86,7 +86,8 @@ require("blink-cmp").setup({
     },
     snippets = { preset = "luasnip" },
     sources = {
-        default = { "snippets", "vimtex", "git", "conventional_commits", "lazydev", "lsp", "path", "env", "html-css" },
+        default = { "snippets", "vimtex", "git", "conventional_commits", "lsp", "path", "env", "html-css" },
+        per_filetype = { "lazydev" },
         providers = {
             buffer = {
                 score_offset = -3,
