@@ -127,19 +127,29 @@ end, { desc = "Session: Save Named" })
 vim.keymap.set("n", "<leader>sc", function()
     local util = require("quitlox.util.session")
 
-    -- Save current session
     resession.save_tab(get_session_name(), { notify = false, attach = true })
-
-    -- Close current session
     resession.detach()
     util.close_everything()
 
     -- Return to home directory
     vim.cmd("tcd " .. vim.fn.fnameescape(vim.fn.expand("~")))
-
     -- Open dashboard
     Snacks.dashboard.open()
 end, { desc = "Session: Close" })
+
+vim.keymap.set("n", "<leader>sd", function()
+    local session_name = get_session_name()
+    local util = require("quitlox.util.session")
+
+    resession.detach()
+    util.close_everything()
+    resession.delete(session_name, { notify = true })
+
+    -- Return to home directory
+    vim.cmd("tcd " .. vim.fn.fnameescape(vim.fn.expand("~")))
+    -- Open dashboard
+    Snacks.dashboard.open()
+end, { desc = "Session: Delete Current" })
 
 --+- Config: Auto-Save on Exit ------------------------------+
 vim.api.nvim_create_autocmd("VimLeavePre", {
