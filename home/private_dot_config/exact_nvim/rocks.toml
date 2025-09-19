@@ -5,8 +5,8 @@ auto_highlight = "all"
 auto_install = "prompt"
 
 [plugins]
-"rocks.nvim" = "2.46.0"
-"rocks-git.nvim" = "2.5.5"
+"rocks.nvim" = "2.46.1"
+"rocks-git.nvim" = "2.5.6"
 "rocks-config.nvim" = "3.1.2"
 "rocks-lazy.nvim" = "1.2.2"
 "rocks-dev.nvim" = "1.8.1"
@@ -43,9 +43,9 @@ auto_install = "prompt"
 "mini.ai" = "0.16.0"
 "mini.extra" = "0.16.0" # only used for mini.ai text object
 "mini.splitjoin" = "0.16.0"
-"nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "53ba761cd40c1d683e8477d138ff03cd7e6e384a" }
+"nvim-spider" = { git = "chrisgrieser/nvim-spider", rev = "220efa63c20830a9bf0593a57366b96dd5790212" }
 "nvim-surround" = { version = "3.1.6" }
-"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "357f8e11bd4a6e0a7bb3a4e49bfe9e1ed91e55f8" }
+"treewalker.nvim" = { git = "aaronik/treewalker.nvim", rev = "4b268cdd9d9b4bc6b06760dcf883734de84bfcd3" }
 "vim-repeat" = { git = "tpope/vim-repeat", rev = "v1.2" }
 
 # +- Miscellenous -------------------------------------------+
@@ -59,14 +59,14 @@ auto_install = "prompt"
 "neogen" = "2.20.0"
 "debugprint.nvim" = { git = "andrewferrier/debugprint.nvim", rev = "v6.2.0" }
 # +- Completion ---------------------------------------------+
-"blink.cmp" = { git = "saghen/blink.cmp", rev = "v1.6.0" }
+"blink.cmp" = { git = "saghen/blink.cmp", rev = "v1.7.0" }
 # +- Completion: Sources ------------------------------------+
 "blink.compat" = { git = "saghen/blink.compat", rev = "v2.5.0" }
 "blink-cmp-rg.nvim" = { git = "niuiic/blink-cmp-rg.nvim", rev = "722d8ab5d29369d604133064816657203cf24540" }
 "blink-cmp-conventional-commits" = { git = "disrupted/blink-cmp-conventional-commits", rev = "e7ce3ddcc6d4044067d6d77ab41d480202e814ad" }
-"blink-cmp-env" = { git = "bydlw98/blink-cmp-env", rev = "34c7817fa94f04719b4bab5e766974033f221f60" }
+"blink-cmp-env" = { git = "bydlw98/blink-cmp-env", rev = "99af62c1f9aa46005e8f50ad4ccee581946546ca" }
 "blink-cmp-git" = { git = "kaiser-yang/blink-cmp-git", rev = "v3.0.0" }
-"nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "2c639bb333ee5a57b20aa78880efc5eb90b38f46" }
+"nvim-html-css" = { git = "jezda1337/nvim-html-css", rev = "41ceceb30175de850e4caa4d709205baa083a8eb" }
 "cmp-vimtex" = { git = "micangl/cmp-vimtex", rev = "5283bf9108ef33d41e704027b9ef22437ce7a15b" }
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
 # +- Completion: Copilot-------------------------------------+
@@ -74,7 +74,7 @@ auto_install = "prompt"
 # +- Completion: Extras -------------------------------------+
 "colorful-menu.nvim" = { git = "xzbdmw/colorful-menu.nvim", rev = "bc3e82609f2fcf7dad7ca87c20e65e51d5d9d87c" }
 "luasnip" = { git = "l3mon4d3/luasnip", rev = "v2.4.0" }
-"nvim-scissors" = { git = "chrisgrieser/nvim-scissors", rev = "55cd7ecd8fbe6a63294a520cdcbb201f2b5f31ff" }
+"nvim-scissors" = { git = "chrisgrieser/nvim-scissors", rev = "7eb3a7ebcbbbaceb78cf4da69edc865864186b62" }
 
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = { git = "mfussenegger/nvim-dap", rev = "7523676a4be17644587aa47e4d42f6f7646d4727" }
@@ -85,7 +85,7 @@ auto_install = "prompt"
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }
 
 # +- Git ----------------------------------------------------+
-"neogit" = { git = "NeogitOrg/neogit", rev = "df08cb97f126c546a5ec265bafab2d78cc7399fa" }
+"neogit" = { git = "NeogitOrg/neogit", rev = "ceaf88a9f9607b736d572781490872e28a112aed" }
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.2" }
 "diffview.nvim" = "scm"
@@ -109,8 +109,8 @@ auto_install = "prompt"
 
 # +- Tooling ------------------------------------------------+
 "conform.nvim" = "9.1.0"
-"nvim-lint" = { git = "mfussenegger/nvim-lint", rev = "ee04d481d4e6089892c2fb2ad8924b1a053591e1" }
-"nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "b0f541174bb1be76c6c94ed15dee0a0924a4eac2" }
+"nvim-lint" = { git = "mfussenegger/nvim-lint", rev = "0864f81c681e15d9bdc1156fe3a17bd07db5a3ed" }
+"nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "81af8276d64b1524f8eaac57eeb51187c40cf32d" }
 
 # +- Treesitter ---------------------------------------------+
 "rocks-treesitter.nvim" = "1.3.1"
@@ -134,12 +134,12 @@ auto_install = "prompt"
 "mason.nvim" = { git = "mason-org/mason.nvim", rev = "v2.0.1" }
 
 # +- LSP ----------------------------------------------------+
-"nvim-lspconfig" = "2.4.0"
-"neoconf.nvim" = { git = "folke/neoconf.nvim", rev = "45c7dc77c5a7d00afddc119dc0fa510a9a2f9ebf" }
+"nvim-lspconfig" = "2.5.0"
+"neoconf.nvim" = { git = "folke/neoconf.nvim", rev = "44870437fbdc5d221df770dc9e985fe4c542beaa" }
 "otter.nvim" = "2.13.1"
 
 # +- Config -------------------------------------------------+
-"schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "21a54161a87ab38b85d8b1eb52cc86c973a5fafe", config = "quitlox.plugins.lang.schemastore" }
+"schemastore.nvim" = { git = "b0o/SchemaStore.nvim", rev = "8ebf58bd467f353d18cfa71776b33b28a68130de", config = "quitlox.plugins.lang.schemastore" }
 # +- HTTP ---------------------------------------------------+
 "kulala.nvim" = { git = "mistweaverco/kulala.nvim", rev = "v5.3.3", ft = "http" }
 # +- LaTeX --------------------------------------------------+
@@ -155,7 +155,7 @@ auto_install = "prompt"
 "table-nvim" = { git = "scjangra/table-nvim", rev = "c044fd37169eb10376962b0d0cec5f94d58ca626" }
 # +- Python -------------------------------------------------+
 "python.nvim" = { git = "joshzcold/python.nvim", rev = "edfbadc64db3b094646860147262a4b778841943" }
-"neotest-python" = { git = "nvim-neotest/neotest-python", rev = "ed9b4d794b89044cc32e5476e637936331473c6e" }
+"neotest-python" = { git = "nvim-neotest/neotest-python", rev = "1b1b1abf928f32bbd6a7d183f7ffc80a591eb162" }
 "nvim-dap-python" = "scm"
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = { version = "6.9.2", config = "quitlox.plugins.lang.rustaceanvim" }
@@ -165,7 +165,7 @@ auto_install = "prompt"
 "typescript-tools.nvim" = { git = "pmizio/typescript-tools.nvim", rev = "3c501d7c7f79457932a8750a2a1476a004c5c1a9", config = "quitlox.plugins.lang.typescript_tools" }
 "tailwind-tools.nvim" = { git = "luckasRanarison/tailwind-tools.nvim", rev = "v0.3.2" }
 # +- Minor Languages ----------------------------------------+
-"chezmoi.vim" = { git = "alker0/chezmoi.vim", rev = "abf37336437867cbd99ce2f8849b717415391cc3" }
+"chezmoi.vim" = { git = "alker0/chezmoi.vim", rev = "ca5f2ed602046d5662cb76d845c4b510aae0ce84" }
 "csvview.nvim" = { git = "hat0uma/csvview.nvim", rev = "v1.3.0" }
 "nvim-ansible" = { git = "mfussenegger/nvim-ansible", rev = "bba61168b7aef735e7f950fdfece5ef6c388eacf" }
 "nvim-parinfer" = "1.2.0"
@@ -184,7 +184,7 @@ auto_install = "prompt"
 
 # +- ChatGPT ------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
-"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v17.22.1" }
+"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v17.23.0" }
 "codecompanion-history.nvim" = { git = "ravitemer/codecompanion-history.nvim", rev = "eb99d256352144cf3b6a1c45608ec25544a0813d" }
 "codecompanion-spinner.nvim" = { git = "franco-ruggeri/codecompanion-spinner.nvim", rev = "v0.2.3" }
 "vectorcode" = { git = "davidyz/vectorcode", rev = "0.7.16" }
