@@ -55,10 +55,26 @@ require("blink-cmp").setup({
                 components = {
                     label = {
                         text = function(ctx)
-                            return require("colorful-menu").blink_components_text(ctx)
+                            local is_large = false
+                            is_large = is_large or (ctx and ctx.item and ctx.item.detail and string.len(ctx.item.detail) > 1000)
+                            is_large = is_large or (ctx and ctx.item and ctx.item.labelDetails and ctx.item.labelDetails.description and string.len(ctx.item.labelDetails.description) > 1000)
+                            is_large = is_large or (ctx and ctx.item and ctx.item.label_description and string.len(ctx.item.label_description) > 1000)
+                            if is_large then
+                                return require("blink.cmp.config.completion.menu").default.draw.components.label.text(ctx)
+                            else
+                                return require("colorful-menu").blink_components_text(ctx)
+                            end
                         end,
                         highlight = function(ctx)
-                            return require("colorful-menu").blink_components_highlight(ctx)
+                            local is_large = false
+                            is_large = is_large or (ctx and ctx.item and ctx.item.detail and string.len(ctx.item.detail) > 1000)
+                            is_large = is_large or (ctx and ctx.item and ctx.item.labelDetails and ctx.item.labelDetails.description and string.len(ctx.item.labelDetails.description) > 1000)
+                            is_large = is_large or (ctx and ctx.item and ctx.item.label_description and string.len(ctx.item.label_description) > 1000)
+                            if is_large then
+                                return require("blink.cmp.config.completion.menu").default.draw.components.label.highlight(ctx)
+                            else
+                                return require("colorful-menu").blink_components_highlight(ctx)
+                            end
                         end,
                     },
                     kind_icon = {
