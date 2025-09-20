@@ -1,3 +1,10 @@
+# Chezmoi
+#
+# Setup new installation:
+#   1. rbw login
+#   2. chezmoi init quitlox --apply
+#   3. cd ~/.local/share/chezmoi
+#   4. git remote set-url origin git@github.com:Quitlox/dotfiles.git
 {
   lib,
   pkgs,
@@ -13,6 +20,7 @@ let
   cfg = config.bundles.chezmoi;
 in
 {
+
   options.bundles.chezmoi = {
     enable = mkEnableOption "bundle: chezmoi" // {
       default = true;
