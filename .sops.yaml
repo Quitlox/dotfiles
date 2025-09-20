@@ -1,9 +1,11 @@
 keys:
-  - &user_quitlox age1l3s5vhuzyfc4gcj4ceuh9z8e93cnsxfed6vdwxw2ct8u3smmugeqvsmszr
+  - &age_private_key age1l3s5vhuzyfc4gcj4ceuh9z8e93cnsxfed6vdwxw2ct8u3smmugeqvsmszr
   - &ssh_host_ed25519_quitlox-pi age1djjlf4knk5vnjq8hg79sdyscgufj7zyu6e76gnf6e6zu8fvuceaqgj9a5n
+  - &ssh_host_ed25519_quitlox-homelab age1dd29epcf30lscsmrzkdq5kqp82kusntfu36tnxlcg38ah7fjkuesn9cyjt
 creation_rules:
   - path_regex: nixos/secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
-      - *user_quitlox
+      - *age_private_key
       - *ssh_host_ed25519_quitlox-pi
+      - *ssh_host_ed25519_quitlox-homelab
