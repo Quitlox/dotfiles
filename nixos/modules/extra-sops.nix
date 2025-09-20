@@ -9,9 +9,10 @@
 # If the SSH key of the machine is not onboarded, use the personal private key:
 #     > `export SOPS_AGE_KEY_FILE=~/.ssh/.age_private_key.txt`
 #
-# Currently onboarded keys:
-# - quitlox-pi "/etc/ssh/ssh_host_ed25519_key"
-# - .age_private_key.txt
+# To onboard a new host:
+#     > nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
+#     > add to `.sops.yaml` in dotfiles
+#     > `sops updatekeys nixos/secrets/secrets.yaml`
 
 {
   pkgs,
@@ -25,9 +26,7 @@
 
   # Configuration
   sops.defaultSopsFile = ../secrets/secrets.yaml;
-  sops.age.sshKeyPaths = [ 
-    "/etc/ssh/ssh_host_ed25519_key" # Used on [ quitlox-pi ]
-  ]; 
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ]; 
 
   # Installation
   environment.systemPackages = with pkgs; [
