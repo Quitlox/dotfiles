@@ -33,7 +33,9 @@
   - the fold elipsis is ugly, at least in neovim
   - ideally, in python, folds would fold entire function definitions, not parameters seperately  
   - underline of dart.nvim is ugly
+  - do not active python lsp/conform before virtual env ?
   - [ ] very specific python indentation behaviour:
+    - [ ] related issue: when double enter in insert mode, it should fallback an indention level
   ```python
   class MpycFunction(Function):
 
