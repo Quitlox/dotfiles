@@ -29,9 +29,6 @@
     "/etc/ssh/ssh_host_ed25519_key" # Used on [ quitlox-pi ]
   ]; 
 
-  # Secrets
-  sops.secrets."pass-wifi" = { };
-
   # Installation
   environment.systemPackages = with pkgs; [
     sops

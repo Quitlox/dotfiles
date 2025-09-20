@@ -24,6 +24,7 @@
   };
 
   # WiFi Password
+  sops.secrets."pass-wifi" = { };
   sops.templates."wifi" = {
     content = ''
       psk_wifi_home=${config.sops.placeholder.pass-wifi}
@@ -33,7 +34,7 @@
   # ----- Lifted from srvos -----
 
   # Allow PMTU / DHCP
-  networking.firewall.allowPing = true;
+  networking.firewall.allowPing = true; # this is default apparently
 
   # Keep dmesg/journalctl -k output readable by NOT logging
   # each refused connection on the open internet.

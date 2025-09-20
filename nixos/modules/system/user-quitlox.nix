@@ -2,10 +2,7 @@
   users.users.quitlox = {
     isNormalUser = true;
     initialHashedPassword = "";
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
+    extraGroups = [ "wheel" ];
   };
 
   # Security
