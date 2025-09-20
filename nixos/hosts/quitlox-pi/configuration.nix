@@ -13,6 +13,7 @@
     ../../modules/system/nixos-settings.nix
     ../../modules/system/user-quitlox.nix
     ../../modules/service-openssh.nix
+    ../../modules/service-tailscale.nix
     ../../modules/extra-arion.nix
     ../../modules/extra-sops.nix
     ../../modules/bundle-cli.nix
@@ -21,7 +22,6 @@
     # applications
     ./applications/arion-whoami.nix
     ./applications/media.nix
-    ./applications/tailscale.nix
     ./applications/routing.nix
     # server defaults (nice-to-haves) from srvos
     (srvos.outPath + "/nixos/common/detect-hostname-change.nix")
