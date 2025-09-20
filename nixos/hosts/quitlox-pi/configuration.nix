@@ -7,15 +7,16 @@
 }:
 {
   imports = [
-    # system configuration
-    ./hardware/configuration.nix
+    # system configuration (specific)
+    ./hardware-configuration.nix
     ./system/filesystem.nix
     ./system/networking.nix
-    ./system/nixos.nix
-    ./system/virtualization.nix
-    ./system/user.nix
-    ../../modules/sops.nix
-    ../../modules/openssh.nix
+    # system configuration (general)
+    ../../modules/system/nixos-settings.nix
+    ../../modules/system/user-quitlox.nix
+    ../../modules/service-openssh.nix
+    ../../modules/extra-arion.nix
+    ../../modules/extra-sops.nix
     ../../modules/bundle-cli.nix
     ../../modules/bundle-chezmoi.nix
     ../../modules/bundle-neovim.nix
@@ -42,6 +43,9 @@
   # ----- System -----
   networking.hostName = "quitlox-pi";
   time.timeZone = "Europe/Amsterdam";
+
+  system.stateVersion = config.system.nixos.release;
+  system.nixos.tags = [ "raspberry-pi-5" config.boot.kernelPackages.kernel.version ];
 
   # ----- SSL -----
   # Automated SSL certificate process for Hetzner managed domains.

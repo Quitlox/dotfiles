@@ -4,9 +4,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.channel.enable = false;
 
-  system.stateVersion = config.system.nixos.release;
-  system.nixos.tags = [ "raspberry-pi-5" config.boot.kernelPackages.kernel.version ];
-
   # Fallback quickly if substituters are not available.
   nix.settings.connect-timeout = 5;
   nix.settings.fallback = true;
