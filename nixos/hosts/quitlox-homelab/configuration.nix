@@ -57,6 +57,14 @@
   boot.zfs.forceImportRoot = false;
   boot.zfs.extraPools = [ "tank" ];
   services.zfs.autoScrub.enable = true;
+  
+  # sudo zpool create -o ashift=12 -O xattr=sa -O compression=lz4 -O atime=off -O mountpoint=none tank mirror "$D1" "$D2"
+  # sudo zfs set canmount=off tank
+  # sudo zfs create -o mountpoint=/srv/media tank/media
+  # sudo zfs create -o mountpoint=/srv/media/movies -o recordsize=1M tank/media/movies
+  # sudo zfs create -o mountpoint=/srv/media/tvshows -o recordsize=1M tank/media/tvshows
+  # sudo zfs create -o mountpoint=/srv/media/anime -o recordsize=1M tank/media/anime
+  # sudo zfs create -o mountpoint=/srv/media/torrents -o recordsize=16K tank/media/torrents
 
   # ----- SSL -----
   # Automated SSL certificate process for Hetzner managed domains.
