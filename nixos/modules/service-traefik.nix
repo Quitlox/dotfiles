@@ -119,10 +119,13 @@ in
           # HTTP :80
           web.address = ":80";
           web.asDefault = true;
+          # NOTE: since we use a `.dev` domain, we must always redirect to HTTPS
+          web.http.redirections.entryPoint = { to = "websecure"; scheme = "https"; };
           # HTTS :443
           websecure.address = ":443";
           websecure.asDefault = true;
           websecure.http.tls.certResolver = "letsencrypt";
+          # websecure.http.tls.domains = [ { main = "home.quitlox.dev"; sans = ["*.home.quitlox.dev" ]; } ];
           # Internal :8080
           internal.address = ":8080";
         };

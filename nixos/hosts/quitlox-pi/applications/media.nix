@@ -93,13 +93,14 @@ in
   # Expose through traefik
   services.traefik.dynamicConfigOptions = {
     http.services.jellyfin = {
-      loadBalancer.servers.url = [ "http://127.0.0.1:8920" ]; # HTTP 8096, HTTPS 8920
+      loadBalancer.servers = [ { url = "http://localhost:8096"; } ]; # HTTP 8096, HTTPS 8920
     };
     http.routers.jellyfin = {
       entryPoints = [ "websecure" ];
       rule = "Host(`jellyfin.${config.quitlox.traefik.domain}`)";
+      tls.certResolver = "letsencrypt";
       service = "jellyfin";
-      middlewares = [ "ip-internal" ];
+      # middlewares = [ "ip-internal" ];
     };
   };
 

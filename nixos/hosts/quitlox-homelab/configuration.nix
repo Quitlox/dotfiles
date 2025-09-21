@@ -77,6 +77,12 @@
         email = "kevin.witlox@upcmail.nl";
         storage = "${config.services.traefik.dataDir}/acme.json";
         dnsChallenge.provider = "hetzner";
+        # We explicitly set public resolvers, as dnsmasq is setup to resolve
+        # our domain internally
+        # Cloudflare 1.1.1.1 Google 8.8.8.8
+        dnsChallenge.resolvers = [ "1.1.1.1:53" "8.8.8.8:53" ];
+        dnsChallenge.propagation.disableChecks = true;      # replaces disablePropagationCheck
+        dnsChallenge.propagation.delayBeforeChecks = "10s"; # optional, give TXT time to appear
       };
     };
   };
