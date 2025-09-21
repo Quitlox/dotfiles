@@ -5,8 +5,14 @@
   systemd.network.enable = true;
   systemd.network.networks."10-eth" = {
     matchConfig.Name = "enp0s31f6";
+    # Static configuration
+    address = [ "192.168.178.2/24" ];
+    routes = [ { Gateway = "192.168.178.1"; } ];
+    # Dynamic configuration
     networkConfig.DHCP = "ipv4";
     networkConfig.IPv6AcceptRA = true;
+    # Both the static and dynamic IP will be assigned, but one can be used as
+    # a fallback for the other.
   };
 
   # Multicast DNS - Make <hostname>.local reachable on local network
