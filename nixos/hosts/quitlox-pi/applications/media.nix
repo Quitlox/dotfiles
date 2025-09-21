@@ -2,12 +2,15 @@
 #
 # Systemd Unit             Port  User       Data                 Description
 # jellyfin.service         8096  jellyfin   /var/lib/jellyfin    The Media Server
-# prowlarr.service         2101  prowlarr   /var/lib/prowlarr    Torrent index manager
 # radarr.service           2102  radarr     /var/lib/radarr      Movie collection manager
 # sonarr.service           2103  sonarr     /var/lib/sonarr      Series collection manager
-# jellyseerr.service       2108  jellyseer  /var/lib/jellyseerr  Media Discovery 
+# prowlarr.service         2101  prowlarr   /var/lib/prowlarr    Torrent index manager
+# bazarr.service           2107  bazarr     /var/lib/bazarr      Subtitles manager
 # arion-profilarr.service  2109  -          /var/lib/profilarr   Configuration manager (for profiles, quality)
+# jellyseerr.service       2108  jellyseer  /var/lib/jellyseerr  Media Discovery 
 # qbittorent.service       2111  -          /var/lib/profilarr   QBittorrent Web UI
+#
+# (^ in setup order)
 #
 # Storage
 #   - /srv/media/movies
@@ -56,6 +59,7 @@ in
     "d /var/lib/prowlarr/       0700 prowlarr media - -" # See prowlarr
     "d /var/lib/profilarr/          0700 root media - -" # See prowlarr
     "d /srv/media                   2775 root media - -"
+    "d /srv/media/anime             2775 root media - -"
     "d /srv/media/movies            2775 root media - -"
     "d /srv/media/tvshows           2775 root media - -"
     "d /srv/media/torrents          2775 root media - -"
@@ -70,6 +74,12 @@ in
   #     - Either immediately on setup or Dashboard > Libraries
   #     - Create: "Movies" with folder "/srv/media/movies"
   #     - Create: "Shows" with folder "/srv/media/tvshows"
+  #     - Create: "Anime" with folder "/srv/media/anime"
+  # 3 (Optional):
+  #     - "Enable trickplay image extraction"
+  #     - "Extract trickplay images during the library scan"
+  #     - "Enable chapter image extraction"
+  #     - "Extract chapter images during the library scan"
 
   environment.systemPackages = with pkgs; [ jellyfin jellyfin-web jellyfin-ffmpeg ];
 
@@ -101,14 +111,16 @@ in
   #     - Indexers: Add Indexer
   # 2. Connect Servarrs
   #     - Settings > Apps: Press the Plus Button
-    #     - Add Sonarr:
-    #         - Prowlarr Server = "http://quitlox-pi.local:2101"
-    #         - Sonarr Server = "http://quitlox-pi.local:2103"
-    #         - API Key = "XXX"
-    #     - Add Radarr:
-    #         - Prowlarr Server = "http://quitlox-pi.local:2101"
-    #         - Radarr Server = "http://quitlox-pi.local:2102"
-    #         - API Key = "XXX"
+  #       - Add Radarr:
+  #           - Prowlarr Server = "http://localhost:2101"
+  #           - Radarr Server = "http://localhost:2102"
+  #           - API Key = "XXX"
+  #       - Add Sonarr:
+  #           - Prowlarr Server = "http://localhost:2101"
+  #           - Sonarr Server = "http://localhost:2103"
+  #           - API Key = "XXX"
+  # 3. Setup Indexers
+  #     - Indexers > Add New Indexer
   #     - Setting > Apps: Sync App Indexers
 
   services.prowlarr.enable = true;
@@ -171,6 +183,10 @@ in
   # Setup:
   # 1. Configure Root Folder
   #     - Settings > Media Management: Root Folders = [ "/srv/media/tvshows" ]
+  # 2. Add Download Client
+  #     - Settings > Download Clients: Add Download Client > qBittorrent
+  #         - Host = "127.0.0.1"
+  #         - Port = "2111"
 
   services.sonarr.enable = true;
   services.sonarr.openFirewall = true;
@@ -206,8 +222,8 @@ in
   #           - Movies = true
   #   2. Providers > Enabled Providers
   #       - Add "OpenSubtitles.com" (see Bitwarden for credentials)
-  #       - Add "OpenSubtitles.org"
-  #           - Requires VIP membership (16,09 yearly)
+  #       - Add "OpenSubtitles.org" (see Bitwarden for credentials)
+  #           - Requires VIP membership (16,09 yearly) (currently active)
   #   3. Subtitles
   #       - > Sub-Zero Subtitle Content Modifications
   #           - "Hearing Impaired" = true
@@ -219,7 +235,9 @@ in
   #         - "Automatic Subtitles Audio Synchronization" = true
   #         - "Series Score Threshold For Audio Syncs" = 50
   #         - "Movies Score Threshold For Audio Syncs" = 50
-  #    4. Sonarr
+  #   4. Radarr
+  #       - Enabled = true, Port = 2102, API Key
+  #   5. Sonarr
   #       - Enabled = true, Port = 2103, API Key
 
   services.bazarr.enable = true;
@@ -235,23 +253,30 @@ in
   #   be downloaded from Jellyfin.
   #
   # Setup:
-  #   1. Walk through first-time setup
-  #       1. Setup Jellyfin integration
-  #           Jellyfin at "localhost:8096", log in with "jellyfin" user. 
-  #       2. Setup Radarr
-  #           Set as default server
-  #           Server Name "Movies"
-  #           Radarr at http://localhost:2102, with apikey from secrets.yaml
-  #           Select Quality Profile "2160p Balanced"
-  #           Enable Scan
-  #       2. Setup Sonarr
-  #           Server Name "Series"
-  #           Sonarr at http://localhost:2103, with apikey from secrets.yaml
-  #           Select Quality Profile "1080p Quality"
-  #           Enable Scan
-  #       3. Settings
-  #           Default Permissions > Manage Requests = "true"
-  #           Streaming Region = "Netherlands"
+  #   1. Setup Jellyfin integration
+  #       - Select "Jellyfin" Integration
+  #       - Configure Jellyfin at "localhost:8096"
+  #       - Login with Jellyfin admin (user: jellyfin, password: bitwarden)
+  #       - Sync libraries and enable "Movies" and "Shows" libraries
+  #   2. Add Radarr
+  #       Set as default server
+  #       Server Name "Movies"
+  #       Radarr at http://localhost:2102, with apikey from secrets.yaml
+  #       Select Quality Profile "2160p Balanced"
+  #       Root Folder "/srv/media/movies"
+  #       Enable Scan
+  #   2. Add Sonarr
+  #       Server Name "Series"
+  #       Sonarr at http://localhost:2103, with apikey from secrets.yaml
+  #       Select Quality Profile "1080p Quality"
+  #       Root Folder "/srv/media/movies"
+  #       Anime Root Folder "/srv/media/anime"
+  #       Enable Scan
+  #   3. Settings
+  #       Default Permissions > Auto-Approve = "true"
+  #       Default Permissions > Manage Issues > Report Issues = "true"
+  #       Default Permissions > Manage Issues > View Issues = "true"
+  #       Streaming Region = "Netherlands"
 
   services.jellyseerr.enable = true;
   services.jellyseerr.port = 2108;
@@ -268,26 +293,28 @@ in
 
   # Setup:
   # 1. First Time Setup
-  #     - on first login, you will be prompted to create a username and password
-  # 2. Add Database
-  #     - setup the database by adding https://github.com/Dictionarry-Hub/database
+  #     - on first login, you will be prompted to create a username and password (see Bitwarden)
+  # 2. Database > Add Database
+  #     - setup the database by adding https://github.com/Dictionarry-Hub/database.git
   #     - enable autosync on the database
-  # 3. Add Radarr
+  # 3. External Apps > Add Radarr 
   #     - Name = "Radarr"
-  #     - Arr Server = "http://quitlox-pi.local:2102"
+  #     - Arr Server = "http://quitlox-homelab.local:2102" # FIXME: docker doesn't have access to localhost
   #     - Sync Method = "Scheduled"
   #     - Import as Unique = true
-  #     - Sync Internal = "10080" (1 week)
+  #     - Sync Internal = "10080" minutes (1 week)
+  #     - "Select Data to Sync"
   # 4. Add Sonarr
   #     - Name = "Sonarr"
-  #     - Arr Server = "http://quitlox-pi.local:2103"
+  #     - Arr Server = "http://quitlox-homelab:2103"
   #     - Sync Method = "Scheduled"
   #     - Import as Unique = true
   #     - Sync Internal = "10080" (1 week)
-  # 5. Media Management
+  # 5. Media Management >
   #     - set "Replace Illegal Characters" to true for both Radarr and Sonarr
   #     - don't forget to hit save on each tab
   #     - hit "Sync All" for both Radarr and Sonarr
+  #     - This will need to be committed to the database
 
   virtualisation.arion.projects = {
     profilarr.settings = {
