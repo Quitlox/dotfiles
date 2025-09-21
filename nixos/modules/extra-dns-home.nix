@@ -144,6 +144,7 @@ in
     })
 
     {
+      systemd.services.dnsmasq = { after = lib.mkAfter [ "network-online.target" ]; wants = lib.mkAfter [ "network-online.target" ]; };
       services.dnsmasq = (lib.mkIf (cfg.dns.enable || cfg.dhcp.enable) {
         enable = true;
 
