@@ -60,7 +60,16 @@ in
     { networking.firewall.allowedTCPPorts = [ 80 443 8080 ]; }
 
     # Enable logging
-    { services.traefik.staticConfigOptions.accessLog = { }; }
+    {
+      services.traefik.staticConfigOptions.log = {
+        level = "DEBUG";
+        filePath = "${config.services.traefik.dataDir}/traefik.log";
+        format = "common";
+      };
+      services.traefik.staticConfigOptions.accessLog = {
+        filePath = "${config.services.traefik.dataDir}/access.log";
+      };
+    }
 
     # Middleware: authorization - local subnet only
     {
