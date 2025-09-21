@@ -97,6 +97,18 @@ in
       };
     }
 
+    # Traefik: Catchall redirect to HTTPS
+    {
+      services.traefik.dynamicConfigOptions = {
+        catchall-https = {
+          entryPoints = [ "websecure" ];
+          rule = "HostRegexp(`{host:.+}`)";
+          service = "noop@internal";
+          tls.certResolver = "letsencrypt";
+        };
+      };
+    }
+
     # Traefik: Setup docker provide and entrypoints
     {
       services.traefik = {
