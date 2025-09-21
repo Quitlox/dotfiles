@@ -1,23 +1,11 @@
-# Routing - DNS and Traefik
+# Routing - Home network DNS (+ DHCP)
 #
 # This module sets up this device as a DNS server intended to be used on the
-# local home network. The DNS server will ensure that home.<mydomain> and its
+# local home network. The DNS server will ensure that <domain> and its
 # subdomains will be routed to this server. Other DNS requests will be
 # delegated to a public resolver.
 #
-# Traefik is also setup so that other services can easily configure themselves
-# to be exposed under specific subdomains/endpoints.
-#
-#     Traefik
-#
-# Traefik is a reverse proxy that can dynamically configure routing, which is
-# cool. In hindsight, given that this is a Nix configuration, we don't actually
-# use the dynamic part to its fullest extent and maybe nginx would've made more
-# sense. However, traefik has so far been quite pleasant to use nontheless.
-#
-# Traefik supports "static" configuration (your plain file based configuration)
-# and "dynamic" configuration (such as automatically exposing docker containers
-# and such).
+# Note: when enabling DHCP, ensure that a static IP is set.
 #
 #     Setup
 #
@@ -39,7 +27,7 @@
 #    - A home -> reserved IP
 #    - A *.home -> reserved IP
 #
-{ pkgs, config, lib, ... }:
+{ config, lib, ... }:
 let 
   cfg = config.quitlox.home;
 in
@@ -77,15 +65,6 @@ in
         is outside of the DHCP pool.
       '';
     };
-    lan.subnet = lib.mkOption {
-      type = with lib.types; nullOr str;
-      default = null;
-      example = "192.168.178.0/24";
-      description = ''
-        The mask of the local subnet.
-      '';
-    };
-
     dns.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -200,85 +179,6 @@ in
             ];
           });
       });
-    }
-    
-    # DHCP - If enabled, we need to set our own IP statically.
-    (lib.mkIf cfg.dhcp.enable {
-      systemd.network.networks."10-lan" = {
-        matchConfig.Name = cfg.dhcp.interface;
-        address = [ "${cfg.lan.ipv4}/24" ];
-        routes  = [ { Gateway = cfg.dhcp.router; } ];
-
-        networkConfig.MulticastDNS = "yes";
-      };
-    })
-
-    ##############################################################################
-    ### traefik                                                                ###
-    ##############################################################################
-
-    # HTTP 80, HTTPS 443, INTERNAL 8080
-    { networking.firewall.allowedTCPPorts = [ 80 443 8080 ]; }
-
-    # Enable logging
-    { services.traefik.staticConfigOptions.accessLog = { }; }
-
-    # Middleware: authorization - local subnet only
-    {
-      services.traefik.dynamicConfigOptions.http.middlewares = {
-        ip-internal = {
-          ipAllowList.sourceRange = [
-            "127.0.0.1/32" # localhost
-            cfg.lan.subnet # local subnet
-          ];
-        };
-      };
-    }
-
-    # Traefik: Expose dasbhoard on internal network
-    # http://<LAN-IP>:8080/dashboard/
-    {
-      services.traefik.staticConfigOptions.api.dashboard = true;
-      services.traefik.dynamicConfigOptions = {
-        http.routers.dashboard = {
-          entryPoints = [ "internal" ];
-          rule = "(PathPrefix(`/api`) || PathPrefix(`/dashboard`))";
-          service = "api@internal"; # "magic" name
-          middlewares = [ "ip-internal" ];
-        };
-      };
-    }
-
-    # Traefik: Setup docker provide and entrypoints
-    {
-      services.traefik = {
-        enable = true;
-        group = "docker"; # FIXME: is this necessary?
-
-        # Using the docker provide we can easily configure docker containers
-        # through traefik by using labels. 
-        staticConfigOptions.providers.docker = {
-          watch = true;
-          exposedByDefault = false;
-          # We set network to "proxy", meaning that only docker containers
-          # connected to this network can be exposed.
-          network = "proxy";
-        };
-
-        # The entrypoints are, as suggested by the name, the entrypoints to the
-        # server, i.e. the ports on which traefik listens.
-        staticConfigOptions.entrypoints = {
-          # HTTP :80
-          web.address = ":80";
-          web.asDefault = true;
-          # HTTS :443
-          websecure.address = ":443";
-          websecure.asDefault = true;
-          websecure.http.tls.certResolver = "letsencrypt";
-          # Internal :8080
-          internal.address = ":8080";
-        };
-      };
     }
   ];
 }
