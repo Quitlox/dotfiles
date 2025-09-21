@@ -283,6 +283,19 @@ in
   services.jellyseerr.port = 2108;
   services.jellyseerr.openFirewall = true;
 
+  # Expose through traefik
+  services.traefik.dynamicConfigOptions = {
+    http.services.jellyseerr = {
+      loadBalancer.servers = [ { url = "http://127.0.0.1:2108"; } ]; # HTTP 8096, HTTPS 8920
+    };
+    http.routers.jellyseerr = {
+      entryPoints = [ "websecure" ];
+      rule = "Host(`jellyseerr.${config.quitlox.traefik.domain}`)";
+      service = "jellyseerr";
+      # middlewares = [ "ip-internal" ];
+    };
+  };
+
   ##############################################################################
   ### Profilarr - Configuration manager                                      ###
   ##############################################################################
