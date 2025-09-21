@@ -5,6 +5,7 @@
   systemd.network.enable = true;
   systemd.network.networks."10-eth" = {
     matchConfig.Name = "enp0s31f6";
+    networkConfig.MulticastDNS = "yes"; # Resolve <hostname>.local
     # Static configuration
     address = [ "192.168.178.2/24" ];
     routes = [ { Gateway = "192.168.178.1"; } ];
@@ -15,11 +16,8 @@
     # a fallback for the other.
   };
 
-  # Multicast DNS - Make <hostname>.local reachable on local network
+  # Multicast DNS - Resolve <hostname>.local
   networking.firewall.allowedUDPPorts = [ 5353 ];
-  systemd.network.networks = {
-    "99-ethernet-default-dhcp".networkConfig.MulticastDNS = "yes";
-  };
 
   # Keep dmesg/journalctl -k output readable by NOT logging
   # each refused connection on the open internet.
