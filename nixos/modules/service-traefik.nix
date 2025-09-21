@@ -29,6 +29,14 @@ in
   ##############################################################################
 
   options.quitlox.traefik = {
+    domain = lib.mkOption {
+      type = with lib.types; nullOr str;
+      default = null;
+      example = "home.quitlox.dev";
+      description = ''
+        The domain name of the home network.
+      '';
+    };
     lan.subnet = lib.mkOption {
       type = with lib.types; nullOr str;
       default = null;

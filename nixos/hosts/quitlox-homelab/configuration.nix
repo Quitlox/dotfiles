@@ -28,6 +28,7 @@
     (srvos.outPath + "/nixos/common/update-diff.nix")
   ];
 
+  quitlox.traefik.domain = "home.quitlox.dev";
   quitlox.traefik.lan.subnet = "192.168.178.0/24";
 
   quitlox.home.domain = "home.quitlox.dev";

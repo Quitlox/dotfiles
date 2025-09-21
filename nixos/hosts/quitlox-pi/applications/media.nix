@@ -87,7 +87,7 @@ in
     };
     http.routers.jellyfin = {
       entryPoints = [ "websecure" ];
-      rule = "Host(`jellyfin.${config.quitlox.home.domain}`)";
+      rule = "Host(`jellyfin.${config.quitlox.traefik.domain}`)";
       service = "jellyfin";
       middlewares = [ "ip-internal" ];
     };
