@@ -51,6 +51,13 @@
   networking.hostName = "quitlox-homelab";
   time.timeZone = "Europe/Amsterdam";
 
+  # ----- ZFS -----
+  networking.hostId = "66f55652"; # head -c 8 /etc/machine-id
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+  boot.zfs.extraPools = [ "tank" ];
+  services.zfs.autoScrub.enable = true;
+
   # ----- SSL -----
   # Automated SSL certificate process for Hetzner managed domains.
   sops.secrets."hetzner/dns-apikey" = { owner = "traefik"; group = "traefik"; };
