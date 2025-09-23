@@ -354,15 +354,6 @@ in
   ### qBittorrent                                                            ###
   ##############################################################################
 
-  # FIXME: work-around due to outdated pkgs (see flake.nix)
-
-  # disable a built-in copy if your base nixpkgs ever gains it
-  disabledModules = [ "services/torrent/qbittorrent.nix" ];
-  # import the fresh module from nixpkgs-unstable
-  imports = [
-    "${nixpkgs}/nixos/modules/services/torrent/qbittorrent.nix"
-  ];
-
   networking.firewall.allowedUDPPorts = [ config.services.qbittorrent.torrentingPort ];
   services.qbittorrent.enable = true;
   services.qbittorrent.user = "qbittorrent"; # default
