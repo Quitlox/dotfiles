@@ -20,7 +20,6 @@
     ../../modules/bundle-chezmoi.nix
     ../../modules/bundle-neovim.nix
     # applications
-    ./applications/media.nix
     # server defaults (nice-to-haves) from srvos
     (srvos.outPath + "/nixos/common/detect-hostname-change.nix")
     (srvos.outPath + "/nixos/common/update-diff.nix")
