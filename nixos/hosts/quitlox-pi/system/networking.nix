@@ -53,11 +53,4 @@
     # Services that are only restarted might be not able to resolve when resolved is stopped before
     systemd-resolved.stopIfChanged = false;
   };
-
-  # ----- Lifted from srvos -----
-
-  # The notion of "online" is a broken concept
-  # https://github.com/systemd/systemd/blob/e1b45a756f71deac8c1aa9a008bd0dab47f64777/NEWS#L13
-  systemd.services.NetworkManager-wait-online.enable = false;
-  systemd.network.wait-online.enable = false;
 }
