@@ -33,10 +33,10 @@
 
   quitlox.home.domain = "home.quitlox.dev";
   quitlox.home.lan.ipv4 = "192.168.178.2";
-  quitlox.home.dhcp.enable = true;
-  quitlox.home.dhcp.interface = "enp0s31f6";
-  quitlox.home.dhcp.router = "192.168.178.1";
-  quitlox.home.dhcp.range = "192.168.178.100,192.168.178.200,24h";
+  quitlox.home.dhcp.enable = false;
+  # quitlox.home.dhcp.interface = "enp0s31f6";
+  # quitlox.home.dhcp.router = "192.168.178.1";
+  # quitlox.home.dhcp.range = "192.168.178.100,192.168.178.200,24h";
   quitlox.home.dns.enable = true;
   quitlox.home.dns.public = [ "89.101.251.228" "89.101.251.229" ]; # Ziggo DNS
 
