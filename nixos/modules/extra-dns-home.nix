@@ -37,16 +37,6 @@ in
   ##############################################################################
 
   options.quitlox.home = {
-    domain = lib.mkOption {
-      type = with lib.types; nullOr str;
-      default = null;
-      example = "home.quitlox.dev";
-      description = ''
-        The domain name of the home network.
-
-        To support HTTPS, the domain must be registered.
-      '';
-    };
     lan.ipv4 = lib.mkOption {
       type = with lib.types; nullOr str;
       default = null;
@@ -54,15 +44,8 @@ in
       description = ''
         The IP under which this device is known in the local subnet.
 
-        To find/obtain a reserved IPv4 on the local subnet:
-          1. Navigate to smartwifiweb.ziggo.nl
-          2. Router > Geavanceerde instellingen > DHCP > Lijst IPv4 gereserveerd 
-          3. Add / Find the device
-
-        If the server is configured to be the DHCP server
-        (home.quitlox.dhcp.enable = true), then this address will be
-        configured using a static network configuration. Ensure that this ip
-        is outside of the DHCP pool.
+        It is recommended to use a static IP configuration, or reserve an IP if
+        DHCP is enabled.
       '';
     };
     dns.enable = lib.mkOption {
@@ -70,7 +53,6 @@ in
       default = false;
       description = "Enable dnsmasq DNS (authoritative for domain; forward others).";
     };
-
     dns.public = lib.mkOption {
       type = with lib.types; nullOr (listOf str);
       default = null;
@@ -81,6 +63,24 @@ in
         This server should be configured as the DNS server on the local network
         via the router configuration. This server will delegate requests to the
         public DNS resolvers.
+      '';
+    };
+    dns.domain.name = lib.mkOption {
+      type = with lib.types; nullOr str;
+      default = null;
+      example = "home.quitlox.dev";
+      description = ''
+        The domain name of the home network.
+
+        To support HTTPS, the domain must be registered.
+      '';
+    };
+    dns.domain.ipv4 = lib.mkOption {
+      type = with lib.types; nullOr str;
+      default = null;
+      example = "192.168.178.2";
+      description = ''
+        The IP to which the domain should be resolved.
       '';
     };
 
@@ -160,9 +160,9 @@ in
             no-resolv = true; # do not read /etc/resolv.conf
             strict-order = true; # try servers in the order listed
             # Treat the zone as local/authoritative and do not forward it upstream
-            local = [ "/${cfg.domain}/" ];
+            local = [ "/${cfg.dns.domain.name}/" ];
             # Wildcard: *.home.quitlox.dev -> this ip
-            address = [ "/${cfg.domain}/${cfg.lan.ipv4}" ];
+            address = [ "/${cfg.dns.domain.name}/${cfg.dns.domain.ipv4}" ];
 
             domain-needed = true;
             bogus-priv = true;

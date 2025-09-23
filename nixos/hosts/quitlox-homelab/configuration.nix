@@ -20,7 +20,6 @@
     ../../modules/bundle-chezmoi.nix
     ../../modules/bundle-neovim.nix
     # applications
-    ../../modules/extra-dns-home.nix
     ../../modules/service-traefik.nix
     ../../hosts/quitlox-pi/applications/media.nix
     # server defaults (nice-to-haves) from srvos
@@ -30,15 +29,6 @@
 
   quitlox.traefik.domain = "home.quitlox.dev";
   quitlox.traefik.lan.subnet = "192.168.178.0/24";
-
-  quitlox.home.domain = "home.quitlox.dev";
-  quitlox.home.lan.ipv4 = "192.168.178.2";
-  quitlox.home.dhcp.enable = false;
-  # quitlox.home.dhcp.interface = "enp0s31f6";
-  # quitlox.home.dhcp.router = "192.168.178.1";
-  # quitlox.home.dhcp.range = "192.168.178.100,192.168.178.200,24h";
-  quitlox.home.dns.enable = true;
-  quitlox.home.dns.public = [ "89.101.251.228" "89.101.251.229" ]; # Ziggo DNS
 
   # ----- System -----
   # Use the systemd-boot EFI boot loader

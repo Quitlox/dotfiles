@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 {
   # Ethernet
   networking.useDHCP = false; # enabled by default, conflicts with networkd
