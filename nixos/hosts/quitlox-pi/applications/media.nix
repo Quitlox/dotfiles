@@ -80,6 +80,8 @@ in
   #     - "Extract trickplay images during the library scan"
   #     - "Enable chapter image extraction"
   #     - "Extract chapter images during the library scan"
+  # 4 (Performance):
+  #     - # TODO: Setup QuickSync and transcoding
 
   environment.systemPackages = with pkgs; [ jellyfin jellyfin-web jellyfin-ffmpeg ];
 
@@ -100,7 +102,7 @@ in
       rule = "Host(`jellyfin.${config.quitlox.traefik.domain}`)";
       tls.certResolver = "letsencrypt";
       service = "jellyfin";
-      # middlewares = [ "ip-internal" ];
+      middlewares = [ "ip-internal" ];
     };
   };
 
@@ -292,7 +294,7 @@ in
       entryPoints = [ "websecure" ];
       rule = "Host(`jellyseerr.${config.quitlox.traefik.domain}`)";
       service = "jellyseerr";
-      # middlewares = [ "ip-internal" ];
+      middlewares = [ "ip-internal" ];
     };
   };
 
