@@ -34,6 +34,9 @@
   - ideally, in python, folds would fold entire function definitions, not parameters seperately  
   - underline of dart.nvim is ugly
   - do not active python lsp/conform before virtual env ?
+  - it would be nice if buffer names were completed in codecompanion ft (and maybe grep, or lsp symbol)
+  - make "daa" (delete around argument) also delete function parameters in func def (in python)
+      - more specifically, the issue is if the type has brackets, that takes precendence
   - [ ] very specific python indentation behaviour:
     - [ ] related issue: when double enter in insert mode, it should fallback an indention level
   ```python
