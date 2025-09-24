@@ -4,6 +4,10 @@
 
 require("aerial").setup({
     backends = { "lsp", "treesitter", "markdown", "man" },
+    layout = {
+        placement = "edge",
+        preserve_equality = true,
+    },
     attach_mode = "global",
 
     -- A list of all symbols to display. Set to false to display all symbols.
