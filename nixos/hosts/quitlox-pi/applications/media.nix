@@ -82,6 +82,9 @@ in
   #     - "Extract chapter images during the library scan"
   # 4 (Performance):
   #     - # TODO: Setup QuickSync and transcoding
+  # 4. (Optional) Install Theme:
+  #     - https://github.com/lscambo13/ElegantFin
+  #     - @import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 
   environment.systemPackages = with pkgs; [ jellyfin jellyfin-web jellyfin-ffmpeg ];
 
