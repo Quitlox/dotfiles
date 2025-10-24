@@ -71,6 +71,7 @@ auto_install = "prompt"
 "cmp-dap" = { git = "rcarriga/cmp-dap", rev = "ea92773e84c0ad3288c3bc5e452ac91559669087" }
 # +- Completion: Copilot-------------------------------------+
 "copilot.vim" = { git = "github/copilot.vim", rev = "v1.56.0" }
+"sidekick.nvim" = { git = "folke/sidekick.nvim", rev = "v1.2.0" }
 # +- Completion: Extras -------------------------------------+
 "colorful-menu.nvim" = { git = "xzbdmw/colorful-menu.nvim", rev = "d5b97d247528be308b6b69d96b5950a30e470f3d" }
 "luasnip" = { git = "l3mon4d3/luasnip", rev = "v2.4.0" }
@@ -182,7 +183,7 @@ auto_install = "prompt"
 # +- Buffer Switcher ----------------------------------------+
 "dart.nvim" = { git = "iofq/dart.nvim", rev = "f059335a22811374d5a7e22c97889ea712db58d7" }
 
-# +- ChatGPT ------------------------------------------------+
+# +- LLM ----------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
 "codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v17.24.0" }
 "codecompanion-history.nvim" = { git = "ravitemer/codecompanion-history.nvim", rev = "eb99d256352144cf3b6a1c45608ec25544a0813d" }

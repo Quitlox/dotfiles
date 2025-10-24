@@ -29,7 +29,14 @@ require("blink-cmp").setup({
         return not vim.tbl_contains(ft_blacklist, vim.bo.filetype) and vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
     end,
     keymap = {
-        ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+        ["<Tab>"] = {
+            "snippet_forward",
+            function() -- sidekick next edit suggestion
+                return require("sidekick").nes_jump_or_apply()
+            end,
+            "select_next",
+            "fallback",
+        },
         ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
         ["<Enter>"] = { "accept", "fallback" },
         ["<C-d>"] = { "scroll_documentation_down", "fallback" },
