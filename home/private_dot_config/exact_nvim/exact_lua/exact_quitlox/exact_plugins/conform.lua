@@ -192,37 +192,39 @@ vim.keymap.set("n", "gf", format, { desc = "Format Buffer" })
 vim.keymap.set("v", "gf", "<cmd>Format<cr>", { desc = "Format Range" })
 
 --+- Integration: snacks.nvim (Toggle) ----------------------+
----@param buf_local? boolean Whether to toggle autoformat for the current buffer only, or globally
-local function toggle_format(buf_local)
+local function toggle_format_global()
     return Snacks.toggle.new({
-        name = "Auto Format (" .. (buf_local and "Buffer" or "Global") .. ")",
+        name = "Auto Format (Global)",
         get = function()
-            if buf_local then
-                return enabled(vim.api.nvim_get_current_buf())
-            else
-                -- For global toggle, show the actual global state
-                return vim.g.autoformat == nil or vim.g.autoformat
-            end
+            return vim.g.autoformat == nil or vim.g.autoformat
         end,
         set = function(state)
-            local bufnr = vim.api.nvim_get_current_buf()
-            if buf_local then
-                vim.b[bufnr].autoformat = state
-            else
-                vim.g.autoformat = state
-                -- Clear all buffer-local overrides when setting global
-                for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                    if vim.api.nvim_buf_is_valid(buf) then
-                        vim.b[buf].autoformat = nil
-                    end
+            vim.g.autoformat = state
+            -- Clear all buffer-local overrides when setting global
+            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                if vim.api.nvim_buf_is_valid(buf) then
+                    vim.b[buf].autoformat = nil
                 end
             end
         end,
     })
 end
 
-toggle_format(true):map("yof")
-toggle_format(false):map("yog")
+local function toggle_format_buffer()
+    return Snacks.toggle.new({
+        name = "Auto Format (Buffer)",
+        get = function()
+            return enabled(vim.api.nvim_get_current_buf())
+        end,
+        set = function(state)
+            local bufnr = vim.api.nvim_get_current_buf()
+            vim.b[bufnr].autoformat = state
+        end,
+    })
+end
+
+toggle_format_buffer():map("yoF")
+toggle_format_global():map("yof")
 
 --+- Support: Check Installation Status ------------------------+
 local formatter_blacklist = { "trim_whitespace", "injected" }

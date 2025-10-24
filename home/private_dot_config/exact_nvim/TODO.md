@@ -23,7 +23,6 @@
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window.
         Hard-to-fix. Tried using AI to fix it, but it didn't work.
-  - [ ] `edgy.nvim` when opening right sidebar, vsplits are not sized properly
   - [ ] `matchup`: unwelcome matching of `[` in strings
   ```lua
   require("which-key").add({

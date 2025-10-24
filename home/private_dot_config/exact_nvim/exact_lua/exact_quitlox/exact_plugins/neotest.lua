@@ -19,6 +19,8 @@ require("neotest").setup({
     },
     log_level = vim.log.levels.WARN,
     summary = {
+        -- NOTE: for edgy.nvim integration
+        open = "split",
         mappings = {
             stop = "x",
             jumpto = { "i", "<cr>" },

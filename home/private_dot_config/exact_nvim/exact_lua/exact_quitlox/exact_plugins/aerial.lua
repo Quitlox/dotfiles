@@ -5,8 +5,12 @@
 require("aerial").setup({
     backends = { "lsp", "treesitter", "markdown", "man" },
     layout = {
-        placement = "edge",
-        preserve_equality = true,
+        -- These options are needed to allow edgy to properly manage the aerial window
+        win_opts = { winfixwidth = false },
+        default_direction = "left",
+        placement = "window",
+        preserve_equality = false,
+        resize_to_content = false,
     },
     attach_mode = "global",
 
