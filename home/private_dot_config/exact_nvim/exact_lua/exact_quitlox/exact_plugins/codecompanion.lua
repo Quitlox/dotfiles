@@ -266,10 +266,6 @@ Avoid:
                         visible = false,
                     },
                 },
-                {
-                    role = "user",
-                    content = [[I have a question about Rust. Could you help me understand this concept?]],
-                },
             },
         },
     },
