@@ -71,16 +71,18 @@ end
 --+- Toggle -------------------------------------------------+
 vim.g.toggle_gitsigns = true
 
-Snacks.toggle.new({
-    name = "Git Blame",
-    get = function()
-        return vim.g.toggle_gitsigns
-    end,
-    set = function(state)
-        require("gitsigns").toggle_current_line_blame(state)
-        vim.g.toggle_gitsigns = state
-    end,
-})
+Snacks.toggle
+    .new({
+        name = "Git Blame",
+        get = function()
+            return vim.g.toggle_gitsigns
+        end,
+        set = function(state)
+            require("gitsigns").toggle_current_line_blame(state)
+            vim.g.toggle_gitsigns = state
+        end,
+    })
+    :map("yogb")
 
 --+- Setup --------------------------------------------------+
 require("gitsigns").setup({

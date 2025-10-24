@@ -1,7 +1,7 @@
 -- +- Custom keybindings -------------------------------------+
 vim.keymap.set("v", "<C-b>", "xi****<Esc>hhp", { desc = "Markdown Bold", buffer = 0 })
--- vim.keymap.set("v", "<C-i>", "xi**<Esc>hp", { desc = "Markdown Italic", buffer = 0 })
--- vim.keymap.set("i", "<C-i>", "**<Esc>i", { desc = "Markdown Italic", buffer = 0 })
+vim.keymap.set("v", "<C-e>", "xi**<Esc>hp", { desc = "Markdown Italic", buffer = 0 })
+vim.keymap.set("i", "<C-e>", "**<Esc>i", { desc = "Markdown Italic", buffer = 0 })
 vim.keymap.set("i", "<C-b>", "****<C-o>h", { desc = "Markdown Bold", buffer = 0 })
 
 -- +- Integration: VimTex ------------------------------------+

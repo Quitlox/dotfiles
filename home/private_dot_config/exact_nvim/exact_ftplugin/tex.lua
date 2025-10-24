@@ -1,6 +1,3 @@
--- +- Integration: Wrapping.nvim -----------------------------+
-require("wrapping").soft_wrap_mode()
-
 -- +- Integration: Luasnip -----------------------------------+
 require("luasnip").setup({
     enable_autosnippets = true,

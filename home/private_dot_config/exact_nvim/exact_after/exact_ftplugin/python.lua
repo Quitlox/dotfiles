@@ -1,7 +1,6 @@
-local ok = true
-ok, _ = pcall(require, "mini.ai")
-ok, _ = pcall(require, "nvim-treesitter.configs")
-if not ok then
+local ok1, _ = pcall(require, "mini.ai")
+local ok2, _ = pcall(require, "nvim-treesitter.configs")
+if not ok1 or not ok2 then
     return
 end
 
@@ -21,10 +20,6 @@ require("nvim-treesitter.configs").setup({
         },
     },
 })
-
-local spec_treesitter = require("mini.ai").gen_spec.treesitter
-local spec_pair = require("mini.ai").gen_spec.pair
-local mini_ai = require("mini.ai")
 
 -- Function to check if cursor is in a comment
 local function is_in_comment()
@@ -109,7 +104,7 @@ function create_quote_textobject()
         local cursor_col = cursor_pos[2] + 1 -- 1-indexed
 
         -- Create a treesitter spec for both regular strings and f-strings
-        local ts_spec = mini_ai.gen_spec.treesitter({
+        local ts_spec = require("mini.ai").gen_spec.treesitter({
             a = { "@string.outer", "@fstring.outer" },
             i = { "@string.inner", "@fstring.inner" },
         })
