@@ -15,6 +15,8 @@
   - i need a hydra mode for git staging
   - ripgrep through help
 
+  - tabout doesn't work for <> (defined in autopairs).
+    - how much to autopairs and blink.cmp auto_brackets overlap?
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window.
         Hard-to-fix. Tried using AI to fix it, but it didn't work.

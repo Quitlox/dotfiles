@@ -34,7 +34,7 @@ local quote = quote_creator(npairs.config)
 
 --+- Custom Rules: Rust -------------------------------------+
 npairs.add_rules({
-    Rule("<", ">", { "rust" }):with_pair(cond.before_regex("%a+")):with_move(function(opts)
+    Rule("<", ">", { "rust" }):with_pair(cond.before_regex("%a+:?:?$", 3)):with_move(function(opts)
         return opts.char == ">"
     end),
 })
@@ -92,115 +92,103 @@ local function at_start_of_line(opts)
 end
 
 -- Rule 1: Special handling for typing * when already inside *|*
-npairs.add_rule(
-    Rule("*", "**", { "markdown" })
-        :with_pair(function(opts)
-            local line = opts.line
-            local col = opts.col
-            
-            -- Don't expand at start of line (bullet points)
-            if at_start_of_line(opts) then
-                return false
-            end
-            
-            local inside_italic = col > 1 and line:sub(col-1, col-1) == "*" and opts.next_char == "*"
-            
-            if inside_italic then
-                -- Delete the closing * that's already there
-                vim.schedule(function()
-                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Del>", true, false, true), "n", false)
-                end)
-                return true
-            end
-            return false
+npairs.add_rule(Rule("*", "**", { "markdown" }):with_pair(function(opts)
+    local line = opts.line
+    local col = opts.col
+
+    -- Don't expand at start of line (bullet points)
+    if at_start_of_line(opts) then
+        return false
+    end
+
+    local inside_italic = col > 1 and line:sub(col - 1, col - 1) == "*" and opts.next_char == "*"
+
+    if inside_italic then
+        -- Delete the closing * that's already there
+        vim.schedule(function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Del>", true, false, true), "n", false)
         end)
-        :with_move(cond.none())
-)
+        return true
+    end
+    return false
+end):with_move(cond.none()))
 
 -- Rule 2: Regular rule for single *
-npairs.add_rule(
-    Rule("*", "*", { "markdown" })
-        :with_pair(function(opts)
-            local line = opts.line
-            local col = opts.col
-            
-            -- Don't expand at start of line (bullet points)
-            if at_start_of_line(opts) then
-                return false
-            end
-            
-            -- Don't add pair after word character
-            if col > 0 and line:sub(col, col):match("%w") then
-                return false
-            end
-            
-            -- Don't add pair if previous char is * (let the special rule handle it)
-            if col > 1 and line:sub(col-1, col-1) == "*" then
-                return false
-            end
-            
-            return true
-        end)
-        :with_move(function(opts)
-            -- Don't move at start of line
-            if at_start_of_line(opts) then
-                return false
-            end
-            
-            -- Move past * when it's next
-            if opts.next_char == "*" then
-                -- But not if we're completing bold
-                local col = opts.col
-                local line = opts.line
-                if col > 1 and line:sub(col-1, col-1) == "*" then
-                    return false
-                end
-                return true
-            end
+npairs.add_rule(Rule("*", "*", { "markdown" }):with_pair(function(opts)
+    local line = opts.line
+    local col = opts.col
+
+    -- Don't expand at start of line (bullet points)
+    if at_start_of_line(opts) then
+        return false
+    end
+
+    -- Don't add pair after word character
+    if col > 0 and line:sub(col, col):match("%w") then
+        return false
+    end
+
+    -- Don't add pair if previous char is * (let the special rule handle it)
+    if col > 1 and line:sub(col - 1, col - 1) == "*" then
+        return false
+    end
+
+    return true
+end):with_move(function(opts)
+    -- Don't move at start of line
+    if at_start_of_line(opts) then
+        return false
+    end
+
+    -- Move past * when it's next
+    if opts.next_char == "*" then
+        -- But not if we're completing bold
+        local col = opts.col
+        local line = opts.line
+        if col > 1 and line:sub(col - 1, col - 1) == "*" then
             return false
-        end)
-)
+        end
+        return true
+    end
+    return false
+end))
 
 -- Rule 3: Rule for ** bold markers
-npairs.add_rule(
-    Rule("**", "**", { "markdown" })
-        :with_pair(function(opts)
-            local line = opts.line
-            local col = opts.col
-            
-            -- Don't expand at start of line (bullet points)
-            if at_start_of_line(opts) then
-                return false
-            end
-            
-            -- Don't add pair after word character
-            if col > 0 and line:sub(col, col):match("%w") then
-                return false
-            end
-            
-            -- Check if there's already a * after the cursor (from italic rule)
-            if opts.next_char == "*" then
-                return false
-            end
-            
-            return true
-        end)
-        :with_move(function(opts)
-            local col = opts.col
-            local line = opts.line
-            
-            -- Don't move at start of line
-            if at_start_of_line(opts) then
-                return false
-            end
-            
-            -- If next chars are **, move past them
-            if opts.next_char == "*" and col < #line and line:sub(col+1, col+1) == "*" then
-                return true
-            end
-            return false
-        end)
-)
+npairs.add_rule(Rule("**", "**", { "markdown" }):with_pair(function(opts)
+    local line = opts.line
+    local col = opts.col
+
+    -- Don't expand at start of line (bullet points)
+    if at_start_of_line(opts) then
+        return false
+    end
+
+    -- Don't add pair after word character
+    if col > 0 and line:sub(col, col):match("%w") then
+        return false
+    end
+
+    -- Check if there's already a * after the cursor (from italic rule)
+    if opts.next_char == "*" then
+        return false
+    end
+
+    return true
+end):with_move(function(opts)
+    local col = opts.col
+    local line = opts.line
+
+    -- Don't move at start of line
+    if at_start_of_line(opts) then
+        return false
+    end
+
+    -- If next chars are **, move past them
+    if opts.next_char == "*" and col < #line and line:sub(col + 1, col + 1) == "*" then
+        return true
+    end
+    return false
+end))
 
 npairs.add_rules({
     -- stylua: ignore start
