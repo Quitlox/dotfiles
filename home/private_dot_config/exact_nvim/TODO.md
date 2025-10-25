@@ -11,15 +11,29 @@
 
 - To Investigate:
 
+  - update dart.nvim when doing buffer clear all
+  - cache the chafa image
+  - modify path popup is a picker, which is annoying. It should be a yes/no
+  - <c-t> binding for picker to load results to trouble
+  - remove python util file
+  - update schemastore.lua? with new lspconfig?
+  - add crates.nvim
+  - completion for rust-toolchain.toml
+  - cargo linter command gives error
+  - improve aerial for rust-analyzer (indentation of impl?)
+  - go over python.nvim mappings
+  - the highlight of aerial when J/K scrolling is yellow (not nice)
+  - add shortcut for opening new chat in codecompanion
+  - jump to folds in codecompanion window
+  - add toggle for rendermarkdown
+  - remove ugly underline 
+
   - prettify all which-key mappings using claude
   - i need a hydra mode for git staging
   - ripgrep through help
 
-  - tabout doesn't work for <> (defined in autopairs).
-    - how much to autopairs and blink.cmp auto_brackets overlap?
-
-          - add word completion to blink.cmp
-          - easily disable ai features
+  - add word completion to blink.cmp
+  - easily disable ai features
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window.
         Hard-to-fix. Tried using AI to fix it, but it didn't work.
@@ -68,12 +82,6 @@
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
     - https://github.com/rcarriga/nvim-dap-ui/issues/175
     - https://github.com/rcarriga/nvim-dap-ui/issues/260
-  - [ ] nvim-dap-ui / overseer: after using debugging, the mappings over the
-        overseer window are no longer available (or its because cannot make changes,
-        'modifiable' is off)
-  - [ ] nvim-dap-ui: on second debug session, repl is not available
-        there is a repl window, but it has the generic name "dap-repl-198" and
-        doesn't show anything.
   - [ ] nvim-dap-ui: watches window should allow delete on partial line (with ">")
 
 - Blocked:
