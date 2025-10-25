@@ -77,12 +77,14 @@ local lsps = {
     "docker_compose_language_service",
     "dockerls",
     "hyprls",
+    "jsonls",
     "nil_ls",
     "pug",
     "pyrefly",
     "svelte",
     "tombi",
     "ty",
+    "yamlls",
 }
 
 for _, lsp in ipairs(lsps) do
