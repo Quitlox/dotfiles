@@ -5,6 +5,7 @@ vim.keymap.set("i", "<C-e>", "**<Esc>i", { desc = "Markdown Italic", buffer = 0 
 vim.keymap.set("i", "<C-b>", "****<C-o>h", { desc = "Markdown Bold", buffer = 0 })
 
 -- +- Integration: VimTex ------------------------------------+
+-- Initialize VimTeX for LaTeX math support in markdown
 vim.cmd([[call vimtex#init()]])
 
 -- +- Integration: Luasnip - Detect Snippets in Embeds -------+

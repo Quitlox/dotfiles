@@ -2,18 +2,23 @@
 -- | windwp/nvim-autopairs: Autopairs                        |
 -- +---------------------------------------------------------+
 
-local Rule = require("nvim-autopairs.rule")
-local cond = require("nvim-autopairs.conds")
 local npairs = require("nvim-autopairs")
-local ts_conds = require("nvim-autopairs.ts-conds")
-
---+- Setup --------------------------------------------------+
 npairs.setup({
     disable_filetype = { "TelescopePrompt", "spectre_panel", "snacks_picker_input" },
 })
 
---+- Helper: Default quote creator --------------------------+
--- Copied from nvim-autopairs/rules/basic.lua
+local Rule = require("nvim-autopairs.rule")
+local cond = require("nvim-autopairs.conds")
+local ts_conds = require("nvim-autopairs.ts-conds")
+
+-- +---------------------------+
+-- | Quote Helper              |
+-- +---------------------------+
+
+--- Creates a quote rule with standard autopairs behavior.
+--- - Handles quote pairing with move right functionality
+--- - Prevents adding quotes inside existing quotes
+--- - Copied from nvim-autopairs/rules/basic.lua
 local function quote_creator(opt)
     local quote = function(...)
         local move_func = opt.enable_moveright and cond.move_right or cond.none
@@ -32,189 +37,109 @@ end
 
 local quote = quote_creator(npairs.config)
 
---+- Custom Rules: Rust -------------------------------------+
-npairs.add_rules({
-    Rule("<", ">", { "rust" }):with_pair(cond.before_regex("%a+:?:?$", 3)):with_move(function(opts)
-        return opts.char == ">"
-    end),
-})
---+- Custom Rules: Vue --------------------------------------+
-npairs.add_rules({
-    Rule("{{", "  }", "vue"):set_end_pair_length(2):with_pair(ts_conds.is_ts_node("text")),
-})
+-- stylua: ignore start
 
---+- Custom Rules: Markdown ---------------------------------+
+-- +---------------------------+
+-- | Rust Rules                |
+-- +---------------------------+
+npairs.add_rule(
+    Rule("<", ">", { "rust" })
+        :with_pair(cond.before_regex("%a+:?:?$", 3))
+        :with_move(cond.after_text(">"))
+)
+
+-- +---------------------------+
+-- | Vue Rules                 |
+-- +---------------------------+
+npairs.add_rule(
+    Rule("{{", "  }", "vue")
+        :set_end_pair_length(2)
+        :with_pair(ts_conds.is_ts_node("text"))
+)
+
+-- +---------------------------+
+-- | Markdown Rules            |
+-- +---------------------------+
 local markdown_ft = { "markdown", "codecompanion", "vimwiki", "rmarkdown", "rmd", "pandoc", "quarto" }
 
--- Condition: Check if inside code fence ("```")
-local function not_inside_code_block()
-    return function(opts)
-        -- Get current buffer and cursor position
-        local bufnr = vim.api.nvim_get_current_buf()
-        local cursor_pos = vim.api.nvim_win_get_cursor(0)
-        local current_line = cursor_pos[1] - 1 -- 0-based line number
-
-        -- Get lines up to (but not including) the current line
-        local lines = vim.api.nvim_buf_get_lines(bufnr, 0, current_line, false)
-        local inside_block = false
-
-        -- Track the state of code blocks
-        for _, line in ipairs(lines) do
-            if line:match("^```") then
-                inside_block = not inside_block
-            end
-        end
-
-        -- If we're inside a block, don't add a new pair
-        return not inside_block
-    end
-end
-
+-- Remove default asteriks rules (don't exist currently I think)
 npairs.remove_rule("*")
 npairs.remove_rule("**")
--- Remove: Default code fence rules
+
+-- Markdown single asteriks rule
+npairs.add_rule(
+    Rule("*", "*", markdown_ft)
+        :with_pair(cond.not_before_regex("^%s*$", -1)) -- Don't expand at start of line (bullet points)
+        -- :with_pair(cond.not_after_text("*")) -- Don't open a pair directly next to an existing pair (i.e. "*test**|" (do not expand))
+        :with_move(cond.after_text("*")) -- Always move through asteriks (takes care of moving through double asteriks as well)
+)
+
+-- Markdown double asteriks rule
+npairs.add_rule(
+    Rule("**", "**", markdown_ft)
+       :replace_endpair(function(opts)
+            -- Since the single asteriks rule doesn't trigger at the start of
+            -- the line (because that would be a bullet point), we have no
+            -- overlap and use our actual ending pair.
+            local start_of_line = cond.before_regex([[^%s*$]], -1)(opts)
+            if start_of_line then
+                return "**"
+            end
+            -- Due to overlap with the single asterics rule, we only append
+            -- a single "extra" asteriks by default
+            return "*"
+        end)
+        :with_pair(cond.not_before_regex([[%w\*]], 2)) -- Don't expand previous pair (i.e. don't expand "**test**|")
+        :with_move(cond.none()) -- Don't move for **, let single * rule handle character-by-character movement
+)
+
+-- Disable default backtick rule for markdown
+npairs.remove_rule("`")
+npairs.add_rule(
+    quote("`", "`")
+        :with_pair(cond.not_filetypes(markdown_ft))
+)
+
+-- Markdown single backtick rule
+-- NOTE: I have configured vimtex to load on markdown files. By default, vimtex
+-- loads insert mode mappings starting with backticks, which have been disabled
+-- for compatibility with markdown backticks.
+npairs.add_rule(
+    quote("`", "`", markdown_ft)
+)
+
+-- Markdown code fence rules
 npairs.remove_rule("```")
 npairs.remove_rule("```.*$")
--- Remove: Default quote rule
-npairs.remove_rule("`")
--- Re-add: Default quote rule (excluding markdown)
-npairs.add_rule(quote("`", "`"):with_pair(cond.not_filetypes(markdown_ft)))
-
--- Add markdown asterisk rules
-
--- Helper function to check if we're at the start of a line (for bullet points)
-local function at_start_of_line(opts)
-    local col = opts.col
-    local line = opts.line
-    -- Check if everything before cursor is just whitespace
-    local before_cursor = line:sub(1, col - 1)
-    return before_cursor:match("^%s*$") ~= nil
-end
-
--- Rule 1: Special handling for typing * when already inside *|*
-npairs.add_rule(Rule("*", "**", { "markdown" }):with_pair(function(opts)
-    local line = opts.line
-    local col = opts.col
-
-    -- Don't expand at start of line (bullet points)
-    if at_start_of_line(opts) then
-        return false
-    end
-
-    local inside_italic = col > 1 and line:sub(col - 1, col - 1) == "*" and opts.next_char == "*"
-
-    if inside_italic then
-        -- Delete the closing * that's already there
-        vim.schedule(function()
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Del>", true, false, true), "n", false)
-        end)
-        return true
-    end
-    return false
-end):with_move(cond.none()))
-
--- Rule 2: Regular rule for single *
-npairs.add_rule(Rule("*", "*", { "markdown" }):with_pair(function(opts)
-    local line = opts.line
-    local col = opts.col
-
-    -- Don't expand at start of line (bullet points)
-    if at_start_of_line(opts) then
-        return false
-    end
-
-    -- Don't add pair after word character
-    if col > 0 and line:sub(col, col):match("%w") then
-        return false
-    end
-
-    -- Don't add pair if previous char is * (let the special rule handle it)
-    if col > 1 and line:sub(col - 1, col - 1) == "*" then
-        return false
-    end
-
-    return true
-end):with_move(function(opts)
-    -- Don't move at start of line
-    if at_start_of_line(opts) then
-        return false
-    end
-
-    -- Move past * when it's next
-    if opts.next_char == "*" then
-        -- But not if we're completing bold
-        local col = opts.col
-        local line = opts.line
-        if col > 1 and line:sub(col - 1, col - 1) == "*" then
-            return false
-        end
-        return true
-    end
-    return false
-end))
-
--- Rule 3: Rule for ** bold markers
-npairs.add_rule(Rule("**", "**", { "markdown" }):with_pair(function(opts)
-    local line = opts.line
-    local col = opts.col
-
-    -- Don't expand at start of line (bullet points)
-    if at_start_of_line(opts) then
-        return false
-    end
-
-    -- Don't add pair after word character
-    if col > 0 and line:sub(col, col):match("%w") then
-        return false
-    end
-
-    -- Check if there's already a * after the cursor (from italic rule)
-    if opts.next_char == "*" then
-        return false
-    end
-
-    return true
-end):with_move(function(opts)
-    local col = opts.col
-    local line = opts.line
-
-    -- Don't move at start of line
-    if at_start_of_line(opts) then
-        return false
-    end
-
-    -- If next chars are **, move past them
-    if opts.next_char == "*" and col < #line and line:sub(col + 1, col + 1) == "*" then
-        return true
-    end
-    return false
-end))
-
-npairs.add_rules({
-    -- stylua: ignore start
-    -- Custom rule for underscore in markdown
-    Rule("_", "_", { "markdown" })
-        :with_pair(cond.before_regex("%s"))
-        :with_pair(ts_conds.is_not_ts_node("inline_formula")),
-    Rule("_", "_", { "markdown" })
-        :with_pair(cond.before_regex("%s"))
-        :with_pair(ts_conds.is_not_ts_node("inline_formula")),
+npairs.add_rule(
     Rule("```", "```", markdown_ft)
         :with_pair(cond.not_before_char("`", 3))
-        :with_pair(not_inside_code_block()),
-    Rule("```.*$", "```", markdown_ft):only_cr():use_regex(true),
-    quote("`", "`", markdown_ft)
-        :with_pair(not_inside_code_block()),
-    -- stylua: ignore end
-})
+        :with_pair(ts_conds.is_not_ts_node({"code_fence_content"}))
+)
+npairs.add_rule(
+    Rule("```.*$", "```", markdown_ft)
+        :only_cr()
+        :use_regex(true)
+)
 
---+- Custom Rules: Latex ------------------------------------+
-npairs.add_rules({
-    -- stylua: ignore start
+-- Underscore rule
+npairs.add_rule(
+    Rule("_", "_", markdown_ft)
+        :with_pair(ts_conds.is_not_ts_node("inline_formula")) -- Don't pair inside LaTeX inline formulas
+        :with_move(cond.after_text("_")) -- Move past _ when next char is _
+)
+
+-- +---------------------------+
+-- | LaTeX Rules (Markdown)    |
+-- +---------------------------+
+npairs.add_rule(
     Rule("$", "$", { "markdown" })
         :with_pair(cond.not_before_char("$", 1))
-        :with_move(function(opts) return opts.char=="$" end),
+        :with_move(cond.after_text("$")) -- Move past $ when next char is $
+)
+npairs.add_rule(
     Rule("\\[", "\\]", { "markdown" })
-        :set_end_pair_length(2),
-    -- stylua: ignore end
-})
+        :set_end_pair_length(2)
+)
+
+-- stylua: ignore end

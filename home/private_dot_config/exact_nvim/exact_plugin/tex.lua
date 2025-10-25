@@ -2,6 +2,12 @@
 -- | lervag/vimtex: LaTeX Support                             |
 -- +----------------------------------------------------------+
 
+-- Disable insert mode mappings to avoid conflicts with backticks and codefences
+-- NOTE: I have configured vimtex to load on markdown files. By default, vimtex
+-- loads insert mode mappings starting with backticks. We disable these here
+-- for compatibility with backtick/code-fence autopairs in markdown.
+vim.g.vimtex_imaps_enabled = 0
+
 -- +- Options ------------------------------------------------+
 vim.opt.formatoptions:remove("t")
 vim.opt.concealcursor = "c"
