@@ -182,6 +182,7 @@ require("blink-cmp").setup({
             ["html-css"] = { name = "html-css", module = "blink.compat.source" },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
             lsp = {
+                fallbacks = { "ripgrep" }, -- We use ripgrep only when lsp doesn't return anything
                 transform_items = function(ctx, items)
                     -- Filter out keyword items
                     local filtered_items = vim.tbl_filter(function(item)
@@ -200,6 +201,14 @@ require("blink-cmp").setup({
             },
             otter = { name = "otter", module = "blink.compat.source" },
             path = { opts = { trailing_slash = false, label_trailing_slash = true }, min_keyword_length = 0 },
+            ripgrep = {
+                name = "Ripgrep",
+                module = "blink-ripgrep",
+                opts = {
+                    prefix_min_len = 3,
+                    project_root_marker = ".git",
+                },
+            },
             snippets = {
                 score_offset = 100,
             },
