@@ -18,6 +18,17 @@ require("gp").setup({
             secret = os.getenv("ANTHROPIC_API_KEY"),
         },
     },
+    agents = {
+        {
+            name = "ChatGPT5",
+            chat = true,
+            command = false,
+            -- string with model name or table with model name and parameters
+            model = { model = "gpt-5" },
+            -- system prompt (use this to specify the persona/role of the AI)
+            system_prompt = require("gp.defaults").chat_system_prompt,
+        },
+    },
 })
 
 --+- Helper: Change settings during writing -----------------+
