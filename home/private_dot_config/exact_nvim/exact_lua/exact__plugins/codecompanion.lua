@@ -66,7 +66,7 @@ require("codecompanion").setup({
             enabled = true,
             opts = {
                 picker = "snacks",
-                title_generation_opts = { adapter = "anthropic" },
+                title_generation_opts = { adapter = "openai", model = "gpt-5" },
             },
         },
         --+- Integration: codecompanion-spinner
