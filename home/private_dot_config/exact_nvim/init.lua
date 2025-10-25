@@ -20,9 +20,7 @@ require("quitlox.config.commands")
 require("quitlox.config.autocmds")
 require("quitlox.config.mappings")
 --+- Config: Environment Specific Configuration -------------+
-require("quitlox.config.environment.kitty")
-require("quitlox.config.environment.neovide")
-require("quitlox.config.environment.wsl")
+require("quitlox.config.environment")
 
 --+- Setup: Debugging Neovim Configuration ------------------+
 local osvpath = vim.fn.expand("~") .. "/.local/share/nvim_new/rocks/lib/luarocks/rocks-5.1" .. "/one-small-step-for-vimkind"
