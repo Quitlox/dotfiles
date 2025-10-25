@@ -2,7 +2,7 @@
 -- | lualine.nvim: Statusline and Winbar                     |
 -- +---------------------------------------------------------+
 
-local trunc = require("quitlox.util.lualine").trunc
+local trunc = require("_config.util.lualine").trunc
 
 --+- Integration: GitSigns ----------------------------------+
 vim.api.nvim_create_autocmd("User", {
@@ -239,7 +239,7 @@ require("lualine").setup({
 })
 
 --+- Behaviour: Auto Rename Tabs ----------------------------+
-require("quitlox.util.lazy").on_module("resession", function()
+require("_config.util.lazy").on_module("resession", function()
     require("resession").add_hook("post_load", function()
         local tcd = vim.fn.fnamemodify(vim.fn.getcwd(-1, 0), ":t")
         pcall(vim.cmd, [[LualineRenameTab ]] .. tcd .. [[]])

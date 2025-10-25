@@ -19,7 +19,7 @@ vim.keymap.set("n", "]z", require("ufo").goNextClosedFold, { desc = "Next fold" 
 -- stylua: ignore end
 
 --+- Integration: Set LSP capabilities ----------------------+
-require("quitlox.util.lazy").on_module("lspconfig", function()
+require("_config.util.lazy").on_module("lspconfig", function()
     local lspconfig = require("lspconfig")
     local configs = require("lspconfig.configs")
 

@@ -128,7 +128,7 @@ local function setup_octo()
     })
 end
 
-require("quitlox.util.lazy").command_stub("Octo", setup_octo)
+require("_config.util.lazy").command_stub("Octo", setup_octo)
 
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader>gho", "<cmd>Octo<cr>", { noremap = true, silent = true, desc = "Github Open" })

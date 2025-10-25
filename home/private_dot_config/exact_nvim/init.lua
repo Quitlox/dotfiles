@@ -9,18 +9,18 @@ if current_path then
 end
 
 --+- Setup: Delay Notifications -----------------------------+
-require("quitlox.util.notify").lazy_notify()
+require("_config.util.notify").lazy_notify()
 
 --+- Setup: Bootstrap Rocks.nvim ----------------------------+
-require("quitlox.rocks_bootstrap")
+require("_config.rocks_bootstrap")
 
 --+- Config: Load User Configuration ------------------------+
-require("quitlox.options")
-require("quitlox.commands")
-require("quitlox.autocmds")
-require("quitlox.mappings")
+require("_config.options")
+require("_config.commands")
+require("_config.autocmds")
+require("_config.mappings")
 --+- Config: Environment Specific Configuration -------------+
-require("quitlox.environment")
+require("_config.environment")
 
 --+- Setup: Debugging Neovim Configuration ------------------+
 local osvpath = vim.fn.expand("~") .. "/.local/share/nvim_new/rocks/lib/luarocks/rocks-5.1" .. "/one-small-step-for-vimkind"
@@ -37,7 +37,7 @@ if (vim.uv or vim.loop).fs_stat(osvpath) then
 end
 
 --+- Config: Colorscheme ------------------------------------+
-require("quitlox.colorscheme")
+require("_config.colorscheme")
 
 --+- Config: Early Plugins ----------------------------------+
 -- Snacks.nvim

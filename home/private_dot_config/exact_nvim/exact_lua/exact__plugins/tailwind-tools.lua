@@ -4,7 +4,7 @@
 
 local tailwind_ft = { "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact", "vue", "svelte", "astro", "php" }
 
-require("quitlox.util.lazy").on_module("lspconfig", function()
+require("_config.util.lazy").on_module("lspconfig", function()
     require("tailwind-tools").setup({
         conceal = {
             enabled = true,

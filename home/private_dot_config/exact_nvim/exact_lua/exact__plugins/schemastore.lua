@@ -1,5 +1,5 @@
 --+- LSP: JSON / YAML----------------------------------------+
-require("quitlox.util.lazy").on_module("lspconfig", function()
+require("_config.util.lazy").on_module("lspconfig", function()
     require("lspconfig").jsonls.setup({
         settings = {
             json = {

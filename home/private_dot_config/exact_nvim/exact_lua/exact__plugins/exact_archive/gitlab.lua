@@ -33,7 +33,7 @@ local function setup_gitlab()
     })
 end
 
-require("quitlox.util.lazy").require_stub("gitlab", setup_gitlab)
+require("_config.util.lazy").require_stub("gitlab", setup_gitlab)
 
 --+- Keymaps ------------------------------------------------+
 -- stylua: ignore start

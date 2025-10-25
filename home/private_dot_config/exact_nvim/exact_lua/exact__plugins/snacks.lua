@@ -205,7 +205,7 @@ local function create_projects_picker_config(opts)
 
             local resession = require("resession")
             local resession_util = require("resession.util")
-            local util = require("quitlox.util.session")
+            local util = require("_config.util.session")
 
             -- Remove trailing slash from the selected path
             local path = item.file:gsub("/$", "")
@@ -590,7 +590,7 @@ local dashboard_opts = {
                 desc = "Config",
                 action = function()
                     local resession = require("resession")
-                    local util = require("quitlox.util.session")
+                    local util = require("_config.util.session")
                     local config_dir = vim.fn.expand("~/.config/nvim")
 
                     -- Save current session

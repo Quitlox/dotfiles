@@ -7,7 +7,7 @@ local function has_module(module)
     return package.loaded[module] ~= nil or pcall(require, module)
 end
 
-local get_session_name = require("quitlox.util.session").get_session_name
+local get_session_name = require("_config.util.session").get_session_name
 
 --- Called when saving a session to capture dart.nvim state
 ---@param opts? table Session save options

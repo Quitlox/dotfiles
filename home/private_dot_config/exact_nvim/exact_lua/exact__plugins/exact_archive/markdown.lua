@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     desc = "Setup markdown.nvim",
     group = vim.api.nvim_create_augroup("MyMarkdownGroup", { clear = true }),
     callback = function()
-        require("home.private_dot_config.exact_nvim.exact_lua.exact_quitlox.exact_archive.markdown").setup({
+        require("markdown").setup({
             mappings = {
                 inline_surround_toggle = "gs", -- (string|boolean) toggle inline style
                 inline_surround_toggle_line = "gss", -- (string|boolean) line-wise toggle inline style
@@ -45,7 +45,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
                 },
             },
             on_attach = function(bufnr)
-                local function toggle(key) return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>" end
+                local function toggle(key)
+                    return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>"
+                end
 
                 vim.keymap.set("x", "<C-b>", toggle("b"), { buffer = bufnr })
                 vim.keymap.set("x", "<C-i>", toggle("i"), { buffer = bufnr })

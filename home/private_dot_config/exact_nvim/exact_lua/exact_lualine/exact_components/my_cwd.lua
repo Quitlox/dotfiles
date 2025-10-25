@@ -2,7 +2,7 @@
 ---Returns the last directory of the current working directory.
 
 local M = require("lualine.component"):extend()
-local trunc = require("quitlox.util.lualine").trunc
+local trunc = require("_config.util.lualine").trunc
 
 function M:init(options)
     options.icon = options.icon or " "

@@ -12,9 +12,9 @@ end
 
 local resession = require("resession")
 local resession_util = require("resession.util")
-local util = require("quitlox.util.session")
+local util = require("_config.util.session")
 
-require("lua.quitlox.archive.workspaces").setup({
+require("workspaces").setup({
     cd_type = "tab",
     hooks = {
         add = {},

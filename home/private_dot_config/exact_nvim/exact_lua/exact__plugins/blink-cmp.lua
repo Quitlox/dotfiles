@@ -3,7 +3,7 @@
 -- +---------------------------------------------------------+
 
 --+- Integration: set LSP capabilities ----------------------+
-require("quitlox.util.lazy").on_module("lspconfig", function()
+require("_config.util.lazy").on_module("lspconfig", function()
     local lspconfig = require("lspconfig")
     local configs = require("lspconfig.configs")
 

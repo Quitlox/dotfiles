@@ -1,7 +1,7 @@
 -- +---------------------------------------------------------+
 -- | stevearc/resession.nvim: Session Management             |
 -- +---------------------------------------------------------+
-local get_session_name = require("quitlox.util.session").get_session_name
+local get_session_name = require("_config.util.session").get_session_name
 
 --+- Setup --------------------------------------------------+
 local resession = require("resession")
@@ -41,7 +41,7 @@ resession.setup({
 })
 
 resession.add_hook("pre_load", function()
-    require("quitlox.util.session").notify('Loading session: "' .. get_session_name() .. '"', "info")
+    require("_config.util.session").notify('Loading session: "' .. get_session_name() .. '"', "info")
 end)
 
 --+- Keymaps ------------------------------------------------+
@@ -125,7 +125,7 @@ vim.keymap.set("n", "<leader>sn", function()
 end, { desc = "Session: Save Named" })
 
 vim.keymap.set("n", "<leader>sc", function()
-    local util = require("quitlox.util.session")
+    local util = require("_config.util.session")
 
     resession.save_tab(get_session_name(), { notify = false, attach = true })
     resession.detach()
@@ -139,7 +139,7 @@ end, { desc = "Session: Close" })
 
 vim.keymap.set("n", "<leader>sd", function()
     local session_name = get_session_name()
-    local util = require("quitlox.util.session")
+    local util = require("_config.util.session")
 
     resession.detach()
     util.close_everything()

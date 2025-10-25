@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 require("nvim-navic").setup({
-    icons = require("quitlox.util.codicons").kinds,
+    icons = require("_config.util.codicons").kinds,
     highlight = true,
     separator = " > ",
     depth_limit = 0,

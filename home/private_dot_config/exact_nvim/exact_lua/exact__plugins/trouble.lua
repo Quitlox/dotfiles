@@ -35,7 +35,7 @@ require("trouble").setup({
         -- codicons
         folder_closed = " ",
         folder_open = " ",
-        kinds = require("quitlox.util.codicons").kinds,
+        kinds = require("_config.util.codicons").kinds,
     },
 })
 
