@@ -87,7 +87,7 @@ local picker_opts = {
             },
         },
     },
-    actions = { vim.tbl_deep_extend("force", {}, require("trouble.sources.snacks").actions) },
+    actions = { require("trouble.sources.snacks").actions },
     win = {
         input = {
             b = {
@@ -531,7 +531,7 @@ local dashboard_opts = {
     sections = {
         {
             section = "terminal",
-            cmd = "chafa ~/Pictures/Wallpapers/dark_forest1.jpg --format symbols --symbols vhalf --size 60x17 --stretch; sleep .1",
+            cmd = require("_config.util.chafa_cache").get_cached_terminal_cmd("chafa ~/Pictures/Wallpapers/dark_forest1.jpg --format symbols --symbols vhalf --size 60x17 --stretch"),
             height = 17,
             padding = 1,
         },
@@ -635,3 +635,21 @@ require("snacks").setup(vim.tbl_deep_extend("force", simple_snack_opts, {
     styles = styles_opts,
     terminal = terminal_opts,
 }))
+
+-- +---------------------------------------------------------+
+-- | snacks.nvim: Dashboard Cache Management                 |
+-- +---------------------------------------------------------+
+
+-- Add command to clear dashboard chafa cache
+vim.api.nvim_create_user_command("SnacksDashboardClearCache", function()
+    require("_config.util.chafa_cache").clear_cache()
+end, { desc = "Clear Snacks dashboard chafa cache" })
+
+-- Add command to regenerate dashboard immediately
+vim.api.nvim_create_user_command("SnacksDashboardRegenerate", function()
+    require("_config.util.chafa_cache").clear_cache()
+    -- Reopen the dashboard
+    if Snacks.dashboard then
+        Snacks.dashboard.open()
+    end
+end, { desc = "Clear cache and regenerate dashboard" })
