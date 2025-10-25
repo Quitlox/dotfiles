@@ -32,6 +32,13 @@ require("codecompanion").setup({
                 change_adapter = { modes = { n = "gA" } },
                 previous_chat = { modes = { n = "[c" } },
                 next_chat = { modes = { n = "]c" } },
+                new_chat = {
+                    modes = { n = "gn" },
+                    callback = function()
+                        require("codecompanion").chat()
+                    end,
+                    description = "Open a new chat",
+                },
             },
             slash_commands = {
                 --+- Integration: snacks.nvim
