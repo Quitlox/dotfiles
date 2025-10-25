@@ -11,29 +11,19 @@
 
 - To Investigate:
 
-  - update dart.nvim when doing buffer clear all
-  - cache the chafa image
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - <c-t> binding for picker to load results to trouble
-  - remove python util file
-  - update schemastore.lua? with new lspconfig?
-  - add crates.nvim
-  - completion for rust-toolchain.toml
+
   - cargo linter command gives error
   - improve aerial for rust-analyzer (indentation of impl?)
   - go over python.nvim mappings
   - the highlight of aerial when J/K scrolling is yellow (not nice)
-  - add shortcut for opening new chat in codecompanion
-  - jump to folds in codecompanion window
   - add toggle for rendermarkdown
-  - remove ugly underline 
+  - remove ugly underline from dart.nvim
 
   - prettify all which-key mappings using claude
   - i need a hydra mode for git staging
   - ripgrep through help
-
-  - add word completion to blink.cmp
-  - easily disable ai features
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window.
         Hard-to-fix. Tried using AI to fix it, but it didn't work.
