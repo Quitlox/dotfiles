@@ -3,43 +3,30 @@
 -- +---------------------------------------------------------+
 
 require("aerial").setup({
+    attach_mode = "global",
     backends = { "lsp", "treesitter", "markdown", "man" },
     layout = {
-        -- These options are needed to allow edgy to properly manage the aerial window
-        win_opts = { winfixwidth = false },
+        -- NOTE: Options below (except styling) required for compatiblity with edgy.nvim
+        win_opts = {
+            winfixwidth = false,
+        },
         default_direction = "left",
         placement = "window",
         preserve_equality = false,
         resize_to_content = false,
     },
-    attach_mode = "global",
-
-    -- A list of all symbols to display. Set to false to display all symbols.
-    -- This can be a filetype map (see :help aerial-filetype-map)
-    -- To see all available values, see :help SymbolKind
-    filter_kind = {
-        "Class",
-        "Constructor",
-        "Enum",
-        "Function",
-        "Interface",
-        "Module",
-        "Method",
-        "Struct",
-    },
 
     keymaps = {
         ["i"] = "actions.jump",
+        ["o"] = "actions.jump",
         ["<S-j>"] = "actions.down_and_scroll",
         ["<S-k>"] = "actions.up_and_scroll",
+        ["<C-j>"] = false,
+        ["<C-k>"] = false,
     },
 
     -- HACK: fix lua's weird choice for `Package` for control structures like if/else/for/etc.
-    icons = {
-        lua = {
-            Package = " ",
-        },
-    },
+    icons = { lua = { Package = " " } },
 
     -- LazyVim guides
     show_guides = false,
@@ -51,11 +38,8 @@ require("aerial").setup({
     },
 })
 
--- stylua: ignore start
-vim.keymap.set("n", "<leader>ls", function() vim.notify('noop', 'info') end, { desc = "Locate Symbols" })
-vim.keymap.set("n", "<leader>oo", function() vim.notify('noop', 'info') end, { desc = "Open Outline" })
+--+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "gO", "<cmd>AerialOpen<cr>", { desc = "Open Outline" })
--- stylua: ignore end
 
 --+- Keymaps: Override Defaults -----------------------------+
 vim.api.nvim_create_autocmd("FileType", {
