@@ -296,7 +296,7 @@ tree-sitter-nix = "0.0.64"
 # +----------------------------------------------------------+
 
 [config]
-plugins_dir = "quitlox/plugins/"
+plugins_dir = "_plugins/"
 auto_setup = false
 
 [dev]

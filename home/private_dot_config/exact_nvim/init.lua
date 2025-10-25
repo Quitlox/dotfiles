@@ -44,7 +44,7 @@ require("quitlox.colorscheme")
 local succes, rock_config_mod = pcall(require, "rocks-config")
 if succes then
     local succes, _ = pcall(vim.cmd.packadd, "snacks.nvim")
-    require("quitlox.plugins.snacks")
+    require("_plugins.snacks")
 end
 -- Treesitter
 local ok, mod = pcall(require, "nvim-treesitter.configs")
