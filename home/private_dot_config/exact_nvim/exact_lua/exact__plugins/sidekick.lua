@@ -2,6 +2,7 @@
 -- | folke/sidekic.nvim: Copilot Next Edit & Agent CLI       |
 -- +---------------------------------------------------------+
 
+vim.g.sidekick_nes = false
 require("sidekick").setup({
     cli = {
         keys = {
@@ -25,3 +26,23 @@ vim.keymap.set({ "n", "x", "i", "t" }, "<c-.>", require("sidekick.cli").focus, {
 require("which-key").add({
     { "<leader>a", group = "Agent/AI" },
 })
+
+Snacks.toggle
+    .new({
+        name = "Copilot + NES",
+        get = function()
+            local nes = require("sidekick.nes")
+            local copilot_enabled = vim.g.copilot_enabled ~= 0 and vim.g.copilot_enabled ~= false
+            return copilot_enabled and nes.enabled
+        end,
+        set = function(state)
+            if state then
+                pcall(vim.cmd, "Copilot enable")
+                require("sidekick.nes").enable(true)
+            else
+                require("sidekick.nes").enable(false)
+                pcall(vim.cmd, "Copilot disable")
+            end
+        end,
+    })
+    :map("yoa")
