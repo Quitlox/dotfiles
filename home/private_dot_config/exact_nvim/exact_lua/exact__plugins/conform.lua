@@ -153,7 +153,7 @@ require("conform").setup({
         rust = { "rustfmt" },
         sh = { "shfmt" },
         svelte = { "prettierd", "eslint_d" },
-        toml = { "taplo" },
+        toml = { "tombi" },
         typescript = { "prettierd", "eslint_d" },
         typescriptreact = { "prettierd", "eslint_d" },
         yaml = { "prettierd" },

@@ -81,6 +81,7 @@ local lsps = {
     "pug",
     "pyrefly",
     "svelte",
+    "tombi",
     "ty",
 }
 
