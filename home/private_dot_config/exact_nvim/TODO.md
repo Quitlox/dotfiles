@@ -14,10 +14,7 @@
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - <c-t> binding for picker to load results to trouble
 
-  - cargo linter command gives error
-  - improve aerial for rust-analyzer (indentation of impl?)
   - go over python.nvim mappings
-  - the highlight of aerial when J/K scrolling is yellow (not nice)
   - add toggle for rendermarkdown
   - remove ugly underline from dart.nvim
 
@@ -89,8 +86,6 @@
     - [ ] I can't for the life of me figure it out, but `<leader>dt`
       sometimes gets stuck in toggling the breakpoint. It seems as if it's
       waiting for another key, but there are no duplicate mappings.
-  - [ ] `snacks.scroll`: scoll prevents diagnostic popup while jumping outside of view 
-      - https://github.com/folke/snacks.nvim/issues/2185
   - [ ] `neoconf.nvim`: broken as of lspconfig v2
 
 - Contribute back, sane defaults, low priority:

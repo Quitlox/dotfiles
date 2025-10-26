@@ -47,7 +47,7 @@ require("edgy").setup({
     right = {
         { title = "Neotest",         ft = "neotest-summary",   wo = { winbar = "    Tests" } },
         { title = "Outline",         ft = "neo-tree",          wo = { winbar = "    Outline" },                                  filter = filter_nt_source_eq("document_symbols") },
-        { title = "Outline",         ft = "aerial",            wo = { winbar = "    Outline" },                                  size = { } },
+        { title = "Outline",         ft = "aerial",            wo = { winbar = "    Outline", signcolumn = "yes:1"},             size = { } },
         { title = "Find & Replace",  ft = "grug-far",          wo = { winbar = "    Find & Replace" },                           size = { width = 70 } },
         { title = "Overseer Jobs",   ft = "snacks_terminal",   wo = { winbar = "  󰜎  Task: %{b:term_title}" },                    size = { width = 80 },   filter = filter_terminal_wins("right") },
         { title = "Copilot Chat",    ft = "copilot-chat",      wo = { winbar = "    Copilot Chat" },                             size = { width = 70 } },

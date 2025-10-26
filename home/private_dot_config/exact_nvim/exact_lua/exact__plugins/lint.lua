@@ -2,6 +2,7 @@
 -- | mfussenegger/nvim-lint: Linting                         |
 -- +---------------------------------------------------------+
 
+require("lint").linters.clippy.ignore_exitcode = true -- Clippy throws 101 if the code doesn't fully compile.
 require("lint").linters_by_ft = {
     -- Major Languages
     python = { "pylint", "mypy", "codespell" },
