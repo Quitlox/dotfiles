@@ -104,7 +104,7 @@ local picker_opts = {
 
                 ["<c-v>"] = { "edit_split", mode = { "i", "n" } },
                 ["<c-b>"] = { "edit_vsplit", mode = { "i", "n" } },
-                ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },
+                ["<c-t>"] = { "trouble_open", mode = { "n", "i" } }, -- for some reason, refuses to work "globally"
 
                 -- ["<c-u>"] = { "list_scroll_up", mode = { "i", "n" } },
                 -- ["<c-d>"] = { "list_scroll_down", mode = { "i", "n" } },
@@ -150,6 +150,14 @@ local picker_grep = {
     matcher = {
         cwd_bonus = true,
         frecency = true,
+    },
+    actions = require("trouble.sources.snacks").actions,
+    win = {
+        input = {
+            keys = {
+                ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },
+            },
+        },
     },
 }
 ---@class snacks.picker.Config
@@ -303,6 +311,14 @@ local picker_smart = {
     matcher = {
         cwd_bonus = true,
     },
+    actions = require("trouble.sources.snacks").actions,
+    win = {
+        input = {
+            keys = {
+                ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },
+            },
+        },
+    },
 }
 ---@class snacks.picker.Config
 local picker_workspace_symbols = {
@@ -323,7 +339,6 @@ local picker_workspace_symbols = {
 vim.keymap.set({ "n", "v" }, "<leader>vk", function() Snacks.picker.commands(picker_commands) end, { noremap = true, silent = true, desc = "Commands" })
 vim.keymap.set({ "n", "v" }, "<leader>vK", function() Snacks.picker.command_history(picker_command_history) end, { noremap = true, silent = true, desc = "Command History" })
 vim.keymap.set({ "n", "v" }, "<leader>vln", function() Snacks.picker.notifications(picker_notifications) end, { noremap = true, silent = true, desc = "List Notifications" })
-vim.keymap.set({ "n", "v" }, "<leader>vd", function() vim.notify('noop', 'info') end, { noremap = true, silent = true, desc = "List Notifications" })
 
 vim.keymap.set({ "n", "v" }, "<leader>fa", function() Snacks.picker.grep(picker_grep) end, { noremap = true, silent = true, desc = "Find All (Grep)" })
 vim.keymap.set({ "n", "v" }, "<leader>fm", function() Snacks.picker.man(picker_man) end, { noremap = true, silent = true, desc = "Find Man Page" })

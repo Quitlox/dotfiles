@@ -12,7 +12,6 @@
 - To Investigate:
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
-  - <c-t> binding for picker to load results to trouble
 
   - go over python.nvim mappings
   - add toggle for rendermarkdown
