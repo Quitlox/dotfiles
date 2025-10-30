@@ -16,6 +16,16 @@ require("dart").setup({
     },
 })
 
+require("which-key").add({
+    { "Mm", desc = "Dart: mark" },
+    { "M", group = "Dart: jump" },
+    { "Mp", desc = "Dart: pick" },
+    { "[b", desc = "Dart: prev" },
+    { "]b", desc = "Dart: next" },
+    { "Mu", desc = "Dart: unmark" },
+})
+
+--+- Aestethic: Remove underline ----------------------------+
 local function disable_underline(group)
     local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = group, link = false })
     if not ok then
