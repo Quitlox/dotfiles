@@ -31,4 +31,32 @@ if vim.fn.has("wsl") == 1 then
     --     },
     --     cache_enabled = 0,
     -- }
+
+    -- Confirmed to work in WSL + Alacritty + Neovim
+    local function paste()
+        return {
+            vim.split(vim.fn.getreg(""), "\n"),
+            vim.fn.getregtype(""),
+        }
+    end
+
+    vim.g.clipboard = {
+        name = "OSC 52",
+        copy = {
+            ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+            ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+        },
+        paste = {
+
+            ["+"] = paste,
+            ["*"] = paste,
+        },
+    }
+
+    vim.cmd([[
+        if exists('g:loaded_clipboard_provider')
+          unlet g:loaded_clipboard_provider
+          runtime autoload/provider/clipboard.vim
+        endif
+    ]])
 end
