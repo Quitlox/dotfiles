@@ -17,7 +17,6 @@
   - add toggle for rendermarkdown
   - remove ugly underline from dart.nvim
 
-  - prettify all which-key mappings using claude
   - i need a hydra mode for git staging
   - ripgrep through help
 
