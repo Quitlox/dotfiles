@@ -228,6 +228,7 @@ auto_install = "prompt"
 
 "gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "0344f643768c4d64af4add8c1bdddf6f7d4c9010" }
 "snacks.nvim" = { git = "folke/snacks.nvim", rev = "v2.25.0", opt = true }
+"codesnap.nvim" = { git = "mistricky/codesnap.nvim", rev = "v1.6.3" }
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
