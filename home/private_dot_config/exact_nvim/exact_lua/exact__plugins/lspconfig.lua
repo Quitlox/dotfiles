@@ -55,6 +55,7 @@ Snacks.toggle
 
 --+- LSP: Configure -----------------------------------------+
 vim.lsp.config("hyprls", { root_marker = { "hyprland.conf" } })
+vim.lsp.config("tombi", { filetypes = { "toml.python" } })
 vim.lsp.config("basedpyright", {
     settings = {
         basedpyright = {
