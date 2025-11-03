@@ -112,11 +112,16 @@ require("blink-cmp").setup({
         default = { "snippets", "vimtex", "git", "conventional_commits", "lsp", "path", "env", "html-css" },
         per_filetype = {
             lua = { inherit_defaults = true, "lazydev" },
+            codecompanion = { inherit_defaults = true, "bufname", "ripgrep" },
         },
         providers = {
             buffer = {
                 score_offset = -3,
                 max_items = 3,
+            },
+            bufname = {
+                name = "bufname",
+                module = "blink.compat.source",
             },
             conventional_commits = {
                 name = "Conventional Commits",
@@ -137,7 +142,7 @@ require("blink-cmp").setup({
                 end,
             },
             env = {
-                name = "Env",
+                name = "env",
                 module = "blink-cmp-env",
                 --- @type blink-cmp-env.Options
                 opts = {},
@@ -153,7 +158,7 @@ require("blink-cmp").setup({
             },
             git = {
                 module = "blink-cmp-git",
-                name = "Git",
+                name = "git",
                 override = {
                     should_show_items = function(self, context, items)
                         -- First check original conditions
@@ -182,7 +187,7 @@ require("blink-cmp").setup({
             ["html-css"] = { name = "html-css", module = "blink.compat.source" },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
             lsp = {
-                fallbacks = { "ripgrep" }, -- We use ripgrep only when lsp doesn't return anything
+                fallbacks = { "ripgrep" },
                 transform_items = function(ctx, items)
                     -- Filter out keyword items
                     local filtered_items = vim.tbl_filter(function(item)
@@ -202,7 +207,7 @@ require("blink-cmp").setup({
             otter = { name = "otter", module = "blink.compat.source" },
             path = { opts = { trailing_slash = false, label_trailing_slash = true }, min_keyword_length = 0 },
             ripgrep = {
-                name = "Ripgrep",
+                name = "ripgrep",
                 module = "blink-ripgrep",
                 opts = {
                     prefix_min_len = 3,
