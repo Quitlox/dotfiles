@@ -82,7 +82,7 @@ Snacks.toggle
             vim.g.toggle_gitsigns = state
         end,
     })
-    :map("yogb")
+    :map("yob")
 
 --+- Setup --------------------------------------------------+
 require("gitsigns").setup({

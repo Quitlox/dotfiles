@@ -27,12 +27,12 @@ require("markview").setup({
                 condition = function(item)
                     return #item.args == 1
                 end,
-                
+
                 -- Hide the command
                 on_command = {
-                    conceal = ""
+                    conceal = "",
                 },
-                
+
                 -- Handle the arguments
                 on_args = {
                     {
@@ -41,28 +41,28 @@ require("markview").setup({
                             -- Get just the content without braces
                             local text = item.args[1].text
                             local content = text:sub(2, #text - 1)
-                            
+
                             -- Set highlight for the content
                             return {
-                                hl = "MarkviewSpecial"
+                                hl = "MarkviewSpecial",
                             }
                         end,
-                        
+
                         -- Handle opening brace
                         on_before = function(item)
                             return {
-                                conceal = ""
+                                conceal = "",
                             }
                         end,
-                        
+
                         -- Handle closing brace
                         on_after = function(item)
                             return {
-                                conceal = ""
+                                conceal = "",
                             }
-                        end
-                    }
-                }
+                        end,
+                    },
+                },
             },
             -- Long space before "mod"
             ["mod"] = {
@@ -154,6 +154,26 @@ require("markview").setup({
 -- Load the checkboxes module.
 require("markview.extras.checkboxes").setup()
 vim.keymap.set("n", "X", ":Checkbox toggle<cr>", { desc = "Toggle Checkbox" })
+
+vim.g.markview_preview_enabled = vim.g.markview_preview_enabled ~= false
+
+Snacks.toggle
+    .new({
+        name = "Markview Preview",
+        get = function()
+            return vim.g.markview_preview_enabled
+        end,
+        set = function(state)
+            vim.g.markview_preview_enabled = state
+
+            if state then
+                vim.cmd("Markview Enable")
+            else
+                vim.cmd("Markview Disable")
+            end
+        end,
+    })
+    :map("yom")
 
 --+- Keymap: Override Descriptions --------------------------+
 vim.api.nvim_create_autocmd("FileType", {
