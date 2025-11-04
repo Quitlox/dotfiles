@@ -10,12 +10,9 @@
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
 - To Investigate:
-
   - modify path popup is a picker, which is annoying. It should be a yes/no
 
   - go over python.nvim mappings
-  - add toggle for rendermarkdown
-  - remove ugly underline from dart.nvim
 
   - i need a hydra mode for git staging
   - ripgrep through help
@@ -23,7 +20,6 @@
   - snacks.nvim gives popup with exit-code for normal terminals, which is not
   convenient as the exit code of the terminal will be the exit code of the last
   command ran
-  - underscore autopair shouldn't trigger inside backtick quote.
 
   - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window.
         Hard-to-fix. Tried using AI to fix it, but it didn't work.

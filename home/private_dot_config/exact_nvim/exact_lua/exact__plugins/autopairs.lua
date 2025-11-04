@@ -98,6 +98,7 @@ npairs.remove_rule("`")
 npairs.add_rule(
     quote("`", "`")
         :with_pair(cond.not_filetypes(markdown_ft))
+        :with_pair(cond.not_before_regex([[%w]], 1)) -- Don't expand after non-whitespace
 )
 
 -- Markdown single backtick rule
@@ -106,6 +107,7 @@ npairs.add_rule(
 -- for compatibility with markdown backticks.
 npairs.add_rule(
     quote("`", "`", markdown_ft)
+        :with_pair(cond.not_before_regex([[%w]], 1)) -- Don't expand after non-whitespace
 )
 
 -- Markdown code fence rules
@@ -126,6 +128,7 @@ npairs.add_rule(
 npairs.add_rule(
     Rule("_", "_", markdown_ft)
         :with_pair(ts_conds.is_not_ts_node("inline_formula")) -- Don't pair inside LaTeX inline formulas
+        :with_pair(cond.not_before_regex([[%w]], 1)) -- Don't expand after non-whitespace
         :with_move(cond.after_text("_")) -- Move past _ when next char is _
 )
 
