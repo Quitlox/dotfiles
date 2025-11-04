@@ -189,7 +189,6 @@ auto_install = "prompt"
 "codecompanion-spinner.nvim" = { git = "franco-ruggeri/codecompanion-spinner.nvim", rev = "v0.2.3" }
 "vectorcode" = { git = "davidyz/vectorcode", rev = "0.7.18" }
 "mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "v6.2.0" }
-"goose.nvim" = { git = "azorng/goose.nvim", rev = "v1.0.2" }
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.35"
