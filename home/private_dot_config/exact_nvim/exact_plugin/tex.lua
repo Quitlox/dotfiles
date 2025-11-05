@@ -2,8 +2,6 @@
 -- | lervag/vimtex: LaTeX Support                             |
 -- +----------------------------------------------------------+
 
-vim.g.vimtex_mappings_prefix = "<localleader>"
-
 -- Disable insert mode mappings to avoid conflicts with backticks and codefences
 -- NOTE: I have configured vimtex to load on markdown files. By default, vimtex
 -- loads insert mode mappings starting with backticks. We disable these here

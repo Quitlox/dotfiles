@@ -135,26 +135,18 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 --+- Keymaps -------------------------------------------------+
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "python",
-    group = vim.api.nvim_create_augroup("MyPythonKeybindings", { clear = true }),
-    callback = function(event)
-        require("which-key").add({ { "<localleader>", group = "Obsidian", buffer = event.buf } })
-
-        vim.keymap.set("n", "<localleader>o", "<cmd>Obsidian quick_switch<cr>", { desc = "Quick Switcher", buffer = event.buf })
-        vim.keymap.set("n", "<localleader>s", "<cmd>Obsidian search<cr>", { desc = "Search Notes", buffer = event.buf })
-        vim.keymap.set("n", "<localleader>n", "<cmd>Obsidian new<cr>", { desc = "New Note", buffer = event.buf })
-        vim.keymap.set("n", "<localleader>x", "<cmd>Obsidian open<cr>", { desc = "Open in Obsidian", buffer = event.buf })
-        vim.keymap.set("n", "<localleader>t", "<cmd>Obsidian new_from_template<cr>", { desc = "New from Template", buffer = event.buf })
-
-        vim.keymap.set("n", "<localleader>z", function()
-            vim.ui.input({ prompt = "Zettel name: " }, function(name)
-                if name then
-                    -- Create a new zettel with the given name using the Zettel template
-                    vim.cmd(string.format("Obsidian new 05\\ Zettelkasten/%s", name))
-                    -- vim.cmd("ObsidianTemplate Zettel.md")
-                end
-            end)
-        end, { desc = "New Zettel", buffer = event.buf })
-    end,
-})
+require("which-key").add({ { "<localleader>o", group = "Obsidian" } })
+vim.keymap.set("n", "<localleader>oo", "<cmd>Obsidian quick_switch<cr>", { desc = "Quick Switcher" })
+vim.keymap.set("n", "<localleader>os", "<cmd>Obsidian search<cr>", { desc = "Search Notes" })
+vim.keymap.set("n", "<localleader>on", "<cmd>Obsidian new<cr>", { desc = "New Note" })
+vim.keymap.set("n", "<localleader>ox", "<cmd>Obsidian open<cr>", { desc = "Open in Obsidian" })
+vim.keymap.set("n", "<localleader>ot", "<cmd>Obsidian new_from_template<cr>", { desc = "New from Template" })
+vim.keymap.set("n", "<localleader>oz", function()
+    vim.ui.input({ prompt = "Zettel name: " }, function(name)
+        if name then
+            -- Create a new zettel with the given name using the Zettel template
+            vim.cmd(string.format("Obsidian new 05\\ Zettelkasten/%s", name))
+            -- vim.cmd("ObsidianTemplate Zettel.md")
+        end
+    end)
+end, { desc = "New Zettel" })
