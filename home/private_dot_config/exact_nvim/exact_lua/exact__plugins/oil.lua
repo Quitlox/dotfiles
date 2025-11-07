@@ -147,14 +147,24 @@ vim.api.nvim_create_autocmd("BufLeave", {
     end,
 })
 
+-- Integrate LSP file renaming
+vim.api.nvim_create_autocmd("User", {
+    pattern = "OilActionsPost",
+    callback = function(event)
+        if event.data.actions[1].type == "move" then
+            Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
+        end
+    end,
+})
+
 --+- Keymaps ------------------------------------------------+
 -- stylua: ignore start
 vim.keymap.set("n", "-", function() require("oil").open_float() end, { noremap = true, silent = true, desc = "oil: Open" })
 vim.keymap.set("n", "_", function() require("oil").open() end, { noremap = true, silent = true, desc = "oil: Open (as Buffer)" })
 
 --+- Commands -----------------------------------------------+
-vim.api.nvim_create_user_command("Oil", function() require("oil").open_float() end, { desc = "oil: Open" })
-vim.api.nvim_create_user_command("OilBuf", function() require("oil").open() end, { desc = "oil: Open (as Buffer)" })
-vim.api.nvim_create_user_command("OilRoot", function() require("oil").open_float(vim.fn.getcwd()) end, { desc = "oil: Open in project root" })
+-- vim.api.nvim_create_user_command("Oil", function() require("oil").open_float() end, { desc = "oil: Open" })
+-- vim.api.nvim_create_user_command("OilBuf", function() require("oil").open() end, { desc = "oil: Open (as Buffer)" })
+-- vim.api.nvim_create_user_command("OilRoot", function() require("oil").open_float(vim.fn.getcwd()) end, { desc = "oil: Open in project root" })
 vim.api.nvim_create_user_command("OilDiscard", function() require("oil").discard_all_changes() end, { desc = "oil: Discard changes" })
 -- stylua: ignore end

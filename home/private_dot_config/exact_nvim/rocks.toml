@@ -192,8 +192,7 @@ auto_install = "prompt"
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.35"
-"nvim-lsp-file-operation" = { git = "antosha417/nvim-lsp-file-operations", rev = "9744b738183a5adca0f916527922078a965515ed" }
-"nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.4.0", config = { options = { hint = "floating-big-letter" } } }
+"nvim-window-picker" = { git = "s1n7ax/nvim-window-picker", rev = "v2.4.0" }
 "oil.nvim" = "2.15.0"
 
 # +- Notifications ------------------------------------------+

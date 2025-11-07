@@ -27,19 +27,31 @@ vim.fn.sign_define("DiagnosticSignHint", { text = " ", texthl = "DiagnosticSi
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader>lf", "<cmd>Neotree position=left source=filesystem reveal=true<cr>", { noremap = true, silent = true, desc = "Locate File" })
 vim.keymap.set("n", "<leader>oe", "<cmd>Neotree position=left source=filesystem reveal=false toggle=true<cr>", { noremap = true, silent = true, desc = "Open Explorer" })
--- vim.keymap.set("n", "<leader>oo", "<cmd>Neotree position=right document_symbols reveal=true<cr>", { noremap = true, silent = true, desc = "Open Outline" })
--- vim.keymap.set("n", "<leader>ls", "<cmd>Neotree position=right source=document_symbols <cr>", { noremap = true, silent = true, desc = "Locate Symbol" }) -- reveal=true causes annoying prompt
 
 --+- Setup --------------------------------------------------+
+local events = require("neo-tree.events")
 require("neo-tree").setup({
     open_files_do_not_replace_types = ignore_ft,
     enable_diagnostics = false,
 
     event_handlers = {
+        -- NOTE: I this still needed with edgy.nvim?
+        -- {
+        --     event = "neo_tree_window_after_open",
+        --     handler = function(arg)
+        --         vim.cmd([[wincmd =|]])
+        --     end,
+        -- },
         {
-            event = "neo_tree_window_after_open",
-            handler = function(arg)
-                vim.cmd([[wincmd =|]])
+            event = events.FILE_MOVED,
+            handler = function(data)
+                Snacks.rename.on_rename_file(data.source, data.destination)
+            end,
+        },
+        {
+            event = events.FILE_RENAMED,
+            handler = function(data)
+                Snacks.rename.on_rename_file(data.source, data.destination)
             end,
         },
     },
@@ -179,6 +191,7 @@ require("neo-tree").setup({
 -- +---------------------------------------------------------+
 
 require("window-picker").setup({
+    options = { hint = "floating-big-letter" },
     filter_rules = {
         include_current_win = false,
         autoselect_one = true,
