@@ -43,7 +43,9 @@ require("blink-cmp").setup({
         ["<C-u>"] = { "scroll_documentation_up", "fallback" },
     },
     cmdline = {
-        keymap = { preset = "cmdline", ["/"] = { "accept", "fallback" } },
+        keymap = { preset = "cmdline" },
+        -- keymap = { preset = "cmdline", ["/"] = { "accept", "fallback" } },
+        sources = { "buffer", "cmdline", "path" },
         completion = {
             menu = { auto_show = true },
             list = { selection = { preselect = false, auto_insert = true } },
@@ -205,7 +207,13 @@ require("blink-cmp").setup({
                 end,
             },
             otter = { name = "otter", module = "blink.compat.source" },
-            path = { opts = { trailing_slash = false, label_trailing_slash = true }, min_keyword_length = 0 },
+            path = {
+                opts = {
+                    trailing_slash = false,
+                    label_trailing_slash = true,
+                },
+                min_keyword_length = 0,
+            },
             ripgrep = {
                 name = "ripgrep",
                 module = "blink-ripgrep",
