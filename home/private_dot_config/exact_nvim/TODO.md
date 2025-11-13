@@ -25,8 +25,6 @@
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
 
-  - go over python.nvim mappings
-
   - i need a hydra mode for git staging
   - ripgrep through help
 
