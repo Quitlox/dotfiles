@@ -22,4 +22,4 @@ Snacks.toggle
             return vim.g.toggle_no_neck_pain
         end,
     })
-    :map("<leader>Tp")
+    :map("yon")
