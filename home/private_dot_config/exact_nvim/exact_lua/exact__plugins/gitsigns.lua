@@ -51,7 +51,6 @@ local function on_attach(bufnr)
     map("n", "<leader>hR", gs.reset_buffer, { desc = "Hunk Reset Buffer" })
     map("n", "<leader>hp", gs.preview_hunk, { desc = "Hunk Preview" })
     map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, { desc = "Hunk Blame" })
-    map("n", "<leader>Tb", gs.toggle_current_line_blame, { desc = "Toggle Blame" })
     map("n", "<leader>hd", gs.diffthis, { desc = "Hunk Diff" })
     map("n", "<leader>hD", function() gs.diffthis("~") end, { desc = "Hunk Diff Buffer" })
     map("n", "<leader>htd", gs.toggle_deleted, { desc = "Toggle Deleted" })
@@ -69,17 +68,17 @@ local function on_attach(bufnr)
 end
 
 --+- Toggle -------------------------------------------------+
-vim.g.toggle_gitsigns = true
+vim.g.toggle_gitsigns_blame = false
 
 Snacks.toggle
     .new({
         name = "Git Blame",
         get = function()
-            return vim.g.toggle_gitsigns
+            return vim.g.toggle_gitsigns_blame
         end,
         set = function(state)
             require("gitsigns").toggle_current_line_blame(state)
-            vim.g.toggle_gitsigns = state
+            vim.g.toggle_gitsigns_blame = state
         end,
     })
     :map("yob")
