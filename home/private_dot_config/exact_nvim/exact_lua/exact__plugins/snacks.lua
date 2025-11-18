@@ -362,6 +362,9 @@ vim.keymap.set("n", "<leader>ps", require("snacks").profiler.scratch, { desc = "
 Snacks.toggle.profiler():map("<leader>pp")
 -- Toggle the profiler highlights
 Snacks.toggle.profiler_highlights():map("<leader>ph")
+Snacks.toggle.treesitter():map("yot")
+Snacks.toggle.inlay_hints():map("yoh")
+Snacks.toggle.diagnostics():map("yod")
 
 require("which-key").add({
     { "<leader>p", group = "Profile" },
