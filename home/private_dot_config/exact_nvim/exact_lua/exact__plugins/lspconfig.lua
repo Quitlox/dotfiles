@@ -73,6 +73,7 @@ local lsps = {
     "bashls",
     "ccls",
     "cmake",
+    "copilot",
     "cssls",
     "css_variables",
     "docker_compose_language_service",
