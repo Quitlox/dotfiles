@@ -12,12 +12,10 @@ if vim.fn.exists("g:neovide") == 1 then
     vim.keymap.set("n", "<C-S-v>", '"+p', { noremap = true })
     vim.keymap.set("c", "<C-S-v>", "<C-r>+", { noremap = true })
     vim.keymap.set("i", "<C-S-v>", "<C-r>+")
-
-    vim.opt.clipboard = "unnamedplus"
 end
 
 --+- Env: WSL -----------------------------------------------+
-if vim.fn.has("wsl") == 1 then
+if vim.fn.has("wsl") == 1 and vim.fn.exists("g:neovide") == 0 then
     -- vim.g.clipboard = "osc52"
     -- vim.g.clipboard = {
     --     name = "WslClipboard",
