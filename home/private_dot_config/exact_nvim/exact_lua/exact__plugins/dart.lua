@@ -5,6 +5,14 @@
 require("dart").setup({
     tabline = {
         always_show = false,
+        -- Reverse tabline order: first show marked buffers, then recent
+        order = function()
+            local order = {}
+            for i, key in ipairs(vim.list_extend(vim.deepcopy(Dart.config.marklist), Dart.config.buflist)) do
+                order[key] = i
+            end
+            return order
+        end,
     },
     mappings = {
         mark = "Mm",
