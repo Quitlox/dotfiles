@@ -52,8 +52,8 @@ require("codecompanion").setup({
         inline = {
             adapter = "anthropic",
             keymaps = {
-                accept_change = { modes = { n = "<leader>ca" } },
-                reject_change = { modes = { n = "<leader>cr" } },
+                -- accept_change = { modes = { n = "<leader>ca" } },
+                -- reject_change = { modes = { n = "<leader>cr" } },
             },
         },
     },
