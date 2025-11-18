@@ -10,6 +10,9 @@
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
 - To Investigate:
+  - lsp attach on session restore (may be due to python venv, check)
+  - figure out why sometimes indent is off by one (resolved by yati?)
+
   - edgy.nvim: it shouldn't be possible to have anything opens besides the terminal, i.e. on trouble terminal should hide
 
   - snacks:
