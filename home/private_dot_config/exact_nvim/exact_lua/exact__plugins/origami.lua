@@ -10,7 +10,7 @@ require("origami").setup({
     foldtext = {
         diagnosticsCount = true,
         gitsignsCount = true,
-        disableOnFt = { "snacks_picker_input" },
+        disableOnFt = { "snacks_picker_input", "grug-far" },
     },
     autoFold = {
         enabled = true,
