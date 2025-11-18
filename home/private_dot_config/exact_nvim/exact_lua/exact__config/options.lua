@@ -19,11 +19,11 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 --- Fold ---
-vim.opt.foldenable = true
+-- vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-vim.opt.foldcolumn = "1"
-vim.opt.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
+-- vim.opt.foldcolumn = "1"
+-- vim.opt.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
 --- Wrapping ---
 vim.opt.wrap = false
 vim.opt.linebreak = true

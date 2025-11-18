@@ -28,6 +28,7 @@ auto_install = "prompt"
 # "dial.nvim" = "0.4.0"
 "highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim", rev = "ee32e12693d70e66f954d09a504a7371d110fc27" }
 "mini.misc" = "0.16.0"
+"nvim-origami" = { git = "chrisgrieser/nvim-origami", rev = "d42d11008a32f5f8c92bca6fd63f6782f197d114" }
 "vim-matchup" = { git = "andymass/vim-matchup", rev = "1c276e12b49a83c1bdca74351187b8adea5da4b9" }
 "yanky.nvim" = { git = "gbprod/yanky.nvim", rev = "04775cc6e10ef038c397c407bc17f00a2f52b378" }
 
