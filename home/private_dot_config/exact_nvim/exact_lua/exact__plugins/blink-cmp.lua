@@ -125,6 +125,24 @@ require("blink-cmp").setup({
                 name = "bufname",
                 module = "blink.compat.source",
             },
+            codecompanion = {
+                name = "codecompanion",
+                module = "codecompanion.providers.completion.blink",
+                score_offset = 100,
+                override = {
+                    --- Ensure that codecompanion source only shows at start of line after slash
+                    should_show_items = function(self, context, items)
+                        local is_trigger = context.trigger.initial_kind == "trigger_character" and context.trigger.initial_character == "/"
+                        if not is_trigger then
+                            return false
+                        end
+
+                        local line_before_trigger = context.line:sub(1, context.line:find(context.trigger.initial_character))
+                        -- Only show at start of line
+                        return #line_before_trigger == 1
+                    end,
+                },
+            },
             conventional_commits = {
                 name = "Conventional Commits",
                 module = "blink-cmp-conventional-commits",
@@ -208,11 +226,23 @@ require("blink-cmp").setup({
             },
             otter = { name = "otter", module = "blink.compat.source" },
             path = {
+                min_keyword_length = 0,
                 opts = {
                     trailing_slash = false,
                     label_trailing_slash = true,
                 },
-                min_keyword_length = 0,
+                override = {
+                    --- Ensure that path completion does not show in codecompanion window (interferes with slash commands)
+                    should_show_items = function(self, context, items)
+                        local is_trigger = context.trigger.initial_kind == "trigger_character" and context.trigger.initial_character == "/"
+                        if is_trigger and vim.tbl_contains(context.providers, "codecompanion") then
+                            local line_before_trigger = context.line:sub(1, context.line:find(context.trigger.initial_character))
+                            return #line_before_trigger > 1
+                        end
+
+                        return true
+                    end,
+                },
             },
             ripgrep = {
                 name = "ripgrep",
