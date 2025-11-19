@@ -59,29 +59,31 @@ require("obsidian").setup({
     end,
 
     -- Add creation date to frontmatter
-    note_frontmatter_func = function(note)
-        -- Add the title of the note as an alias
-        if note.title then
-            note:add_alias(note.title)
-        end
-
-        local out = {
-            id = note.id,
-            aliases = note.aliases,
-            tags = note.tags,
-            -- Add creation date with the format YYYY-MM-DD HH:MM
-            ["creation date"] = os.date("%Y-%m-%d %H:%M"),
-        }
-
-        -- Keep any manually added fields in the frontmatter
-        if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-            for k, v in pairs(note.metadata) do
-                out[k] = v
+    frontmatter = {
+        func = function(note)
+            -- Add the title of the note as an alias
+            if note.title then
+                note:add_alias(note.title)
             end
-        end
 
-        return out
-    end,
+            local out = {
+                id = note.id,
+                aliases = note.aliases,
+                tags = note.tags,
+                -- Add creation date with the format YYYY-MM-DD HH:MM
+                ["creation date"] = os.date("%Y-%m-%d %H:%M"),
+            }
+
+            -- Keep any manually added fields in the frontmatter
+            if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+                for k, v in pairs(note.metadata) do
+                    out[k] = v
+                end
+            end
+
+            return out
+        end,
+    },
 
     templates = {
         folder = "06 Templates",
