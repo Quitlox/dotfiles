@@ -146,8 +146,8 @@ local function close_all_but_current()
 end
 
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>bd", function() require('snacks').bufdelete() end, { desc = "Buffer Delete" })
-vim.keymap.set("n", "<leader>bo", close_all_but_current, { desc = "Buffer Only" })
+vim.keymap.set("n", "<leader>bd", function() require('snacks').bufdelete.delete() end, { desc = "Buffer Delete" })
+vim.keymap.set("n", "<leader>bo", function() require('snacks').bufdelete.other() end, { desc = "Buffer Only" })
 -- stylua: ignore end
 
 -- +---------------------------------------------------------+

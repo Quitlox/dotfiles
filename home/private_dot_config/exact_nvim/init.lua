@@ -41,15 +41,10 @@ require("_config.colorscheme")
 
 --+- Config: Early Plugins ----------------------------------+
 -- Snacks.nvim
-local succes, rock_config_mod = pcall(require, "rocks-config")
+local succes, _ = pcall(require, "rocks-config")
 if succes then
-    local succes, _ = pcall(vim.cmd.packadd, "snacks.nvim")
-    require("_plugins.snacks")
-end
--- Treesitter
-local ok, mod = pcall(require, "nvim-treesitter.configs")
-if ok then
-    mod.setup({
-        indent = { enable = true },
-    })
+    local succes_snacks, _ = pcall(vim.cmd.packadd, "snacks.nvim")
+    if succes_snacks then
+        require("_plugins.snacks")
+    end
 end

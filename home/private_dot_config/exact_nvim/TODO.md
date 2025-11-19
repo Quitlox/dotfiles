@@ -19,10 +19,7 @@
       - replace notify with snacks notifier
       - replace indent blankline with snacks indent line or blink.indent
       - use snacks scope
-      - split snacks configuration (use snacks.init?)
       - should be able to fix my terminal code using Snacks.terminal.tid()
-      - add more default toggles
-      - add dim/zen with toggle
 
   - lsp should actually attach on session restore
 
