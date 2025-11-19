@@ -4,7 +4,6 @@
 -- | stevearc/conform.nvim: Formatting                       |
 -- +---------------------------------------------------------+
 
-local default_opts = { timeout_ms = 500, lsp_format = "fallback" }
 local excluded_filetypes = { "toml", "yaml", "markdown", "json", "jsonc", "tex", "yaml.ansible" }
 local excluded_filenames = { "pyproject.toml", "__init__.py" }
 
@@ -47,7 +46,7 @@ local function format()
     local msg = "fmt: " .. table.concat(fmt_names, "/")
     local msg_handle = display_fidget(msg)
 
-    require("conform").format(default_opts, function(err)
+    require("conform").format({ timeout_ms = 3000, lsp_format = "fallback" }, function(err)
         handle_error(err, msg, msg_handle)
     end)
 end
@@ -94,7 +93,7 @@ local function should_format_on_save()
 end
 
 --+- Helper Functions: Slow Formatters Async ----------------+
-local slow_format_filetypes = { "python" }
+local slow_format_filetypes = { python = true }
 local format_on_save_if_not_slow = function(bufnr)
     if slow_format_filetypes[vim.bo[bufnr].filetype] then
         return
@@ -105,14 +104,14 @@ local format_on_save_if_not_slow = function(bufnr)
         end
     end
 
-    return default_opts, on_format
+    return { timeout_ms = 500, lsp_format = "fallback" }, on_format
 end
 
 local format_after_save_if_slow = function(bufnr)
     if not slow_format_filetypes[vim.bo[bufnr].filetype] then
         return
     end
-    return { lsp_format = "fallback" }
+    return { timeout_ms = 3000, lsp_format = "fallback" }
 end
 
 --+- Helper Functions: Format Range -------------------------+
@@ -228,7 +227,7 @@ toggle_format_global():map("yof")
 
 --+- Support: Check Installation Status ------------------------+
 local formatter_blacklist = { "trim_whitespace", "injected" }
-local checked_formatter_filetypes = {}
+local checked_formatter_filetypes = { python = true } -- Do not check for python -- to many different tools
 
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("ConformCheckInstallation", { clear = true }),
