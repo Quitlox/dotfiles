@@ -61,6 +61,7 @@ npairs.add_rule(
 -- | Markdown Rules            |
 -- +---------------------------+
 local markdown_ft = { "markdown", "codecompanion", "vimwiki", "rmarkdown", "rmd", "pandoc", "quarto" }
+local markdown_ft_not_cc = { "markdown", "vimwiki", "rmarkdown", "rmd", "pandoc", "quarto" }
 
 -- Remove default asteriks rules (don't exist currently I think)
 npairs.remove_rule("*")
@@ -94,7 +95,6 @@ npairs.add_rule(
 )
 
 -- Disable default backtick rule for markdown
-npairs.remove_rule("`")
 npairs.add_rule(
     quote("`", "`")
         :with_pair(cond.not_filetypes(markdown_ft))
@@ -118,6 +118,7 @@ npairs.add_rule(
         :with_pair(cond.not_before_char("`", 3))
         :with_pair(ts_conds.is_not_ts_node({"code_fence_content"}))
 )
+npairs.remove_rule("*")
 npairs.add_rule(
     Rule("```.*$", "```", markdown_ft)
         :only_cr()
@@ -126,9 +127,10 @@ npairs.add_rule(
 
 -- Underscore rule
 npairs.add_rule(
-    Rule("_", "_", markdown_ft)
+    Rule("_", "_", markdown_ft_not_cc)
         :with_pair(ts_conds.is_not_ts_node("inline_formula")) -- Don't pair inside LaTeX inline formulas
         :with_pair(cond.not_before_regex([[%w]], 1)) -- Don't expand after non-whitespace
+        :with_pair(cond.not_before_text("`")) -- Don't expand after non-whitespace
         :with_move(cond.after_text("_")) -- Move past _ when next char is _
 )
 
