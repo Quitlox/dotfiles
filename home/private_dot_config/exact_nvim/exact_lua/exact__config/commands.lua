@@ -2,15 +2,38 @@
 vim.api.nvim_create_user_command("W", "execute 'w !sudo tee % > /dev/null' <bar> edit!", { bang = true })
 
 --+- Helper Functions ---------------------------------------+
-local function deleteFile(path)
-    local success, err = vim.fs.rm(path)
+local function attachLspToBuffer()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filetype = vim.bo[bufnr].filetype
 
-    if success then
-        require("notify")("Removed " .. path .. " successfully.", "info", {})
-    else
-        require("notify")("Error removing " .. path .. ": " .. tostring(err), "error", {})
+    if filetype == "" then
+        vim.notify("Buffer has no filetype set", vim.log.levels.WARN)
+        return
     end
+
+    -- Stop existing LSP clients for this buffer
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
+    for _, client in ipairs(clients) do
+        vim.lsp.stop_client(client.id)
+    end
+
+    -- Trigger FileType autocommand to restart LSP
+    vim.cmd("doautocmd FileType " .. filetype)
+
+    vim.notify("Restarted LSP for `" .. filetype .. "`", vim.log.levels.INFO)
 end
+
+vim.api.nvim_create_user_command("LspAttach", attachLspToBuffer, {
+    desc = "Force re-attach LSPs",
+})
+
+vim.keymap.set("n", "gA", attachLspToBuffer, { desc = "Force re-attach LSPs" })
+
+local function copyMessages()
+    vim.cmd([[let @+ = execute('messages')]])
+end
+
+vim.api.nvim_create_user_command("CopyMessages", copyMessages, { desc = "Copy Messages to clipboard" })
 
 --+- Utility Commands ---------------------------------------+
 -- stylua: ignore

@@ -30,7 +30,6 @@
 
   - tabs are ugly right now and I don't want the tab number in the middle of the bar
   - ideally, in python, folds would fold entire function definitions, not parameters seperately  
-  - do not active python lsp/conform before virtual env ?
   - make "daa" (delete around argument) also delete function parameters in func def (in python)
       - more specifically, the issue is if the type has brackets, that takes precendence
   - [ ] very specific python indentation behaviour:
