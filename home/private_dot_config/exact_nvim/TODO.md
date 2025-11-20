@@ -19,8 +19,6 @@
   - i need a hydra mode for git staging
   - ripgrep through help
 
-  - [ ] `flash.nvim`: incremental selection (https://github.com/folke/flash.nvim/commit/59fc862d43dba249456c93c70ebabfa460c9db84)
-
   - tabs are ugly right now and I don't want the tab number in the middle of the bar
   - ideally, in python, folds would fold entire function definitions, not parameters seperately  
   - make "daa" (delete around argument) also delete function parameters in func def (in python)
