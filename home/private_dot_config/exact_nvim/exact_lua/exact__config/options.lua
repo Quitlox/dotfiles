@@ -24,6 +24,7 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 -- vim.opt.foldcolumn = "1"
 -- vim.opt.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
+vim.opt.foldopen:remove("search") -- Do not open folds for search motions, specifically '{' and '}'
 --- Wrapping ---
 vim.opt.wrap = false
 vim.opt.linebreak = true

@@ -2,6 +2,16 @@
 -- | snacks.nvim: Terminal                                   |
 -- +---------------------------------------------------------+
 
+--+- Workaround: Supress certain exit codes -----------------+
+local notify_error = Snacks.notify.error
+Snacks.notify.error = function(msg, ...)
+    if type(msg) == "string" and msg:find("Terminal exited with code 127", 1, true) then
+        return
+    end
+    return notify_error(msg, ...)
+end
+
+--+- Config -------------------------------------------------+
 ---@class snacks.terminal.Config
 local terminal_opts = {
     auto_insert = false,
@@ -9,6 +19,7 @@ local terminal_opts = {
     win = { style = "my_terminal" },
 }
 
+--+- Layout -------------------------------------------------+
 Snacks.config.style("my_terminal", {
     keys = {
         term_win_j = { "<C-j>", "<cmd>wincmd j<cr>", mode = "t", expr = true },
@@ -40,6 +51,7 @@ Snacks.config.style("my_lazygit", {
     },
 })
 
+--+- Behaviour ----------------------------------------------+
 local function toggle_terminal()
     -- Lazygit: magic terminal number 9
     if vim.v.count1 == 9 then

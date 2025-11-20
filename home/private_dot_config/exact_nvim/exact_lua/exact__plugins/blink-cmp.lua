@@ -134,7 +134,7 @@ require("blink-cmp").setup({
                     should_show_items = function(self, context, items)
                         local is_trigger = context.trigger.initial_kind == "trigger_character" and context.trigger.initial_character == "/"
                         if not is_trigger then
-                            return false
+                            return true
                         end
 
                         local line_before_trigger = context.line:sub(1, context.line:find(context.trigger.initial_character))

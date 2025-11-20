@@ -10,29 +10,14 @@
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
 - To Investigate:
-  - lsp attach on session restore (may be due to python venv, check)
   - figure out why sometimes indent is off by one (resolved by yati?)
 
   - overseer: clone task (should be possible with serialize)
-
-  - edgy.nvim: it shouldn't be possible to have anything opens besides the terminal, i.e. on trouble terminal should hide
-
-  - snacks:
-      - replace notify with snacks notifier
-      - replace indent blankline with snacks indent line or blink.indent
-      - use snacks scope
-      - should be able to fix my terminal code using Snacks.terminal.tid()
-
-  - lsp should actually attach on session restore
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
 
   - i need a hydra mode for git staging
   - ripgrep through help
-
-  - snacks.nvim gives popup with exit-code for normal terminals, which is not
-  convenient as the exit code of the terminal will be the exit code of the last
-  command ran
 
   - [ ] `matchup`: unwelcome matching of `[` in strings
   ```lua
@@ -72,7 +57,6 @@
 - Requires Contribution:
 
   - [ ] overseer: background tasks should not be awaited for completion
-  - [ ] snacks.picker: `select_up` at index 0 doesn't go to the last item
   - [ ] `scissors.nvim`: add option to toggle autosnippet
 
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
