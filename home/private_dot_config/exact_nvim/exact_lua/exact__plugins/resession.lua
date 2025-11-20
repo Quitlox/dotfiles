@@ -44,6 +44,26 @@ resession.add_hook("pre_load", function()
     require("_config.util.session").notify('Loading session: "' .. get_session_name() .. '"', "info")
 end)
 
+--+- Hook: Close help windows pre_save ----------------------+
+local function close_help_windows(target_tabpage)
+    -- Close help windows before saving so they are never persisted in a session
+    local tabpages = target_tabpage and { target_tabpage } or vim.api.nvim_list_tabpages()
+    for _, tabpage in ipairs(tabpages) do
+        for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tabpage)) do
+            if vim.api.nvim_win_is_valid(win) then
+                local bufnr = vim.api.nvim_win_get_buf(win)
+                if vim.bo[bufnr].buftype == "help" then
+                    pcall(vim.api.nvim_win_close, win, false)
+                end
+            end
+        end
+    end
+end
+
+resession.add_hook("pre_save", function(_, _, target_tabpage)
+    close_help_windows(target_tabpage)
+end)
+
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader>os", function()
     -- Only show tab-scoped sessions

@@ -34,8 +34,6 @@
   convenient as the exit code of the terminal will be the exit code of the last
   command ran
 
-  - [ ] `edgy.nvim`: does not resize windows on restore of session, e.g. help window.
-        Hard-to-fix. Tried using AI to fix it, but it didn't work.
   - [ ] `matchup`: unwelcome matching of `[` in strings
   ```lua
   require("which-key").add({
