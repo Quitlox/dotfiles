@@ -19,13 +19,6 @@
   - i need a hydra mode for git staging
   - ripgrep through help
 
-  - [ ] `matchup`: unwelcome matching of `[` in strings
-  ```lua
-  require("which-key").add({
-      { "[%", desc = "Prev Match" },
-      { "]%", desc = "Next Match" },
-  })
-  ```
   - [ ] `flash.nvim`: incremental selection (https://github.com/folke/flash.nvim/commit/59fc862d43dba249456c93c70ebabfa460c9db84)
 
   - tabs are ugly right now and I don't want the tab number in the middle of the bar
