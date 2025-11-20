@@ -36,10 +36,6 @@ vim.keymap.set("x", "/", "<Esc>/\\%V") -- search within visual selection
 -- | Vim Editing                                             |
 -- +---------------------------------------------------------+
 
--- Disable { and } because I keep abusing them
--- vim.keymap.set("n", "{", "", { noremap = true })
--- vim.keymap.set("n", "}", "", { noremap = true })
-
 -- Make paste reselect yank
 vim.keymap.set("x", "p", "pgvy", { noremap = true })
 
@@ -73,6 +69,28 @@ vim.keymap.set("n", "<leader><cr>", ":noh<cr>", { silent = true })
 
 -- Enter command mode from visual mode
 vim.keymap.set("v", ":", ":<C-U>", { noremap = true })
+
+-- Navigate to closed folds
+local function goto_closed_fold(direction)
+    local line = vim.fn.line(".")
+    local last = vim.fn.line("$")
+    local step = direction > 0 and 1 or -1
+    line = line + step
+    while line >= 1 and line <= last do
+        local fold_line = direction > 0 and vim.fn.foldclosed(line) or vim.fn.foldclosedend(line)
+        if fold_line ~= -1 then
+            vim.api.nvim_win_set_cursor(0, { fold_line, 0 })
+            return
+        end
+        line = line + step
+    end
+    vim.notify("No more closed folds in this direction", vim.log.levels.INFO)
+end
+
+-- stylua: ignore start
+vim.keymap.set("n", "]z", function()goto_closed_fold(1)end, { desc = "Next closed fold" })
+vim.keymap.set("n", "[z", function()goto_closed_fold(-1)end, { desc = "Previous closed fold" })
+-- stylua: ignore end
 
 -- +---------------------------------------------------------+
 -- | Window                                                  |

@@ -13,8 +13,6 @@
   - lsp attach on session restore (may be due to python venv, check)
   - figure out why sometimes indent is off by one (resolved by yati?)
 
-  - [z ]z should navigate to closed fold
-  - {} should jump over folds
   - overseer: clone task (should be possible with serialize)
 
   - edgy.nvim: it shouldn't be possible to have anything opens besides the terminal, i.e. on trouble terminal should hide
