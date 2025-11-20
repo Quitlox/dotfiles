@@ -10,8 +10,6 @@
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
 - To Investigate:
-  - figure out why sometimes indent is off by one (resolved by yati?)
-
   - overseer: clone task (should be possible with serialize)
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
