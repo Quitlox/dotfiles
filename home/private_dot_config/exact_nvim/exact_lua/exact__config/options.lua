@@ -22,6 +22,7 @@ vim.opt.expandtab = true
 -- vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+vim.opt.foldminlines = 5
 -- vim.opt.foldcolumn = "1"
 -- vim.opt.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
 vim.opt.foldopen:remove("search") -- Do not open folds for search motions, specifically '{' and '}'
