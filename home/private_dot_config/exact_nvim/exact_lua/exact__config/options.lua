@@ -13,7 +13,7 @@ vim.opt.formatoptions = vim.opt.formatoptions + "p" -- Don't break lines at sing
 vim.opt.formatoptions = vim.opt.formatoptions + "1" -- Don't break a line after a one-letter word.
 -- vim.opt.indentkeys = vim.opt.indentkeys - "o" -- Don't wrap the fucking parentheses in comments (especially python)
 --- Editing ---
-vim.opt.jumpoptions = "stack,clean"
+vim.opt.jumpoptions = "stack" -- NOTE: changed from "stack,clean" (2025-11-23)
 --- Tab behaviour ---
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
