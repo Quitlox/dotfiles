@@ -83,6 +83,7 @@ local lsps = {
     "nil_ls",
     "pug",
     "pyrefly",
+    "pytest_lsp",
     "svelte",
     "tombi",
     "ty",
