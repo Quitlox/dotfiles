@@ -4,6 +4,7 @@ if not ok1 or not ok2 then
     return
 end
 
+--+- Treesitter: Customize textobjects ----------------------+
 require("nvim-treesitter.configs").setup({
     textobjects = {
         move = {
@@ -21,6 +22,7 @@ require("nvim-treesitter.configs").setup({
     },
 })
 
+--+- mini.ai: Customize textobjects -------------------------+
 -- Function to check if cursor is in a comment
 local function is_in_comment()
     -- First check using syntax highlighting
@@ -150,10 +152,13 @@ function create_quote_textobject()
 end
 
 -- set up our custom textobjects
+local gen_spec = require("mini.ai").gen_spec
 vim.b.miniai_config = {
     custom_textobjects = {
         ['"'] = create_quote_textobject(),
         ["'"] = create_quote_textobject(),
         ["`"] = create_quote_textobject(),
+        -- We limit argument to brackets, to avoid conflict with typehint brackets
+        a = gen_spec.argument({ brackets = { "%b()" } }),
     },
 }

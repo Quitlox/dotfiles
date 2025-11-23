@@ -18,8 +18,6 @@
   - ripgrep through help
 
   - tabs are ugly right now and I don't want the tab number in the middle of the bar
-  - make "daa" (delete around argument) also delete function parameters in func def (in python)
-      - more specifically, the issue is if the type has brackets, that takes precendence
   - [ ] very specific python indentation behaviour:
     - [ ] related issue: when double enter in insert mode, it should fallback an indention level
   ```python

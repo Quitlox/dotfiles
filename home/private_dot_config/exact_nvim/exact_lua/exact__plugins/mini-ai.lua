@@ -50,6 +50,8 @@ local mini_ai_opts = {
         m = gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
         o = gen_spec.treesitter({ a = { "@conditional.outer", "@block.outer", "@loop.outer" }, i = { "@block.inner", "@conditional.inner", "@loop.inner" } }),
 
+        -- Argument
+        a = gen_spec.argument(), -- default
         -- Buffer
         g = ai_buffer,
         -- Tag (From LazyVim)
