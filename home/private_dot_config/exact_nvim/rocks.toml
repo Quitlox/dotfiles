@@ -31,6 +31,7 @@ auto_install = "prompt"
 "nvim-origami" = { git = "chrisgrieser/nvim-origami", rev = "d42d11008a32f5f8c92bca6fd63f6782f197d114" }
 "vim-matchup" = { git = "andymass/vim-matchup", rev = "1c276e12b49a83c1bdca74351187b8adea5da4b9" }
 "yanky.nvim" = { git = "gbprod/yanky.nvim", rev = "04775cc6e10ef038c397c407bc17f00a2f52b378" }
+"jumppack.nvim" = { git = "suliatis/jumppack.nvim", rev = "c1bc410ef011afbd405e945a08ce200d59a0e537" }
 
 # +- Visual Enhancements ------------------------------------+
 "indent-blankline.nvim" = "3.9.0"
