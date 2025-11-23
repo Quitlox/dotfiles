@@ -2,7 +2,7 @@
 -- | snacks.nvim: Profile                                    |
 -- +---------------------------------------------------------+
 
-vim.keymap.set("n", "<leader>ps", require("snacks").profiler.scratch, { desc = "Profiler Scratch Buffer" })
+-- vim.keymap.set("n", "<leader>ps", require("snacks").profiler.scratch, { desc = "Profiler Scratch Buffer" })
 
 -- Toggle the profiler
 Snacks.toggle.profiler():map("<leader>pp")
@@ -10,5 +10,5 @@ Snacks.toggle.profiler():map("<leader>pp")
 Snacks.toggle.profiler_highlights():map("<leader>ph")
 
 require("which-key").add({
-    { "<leader>p", group = "Profile" },
+    { "<leader>p", group = "Profile / Popup" },
 })

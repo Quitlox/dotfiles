@@ -61,7 +61,7 @@ require("glance").setup({
 })
 
 vim.keymap.set("n", "gd", open_definition_jump_or_glance, { desc = "Go Definition" })
-vim.keymap.set("n", "gD", open_definition_existing_win_or_peek, { desc = "Go Definition" })
+-- vim.keymap.set("n", "gD", open_definition_existing_win_or_peek, { desc = "Go Definition" })
 vim.keymap.set("n", "gri", "<CMD>Glance implementations<CR>", { desc = "Go Implementation" })
 vim.keymap.set("n", "grt", "<CMD>Glance type_definitions<CR>", { desc = "Go Type Definition" })
 vim.keymap.set("n", "grr", "<CMD>Glance references<CR>", { desc = "Go References" })

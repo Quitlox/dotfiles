@@ -99,6 +99,7 @@ auto_install = "prompt"
 "hover.nvim" = { git = "lewis6991/hover.nvim", rev = "3b49066e09e03e63be6d6f43ae2b8bcd58301f63" }
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim", rev = "60f9175b2501ae3f8b1aba9719c0df8827610c8e" }
 "output-panel.nvim" = { git = "mhanberg/output-panel.nvim", rev = "634f735d6a2a9a63b5849ab61f944f7a1a8b3780", config = true }
+"overlook.nvim" = { git = "williamhsieh/overlook.nvim", rev = "6f74f20a61204275989050a2c1221bdc53b534c4" }
 "garbage-day.nvim" = { git = "zeioth/garbage-day.nvim", rev = "v1.3.1" }
 
 # +- Search -------------------------------------------------+
