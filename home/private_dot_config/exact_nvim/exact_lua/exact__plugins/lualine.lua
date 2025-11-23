@@ -110,6 +110,12 @@ local mcp_hub = {
     end,
 }
 
+local function dart()
+    local line = Dart.gen_tabline()
+    -- removes the fill + “Tab x/y” part
+    return line:gsub("%%#DartFill#.-$", "")
+end
+
 --+- Customize Modules --------------------------------------+
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
 local git_blame = { "b:gitsigns_blame_line", icon = " ", fmt = trunc(180, 40, 140, true) }
@@ -206,20 +212,12 @@ require("lualine").setup({
     },
 
     tabline = {
-        lualine_c = {
-            function()
-                return Dart.gen_tabline()
-            end,
-            -- "%!v:lua.Dart.gen_tabline()",
-        },
+        lualine_c = { dart },
         lualine_x = {
             {
                 "tabs",
                 mode = 2,
                 show_modified_status = false,
-                -- max_length = function()
-                --     return 30
-                -- end,
             },
         },
     },

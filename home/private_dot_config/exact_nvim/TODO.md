@@ -17,7 +17,6 @@
   - i need a hydra mode for git staging
   - ripgrep through help
 
-  - tabs are ugly right now and I don't want the tab number in the middle of the bar
   - [ ] very specific python indentation behaviour:
     - [ ] related issue: when double enter in insert mode, it should fallback an indention level
   ```python

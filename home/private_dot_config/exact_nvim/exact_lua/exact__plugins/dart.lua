@@ -2,25 +2,27 @@
 -- | iofq/dart.nvim: Bufferline                              |
 -- +---------------------------------------------------------+
 
+-- Do not show tab indicator (delegated to lualine)
 require("dart").setup({
+    buflist = {}, -- Disable recent buffers, neovim doesn't need tabs
     tabline = {
         always_show = false,
         -- Reverse tabline order: first show marked buffers, then recent
-        order = function()
-            local order = {}
-            for i, key in ipairs(vim.list_extend(vim.deepcopy(Dart.config.marklist), Dart.config.buflist)) do
-                order[key] = i
-            end
-            return order
-        end,
+        -- order = function()
+        --     local order = {}
+        --     for i, key in ipairs(vim.list_extend(vim.deepcopy(Dart.config.marklist), Dart.config.buflist)) do
+        --         order[key] = i
+        --     end
+        --     return order
+        -- end,
     },
     mappings = {
-        mark = "Mm",
-        jump = "M",
-        pick = "Mp",
-        next = "[b",
-        prev = "]b",
-        unmark_all = "Mu",
+        mark = "+",
+        jump = "=",
+        -- pick = "Mp",
+        next = "]b",
+        prev = "[b",
+        -- unmark_all = "Mu",
     },
 })
 
