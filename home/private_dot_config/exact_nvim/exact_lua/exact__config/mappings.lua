@@ -196,6 +196,12 @@ vim.keymap.set("x", "<C-N>", "<Down>")
 -- | Miscellaneous                                           |
 -- +---------------------------------------------------------+
 
+-- Do not add { and } to jumplist
+vim.cmd([[
+    nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>
+    nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>
+]])
+
 -- Workaround for exiting neovim
 -- https://github.com/neovim/neovim/issues/14061
 vim.cmd([[
