@@ -25,7 +25,6 @@ auto_install = "prompt"
 # +----------------------------------------------------------+
 
 # +- Vim Built-in Enhancements ------------------------------+
-# "dial.nvim" = "0.4.0"
 "highlight-undo.nvim" = { git = "tzachar/highlight-undo.nvim", rev = "ee32e12693d70e66f954d09a504a7371d110fc27" }
 "mini.misc" = "0.16.0"
 "nvim-origami" = { git = "chrisgrieser/nvim-origami", rev = "d42d11008a32f5f8c92bca6fd63f6782f197d114" }
@@ -312,9 +311,10 @@ path = "/home/quitlox/Workspace/neovim-plugins"
 # | Graveyard                                                |
 # +----------------------------------------------------------+
 # "marks.nvim" = { git = "chentoast/marks.nvim" }
+# "dial.nvim" = "0.4.0"
 
-# hlslens causes commandline completion to dissapear: https://github.com/kevinhwang91/nvim-hlslens/issues/75
 # "nvim-hlslens" = { git = "kevinhwang91/nvim-hlslens", rev = "0bd7ddb0aecf095055e9cb6eef0c25c70fb69cfc", pin = true } # pinned because of outdated release
+#     hlslens causes commandline completion to dissapear: https://github.com/kevinhwang91/nvim-hlslens/issues/75
 
 # +- Go -----------------------------------------------------+
 # "go.nvim" = { version = "0.10.0", ft = ["go", "gomod"] }

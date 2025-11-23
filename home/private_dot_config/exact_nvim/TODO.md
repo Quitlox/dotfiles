@@ -1,55 +1,28 @@
 - Features
-
   - [ ] When going to a definition outside of the cwd, open a new tab and set the tcd
   - [ ] Add cheatsheets for infrequently used workflows:
     - [ ] Markdown: Editing Tables
     - [ ] CSV: Viewing / Editing
     - [ ] Kulala
-    - NVIM TIPS PLUGIN FOR CHEATS?!
   - [ ] Which-Key:
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
 - To Investigate:
-  - overseer: clone task (should be possible with serialize)
+  - `overseer.nvim`: clone task (should be possible with serialize)
+  - `python`: indentation level should dedent upon each blank new-line
+  - `mini.ai`: mapping `val` doesn't work quickly (only slowly after `va`)
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
-
   - i need a hydra mode for git staging
-  - ripgrep through help
-
-  - [ ] very specific python indentation behaviour:
-    - [ ] related issue: when double enter in insert mode, it should fallback an indention level
-  ```python
-  class MpycFunction(Function):
-
-      def _spawn_party_process_with_streaming(
-          self, party_id: int, n_parties: int, temp_dir: Path
-      ) -> subprocess.Popen:
-          ...
-
-          def subprocess_logger(pipe: IO[bytes]):
-              with pipe:
-                  for line in iter(pipe.readline, b""):
-                      self.stash[MPYC_LOG_KEY].append(line.decode("ascii").strip())
-                      # 2. cursor jumps to this indentation level
-
-          # 1. <cursor here> press <C-S-O>
-          thread = Thread(target=subprocess_logger, args=(process.stdout,), daemon=True)
-          thread.start()
-  ```
 
 - Requires Contribution:
-
-  - [ ] overseer: background tasks should not be awaited for completion
   - [ ] `scissors.nvim`: add option to toggle autosnippet
-
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
     - https://github.com/rcarriga/nvim-dap-ui/issues/175
     - https://github.com/rcarriga/nvim-dap-ui/issues/260
   - [ ] nvim-dap-ui: watches window should allow delete on partial line (with ">")
 
 - Blocked:
-
   - [ ] `aerial.nvim`: improve keymap window (group related mappings, remove duplicates)
       - https://github.com/stevearc/aerial.nvim/pull/469
   - [ ] `overseer.nvim`: (will be refactored)
@@ -71,8 +44,15 @@
   - [ ] nvim-treesitter-textobjects / mini.ai: python @string.inner / @string.outer
         I would need to find a way around the "@string.inner" problem
 
-When need arises:
+Plugins I keep forgetting to use:
+- `debugprint`: use `g?` for printing
+- `mini.ai`: 
+  - use textobjects:`l` for statement, `o` for block, `i` for indent, `s` for subword, `u` for function call
+  - use `g[<object>` and `g]<object>` to navigate to start/end of textobject
 
+
+When need arises:
+- [codesettings.nvim](https://github.com/mrjones2014/codesettings.nvim): replacement of `neoconf.nvim`
 - [molten.nvim] for Python REPL / Jupyter Notebook
 - [remote-nvim.nvim] when working on remote machines.
 - replacements:
