@@ -94,6 +94,7 @@ auto_install = "prompt"
 
 # +- Language Server Protocol -------------------------------+
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
+"lensline.nvim" = { git = "oribarilan/lensline.nvim", rev = "ee938078aeee9751aafc20b055fcbb8aa579bb76" }
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "glance.nvim" = { git = "DNLHC/glance.nvim", rev = "bf86d8b79dce808e65fdb6e9269d0b4ed6d2eefc" }
 "hover.nvim" = { git = "lewis6991/hover.nvim", rev = "3b49066e09e03e63be6d6f43ae2b8bcd58301f63" }
