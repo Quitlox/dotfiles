@@ -13,7 +13,7 @@ require("origami").setup({
         disableOnFt = { "snacks_picker_input", "grug-far" },
     },
     autoFold = {
-        enabled = true,
+        enabled = false,
         kinds = { "comment", "imports" },
     },
     foldKeymaps = {
