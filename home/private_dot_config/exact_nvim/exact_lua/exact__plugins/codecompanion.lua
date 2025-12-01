@@ -77,7 +77,7 @@ require("codecompanion").setup({
             },
         },
         --+- Integration: codecompanion-spinner
-        spinner = {},
+        spinner = { opts = { style = "lualine" } },
     }, vim.fn.executable("vectorcode") == 1 and {
         --+- Integration: VectorCode
         vectorcode = {

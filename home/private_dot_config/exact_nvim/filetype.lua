@@ -6,6 +6,7 @@ vim.filetype.add({
         ["~/.config/Code/User/settings.json"] = "jsonc",
         -- Misc
         ["launch.json"] = "jsonc",
+        ["settings.json"] = "jsonc",
         ["pyproject.toml"] = "toml.python",
     },
     extension = {

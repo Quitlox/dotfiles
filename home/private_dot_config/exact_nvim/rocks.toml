@@ -189,8 +189,8 @@ auto_install = "prompt"
 # +- LLM ----------------------------------------------------+
 "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
 "codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v17.33.0" }
+"codecompanion-spinners.nvim" = { git = "lalitmee/codecompanion-spinners.nvim", rev = "86926cbf7554d69d40d2a5c3cf576063814a42d5" }
 "codecompanion-history.nvim" = { git = "ravitemer/codecompanion-history.nvim", rev = "eb99d256352144cf3b6a1c45608ec25544a0813d" }
-"codecompanion-spinner.nvim" = { git = "franco-ruggeri/codecompanion-spinner.nvim", rev = "v0.2.3" }
 "vectorcode" = { git = "davidyz/vectorcode", rev = "0.7.19" }
 "mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "v6.2.0" }
 

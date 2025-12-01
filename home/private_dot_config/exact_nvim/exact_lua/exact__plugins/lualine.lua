@@ -116,6 +116,14 @@ local function dart()
     return line:gsub("%%#DartFill#.-$", "")
 end
 
+local function cc_spinner()
+    local success, component = pcall(require, "codecompanion._extensions.spinner.styles.lualine")
+    if not success then
+        return nil
+    end
+    return component.get_lualine_component()
+end
+
 --+- Customize Modules --------------------------------------+
 local branch = { "b:gitsigns_head", icon = " ", fmt = trunc(80 * 4, 20, nil, false) }
 local git_blame = { "b:gitsigns_blame_line", icon = " ", fmt = trunc(180, 40, 140, true) }
@@ -179,7 +187,7 @@ require("lualine").setup({
         lualine_a = { "my_cwd" },
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
-        lualine_x = { "overseer" },
+        lualine_x = { cc_spinner(), "overseer" },
         lualine_y = { autoformat_status, "my_active_linters", "my_fancy_lsp_servers", python_venv },
         lualine_z = { "my_mixed_indent", encoding, fileformat, "my_fancy_searchcount", "my_fancy_location" },
     },
