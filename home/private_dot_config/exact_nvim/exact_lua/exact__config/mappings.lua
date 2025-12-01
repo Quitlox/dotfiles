@@ -67,8 +67,8 @@ vim.keymap.set("v", "=", "=gv", { noremap = true })
 -- Disable highlight when <leader><cr> is pressed
 vim.keymap.set("n", "<leader><cr>", ":noh<cr>", { silent = true })
 
--- Enter command mode from visual mode
-vim.keymap.set("v", ":", ":<C-U>", { noremap = true })
+-- Enter command mode from visual mode (removed - was preventing automatic '<,'> range)
+-- vim.keymap.set("v", ":", ":<C-U>", { noremap = true })
 
 -- Navigate to closed folds
 local function goto_closed_fold(direction)
