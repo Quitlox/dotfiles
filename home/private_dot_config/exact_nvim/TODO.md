@@ -53,6 +53,9 @@ Plugins I keep forgetting to use:
 - `mini.ai`: 
   - use textobjects:`l` for statement, `o` for block, `i` for indent, `s` for subword, `u` for function call
   - use `g[<object>` and `g]<object>` to navigate to start/end of textobject
+- `treewalker.nvim`:
+  - Use `<A-h/j/k/l>` for navigation
+  - Use `g + h/j/k/l` for swaps
 
 
 When need arises:
@@ -60,13 +63,13 @@ When need arises:
 - [molten.nvim] for Python REPL / Jupyter Notebook
 - [remote-nvim.nvim] when working on remote machines.
 - replacements:
-  - [ ] `nvzone/floatterm` -> pretty cool way of managing terminals. I currently
+  -  `nvzone/floatterm` -> pretty cool way of managing terminals. I currently
     stuggle with managing multiple terminals..
-  - [ ] `rachartier/tiny-code-action.nvim` -> nicer code action?
+  -  `rachartier/tiny-code-action.nvim` -> nicer code action?
   supports both preview and quick keybindings.
 - language-specific:
-  - [ ] web: colortils.nvim (replacement of colorizer)
-  - [ ] enable `textDocument/documentColor`
+  -  web: colortils.nvim (replacement of colorizer)
+  -  enable `textDocument/documentColor`
     - https://github.com/neovim/neovim/pull/33440
 - `smart-motion.nvim`: flexible and extensible motion plugin, but I am satisfied with flash
 - better marks: `recall.nvim` + `marks.nvim` (harpoon/grapple/arrow-like solution?)
