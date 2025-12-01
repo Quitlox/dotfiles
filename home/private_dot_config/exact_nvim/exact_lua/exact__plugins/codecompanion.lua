@@ -26,7 +26,8 @@ require("codecompanion").setup({
     },
     strategies = {
         chat = {
-            adapter = "anthropic",
+            adapter = "copilot",
+            model = "Claude Sonnet 4.5",
             keymaps = {
                 completion = { modes = { i = "<c-space>" } },
                 change_adapter = { modes = { n = "gA" } },
@@ -50,7 +51,8 @@ require("codecompanion").setup({
             },
         },
         inline = {
-            adapter = "anthropic",
+            adapter = "copilot",
+            model = "GPT-5.1-Codex-Mini",
             keymaps = {
                 -- accept_change = { modes = { n = "<leader>ca" } },
                 -- reject_change = { modes = { n = "<leader>cr" } },
