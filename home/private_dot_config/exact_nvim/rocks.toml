@@ -139,7 +139,8 @@ auto_install = "prompt"
 # +- LSP ----------------------------------------------------+
 "nvim-lspconfig" = "2.5.0"
 "mason.nvim" = { git = "mason-org/mason.nvim", rev = "v2.1.0" }
-"neoconf.nvim" = { git = "folke/neoconf.nvim", rev = "8afa42277fa944f60071241b37e922b6f2d9a9f8" }
+# "neoconf.nvim" = { git = "folke/neoconf.nvim", rev = "8afa42277fa944f60071241b37e922b6f2d9a9f8" }
+"codesettings.nvim" = { git = "mrjones2014/codesettings.nvim", rev = "v1.5.1" }
 "otter.nvim" = "2.13.2"
 
 # +- Config -------------------------------------------------+
