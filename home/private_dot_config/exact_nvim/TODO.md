@@ -18,6 +18,7 @@
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - i need a hydra mode for git staging
+  - mapping for debug step-out-of
 
 - Requires Contribution:
   - [ ] `scissors.nvim`: add option to toggle autosnippet
