@@ -134,11 +134,12 @@ npairs.add_rules({
 -- +---------------------------+
 -- | Rust Rules                |
 -- +---------------------------+
-npairs.add_rule(
-    Rule("<", ">", { "rust" })
-        :with_pair(cond.before_regex("%a+:?:?$", 3))
-        :with_move(cond.after_text(">"))
-)
+-- auto-pair `<>` for generics but not as greater-than/less-than operators
+npairs.add_rule(Rule('<', '>', { "rust" }):with_pair(
+  cond.before_regex('%a+:?:?$', 3)
+):with_move(function(opts)
+  return opts.char == '>'
+end))
 
 -- +---------------------------+
 -- | Vue Rules                 |
