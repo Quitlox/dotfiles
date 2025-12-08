@@ -13,6 +13,12 @@ require("nvim-ts-autotag").setup({
     -- Empty by default, useful if one of the "opts" global settings
     -- doesn't work well in a specific filetype
     per_filetype = {
+        ["python"] = {
+            enable_close = false,
+        },
+        ["rust"] = {
+            enable_close = false,
+        },
         ["text"] = {
             enable_close = false,
         },
