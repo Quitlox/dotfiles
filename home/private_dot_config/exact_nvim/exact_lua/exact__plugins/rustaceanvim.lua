@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "<localleader>rc", "<cmd>RustLsp openCargo<cr>", { desc = "Open Cargo", buffer = 0 })
         vim.keymap.set("n", "<localleader>re", "<cmd>RustLsp explainError<cr>", { desc = "Open Explain Error", buffer = 0 })
         vim.keymap.set("n", "<localleader>rr", "<cmd>RustLsp run<cr>", { desc = "Open Run", buffer = 0 })
+        vim.keymap.set("n", "<localleader>rh", "<cmd>Krust<cr>", { desc = "Krust Hover", buffer = 0 })
 
         require("which-key").add({
             { "<localleader>r", group = "Rust", icon = "󱘗" },
