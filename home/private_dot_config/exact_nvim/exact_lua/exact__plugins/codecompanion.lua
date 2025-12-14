@@ -5,16 +5,6 @@
 require("codecompanion").setup({
     adapters = {
         http = {
-            gemini_pro = function()
-                return require("codecompanion.adapters").extend("gemini", {
-                    name = "gemini_pro",
-                    schema = {
-                        model = {
-                            default = "gemini-2.5-pro-preview-05-06",
-                        },
-                    },
-                })
-            end,
             acp = {
                 claude_code = function()
                     return require("codecompanion.adapters").extend("claude_code", {
@@ -24,7 +14,7 @@ require("codecompanion").setup({
             },
         },
     },
-    strategies = {
+    interactions = {
         chat = {
             adapter = "copilot",
             model = "Claude Sonnet 4.5",
@@ -62,14 +52,15 @@ require("codecompanion").setup({
 
     extensions = vim.tbl_extend("force", {
         --+- Integration: MCPHub
-        mcphub = {
-            callback = "mcphub.extensions.codecompanion",
-            opts = {
-                show_result_in_chat = true,
-                make_vars = true,
-                make_slash_commands = true,
-            },
-        },
+        -- FIXME: Not yet updated for v18.0.0
+        -- mcphub = {
+        --     callback = "mcphub.extensions.codecompanion",
+        --     opts = {
+        --         show_result_in_chat = true,
+        --         make_vars = true,
+        --         make_slash_commands = true,
+        --     },
+        -- },
         --+- Integration: codecompanion-history
         history = {
             enabled = true,
@@ -81,10 +72,11 @@ require("codecompanion").setup({
         --+- Integration: codecompanion-spinner
         spinner = { opts = { style = "lualine" } },
     }, vim.fn.executable("vectorcode") == 1 and {
+        -- FIXME: Not yet updated for v18.0.0
         --+- Integration: VectorCode
-        vectorcode = {
-            opts = {},
-        },
+        -- vectorcode = {
+        --     opts = {},
+        -- },
     } or {}),
 
     prompt_library = {
