@@ -25,4 +25,4 @@ Snacks.toggle
             vim.g.lazydev_enabled = state
         end,
     })
-    :map("yol")
+    :map("yoL")
