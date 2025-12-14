@@ -20,6 +20,11 @@
   - i need a hydra mode for git staging
   - mapping for debug step-out-of
 
+  - `%` on `<` does not seem to work in rust (matchup)
+  - the markdown rendered in Rust on LSP hover is odd:
+    - dots after `[...]` are placed on nextline
+    - hard line breaks are incorrectly dealt with
+
 - Requires Contribution:
   - [ ] `scissors.nvim`: add option to toggle autosnippet
   - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
