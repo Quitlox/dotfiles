@@ -163,7 +163,7 @@ auto_install = "prompt"
 "nvim-dap-python" = "scm"
 # +- Rust ---------------------------------------------------+
 "rustaceanvim" = "7.0.6"
-"krust.nvim" = { git = "alexpasmantier/krust.nvim", rev = "899b65851d25d6eb250833709ab5b27c760171dd", ft = "rust", options = {} }
+"krust.nvim" = { git = "alexpasmantier/krust.nvim", rev = "899b65851d25d6eb250833709ab5b27c760171dd", ft = "rust", config = true }
 # +- Vim ----------------------------------------------------+
 "one-small-step-for-vimkind" = { git = "jbyuki/one-small-step-for-vimkind", rev = "87eeca2bd4d90a94eed1ef0dbc66885117e7bacb" }
 # +- Web ----------------------------------------------------+
