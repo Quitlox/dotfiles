@@ -17,7 +17,7 @@ require("codecompanion").setup({
     interactions = {
         chat = {
             adapter = "copilot",
-            model = "Claude Sonnet 4.5",
+            model = "claude-sonnet-4.5",
             keymaps = {
                 completion = { modes = { i = "<c-space>" } },
                 change_adapter = { modes = { n = "gA" } },
