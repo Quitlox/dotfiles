@@ -232,7 +232,7 @@ auto_install = "prompt"
 
 "gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "0344f643768c4d64af4add8c1bdddf6f7d4c9010" }
 "snacks.nvim" = { git = "folke/snacks.nvim", rev = "v2.30.0", opt = true }
-"codesnap.nvim" = { git = "mistricky/codesnap.nvim", rev = "d8d55f5b62a6c12bc7756eb0b997a776eafd086e" }
+# "codesnap.nvim" = { git = "mistricky/codesnap.nvim", rev = "d8d55f5b62a6c12bc7756eb0b997a776eafd086e" }
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
