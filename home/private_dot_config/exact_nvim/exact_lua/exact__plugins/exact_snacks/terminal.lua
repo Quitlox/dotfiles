@@ -51,11 +51,20 @@ Snacks.config.style("my_lazygit", {
     },
 })
 
+Snacks.config.style("my_lazydocker", {
+    keys = {
+        ["`"] = "hide",
+    },
+})
+
 --+- Behaviour ----------------------------------------------+
 local function toggle_terminal()
     -- Lazygit: magic terminal number 9
     if vim.v.count1 == 9 then
         return Snacks.lazygit.open()
+    end
+    if vim.v.count1 == 8 then
+        return Snacks.terminal("lazydocker", nil)
     end
 
     -- Add current tab as context for tab-local terminals, such that terminal
