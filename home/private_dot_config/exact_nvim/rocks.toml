@@ -193,7 +193,7 @@ auto_install = "prompt"
 "codecompanion-spinners.nvim" = { git = "lalitmee/codecompanion-spinners.nvim", rev = "86926cbf7554d69d40d2a5c3cf576063814a42d5" }
 "codecompanion-history.nvim" = { git = "ravitemer/codecompanion-history.nvim", rev = "8c6ca9f998aeef89f3543343070f8562bf911fb4" }
 "vectorcode" = { git = "davidyz/vectorcode", rev = "0.7.19" }
-"mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "v6.2.0" }
+"mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "5193329d510a68f1f5bf189960642c925c177a3a" }
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.38.0"

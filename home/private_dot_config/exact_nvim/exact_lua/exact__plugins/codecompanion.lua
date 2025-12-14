@@ -52,15 +52,14 @@ require("codecompanion").setup({
 
     extensions = vim.tbl_extend("force", {
         --+- Integration: MCPHub
-        -- FIXME: Not yet updated for v18.0.0
-        -- mcphub = {
-        --     callback = "mcphub.extensions.codecompanion",
-        --     opts = {
-        --         show_result_in_chat = true,
-        --         make_vars = true,
-        --         make_slash_commands = true,
-        --     },
-        -- },
+        mcphub = {
+            callback = "mcphub.extensions.codecompanion",
+            opts = {
+                show_result_in_chat = true,
+                make_vars = true,
+                make_slash_commands = true,
+            },
+        },
         --+- Integration: codecompanion-history
         history = {
             enabled = true,
