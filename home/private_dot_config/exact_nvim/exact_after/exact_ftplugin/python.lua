@@ -1,26 +1,19 @@
 local ok1, _ = pcall(require, "mini.ai")
-local ok2, _ = pcall(require, "nvim-treesitter.configs")
+local ok2, _ = pcall(require, "nvim-treesitter-textobjects.move")
 if not ok1 or not ok2 then
     return
 end
 
 --+- Treesitter: Customize textobjects ----------------------+
-require("nvim-treesitter.configs").setup({
-    textobjects = {
-        move = {
-            goto_next_start = {
-                ["]m"] = "@function.name",
-                ["]]"] = "@class.name",
-                ["]C"] = "@class.name",
-            },
-            goto_previous_start = {
-                ["[m"] = "@function.name",
-                ["[["] = "@class.name",
-                ["[C"] = "@class.name",
-            },
-        },
-    },
-})
+-- stylua: ignore start
+local ts_move = require("nvim-treesitter-textobjects.move")
+vim.keymap.set({ "n", "x", "o" }, "]m", function() ts_move.goto_next_start("@function.name", "textobjects") end, { desc = "Next Function Start (Python)" })
+vim.keymap.set({ "n", "x", "o" }, "[m", function() ts_move.goto_previous_start("@function.name", "textobjects") end, { desc = "Previous Function Start (Python)" })
+vim.keymap.set({ "n", "x", "o" }, "]]", function() ts_move.goto_next_start("@class.name", "textobjects") end, { desc = "Next Class Start (Python)" })
+vim.keymap.set({ "n", "x", "o" }, "[[", function() ts_move.goto_previous_start("@class.name", "textobjects") end, { desc = "Previous Class Start (Python)" })
+vim.keymap.set({ "n", "x", "o" }, "]C", function() ts_move.goto_next_start("@class.name", "textobjects") end, { desc = "Next Class Start (Python)" })
+vim.keymap.set({ "n", "x", "o" }, "[C", function() ts_move.goto_previous_start("@class.name", "textobjects") end, { desc = "Previous Class Start (Python)" })
+-- stylua: ignore end
 
 --+- mini.ai: Customize textobjects -------------------------+
 -- Function to check if cursor is in a comment
