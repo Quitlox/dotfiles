@@ -5,8 +5,8 @@
 --+- Config: Diagnostics -----------------------------------+
 vim.diagnostic.config({
     signs = {
-        severity = { min = vim.diagnostic.severity.INFO }
-    }
+        severity = { min = vim.diagnostic.severity.INFO },
+    },
 })
 
 --+- Config: Inlay Hints ------------------------------------+
@@ -93,10 +93,10 @@ local lsps = {
     "lua_ls",
     "nil_ls",
     "pug",
-    "pyrefly",
     "pytest_lsp",
     "svelte",
     "tombi",
+    "ty",
     "yamlls",
 }
 
