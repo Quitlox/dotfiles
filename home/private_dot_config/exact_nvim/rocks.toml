@@ -86,6 +86,7 @@
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.2" }
 "diffview.nvim" = { git = "sindrets/diffview.nvim", rev = "4516612fe98ff56ae0415a259ff6361a89419b0a" }
+"vscode-diff.nvim" = { git = "esmuellert/vscode-diff.nvim", rev = "v1.7.0" }
 
 # +- Language Server Protocol -------------------------------+
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
@@ -235,6 +236,7 @@
 "nvim-nio" = "1.10.1"  # pytest
 "plenary.nvim" = { git = "nvim-lua/plenary.nvim", rev = "b9fd5226c2f76c951fc8ed5923d85e4de065e509" }  # codecompanion, typescript-tools.nvim, dart.nvim
 "jsregexp" = "0.1.0"  # luasnip
+"nui.nvim" = { git = "muniftanjim/nui.nvim", rev = "0.4.0" } # vscode-diff.nvim
 
 # +----------------------------------------------------------+
 # | Config                                                   |
