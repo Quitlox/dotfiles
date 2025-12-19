@@ -19,18 +19,10 @@ require("luasnip").setup({
 
 -- +- Integration: Treesitter --------------------------------+
 -- textobject: code fence
-require("nvim-treesitter.configs").setup({
-    textobjects = {
-        move = {
-            goto_next_start = {
-                ["]t"] = { query = { "@fenced_code_block.outer" }, desc = "Code Block" },
-            },
-            goto_previous_start = {
-                ["[t"] = { query = { "@fenced_code_block.outer" }, desc = "Code Block" },
-            },
-        },
-    },
-})
+-- stylua: ignore start
+vim.keymap.set({"n","x","o",},"]t", function() require("nvim-treesitter-textobjects").goto_next_start("@fenced_code_block.outer") end, {desc="Next Codeblock Start"})
+vim.keymap.set({"n","x","o",},"[t", function() require("nvim-treesitter-textobjects").goto_previous_start("@fenced_code_block.outer") end, {desc="Previous Codeblock Start"})
+-- stylua: ignore end
 
 --+- Integration: MiniAI ------------------------------------+
 -- textobject: code fence
