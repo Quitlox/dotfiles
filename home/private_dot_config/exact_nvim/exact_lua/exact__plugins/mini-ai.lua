@@ -46,7 +46,7 @@ local mini_ai_opts = {
     custom_textobjects = {
         C = gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
         i = require("mini.extra").gen_ai_spec.indent(),
-        l = gen_spec.treesitter({ a = "@statement.outer", i = "@statement.inner" }),
+        L = gen_spec.treesitter({ a = "@statement.outer", i = "@statement.inner" }),
         m = gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
         o = gen_spec.treesitter({ a = { "@conditional.outer", "@block.outer", "@loop.outer" }, i = { "@block.inner", "@conditional.inner", "@loop.inner" } }),
 
@@ -107,7 +107,7 @@ local objects = {
     -- Custom: Treesitter
     { "C", desc = "class" },
     { "i", desc = "indent" },
-    { "l", desc = "statement" },
+    { "L", desc = "statement/line" },
     { "m", desc = "function" },
     { "o", desc = "block, conditional, loop" },
 

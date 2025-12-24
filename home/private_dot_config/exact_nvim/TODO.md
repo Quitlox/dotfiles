@@ -4,7 +4,6 @@
 - To Investigate:
   - `overseer.nvim`: clone task (should be possible with serialize)
   - `python`: indentation level should dedent upon each blank new-line
-  - `mini.ai`: mapping `val` doesn't work quickly (only slowly after `va`)
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
 
