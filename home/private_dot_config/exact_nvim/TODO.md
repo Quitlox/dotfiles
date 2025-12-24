@@ -6,9 +6,6 @@
   - `python`: indentation level should dedent upon each blank new-line
   - `mini.ai`: mapping `val` doesn't work quickly (only slowly after `va`)
 
-  - only show path source after cd/tcd in blink
-  - show path in normal buffer also after slash
-
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - i need a hydra mode for git staging
 

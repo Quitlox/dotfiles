@@ -230,10 +230,19 @@ require("blink-cmp").setup({
                     label_trailing_slash = true,
                 },
                 override = {
-                    --- Ensure that path completion does not show in codecompanion window (interferes with slash commands)
                     should_show_items = function(self, context, items)
+                        -- In cmdline mode, only show path completions for directory commands
+                        -- (cmdline source handles file commands like :e, but not directory commands like :cd)
+                        if context.mode == "cmdline" then
+                            local cmdline = vim.fn.getcmdline()
+                            local cmd = cmdline:match("^%s*(%S+)")
+                            local dir_cmds = { "cd", "tcd", "lcd", "chdir" }
+                            return cmd and vim.tbl_contains(dir_cmds, cmd)
+                        end
+
+                        -- Ensure that path completion does not show in codecompanion window (interferes with slash commands)
                         local is_trigger = context.trigger.initial_kind == "trigger_character" and context.trigger.initial_character == "/"
-                        if is_trigger and vim.tbl_contains(context.providers, "codecompanion") then
+                        if is_trigger and vim.bo.filetype == "codecompanion" then
                             local line_before_trigger = context.line:sub(1, context.line:find(context.trigger.initial_character))
                             return #line_before_trigger > 1
                         end
