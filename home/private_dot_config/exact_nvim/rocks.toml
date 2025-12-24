@@ -184,7 +184,7 @@
 "dart.nvim" = { git = "iofq/dart.nvim", rev = "205f809fbb27d56aff22756a97b5ba6f0c7243c3" }
 
 # +- LLM ----------------------------------------------------+
-"gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
+# "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
 "codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v18.2.0" }
 "codecompanion-spinners.nvim" = { git = "lalitmee/codecompanion-spinners.nvim", rev = "86926cbf7554d69d40d2a5c3cf576063814a42d5" }
 "codecompanion-history.nvim" = { git = "ravitemer/codecompanion-history.nvim", rev = "8c6ca9f998aeef89f3543343070f8562bf911fb4" }
