@@ -67,7 +67,7 @@ vim.opt.eadirection = "hor"
 vim.opt.title = true
 vim.opt.titlestring = "neovim: %{fnamemodify(getcwd(),':t')} (%t) titlelen=70"
 --- Spell ---
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = "en_us,nl"
 --- Backup ---
 vim.opt.undofile = true

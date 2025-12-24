@@ -74,6 +74,13 @@ vim.lsp.config("basedpyright", {
         },
     },
 })
+vim.lsp.config("harper_ls", {
+    settings = {
+        ["harper-ls"] = {
+            dialect = "British",
+        },
+    },
+})
 
 --+- LSP: Enable --------------------------------------------+
 local lsps = {
