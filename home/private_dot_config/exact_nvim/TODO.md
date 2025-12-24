@@ -12,8 +12,6 @@
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - i need a hydra mode for git staging
 
-  - `%` on `<` does not seem to work in rust (matchup)
-
 - Requires Contribution:
   - [ ] `scissors.nvim`: add option to toggle autosnippet
   - [ ] `nvim-dap-ui`: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
@@ -41,7 +39,6 @@
 
 - Contribute back, sane defaults, low priority:
   - [ ] overseer.nvim: task view has not filetype
-  - [ ] overseer.nvim: my custom dispose_all, restart_all commands
   - [ ] nvim-treesitter-textobjects / mini.ai: python @string.inner / @string.outer
         I would need to find a way around the "@string.inner" problem
 
@@ -53,6 +50,9 @@ Plugins I keep forgetting to use:
 - `treewalker.nvim`:
   - Use `<A-h/j/k/l>` for navigation
   - Use `g + h/j/k/l` for swaps
+- `spider.nvim`:
+  - Use `H`/`L` for navigation of subwords
+  - Use `H`/`L` as operator, i.e. `cH`/`cL`
 
 
 When need arises:
