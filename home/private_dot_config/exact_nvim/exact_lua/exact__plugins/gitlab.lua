@@ -10,7 +10,7 @@ vim.api.nvim_create_user_command("SetTNOGitlabToken", function(args)
         fi
         touch .gitlab.nvim
         echo -n "auth_token=" >> .gitlab.nvim
-        bw get item "ci.tno.nl" | jq '.fields[] | select(.name == "Access Token (Neovim)").value' >> .gitlab.nvim
+        rbw get --field "ACCESS_TOKEN_NEOVIM" "ci.tno.nl" >> .gitlab.nvim
         echo -n "gitlab_url=https://ci.tno.nl" >> .gitlab.nvim
     ]]
     Snacks.terminal.open(cmd)
@@ -19,21 +19,17 @@ end, {
 })
 
 --+- Setup --------------------------------------------------+
-local function setup_gitlab()
-    require("gitlab.server").build(true)
-    require("diffview") -- gitlab requires global state from diffview
-    require("gitlab").setup({
-        help = "?",
-        discussion_tree = {
-            switch_view = "T",
-            jump_to_file = "i",
-            toggle_node = "o",
-            position = "bottom",
-        },
-    })
-end
-
-require("_config.util.lazy").require_stub("gitlab", setup_gitlab)
+require("gitlab.server").build(true)
+require("diffview") -- gitlab requires global state from diffview
+require("gitlab").setup({
+    help = "?",
+    discussion_tree = {
+        switch_view = "T",
+        jump_to_file = "i",
+        toggle_node = "o",
+        position = "bottom",
+    },
+})
 
 --+- Keymaps ------------------------------------------------+
 -- stylua: ignore start

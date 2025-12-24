@@ -85,6 +85,7 @@
 "neogit" = { git = "NeogitOrg/neogit", rev = "d8bf9102692250193b855acd9025a826f1af2729" }
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.2" }
+"gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "e29909cd1064a7b53c3150bff49449a548dadf8d" }
 "diffview.nvim" = { git = "sindrets/diffview.nvim", rev = "4516612fe98ff56ae0415a259ff6361a89419b0a" }
 "vscode-diff.nvim" = { git = "esmuellert/vscode-diff.nvim", rev = "v1.13.0" }
 
