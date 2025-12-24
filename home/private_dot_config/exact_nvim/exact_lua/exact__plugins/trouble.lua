@@ -41,7 +41,7 @@ require("trouble").setup({
 
 --+- Keymaps ------------------------------------------------+
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>ow", "<CMD>Trouble filtered_diagnostics<CR>", { desc = "Open Document Diagnostics" })
-vim.keymap.set("n", "<leader>od", "<CMD>Trouble filtered_diagnostics<CR>", {desc = "Open All Diagnostics"})
+vim.keymap.set("n", "<leader>ow", "<CMD>Trouble filtered_diagnostics focus=true<CR>", { desc = "Open Document Diagnostics" })
+vim.keymap.set("n", "<leader>od", "<CMD>Trouble filtered_diagnostics focus=true<CR>", {desc = "Open All Diagnostics"})
 vim.keymap.set("n", "<leader>oq", "<CMD>Trouble quickfix<CR>", { desc = "Open Quickfix" })
 -- stylua: ignore end
