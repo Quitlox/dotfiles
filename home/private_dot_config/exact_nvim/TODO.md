@@ -1,36 +1,26 @@
 - Features
   - [ ] When going to a definition outside of the cwd, open a new tab and set the tcd
-  - [ ] Add cheatsheets for infrequently used workflows:
-    - [ ] Markdown: Editing Tables
-    - [ ] CSV: Viewing / Editing
-    - [ ] Kulala
-    - [ ] Trouble:
-        - filter diagnostics on source: `Trouble diagnostics filter={ ["item.source"] = "pylint" }`
-        - filter diagnostics on source: `Trouble diagnostics filter.not={ ["item.source"] = "Harper" }`
-  - [ ] Which-Key:
-    - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
 - To Investigate:
   - `overseer.nvim`: clone task (should be possible with serialize)
   - `python`: indentation level should dedent upon each blank new-line
   - `mini.ai`: mapping `val` doesn't work quickly (only slowly after `va`)
 
-  - upon "gA" or session restore, we should trigger "local id = vim.api.nvim_create_augroup("python_nvim_autocmd_group", { clear = true })" to load python.nvim
+  - upon "gA" or session restore, we should trigger to load python.nvim
   - only show path source after cd/tcd in blink
   - show path in normal buffer also after slash
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - i need a hydra mode for git staging
-  - mapping for debug step-out-of
 
   - `%` on `<` does not seem to work in rust (matchup)
 
 - Requires Contribution:
   - [ ] `scissors.nvim`: add option to toggle autosnippet
-  - [ ] nvim-dap-ui: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
+  - [ ] `nvim-dap-ui`: closing dap with editor splits sets winfixwidth, causing the windows not to resize properly
     - https://github.com/rcarriga/nvim-dap-ui/issues/175
     - https://github.com/rcarriga/nvim-dap-ui/issues/260
-  - [ ] nvim-dap-ui: watches window should allow delete on partial line (with ">")
+  - [ ] `nvim-dap-ui`: watches window should allow delete on partial line (with ">")
 
 - Blocked:
   - [ ] `aerial.nvim`: improve keymap window (group related mappings, remove duplicates)
@@ -47,6 +37,8 @@
       sometimes gets stuck in toggling the breakpoint. It seems as if it's
       waiting for another key, but there are no duplicate mappings.
   - [ ] `neoconf.nvim`: broken as of lspconfig v2
+  - [ ] `which-key.nvim`: if support for custom highlights is added,
+    I should configure default mappings with a dimmed highlight
 
 - Contribute back, sane defaults, low priority:
   - [ ] overseer.nvim: task view has not filetype

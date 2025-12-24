@@ -23,7 +23,7 @@ end)
 
 -- TODO: at end of completion, tab should be used to escape parenthesis
 
-local ft_blacklist = { "copilot-chat" }
+local ft_blacklist = { "copilot-chat", "neovim-tips-search" }
 require("blink-cmp").setup({
     enabled = function()
         return not vim.tbl_contains(ft_blacklist, vim.bo.filetype) and vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
