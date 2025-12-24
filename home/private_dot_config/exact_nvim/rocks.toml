@@ -107,7 +107,8 @@
 "resession.nvim" = { git = "stevearc/resession.nvim", rev = "v1.2.1" }
 
 # +- Test ---------------------------------------------------+
-"neotest" = "5.13.4"
+# "neotest" = "5.13.4"
+"quicktest.nvim" = { git = "quolpr/quicktest.nvim", rev = "de70b0a171127b6bc67d0fe4091ae2cc70ae9e11" }
 
 # +- Tooling ------------------------------------------------+
 "conform.nvim" = "9.1.0"

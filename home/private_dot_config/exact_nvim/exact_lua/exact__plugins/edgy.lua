@@ -69,6 +69,7 @@ require("edgy").setup({
         { title = "DAP Console",     ft = "dapui_console",     wo = { winbar = "    DAP Console" } },
 
         { title = "Terminal",        ft = "snacks_terminal",   wo = { winbar = "    %{b:snacks_terminal.id}: %{b:term_title}" }, size = { height = 0.35 }, filter = filter_terminal_wins("bottom") },
+        { title = "QuickTest",       ft = "quicktest-output",  wo = { winbar = "    Tests" },                                    size = { height = 20 } },
         { title = "LSP Output",      ft = "outputpanel",       wo = { winbar = "    LSP Output" } },
     },
     -- stylua: ignore end
