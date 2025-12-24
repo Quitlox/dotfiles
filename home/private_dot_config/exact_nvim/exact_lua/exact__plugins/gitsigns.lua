@@ -30,31 +30,91 @@ local function on_attach(bufnr)
         return "<Ignore>"
     end
 
+    local function next_file()
+        gs.setqflist("all", { open = false }, function()
+            vim.schedule(function()
+                local qf = vim.fn.getqflist()
+                local cur_bufnr = vim.api.nvim_get_current_buf()
+                local found = false
+                for i, item in ipairs(qf) do
+                    if found and item.bufnr ~= cur_bufnr then
+                        vim.cmd("cc " .. i)
+                        return
+                    end
+                    if item.bufnr == cur_bufnr then found = true end
+                end
+                for i, item in ipairs(qf) do
+                    if item.bufnr ~= cur_bufnr then
+                        vim.cmd("cc " .. i)
+                        return
+                    end
+                end
+            end)
+        end)
+    end
+
+    local function prev_file()
+        gs.setqflist("all", { open = false }, function()
+            vim.schedule(function()
+                local qf = vim.fn.getqflist()
+                local cur_bufnr = vim.api.nvim_get_current_buf()
+                local found = false
+                for i = #qf, 1, -1 do
+                    if found and qf[i].bufnr ~= cur_bufnr then
+                        vim.cmd("cc " .. i)
+                        return
+                    end
+                    if qf[i].bufnr == cur_bufnr then found = true end
+                end
+                for i = #qf, 1, -1 do
+                    if qf[i].bufnr ~= cur_bufnr then
+                        vim.cmd("cc " .. i)
+                        return
+                    end
+                end
+            end)
+        end)
+    end
+
+    -- Navigation
     map("n", "]h", next_hunk, { expr = true, desc = "Hunk Next" })
     map("n", "[h", prev_hunk, { expr = true, desc = "Hunk Prev" })
 
     -- Actions
     -- stylua: ignore start
-    map("n", "<leader>hs", gs.stage_hunk, { desc = "Hunk Stage" })
-    map("n", "<leader>hr", gs.reset_hunk, { desc = "Hunk Reset" })
-    map("v", "<leader>hs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Hunk Stage" })
-    map("v", "<leader>hr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Hunk Reset" })
-    -- stylua: ignore end
-
-    -- stylua: ignore start
-    map("n", "<leader>ga", gs.stage_buffer, { desc = "Stage Buffer" })
-    -- stylua: ignore end
-
-    -- stylua: ignore start
-    map("n", "<leader>hS", gs.stage_buffer, { desc = "Hunk Stage Buffer" })
-    map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Hunk Reset" })
-    map("n", "<leader>hR", gs.reset_buffer, { desc = "Hunk Reset Buffer" })
-    map("n", "<leader>hp", gs.preview_hunk, { desc = "Hunk Preview" })
-    map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, { desc = "Hunk Blame" })
-    map("n", "<leader>hd", gs.diffthis, { desc = "Hunk Diff" })
-    map("n", "<leader>hD", function() gs.diffthis("~") end, { desc = "Hunk Diff Buffer" })
+    map("n", "<leader>ga", function() gs.stage_buffer(gs.refresh) end, { desc = "Stage Buffer" })
+    map("n", "<leader>hs", function() gs.stage_hunk(nil, {}, gs.refresh) end, { desc = "Stage" })
+    map("n", "<leader>hr", function() gs.reset_hunk(nil, {}, gs.refresh) end, { desc = "Reset" })
+    map("n", "<leader>hu", function() gs.undo_stage_hunk(gs.refresh) end, { desc = "Undo Stage" })
+    map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview" })
+    map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, { desc = "Blame" })
+    map("n", "<leader>hd", gs.diffthis, { desc = "Diff" })
+    map("n", "<leader>hD", function() gs.diffthis("~") end, { desc = "Diff Buffer" })
     map("n", "<leader>htd", gs.toggle_deleted, { desc = "Toggle Deleted" })
-    map("n", "<leader>hq", "<cmd>Gitsigns setqflist<cr>", { desc = "Git Quickfix" })
+    map("n", "<leader>hq", "<cmd>Gitsigns setqflist<cr>", { desc = "Quickfix" })
+    map("v", "<leader>hs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }, {}, gs.refresh) end, { desc = "Stage" })
+    map("v", "<leader>hr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }, {}, gs.refresh) end, { desc = "Reset" })
+    -- stylua: ignore end
+
+    -- Hydra mode: navigate and stage/reset hunks without leaving the which-key menu
+    -- stylua: ignore start
+    map("n", "<leader>hh", function() require("which-key").show({ keys = "<leader>h", loop = true }) end, { desc = "Hydra" })
+    map("n", "<leader>hj", function() gs.nav_hunk("next", { target = "all" }) end, { desc = "Next Hunk" })
+    map("n", "<leader>hk", function() gs.nav_hunk("prev", { target = "all" }) end, { desc = "Prev Hunk" })
+    map("n", "<leader>hgg", function() gs.nav_hunk("first", { target = "all" }) end, { desc = "First Hunk" })
+    map("n", "<leader>hG", function() gs.nav_hunk("last", { target = "all" }) end, { desc = "Last Hunk" })
+    map("n", "<leader>hJ", "j", { desc = "Down" })
+    map("n", "<leader>hK", "k", { desc = "Up" })
+    map("n", "<leader>h<C-d>", "<C-d>", { desc = "Scroll Down" })
+    map("n", "<leader>h<C-u>", "<C-u>", { desc = "Scroll Up" })
+    map("n", "<leader>hgj", function() gs.nav_hunk("next", { target = "unstaged" }) end, { desc = "Next Unstaged" })
+    map("n", "<leader>hgk", function() gs.nav_hunk("prev", { target = "unstaged" }) end, { desc = "Prev Unstaged" })
+    map("n", "<leader>hgJ", function() gs.nav_hunk("next", { target = "staged" }) end, { desc = "Next Staged" })
+    map("n", "<leader>hgK", function() gs.nav_hunk("prev", { target = "staged" }) end, { desc = "Prev Staged" })
+    map("n", "<leader>h]", next_file, { desc = "Next File" })
+    map("n", "<leader>h[", prev_file, { desc = "Prev File" })
+    map("n", "<leader>hS", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line(".") }, {}, gs.refresh) end, { desc = "Stage Line" })
+    map("n", "<leader>hR", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line(".") }, {}, gs.refresh) end, { desc = "Reset Line" })
     -- stylua: ignore end
 
     -- Whickey
