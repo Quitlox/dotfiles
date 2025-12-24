@@ -34,7 +34,7 @@ resession.setup({
     extensions = {
         neo_tree = { enable_in_tab = true },
         neotest = { enable_in_tab = true },
-        overseer = { enable_in_tab = true },
+        overseer = { enable_in_tab = true, autostart_on_load = false },
         ["treesitter-context"] = { enable_in_tab = true },
         dart = { enable_in_tab = false },
         python = { enable_in_tab = true },

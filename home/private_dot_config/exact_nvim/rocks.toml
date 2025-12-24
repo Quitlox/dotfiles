@@ -206,7 +206,7 @@
 "namu.nvim" = { git = "bassamsdata/namu.nvim", rev = "7e03a8acd62a79d08829b7cdad34a398ed8f379e" }
 
 # +- Runner (Overseer) --------------------------------------+
-"overseer.nvim" = { git = "stevearc/overseer.nvim", rev = "v1.6.0" }
+"overseer.nvim" = { git = "stevearc/overseer.nvim", rev = "v2.0.0" }
 
 # +- Statusline ---------------------------------------------+
 "lualine.nvim" = "scm"

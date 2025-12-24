@@ -30,6 +30,15 @@ local function start_all()
     end
 end
 
+local function open_output(direction)
+    local tasks = require("overseer").list_tasks({ recent_first = true })
+    if vim.tbl_isempty(tasks) then
+        vim.notify("No tasks found", vim.log.levels.WARN)
+    else
+        require("overseer").run_action(tasks[1], "open " .. direction)
+    end
+end
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = "Overseer*",
     callback = function()
@@ -44,24 +53,21 @@ require("overseer").setup({
     --     "snacks_terminal",
     -- },
     task_list = {
-        default_detail = 1,
-        bindings = {
+        keymaps = {
             ["<C-l>"] = false,
             ["<C-h>"] = false,
             ["<C-j>"] = false,
             ["<C-k>"] = false,
-            ["<A-l>"] = "IncreaseDetail",
-            ["<A-h>"] = "DecreaseDetail",
-            ["<A-k>"] = "ScrollOutputUp",
-            ["<A-j>"] = "ScrollOutputDown",
-            ["<Esc>"] = "Close",
-            ["o"] = "<cmd>OverseerQuickAction open<cr>",
-            ["d"] = "<cmd>OverseerQuickAction dispose<cr>",
-            ["s"] = "<cmd>OverseerQuickAction start<cr>",
-            ["r"] = "<cmd>OverseerQuickAction restart<cr>",
-            ["x"] = "<cmd>OverseerQuickAction stop<cr>",
-            ["j"] = "NextTask",
-            ["k"] = "PrevTask",
+            ["<A-k>"] = "keymap.scroll_output_up",
+            ["<A-j>"] = "keymap.scroll_output_down",
+            ["<Esc>"] = "<cmd>close<cr>",
+            ["o"] = "keymap.open",
+            ["d"] = { "keymap.run_action", opts = { action = "dispose" } },
+            ["s"] = { "keymap.run_action", opts = { action = "start" } },
+            ["r"] = { "keymap.run_action", opts = { action = "restart" } },
+            ["x"] = { "keymap.run_action", opts = { action = "stop" } },
+            ["j"] = "keymap.next_task",
+            ["k"] = "keymap.prev_task",
             ["X"] = stop_all,
             ["R"] = restart_all,
             ["D"] = dispose_all,
@@ -77,25 +83,21 @@ require("overseer").setup({
             -- { "on_complete_dispose", require_view = { "SUCCESS", "FAILURE" } }, -- Disabled to prevent auto-dispose
         },
     },
-    bundles = {
-        autostart_on_load = false,
-    },
 })
 
 --+- Keymaps ------------------------------------------------+
 vim.keymap.set("n", "<leader>eo", "<cmd>OverseerOpen<cr>", { noremap = true, silent = true, desc = "Overseer Open" })
-vim.keymap.set("n", "<leader>ep", "<cmd>OverseerQuickAction open float<cr>", { noremap = true, silent = true, desc = "Overseer Quick Peek" })
+vim.keymap.set("n", "<leader>ep", function() open_output("float") end, { noremap = true, silent = true, desc = "Overseer Quick Peek" })
 vim.keymap.set("n", "<leader>ec", "<cmd>OverseerClose<cr>", { noremap = true, silent = true, desc = "Overseer Close" })
 vim.keymap.set("n", "<leader>et", "<cmd>OverseerToggle<cr>", { noremap = true, silent = true, desc = "Overseer Toggle" })
 vim.keymap.set("n", "<leader>er", "<cmd>OverseerRun<cr>", { noremap = true, silent = true, desc = "Overseer Pick and Run Task" })
 vim.keymap.set("n", "<leader>ex", "<cmd>OverseerRunCmd<cr>", { noremap = true, silent = true, desc = "Overseer Shell Cmd" })
-vim.keymap.set("n", "<leader>em", "<cmd>OverseerBuild<cr>", { noremap = true, silent = true, desc = "Overseer Build Task" })
-vim.keymap.set("n", "<leader>eq", "<cmd>OverseerQuickAction<cr>", { noremap = true, silent = true, desc = "Overseer Quick Action" })
+vim.keymap.set("n", "<leader>eq", "<cmd>OverseerTaskAction<cr>", { noremap = true, silent = true, desc = "Overseer Task Action" })
 vim.keymap.set("n", "<leader>ea", "<cmd>OverseerTaskAction<cr>", { noremap = true, silent = true, desc = "Overseer Task Action" })
 vim.keymap.set("n", "<leader>el", "<cmd>OverseerRestartLast<cr>", { noremap = true, silent = true, desc = "Overseer Restart Last" })
 
-vim.keymap.set("n", "<leader>ev", "<cmd>OverseerQuickAction open split<cr>", { noremap = true, silent = true, desc = "Overseer Quick Split" })
-vim.keymap.set("n", "<leader>eb", "<cmd>OverseerQuickAction open vsplit<cr>", { noremap = true, silent = true, desc = "Overseer Quick vSplit" })
+vim.keymap.set("n", "<leader>ev", function() open_output("hsplit") end, { noremap = true, silent = true, desc = "Overseer Quick Split" })
+vim.keymap.set("n", "<leader>eb", function() open_output("vsplit") end, { noremap = true, silent = true, desc = "Overseer Quick vSplit" })
 require("which-key").add({ { "<leader>e", group = "Overseer" } })
 
 --+- Commands -----------------------------------------------+
