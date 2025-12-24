@@ -6,7 +6,6 @@
   - `python`: indentation level should dedent upon each blank new-line
   - `mini.ai`: mapping `val` doesn't work quickly (only slowly after `va`)
 
-  - upon "gA" or session restore, we should trigger to load python.nvim
   - only show path source after cd/tcd in blink
   - show path in normal buffer also after slash
 

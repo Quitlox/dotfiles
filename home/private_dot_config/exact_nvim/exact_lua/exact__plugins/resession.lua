@@ -37,6 +37,7 @@ resession.setup({
         overseer = { enable_in_tab = true },
         ["treesitter-context"] = { enable_in_tab = true },
         dart = { enable_in_tab = false },
+        python = { enable_in_tab = true },
     },
 })
 
