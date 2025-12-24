@@ -6,7 +6,7 @@ if not success then
     return
 end
 
-vim.cmd([[packadd nvim]]) -- silly name of catppuccin.nvim
+vim.cmd([[packadd catppuccin]]) -- silly name of catppuccin.nvim
 
 --+- Kitty Integartion --------------------------------------+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {

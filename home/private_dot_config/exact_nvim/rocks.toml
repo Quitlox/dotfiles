@@ -11,7 +11,7 @@
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
 "nvim-web-devicons" = { git = "nvim-tree/nvim-web-devicons", rev = "8dcb311b0c92d460fac00eac706abd43d94d68af" }
-"nvim" = { git = "catppuccin/nvim", rev = "v1.11.0" }
+"catppuccin" = { git = "catppuccin/nvim", rev = "v1.11.0" }
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "51f548421f8a74680eff27d283c9d5ea6e8d0074" }
 "mini.icons" = "0.17.0"
 "mini.hipatterns" = "0.17.0"
