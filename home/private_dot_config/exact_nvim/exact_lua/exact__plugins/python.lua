@@ -19,6 +19,7 @@ require("python").setup(
 
         auto_venv_lsp_attach_patterns = { "*.py" }, -- FIXME: for some reason, I cannot add pyproject.toml here without setup complaining
         command_setup_buf_pattern = { "*.py" },
+        python_lua_snippets = false,
 
         keymaps = {
             -- TODO: Issue: using custom mappings is not actually supported here "unknown value"
