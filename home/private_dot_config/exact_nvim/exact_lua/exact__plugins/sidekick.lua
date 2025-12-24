@@ -2,7 +2,6 @@
 -- | folke/sidekic.nvim: Copilot Next Edit & Agent CLI       |
 -- +---------------------------------------------------------+
 
-vim.g.sidekick_nes = false
 require("sidekick").setup({
     cli = {
         keys = {
@@ -11,9 +10,10 @@ require("sidekick").setup({
         },
     },
 })
+require("sidekick.nes").enable(false)
 
 -- stylua: ignore start
-vim.keymap.set("n", "<tab>", function() if not require("sidekick").nes_jump_or_apply() then return "<Tab>" end end, { expr = true, desc = "Goto/Apply Next Edit Suggestion" })
+vim.keymap.set("n", "<c-a>", function() if not require("sidekick").nes_jump_or_apply() then return "<Tab>" end end, { expr = true, desc = "Goto/Apply Next Edit Suggestion" })
 vim.keymap.set("n", "<leader>aa", require("sidekick.cli").toggle, { desc = "Sidekick Toggle CLI" })
 vim.keymap.set("n", "<leader>as", require("sidekick.cli").select, { desc = "Select CLI" })
 vim.keymap.set({ "x", "n" }, "<leader>at", function() require("sidekick.cli").send({ msg = "{this}" }) end, { desc = "Send This" })

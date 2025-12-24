@@ -31,9 +31,7 @@ require("blink-cmp").setup({
     keymap = {
         ["<Tab>"] = {
             "snippet_forward",
-            function() -- sidekick next edit suggestion
-                return require("sidekick").nes_jump_or_apply()
-            end,
+            require("sidekick").nes_jump_or_apply,
             "select_next",
             "fallback",
         },
