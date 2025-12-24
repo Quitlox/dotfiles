@@ -1,16 +1,17 @@
 -- +---------------------------------------------------------+
 -- | folke/sidekic.nvim: Copilot Next Edit & Agent CLI       |
 -- +---------------------------------------------------------+
-
+vim.g.sidekick_nes = false
 require("sidekick").setup({
     cli = {
-        keys = {
-            stopinsert = { "<c-o>", "stopinsert", mode = "t" }, -- enter normal mode
-            win_p = { "<c-h>", "blur" },
+        win = {
+            keys = {
+                stopinsert = { "<c-o>", "stopinsert", mode = "t" }, -- enter normal mode
+                win_p = { "<c-h>", "blur" },
+            },
         },
     },
 })
-require("sidekick.nes").enable(false)
 
 -- stylua: ignore start
 vim.keymap.set("n", "<c-a>", function() if not require("sidekick").nes_jump_or_apply() then return "<Tab>" end end, { expr = true, desc = "Goto/Apply Next Edit Suggestion" })
@@ -29,20 +30,17 @@ require("which-key").add({
 
 Snacks.toggle
     .new({
-        name = "Copilot + NES",
+        name = "Next Edit Suggestion",
         get = function()
-            local nes = require("sidekick.nes")
-            local copilot_enabled = vim.g.copilot_enabled ~= 0 and vim.g.copilot_enabled ~= false
-            return copilot_enabled and nes.enabled
+            local nes_enabled = vim.g.sidekick_nes ~= 0 and vim.g.sidekick_nes ~= false
+            return nes_enabled
         end,
         set = function(state)
             if state then
-                pcall(vim.cmd, "Copilot enable")
-                require("sidekick.nes").enable(true)
+                require("sidekick.nes").enable()
             else
-                require("sidekick.nes").enable(false)
-                pcall(vim.cmd, "Copilot disable")
+                require("sidekick.nes").disable()
             end
         end,
     })
-    :map("yoa")
+    :map("yoA")
