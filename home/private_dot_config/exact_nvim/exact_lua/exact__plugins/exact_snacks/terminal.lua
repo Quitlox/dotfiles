@@ -170,4 +170,13 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 
 vim.keymap.set({ "n", "v", "t" }, [[`]], toggle_terminal, { silent = true, desc = "Toggle Terminal" })
 
+-- Override backtick in sidekick_terminal to allow normal ` insertion
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "sidekick_terminal",
+    group = vim.api.nvim_create_augroup("MySidekickTerminalBacktick", { clear = true }),
+    callback = function(args)
+        vim.keymap.set("t", "`", "`", { buffer = args.buf, desc = "Insert backtick" })
+    end,
+})
+
 return terminal_opts
