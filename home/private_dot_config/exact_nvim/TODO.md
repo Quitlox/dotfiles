@@ -4,6 +4,9 @@
     - [ ] Markdown: Editing Tables
     - [ ] CSV: Viewing / Editing
     - [ ] Kulala
+    - [ ] Trouble:
+        - filter diagnostics on source: `Trouble diagnostics filter={ ["item.source"] = "pylint" }`
+        - filter diagnostics on source: `Trouble diagnostics filter.not={ ["item.source"] = "Harper" }`
   - [ ] Which-Key:
     - [ ] once which-key supports custom highlights per mapping, I should pimp it ('default' mappings should be grayed)
 
