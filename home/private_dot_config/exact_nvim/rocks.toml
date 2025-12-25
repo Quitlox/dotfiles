@@ -70,7 +70,7 @@
 # +- Completion: Extras -------------------------------------+
 "colorful-menu.nvim" = { git = "xzbdmw/colorful-menu.nvim", rev = "b51a659459df8d078201aefc995db8175ed55e84" }
 "luasnip" = { git = "l3mon4d3/luasnip", rev = "v2.4.1" }
-"nvim-scissors" = { git = "chrisgrieser/nvim-scissors", rev = "94f8e5cf6b7e7121f0fa91caaaa1c4cff6dd7f52" }
+"nvim-scissors" = { git = "chrisgrieser/nvim-scissors", rev = "4ccff538fb4dcd55943f9ad4f115ef195d7693e1" }
 
 # +- Debugging ----------------------------------------------+
 "nvim-dap" = { git = "mfussenegger/nvim-dap", rev = "5860c7c501eb428d3137ee22c522828d20cca0b3" }
@@ -84,7 +84,7 @@
 # +- Git ----------------------------------------------------+
 "neogit" = { git = "NeogitOrg/neogit", rev = "d8bf9102692250193b855acd9025a826f1af2729" }
 "git-conflict.nvim" = { git = "akinsho/git-conflict.nvim", rev = "v2.1.0" }
-"gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "v1.0.2" }
+"gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "5813e4878748805f1518cee7abb50fd7205a3a48" }
 "gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "e29909cd1064a7b53c3150bff49449a548dadf8d" }
 "diffview.nvim" = { git = "sindrets/diffview.nvim", rev = "4516612fe98ff56ae0415a259ff6361a89419b0a" }
 "vscode-diff.nvim" = { git = "esmuellert/vscode-diff.nvim", rev = "v1.13.0" }
@@ -113,7 +113,7 @@
 # +- Tooling ------------------------------------------------+
 "conform.nvim" = "9.1.0"
 "nvim-lint" = { git = "mfussenegger/nvim-lint", rev = "7a64f4067065c16a355d40d0d599b8ca6b25de6d" }
-"nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "ab3d0e1ffd415ae86f5b9e14600073b4ab63b577" }
+"nvim-rulebook" = { git = "chrisgrieser/nvim-rulebook", rev = "8f3ef98147ada9089bbcdd804e12c6763ff28f12" }
 
 # +- Treesitter ---------------------------------------------+
 "nvim-treesitter" = { git = "nvim-treesitter/nvim-treesitter", rev = "4fc09bee78e91bf4ba471cdab4bf9dfa37fde51c" }
