@@ -15,7 +15,7 @@ require("hover").config({
         { module = "hover.providers.man", priority = 150 },
     },
     preview_opts = {
-        max_width = 80,
+        max_width = 100,
     },
 })
 
@@ -62,6 +62,7 @@ local function reflow_hover_markdown(content)
     local result = {}
     local paragraph = {}
     local in_list_item = false -- Track if we're inside a list item
+    local in_code_block = false -- Track if we're inside a code block
 
     local function flush()
         if #paragraph > 0 then
@@ -74,25 +75,34 @@ local function reflow_hover_markdown(content)
         local trimmed = line:match("^%s*(.-)%s*$") or ""
 
         local is_empty = line == ""
+        local is_code_fence = line:match("^```")
         local is_list = line:match("^%s*[%*%+%-]%s") or line:match("^%s*%d+%.%s")
-        local is_special = line:match("^```") or line:match("^#+%s") or line:match("^%s*>") or line:match("^%s*|") or line:match("^%-%-%-")
+        local is_special = line:match("^#+%s") or line:match("^%s*>") or line:match("^%s*|") or line:match("^%-%-%-")
         local is_indented = line:match("^%s+%S")
 
-        if is_empty or is_special or (is_list and #paragraph > 0) then
+        -- Handle code fence toggle
+        if is_code_fence then
             flush()
             in_list_item = false
-        end
-
-        if is_empty then
-            table.insert(result, "")
-        elseif is_special then
+            in_code_block = not in_code_block
             table.insert(result, line)
+        elseif in_code_block then
+            -- Inside code block - preserve line exactly
+            table.insert(result, line)
+        elseif is_empty or is_special or (is_list and #paragraph > 0) then
+            flush()
+            in_list_item = false
+            if is_empty then
+                table.insert(result, "")
+            else
+                table.insert(result, line)
+            end
         elseif is_list then
             table.insert(result, line)
             in_list_item = true
         elseif is_indented and in_list_item and #result > 0 then
-            -- Continuation of list item - append to previous line
-            result[#result] = result[#result] .. " " .. trimmed
+            -- Continuation of list item - add as separate line with two-space indent
+            table.insert(result, "  " .. trimmed)
         elseif trimmed ~= "" then
             table.insert(paragraph, trimmed)
             in_list_item = false
@@ -115,7 +125,7 @@ local function reflow_hover_markdown(content)
 end
 
 local original_convert = vim.lsp.util.convert_input_to_markdown_lines
-vim.lsp.util.convert_input_to_markdown_lines = function(input, contents_format)
+local convert_input_to_markdown_lines = function(input, contents_format)
     -- Safely call the original function
     local ok, lines = pcall(original_convert, input, contents_format)
     if not ok or type(lines) ~= "table" then
@@ -145,3 +155,24 @@ vim.lsp.util.convert_input_to_markdown_lines = function(input, contents_format)
 
     return lines
 end
+
+vim.lsp.util.convert_input_to_markdown_lines = convert_input_to_markdown_lines
+
+--+- Reinit Command ----------------------------------------+
+-- Command to reinitialize hover if it stops working
+vim.api.nvim_create_user_command("HoverReinit", function()
+    local providers = require("hover.providers")
+    local config = require("hover.config")
+
+    -- Clear and reinitialize providers
+    providers.providers = {}
+    local current_config = config.get()
+    if current_config and current_config.providers then
+        providers.init(current_config.providers)
+    end
+
+    -- Reset the keymap
+    vim.keymap.set("n", "K", require("hover").hover, { desc = "Hover" })
+    vim.keymap.set("n", "gK", enter_hover, { desc = "Hover Enter" })
+    vim.notify("Hover re-initialized", vim.log.levels.INFO)
+end, { desc = "Reinitialize hover.nvim" })
