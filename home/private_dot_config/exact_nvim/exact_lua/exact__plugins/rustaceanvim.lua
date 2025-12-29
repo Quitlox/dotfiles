@@ -58,6 +58,9 @@ vim.g.rustaceanvim = {
                         snippets = "none",
                     },
                 },
+                diagnostics = {
+                    disabled = { "unused" },
+                },
             },
         },
     },
