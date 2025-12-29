@@ -78,8 +78,17 @@ vim.lsp.config("harper_ls", {
     settings = {
         ["harper-ls"] = {
             dialect = "British",
+            linters = {
+                MassNouns = false, -- terms like "static" are often used in code
+                ToDoHypen = false, -- interferes with TODO comments
+            },
         },
     },
+})
+vim.lsp.config("pytest_lsp", {
+    cmd = { "pytest-language-server" },
+    filetypes = { "python" },
+    root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "pytest.ini", ".git" },
 })
 
 --+- LSP: Enable --------------------------------------------+
