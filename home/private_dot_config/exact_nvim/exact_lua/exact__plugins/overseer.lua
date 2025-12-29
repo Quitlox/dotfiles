@@ -86,19 +86,18 @@ require("overseer").setup({
 })
 
 --+- Keymaps ------------------------------------------------+
+-- stylua: ignore start
 vim.keymap.set("n", "<leader>eo", "<cmd>OverseerOpen<cr>", { noremap = true, silent = true, desc = "Overseer Open" })
 vim.keymap.set("n", "<leader>ep", function() open_output("float") end, { noremap = true, silent = true, desc = "Overseer Quick Peek" })
+vim.keymap.set("n", "<leader>ev", function() open_output("hsplit") end, { noremap = true, silent = true, desc = "Overseer Quick Split" })
+vim.keymap.set("n", "<leader>eb", function() open_output("vsplit") end, { noremap = true, silent = true, desc = "Overseer Quick vSplit" }) require("which-key").add({ { "<leader>e", group = "Overseer" } })
 vim.keymap.set("n", "<leader>ec", "<cmd>OverseerClose<cr>", { noremap = true, silent = true, desc = "Overseer Close" })
 vim.keymap.set("n", "<leader>et", "<cmd>OverseerToggle<cr>", { noremap = true, silent = true, desc = "Overseer Toggle" })
 vim.keymap.set("n", "<leader>er", "<cmd>OverseerRun<cr>", { noremap = true, silent = true, desc = "Overseer Pick and Run Task" })
-vim.keymap.set("n", "<leader>ex", "<cmd>OverseerRunCmd<cr>", { noremap = true, silent = true, desc = "Overseer Shell Cmd" })
-vim.keymap.set("n", "<leader>eq", "<cmd>OverseerTaskAction<cr>", { noremap = true, silent = true, desc = "Overseer Task Action" })
+vim.keymap.set("n", "<leader>ex", "<cmd>OverseerShell<cr>", { noremap = true, silent = true, desc = "Overseer Shell Cmd" })
 vim.keymap.set("n", "<leader>ea", "<cmd>OverseerTaskAction<cr>", { noremap = true, silent = true, desc = "Overseer Task Action" })
 vim.keymap.set("n", "<leader>el", "<cmd>OverseerRestartLast<cr>", { noremap = true, silent = true, desc = "Overseer Restart Last" })
-
-vim.keymap.set("n", "<leader>ev", function() open_output("hsplit") end, { noremap = true, silent = true, desc = "Overseer Quick Split" })
-vim.keymap.set("n", "<leader>eb", function() open_output("vsplit") end, { noremap = true, silent = true, desc = "Overseer Quick vSplit" })
-require("which-key").add({ { "<leader>e", group = "Overseer" } })
+-- stylua: ignore end
 
 --+- Commands -----------------------------------------------+
 vim.api.nvim_create_user_command("OverseerRestartLast", function()
