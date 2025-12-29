@@ -41,7 +41,9 @@ local function on_attach(bufnr)
                         vim.cmd("cc " .. i)
                         return
                     end
-                    if item.bufnr == cur_bufnr then found = true end
+                    if item.bufnr == cur_bufnr then
+                        found = true
+                    end
                 end
                 for i, item in ipairs(qf) do
                     if item.bufnr ~= cur_bufnr then
@@ -64,7 +66,9 @@ local function on_attach(bufnr)
                         vim.cmd("cc " .. i)
                         return
                     end
-                    if qf[i].bufnr == cur_bufnr then found = true end
+                    if qf[i].bufnr == cur_bufnr then
+                        found = true
+                    end
                 end
                 for i = #qf, 1, -1 do
                     if qf[i].bufnr ~= cur_bufnr then
@@ -86,7 +90,7 @@ local function on_attach(bufnr)
     map("n", "<leader>hs", function() gs.stage_hunk(nil, {}, gs.refresh) end, { desc = "Stage" })
     map("n", "<leader>hr", function() gs.reset_hunk(nil, {}, gs.refresh) end, { desc = "Reset" })
     map("n", "<leader>hu", function() gs.undo_stage_hunk(gs.refresh) end, { desc = "Undo Stage" })
-    map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview" })
+    map("n", "<leader>hp", gs.preview_hunk_inline, { desc = "Preview" })
     map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, { desc = "Blame" })
     map("n", "<leader>hd", gs.diffthis, { desc = "Diff" })
     map("n", "<leader>hD", function() gs.diffthis("~") end, { desc = "Diff Buffer" })
@@ -129,6 +133,7 @@ end
 
 --+- Toggle -------------------------------------------------+
 vim.g.toggle_gitsigns_blame = false
+vim.g.toggle_gitsigns_signs = true
 
 Snacks.toggle
     .new({
@@ -142,6 +147,18 @@ Snacks.toggle
         end,
     })
     :map("yob")
+Snacks.toggle
+    .new({
+        name = "Git Signs",
+        get = function()
+            return vim.g.toggle_gitsigns_signs
+        end,
+        set = function(state)
+            require("gitsigns").toggle_signs(state)
+            vim.g.toggle_gitsigns_signs = state
+        end,
+    })
+    :map("yog")
 
 --+- Setup --------------------------------------------------+
 require("gitsigns").setup({
