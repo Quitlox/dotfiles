@@ -187,7 +187,7 @@ require("lualine").setup({
         lualine_a = { "my_cwd" },
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
-        lualine_x = { cc_spinner(), "overseer" },
+        lualine_x = { cc_spinner(), "overseer", "my_loc_counter" },
         lualine_y = { autoformat_status, "my_active_linters", "my_fancy_lsp_servers", python_venv },
         lualine_z = { "my_mixed_indent", encoding, fileformat, "my_fancy_searchcount", "my_fancy_location" },
     },
