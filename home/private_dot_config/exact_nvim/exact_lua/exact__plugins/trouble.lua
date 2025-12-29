@@ -12,19 +12,19 @@ require("trouble").setup({
         toggle_fold = { "zA", "za", "o" },
     },
     modes = {
-        filtered_diagnostics = {
-            mode = "diagnostics",
-            filter = function(items)
-                return vim.tbl_filter(function(item)
-                    if item.item.source == "Pyright" or item.item.source == "basedpyright" then
-                        if item.item.severity == vim.diagnostic.severity.HINT then
-                            return false
-                        end
-                    end
-                    return true
-                end, items)
-            end,
-        },
+        -- filtered_diagnostics = {
+        --     mode = "diagnostics",
+        --     filter = function(items)
+        --         return vim.tbl_filter(function(item)
+        --             if item.item.source == "Pyright" or item.item.source == "basedpyright" then
+        --                 if item.item.severity == vim.diagnostic.severity.HINT then
+        --                     return false
+        --                 end
+        --             end
+        --             return true
+        --         end, items)
+        --     end,
+        -- },
     },
     icons = {
         indent = {
@@ -41,7 +41,7 @@ require("trouble").setup({
 
 --+- Keymaps ------------------------------------------------+
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>ow", "<CMD>Trouble filtered_diagnostics focus=true<CR>", { desc = "Open Document Diagnostics" })
-vim.keymap.set("n", "<leader>od", "<CMD>Trouble filtered_diagnostics focus=true<CR>", {desc = "Open All Diagnostics"})
+vim.keymap.set("n", "<leader>ow", "<CMD>Trouble diagnostics focus=true<CR>", { desc = "Open Document Diagnostics" })
+vim.keymap.set("n", "<leader>od", "<CMD>Trouble diagnostics focus=true<CR>", {desc = "Open All Diagnostics"})
 vim.keymap.set("n", "<leader>oq", "<CMD>Trouble quickfix<CR>", { desc = "Open Quickfix" })
 -- stylua: ignore end
