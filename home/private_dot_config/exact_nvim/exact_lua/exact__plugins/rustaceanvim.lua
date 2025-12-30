@@ -40,6 +40,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.g.rustaceanvim = {
+    tools = {
+        test_executor = "neotest",
+    },
     server = {
         -- I want VS Code settings to override my settings,
         -- not the other way around, so use codesettings.nvim

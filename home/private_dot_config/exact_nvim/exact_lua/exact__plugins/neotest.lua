@@ -5,9 +5,9 @@ require("neotest").setup({
             dap = { justMyCode = true },
             args = { "--log-level", "DEBUG", "--log-cli-level", "DEBUG", "-v" },
             runner = "pytest",
-            pytest_discover_instances = true,
+            -- pytest_discover_instances = true,
             python = function()
-                -- If no venv-selector, manullay check if '.venv/bin/python' exists
+                -- If no venv-selector, manually check if '.venv/bin/python' exists
                 if vim.fn.filereadable(".venv/bin/python") == 1 then
                     return ".venv/bin/python"
                 end

@@ -6,6 +6,7 @@ local qt = require("quicktest")
 qt.setup({
     adapters = {
         require("quicktest.adapters.pytest")({}),
+        require("rustaceanvim.quicktest"),
     },
 })
 
