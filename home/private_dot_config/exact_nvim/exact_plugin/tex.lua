@@ -98,10 +98,23 @@ if vim.fn.has("unix") == 1 and vim.fn.has("wsl") == 1 then
 
         -- Define function to reload sioyek
         SioyekReload = function()
-            local cmd = { sioyek_exe, "--execute-command", "reload" }
+            local ok, pdf_path = pcall(vim.fn["vimtex#view#out"])
+            if not ok or pdf_path == "" then
+                return
+            end
+
+            local cmd = {
+                sioyek_exe,
+                "--execute-command", "reload",
+                "--nofocus",
+                pdf_path,
+            }
+
             local job_id = vim.fn.jobstart(cmd, {
                 on_exit = function(_, exit_status)
-                    vim.notify("Sioyek exited with code: " .. exit_status, "info")
+                    if exit_status ~= 0 then
+                        vim.notify("Sioyek reload exited with code: " .. exit_status, vim.log.levels.WARN)
+                    end
                 end,
             })
 
