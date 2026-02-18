@@ -160,7 +160,7 @@
 "neotest-python" = { git = "nvim-neotest/neotest-python", rev = "b0d3a861bd85689d8ed73f0590c47963a7eb1bf9" }
 "nvim-dap-python" = "scm"
 # +- Rust ---------------------------------------------------+
-"rustaceanvim" = "7.0.6"
+"rustaceanvim" = { git = "mrcjkb/rustaceanvim", rev = "v7.1.9" }
 "krust.nvim" = { git = "alexpasmantier/krust.nvim", rev = "899b65851d25d6eb250833709ab5b27c760171dd", ft = "rust", config = true }
 # +- Vim ----------------------------------------------------+
 "one-small-step-for-vimkind" = { git = "jbyuki/one-small-step-for-vimkind", rev = "87eeca2bd4d90a94eed1ef0dbc66885117e7bacb" }
