@@ -8,6 +8,7 @@
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - `spider.nvim` should be able to navigate to end of subword instead of next new subword
   - triple backticks support should be available in rust docstrings as well.
+  - upon adding quote ("`") before word, it should surround (like with "[")
 
   - `hover.nvim`: sometimes stops showing popup. 
     I have a potential fix in `~/Workspace/neovim-plugins/hover.nvim`
