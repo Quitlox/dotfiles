@@ -39,7 +39,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export CI_JOB_TOKEN={{ (rbwFields "ci.tno.nl").ACCESS_TOKEN_PIP.value | quote }}
 # Used by Neovim ChatGPT plugin
 export OPENAI_API_KEY={{ (rbwFields "OpenAI").OPENAI_API_KEY.value | quote }}
-export ANTHROPIC_API_KEY={{ (rbwFields "Anthropic").API_KEY.value | quote }}
+# export ANTHROPIC_API_KEY={{ (rbwFields "Anthropic").API_KEY.value | quote }}
 # Used by Neovim octo.nvim plugin
 export GITHUB_TOKEN={{ (rbwFields "github.com").GITHUB_TOKEN_NEOVIM.value | quote }}
 # Used by Neovim
