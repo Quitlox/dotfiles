@@ -41,7 +41,7 @@ require("obsidian").setup({
     new_notes_location = "notes_subdir",
     notes_subdir = "05 Zettelkasten/",
     attachments = {
-        img_folder = "_System/Attachments/",
+        folder = "_System/Attachments/",
     },
     -- Override the default note ID generation to preserve user-provided filenames
     note_id_func = function(title)
