@@ -55,7 +55,7 @@ require("edgy").setup({
     },
     bottom = {
         { title = "Overseer",        ft = "OverseerList",      wo = { winbar = "    Overseer (Task List)" },                     size = { width = 40 } },
-        { title = "Overseer Task Buffer", ft = "",             wo = { winbar = "    Overseer (Task Buffer)" },                   size = { height = 15 },  filter = filter_has_bufopt("overseer_task") }, -- TODO: replace with ft
+        { title = "Overseer Output", ft = "OverseerOutput",    wo = { winbar = "    Overseer (Output)" },                        size = { height = 15 } },
 
         { title = "Neogit",          ft = "NeogitStatus",      wo = { winbar = "    Neogit" },                                   size = { height = 20 } },
         { title = "Gitlab",          ft = "gitlab",            wo = { winbar = "  󰮠  Gitlab" } },
