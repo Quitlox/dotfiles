@@ -36,7 +36,6 @@ ts.install({
     -- Common Tooling
     "cmake",
     "diff",
-    "docker",
     "dockerfile",
     "editorconfig",
     "git_config",
@@ -49,7 +48,6 @@ ts.install({
     -- Common Dataformats
     "csv",
     "ini",
-    "jsonc",
     "toml",
     "yaml",
     -- Misc
