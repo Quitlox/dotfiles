@@ -6,7 +6,9 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 
 require("origami").setup({
-    useLspFoldsWithTreesitterFallback = true,
+    useLspFoldsWithTreesitterFallback = {
+        enabled = true,
+    },
     foldtext = {
         diagnosticsCount = true,
         gitsignsCount = true,
