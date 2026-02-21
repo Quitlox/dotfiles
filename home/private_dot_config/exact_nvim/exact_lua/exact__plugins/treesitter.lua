@@ -56,22 +56,28 @@ ts.install({
 })
 
 -- Auto-install parsers and enable highlighting on FileType
+-- NOTE: Add filetypes to ignore to suppress "warning: skipping unsupported lanaguage"
 local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
 local ignore_filetypes = {
+    "blink",
     "checkhealth",
+    "figdet",
     "lazy",
     "mason",
-    "snacks_dashboard",
-    "snacks_notif",
-    "snacks_win",
+    "oil",
+    "Overseer",
+    "sidekick",
+    "snacks_",
 }
 
 vim.api.nvim_create_autocmd("FileType", {
     group = group,
     desc = "Enable treesitter highlighting and indentation",
     callback = function(event)
-        if vim.tbl_contains(ignore_filetypes, event.match) then
-            return
+        for _, pattern in ipairs(ignore_filetypes) do
+            if event.match:match(pattern) then
+                return
+            end
         end
 
         local lang = vim.treesitter.language.get_lang(event.match) or event.match
