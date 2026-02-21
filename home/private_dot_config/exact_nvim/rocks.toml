@@ -87,7 +87,7 @@
 "gitsigns.nvim" = { git = "lewis6991/gitsigns.nvim", rev = "9f3c6dd7868bcc116e9c1c1929ce063b978fa519" }
 "gitlab.nvim" = { git = "harrisoncramer/gitlab.nvim", rev = "3d2828a9504b87fc36ee2aca1b0f36cf75003edd" }
 "diffview.nvim" = { git = "sindrets/diffview.nvim", rev = "4516612fe98ff56ae0415a259ff6361a89419b0a" }
-"vscode-diff.nvim" = { git = "esmuellert/vscode-diff.nvim", rev = "v2.25.1" }
+"codediff.nvim" = { git = "esmuellert/codediff.nvim", rev = "v2.25.1" }
 
 # +- Language Server Protocol -------------------------------+
 "fastaction.nvim" = { git = "chaitanyabsprip/fastaction.nvim", rev = "v2.0.1" }
@@ -127,7 +127,7 @@
 "nvim-ts-context-commentstring" = "scm"
 "nvim-treesitter-endwise" = { git = "RRethy/nvim-treesitter-endwise", rev = "8fe8a95630f4f2c72a87ba1927af649e0bfaa244" }
 # "nvim-treesitter-textsubjects" = { git = "RRethy/nvim-treesitter-textsubjects", rev = "9e3edd38e44c8f3af5634c5e30a33ebd79227f11" }
-"nvim-treesitter-textobjects" = { git = "nvim-treesitter/nvim-treesitter-textobjects", rev = "5ca4aaa6efdcc59be46b95a3e876300cfead05ef" }
+"nvim-treesitter-textobjects" = { git = "nvim-treesitter/nvim-treesitter-textobjects", rev = "a0e182ae21fda68c59d1f36c9ed45600aef50311" }
 
 # +----------------------------------------------------------+
 # | Language Support                                         |
