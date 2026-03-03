@@ -99,7 +99,23 @@ refresh.callback = function(...)
     orig_refresh(...)
 end
 
+-- LaTeX auxiliary/output file extensions to hide
+local latex_aux_extensions = {
+    ".aux", ".bbl", ".bcf", ".blg", ".fdb_latexmk", ".fls",
+    ".lof", ".log", ".lot", ".out", ".run.xml", ".synctex.gz",
+    ".toc", ".nav", ".snm", ".vrb", ".xdv",
+    ".idx", ".ilg", ".ind", ".glo", ".gls", ".glg",
+    ".acn", ".acr", ".alg", ".ist",
+}
+
 local is_hidden_file = function(name, bufnr)
+    -- Hide LaTeX auxiliary files
+    for _, ext in ipairs(latex_aux_extensions) do
+        if vim.endswith(name, ext) then
+            return true
+        end
+    end
+
     local dir = require("oil").get_current_dir(bufnr)
     local is_dotfile = vim.startswith(name, ".") and name ~= ".."
     -- if no local directory (e.g. for ssh connections), just hide dotfiles
