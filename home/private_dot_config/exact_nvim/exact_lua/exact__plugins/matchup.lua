@@ -5,7 +5,7 @@
 --+- Options ------------------------------------------------+
 vim.g.matchup_treesitter_stopline = 500
 
-vim.g.matchup_surround_enabled = 1 -- Provided by surround.nvim
+vim.g.matchup_surround_enabled = 0 -- Conflicts with nvim-surround (ds%/cs% race with ds/cs prefix)
 vim.g.matchup_text_obj_enabled = 0 -- Conflicts with mini.ai
 vim.g.matchup_transmute_enabled = 1 -- Experimental transmute feature (change matching pairs simultaneously)
 
