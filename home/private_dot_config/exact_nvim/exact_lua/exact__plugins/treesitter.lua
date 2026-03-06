@@ -68,6 +68,7 @@ local ignore_filetypes = {
     "Overseer",
     "sidekick",
     "snacks_",
+    "tex", -- VimTeX provides its own indentexpr
 }
 
 vim.api.nvim_create_autocmd("FileType", {
