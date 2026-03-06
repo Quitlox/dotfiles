@@ -4,6 +4,26 @@
 
 local ts = require("nvim-treesitter")
 
+-- Override the rust parser to use tree-sitter-rust-orchard.
+-- nvim-treesitter's tarball download assumes GitHub naming ({repo}-{rev}/), but
+-- Codeberg/Gitea extracts to just {repo}/, causing ENOENT on rename. We work
+-- around this by pointing `path` at a local clone instead.
+-- Clone with: git clone --depth 1 https://codeberg.org/grammar-orchard/tree-sitter-rust-orchard.git ~/.local/share/nvim/tree-sitter-grammars/tree-sitter-rust-orchard
+local rust_orchard_path = vim.fn.stdpath("data") .. "/tree-sitter-grammars/tree-sitter-rust-orchard"
+vim.api.nvim_create_autocmd("User", {
+    pattern = "TSUpdate",
+    callback = function()
+        require("nvim-treesitter.parsers").rust = {
+            install_info = {
+                path = rust_orchard_path,
+                url = "https://codeberg.org/grammar-orchard/tree-sitter-rust-orchard",
+            },
+            maintainers = {},
+            tier = 4,
+        }
+    end,
+})
+
 -- Install default parsers
 ts.install({
     -- Programming Languages
