@@ -11,6 +11,9 @@ local Rule = require("nvim-autopairs.rule")
 local cond = require("nvim-autopairs.conds")
 local ts_conds = require("nvim-autopairs.ts-conds")
 
+local markdown_ft = { "markdown", "codecompanion", "vimwiki", "rmarkdown", "rmd", "pandoc", "quarto" }
+local markdown_ft_not_cc = { "markdown", "vimwiki", "rmarkdown", "rmd", "pandoc", "quarto" }
+
 -- +---------------------------+
 -- | Quote Helper              |
 -- +---------------------------+
@@ -81,6 +84,16 @@ npairs.add_rules({
                 brackets[2][1] .. brackets[2][2],
                 brackets[3][1] .. brackets[3][2],
             }, pair)
+        end)
+        :with_pair(function(opts)
+            -- In markdown, suppress space mirroring inside [] for checklists (e.g. "- []", "1. []")
+            if not vim.tbl_contains(markdown_ft, vim.bo.filetype) then return end
+            local pair = opts.line:sub(opts.col - 1, opts.col)
+            if pair ~= "[]" then return end
+            local before = opts.line:sub(1, opts.col - 2)
+            if before:match("^[>%s]*[%-%*%+]%s$") or before:match("^[>%s]*%d+[%.%)]%s$") then
+                return false
+            end
         end)
         :with_move(cond.none())
         :with_cr(cond.none())
@@ -153,8 +166,6 @@ npairs.add_rule(
 -- +---------------------------+
 -- | Markdown Rules            |
 -- +---------------------------+
-local markdown_ft = { "markdown", "codecompanion", "vimwiki", "rmarkdown", "rmd", "pandoc", "quarto" }
-local markdown_ft_not_cc = { "markdown", "vimwiki", "rmarkdown", "rmd", "pandoc", "quarto" }
 
 -- Remove default asteriks rules (don't exist currently I think)
 npairs.remove_rule("*")
