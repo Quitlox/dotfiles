@@ -16,23 +16,34 @@ require("nvim-treesitter-textobjects").setup({
 })
 
 -- stylua: ignore start
--- Tree-sitter Move
+-- Tree-sitter Move (buffer-local, only for filetypes with a treesitter parser)
 local ts_move = require('nvim-treesitter-textobjects.move')
-vim.keymap.set({"n","x","o",}, "]m", function() ts_move.goto_next_start("@function.outer", "textobjects") end, { desc = "Next Function Start" })
-vim.keymap.set({"n","x","o",}, "[m", function() ts_move.goto_previous_start("@function.outer", "textobjects") end, { desc = "Previous Function Start" })
-vim.keymap.set({"n","x","o",}, "]M", function() ts_move.goto_next_end("@function.outer", "textobjects") end, { desc = "Next Function End" })
-vim.keymap.set({"n","x","o",}, "[M", function() ts_move.goto_previous_end("@function.outer", "textobjects") end, { desc = "Previous Function End" })
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("TreesitterTextobjectsMove", { clear = true }),
+    callback = function(args)
+        if not pcall(vim.treesitter.get_parser, args.buf) then return end
 
-vim.keymap.set({"n","x","o",}, "]]", function() ts_move.goto_next_start("@class.outer", "textobjects") end, { desc = "Next Class Start" })
-vim.keymap.set({"n","x","o",}, "[[", function() ts_move.goto_previous_start("@class.outer", "textobjects") end, { desc = "Previous Class Start" })
+        local function map(modes, lhs, fn, desc)
+            vim.keymap.set(modes, lhs, fn, { buffer = args.buf, desc = desc })
+        end
 
-vim.keymap.set({"n","x","o",}, "]a", function() ts_move.goto_next_start("@parameter.inner", "textobjects") end, { desc = "Next Parameter Start" })
-vim.keymap.set({"n","x","o",}, "[a", function() ts_move.goto_previous_start("@parameter.inner", "textobjects") end, { desc = "Previous Parameter Start" })
-vim.keymap.set({"n","x","o",}, "]A", function() ts_move.goto_next_end("@parameter.outer", "textobjects") end, { desc = "Next Parameter End" })
-vim.keymap.set({"n","x","o",}, "[A", function() ts_move.goto_previous_end("@parameter.outer", "textobjects") end, { desc = "Previous Parameter End" })
+        map({"n","x","o"}, "]m", function() ts_move.goto_next_start("@function.outer", "textobjects") end, "Next Function Start")
+        map({"n","x","o"}, "[m", function() ts_move.goto_previous_start("@function.outer", "textobjects") end, "Previous Function Start")
+        map({"n","x","o"}, "]M", function() ts_move.goto_next_end("@function.outer", "textobjects") end, "Next Function End")
+        map({"n","x","o"}, "[M", function() ts_move.goto_previous_end("@function.outer", "textobjects") end, "Previous Function End")
 
-vim.keymap.set({"n","x","o",}, "]L", function() ts_move.goto_next_end("@loop.outer", "textobjects") end, { desc = "Next Loop End" })
-vim.keymap.set({"n","x","o",}, "[L", function() ts_move.goto_previous_end("@loop.outer", "textobjects") end, { desc = "Previous Loop End" })
+        map({"n","x","o"}, "]]", function() ts_move.goto_next_start("@class.outer", "textobjects") end, "Next Class Start")
+        map({"n","x","o"}, "[[", function() ts_move.goto_previous_start("@class.outer", "textobjects") end, "Previous Class Start")
+
+        map({"n","x","o"}, "]a", function() ts_move.goto_next_start("@parameter.inner", "textobjects") end, "Next Parameter Start")
+        map({"n","x","o"}, "[a", function() ts_move.goto_previous_start("@parameter.inner", "textobjects") end, "Previous Parameter Start")
+        map({"n","x","o"}, "]A", function() ts_move.goto_next_end("@parameter.outer", "textobjects") end, "Next Parameter End")
+        map({"n","x","o"}, "[A", function() ts_move.goto_previous_end("@parameter.outer", "textobjects") end, "Previous Parameter End")
+
+        map({"n","x","o"}, "]L", function() ts_move.goto_next_end("@loop.outer", "textobjects") end, "Next Loop End")
+        map({"n","x","o"}, "[L", function() ts_move.goto_previous_end("@loop.outer", "textobjects") end, "Previous Loop End")
+    end,
+})
 
 -- Tree-sitter Swap
 local ts_swap = require('nvim-treesitter-textobjects.swap')
