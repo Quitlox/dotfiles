@@ -51,7 +51,7 @@ ts.install({
     "toml",
     "yaml",
     -- Misc
-    "dap_repl",
+    -- "dap_repl",
     "hyprlang",
 })
 
@@ -59,12 +59,16 @@ ts.install({
 -- NOTE: Add filetypes to ignore to suppress "warning: skipping unsupported lanaguage"
 local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
 local ignore_filetypes = {
+    "cmd",
     "blink",
     "checkhealth",
-    "figdet",
+    "dialog",
+    "fidget",
     "lazy",
     "mason",
+    "msg",
     "oil",
+    "pager",
     "Overseer",
     "sidekick",
     "snacks_",
