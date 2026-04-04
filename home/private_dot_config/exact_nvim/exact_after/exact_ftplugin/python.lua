@@ -79,7 +79,7 @@ end
 ---    matching behavior, which works for any quote characters regardless of context.
 ---
 --- @return function A text object handler function compatible with mini.ai custom textobjects
-function create_quote_textobject()
+local function create_quote_textobject()
     -- Define pattern-based behavior for quotes (used for fallback in comments)
     local pattern_specs = {
         ["'"] = { "%b''", "^.().*().$" },

@@ -9,10 +9,15 @@ vim.keymap.set("i", "<C-b>", "****<C-o>h", { desc = "Markdown Bold", buffer = 0 
 vim.cmd([[call vimtex#init()]])
 
 -- +- Integration: Luasnip - Detect Snippets in Embeds -------+
+local filetype_functions = require("luasnip.extras.filetype_functions")
 require("luasnip").setup({
     enable_autosnippets = true,
-    ft_func = require("luasnip.extras.filetype_functions").from_cursor_pos,
-    load_ft_func = require("luasnip.extras.filetype_functions").extend_load_ft({
+    ft_func = function(...)
+        local ok, result = pcall(filetype_functions.from_cursor_pos, ...)
+        if ok then return result end
+        return filetype_functions.from_filetype(...)
+    end,
+    load_ft_func = filetype_functions.extend_load_ft({
         markdown = { "tex", "latex" },
     }),
 })
