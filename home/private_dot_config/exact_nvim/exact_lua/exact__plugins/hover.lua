@@ -156,6 +156,8 @@ local convert_input_to_markdown_lines = function(input, contents_format)
     return lines
 end
 
+-- NOTE: an alternative may be to disable rust-analyzer: rust-analyzer.semanticHighlighting.doc.comment.inject.enable
+-- to let neovim do the highlighting instead of rust-analyzer.
 vim.lsp.util.convert_input_to_markdown_lines = convert_input_to_markdown_lines
 
 --+- Reinit Command ----------------------------------------+
