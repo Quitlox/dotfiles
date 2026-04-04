@@ -58,10 +58,19 @@ vim.g.vimtex_syntax_conceal = {
     styles = 1,
 }
 
+-- +- Compiler -------------------------------------------------+
+-- Remove -verbose to prevent stdout flooding that freezes Neovim's event loop
+vim.g.vimtex_compiler_latexmk = {
+    options = {
+        "-file-line-error",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+    },
+}
+
 -- +- Compilation --------------------------------------------+
 -- Linux
 if vim.fn.has("unix") == 1 then
-    vim.g.vimtex_quickfix_method = "pplatex"
     vim.g.vimtex_view_method = "zathura"
 end
 
@@ -95,42 +104,6 @@ if vim.fn.has("unix") == 1 and vim.fn.has("wsl") == 1 then
         vim.g.vimtex_view_method = "sioyek"
         vim.g.vimtex_view_sioyek_exe = sioyek_exe
         vim.g.vimtex_callback_progpath = "wsl nvim"
-
-        -- Define function to reload sioyek
-        SioyekReload = function()
-            local ok, pdf_path = pcall(vim.fn["vimtex#view#out"])
-            if not ok or pdf_path == "" then
-                return
-            end
-
-            local cmd = {
-                sioyek_exe,
-                "--execute-command", "reload",
-                "--nofocus",
-                pdf_path,
-            }
-
-            local job_id = vim.fn.jobstart(cmd, {
-                on_exit = function(_, exit_status)
-                    if exit_status ~= 0 then
-                        vim.notify("Sioyek reload exited with code: " .. exit_status, vim.log.levels.WARN)
-                    end
-                end,
-            })
-
-            if job_id == 0 then
-                vim.notify("Failed to reload sioyek", vim.log.levels.ERROR)
-            end
-        end
-
-        -- Autocommand for compile success
-        vim.api.nvim_create_autocmd("User", {
-            pattern = "VimtexEventCompileSuccess",
-            group = vim.api.nvim_create_augroup("MySioyekReloadOnCompileSuccess", { clear = true }),
-            callback = function()
-                SioyekReload()
-            end,
-        })
     else
         vim.notify("Sioyek not found in any of the expected locations", vim.log.levels.WARN)
     end
