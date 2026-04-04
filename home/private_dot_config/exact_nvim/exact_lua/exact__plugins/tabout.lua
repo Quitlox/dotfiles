@@ -2,17 +2,21 @@
 -- | abecodes/tabout.nvim                                    |
 -- +---------------------------------------------------------+
 
-require("tabout").setup({
-    tabouts = {
-        { open = "'", close = "'" },
-        { open = '"', close = '"' },
-        { open = "`", close = "`" },
-        { open = "(", close = ")" },
-        { open = "[", close = "]" },
-        { open = "{", close = "}" },
-        -- Custom
-        { open = "*", close = "*" },
-        { open = "**", close = "**" },
-        { open = "```", close = "```" },
-    },
-})
+-- NOTE: Disabled because
+--  - In LaTeX, it prevents using actual tabs, it just tabs out to anything
+--  - It may be the plugin causing the "issues" I have been having with spaces being inserted
+
+-- require("tabout").setup({
+--     tabouts = {
+--         { open = "'", close = "'" },
+--         { open = '"', close = '"' },
+--         { open = "`", close = "`" },
+--         { open = "(", close = ")" },
+--         { open = "[", close = "]" },
+--         { open = "{", close = "}" },
+--         -- Custom
+--         { open = "*", close = "*" },
+--         { open = "**", close = "**" },
+--         { open = "```", close = "```" },
+--     },
+-- })
