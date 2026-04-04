@@ -76,10 +76,11 @@
 "nvim-dap" = { git = "mfussenegger/nvim-dap", rev = "4f5deb110d9ff8994d96c21df95e2271d11214f9" }
 "nvim-dap-ui" = { git = "rcarriga/nvim-dap-ui", rev = "d9770a55188bb34c2bdce7d90a6151181beb6966" }
 "debugmaster.nvim" = { git = "miroshqa/debugmaster.nvim", rev = "505d9a269d657ce8e0fa5601e0530f0d8798038c" }
-"nvim-dap-virtual-text" = { git = "theHamsta/nvim-dap-virtual-text", rev = "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6" }
+"nvim-dap-virtual-text" = { git = "theHamsta/nvim-dap-virtual-text", rev = "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6", config = true }
 "nvim-dap-repl-highlights" = { git = "liadoz/nvim-dap-repl-highlights", rev = "f31deba47fe3ee6ff8d2f13d9dbd06b2d1ae06b5" }
 "goto-breakpoints.nvim" = { git = "ofirgall/goto-breakpoints.nvim", rev = "d14776899eda4023667b246e5c53c14a7c41f88e" }
 # FIXME: remove after https://github.com/mfussenegger/nvim-dap/issues/1388
+"nvim-dap-view" = { git = "igorlfs/nvim-dap-view", rev = "v1.0.1" }
 
 # +- Git ----------------------------------------------------+
 "neogit" = { git = "NeogitOrg/neogit", rev = "5a7fca171e3ad07380745d573d791e95268b8f3f" }
@@ -94,7 +95,7 @@
 "lensline.nvim" = { git = "oribarilan/lensline.nvim", rev = "bc14529d2d04804d65a73d0fb3bca50132902d3b" }
 "lsplinks.nvim" = { git = "icholy/lsplinks.nvim", rev = "v1.0.0" }
 "glance.nvim" = { git = "DNLHC/glance.nvim", rev = "bf86d8b79dce808e65fdb6e9269d0b4ed6d2eefc" }
-"hover.nvim" = { git = "lewis6991/hover.nvim", rev = "426a4ed53f9fb4e03e8fa501cdbd8a9ec1df2933" }
+"hover.nvim" = { git = "lewis6991/hover.nvim", rev = "e73c00da3a9c87a21d2a8ddf7ab4a39824bd5d56" }
 "workspace-diagnostics.nvim" = { git = "artemave/workspace-diagnostics.nvim", rev = "60f9175b2501ae3f8b1aba9719c0df8827610c8e" }
 "output-panel.nvim" = { git = "mhanberg/output-panel.nvim", rev = "v1.0.1" }
 "overlook.nvim" = { git = "williamhsieh/overlook.nvim", rev = "6f74f20a61204275989050a2c1221bdc53b534c4" }
@@ -186,12 +187,11 @@
 "dart.nvim" = { git = "iofq/dart.nvim", rev = "af7256291c8f692647004b9a9fc0e92b6084a691" }
 
 # +- LLM ----------------------------------------------------+
-# "gp.nvim" = { git = "robitx/gp.nvim", rev = "v3.9.0" }
-"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v19.8.0" }
+"codecompanion.nvim" = { git = "olimorris/codecompanion.nvim", rev = "v19.9.0" }
 "codecompanion-spinners.nvim" = { git = "lalitmee/codecompanion-spinners.nvim", rev = "v1.0.1" }
 "codecompanion-history.nvim" = { git = "ravitemer/codecompanion-history.nvim", rev = "bc1b4fe06eaaf0aa2399be742e843c22f7f1652a" }
-"vectorcode" = { git = "davidyz/vectorcode", rev = "0.7.20" }
-"mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "7cd5db330f41b7bae02b2d6202218a061c3ebc1f" }
+# "vectorcode" = { git = "davidyz/vectorcode", rev = "0.7.20" }
+# "mcphub.nvim" = { git = "ravitemer/mcphub.nvim", rev = "f94e1c8e1aea68c3f8f6df5cf51c752033584fd0" }
 
 # +- File Explorer ------------------------------------------+
 "neo-tree.nvim" = "3.40.0"
@@ -217,7 +217,7 @@
 "nvim-treesitter-context" = { git = "nvim-treesitter/nvim-treesitter-context", rev = "b0c45cefe2c8f7b55fc46f34e563bc428ef99636" }
 
 # +- Quickfix -----------------------------------------------+
-"trouble.nvim" = "3.7.1"
+"trouble.nvim" = { git = "folke/trouble.nvim", rev = "bd67efe408d4816e25e8491cc5ad4088e708a69a" }
 
 # +- Miscelleneous ------------------------------------------+
 "icon-picker.nvim" = "scm"
@@ -228,10 +228,11 @@
 # | Miscelleneous                                            |
 # +----------------------------------------------------------+
 
-"gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "0344f643768c4d64af4add8c1bdddf6f7d4c9010" }
-"snacks.nvim" = { git = "folke/snacks.nvim", rev = "v2.31.0", opt = true }
 # "codesnap.nvim" = { git = "mistricky/codesnap.nvim", rev = "d8d55f5b62a6c12bc7756eb0b997a776eafd086e" }
+"gitignore.nvim" = { git = "wintermute-cell/gitignore.nvim", rev = "0344f643768c4d64af4add8c1bdddf6f7d4c9010" }
+"minesweeper.nvim" = { git = "Pansther/minesweeper.nvim", rev = "a368da548d71e17e4c411eb7e97e6980a0c0264a", config = true }
 "neovim-tips" = { git = "saxon1964/neovim-tips", rev = "v0.8.3" }
+"snacks.nvim" = { git = "folke/snacks.nvim", rev = "v2.31.0", opt = true }
 
 # +----------------------------------------------------------+
 # | Dependencies                                             |
