@@ -4,6 +4,7 @@
 - To Investigate:
   - `overseer.nvim`: clone task (should be possible with serialize)
   - `python`: indentation level should dedent upon each blank new-line
+  - `codecompanion`: checkout ACP session load/restore
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - `spider.nvim` should be able to navigate to end of subword instead of next new subword
@@ -75,6 +76,7 @@ When need arises:
 - `smart-motion.nvim`: flexible and extensible motion plugin, but I am satisfied with flash
 - better marks: `recall.nvim` + `marks.nvim` (harpoon/grapple/arrow-like solution?)
 - instead of `snacks.nvim` home-rolled projects picker: https://github.com/DrKJeff16/project.nvim
+- swap out "windwp/nvim-autopairs" with "saghen/blink.pairs"
 - optional plugins:
   - `nvim-scrollbar`: not very necessary, but well maintained
   - `overlook.nvim`: cool idea (editable, stackable popups) for browsing code
@@ -112,7 +114,9 @@ Plugin Ideas:
   - Home Manager
   - Package Servarr better
   - help rocks.nvim development
-
+- Rust:
+  - help rust-analyzer support for const-generics
+  - help rust-analyzer with ongoing migrations
 
 ### Memorandum
 

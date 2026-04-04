@@ -1,3 +1,8 @@
+--+- Setup: Enable (experimental) UI2
+require("vim._core.ui2").enable({
+    enable = true,
+})
+
 --+- Setup: Remove /mnt/c/ from Path (Performance) ----------+
 local current_path = vim.env.PATH
 if current_path then

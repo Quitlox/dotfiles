@@ -63,29 +63,28 @@ require("catppuccin").setup({
         nvim_surround = true,
         octo = true,
         overseer = true,
-        semantic_tokens = true,
         snacks = { enabled = true },
         ufo = true,
         which_key = true,
         window_picker = true,
 
-        native_lsp = {
-            enabled = true,
-            virtual_text = {
-                errors = {},
-                hints = {},
-                warnings = {},
-                information = {},
-            },
-            underlines = {
-                errors = { "underline" },
-                hints = { "underline" },
-                warnings = { "underline" },
-                information = { "underline" },
-            },
-            inlay_hints = {
-                background = false,
-            },
+    },
+
+    lsp_styles = {
+        virtual_text = {
+            errors = {},
+            hints = {},
+            warnings = {},
+            information = {},
+        },
+        underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+        },
+        inlay_hints = {
+            background = false,
         },
     },
 
@@ -105,7 +104,7 @@ require("catppuccin").setup({
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("catppuccin-nvim")
 
 -- +---------------------------------------------------------+
 -- | rachartier/tiny-devicons-auto-colors.nvim: Color       |
