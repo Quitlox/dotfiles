@@ -44,21 +44,14 @@ require("catppuccin").setup({
 
     integrations = {
         aerial = true,
-        blink_cmp = true,
-        copilot_vim = true,
         diffview = true,
         fidget = true,
         grug_far = true,
-        harpoon = true,
-        leap = true,
         lsp_trouble = true,
-        mason = true,
         markview = true,
-        mini = { enabled = true },
-        neotree = true,
-        neogit = true,
+        mason = true,
         neotest = true,
-        notify = true,
+        copilot_vim = true,
         navic = { enabled = true },
         nvim_surround = true,
         octo = true,
@@ -67,7 +60,6 @@ require("catppuccin").setup({
         ufo = true,
         which_key = true,
         window_picker = true,
-
     },
 
     lsp_styles = {

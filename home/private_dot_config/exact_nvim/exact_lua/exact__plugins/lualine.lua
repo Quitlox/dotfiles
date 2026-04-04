@@ -147,16 +147,10 @@ local python_venv = {
 --+- Options ------------------------------------------------+
 vim.opt.laststatus = 3
 
---+- Theme --------------------------------------------------+
-local catppuccin_pallete = require("catppuccin.palettes").get_palette()
-local catppuccin_theme = require("lualine.themes.catppuccin")
-catppuccin_theme.terminal.a.bg = catppuccin_pallete.teal
-catppuccin_theme.terminal.b.fg = catppuccin_pallete.teal
-
 --+- Setup --------------------------------------------------+
 require("lualine").setup({
     options = {
-        theme = catppuccin_theme,
+        theme = "catppuccin-nvim",
         component_separators = " ",
         section_separators = { left = "", right = "" },
 
@@ -168,6 +162,7 @@ require("lualine").setup({
                 "neo-tree",
                 "gitlab",
                 "dap-repl",
+                "dap-view",
                 "dapui_scopes",
                 "dapui_breakpoints",
                 "dapui_stacks",
