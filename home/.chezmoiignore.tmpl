@@ -13,6 +13,9 @@ keybindings.json
 .config/nvim/lazy-lock.json
 .config/zsh/theme.sh
 
+# Work-specific
+.config/systemd/user/copilot-api.service
+
 # +- Windows ------------------------------------------------+
 {{ if (eq .chezmoi.os "windows") }}
 ** # Default to ignore all (whitelist instead of blacklist)
@@ -82,6 +85,13 @@ AppData/Local
 AppData/Local/neovide
 AppData/Local/glazewm
 
+{{ if (eq .chezmoi.hostname "PC-43341") }}
+
+# +- Linux: Work --------------------------------------------+
+!.config/systemd/user/copilot-api.service
+
+{{ end }}
+
 {{ if (eq .headless "true") }}
 
 # +- Linux: Headless ----------------------------------------+
@@ -95,7 +105,7 @@ AppData/Local/glazewm
 .config/ideavim
 .config/kitty
 .config/qutebrowser
-.config/systemd
+.config/systemd/user/wacom.service
 .config/zathura
 .local/share/texmf
 .mozilla

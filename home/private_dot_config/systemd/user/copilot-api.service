@@ -1,0 +1,29 @@
+# copilot-api: a proxy that bridges GitHub Copilot with Claude Code.
+# See: https://github.com/feiskyer/claude-code-settings/blob/main/guidances/github-copilot.md
+#
+# The proxy listens on http://localhost:4141 and is consumed by Claude Code
+# via the following env vars in ~/.claude/settings.json:
+#
+#   "env": {
+#     "ANTHROPIC_BASE_URL": "http://localhost:4141",
+#     "ANTHROPIC_AUTH_TOKEN": "sk-dummy",
+#     ...
+#   }
+#
+# Usage:
+#   systemctl --user enable --now copilot-api.service
+#
+# NOTE: Run `copilot-api start --proxy-env` manually first to complete
+# the GitHub device flow authentication.
+[Unit]
+Description=GitHub Copilot API Proxy for Claude Code
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/share/npm/bin/copilot-api start --proxy-env
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
