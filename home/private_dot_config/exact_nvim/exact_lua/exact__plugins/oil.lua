@@ -122,14 +122,8 @@ local is_hidden_file = function(name, bufnr)
     if not dir then
         return is_dotfile
     end
-    -- dotfiles are considered hidden unless tracked
-
-    if is_dotfile then
-        return not git_status[dir].tracked[name]
-    else
-        -- Check if file is gitignored
-        return git_status[dir].ignored[name]
-    end
+    -- In git repos, only hide gitignored files
+    return git_status[dir].ignored[name]
 end
 
 --+- Setup --------------------------------------------------+
