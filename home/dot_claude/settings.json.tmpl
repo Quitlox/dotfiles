@@ -15,6 +15,10 @@
       "Grep",
       "Bash(.venv/bin/python -m pytest:*)",
       "Bash(grep:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(rm -rf /)"
     ]
   },
   "model": "opus[1m]",
