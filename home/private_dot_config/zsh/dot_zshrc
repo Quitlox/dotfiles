@@ -332,12 +332,13 @@ zinit ice wait for \
   as"command" pick"cmds/zc-bg-notify" silent \
     zdharma-continuum/zconvey
 
-# Custom Plugins & Completions
+# Custom Completions & Plugins
+# Add custom completions to fpath (before compinit)
+fpath=("${ZDOTDIR}/completions" $fpath)
+# Source all .zsh files in ZDOTDIR (aliases, exports, functions, etc.)
 zinit wait as"none" \
   id-as"local-plugins" nocompile \
   multisrc"${ZDOTDIR}/*.zsh" \
-  atpull"zinit creinstall -q ${ZDOTDIR}/completions" \
-  run-atpull \
 for zdharma-continuum/null
 
 # Use Atuin or FZF for history searching
