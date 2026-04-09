@@ -24,6 +24,15 @@ vim.keymap.set({ "n", "x", "i", "t" }, "<c-.>", require("sidekick.cli").focus, {
 -- vim.keymap.set("n", "<leader>ac", function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end, { desc = "Sidekick Toggle Claude" })
 -- stylua: ignore end
 
+-- Prevent terminal scroll-back when leaving the sidekick window
+vim.api.nvim_create_autocmd({ "BufLeave", "WinLeave" }, {
+    pattern = "term://*",
+    callback = function()
+        local line_count = vim.api.nvim_buf_line_count(0)
+        vim.api.nvim_win_set_cursor(0, { line_count, 0 })
+    end,
+})
+
 require("which-key").add({
     { "<leader>a", group = "Agent/AI" },
 })
