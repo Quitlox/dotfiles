@@ -81,6 +81,8 @@ vim.lsp.config("harper_ls", {
             linters = {
                 MassNouns = false, -- terms like "static" are often used in code
                 ToDoHypen = false, -- interferes with TODO comments
+                LongSentences = false, -- annoying
+                Spaces = false,
             },
         },
     },
