@@ -96,7 +96,7 @@ local lsps = {
     "ansiblels",
     "autotools_ls",
     "bashls",
-    "ccls",
+    "clangd",
     "cmake",
     "copilot",
     "cssls",
