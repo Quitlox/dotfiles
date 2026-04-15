@@ -1,6 +1,6 @@
 {
   "env": {
-{{- if eq .chezmoi.hostname "PC-43341" }}
+{{- if (or (eq .chezmoi.hostname "PC-43341") (eq .chezmoi.hostname "PC-46732")) }}
     "ANTHROPIC_BASE_URL": "http://localhost:4141",
     "ANTHROPIC_AUTH_TOKEN": "sk-dummy",
     "ANTHROPIC_MODEL": "claude-opus-4.6",

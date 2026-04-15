@@ -85,7 +85,7 @@ AppData/Local
 AppData/Local/neovide
 AppData/Local/glazewm
 
-{{ if (eq .chezmoi.hostname "PC-43341") }}
+{{ if (or (eq .chezmoi.hostname "PC-43341") (eq .chezmoi.hostname "PC-46732")) }}
 
 # +- Linux: Work --------------------------------------------+
 !.config/systemd/user/copilot-api.service
