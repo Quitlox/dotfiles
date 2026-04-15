@@ -77,6 +77,10 @@ require("neo-tree").setup({
     filesystem = {
         -- time the current file is changed while the tree is open.
         group_empty_dirs = true,
+        filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = true,
+        },
         components = {
             -- name = function(config, node, state)
             --     local highlight = config.highlight or highlights.FILE_NAME
