@@ -1,0 +1,26 @@
+---
+- name: Install base Arch Linux system
+  hosts: all
+  gather_facts: true
+
+  pre_tasks:
+    - name: Validate variables
+      ansible.builtin.import_tasks: roles/validate_vars.yml
+
+  roles:
+    # +- Base system setup ---------------------------------------------------+
+    - { role: arch/system/pacman, tags: 'pacman' }
+    - { role: arch/system/yay, tags: 'pacman' }
+    - { role: arch/system/chaotic-aur, tags: 'pacman' }
+    - { role: linux/system/update, tags: 'pacman' }
+
+    # +- Core system components ----------------------------------------------+
+    - { role: arch/system/fonts }
+    - { role: arch/system/locale, locale_list: "{{ system.locale }}" }
+
+    # +- Common utilities ----------------------------------------------------+
+    # - { role: linux/system/ssh }
+    # - { role: linux/system/sshfs, tags: 'sshfs', when: not system.is_vm_guest }
+
+    # +- Common user utilities -----------------------------------------------+
+    - { role: linux/user/cmdline }
