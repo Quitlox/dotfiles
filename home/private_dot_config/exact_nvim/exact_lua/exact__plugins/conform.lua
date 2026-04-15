@@ -13,7 +13,7 @@ local function display_fidget(title, msg)
         title = title,
         message = msg,
         lsp_client = { name = "conform" }, -- the fake lsp client name
-        percentage = nil, -- skip percentage field
+        percentage = nil,                  -- skip percentage field
     })
 end
 
@@ -141,21 +141,22 @@ end, { range = true })
 require("conform").setup({
     formatters_by_ft = {
         bib = { "bibtex-tidy" },
+        cpp = { "clang-format" },
         go = { "gofmt" },
-        javascript = { "prettierd", "eslint_d" },
-        json = { "prettierd" },
-        jsonc = { "prettierd" },
+        javascript = { "prettier", "eslint_d" },
+        json = { "prettier" },
+        jsonc = { "prettier" },
         lua = { "stylua" },
-        markdown = { "prettierd", "injected" },
+        markdown = { "prettier", "injected" },
         nix = { "alejandra", "nixfmt" },
         python = { "pycln", "black", "isort" },
         rust = { "rustfmt" },
         sh = { "shfmt" },
-        svelte = { "prettierd", "eslint_d" },
+        svelte = { "prettier", "eslint_d" },
         toml = { "tombi" },
-        typescript = { "prettierd", "eslint_d" },
-        typescriptreact = { "prettierd", "eslint_d" },
-        yaml = { "prettierd" },
+        typescript = { "prettier", "eslint_d" },
+        typescriptreact = { "prettier", "eslint_d" },
+        yaml = { "prettier" },
         ["_"] = { "trim_whitespace" },
     },
     format_on_save = function(_bufnr)
