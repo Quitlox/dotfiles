@@ -59,8 +59,9 @@ ts.install({
 -- NOTE: Add filetypes to ignore to suppress "warning: skipping unsupported lanaguage"
 local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
 local ignore_filetypes = {
-    "cmd",
+    "aerial",
     "blink",
+    "cmd",
     "checkhealth",
     "dialog",
     "fidget",
