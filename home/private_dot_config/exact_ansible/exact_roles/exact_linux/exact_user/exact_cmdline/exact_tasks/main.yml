@@ -57,19 +57,20 @@
       - sqlite3
   when: ansible_facts['os_family'] == "Debian"
 
-- name: Install vim distribution on Arch
-  become: true
-  when: ansible_facts['os_family'] == "Archlinux"
-  block:
-    - name: Uninstall vim
-      ansible.builtin.package:
-        name: vim
-        state: absent
-      become: true
-    - name: Install gvim as default vim
-      ansible.builtin.package:
-        name: gvim
-      become: true
+# FIXME: this doesn't work on new installation, is this necessary?
+# - name: Install vim distribution on Arch
+#   become: true
+#   when: ansible_facts['os_family'] == "Archlinux"
+#   block:
+#     - name: Uninstall vim
+#       ansible.builtin.package:
+#         name: vim
+#         state: absent
+#       become: true
+#     - name: Install gvim as default vim
+#       ansible.builtin.package:
+#         name: gvim
+#       become: true
 
 - name: Install neovim and dependencies
   block:
