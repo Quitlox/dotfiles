@@ -7,6 +7,11 @@ end
 if vim.fn.exists("g:neovide") == 1 then
     vim.o.guifont = "Iosevka,Symbols Nerd Font:h11"
 
+    -- If launched from a Windows path (no args), cd to Linux home
+    if vim.fn.has("wsl") == 1 and vim.fn.getcwd():match("^/mnt/") and vim.fn.argc() == 0 then
+        vim.cmd.cd(vim.env.HOME)
+    end
+
     vim.o.mouse = "a"
     vim.keymap.set("n", "<C-S-c>", '"+y', { noremap = true })
     vim.keymap.set("n", "<C-S-v>", '"+p', { noremap = true })
