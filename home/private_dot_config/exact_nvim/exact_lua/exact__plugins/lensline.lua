@@ -9,6 +9,7 @@ require("lensline").setup({
         },
     },
 })
+require("lensline").disable() -- disabled by default; toggle on with `yol`
 
 Snacks.toggle
     .new({
