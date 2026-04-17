@@ -38,7 +38,7 @@ end
 require("edgy").setup({
     -- stylua: ignore start
     left = {
-        { title = "Neo-Tree",        ft = "neo-tree",          wo = { winbar = "    File Explorer" },                            filter = filter_nt_source_neq("document_symbols") },
+        { title = "Neo-Tree",        ft = "neo-tree",          wo = { winbar = "    File Explorer", signcolumn = "no" },         filter = filter_nt_source_neq("document_symbols") },
         { title = "DAP Scopes",      ft = "dapui_scopes",      wo = { winbar = "  󰒉  Scopes" },                                   size = { height = 0.125 } },
         { title = "DAP Breakpoints", ft = "dapui_breakpoints", wo = { winbar = "    Breakpoints" },                              size = { height = 0.125 } },
         { title = "DAP Call Stack",  ft = "dapui_stacks",      wo = { winbar = "    Call Stack" },                               size = { height = 0.125 } },
