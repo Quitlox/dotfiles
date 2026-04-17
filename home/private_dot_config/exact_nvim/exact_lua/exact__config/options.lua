@@ -132,6 +132,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     command = "setlocal formatoptions-=o",
 })
 
+-- Disable scrolloff in terminal buffers
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = vim.api.nvim_create_augroup("MyTerminalOptions", { clear = true }),
+    command = "setlocal scrolloff=0",
+})
+
 -- +---------------------------------------------------------+
 -- | Filetype Specific Options                               |
 -- +---------------------------------------------------------+
