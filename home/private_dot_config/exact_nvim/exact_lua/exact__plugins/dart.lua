@@ -19,10 +19,10 @@ require("dart").setup({
     mappings = {
         mark = "+",
         jump = "=",
-        -- pick = "Mp",
+        pick = "Mp",
         next = "]b",
         prev = "[b",
-        -- unmark_all = "Mu",
+        unmark_all = "Mu",
     },
 })
 
