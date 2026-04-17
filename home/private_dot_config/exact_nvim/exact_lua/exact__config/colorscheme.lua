@@ -10,6 +10,10 @@ require("tokyonight").setup({})
 
 require("everforest").setup({
     background = "medium", -- soft, medium, hard
+    on_highlights = function(hl, palette)
+        hl.EdgyNormal = { bg = palette.bg_dim, fg = palette.fg }
+        hl.EdgyNormalNC = { bg = palette.bg_dim, fg = palette.fg }
+    end,
 })
 
 -- +---------------------------------------------------------+
