@@ -5,7 +5,13 @@ end
 
 --+- Env: Neovide -------------------------------------------+
 if vim.fn.exists("g:neovide") == 1 then
-    vim.o.guifont = "Iosevka,Symbols Nerd Font:h11"
+    -- vim.o.guifont = "Iosevka,Symbols Nerd Font:h11" -> Original love
+    vim.o.guifont = "VictorMono Nerd Font,Symbols Nerd Font:h11" -- -> italics are a bit too much (caligraphy)
+    -- vim.o.guifont = "Mononoki Nerd Font,Symbols Nerd Font:h12"
+    -- vim.o.guifont = "Fantasque Sans Mono,Symbols Nerd Font:h11" -> curvy typewriter
+    -- vim.o.guifont = "Hack,Symbols Nerd Font:h11" -> Slightly cooler version of Fira Code?
+    -- vim.o.guifont = "Fira Code,Symbols Nerd Font:h11"
+    -- vim.o.guifont = "JetBrains Mono,Symbols Nerd Font:h11" -> BORING
 
     -- If launched from a Windows path (no args), cd to Linux home
     if vim.fn.has("wsl") == 1 and vim.fn.getcwd():match("^/mnt/") and vim.fn.argc() == 0 then

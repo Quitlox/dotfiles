@@ -10,8 +10,13 @@
 # +----------------------------------------------------------+
 # | Colorschemes                                             |
 # +----------------------------------------------------------+
-"nvim-web-devicons" = "0.100"
 "catppuccin" = { git = "catppuccin/nvim", rev = "v2.0.0" }
+"tokyonight.nvim" = { git = "folke/tokyonight.nvim", rev = "v4.14.1" }
+"everforest-nvim" = { git = "neanias/everforest-nvim", rev = "cf08aa67fc96946a01177ae483b7631733b4b5e6" }
+"gruvbox.nvim" = { git = "ellisonleao/gruvbox.nvim", rev = "2.0.0" }
+
+# Icons and Misc
+"nvim-web-devicons" = "0.100"
 "tiny-devicons-auto-colors.nvim" = { git = "rachartier/tiny-devicons-auto-colors.nvim", rev = "51f548421f8a74680eff27d283c9d5ea6e8d0074" }
 "mini.icons" = "0.17.0"
 "mini.hipatterns" = "0.17.0"

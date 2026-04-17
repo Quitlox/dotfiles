@@ -1,5 +1,25 @@
 -- +---------------------------------------------------------+
--- | catppuccin/nvim: Colorscheme                            |
+-- | folke/tokyonight.nvim                                   |
+-- +---------------------------------------------------------+
+
+require("tokyonight").setup({})
+
+-- +---------------------------------------------------------+
+-- | neanias/everforest.nvim                                 |
+-- +---------------------------------------------------------+
+
+require("everforest").setup({
+    background = "medium", -- soft, medium, hard
+})
+
+-- +---------------------------------------------------------+
+-- | ellisonleao/gruvbox.nvim                                |
+-- +---------------------------------------------------------+
+
+require("gruvbox").setup({})
+
+-- +---------------------------------------------------------+
+-- | catppuccin/nvim                                         |
 -- +---------------------------------------------------------+
 local success, mod = pcall(require, "catppuccin")
 if not success then
@@ -95,8 +115,13 @@ require("catppuccin").setup({
     },
 })
 
+-- vim.cmd([[set background=light]])
+
 -- Set colorscheme
-vim.cmd.colorscheme("catppuccin-nvim")
+-- vim.cmd.colorscheme("catppuccin-nvim")
+-- vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("everforest")
+-- vim.cmd.colorscheme("gruvbox")
 
 -- +---------------------------------------------------------+
 -- | rachartier/tiny-devicons-auto-colors.nvim: Color       |
