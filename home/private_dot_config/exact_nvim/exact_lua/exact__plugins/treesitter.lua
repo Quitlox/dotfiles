@@ -68,6 +68,7 @@ local ignore_filetypes = {
     "lazy",
     "mason",
     "msg",
+    "neo-",
     "oil",
     "pager",
     "Overseer",
