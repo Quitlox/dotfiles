@@ -16,7 +16,15 @@ require("snacks").setup({
     bigfile = { enabled = true, notify = true },
     dashboard = dashboard_config,
     image = image_opts,
-    input = { enabled = true },
+    input = {
+        enabled = true,
+        win = {
+            keys = {
+                -- In prompt buffers, <C-w> is a window-command prefix; <C-S-W> is delete-word.
+                i_ctrl_bs = { "<c-bs>", "<c-s-w>", mode = "i", expr = true },
+            },
+        },
+    },
     lazygit = { win = { style = "my_lazygit" } },
     notifier = notifier_opts,
     picker = picker_config,

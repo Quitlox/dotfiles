@@ -275,6 +275,9 @@ return {
                 ["<esc>"] = { "close", mode = { "n", "i" } },
                 ["<c-space>"] = { "select", mode = { "i", "n" } },
 
+                -- In prompt buffers, <C-w> is a window-command prefix; <C-S-W> is delete-word.
+                ["<c-bs>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
+
                 ["<tab>"] = { "list_down", mode = { "i", "n" } },
                 ["<s-tab>"] = { "list_up", mode = { "i", "n" } },
                 ["<c-j>"] = { "list_down", mode = { "i", "n" } },
