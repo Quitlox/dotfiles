@@ -1,90 +1,100 @@
 ;; NOTE: We override (rather than extend) the upstream query so we can replace
 ;; several patterns with richer captures without producing duplicate symbols.
+;; Parent/child nesting is handled by aerial via AST containment, so nested
+;; patterns (e.g. consts inside traits/impls) are unnecessary — a top-level
+;; pattern matches them anywhere in the tree and they nest automatically.
 
-; DEFAULT: module declarations (`mod foo;` / inline modules).
+; Module declarations (`mod foo;` / inline modules).
 (mod_item
   name: (identifier) @name
   (#set! "kind" "Module")) @symbol
 
-; DEFAULT: enum declarations.
+; Enum declarations.
 (enum_item
   name: (type_identifier) @name
   (#set! "kind" "Enum")) @symbol
 
-; DEFAULT: struct declarations.
+; Enum variants — nest under their enum via AST containment.
+(enum_variant
+  name: (identifier) @name
+  (#set! "kind" "EnumMember")) @symbol
+
+; Struct declarations.
 (struct_item
   name: (type_identifier) @name
   (#set! "kind" "Struct")) @symbol
 
-; CUSTOM: include struct fields so members show beneath their parent.
+; Unions (presented like structs).
+(union_item
+  name: (type_identifier) @name
+  (#set! "kind" "Struct")) @symbol
+
+; Struct / union fields.
 (field_declaration
   name: (field_identifier) @name
   (#set! "kind" "Field")) @symbol
 
-; DEFAULT: trait declarations.
+; Trait declarations.
 (trait_item
   name: (type_identifier) @name
   (#set! "kind" "Interface")) @symbol
 
-; CUSTOM: expose top-level `const` items.
+; Type aliases (`type Foo = Bar;`). Nested associated types under trait/impl
+; bodies are captured by the same pattern.
+(type_item
+  name: (type_identifier) @name
+  (#set! "kind" "TypeParameter")) @symbol
+
+; `macro_rules!` definitions.
+(macro_definition
+  name: (identifier) @name
+  (#set! "kind" "Function")) @symbol
+
+; `const` items (top-level and associated — associated consts nest via AST
+; containment, no separate pattern needed).
 (const_item
   name: (identifier) @name
   (#set! "kind" "Constant")) @symbol
 
-; CUSTOM: expose top-level `static` items.
+; `static` items.
 (static_item
   name: (identifier) @name
   (#set! "kind" "Constant")) @symbol
 
-; CUSTOM: associated constants defined inside traits.
-((trait_item
-    body: (declaration_list
-      (const_item
-        name: (identifier) @name
-        (#set! "kind" "Constant")) @symbol)))
-
-; CUSTOM: associated constants defined inside impl blocks.
-((impl_item
-    body: (declaration_list
-      (const_item
-        name: (identifier) @name
-        (#set! "kind" "Constant")) @symbol)))
-
-; CUSTOM: functions with explicit return type (capture params/return).
+; Functions with explicit return type (capture generics / params / return).
 (function_item
   name: (identifier) @name
+  type_parameters: (type_parameters)? @rust_generics
   parameters: (parameters) @rust_params
   return_type: (_) @rust_return
   (#set! "kind" "Function")) @symbol
 
-; CUSTOM: functions without explicit return type (still capture params).
+; Functions without explicit return type.
 (function_item
   name: (identifier) @name
+  type_parameters: (type_parameters)? @rust_generics
   parameters: (parameters) @rust_params
   (#set! "kind" "Function")) @symbol
 
-; CUSTOM: trait method signatures with explicit return type.
+; Trait method signatures with explicit return type.
 (function_signature_item
   name: (identifier) @name
+  type_parameters: (type_parameters)? @rust_generics
   parameters: (parameters) @rust_params
   return_type: (_) @rust_return
   (#set! "kind" "Function")) @symbol
 
-; CUSTOM: trait method signatures without explicit return type.
+; Trait method signatures without explicit return type.
 (function_signature_item
   name: (identifier) @name
+  type_parameters: (type_parameters)? @rust_generics
   parameters: (parameters) @rust_params
   (#set! "kind" "Function")) @symbol
 
-; OVERRIDE: impl blocks (non-generic) capturing type/trait pairing.
+; Impl blocks. `(_)` wildcards cover scoped (`std::ops::Add`), generic
+; (`From<T>`), reference, and tuple type/trait forms — `rust_impl_label`
+; reads the captured source text verbatim.
 (impl_item
-  trait: (type_identifier)? @trait
-  type: (type_identifier) @rust_type
-  (#set! "kind" "Class")) @symbol
-
-; OVERRIDE impl blocks with generic type targets.
-(impl_item
-  trait: (type_identifier)? @trait
-  type: (generic_type
-    type: (type_identifier) @rust_type)
+  trait: (_)? @trait
+  type: (_) @rust_type
   (#set! "kind" "Class")) @symbol

@@ -28,24 +28,36 @@ local function rust_impl_label(bufnr, match, fallback)
 end
 
 local function rust_signature_label(bufnr, match, base_name)
+    local generics = rust_capture_text(match, "rust_generics", bufnr) or ""
     local params = rust_capture_text(match, "rust_params", bufnr) or "()"
     local return_type = rust_capture_text(match, "rust_return", bufnr)
     return_type = return_type and (" -> " .. return_type) or ""
-    return string.format("fn %s%s%s", base_name, params, return_type)
+    return string.format("fn %s%s%s%s", base_name, generics, params, return_type)
+end
+
+local function rust_symbol_node_type(match)
+    local symbol = match and match.symbol
+    local node = symbol and symbol.node
+    return node and node:type() or nil
 end
 
 local function rust_post_parse_symbol(bufnr, item, ctx)
     if item.kind == "Struct" then
         item.name = string.format("struct %s", item.name)
-    end
-    if item.kind == "Interface" then
+    elseif item.kind == "Enum" then
+        item.name = string.format("enum %s", item.name)
+    elseif item.kind == "Interface" then
         item.name = string.format("trait %s", item.name)
-    end
-    if item.kind == "Class" then
+    elseif item.kind == "TypeParameter" then
+        item.name = string.format("type %s", item.name)
+    elseif item.kind == "Class" then
         item.name = rust_impl_label(bufnr, ctx.match, item.name)
-    end
-    if item.kind == "Method" then
-        item.name = rust_signature_label(bufnr, ctx.match, item.name)
+    elseif item.kind == "Function" then
+        if rust_symbol_node_type(ctx.match) == "macro_definition" then
+            item.name = string.format("macro_rules! %s", item.name)
+        else
+            item.name = rust_signature_label(bufnr, ctx.match, item.name)
+        end
     end
     return true
 end
@@ -55,6 +67,23 @@ require("aerial").setup({
     backends = {
         ["_"] = { "lsp", "treesitter", "markdown", "man" },
         rust = { "treesitter", "lsp" },
+    },
+    -- Default filter_kind excludes Field, Constant, EnumMember, and
+    -- TypeParameter; include them so rust fields, (associated) consts, enum
+    -- variants, and type aliases actually render.
+    filter_kind = {
+        "Class",
+        "Constant",
+        "Constructor",
+        "Enum",
+        "EnumMember",
+        "Field",
+        "Function",
+        "Interface",
+        "Method",
+        "Module",
+        "Struct",
+        "TypeParameter",
     },
     layout = {
         -- NOTE: Options below (except styling) required for compatiblity with edgy.nvim
