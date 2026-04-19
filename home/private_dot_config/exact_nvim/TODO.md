@@ -4,17 +4,11 @@
 - To Investigate:
   - `overseer.nvim`: clone task (should be possible with serialize)
   - `python`: indentation level should dedent upon each blank new-line
-  - `codecompanion`: checkout ACP session load/restore
 
   - modify path popup is a picker, which is annoying. It should be a yes/no
   - `spider.nvim` should be able to navigate to end of subword instead of next new subword
   - triple backticks support should be available in rust docstrings as well.
   - upon adding quote ("`") before word, it should surround (like with "[")
-
-  - `hover.nvim`: sometimes stops showing popup. 
-    I have a potential fix in `~/Workspace/neovim-plugins/hover.nvim`
-    I also copied this to my runtime files.
-    I have added notifications to detect the conditions. If I hit them, I should write down what happens, and PR the fix.
 
 - Requires Contribution:
   - [ ] `scissors.nvim`: add option to toggle autosnippet
