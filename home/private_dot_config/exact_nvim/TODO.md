@@ -33,6 +33,13 @@
       sometimes gets stuck in toggling the breakpoint. It seems as if it's
       waiting for another key, but there are no duplicate mappings.
   - [ ] `neoconf.nvim`: broken as of lspconfig v2
+  - [ ] `rustaceanvim`: opening two Rust projects in one nvim merges them
+    into a single rust-analyzer via `workspace/didChangeWorkspaceFolders`,
+    so `:Namu workspace` returns symbols from both. Maintainer considers
+    this intended; no opt-out exists (`reuse_client` is bypassed by the
+    merge loop in `lsp/init.lua`).
+    - https://github.com/mrcjkb/rustaceanvim/issues/239
+    - https://github.com/mrcjkb/rustaceanvim/discussions/866
   - [ ] `which-key.nvim`: if support for custom highlights is added,
     I should configure default mappings with a dimmed highlight
 
