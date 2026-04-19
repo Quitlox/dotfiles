@@ -3,17 +3,26 @@
 -- +---------------------------------------------------------+
 
 local open_definition_jump_or_glance = function()
-    require("glance").open("definitions", {
-        hooks = {
-            before_open = function(results, open, jump, method)
-                if #results == 1 then
-                    jump(results[1])
-                else
-                    open(results)
-                end
-            end,
-        },
-    })
+    local bufnr = vim.api.nvim_get_current_buf()
+    local cur_uri = vim.uri_from_bufnr(bufnr)
+    local cur_line = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+    require("glance.lsp").request("definitions", bufnr, function(results, ctx)
+        local useful = vim.tbl_filter(function(r)
+            local uri = r.uri or r.targetUri
+            local range = r.targetSelectionRange or r.targetRange or r.range
+            return not (uri == cur_uri and range and range.start.line == cur_line)
+        end, results)
+
+        if #useful == 0 then
+            vim.lsp.buf.declaration()
+        elseif #useful == 1 then
+            local client = vim.lsp.get_client_by_id(ctx.client_id)
+            vim.lsp.util.show_document(useful[1], client.offset_encoding, { focus = true })
+        else
+            require("glance").open("definitions")
+        end
+    end)
 end
 
 local open_definition_existing_win_or_peek = function()
