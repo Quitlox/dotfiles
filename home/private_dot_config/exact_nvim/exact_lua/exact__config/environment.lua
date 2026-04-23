@@ -23,6 +23,7 @@ if vim.fn.exists("g:neovide") == 1 then
     vim.keymap.set("n", "<C-S-v>", '"+p', { noremap = true })
     vim.keymap.set("c", "<C-S-v>", "<C-r>+", { noremap = true })
     vim.keymap.set("i", "<C-S-v>", "<C-r>+")
+    vim.keymap.set("t", "<C-S-v>", '<C-\\><C-n>"+pi', { noremap = true })
 end
 
 --+- Env: WSL -----------------------------------------------+
