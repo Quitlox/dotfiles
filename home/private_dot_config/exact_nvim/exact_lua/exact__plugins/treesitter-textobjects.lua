@@ -21,7 +21,8 @@ local ts_move = require('nvim-treesitter-textobjects.move')
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("TreesitterTextobjectsMove", { clear = true }),
     callback = function(args)
-        if not pcall(vim.treesitter.get_parser, args.buf) then return end
+        local ok, parser = pcall(vim.treesitter.get_parser, args.buf)
+        if not ok or not parser then return end
 
         local function map(modes, lhs, fn, desc)
             vim.keymap.set(modes, lhs, fn, { buffer = args.buf, desc = desc })
