@@ -85,7 +85,8 @@ end
 if vim.fn.has("unix") == 1 and vim.fn.has("wsl") == 1 then
     -- Possible locations for sioyek.exe across different systems
     local sioyek_paths = {
-        "/mnt/c/Users/witloxkhd/Applications/sioyek/sioyek.exe",
+        "/mnt/c/Users/witloxkhd/AppData/Local/Microsoft/WinGet/Packages/ahrm.sioyek_Microsoft.Winget.Source_8wekyb3d8bbwe/sioyek-release-windows/sioyek.exe",
+        -- "/mnt/c/Users/witloxkhd/Applications/sioyek/sioyek.exe",
         -- "/mnt/c/Users/witloxkhd/AppData/Local/sioyek/sioyek.exe",
         -- "/mnt/c/Program Files/sioyek/sioyek.exe",
     }
