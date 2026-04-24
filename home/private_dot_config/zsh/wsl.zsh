@@ -1,3 +1,8 @@
+# Only apply this file in WSL; keep non-WSL Linux quiet.
+if [[ -z "$WSL_DISTRO_NAME" && "$(< /proc/sys/kernel/osrelease)" != *[Mm]icrosoft* ]]; then
+  return 0
+fi
+
 # Clean up PATH by removing ALL /mnt/c/ entries
 IFS=':' read -A path_parts <<< "$PATH"
 NEW_PATH=""
