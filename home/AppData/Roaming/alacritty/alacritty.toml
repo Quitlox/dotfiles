@@ -6,6 +6,7 @@ shell = { program = "C:\\Windows\\System32\\wsl.exe", args = [ "-d", "Arch", "--
 
 [keyboard]
 bindings= [
-    {key = "Back",  mods = "Control", chars = "\u001b[127;5u"},
-	{key = "Space", mods = "Control", chars = "\u0000"},
+    {key = "Back",   mods = "Control", chars = "\u001b[127;5u"},
+    {key = "Space",  mods = "Control", chars = "\u0000"},
+    {key = "Period", mods = "Control", chars = "\u001b[46;5u"},
 ]
