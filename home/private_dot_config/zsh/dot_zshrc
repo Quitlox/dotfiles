@@ -66,6 +66,8 @@ zstyle ':completion:*' completer _expand _complete _ignored _approximate
 HISTSIZE=999999999
 export HISTFILE="$HOME/.cache/zsh/zhistory"
 SAVEHIST=$HISTSIZE
+: ${ZSH_CACHE_DIR:=${XDG_CACHE_HOME:-$HOME/.cache}/zinit}
+mkdir -p "$ZSH_CACHE_DIR/completions"
 
 # Zinit Paths
 typeset -A ZINIT  # initial Zinit's hash definition
@@ -301,8 +303,10 @@ zinit ice wait"3" as"completion" blockf
 zinit snippet OMZP::poetry/poetry.plugin.zsh
 
 # Rust
-zinit ice wait"3" as"completion" blockf
+zinit ice wait"3"
 zinit snippet OMZP::rust/rust.plugin.zsh
+zinit ice wait"3" as"completion" blockf
+zinit snippet OMZP::rust/_rustc
 
 ############################################################
 ### Zinit: Plugins                                       ###
@@ -374,4 +378,3 @@ zinit light olets/zsh-window-title
 ############################################################
 
 eval "$(starship init zsh)"
-
