@@ -18,6 +18,10 @@ local diffview_state = "closed"
 
 -- Configuration
 require("diffview").setup({
+    -- Enhanced diffing (uses diffchar.vim)
+    enhanced_diff_hl = true,
+    diffopt = { algorithm = "histogram" },
+
     keymaps = {
         view = {
             { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close the DiffView Tab" } },
