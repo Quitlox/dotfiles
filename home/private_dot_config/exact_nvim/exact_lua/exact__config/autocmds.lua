@@ -1,3 +1,16 @@
+-- rocks-git.nvim clones plugin repos, but plugins that .gitignore their
+-- doc/tags file (most do) end up without helptags. rocks.nvim calls
+-- `helptags ALL` in postInstall(), but git-sourced plugins aren't added
+-- to the runtimepath at that point, so the call is a no-op for them.
+-- Regenerate helptags once at startup to fill the gap.
+vim.api.nvim_create_autocmd("VimEnter", {
+    group = vim.api.nvim_create_augroup("MyGenerateHelptags", { clear = true }),
+    once = true,
+    callback = function()
+        pcall(vim.cmd.helptags, "ALL")
+    end,
+})
+
 -- Automatically resize Windows when resizing the terminal or opening a terminal
 vim.api.nvim_create_autocmd({ "VimResized", "TermOpen" }, {
     pattern = "*",
