@@ -52,76 +52,10 @@ local fileformat = function()
     return ret
 end
 
-local vector_code = {
-    function()
-        return require("vectorcode.integrations").lualine({})[1]()
-    end,
-    cond = function()
-        if package.loaded["vectorcode"] == nil then
-            return false
-        else
-            return require("vectorcode.integrations").lualine({}).cond()
-        end
-    end,
-}
-local mcp_hub = {
-    function()
-        -- Check if MCPHub is loaded
-        if not vim.g.loaded_mcphub then
-            return "󰐻 -"
-        end
-
-        local count = vim.g.mcphub_servers_count or 0
-        local status = vim.g.mcphub_status or "stopped"
-
-        local executing = vim.g.mcphub_executing
-
-        -- Show "-" when stopped
-        if status == "stopped" then
-            return "󰐻 -"
-        end
-
-        -- Show spinner when executing, starting, or restarting
-        if executing or status == "starting" or status == "restarting" then
-            local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-            local frame = math.floor(vim.loop.now() / 100) % #frames + 1
-            return "󰐻 " .. frames[frame]
-        end
-
-        return "󰐻 " .. count
-    end,
-    color = function()
-        if not vim.g.loaded_mcphub then
-            return { fg = "#6c7086" } -- Gray for not loaded
-        end
-
-        local status = vim.g.mcphub_status or "stopped"
-
-        if status == "ready" or status == "restarted" then
-            return { fg = "#50fa7b" } -- Green for connected
-        elseif status == "starting" or status == "restarting" then
-            return { fg = "#ffb86c" } -- Orange for connecting
-        else
-            return { fg = "#ff5555" } -- Red for error/stopped
-        end
-    end,
-    cond = function()
-        return vim.bo.filetype == "codecompanion"
-    end,
-}
-
 local function dart()
     local line = Dart.gen_tabline()
     -- removes the fill + “Tab x/y” part
     return line:gsub("%%#DartFill#.-$", "")
-end
-
-local function cc_spinner()
-    local success, component = pcall(require, "codecompanion._extensions.spinner.styles.lualine")
-    if not success then
-        return nil
-    end
-    return component.get_lualine_component()
 end
 
 --+- Customize Modules --------------------------------------+
@@ -182,7 +116,7 @@ require("lualine").setup({
         lualine_a = { "my_cwd" },
         lualine_b = { branch },
         lualine_c = { "my_pretty_path", "my_fancy_macro", git_blame, "%=" },
-        lualine_x = { cc_spinner(), "overseer", "my_loc_counter" },
+        lualine_x = { "overseer", "my_loc_counter" },
         lualine_y = { autoformat_status, "my_active_linters", "my_fancy_lsp_servers", python_venv },
         lualine_z = { "my_mixed_indent", encoding, fileformat, "my_fancy_searchcount", "my_fancy_location" },
     },
@@ -194,7 +128,7 @@ require("lualine").setup({
         lualine_a = {},
         lualine_b = { "my_pretty_path" },
         lualine_c = { "navic" },
-        lualine_x = { "my_fancy_diff", vector_code, mcp_hub },
+        lualine_x = { "my_fancy_diff" },
         lualine_y = { "my_fancy_diagnostics" },
         lualine_z = {},
     },
@@ -209,7 +143,7 @@ require("lualine").setup({
                 navic_opts = { highlight = false },
             },
         },
-        lualine_x = { "my_fancy_diff", vector_code, mcp_hub },
+        lualine_x = { "my_fancy_diff" },
         lualine_y = { "my_fancy_diagnostics" },
         lualine_z = {},
     },
