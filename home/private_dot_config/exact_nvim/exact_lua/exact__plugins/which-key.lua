@@ -11,7 +11,7 @@ require("which-key").setup({
     spec = {
         -- Leader key groups - organized hierarchically
         { "<leader>vu", "<cmd>Rocks sync<cr>", desc = "Update Plugins" },
-        { "<leader><tab>", group = "Tab" },
+        { "<tab>", group = "Tab" },
         { "<leader>b", group = "Buffer" },
         { "<leader>f", group = "Find" },
         { "<leader>v", group = "Vim" },
