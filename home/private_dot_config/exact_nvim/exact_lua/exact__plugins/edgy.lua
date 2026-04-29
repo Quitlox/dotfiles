@@ -52,6 +52,7 @@ require("edgy").setup({
         { title = "Overseer Jobs",   ft = "snacks_terminal",   wo = { winbar = "  󰜎  Task: %{b:term_title}" },                    size = { width = 80 },   filter = filter_terminal_wins("right") },
         { title = "Copilot Chat",    ft = "copilot-chat",      wo = { winbar = "    Copilot Chat" },                             size = { width = 70 } },
         { title = "CodeCompanion",   ft = "codecompanion",     wo = { winbar = "    CodeCompanion" },                            size = { width = 70 } },
+        { title = "Sidekick",        ft = "sidekick_terminal", wo = { winbar = "" },                                             size = { width = 80 } },
     },
     bottom = {
         { title = "Overseer",        ft = "OverseerList",      wo = { winbar = "    Overseer (Task List)" },                     size = { width = 40 } },
