@@ -28,7 +28,7 @@ require("which-key").add({
     { "<localleader>lX", desc = "Reload state" },
     { "<localleader>lx", desc = "Reload" },
 
-    -- Override outline with toc
-    { "<leader>o", group = "Outline" },
-    { "<leader>oo", "<cmd>VimtexTocToggle<cr>", desc = "Open ToC" },
 })
+
+-- Override gO to use vimtex's ToC instead of aerial (no working backend for LaTeX)
+vim.keymap.set("n", "gO", "<cmd>VimtexTocOpen<cr>", { desc = "Open Outline", buffer = 0 })
