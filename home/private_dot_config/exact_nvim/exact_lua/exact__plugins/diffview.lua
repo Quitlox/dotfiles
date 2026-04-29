@@ -2,6 +2,19 @@
 -- | sindrets/diffview.nvim: Diffview                        |
 -- +---------------------------------------------------------+
 
+-- Keymaps: Trace line evolution
+vim.keymap.set("n", "<leader>gl", ":.DiffviewFileHistory --follow<cr>", { desc = "Line History (Diffview)" })
+vim.keymap.set("v", "<leader>gl", ":'<,'>DiffviewFileHistory --follow<cr>", { desc = "Line History (Diffview)" })
+
+-- Keymap: Diff against main
+vim.keymap.set("n", "<leader>gm", function()
+    -- Try main first, fall back to master
+    local result = vim.fn.systemlist({ "git", "rev-parse", "--verify", "main" })
+    local ok = vim.v.shell_error == 0 and result[1] ~= nil and result[1] ~= ""
+    local branch = ok and "main" or "master"
+    vim.cmd("DiffviewOpen " .. branch)
+end, { desc = "Diff against main" })
+
 -- Extra Commands
 vim.api.nvim_create_user_command("DiffviewCurrentFileHistory", "DiffviewFileHistory %", {
     desc = "Diffview File History",
