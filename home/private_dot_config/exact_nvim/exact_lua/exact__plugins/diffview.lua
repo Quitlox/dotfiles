@@ -35,6 +35,18 @@ require("diffview").setup({
         end,
         view_closed = function(view)
             diffview_state = "closed"
+            -- Re-enable treesitter-context after closing diffview
+            local ok, tsc = pcall(require, "treesitter-context")
+            if ok and tsc.enabled() then
+                tsc.enable()
+            end
+        end,
+        diff_buf_win_enter = function(bufnr, winid, ctx)
+            -- Re-trigger treesitter-context's on_attach evaluation
+            pcall(vim.api.nvim_exec_autocmds, "BufReadPost", {
+                buffer = bufnr,
+                group = "treesitter_context_update",
+            })
         end,
     },
 })
