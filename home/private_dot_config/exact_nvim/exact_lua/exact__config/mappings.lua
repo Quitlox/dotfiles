@@ -142,27 +142,6 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "which_
 -- +---------------------------------------------------------+
 
 --+- Function: Close Other Buffers --------------------------+
-local function close_all_but_current()
-    local current = vim.api.nvim_get_current_buf()
-    for _, bufnr in pairs(vim.api.nvim_list_bufs()) do
-        -- We leave the current buffer open
-        if bufnr == current then
-            goto continue
-        end
-
-        -- We leave buffers that are visible in a window
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-            if vim.api.nvim_win_get_buf(win) == bufnr then
-                goto continue
-            end
-        end
-
-        pcall(vim.cmd, string.format("silent! confirm bd %d", bufnr))
-
-        ::continue::
-    end
-end
-
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>bd", function() require('snacks').bufdelete.delete() end, { desc = "Buffer Delete" })
 vim.keymap.set("n", "<leader>bo", function() require('snacks').bufdelete.other() end, { desc = "Buffer Only" })
