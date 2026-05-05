@@ -65,6 +65,7 @@ local ignore_filetypes = {
     "checkhealth",
     "dialog",
     "fidget",
+    "gitlab",
     "lazy",
     "mason",
     "msg",
