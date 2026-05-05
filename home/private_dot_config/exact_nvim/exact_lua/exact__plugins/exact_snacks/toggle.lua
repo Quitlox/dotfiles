@@ -11,3 +11,15 @@ Snacks.toggle.zoom():map("yom")
 
 Snacks.toggle.option("relativenumber"):map("yor")
 Snacks.toggle.option("wrap"):map("yow")
+
+Snacks.toggle
+    .new({
+        name = "Dark Background",
+        get = function()
+            return vim.o.background == "dark"
+        end,
+        set = function(state)
+            vim.o.background = state and "dark" or "light"
+        end,
+    })
+    :map("yoB")
