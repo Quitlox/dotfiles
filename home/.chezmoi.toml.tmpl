@@ -43,5 +43,9 @@ encryption = "age"
 {{- end }}
 
 [hooks.read-source-state.pre]
+{{- if eq .chezmoi.os "windows" }}
+script = {{ joinPath .chezmoi.sourceDir "/../scripts/install_age_key.ps1" | quote }}
+{{- else }}
 script = {{ joinPath .chezmoi.sourceDir "/../scripts/install_age_key.bash" | quote }}
+{{- end }}
 args = [{{ .chezmoi.homeDir | quote }}]
