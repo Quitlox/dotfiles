@@ -36,7 +36,11 @@ encryption = "age"
 
 [age]
     identity = {{ joinPath .chezmoi.homeDir ".ssh/.age_private_key.txt" | quote }}
+{{- if eq .chezmoi.os "windows" }}
+    recipient = {{ (bitwardenFields "item" "ChezMoi Dotfiles Manager").age_public_key.value | quote }}
+{{- else }}
     recipient = {{ (rbwFields "ChezMoi Dotfiles Manager").age_public_key.value | quote }}
+{{- end }}
 
 [hooks.read-source-state.pre]
 script = {{ joinPath .chezmoi.sourceDir "/../scripts/install_age_key.bash" | quote }}
