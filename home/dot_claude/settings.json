@@ -1,15 +1,4 @@
 {
-  "env": {
-{{- if (or (eq .chezmoi.hostname "PC-43341") (eq .chezmoi.hostname "PC-46732")) }}
-    "ANTHROPIC_BASE_URL": "http://localhost:4141",
-    "ANTHROPIC_AUTH_TOKEN": "sk-dummy",
-    "ANTHROPIC_MODEL": "claude-opus-4.6",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4.5",
-    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-    "CLAUDE_CODE_ATTRIBUTION_HEADER": "0"
-{{- end }}
-  },
   "permissions": {
     "allow": [
       "Grep",
