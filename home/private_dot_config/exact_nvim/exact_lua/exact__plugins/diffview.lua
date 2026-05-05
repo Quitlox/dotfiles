@@ -66,6 +66,19 @@ require("diffview").setup({
             })
         end,
     },
+    file_panel = {
+        show_branch_name = true,
+        always_show_sections = true,
+    },
+    view = {
+        merge_tool = {
+            layout = "diff4_mixed",
+        },
+        cycle_layouts = {
+            merge_tool = { "diff4_mixed", "diff3_mixed", "diff3_horizontal", "diff1_plain" },
+        },
+    },
+    clean_up_buffers = true,
 })
 
 -- Close DiffView on exit (preventing session manager from saving tab)
