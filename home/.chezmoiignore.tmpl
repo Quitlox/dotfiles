@@ -20,36 +20,8 @@ keybindings.json
 {{ if (eq .chezmoi.os "windows") }}
 ** # Default to ignore all (whitelist instead of blacklist)
 
-!.gitconfig
+#!.gitconfig
 !.ideavimrc
-
-!.ssh
-!.ssh/**
-
-!.cache
-!.cache/vim
-!.cache/vim/**
-!.local
-!.local/share
-!.local/share/texmf
-!.local/share/texmf/**
-
-!.config
-!.config/Code
-!.config/Code/**
-!.config/vim
-!.config/vim/**
-!.config/nvim
-!.config/nvim/**
-!.config/nvim_new
-!.config/nvim_new/**
-!.config/zathura
-!.config/zathura/**
-!.config/ansible
-!.config/ansible/**
-
-!.config/pythonrc
-!.config/starship.toml
 
 !Documents
 !Documents/PowerShell
@@ -65,8 +37,6 @@ keybindings.json
 !AppData/Local
 !AppData/Local/neovide
 !AppData/Local/neovide/**
-!AppData/Local/glazewm
-!AppData/Local/glazewm/**
 
 {{ else }}
 
