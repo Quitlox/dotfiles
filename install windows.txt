@@ -1,0 +1,70 @@
+Add to setup:
+- PS C:\Users\witloxkhd> winget pin add --id Microsoft.OneDrive
+- PS C:\Users\witloxkhd> winget pin add --id Microsoft.PowerShell 	
+- PS C:\Users\witloxkhd> winget pin add --id Microsoft.DotNet.DesktopRuntime.10
+
+- Update battery settings
+
+winget install Microsoft.Office
+winget install Microsoft.Teams
+DigitalScholar.Zotero
+Microsoft.VisualStudioCode
+Docker.DockerDesktop
+Alacritty.Alacritty (as admin)
+twpayne.chezmoi
+winget install --scope machine Microsoft.PowerToys -s winget
+	restore from backup in onedrive
+Git.Git
+neovim.neovim (as admin)
+ahrm.sioyek
+Obsidian.Obsidian
+winget install Neovide.Neovide (admin)
+Notepad++.Notepad++
+equalsraf.win32yank
+ajeetdsouza.zoxide
+winget install LGUG2Z.komorebi (admin)
+winget install LGUG2Z.whkd (admin)
+
+setup wsl
+wsl.exe --install archlinux
+wsl --manage archlinux --set-default-user quitlox
+set passwords! on root and user
+
+install on arch as well (add to doc): zsh sudo vi rbw chezmoi
+install on arch (for shell): vim neovim starship eza bob
+sudo pacman -S glibc-locales (for ansible)
+sudo pacman -S openssh (nice to have)
+sudo pacman -Syu make tree-sitter-cli gcc chafa lazygit go (neovim / rocks)
+useradd -m -G wheel -s /bin/zsh quitlox
+sudoedit /etc/sudoers (uncomment wheel line)
+sudo nvim /etc/locale.conf en_US.UTF-8
+
+login to Edge using Work account
+	Extensions: Zotero, Bitwarden, Vimium (+ New Tab)
+	login to bitwarden
+	https://github.com/mxxjng/vimium-glass-theme
+
+edge config:
+	reg add HKLM\SOFTWARE\Policies\Microsoft\Edge /v ConfigureKeyboardShortcuts /d '{"disabled": ["favorite_this_tab","view_source","paste_and_go"]}'
+	disables the Ctrl + D and Ctrl + U shorcuts respectively + Ctrl + Shift + L
+	see: https://learn.microsoft.com/en-gb/deployedge/edge-learnmore-configurable-edge-commands
+	end edge in taskmanager first
+
+on windows:
+- git clone https://github.com/quitlox/dotfiles ~/.local/share/chezmoi
+- copy over alacritty configuration (update distro name) (from AppData/Roaming/alacritty)
+- create neovide config at ~/AppData/Roaming/neovide/config.toml
+	wsl = true
+
+download and install iosevka and symbols nerd font: https://www.nerdfonts.com/font-downloads
+	Iosevka (from standard github) and Symbols NF
+	(also add to pacman)
+
+install rust (also required for nvim): curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+the markview.nvim plugin needs some help:
+- luarocks --lua-version 5.1 --tree ~/.local/share/nvim/rocks install --deps-mode none markview.nvim
+
+install xdg-utils (for xdg-open) and yay -S wslu (wslview) so that opening links works
+
+i should add the neovim install instructions (luarocks) to ansible readme
