@@ -26,9 +26,9 @@ Set-PSReadlineOption -BellStyle None
 
 # Keybindings
 Set-PSReadLineOption -EditMode Emacs
-Set-PSReadLineKeyHandler -Chord Ctrl+E -Function ForwardChar
-Set-PSReadLineKeyHandler -Chord Ctrl+P -Function HistorySearchBackward
-Set-PSReadLineKeyHandler -Chord Ctrl+N -Function HistorySearchForward
+Set-PSReadLineKeyHandler -Chord Ctrl+e -Function AcceptSuggestion
+Set-PSReadLineKeyHandler -Chord Ctrl+p -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Chord Ctrl+n -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Chord Ctrl+Backspace -Function BackwardKillWord
 
 # Zoxide
