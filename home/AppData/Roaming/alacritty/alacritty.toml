@@ -2,7 +2,7 @@
 normal = { family = "Iosevka NF", style = "Regular" }
 
 [terminal]
-shell = { program = "C:\\Windows\\System32\\wsl.exe", args = [ "-d", "Arch", "--cd", "~" ] }
+shell = { program = "C:\\Windows\\System32\\wsl.exe", args = [ "--cd", "~" ] }
 
 [keyboard]
 bindings= [
