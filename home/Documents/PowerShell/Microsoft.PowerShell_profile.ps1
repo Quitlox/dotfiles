@@ -6,6 +6,7 @@ Set-Alias ".." alias_dotdot
 Function alias_l { ls }
 Set-Alias "l" alias_l
 # Aliases - Git
+
 Function alias_gs { git status $args }
 Set-Alias "gs" alias_gs
 Function alias_gpl { git pull $args }
@@ -35,3 +36,14 @@ Set-PSReadLineKeyHandler -Chord Ctrl+Backspace -Function BackwardKillWord
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # Function alias_cd { z $args }
 # Set-Alias "cd" alias_cd -Option AllScope
+
+# Bitwarden
+Function bwu {
+    $session = bw unlock --raw
+    if ($LASTEXITCODE -eq 0 -and $session) {
+        $env:BW_SESSION = $session
+        Write-Host "Vault unlocked and session set." -ForegroundColor Green
+    } else {
+        Write-Warning "Failed to unlock vault."
+    }
+}
