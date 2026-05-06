@@ -1,7 +1,7 @@
 .shell powershell
 
 # +- Reload / WM Control ----------------------------------+
-win + shift + o         : komorebic reload-configuration
+win + shift + o         : komorebic reload-configuration; taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden
 win + shift + r         : komorebic retile
 win + p                 : komorebic toggle-pause
 win + i                 : komorebic toggle-shortcuts
@@ -9,15 +9,25 @@ win + i                 : komorebic toggle-shortcuts
 # Reload whkd
 alt + shift + o         : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden
 
+# Quit komorebi + whkd
+win + shift + q         : komorebic stop --whkd --bar
+
 # +- Applications -----------------------------------------+
 win + return            : alacritty
 win + shift + return    : wt.exe
 win + shift + w         : komorebic close
 win + m                 : komorebic minimize
 
-# App launcher: configure PowerToys Command Palette to use this shortcut,
-# or replace with your preferred launcher command
-win + d                 : Start-Process "PowerToys.CmdPal"
+# App launchers (win + alt)
+win + alt + e           : explorer.exe
+win + alt + c           : chrome
+win + alt + b           : start msedge
+win + alt + n           : neovide
+win + alt + o           : Start-Process "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
+win + alt + t           : start msteams:
+
+# App launcher: PowerToys Command Palette (via internal named event)
+win + d                 : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "[System.Threading.EventWaitHandle]::OpenExisting('Local\PowerToysCmdPal-ShowEvent-62336fcd-8611-4023-9b30-091a6af4cc5a').Set()"
 
 # +- Focus (vim-style) ------------------------------------+
 win + h                 : komorebic focus left
@@ -53,7 +63,8 @@ win + left              : komorebic stack left
 win + down              : komorebic stack down
 win + up                : komorebic stack up
 win + right             : komorebic stack right
-win + oem_1             : komorebic cycle-stack previous  # ;
+win + oem_comma         : komorebic cycle-stack previous  # ,
+win + oem_1             : komorebic cycle-stack next      # ;
 win + shift + oem_4     : komorebic cycle-stack previous  # [
 win + shift + oem_6     : komorebic cycle-stack next      # ]
 
@@ -66,30 +77,31 @@ win + shift + f         : komorebic toggle-float
 win + v                 : komorebic flip-layout vertical
 win + b                 : komorebic flip-layout horizontal
 win + e                 : komorebic cycle-layout next
+win + shift + e         : komorebic cycle-layout previous
 
 # +- Workspaces: Switch (1-9) ----------------------------+
-win + 1                 : komorebic focus-workspace 0
-win + 2                 : komorebic focus-workspace 1
-win + 3                 : komorebic focus-workspace 2
-win + 4                 : komorebic focus-workspace 3
-win + 5                 : komorebic focus-workspace 4
-win + 6                 : komorebic focus-workspace 5
-win + 7                 : komorebic focus-workspace 6
-win + 8                 : komorebic focus-workspace 7
-win + 9                 : komorebic focus-workspace 8
+win + 1                 : komorebic focus-named-workspace 1
+win + 2                 : komorebic focus-named-workspace 2
+win + 3                 : komorebic focus-named-workspace 3
+win + 4                 : komorebic focus-named-workspace 4
+win + 5                 : komorebic focus-named-workspace 5
+win + 6                 : komorebic focus-named-workspace 6
+win + 7                 : komorebic focus-named-workspace 7
+win + 8                 : komorebic focus-named-workspace 8
+win + 9                 : komorebic focus-named-workspace 9
 # Workspace back-and-forth (toggle to last active)
 win + 0                 : komorebic focus-last-workspace
 
 # +- Workspaces: Move Window (1-9) -----------------------+
-win + shift + 1         : komorebic move-to-workspace 0
-win + shift + 2         : komorebic move-to-workspace 1
-win + shift + 3         : komorebic move-to-workspace 2
-win + shift + 4         : komorebic move-to-workspace 3
-win + shift + 5         : komorebic move-to-workspace 4
-win + shift + 6         : komorebic move-to-workspace 5
-win + shift + 7         : komorebic move-to-workspace 6
-win + shift + 8         : komorebic move-to-workspace 7
-win + shift + 9         : komorebic move-to-workspace 8
+win + shift + 1         : komorebic move-to-named-workspace 1
+win + shift + 2         : komorebic move-to-named-workspace 2
+win + shift + 3         : komorebic move-to-named-workspace 3
+win + shift + 4         : komorebic move-to-named-workspace 4
+win + shift + 5         : komorebic move-to-named-workspace 5
+win + shift + 6         : komorebic move-to-named-workspace 6
+win + shift + 7         : komorebic move-to-named-workspace 7
+win + shift + 8         : komorebic move-to-named-workspace 8
+win + shift + 9         : komorebic move-to-named-workspace 9
 
 # +- Lock Screen ------------------------------------------+
 ctrl + alt + l          : rundll32.exe user32.dll,LockWorkStation
