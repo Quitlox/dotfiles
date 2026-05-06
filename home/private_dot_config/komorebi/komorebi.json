@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.40/schema.json",
+  "app_specific_configuration_path": "$Env:KOMOREBI_CONFIG_HOME/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "cross_boundary_behaviour": "Monitor",
+  "window_container_behaviour": "Create",
+  "default_workspace_padding": 18,
+  "default_container_padding": 5,
+  "border": true,
+  "border_width": 2,
+  "border_offset": -1,
+  "border_style": "Square",
+  "border_implementation": "Komorebi",
+  "border_colours": {
+    "single": "#e2e8f0",
+    "stack": "#e2e8f0",
+    "monocle": "#e2e8f0",
+    "floating": "#94a3b8",
+    "unfocused": "#94a3b8"
+  },
+  "animation": {
+    "enabled": true,
+    "fps": 60,
+    "duration": 250,
+    "style": {
+      "CubicBezier": [0.22, 1.0, 0.36, 1.0]
+    }
+  },
+  "mouse_follows_focus": true,
+  "resize_delta": 100,
+  "toggle_float_placement": "CenterAndResize",
+  "stackbar": {
+    "mode": "OnStack",
+    "label": "Title",
+    "height": 24,
+    "tabs": {
+      "font_family": "JetBrains Mono"
+    }
+  },
+  "floating_applications": [
+    {
+      "kind": "Title",
+      "id": "Picture-in-Picture",
+      "matching_strategy": "Contains"
+    },
+    {
+      "kind": "Exe",
+      "id": "blueman-manager",
+      "matching_strategy": "Equals"
+    }
+  ],
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "1", "layout": "BSP" },
+        { "name": "2", "layout": "BSP" },
+        { "name": "3", "layout": "BSP" },
+        { "name": "4", "layout": "BSP" },
+        { "name": "5", "layout": "BSP" },
+        { "name": "6", "layout": "BSP" },
+        { "name": "7", "layout": "BSP" },
+        { "name": "8", "layout": "BSP" },
+        { "name": "9", "layout": "BSP" }
+      ]
+    }
+  ]
+}

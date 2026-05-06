@@ -1,0 +1,101 @@
+.shell powershell
+
+# +- Reload / WM Control ----------------------------------+
+win + shift + o         : komorebic reload-configuration
+win + shift + r         : komorebic retile
+win + p                 : komorebic toggle-pause
+win + i                 : komorebic toggle-shortcuts
+
+# Reload whkd
+alt + shift + o         : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden
+
+# +- Applications -----------------------------------------+
+win + return            : alacritty
+win + shift + return    : wt.exe
+win + shift + w         : komorebic close
+win + m                 : komorebic minimize
+
+# App launcher: configure PowerToys Command Palette to use this shortcut,
+# or replace with your preferred launcher command
+win + d                 : Start-Process "PowerToys.CmdPal"
+
+# +- Focus (vim-style) ------------------------------------+
+win + h                 : komorebic focus left
+win + j                 : komorebic focus down
+win + k                 : komorebic focus up
+# NOTE: win + l is intercepted by Windows (screen lock).
+# To use it, set DisableLockWorkstation=1 in registry:
+# HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System
+win + l                 : komorebic focus right
+win + space             : komorebic cycle-focus next
+win + oem_4             : komorebic cycle-focus previous # [
+win + oem_6             : komorebic cycle-focus next     # ]
+
+# +- Move Windows -----------------------------------------+
+win + shift + h         : komorebic move left
+win + shift + j         : komorebic move down
+win + shift + k         : komorebic move up
+win + shift + l         : komorebic move right
+win + shift + space     : komorebic promote
+
+# +- Resize -----------------------------------------------+
+# No submap support in whkd, so use win+ctrl combos
+# (matches Hyprland resize mode directions but always active)
+win + ctrl + h          : komorebic resize-axis horizontal decrease
+win + ctrl + l          : komorebic resize-axis horizontal increase
+win + ctrl + k          : komorebic resize-axis vertical decrease
+win + ctrl + j          : komorebic resize-axis vertical increase
+
+# +- Stacking (i3 tabbed containers) ---------------------+
+win + s                 : komorebic stack left
+win + shift + s         : komorebic unstack
+win + left              : komorebic stack left
+win + down              : komorebic stack down
+win + up                : komorebic stack up
+win + right             : komorebic stack right
+win + oem_1             : komorebic cycle-stack previous  # ;
+win + shift + oem_4     : komorebic cycle-stack previous  # [
+win + shift + oem_6     : komorebic cycle-stack next      # ]
+
+# +- Window Toggles --------------------------------------+
+win + f                 : komorebic toggle-monocle
+win + shift + f         : komorebic toggle-float
+
+# +- Layouts (BSP split direction) ------------------------+
+# BSP auto-splits; flip-layout changes the tree orientation
+win + v                 : komorebic flip-layout vertical
+win + b                 : komorebic flip-layout horizontal
+win + e                 : komorebic cycle-layout next
+
+# +- Workspaces: Switch (1-9) ----------------------------+
+win + 1                 : komorebic focus-workspace 0
+win + 2                 : komorebic focus-workspace 1
+win + 3                 : komorebic focus-workspace 2
+win + 4                 : komorebic focus-workspace 3
+win + 5                 : komorebic focus-workspace 4
+win + 6                 : komorebic focus-workspace 5
+win + 7                 : komorebic focus-workspace 6
+win + 8                 : komorebic focus-workspace 7
+win + 9                 : komorebic focus-workspace 8
+# Workspace back-and-forth (toggle to last active)
+win + 0                 : komorebic focus-last-workspace
+
+# +- Workspaces: Move Window (1-9) -----------------------+
+win + shift + 1         : komorebic move-to-workspace 0
+win + shift + 2         : komorebic move-to-workspace 1
+win + shift + 3         : komorebic move-to-workspace 2
+win + shift + 4         : komorebic move-to-workspace 3
+win + shift + 5         : komorebic move-to-workspace 4
+win + shift + 6         : komorebic move-to-workspace 5
+win + shift + 7         : komorebic move-to-workspace 6
+win + shift + 8         : komorebic move-to-workspace 7
+win + shift + 9         : komorebic move-to-workspace 8
+
+# +- Lock Screen ------------------------------------------+
+ctrl + alt + l          : rundll32.exe user32.dll,LockWorkStation
+
+# +- Multi-Monitor ----------------------------------------+
+win + ctrl + oem_4      : komorebic cycle-monitor previous # [
+win + ctrl + oem_6      : komorebic cycle-monitor next     # ]
+win + ctrl + shift + h  : komorebic move-to-monitor 0
+win + ctrl + shift + l  : komorebic move-to-monitor 1
