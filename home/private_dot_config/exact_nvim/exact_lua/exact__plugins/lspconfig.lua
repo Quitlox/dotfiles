@@ -77,7 +77,7 @@ vim.lsp.config("basedpyright", {
 vim.lsp.config("harper_ls", {
     settings = {
         ["harper-ls"] = {
-            dialect = "British",
+            dialect = "American",
             linters = {
                 MassNouns = false, -- terms like "static" are often used in code
                 ToDoHypen = false, -- interferes with TODO comments
