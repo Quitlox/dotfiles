@@ -76,6 +76,7 @@ local ignore_filetypes = {
     "sidekick",
     "snacks_",
     "tex", -- VimTeX provides its own indentexpr
+    "qf",
 }
 
 vim.api.nvim_create_autocmd("FileType", {
