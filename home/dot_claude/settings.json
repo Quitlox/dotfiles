@@ -55,5 +55,6 @@
     "commit-commands@claude-plugins-official": true,
     "gitlab@claude-plugins-official": true
   },
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "skipAutoPermissionPrompt": true
 }
