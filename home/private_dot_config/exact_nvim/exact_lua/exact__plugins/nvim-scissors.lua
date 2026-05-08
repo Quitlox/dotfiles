@@ -4,7 +4,6 @@
 
 require("scissors").setup({
     editSnippetPopup = {},
-    jsonFormatter = "jq",
 })
 
 -- stylua: ignore start
