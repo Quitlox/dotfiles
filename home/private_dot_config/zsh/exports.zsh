@@ -4,8 +4,8 @@
 ############################################################
 
 # Editors
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
 
 # Manpager
 #if command -v bat > /dev/null 2>&1; then
