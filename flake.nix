@@ -1,6 +1,15 @@
 {
+  # NixOS Management Commands
+  #
+  # To update the inputs of the flake:
+  # - `sudo nix flake update --flake /etc/nixos`
+  # To switch to a new configuration:
+  # - `sudo nixos-rebuild switch --flake /etc/nixos`
+  #
+  # To select the configuration (`quitlox-pi`, `quitlox-homelab`), use:
+  # - `sudo nixos-rebuild switch --flake /etc/nixos#quitlox-homelab`
   description = ''
-    Quitlox's Raspberry Pi
+    Quitlox's Nixos Configuration
   '';
 
   nixConfig = {
