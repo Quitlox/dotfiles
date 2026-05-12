@@ -28,6 +28,7 @@
       };
     };
   };
+  # TODO: it appears DHCP isn't configured for wifi, so this should'nt currently work?
 
   # WiFi Password
   sops.secrets."pass-wifi" = { };
