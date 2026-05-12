@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 {
   # Ethernet
   networking.useDHCP = false; # enabled by default, conflicts with networkd
@@ -7,14 +7,36 @@
     matchConfig.Name = "enp0s31f6";
     networkConfig.MulticastDNS = "yes"; # Resolve <hostname>.local
     # Static configuration
-    address = [ "192.168.178.2/24" ];
-    routes = [ { Gateway = "192.168.178.1"; } ];
+    # address = [ "192.168.178.2/24" ];
+    # routes = [ { Gateway = "192.168.178.1"; } ];
     # Dynamic configuration
     networkConfig.DHCP = "ipv4";
     networkConfig.IPv6AcceptRA = true;
     # Both the static and dynamic IP will be assigned, but one can be used as
     # a fallback for the other.
   };
+
+  # WiFi Configuration (wpa_supplicant)
+  networking.wireless.iwd.enable = false; # Disable iwd since we're using wpa_supplicant
+  networking.wireless.userControlled.enable = true; # Allow manual configuration (through wpa_cli)
+  networking.wireless = {
+    enable = true;
+    secretsFile = config.sops.templates."wifi".path;
+    networks = {
+      "Pied-à-Plein" = {
+        pskRaw = "ext:psk_wifi_home";
+      };
+    };
+  };
+
+  # WiFi Password
+  sops.secrets."pass-wifi" = { };
+  sops.templates."wifi" = {
+    content = ''
+      psk_wifi_home=${config.sops.placeholder.pass-wifi}
+    '';
+  };
+
 
   # Multicast DNS - Resolve <hostname>.local
   networking.firewall.allowedUDPPorts = [ 5353 ];
