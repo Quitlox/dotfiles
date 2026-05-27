@@ -131,11 +131,25 @@ vim.keymap.set("n", "<leader>wv", "<C-W>s", { desc = "Window vSplit" })
 vim.keymap.set("n", "<leader>wb", "<C-W>v", { desc = "Window Split" })
 vim.keymap.set("n", "<leader>wd", safe_window_close, { desc = "Window Delete" })
 
--- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "which_key_ignore" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "which_key_ignore" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "which_key_ignore" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "which_key_ignore" })
+-- Resize window using <ctrl> arrow keys (edgy-aware)
+local function resize(dim, amount)
+    return function()
+        local ok, edgy = pcall(require, "edgy")
+        local win = ok and edgy.get_win()
+        if win then
+            win:resize(dim, amount)
+        elseif dim == "width" then
+            vim.cmd("vertical resize " .. (amount > 0 and "+" or "") .. amount)
+        else
+            vim.cmd("resize " .. (amount > 0 and "+" or "") .. amount)
+        end
+    end
+end
+
+vim.keymap.set("n", "<C-Up>", resize("height", 2), { desc = "which_key_ignore" })
+vim.keymap.set("n", "<C-Down>", resize("height", -2), { desc = "which_key_ignore" })
+vim.keymap.set("n", "<C-Left>", resize("width", -2), { desc = "which_key_ignore" })
+vim.keymap.set("n", "<C-Right>", resize("width", 2), { desc = "which_key_ignore" })
 
 -- +---------------------------------------------------------+
 -- | Buffers                                                 |
@@ -174,6 +188,9 @@ vim.keymap.set("x", "<C-N>", "<Down>")
 -- +---------------------------------------------------------+
 -- | Miscellaneous                                           |
 -- +---------------------------------------------------------+
+
+-- De-dent by one shiftwidth in insert mode
+vim.keymap.set("i", "<S-Tab>", "<C-D>", { desc = "De-indent line" })
 
 -- Do not add { and } to jumplist
 vim.keymap.set("n", "}", function() vim.cmd("keepjumps norm! " .. vim.v.count1 .. "}") end, { silent = true })
