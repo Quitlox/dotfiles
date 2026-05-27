@@ -1,0 +1,11 @@
+gui:
+  scrollHeight: 8
+
+{{- if .chezmoi.kernel }}
+{{- if contains "microsoft" (lower .chezmoi.kernel.osrelease) }}
+
+os:
+  copyToClipboardCmd: "printf '%s' {{`{{text}}`}} | win32yank.exe -i --crlf"
+  readFromClipboardCmd: "win32yank.exe -o --lf"
+{{- end }}
+{{- end }}
