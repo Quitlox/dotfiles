@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "windows" -}}
+# komorebi app-specific configuration (Windows only).
+# Fetched from upstream rather than managed in this repo; do not edit by hand,
+# edit komorebi.json instead. Refreshed weekly; force with `chezmoi apply -R`.
+[".config/komorebi/applications.json"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/LGUG2Z/komorebi-application-specific-configuration/master/applications.json"
+    refreshPeriod = "168h"
+{{ end -}}
