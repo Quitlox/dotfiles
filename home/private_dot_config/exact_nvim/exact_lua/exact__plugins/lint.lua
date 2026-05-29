@@ -70,8 +70,14 @@ vim.api.nvim_create_autocmd("FileType", {
 
                 -- If linter exists and has a command
                 if linter and linter.cmd then
-                    if vim.fn.executable(linter.cmd) == 0 then
-                        table.insert(missing_linters, { name = linter_name, cmd = linter.cmd })
+                    -- cmd may be a string or a function returning a string
+                    local cmd = linter.cmd
+                    if type(cmd) == "function" then
+                        cmd = cmd()
+                    end
+
+                    if type(cmd) == "string" and vim.fn.executable(cmd) == 0 then
+                        table.insert(missing_linters, { name = linter_name, cmd = cmd })
                     end
                 end
             end
