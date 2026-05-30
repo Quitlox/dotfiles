@@ -21,8 +21,8 @@
     ../../modules/bundle-neovim.nix
     # applications
     ../../modules/service-traefik.nix
-    ../../hosts/quitlox-pi/applications/media.nix
-    ../../modules/service-ddns-updater.nix
+    ./applications/media.nix
+    ./applications/ddns-updater.nix
     # server defaults (nice-to-haves) from srvos
     (srvos.outPath + "/nixos/common/detect-hostname-change.nix")
     (srvos.outPath + "/nixos/common/update-diff.nix")
