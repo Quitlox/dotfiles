@@ -28,7 +28,7 @@
   ];
 
   quitlox.traefik.domain = "home.quitlox.dev";
-  quitlox.traefik.lan.subnet = "192.168.178.0/24";
+  quitlox.traefik.lan.subnet = "192.168.1.0/24";
 
   # ----- System -----
   # Use the systemd-boot EFI boot loader
