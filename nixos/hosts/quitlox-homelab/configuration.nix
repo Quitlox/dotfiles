@@ -58,8 +58,8 @@
 
   # ----- SSL -----
   # Automated SSL certificate process for Hetzner managed domains.
-  sops.secrets."hetzner/dns-apikey" = { owner = "traefik"; group = "traefik"; };
-  environment.etc."traefik/hetzner.env".text = "HETZNER_API_TOKEN_FILE=${config.sops.secrets."hetzner/dns-apikey".path}\n";
+  sops.secrets."hetzner/cloud-apikey" = { owner = "traefik"; group = "traefik"; };
+  environment.etc."traefik/hetzner.env".text = "HETZNER_API_TOKEN_FILE=${config.sops.secrets."hetzner/cloud-apikey".path}\n";
   services.traefik = {
     environmentFiles = [ "/etc/traefik/hetzner.env" ];
     staticConfigOptions = {
