@@ -1,6 +1,7 @@
 # Quitlox's Dotfiles
 
-This repository contains my personal dotfiles. These dotfiles basically contain *all* my configuration, spanning:
+This repository contains my personal dotfiles. These dotfiles basically contain _all_ my configuration, spanning:
+
 - The `chezmoi` managed dotfiles under `home/`, which contain user configurations for linux applications.
   - These include my ansible configuration in `~/.config/ansible/` automatic the setup of my Arch Linux installations.
 - The `nixos` configuration in `nixos/` containing the configurations of my NixOS installations.

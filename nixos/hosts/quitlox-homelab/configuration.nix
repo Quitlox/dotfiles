@@ -19,10 +19,10 @@
     ../../modules/bundle-cli.nix
     ../../modules/bundle-chezmoi.nix
     ../../modules/bundle-neovim.nix
-    # applications
+    # application configuration
     ../../modules/service-traefik.nix
-    ./applications/media.nix
-    ./applications/ddns-updater.nix
+    ./modules/service-ddns-updater.nix
+    ./modules/service-media.nix
     # server defaults (nice-to-haves) from srvos
     (srvos.outPath + "/nixos/common/detect-hostname-change.nix")
     (srvos.outPath + "/nixos/common/update-diff.nix")
@@ -49,13 +49,13 @@
   boot.zfs.extraPools = [ "tank" ];
   services.zfs.autoScrub.enable = true;
   
-  # sudo zpool create -o ashift=12 -O xattr=sa -O compression=lz4 -O atime=off -O mountpoint=none tank mirror "$D1" "$D2"
-  # sudo zfs set canmount=off tank
-  # sudo zfs create -o mountpoint=/srv/media tank/media
-  # sudo zfs create -o mountpoint=/srv/media/movies -o recordsize=1M tank/media/movies
-  # sudo zfs create -o mountpoint=/srv/media/tvshows -o recordsize=1M tank/media/tvshows
-  # sudo zfs create -o mountpoint=/srv/media/anime -o recordsize=1M tank/media/anime
-  # sudo zfs create -o mountpoint=/srv/media/torrents -o recordsize=16K tank/media/torrents
+  # `sudo zpool create -o ashift=12 -O xattr=sa -O compression=lz4 -O atime=off -O mountpoint=none tank mirror "$D1" "$D2"`
+  # `sudo zfs set canmount=off tank`
+  # `sudo zfs create -o mountpoint=/srv/media tank/media`
+  # `sudo zfs create -o mountpoint=/srv/media/movies -o recordsize=1M tank/media/movies`
+  # `sudo zfs create -o mountpoint=/srv/media/tvshows -o recordsize=1M tank/media/tvshows`
+  # `sudo zfs create -o mountpoint=/srv/media/anime -o recordsize=1M tank/media/anime`
+  # `sudo zfs create -o mountpoint=/srv/media/torrents -o recordsize=16K tank/media/torrents`
 
   # ----- SSL -----
   # Automated SSL certificate process for Hetzner managed domains.
@@ -68,7 +68,7 @@
         email = "kevin.witlox@upcmail.nl";
         storage = "${config.services.traefik.dataDir}/acme.json";
         dnsChallenge.provider = "hetzner";
-        # We explicitly set public resolvers, as dnsmasq is setup to resolve
+        # We explicitly set public resolvers, as dnsmasq is set up to resolve
         # our domain internally
         # Cloudflare 1.1.1.1 Google 8.8.8.8
         dnsChallenge.resolvers = [ "1.1.1.1:53" "8.8.8.8:53" ];
