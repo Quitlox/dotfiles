@@ -410,7 +410,7 @@ in
       DisableAutoTMMByDefault = false; # Automatic Torrent Management
       DisableAutoTMMTriggers.CategorySavePathChanged = false; # When Category Save Path changed: Relocate affected torrents
       DisableAutoTMMTriggers.DefaultSavePathChanged = false; # When Default Save Path changed: Relocate affected torrents
-      GlobalMaxRatio = 2; # [Optional] seeding ratio
+      GlobalMaxRatio = 3; # [Optional] seeding ratio
       Interface = "airvpn0"; # [AirVPN] as configured below
       InterfaceName = "airvpn0"; # [AirVPN] as configured below
       InterfaceAddress = "0.0.0.0"; # [AirVPN] won't work without it
