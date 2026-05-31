@@ -169,6 +169,9 @@ in
     '';
   };
 
+  # Expose through traefik
+  quitlox.traefik.expose-internal = { prowlarr.port = 2101; };
+
   ##############################################################################
   ### Radarr - Movie collection manager                                      ###
   ##############################################################################
@@ -199,6 +202,9 @@ in
     '';
   };
 
+  # Expose through traefik
+  quitlox.traefik.expose-internal = { radarr.port = 2102; };
+
   ##############################################################################
   ### Sonarr - Series collection manager                                     ###
   ##############################################################################
@@ -228,6 +234,9 @@ in
       SONARR__AUTH__REQUIRED=DisabledForLocalAddresses
     '';
   };
+
+  # Expose through traefik
+  quitlox.traefik.expose-internal = { sonarr.port = 2103; };
 
   ##############################################################################
   ### Bazarr - Manage and download subtitles                                 ###
@@ -270,6 +279,9 @@ in
   services.bazarr.openFirewall = true;
   services.bazarr.listenPort = 2107;
 
+  # Expose through traefik
+  quitlox.traefik.expose-internal = { bazarr.port = 2107; };
+
   ##############################################################################
   ### Jellyseerr - Media Discovery                                           ###
   ##############################################################################
@@ -308,17 +320,7 @@ in
   services.jellyseerr.openFirewall = true;
 
   # Expose through traefik
-  services.traefik.dynamicConfigOptions = {
-    http.services.jellyseerr = {
-      loadBalancer.servers = [ { url = "http://127.0.0.1:2108"; } ]; # HTTP 8096, HTTPS 8920
-    };
-    http.routers.jellyseerr = {
-      entryPoints = [ "websecure" ];
-      rule = "Host(`jellyseerr.${config.quitlox.traefik.domain}`)";
-      service = "jellyseerr";
-      middlewares = [ "ip-internal" ];
-    };
-  };
+  quitlox.traefik.expose-internal = { jellyseerr.port = 2108; };
 
   ##############################################################################
   ### Profilarr - Configuration manager                                      ###
@@ -426,6 +428,9 @@ in
       Password_PBKDF2 = "@ByteArray(Wt7a55MpU5dvNLTcX1REKQ==:oPdjBY6ldjd8yY+Y3NcUxxBX3DVRJ1nqBPaZntJXmnkb1FyqoyHIVNKNjet07ui5RqdRVhj8LX1oEhWF212nig==)"; # nixos/secrets/secrets.yaml
     };
   };
+
+  # Expose through traefik
+  quitlox.traefik.expose-internal = { qbittorrent.port = 2111; };
 
   ##############################################################################
   ### AirVPN                                                                 ###
