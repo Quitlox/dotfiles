@@ -40,7 +40,6 @@ in
   ##############################################################################
   sops.templates."ddns-updater.json" = {
     owner = "ddns";
-    path = "/var/lib/ddns-updater/config.json";
     content = builtins.toJSON {
       settings = [
         {
@@ -85,6 +84,7 @@ in
       };
       volumes = [
         "/var/lib/ddns-updater:/updater/data"
+        "${config.sops.templates."ddns-updater.json".path}:/updater/data/config.json:ro"
       ];
 
       ##########################################################################
