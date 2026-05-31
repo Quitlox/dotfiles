@@ -70,10 +70,10 @@ in
     # Enable logging
     {
       services.traefik.staticConfigOptions.log = {
-        level = "DEBUG";
-        filePath = "${config.services.traefik.dataDir}/traefik.log";
+        level = "INFO";
         format = "common";
       };
+      # Access logs are noisy, so logged to seperate file
       services.traefik.staticConfigOptions.accessLog = {
         filePath = "${config.services.traefik.dataDir}/access.log";
       };
