@@ -7,8 +7,8 @@
 # prowlarr.service         2101  prowlarr   /var/lib/prowlarr    Torrent index manager
 # bazarr.service           2107  bazarr     /var/lib/bazarr      Subtitles manager
 # arion-profilarr.service  2109  -          /var/lib/profilarr   Configuration manager (for profiles, quality)
-# jellyseerr.service       2108  jellyseer  /var/lib/jellyseerr  Media Discovery 
-# qbittorent.service       2111  -          /var/lib/profilarr   QBittorrent Web UI
+# jellyseerr.service       2108  jellyseer  /var/lib/jellyseerr  Media Discovery
+# qbittorent.service       2111  -          /var/lib/qbittorrent QBittorrent Web UI
 #
 # (^ in setup order)
 #
@@ -16,10 +16,10 @@
 #   - /srv/media/movies
 #   - /srv/media/tvshows
 #   - /srv/media/torrents
-# 
+#
 # VPN:
 #   - AirVPN is configured
-# 
+#
 # Notes:
 #   - All services share the `media` group for access to /srv/media
 #     - NOTE - I think this may not actually be necessary for some services
@@ -33,7 +33,13 @@
 #   https://web.archive.org/web/20250822223330/https://www.fuzzygrim.com/posts/media-server
 #
 # Notes:
-{ nixpkgs, config, lib, pkgs, ... }:
+{
+  nixpkgs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   # Package our servarr_sync_settings script
   script_servarr_settings_sync_env = pkgs.python3.withPackages (ps: [
@@ -86,7 +92,11 @@ in
   #     - https://github.com/lscambo13/ElegantFin
   #     - @import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 
-  environment.systemPackages = with pkgs; [ jellyfin jellyfin-web jellyfin-ffmpeg ];
+  environment.systemPackages = with pkgs; [
+    jellyfin
+    jellyfin-web
+    jellyfin-ffmpeg
+  ];
 
   services.jellyfin.enable = true;
   services.jellyfin.group = "media";
@@ -103,7 +113,6 @@ in
     http.routers.jellyfin = {
       entryPoints = [ "websecure" ];
       rule = "Host(`jellyfin.${config.quitlox.traefik.domain}`)";
-      tls.certResolver = "letsencrypt";
       service = "jellyfin";
       middlewares = [ "ip-internal" ];
     };
@@ -139,15 +148,19 @@ in
   systemd.services.prowlarr.serviceConfig.User = "prowlarr";
   systemd.services.prowlarr.serviceConfig.Group = "media";
   systemd.services.prowlarr.serviceConfig.DynamicUser = lib.mkForce false;
-  systemd.services.prowlarr.serviceConfig.ExecStart = lib.mkForce "${lib.getExe config.services.prowlarr.package} -nobrowser -data=/var/lib/prowlarr/";
-  users.users.prowlarr = { 
-    home = "/var/lib/prowlarr/"; 
-    group = "media"; 
+  systemd.services.prowlarr.serviceConfig.ExecStart =
+    lib.mkForce "${lib.getExe config.services.prowlarr.package} -nobrowser -data=/var/lib/prowlarr/";
+  users.users.prowlarr = {
+    home = "/var/lib/prowlarr/";
+    group = "media";
     isSystemUser = true;
   };
 
   services.prowlarr.environmentFiles = [ config.sops.templates."prowlarr.env".path ];
-  sops.secrets."${prowlarr_apikey}" = { owner = "root"; group = "media"; };
+  sops.secrets."${prowlarr_apikey}" = {
+    owner = "root";
+    group = "media";
+  };
   sops.templates."prowlarr.env" = {
     content = ''
       PROWLARR__AUTH__APIKEY=${config.sops.placeholder."${prowlarr_apikey}"}
@@ -174,7 +187,10 @@ in
   services.radarr.settings.server.port = 2102;
 
   services.radarr.environmentFiles = [ config.sops.templates."radarr.env".path ];
-  sops.secrets."${radarr_apikey}" = { owner = "radarr"; group = "media"; };
+  sops.secrets."${radarr_apikey}" = {
+    owner = "radarr";
+    group = "media";
+  };
   sops.templates."radarr.env" = {
     content = ''
       RADARR__AUTH__APIKEY=${config.sops.placeholder."${radarr_apikey}"}
@@ -201,7 +217,10 @@ in
   services.sonarr.settings.server.port = 2103;
 
   services.sonarr.environmentFiles = [ config.sops.templates."sonarr.env".path ];
-  sops.secrets."${sonarr_apikey}" = { owner = "sonarr"; group = "media"; };
+  sops.secrets."${sonarr_apikey}" = {
+    owner = "sonarr";
+    group = "media";
+  };
   sops.templates."sonarr.env" = {
     content = ''
       SONARR__AUTH__APIKEY=${config.sops.placeholder."${sonarr_apikey}"}
@@ -214,7 +233,7 @@ in
   ### Bazarr - Manage and download subtitles                                 ###
   ##############################################################################
   # Description:
-  #   Companion application to Sonarr and Radarr that manages and downloads   
+  #   Companion application to Sonarr and Radarr that manages and downloads
   #   subtitles based on your requirements.
   # Setup:
   #   1. Languages:
@@ -316,7 +335,7 @@ in
   # 2. Database > Add Database
   #     - setup the database by adding https://github.com/Dictionarry-Hub/database.git
   #     - enable autosync on the database
-  # 3. External Apps > Add Radarr 
+  # 3. External Apps > Add Radarr
   #     - Name = "Radarr"
   #     - Arr Server = "http://quitlox-homelab.local:2102" # FIXME: docker doesn't have access to localhost
   #     - Sync Method = "Scheduled"
@@ -343,9 +362,11 @@ in
           service = {
             image = "santiagosayshey/profilarr:beta";
             container_name = "profilarr";
-            ports = [ "2109:6868"];
+            ports = [ "2109:6868" ];
             volumes = [ "/var/lib/profilarr:/config" ];
-            environment = { TZ = "Europe/Amsterdam"; };
+            environment = {
+              TZ = "Europe/Amsterdam";
+            };
             restart = "unless-stopped";
           };
         };
@@ -362,7 +383,7 @@ in
   services.qbittorrent.user = "qbittorrent"; # default
   services.qbittorrent.group = "media";
   services.qbittorrent.profileDir = "/var/lib/qbittorrent";
-  services.qbittorrent.torrentingPort = 19279;                # [AirVPN] must be set to remote forwarded port
+  services.qbittorrent.torrentingPort = 19279; # [AirVPN] must be set to remote forwarded port
   services.qbittorrent.webuiPort = 2111;
   services.qbittorrent.openFirewall = true;
   services.qbittorrent.serverConfig = {
@@ -371,28 +392,28 @@ in
 
     LegalNotice.Accepted = true;
     BitTorrent.Session = {
-      AddTorrentToTopOfQueue = true;                          # [Optional] newest torrent first
-      BTProtocol = "TCP";                                     # Use TCP for performance
+      AddTorrentToTopOfQueue = true; # [Optional] newest torrent first
+      BTProtocol = "TCP"; # Use TCP for performance
       DefaultSavePath = "/srv/media/torrents";
-      DisableAutoTMMByDefault = false;                        # Automatic Torrent Management
+      DisableAutoTMMByDefault = false; # Automatic Torrent Management
       DisableAutoTMMTriggers.CategorySavePathChanged = false; # When Category Save Path changed: Relocate affected torrents
-      DisableAutoTMMTriggers.DefaultSavePathChanged = false;  # When Default Save Path changed: Relocate affected torrents
-      GlobalMaxRatio = 2;                                     # [Optional] seeding ratio
-      Interface = "airvpn0";                                  # [AirVPN] as configured below
-      InterfaceName = "airvpn0";                              # [AirVPN] as configured below
-      InterfaceAddress = "0.0.0.0";                           # [AirVPN] won't work without it
-      MaxActiveUploads = 10;                                  # [Optional] up seeding limit
-      MaxActiveTorrents = 13;                                 # [Optional] up seeding limit
+      DisableAutoTMMTriggers.DefaultSavePathChanged = false; # When Default Save Path changed: Relocate affected torrents
+      GlobalMaxRatio = 2; # [Optional] seeding ratio
+      Interface = "airvpn0"; # [AirVPN] as configured below
+      InterfaceName = "airvpn0"; # [AirVPN] as configured below
+      InterfaceAddress = "0.0.0.0"; # [AirVPN] won't work without it
+      MaxActiveUploads = 10; # [Optional] up seeding limit
+      MaxActiveTorrents = 13; # [Optional] up seeding limit
       # GlobalDLSpeedLimit = 85449;                             # 700 Mbps (70% of connection)
       # GlobalUPSpeedLimit = 8545;                              # 70 Mbps (70% of connection)
-      Preallocation = true;                                   # Pre-allocate disk space
-      uTPRateLimited = false;                                 # [AirVPN] advises to disable rate limiting
+      Preallocation = true; # Pre-allocate disk space
+      uTPRateLimited = false; # [AirVPN] advises to disable rate limiting
     };
     Core = {
-      AutoDeleteAddedTorrentFile = "IfAdded";                 # Delete .torrent file after added to qbittorrent
+      AutoDeleteAddedTorrentFile = "IfAdded"; # Delete .torrent file after added to qbittorrent
     };
     Network = {
-      PortForwardingEnabled = false;                          # Do NOT use UPnP to automatically port forward (security)
+      PortForwardingEnabled = false; # Do NOT use UPnP to automatically port forward (security)
     };
     Preferences.WebUI = {
       AuthSubnetWhitelist = "192.168.178.0/24";
@@ -410,7 +431,7 @@ in
   ### AirVPN                                                                 ###
   ##############################################################################
   # We use AirVPN as it's cheap and supports static port forwarding
-  #     ProtonVPN also supports port-forwarding, but the ports are 
+  #     ProtonVPN also supports port-forwarding, but the ports are
   #     randomly assigned making it (nearly) impossible to declaratively configure.
   #
   # 1. Generate AirVPN Configuration
@@ -421,7 +442,7 @@ in
   #     - Navigate to https://airvpn.org/ports/
   #     - Add a port (no need to fill in anything, just click plus)
   #         LOCAL PORT MUST ALWAYS CORRESPOND WITH REMOTE PORT (otherwise seeding won't work)
-  # 
+  #
   # 3. Update configuration of network interface (below)
   #     - All fields can be copied from the generated config
   #     - privatekey and presharedkey must remain secret (stored in nixos/secrets/secrets.yml)
@@ -430,7 +451,6 @@ in
   #         - the dns is the most "narrow" range of ips that must use the wireguard interface
   # 4. Configure port forwarding
   #     - `services.qbittorrent.torrentingPort` must be set to the forwarded port
-
 
   # Networking: A Quick Intermezzo
   #
@@ -446,7 +466,7 @@ in
   #
   # On desktop systems, NetworkManager is commonly used instead as it allows
   # for GUI frontend and is better suited for dynamically changing the
-  # networking configuration. 
+  # networking configuration.
   #
   # On the Pi we use Wifi, so in addition to `systemd-networkd` we have
   # `wpa_supplicant` which is complemenatry as it manages only the wifi
@@ -501,8 +521,14 @@ in
   # setup policy rules such that traffic from the qbittorrent user is routed
   # through this table.
 
-  sops.secrets."airvpn/privatekey" = { group = "systemd-network"; mode = "0640"; };
-  sops.secrets."airvpn/presharedkey" = { group = "systemd-network"; mode = "0640"; };
+  sops.secrets."airvpn/privatekey" = {
+    group = "systemd-network";
+    mode = "0640";
+  };
+  sops.secrets."airvpn/presharedkey" = {
+    group = "systemd-network";
+    mode = "0640";
+  };
   networking.firewall.interfaces.airvpn0.allowedTCPPorts = [ 19279 ];
   networking.firewall.checkReversePath = "loose";
   systemd.network = {
@@ -517,7 +543,7 @@ in
         wireguardConfig = {
           PrivateKeyFile = config.sops.secrets."airvpn/privatekey".path;
           # ListenPort = 1637; # default port, do not use random port
-          # Mark packets generated by wireguard itself with the tag 0x8888 
+          # Mark packets generated by wireguard itself with the tag 0x8888
           # (mark 0x8888 is meaningless, but commonly used for wireguard)
           FirewallMark = 34952; # 0x8888
         };
@@ -525,7 +551,10 @@ in
           {
             PresharedKeyFile = config.sops.secrets."airvpn/presharedkey".path;
             PublicKey = "PyLCXAQT8KkM4T+dUsOQfn+Ub3pGxfGlxkIApuig+hk=";
-            AllowedIPs = [ "0.0.0.0/0" "::/0" ];
+            AllowedIPs = [
+              "0.0.0.0/0"
+              "::/0"
+            ];
             Endpoint = "europe3.vpn.airdns.org:1637";
             # Install the AllowedIPs rules to table 1000 *instead of the main table*.
             RouteTable = 1000;
@@ -538,8 +567,14 @@ in
       # Network configuration for interface
       airvpn0 = {
         matchConfig.Name = "airvpn0"; # configure the airvpn0 virtual interface
-        address = [ "10.138.122.183/32" "fd7d:76ee:e68f:a993:4d30:b6dd:fb9:f87a/128" ];
-        dns = [ "10.128.0.1" "fd7d:76ee:e68f:a993::1" ];
+        address = [
+          "10.138.122.183/32"
+          "fd7d:76ee:e68f:a993:4d30:b6dd:fb9:f87a/128"
+        ];
+        dns = [
+          "10.128.0.1"
+          "fd7d:76ee:e68f:a993::1"
+        ];
         routingPolicyRules = [
           {
             FirewallMark = 34952;
