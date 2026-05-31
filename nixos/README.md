@@ -16,6 +16,18 @@ To update secrets, use (requires key, see `.sops.yaml`):
 
 - `sops nixos/secrets/secrets.yaml`
 
+## Development Environment
+
+To develop these files (even on non-nix systems), it's recommended to
+install `Nix` and use `nix profile`.
+
+Install the Language Server and formatter:
+- `nix profile add "nixpkgs#nixd"`
+- `nix profile add "nixpkgs#nixfmt"`
+
+The `nixd` language server is configured to pick up the first nixos
+configuration it finds in the `flake.nix` in the project root.
+
 ## Home Networking
 
 Networking Devices
