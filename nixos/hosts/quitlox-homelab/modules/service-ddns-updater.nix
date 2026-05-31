@@ -92,12 +92,9 @@ in
       ##########################################################################
       labels = {
         "traefik.enable" = "true";
-        "traefik.docker.network" = "proxy";
 
         # Web UI: https://home.quitlox.dev/services/ddns
         "traefik.http.routers.ddns-updater.rule" = "Host(`${domain}`) && PathPrefix(`/services/ddns`)";
-        "traefik.http.routers.ddns-updater.entrypoints" = "websecure";
-        "traefik.http.routers.ddns-updater.tls.certresolver" = "letsencrypt";
         "traefik.http.routers.ddns-updater.middlewares" = "ip-internal@file";
         "traefik.http.routers.ddns-updater.service" = "ddns-updater";
         "traefik.http.services.ddns-updater.loadbalancer.server.port" = "8000";
@@ -105,8 +102,6 @@ in
         # Healthcheck: https://home.quitlox.dev/services/ddns/health
         # The longer path prefix gives this router priority over the web UI router.
         "traefik.http.routers.ddns-updater-health.rule" = "Host(`${domain}`) && PathPrefix(`/services/ddns/health`)";
-        "traefik.http.routers.ddns-updater-health.entrypoints" = "websecure";
-        "traefik.http.routers.ddns-updater-health.tls.certresolver" = "letsencrypt";
         "traefik.http.routers.ddns-updater-health.middlewares" = "ip-internal@file,ddns-updater-health-strip";
         "traefik.http.routers.ddns-updater-health.service" = "ddns-updater-health";
         "traefik.http.services.ddns-updater-health.loadbalancer.server.port" = "9999";
