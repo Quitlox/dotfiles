@@ -17,13 +17,29 @@
 { config, ... }:
 let
   domain = config.quitlox.traefik.domain;
+
+  # Unpriviliged user for the container and the configuration file.
+  ddnsUID = 1500;
+  ddnsGID = 1500;
 in
 {
+  ##############################################################################
+  ### User                                                                   ###
+  ##############################################################################
+  # Unpriviliged user for the container and the configuration file.
+  users.users.ddns = {
+    uid = ddnsUID;
+    home = "/var/lib/ddns-updater";
+    group = "ddns";
+    isSystemUser = true;
+  };
+  users.groups.ddns.gid = ddnsGID;
+
   ##############################################################################
   ### Configuration File                                                     ###
   ##############################################################################
   sops.templates."ddns-updater.json" = {
-    owner = "quitlox"; # FIXME: this should be UID 1000 (which happens to be the first user)
+    owner = "ddns";
     path = "/var/lib/ddns-updater/config.json";
     content = builtins.toJSON {
       settings = [
@@ -39,7 +55,7 @@ in
 
   # Persistent data dir (holds updates.json: last-seen IP + change history).
   systemd.tmpfiles.rules = [
-    "d /var/lib/ddns-updater 0700 1000 1000 - -" # UID 1000 as per docs
+    "d /var/lib/ddns-updater 0700 ddns ddns - -"
   ];
 
   ##############################################################################
@@ -52,6 +68,8 @@ in
       image = "qmcgaw/ddns-updater:latest";
       container_name = "ddns-updater";
       restart = "unless-stopped";
+      # Run as the dedicated `ddns` user instead of the image's baked-in 1000:1000
+      user = "${toString ddnsUID}:${toString ddnsGID}";
       networks = [ "proxy" ];
       environment = {
         TZ = "Europe/Amsterdam";
