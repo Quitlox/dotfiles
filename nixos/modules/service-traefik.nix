@@ -20,10 +20,12 @@
 # a specific domain and all its subdomains to this traefik service.
 #
 { config, lib, ... }:
-let 
+let
   cfg = config.quitlox.traefik;
 in
 {
+  imports = [ ./service-traefik-utils.nix ];
+
   ##############################################################################
   ### variables                                                              ###
   ##############################################################################
@@ -53,11 +55,17 @@ in
 
   config = lib.mkMerge [
     ##############################################################################
-    ### traefik                                                                ###
+    ### configuration                                                          ###
     ##############################################################################
 
     # HTTP 80, HTTPS 443, INTERNAL 8080
-    { networking.firewall.allowedTCPPorts = [ 80 443 8080 ]; }
+    {
+      networking.firewall.allowedTCPPorts = [
+        80
+        443
+        8080
+      ];
+    }
 
     # Enable logging
     {
@@ -116,7 +124,7 @@ in
         group = "docker";
 
         # Using the docker provide we can easily configure docker containers
-        # through traefik by using labels. 
+        # through traefik by using labels.
         staticConfigOptions.providers.docker = {
           watch = true;
           exposedByDefault = false;
@@ -132,7 +140,10 @@ in
           web.address = ":80";
           web.asDefault = true;
           # NOTE: since we use a `.dev` domain, we must always redirect to HTTPS
-          web.http.redirections.entryPoint = { to = "websecure"; scheme = "https"; };
+          web.http.redirections.entryPoint = {
+            to = "websecure";
+            scheme = "https";
+          };
           # HTTS :443
           websecure.address = ":443";
           websecure.asDefault = true;
