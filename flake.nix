@@ -38,13 +38,13 @@
     in
     {
       nixosConfigurations = {
-        quitlox-pi = nixos-raspberrypi.lib.nixosSystem {
-          specialArgs = inputs;
-          modules = [ ./nixos/hosts/quitlox-pi/configuration.nix ];
-        };
         quitlox-homelab = nixpkgs.lib.nixosSystem {
           specialArgs = inputs;
           modules = [ ./nixos/hosts/quitlox-homelab/configuration.nix ];
+        };
+        quitlox-pi = nixos-raspberrypi.lib.nixosSystem {
+          specialArgs = inputs;
+          modules = [ ./nixos/hosts/quitlox-pi/configuration.nix ];
         };
       };
 

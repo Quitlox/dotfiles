@@ -92,8 +92,6 @@ vim.lsp.config("pytest_lsp", {
     filetypes = { "python" },
     root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "pytest.ini", ".git" },
 })
--- Base config for editing any .nix file. Project-local overrides (the flake's option
--- set for completion) live in <repo>/.nvim/lsp/nixd.lua, loaded via 'exrc'.
 vim.lsp.config("nixd", {
     settings = {
         nixd = {
@@ -102,6 +100,12 @@ vim.lsp.config("nixd", {
             },
             formatting = {
                 command = { "nixfmt" },
+            },
+            options = {
+                -- Use first nixos configuration found in current (cwd) flake.
+                nixos = {
+                    expr = "let f = builtins.getFlake (toString ./.); in f.nixosConfigurations.${builtins.head (builtins.attrNames f.nixosConfigurations)}.options",
+                },
             },
         },
     },
