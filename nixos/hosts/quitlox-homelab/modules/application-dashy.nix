@@ -6,7 +6,7 @@
 let
   domain = config.quitlox.traefik.domain;
 
-  # Unpriviliged user for the container and the configuration file.
+  # Unpriviliged user for the container
   dashyUID = 1501;
   dashyGID = 1501;
 
@@ -23,7 +23,7 @@ in
     "C /var/lib/dashy/conf.yml 0644 dashy dashy - ${defaultConf}"
   ];
 
-  # Unpriviliged user for the container and the configuration file.
+  # Unpriviliged user for the container
   users.groups.dashy.gid = dashyGID;
   users.users.dashy = {
     uid = dashyUID;

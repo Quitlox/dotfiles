@@ -18,7 +18,7 @@
 let
   domain = config.quitlox.traefik.domain;
 
-  # Unpriviliged user for the container and the configuration file.
+  # Unpriviliged user for the container
   ddnsUID = 1500;
   ddnsGID = 1500;
 in
@@ -26,7 +26,7 @@ in
   ##############################################################################
   ### User                                                                   ###
   ##############################################################################
-  # Unpriviliged user for the container and the configuration file.
+  # Unpriviliged user for the container
   users.users.ddns = {
     uid = ddnsUID;
     home = "/var/lib/ddns-updater";
