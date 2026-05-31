@@ -2,18 +2,25 @@
 #
 # Deployment
 # - dashy.home.quitlox.dev
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   domain = config.quitlox.traefik.domain;
 
   # Unpriviliged user for the container and the configuration file.
   dashyUID = 1501;
   dashyGID = 1501;
+
+  # Default config, seeded once. Edits made afterwards are preserved.
+  defaultConf = pkgs.writeText "dashy-conf.yml" ''
+    pageInfo:
+      title: HomeLab Dashboard
+    sections: []
+  '';
 in
 {
   systemd.tmpfiles.rules = [
     "d /var/lib/dashy/ 0700 dashy dashy - -"
-    "f /var/lib/dashy/conf.yml 0644 dashy dashy - -"
+    "C /var/lib/dashy/conf.yml 0644 dashy dashy - ${defaultConf}"
   ];
 
   # Unpriviliged user for the container and the configuration file.
