@@ -47,6 +47,17 @@ in
       volumes = [
         "/var/lib/dashy:/app/user-data"
       ];
+      healthcheck = {
+        test = [
+          "CMD"
+          "node"
+          "/app/services/healthcheck.js"
+        ];
+        interval = "1m30s";
+        timeout = "10s";
+        retries = 3;
+        start_period = "30s";
+      };
       labels = {
         "traefik.enable" = "true";
         "traefik.http.routers.dashy.rule" = "Host(`dashy.${domain}`)";
