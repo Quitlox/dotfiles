@@ -13,7 +13,7 @@ local function display_fidget(title, msg)
         title = title,
         message = msg,
         lsp_client = { name = "conform" }, -- the fake lsp client name
-        percentage = nil,                  -- skip percentage field
+        percentage = nil, -- skip percentage field
     })
 end
 
@@ -148,7 +148,7 @@ require("conform").setup({
         jsonc = { "prettier" },
         lua = { "stylua" },
         markdown = { "prettier", "injected" },
-        nix = { "alejandra", "nixfmt" },
+        nix = { "nixfmt" },
         python = { "pycln", "black", "isort" },
         rust = { "rustfmt" },
         sh = { "shfmt" },

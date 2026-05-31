@@ -92,6 +92,20 @@ vim.lsp.config("pytest_lsp", {
     filetypes = { "python" },
     root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "pytest.ini", ".git" },
 })
+-- Base config for editing any .nix file. Project-local overrides (the flake's option
+-- set for completion) live in <repo>/.nvim/lsp/nixd.lua, loaded via 'exrc'.
+vim.lsp.config("nixd", {
+    settings = {
+        nixd = {
+            nixpkgs = {
+                expr = "import <nixpkgs> { }",
+            },
+            formatting = {
+                command = { "nixfmt" },
+            },
+        },
+    },
+})
 
 --+- LSP: Enable --------------------------------------------+
 local lsps = {
@@ -109,7 +123,7 @@ local lsps = {
     "hyprls",
     "jsonls",
     "lua_ls",
-    "nil_ls",
+    "nixd",
     "pug",
     "pytest_lsp",
     "svelte",
