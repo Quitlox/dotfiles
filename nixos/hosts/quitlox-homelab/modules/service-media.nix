@@ -359,6 +359,7 @@ in
   virtualisation.arion.projects = {
     profilarr.settings = {
       project.name = "profilarr";
+      networks.proxy.name = "proxy";
       services = {
         profilarr = {
           service = {
@@ -370,6 +371,7 @@ in
               TZ = "Europe/Amsterdam";
             };
             restart = "unless-stopped";
+            networks = [ "proxy" ];
             labels = {
               "traefik.enable" = "true";
 
