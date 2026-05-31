@@ -55,7 +55,7 @@ in
       labels = {
         "traefik.enable" = "true";
         "traefik.http.routers.yamtrack.rule" = "Host(`yamtrack.${domain}`)";
-        "traefik.http.routers.yamtrack.middlewares" = "ip-internal@file";
+        # "traefik.http.routers.yamtrack.middlewares" = "ip-internal@file";
         "traefik.http.routers.yamtrack.service" = "yamtrack";
         "traefik.http.services.yamtrack.loadbalancer.server.port" = "8000";
       };
