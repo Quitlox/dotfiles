@@ -1,4 +1,5 @@
 {
+  "env": {},
   "permissions": {
     "allow": [
       "Grep",
@@ -34,27 +35,46 @@
       "Bash(gh run list*)",
       "Bash(gh label list*)",
       "Bash(gh release view*)",
-      "Bash(gh release list*)"
+      "Bash(gh release list*)",
+      "Bash(gh search:*)",
+      "Bash(cargo test:*)",
+      "Bash(cargo check:*)",
+      "Bash(cargo build:*)",
+      "Bash(cargo bench:*)",
+      "Bash(cargo clippy:*)"
     ],
     "deny": [
       "Bash(rm -rf *)",
       "Bash(rm -rf /)"
     ]
   },
-  "model": "opus[1m]",
+  "model": "opus",
+  "attribution": {
+    "commit": ""
+  },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
-    "gitlab@claude-plugins-official": true
+    "pr-review-toolkit@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true,
+    "mcp-server-dev@claude-plugins-official": true
   },
   "effortLevel": "high",
-  "skipAutoPermissionPrompt": true
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
 }
