@@ -370,6 +370,14 @@ in
               TZ = "Europe/Amsterdam";
             };
             restart = "unless-stopped";
+            labels = {
+              "traefik.enable" = "true";
+
+              "traefik.http.routers.profilarr.rule" = "Host(`profilarr.${config.quitlox.traefik.domain}`)";
+              "traefik.http.routers.profilarr.middlewares" = "ip-internal@file";
+              "traefik.http.routers.profilarr.service" = "profilarr";
+              "traefik.http.services.profilarr.loadbalancer.server.port" = "6868";
+            };
           };
         };
       };
