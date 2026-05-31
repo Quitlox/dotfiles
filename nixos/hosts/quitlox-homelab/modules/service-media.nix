@@ -414,10 +414,10 @@ in
       Interface = "airvpn0"; # [AirVPN] as configured below
       InterfaceName = "airvpn0"; # [AirVPN] as configured below
       InterfaceAddress = "0.0.0.0"; # [AirVPN] won't work without it
-      MaxActiveUploads = 10; # [Optional] up seeding limit
-      MaxActiveTorrents = 13; # [Optional] up seeding limit
-      # GlobalDLSpeedLimit = 85449;                             # 700 Mbps (70% of connection)
-      # GlobalUPSpeedLimit = 8545;                              # 70 Mbps (70% of connection)
+      # MaxActiveUploads = 10; # [Optional] up seeding limit
+      # MaxActiveTorrents = 13; # [Optional] up seeding limit
+      GlobalDLSpeedLimit = 122070;                             # 1 Gbps
+      GlobalUPSpeedLimit = 12207;                              # 100 Mbps
       Preallocation = true; # Pre-allocate disk space
       uTPRateLimited = false; # [AirVPN] advises to disable rate limiting
     };
