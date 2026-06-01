@@ -86,6 +86,7 @@ in
           ipAllowList.sourceRange = [
             "127.0.0.1/32" # localhost
             cfg.lan.subnet # local subnet
+            "100.64.0.0/10" # tailscale CGNAT range
           ];
         };
       };
