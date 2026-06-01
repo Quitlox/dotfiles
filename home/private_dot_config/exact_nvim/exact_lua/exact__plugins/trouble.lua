@@ -26,7 +26,7 @@ require("trouble").setup({
 
 --+- Keymaps ------------------------------------------------+
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>ow", "<CMD>Trouble diagnostics filter.not={ [\"item.source\"] = \"Harper\" } focus=true<CR>", { desc = "Open Document Diagnostics" })
-vim.keymap.set("n", "<leader>od", "<CMD>Trouble diagnostics filter.not={ [\"item.source\"] = \"Harper\" } focus=true<CR>", {desc = "Open All Diagnostics"})
+vim.keymap.set("n", "<leader>ow", "<CMD>Trouble diagnostics filter.not={ [\"item.source\"] = \"Harper\", [\"item.severity\"] = vim.diagnostic.severity.HINT } focus=true<CR>", { desc = "Open Document Diagnostics" })
+vim.keymap.set("n", "<leader>od", "<CMD>Trouble diagnostics filter.not={ [\"item.source\"] = \"Harper\", [\"item.severity\"] = vim.diagnostic.severity.HINT } focus=true<CR>", {desc = "Open All Diagnostics"})
 vim.keymap.set("n", "<leader>oq", "<CMD>Trouble quickfix<CR>", { desc = "Open Quickfix" })
 -- stylua: ignore end
