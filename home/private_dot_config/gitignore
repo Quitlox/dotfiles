@@ -3,3 +3,5 @@
 .lvimrc
 Session.vim
 .harper-dictionary.txt
+
+**/.claude/settings.local.json
