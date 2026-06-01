@@ -103,7 +103,17 @@ automatically when the agent runs `cargo` inside a repo).
 
 ---
 
-## 8. Populate Workspace
+## 8. OpenCode configuration
+
+Clone your opencode config repository into `~/.config/opencode`:
+
+```bash
+gh repo clone opencode /var/lib/opencode/.config/opencode
+```
+
+---
+
+## 9. Populate Workspace
 
 Clone the repos you want to work on into `/var/lib/opencode/Workspace`:
 
@@ -120,7 +130,7 @@ its own session history.
 
 ---
 
-## 9. Verify
+## 10. Verify
 
 From the homelab host:
 
