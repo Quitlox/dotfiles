@@ -20,6 +20,14 @@ if vim.fn.exists("g:neovide") == 1 then
 
     vim.o.mouse = "a"
     vim.keymap.set("n", "<C-S-c>", '"+y', { noremap = true })
+
+    -- Allow Ctrl+V to paste in Neovide (WSL) like Ctrl+Shift+V.
+    vim.keymap.set("n", "<C-v>", '"+p', { noremap = true })
+    vim.keymap.set("x", "<C-v>", '"+p', { noremap = true })
+    vim.keymap.set("c", "<C-v>", "<C-r>+", { noremap = true })
+    vim.keymap.set("i", "<C-v>", "<C-r>+")
+    vim.keymap.set("t", "<C-v>", '<C-\\><C-n>"+pi', { noremap = true })
+
     vim.keymap.set("n", "<C-S-v>", '"+p', { noremap = true })
     vim.keymap.set("c", "<C-S-v>", "<C-r>+", { noremap = true })
     vim.keymap.set("i", "<C-S-v>", "<C-r>+")
