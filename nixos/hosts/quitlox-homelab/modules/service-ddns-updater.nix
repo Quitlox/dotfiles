@@ -18,7 +18,7 @@
 let
   domain = config.quitlox.traefik.domain;
 
-  # Unpriviliged user for the container
+  # Unprivileged user for the container
   ddnsUID = 1500;
   ddnsGID = 1500;
 in

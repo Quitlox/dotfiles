@@ -1,10 +1,10 @@
 # Chezmoi
 #
-# Setup new installation:
-#   1. rbw login
-#   2. chezmoi init quitlox --apply
-#   3. cd ~/.local/share/chezmoi
-#   4. git remote set-url origin git@github.com:Quitlox/dotfiles.git
+# --- Setup on new installation ---
+#   - `rbw login`
+#   - `chezmoi init quitlox --apply`
+#   - `cd ~/.local/share/chezmoi`
+#   - `git remote set-url origin git@github.com:Quitlox/dotfiles.git`
 {
   lib,
   pkgs,

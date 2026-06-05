@@ -1,7 +1,7 @@
 # SOPS
 #
 # SOPS (Secrets OPerationS) is used to store secrets for use in NixOS configuration.
-# The secrets are stored in encrypted form in the doftiles repository in /nixos/secrets
+# The secrets are stored in encrypted form in the dotfiles repository in `/nixos/secrets`
 #
 # To edit the secrets:
 #     > `sops nixos/secrets/secrets.yaml`
@@ -10,7 +10,7 @@
 #     > `export SOPS_AGE_KEY_FILE=~/.ssh/.age_private_key.txt`
 #
 # To onboard a new host:
-#     > nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
+#     > `nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'`
 #     > add to `.sops.yaml` in dotfiles
 #     > `sops updatekeys nixos/secrets/secrets.yaml`
 

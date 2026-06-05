@@ -7,7 +7,7 @@
 #
 # Note: when enabling DHCP, ensure that a static IP is set.
 #
-#     Setup
+# --- Setup ---
 #
 # Setup - Method 1: DHCP + DNS
 #

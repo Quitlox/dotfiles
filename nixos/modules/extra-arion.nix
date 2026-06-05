@@ -1,3 +1,9 @@
+# Arion
+#
+# Arion is a tool for building and running applications that consist of
+# multiple docker containers using NixOS modules. It has special support for
+# docker images that are built with Nix, for a smooth development experience
+# and improved performance.
 { pkgs, arion, ... }:
 {
   imports = [

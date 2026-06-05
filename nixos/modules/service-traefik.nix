@@ -3,7 +3,7 @@
 # Traefik is setup so that other services can easily configure themselves
 # to be exposed under specific subdomains/endpoints.
 #
-#     Traefik
+# --- Traefik ---
 #
 # Traefik is a reverse proxy that can dynamically configure routing, which is
 # cool. In hindsight, given that this is a Nix configuration, we don't actually
@@ -14,7 +14,7 @@
 # and "dynamic" configuration (such as automatically exposing docker containers
 # and such).
 #
-#     DNS
+# --- DNS ---
 #
 # In order for traefik to be useful, one must configure a DNS service to point
 # a specific domain and all its subdomains to this traefik service.

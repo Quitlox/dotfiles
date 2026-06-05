@@ -1,5 +1,5 @@
 # Better defaults for OpenSSH; Lifted from srvos
-{ config, lib, ... }:
+{ ... }:
 {
   services.openssh = {
     enable = true;
