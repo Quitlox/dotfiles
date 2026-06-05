@@ -22,6 +22,7 @@ To develop these files (even on non-nix systems), it's recommended to
 install `Nix` and use `nix profile`.
 
 Install the Language Server and formatter:
+
 - `nix profile add "nixpkgs#nixd"`
 - `nix profile add "nixpkgs#nixfmt"`
 
@@ -64,3 +65,31 @@ To configure networking:
 
 The `.dev` TLD is a HSTS domain, meaning that it must always be configured
 approached using HTTPS.
+
+## TODO
+
+- [ ] Jellyfin
+  - [ ] Move thumbnails to drives (on SSD currently)
+- [ ] Dashboard
+  - [ ] Display Traefik Log
+  - [ ] Setup Dashy (https://dashy.to/)
+  - [ ] Setup Beszel? (https://www.beszel.dev/)
+  - [ ] Setup Glanse?
+- [ ] Healthchecks
+  - [ ] Check that Hetzner API Key works
+  - [ ] ddns-updater soundrr checkhealth
+- [ ] Maintenance and Security
+  - [ ] Pin docker images and Update through renovate?
+  - [ ] Automatically update NixOS (flake)?
+  - [ ] Provide SSO or OAuth for login to services?
+  - [ ] Expose all services under `quitlox-homelab.local/services/<service>` in
+        case domain is unreachable.
+  - [ ] Figure out if the "user" accounts are necessary for Docker
+
+- [ ] Migrations
+  - [ ] There is a major version of Profilarr (incompatible)
+  - [ ] Jellyseerr is now seerr - [ ] https://docs.seerr.dev/migration-guide/
+
+- [ ] Optional
+  - [x] Setup Yamtrack: https://github.com/FuzzyGrim/Yamtrack
+  - [ ] Configure private tracker
