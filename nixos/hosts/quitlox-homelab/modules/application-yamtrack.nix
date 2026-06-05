@@ -1,7 +1,11 @@
-# Yamtrack - A self hosted media tracker.
+# Yamtrack
 #
-# Deployment
-# - yamtrack.home.quitlox.dev
+# A self hosted media tracker.
+#
+# --- Deployment ---
+#
+# yamtrack.home.quitlox.dev
+#
 { config, ... }:
 let
   domain = config.quitlox.traefik.domain;

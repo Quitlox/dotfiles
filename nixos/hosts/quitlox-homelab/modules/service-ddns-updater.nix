@@ -1,19 +1,20 @@
-# Dynamic DNS - ddns-updater
+# Dynamic DNS
 #
 # This service uses a Hetzner API Key to automatically update the DNS records
 # at Hetzner for the domains `quitlox.dev`, `home.quitlox.dev` and
 # `*.home.quitlox.dev` to point to our WAN IP. This service is necessary as most
 # ISPs issue dynamic IPs, breaking the DNS record every now and then.
 #
-#     Service
+# --- Service ---
 #
 # The container's web UI (:8000) and health server (:9999) are exposed through
 # Traefik (via docker labels, on the `proxy` network) on the LAN only:
 #   - Web UI:      https://home.quitlox.dev/services/ddns
 #   - Healthcheck: https://home.quitlox.dev/services/ddns/health
 #
-#     References
-# - ddns-updater:      https://github.com/qdm12/ddns-updater
+# --- References ---
+#
+# - [ddns-updater](https://github.com/qdm12/ddns-updater)
 { config, ... }:
 let
   domain = config.quitlox.traefik.domain;

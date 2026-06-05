@@ -1,5 +1,7 @@
 # Media Server
 #
+# --- Systemd ---
+#
 # Systemd Unit             Port  User       Data                 Description
 # jellyfin.service         8096  jellyfin   /var/lib/jellyfin    The Media Server
 # radarr.service           2102  radarr     /var/lib/radarr      Movie collection manager
@@ -12,15 +14,15 @@
 #
 # (^ in setup order)
 #
-# Storage
+# --- Storage ---
+#
 #   - /srv/media/movies
 #   - /srv/media/tvshows
 #   - /srv/media/torrents
 #
-# VPN:
+# --- Notes ---
+# 
 #   - AirVPN is configured
-#
-# Notes:
 #   - All services share the `media` group for access to /srv/media
 #     - NOTE - I think this may not actually be necessary for some services
 #   - Passwords for services can be found in `nixos/secrets/secrets.yaml`
@@ -32,7 +34,6 @@
 #   It doesn't cover exactly my setup, but it's a good starting point for catching up.
 #   https://web.archive.org/web/20250822223330/https://www.fuzzygrim.com/posts/media-server
 #
-# Notes:
 {
   nixpkgs,
   config,
