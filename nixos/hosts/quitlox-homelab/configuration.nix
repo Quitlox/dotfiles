@@ -46,6 +46,8 @@
   networking.hostName = "quitlox-homelab";
   time.timeZone = "Europe/Amsterdam";
 
+  nixpkgs.config.permittedInsecurePackages = ["docker-28.5.2"]; # FIXME: Remove once updated to NixOS 26
+
   # ----- ZFS -----
   networking.hostId = "66f55652"; # head -c 8 /etc/machine-id
   boot.supportedFilesystems = [ "zfs" ];
