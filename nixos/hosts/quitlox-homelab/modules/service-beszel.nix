@@ -5,7 +5,7 @@
 #
 # --- Deployment ---
 #
-# An agent is deployed via docker on the *host* network (as it needs to access
+# An agent is deployed via Docker on the *host* network (as it needs to access
 # other services). The Agent listens on port 45876.
 #
 # A Hub (with Web UI) is deployed and exposed under:
@@ -14,11 +14,17 @@
 #
 # --- Configuration ---
 #
-# Through environment variables and a `config.yml`, the agent is automatically
-# registered to the hub. The hub has a SSH key pair and the public key is
-# shared with the agent. This ensures the agent can authenticate the
-# hub. A TOKEN is also provided to the agent environment and declared in the
-# Hub's `config.yml`, registering the agent to the hub.
+# Agents can be connected through the hub in two ways: using SSH (and an SSH
+# key, initiated by hub) and using WebSockets (using a TOKEN, initiated by
+# agent).
+#
+# Both the secrets for the SSH method (`services.beszel.ssh_priv`) and the
+# WebSocket method (`services.beszel.token`) have been provisioned, as
+# otherwise the service generates its own which would hinder future declarative
+# configuration.
+#
+# Since the agent and the hub run on the same machine, we use a local socket
+# `/beszel/socket` and SSH.
 #
 { config, ... }:
 let
@@ -66,7 +72,7 @@ in
     owner = "beszel";
   };
 
-  # `hub.env`
+  # `hub.env` - provision first user
   sops.templates."beszel-hub.env" = {
     owner = "beszel";
     content = ''
@@ -75,25 +81,17 @@ in
     '';
   };
 
-  # `beszel-agent.env`
-  sops.templates."beszel-agent.env" = {
-    owner = "beszel";
-    content = ''
-      KEY=${config.sops.placeholder."services/beszel/ssh_pub"}
-      TOKEN=${config.sops.placeholder."services/beszel/token"}
-    '';
-  };
-
-  # Hub: `config.yml` (register agent)
+  # Hub: `config.yml` (registered agents)
+  # Token isn't used, but otherwise automatically generated
   sops.templates."beszel-config.yml" = {
     owner = "beszel";
     content = ''
       systems:
-      - name: "quitlox-homelab"
-      host: "/beszel_socket/beszel.sock"
-      token: "${config.sops.placeholder."services/beszel/token"}"
-      users:
-      - "${config.sops.placeholder."services/beszel/user_name"}"
+        - name: "quitlox-homelab"
+          host: "/beszel_socket/beszel.sock"
+          token: "${config.sops.placeholder."services/beszel/token"}"
+          users:
+            - "${config.sops.placeholder."services/beszel/user_name"}"
     '';
   };
 
@@ -110,6 +108,7 @@ in
       image = "henrygd/beszel:latest";
       container_name = "beszel";
       restart = "unless-stopped";
+      env_file = [ config.sops.templates."beszel-hub.env".path ];
       environment = {
         APP_URL = "https://beszel.${domain}";
       };
@@ -125,12 +124,13 @@ in
         "${config.sops.templates."beszel-config.yml".path}:/beszel_data/config.yml:ro"
       ];
       labels = {
-        "traefik.enable" = true;
+        "traefik.enable" = "true";
 
         # Web UI: https://beszel.home.quitlox.dev/
         "traefik.http.routers.beszel.rule" = "Host(`beszel.${domain}`)";
         "traefik.http.routers.beszel.middlewares" = "ip-internal@file";
         "traefik.http.routers.beszel.service" = "beszel";
+        "traefik.http.services.beszel.loadbalancer.server.port" = "8090";
       };
     };
 
@@ -146,14 +146,10 @@ in
         "/var/run/docker.sock:/var/run/docker.sock:ro"
         # Secrets
         "${config.sops.secrets."services/beszel/ssh_pub".path}:/run/secrets/beszel_key:ro"
-        "${config.sops.secrets."services/beszel/token".path}:/run/secrets/beszel_token:ro"
       ];
       environment = {
         LISTEN = "/beszel_socket/beszel.sock";
-        # FIXME: How do I "protect" this endpoint? Should only be reachable from localhost
-        HUB_URL = "http://localhost:8090";
-        TOKEN_FILE = "/run/secrets/beszel_key";
-        KEY_FILE = "/run/secrets/beszel_token";
+        KEY_FILE = "/run/secrets/beszel_key";
       };
     };
   };
