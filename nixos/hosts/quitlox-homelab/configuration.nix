@@ -26,6 +26,7 @@
     ./modules/application-dashy.nix
     ./modules/application-yamtrack.nix
     ./modules/application-opencode.nix
+    ./modules/service-beszel.nix
     # server defaults (nice-to-haves) from srvos
     (srvos.outPath + "/nixos/common/detect-hostname-change.nix")
     (srvos.outPath + "/nixos/common/update-diff.nix")
