@@ -34,6 +34,21 @@ let
 in
 {
   ##############################################################################
+  ### system-wide config                                                     ###
+  ##############################################################################
+
+  # System-wide config at /etc/opencode/opencode.json
+  # Takes precedence over ~/.config/opencode and can thus be used for machine
+  # specific configuration.
+  environment.etc."opencode/opencode.json".text = builtins.toJSON {
+    "$schema" = "https://opencode.ai/config.json";
+    permission = {
+      # The opencode user has limited access
+      "external_directory" = "allow";
+    };
+  };
+
+  ##############################################################################
   ### directories                                                            ###
   ##############################################################################
 
