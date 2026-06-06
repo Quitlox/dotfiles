@@ -58,12 +58,11 @@ in
     ### configuration                                                          ###
     ##############################################################################
 
-    # HTTP 80, HTTPS 443, INTERNAL 8080
+    # HTTP 80, HTTPS 443
     {
       networking.firewall.allowedTCPPorts = [
         80
         443
-        8080
       ];
     }
 
@@ -92,14 +91,20 @@ in
       };
     }
 
-    # Traefik: Expose dasbhoard on internal network
-    # http://<LAN-IP>:8080/dashboard/
+    # Traefik: Expose dashboard through standard entrypoints under /services/traefik
+    # http://<LAN-IP>/services/traefik/dashboard/
     {
-      services.traefik.staticConfigOptions.api.dashboard = true;
+      services.traefik.staticConfigOptions.api = {
+        dashboard = true;
+        basePath = "/services/traefik";
+      };
       services.traefik.dynamicConfigOptions = {
         http.routers.dashboard = {
-          entryPoints = [ "internal" ];
-          rule = "(PathPrefix(`/api`) || PathPrefix(`/dashboard`))";
+          entryPoints = [
+            "web"
+            "websecure"
+          ];
+          rule = "(PathPrefix(`/services/traefik/api`) || PathPrefix(`/services/traefik/dashboard`))";
           service = "api@internal"; # "magic" name
           middlewares = [ "ip-internal" ];
         };
@@ -150,8 +155,7 @@ in
           websecure.asDefault = true;
           websecure.http.tls.certResolver = "letsencrypt";
           # websecure.http.tls.domains = [ { main = "home.quitlox.dev"; sans = ["*.home.quitlox.dev" ]; } ];
-          # Internal :8080
-          internal.address = ":8080";
+
         };
       };
     }
