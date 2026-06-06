@@ -421,28 +421,37 @@ in
   services.qbittorrent.serverConfig = {
     # Configuration recommendations by:
     # https://trash-guides.info/Downloaders/qBittorrent/Basic-Setup/
-
     LegalNotice.Accepted = true;
+    Core = {
+      AutoDeleteAddedTorrentFile = "Never"; # [Optional] Do not delete .torrent file after added to qbittorrent
+    };
     BitTorrent.Session = {
       AddTorrentToTopOfQueue = true; # [Optional] newest torrent first
-      BTProtocol = "TCP"; # Use TCP for performance
       DefaultSavePath = "/srv/media/torrents";
       DisableAutoTMMByDefault = false; # Automatic Torrent Management
       DisableAutoTMMTriggers.CategorySavePathChanged = false; # When Category Save Path changed: Relocate affected torrents
       DisableAutoTMMTriggers.DefaultSavePathChanged = false; # When Default Save Path changed: Relocate affected torrents
-      GlobalMaxRatio = 3; # [Optional] seeding ratio
+      Preallocation = true; # [Optional] Pre-allocate disk space
+      BTProtocol = "TCP"; # Use TCP for performance
+      uTPRateLimited = true; # Prevents you from being flooded if the uTP protocols is used for any reason
+
       Interface = "airvpn0"; # [AirVPN] as configured below
       InterfaceName = "airvpn0"; # [AirVPN] as configured below
       InterfaceAddress = "0.0.0.0"; # [AirVPN] won't work without it
-      # MaxActiveUploads = 10; # [Optional] up seeding limit
-      # MaxActiveTorrents = 13; # [Optional] up seeding limit
-      GlobalDLSpeedLimit = 122070; # 1 Gbps
-      GlobalUPSpeedLimit = 12207; # 100 Mbps
-      Preallocation = true; # Pre-allocate disk space
-      uTPRateLimited = false; # [AirVPN] advises to disable rate limiting
-    };
-    Core = {
-      AutoDeleteAddedTorrentFile = "IfAdded"; # Delete .torrent file after added to qbittorrent
+      # uTPRateLimited = false; # [AirVPN] advises to disable rate limiting
+
+      QueueingSystemEnabled = true; # [Optional] enable limits/queuing of torrents?
+      MaxActiveUploads = -1; # [Optional] up seeding limit
+      MaxActiveDownloads = -1; # [Optional] up seeding limit
+      MaxActiveTorrents = 5; # [Optional] up seeding limit
+      GlobalDLSpeedLimit = 122070; # [Optional] 1 Gbps
+      GlobalUPSpeedLimit = 12207; # [Optional] 100 Mbps
+      GlobalMaxRatio = 3; # [Optional] seeding ratio
+      IgnoreSlowTorrentsForQueueing = true; # [Optional] do not count slow torrents towards limits
+      SlowTorrentsDownloadRate = 500; # [Optional] do not count slow downloads towards limit
+      SlowTorrentsUploadRate = 500; # [Optional] do not count slow uploads towards limit
+      ShareLimitAction = "Stop"; # [Optional] stop torrent upon reaching limit (seeding ratio / time)
+      PerformanceWarning = true; # [Custom] log performance warnings
     };
     Network = {
       PortForwardingEnabled = false; # Do NOT use UPnP to automatically port forward (security)
