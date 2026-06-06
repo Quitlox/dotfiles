@@ -116,7 +116,6 @@ in
         "traefik.http.routers.ddns-updater-health-local.rule" = "PathPrefix(`/services/ddns/health`)";
         "traefik.http.routers.ddns-updater-health-local.middlewares" = "ip-internal@file,ddns-updater-health-strip";
         "traefik.http.routers.ddns-updater-health-local.service" = "ddns-updater-health";
-        "traefik.http.services.ddns-updater-health.loadbalancer.server.port" = "9999";
 
         # The health server only answers on "/", so strip the subpath first.
         "traefik.http.middlewares.ddns-updater-health-strip.stripprefix.prefixes" = "/services/ddns/health";
