@@ -20,6 +20,7 @@ let
     gh
     glab
     git
+    openssh
     ripgrep
     fd
     # Python
