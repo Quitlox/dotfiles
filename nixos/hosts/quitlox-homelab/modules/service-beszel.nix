@@ -140,24 +140,28 @@ in
       container_name = "beszel-agent";
       restart = "unless-stopped";
       network_mode = "host";
-      volumes = [
-        "/var/lib/beszel/agent-data:/var/lib/beszel-agent"
-        "/var/lib/beszel/socket:/beszel_socket"
-        "/var/run/docker.sock:/var/run/docker.sock:ro"
-        # Secrets
-        "${config.sops.secrets."services/beszel/ssh_pub".path}:/run/secrets/beszel_key:ro"
-      ];
       environment = {
         LISTEN = "/beszel_socket/beszel.sock";
         KEY_FILE = "/run/secrets/beszel_key";
       };
-      # Add drives for S.M.A.R.T. monitoring
+      volumes = [
+        "/var/lib/beszel/agent-data:/var/lib/beszel-agent"
+        # Socket for communication with hub
+        "/var/lib/beszel/socket:/beszel_socket"
+        # Public key of Hub for authentication
+        "${config.sops.secrets."services/beszel/ssh_pub".path}:/run/secrets/beszel_key:ro"
+        # Monitoring: Docker 
+        "/var/run/docker.sock:/var/run/docker.sock:ro"
+        # Monitoring: Systemd
+        "/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
+      ];
+      # Monitoring: S.M.A.R.T. drive monitoring
       devices = [
         "/dev/nvme0n1:/dev/nvme0n1"
         "/dev/sda:/dev/sda"
         "/dev/sdc:/dev/sdc"
       ];
-      # Capabilities required for S.M.A.R.T. monitoring
+      # Monitoring: S.M.A.R.T. drive monitoring
       capabilities = {
         SYS_RAWIO = true;
         SYS_ADMIN = true;
