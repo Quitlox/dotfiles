@@ -100,11 +100,22 @@ in
         "traefik.http.routers.ddns-updater.service" = "ddns-updater";
         "traefik.http.services.ddns-updater.loadbalancer.server.port" = "8000";
 
+        # Web UI: http://<LAN-IP>/services/ddns
+        "traefik.http.routers.ddns-updater-local.rule" = "PathPrefix(`/services/ddns`)";
+        "traefik.http.routers.ddns-updater-local.middlewares" = "ip-internal@file";
+        "traefik.http.routers.ddns-updater-local.service" = "ddns-updater";
+
         # Healthcheck: https://home.quitlox.dev/services/ddns/health
         # The longer path prefix gives this router priority over the web UI router.
         "traefik.http.routers.ddns-updater-health.rule" = "Host(`${domain}`) && PathPrefix(`/services/ddns/health`)";
         "traefik.http.routers.ddns-updater-health.middlewares" = "ip-internal@file,ddns-updater-health-strip";
         "traefik.http.routers.ddns-updater-health.service" = "ddns-updater-health";
+        "traefik.http.services.ddns-updater-health.loadbalancer.server.port" = "9999";
+
+        # Healthcheck: http://<LAN-IP>/services/ddns/health
+        "traefik.http.routers.ddns-updater-health-local.rule" = "PathPrefix(`/services/ddns/health`)";
+        "traefik.http.routers.ddns-updater-health-local.middlewares" = "ip-internal@file,ddns-updater-health-strip";
+        "traefik.http.routers.ddns-updater-health-local.service" = "ddns-updater-health";
         "traefik.http.services.ddns-updater-health.loadbalancer.server.port" = "9999";
 
         # The health server only answers on "/", so strip the subpath first.
