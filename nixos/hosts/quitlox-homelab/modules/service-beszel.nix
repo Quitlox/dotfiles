@@ -157,8 +157,9 @@ in
       ];
       # Monitoring: S.M.A.R.T. drive monitoring
       devices = [
-        "/dev/nvme0n1:/dev/nvme0n1"
+        "/dev/nvme0n1:/dev/nvme0"
         "/dev/sda:/dev/sda"
+        "/dev/sdb:/dev/sdb"
         "/dev/sdc:/dev/sdc"
       ];
       # Monitoring: S.M.A.R.T. drive monitoring
