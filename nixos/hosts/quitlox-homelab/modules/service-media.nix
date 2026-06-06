@@ -351,21 +351,26 @@ in
   # 3. External Apps > Add Radarr
   #     - Name = "Radarr"
   #     - Arr Server = "http://quitlox-homelab.local:2102" # FIXME: docker doesn't have access to localhost
+  #     - API Key = <see sops>
   #     - Sync Method = "Scheduled"
   #     - Import as Unique = true
   #     - Sync Internal = "10080" minutes (1 week)
-  #     - "Select Data to Sync"
+  #     - "Select Data to Sync" -> 1080p Quality HDR, 2160p Quality
   # 4. Add Sonarr
   #     - Name = "Sonarr"
-  #     - Arr Server = "http://quitlox-homelab:2103"
+  #     - Arr Server = "http://quitlox-homelab.local:2103"
+  #     - API Key = <see sops>
   #     - Sync Method = "Scheduled"
   #     - Import as Unique = true
   #     - Sync Internal = "10080" (1 week)
+  #     - "Select Data to Sync" -> 1080p Quality HDR, 2160p Quality
   # 5. Media Management >
   #     - set "Replace Illegal Characters" to true for both Radarr and Sonarr
   #     - don't forget to hit save on each tab
   #     - hit "Sync All" for both Radarr and Sonarr
-  #     - This will need to be committed to the database
+  # 6. Tasks
+  #     - Repository Sync -> 1440 minutes (1 day)
+  #     - Backup -> 10080 minutes (1 week)
 
   virtualisation.arion.projects = {
     profilarr.settings = {
