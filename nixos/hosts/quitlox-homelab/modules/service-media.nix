@@ -324,12 +324,14 @@ in
   #       Default Permissions > Manage Issues > View Issues = "true"
   #       Streaming Region = "Netherlands"
 
-  services.jellyseerr.enable = true;
-  services.jellyseerr.port = 2108;
-  services.jellyseerr.openFirewall = true;
+  services.seerr.enable = true;
+  services.seerr.port = 2108;
+  services.seerr.openFirewall = true;
 
   # Expose through traefik
-  quitlox.traefik.expose-internal = { jellyseerr.port = 2108; };
+  quitlox.traefik.expose-internal = {
+    seerr.port = 2108;
+  };
 
   ##############################################################################
   ### Profilarr - Configuration manager                                      ###
