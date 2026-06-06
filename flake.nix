@@ -16,7 +16,7 @@
 
   inputs = {
     arion.url = "github:hercules-ci/arion";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     # FIXME: nixos-raspberrypi (and by extension me) is stuck on a modified version of nixpkgs
     # see: https://github.com/NixOS/nixpkgs/pull/398456
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
