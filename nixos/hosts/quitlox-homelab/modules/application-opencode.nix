@@ -17,16 +17,19 @@ let
   opencodePackages = with pkgs; [
     # Core
     opencode
+    # Shell
+    bash
+    openssh
+    git
     gh
     glab
-    git
-    openssh
-    ripgrep
     fd
+    ripgrep
+    # MCP
+    procps # provides pgrep
     # Python
     python3
     uv
-    ruff
     pyright
     # Rust
     rustup
@@ -121,6 +124,9 @@ in
       # Rust toolchain dirs (rustup mutates these; keep them in the user home)
       RUSTUP_HOME = "/var/lib/opencode/.rustup";
       CARGO_HOME = "/var/lib/opencode/.cargo";
+      
+      # Configure SSH path
+      GIT_SSH_COMMAND = "${pkgs.openssh}/bin/ssh";
     };
 
     # Explicit PATH so the service is self-contained, independent of
