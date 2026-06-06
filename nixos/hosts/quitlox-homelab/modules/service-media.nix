@@ -21,7 +21,7 @@
 #   - /srv/media/torrents
 #
 # --- Notes ---
-# 
+#
 #   - AirVPN is configured
 #   - All services share the `media` group for access to /srv/media
 #     - NOTE - I think this may not actually be necessary for some services
@@ -171,7 +171,9 @@ in
   };
 
   # Expose through traefik
-  quitlox.traefik.expose-internal = { prowlarr.port = 2101; };
+  quitlox.traefik.expose-internal = {
+    prowlarr.port = 2101;
+  };
 
   ##############################################################################
   ### Radarr - Movie collection manager                                      ###
@@ -204,7 +206,9 @@ in
   };
 
   # Expose through traefik
-  quitlox.traefik.expose-internal = { radarr.port = 2102; };
+  quitlox.traefik.expose-internal = {
+    radarr.port = 2102;
+  };
 
   ##############################################################################
   ### Sonarr - Series collection manager                                     ###
@@ -237,7 +241,9 @@ in
   };
 
   # Expose through traefik
-  quitlox.traefik.expose-internal = { sonarr.port = 2103; };
+  quitlox.traefik.expose-internal = {
+    sonarr.port = 2103;
+  };
 
   ##############################################################################
   ### Bazarr - Manage and download subtitles                                 ###
@@ -281,7 +287,9 @@ in
   services.bazarr.listenPort = 2107;
 
   # Expose through traefik
-  quitlox.traefik.expose-internal = { bazarr.port = 2107; };
+  quitlox.traefik.expose-internal = {
+    bazarr.port = 2107;
+  };
 
   ##############################################################################
   ### Jellyseerr - Media Discovery                                           ###
@@ -370,6 +378,10 @@ in
             volumes = [ "/var/lib/profilarr:/config" ];
             environment = {
               TZ = "Europe/Amsterdam";
+              PUID = "1000";
+              PGID = "1000";
+              UMASK = "022";
+              ORIGIN = "https://profilarr.home.quitlox.dev";
             };
             restart = "unless-stopped";
             networks = [ "proxy" ];
@@ -417,8 +429,8 @@ in
       InterfaceAddress = "0.0.0.0"; # [AirVPN] won't work without it
       # MaxActiveUploads = 10; # [Optional] up seeding limit
       # MaxActiveTorrents = 13; # [Optional] up seeding limit
-      GlobalDLSpeedLimit = 122070;                             # 1 Gbps
-      GlobalUPSpeedLimit = 12207;                              # 100 Mbps
+      GlobalDLSpeedLimit = 122070; # 1 Gbps
+      GlobalUPSpeedLimit = 12207; # 100 Mbps
       Preallocation = true; # Pre-allocate disk space
       uTPRateLimited = false; # [AirVPN] advises to disable rate limiting
     };
@@ -441,7 +453,9 @@ in
   };
 
   # Expose through traefik
-  quitlox.traefik.expose-internal = { qbittorrent.port = 2111; };
+  quitlox.traefik.expose-internal = {
+    qbittorrent.port = 2111;
+  };
 
   ##############################################################################
   ### AirVPN                                                                 ###
