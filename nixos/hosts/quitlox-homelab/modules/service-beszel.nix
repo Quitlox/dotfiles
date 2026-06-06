@@ -9,7 +9,7 @@
 # other services). The Agent listens on port 45876.
 #
 # A Hub (with Web UI) is deployed and exposed under:
-# - http://localhost:8090
+# - http://quitlox-homelab.local:8090
 # - https://beszel.home.quitlox.dev
 #
 # --- Configuration ---
