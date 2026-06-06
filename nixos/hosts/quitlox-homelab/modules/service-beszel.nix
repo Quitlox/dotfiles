@@ -136,7 +136,7 @@ in
 
     # --- Service: Beszel (Agent) ---
     services.beszel-agent.service = {
-      image = "henrygd/beszel-agent:latest";
+      image = "henrygd/beszel-agent:alpine";
       container_name = "beszel-agent";
       restart = "unless-stopped";
       network_mode = "host";
@@ -150,6 +150,17 @@ in
       environment = {
         LISTEN = "/beszel_socket/beszel.sock";
         KEY_FILE = "/run/secrets/beszel_key";
+      };
+      # Add drives for S.M.A.R.T. monitoring
+      devices = [
+        "/dev/nvme0n1:/dev/nvme0n1"
+        "/dev/sda:/dev/sda"
+        "/dev/sdc:/dev/sdc"
+      ];
+      # Capabilities required for S.M.A.R.T. monitoring
+      capabilities = {
+        SYS_RAWIO = true;
+        SYS_ADMIN = true;
       };
     };
   };
