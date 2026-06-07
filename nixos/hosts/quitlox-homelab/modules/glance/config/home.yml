@@ -48,6 +48,14 @@
               check-url: http://quitlox-homelab.local:2112/api/ping
         - $include: widget-media-status.yml
     - size: small
-      widgets: []
+      widgets:
+        - type: monitor
+          cache: 1m
+          title: Server
+          sites:
+            - title: ddns-updater
+              icon: mdi:dns
+              url: https://home.quitlox.dev/services/ddns
+              check-url: https://home.quitlox.dev/services/ddns/health
     - size: small
       widgets: []
