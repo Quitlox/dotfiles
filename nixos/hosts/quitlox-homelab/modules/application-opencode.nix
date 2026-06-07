@@ -2,9 +2,6 @@
 #
 # Deployment
 # - opencode.home.quitlox.dev
-#
-# First-time setup
-# - See /var/lib/opencode/README.md for manual credential setup steps.
 { config, pkgs, ... }:
 let
   domain = config.quitlox.traefik.domain;
@@ -86,6 +83,28 @@ in
   };
 
   ##############################################################################
+  ### secrets                                                               ###
+  ##############################################################################
+
+  sops.secrets."services/opencode/user_name" = {
+    owner = "opencode";
+    group = "opencode";
+  };
+  sops.secrets."services/opencode/user_pass" = {
+    owner = "opencode";
+    group = "opencode";
+  };
+
+  sops.templates."opencode.env" = {
+    owner = "opencode";
+    group = "opencode";
+    content = ''
+      OPENCODE_SERVER_USERNAME=${config.sops.placeholder."services/opencode/user_name"}
+      OPENCODE_SERVER_PASSWORD=${config.sops.placeholder."services/opencode/user_pass"}
+    '';
+  };
+
+  ##############################################################################
   ### service                                                                ###
   ##############################################################################
 
@@ -95,15 +114,11 @@ in
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
 
-    # Password loaded from a manually-placed env file (chmod 600, owned by opencode).
-    # Contains: OPENCODE_SERVER_PASSWORD=...
-    # Optionally:  OPENCODE_SERVER_USERNAME=...
-    # See /var/lib/opencode/README.md for setup instructions.
     serviceConfig = {
       User = "opencode";
       Group = "opencode";
       WorkingDirectory = "/var/lib/opencode/Workspace";
-      EnvironmentFile = "/var/lib/opencode/server.env";
+      EnvironmentFile = config.sops.templates."opencode.env".path;
 
       ExecStart = "${pkgs.opencode}/bin/opencode serve --hostname 127.0.0.1 --port 4096";
 
