@@ -33,7 +33,9 @@ in
       install -d -m 770 -o ${toString glanceUID} -g ${toString glanceGID} /var/lib/glance/assets
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/glance.yml} /var/lib/glance/config/glance.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/home.yml}   /var/lib/glance/config/home.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-status.yml} /var/lib/glance/config/widget-media-status.yml
+      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-services.yml} /var/lib/glance/config/widget-media-services.yml
+      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-services-infra.yml} /var/lib/glance/config/widget-media-services-infra.yml
+      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-services-health-details.yml} /var/lib/glance/config/widget-media-services-health-details.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-hetzner-dns.yml} /var/lib/glance/config/widget-hetzner-dns.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-applications.yml} /var/lib/glance/config/widget-applications.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-opencode-activity.yml} /var/lib/glance/config/widget-opencode-activity.yml
