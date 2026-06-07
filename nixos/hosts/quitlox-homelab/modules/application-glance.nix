@@ -7,8 +7,8 @@ let
   domain = config.quitlox.traefik.domain;
 
   # Unprivileged user for the container
-  glanceUID = 1504;
-  glanceGID = 1504;
+  glanceUID = 1505;
+  glanceGID = 1505;
 in
 {
   # Unprivileged user for the container
