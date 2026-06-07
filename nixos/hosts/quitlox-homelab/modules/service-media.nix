@@ -2,15 +2,16 @@
 #
 # --- Systemd ---
 #
-# Systemd Unit             Port  User       Data                 Description
-# jellyfin.service         8096  jellyfin   /var/lib/jellyfin    The Media Server
-# radarr.service           2102  radarr     /var/lib/radarr      Movie collection manager
-# sonarr.service           2103  sonarr     /var/lib/sonarr      Series collection manager
-# prowlarr.service         2101  prowlarr   /var/lib/prowlarr    Torrent index manager
-# bazarr.service           2107  bazarr     /var/lib/bazarr      Subtitles manager
-# arion-profilarr.service  2109  -          /var/lib/profilarr   Configuration manager (for profiles, quality)
-# jellyseerr.service       2108  jellyseer  /var/lib/jellyseerr  Media Discovery
-# qbittorent.service       2111  -          /var/lib/qbittorrent QBittorrent Web UI
+# Systemd Unit             Port  User         Data                 Description
+# jellyfin.service         8096  jellyfin     /var/lib/jellyfin    The Media Server
+# radarr.service           2102  radarr       /var/lib/radarr      Movie collection manager
+# sonarr.service           2103  sonarr       /var/lib/sonarr      Series collection manager
+# prowlarr.service         2101  prowlarr     /var/lib/prowlarr    Torrent index manager
+# bazarr.service           2107  bazarr       /var/lib/bazarr      Subtitles manager
+# arion-profilarr.service  2109  -            /var/lib/profilarr   Configuration manager (for profiles, quality)
+# jellyseerr.service       2108  jellyseer    /var/lib/jellyseerr  Media Discovery
+# qbittorrent.service      2111  qbittorrent  /var/lib/qbittorrent qBittorrent Web UI
+# cross-seed.service       2112  qbittorrent  /var/lib/cross-seed  Cross-seeding Deamon
 #
 # (^ in setup order)
 #
@@ -29,13 +30,13 @@
 #   - The services cannot be fully declaratively my setup unfortunately, so we use a combination of hacks
 #       - `radarr-settings-sync.service`: one-off script that configures UI settings
 #       - `sonarr-settings-sync.service`: one-off script that configures UI settings
+#   - Most services require manual setup, see instructions below
 
 # - The following guide is what I used to get started
 #   It doesn't cover exactly my setup, but it's a good starting point for catching up.
 #   https://web.archive.org/web/20250822223330/https://www.fuzzygrim.com/posts/media-server
 #
 {
-  nixpkgs,
   config,
   lib,
   pkgs,
@@ -292,7 +293,7 @@ in
   };
 
   ##############################################################################
-  ### Jellyseerr - Media Discovery                                           ###
+  ### Seerr - Media Discovery                                                ###
   ##############################################################################
   # Description:
   #   Integrates Jellyfin with Sonarr and Radarr to let users request media to
@@ -472,6 +473,82 @@ in
   quitlox.traefik.expose-internal = {
     qbittorrent.port = 2111;
   };
+
+  ##############################################################################
+  ### cross-seed                                                             ###
+  ##############################################################################
+  # Description:
+  #   cross-seed is an automated daemon for the practice of downloading
+  #   a torrent from one tracker and seeding it across other
+  #   trackers. cross-seeding in my configuration consists of reusing media
+  #   downloaded from public trackers to seed to private trackers.
+  #
+  # Setup:
+  # 1. Make sure to add private indexers to Prowlarr
+  #     - Private indexers also have listings in Prowlarr, just search for
+  #       their name
+  #     - They will usually require some form of auth (account/cookie)
+  # 2. Make sure the private indexers are listed below under "torznab"
+  #     - Once added, click on the indexer and copy its "Torznab Url"
+  #     - Add the URL with the Prowlarr apikey appended to the configuration
+  #       below
+
+  sops.secrets."services/qbittorrent/user" = {
+    owner = "qbittorrent";
+    group = "media";
+  };
+  sops.secrets."services/qbittorrent/pass" = {
+    owner = "qbittorrent";
+    group = "media";
+  };
+  # NOTE: "torznab" must be configured manually:
+  # 1. Navigate to Prowlarr and click on the private indexer
+  # 2. Copy its "Torznab Url" and append the apikey
+  sops.templates."cross-seed-config.js" = {
+    content = ''
+      {
+        "torznab": [
+          "http://quitlox-homelab.local:2101/10/api?apikey=${config.sops.placeholder.${prowlarr_apikey}}" 
+        ],
+        "torrentClients": [ 
+          "qbittorrent:http://${config.sops.placeholder."services/qbittorrent/user"}:${
+            config.sops.placeholder."services/qbittorrent/pass"
+          }@quitlox-homelab.local:2111" 
+        ],
+        "radarr": [ 
+          "http://quitlox-homelab.local:2102/?apikey=${config.sops.placeholder.${radarr_apikey}}" 
+        ],
+        "sonarr": [ 
+          "http://quitlox-homelab.local:2103/?apikey=${config.sops.placeholder.${sonarr_apikey}}" 
+        ]
+      }
+    '';
+  };
+
+  services.cross-seed.enable = true;
+  services.cross-seed.user = "qbittorrent";
+  services.cross-seed.group = "media";
+  services.cross-seed.settings.port = 2112;
+  services.cross-seed.settings.useGenConfigDefaults = true;
+  services.cross-seed.settingsFile = config.sops.templates."cross-seed-config.js".path;
+  services.cross-seed.settings = {
+    action = "inject"; # Automatically inject found cross-seeds into client
+    useClientTorrent = true; # Use client API to find matches against its contents
+    duplicateCategories = true; # Prevent *arr from importing cross-seeds
+    # Use hard-links to prevent data duplication
+    linkDirs = [ "/srv/media/torrents/cross-seed-links" ];
+    # We will use our downloaded catalog to cross-seed
+    dataDirs = [
+      "/srv/media/anime"
+      "/srv/media/movies"
+      "/srv/media/tvshows"
+    ];
+    maxDataDepth = 2;
+    # Due to automatic renaming by sonarr/radarr, files will not be identical
+    matchMode = "partial";
+  };
+
+  networking.firewall.allowedTCPPorts = [ 2112 ];
 
   ##############################################################################
   ### AirVPN                                                                 ###
