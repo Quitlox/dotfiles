@@ -282,6 +282,8 @@ in
   #       - Enabled = true, Port = 2102, API Key
   #   5. Sonarr
   #       - Enabled = true, Port = 2103, API Key
+  # TODO: Add Jellyfin integration (merged on 24-04-2026, not yet in NixOS)
+  # https://wiki.bazarr.media/Additional-Configuration/Jellyfin/
 
   services.bazarr.enable = true;
   services.bazarr.group = "media";
