@@ -6,3 +6,6 @@
       icon: auto-invert https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/opencode.svg
       url: https://opencode.home.quitlox.dev
       check-url: https://opencode.home.quitlox.dev/global/health
+      basic-auth:
+        username: ${OPENCODE_USERNAME}
+        password: ${OPENCODE_PASSWORD}
