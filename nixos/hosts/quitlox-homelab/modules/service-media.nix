@@ -424,7 +424,7 @@ in
     # https://trash-guides.info/Downloaders/qBittorrent/Basic-Setup/
     LegalNotice.Accepted = true;
     Core = {
-      AutoDeleteAddedTorrentFile = "Never"; # [Optional] Do not delete .torrent file after added to qbittorrent
+      AutoDeleteAddedTorrentFile = "IfAdded"; # [Optional] Delete .torrent file after added to qbittorrent
     };
     BitTorrent.Session = {
       AddTorrentToTopOfQueue = true; # [Optional] newest torrent first
@@ -443,8 +443,8 @@ in
 
       QueueingSystemEnabled = true; # [Optional] enable limits/queuing of torrents?
       MaxActiveUploads = -1; # [Optional] up seeding limit
-      MaxActiveDownloads = -1; # [Optional] up seeding limit
-      MaxActiveTorrents = 5; # [Optional] up seeding limit
+      MaxActiveDownloads = 3; # [Optional] up seeding limit
+      MaxActiveTorrents = -1; # [Optional] up seeding limit
       GlobalDLSpeedLimit = 122070; # [Optional] 1 Gbps
       GlobalUPSpeedLimit = 12207; # [Optional] 100 Mbps
       GlobalMaxRatio = 3; # [Optional] seeding ratio
