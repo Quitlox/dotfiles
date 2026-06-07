@@ -23,17 +23,14 @@ in
   # Allow the opencode user to edit the glance configuration
   users.users.opencode.extraGroups = [ "glance" ];
 
-  # Create directory structure
-  systemd.tmpfiles.rules = [
-    "d /var/lib/glance        0770 glance glance - -"
-    "d /var/lib/glance/config 0770 glance glance - -"
-    "d /var/lib/glance/assets 0770 glance glance - -"
-  ];
-
-  # Deploy config files from the dotfiles repo on every activation (always overwrite)
+  # Create directory structure and deploy config files from the dotfiles repo on
+  # every activation (always overwrite)
   system.activationScripts.glance-config = {
     deps = [ "users" "groups" ];
     text = ''
+      install -d -m 770 -o ${toString glanceUID} -g ${toString glanceGID} /var/lib/glance
+      install -d -m 770 -o ${toString glanceUID} -g ${toString glanceGID} /var/lib/glance/config
+      install -d -m 770 -o ${toString glanceUID} -g ${toString glanceGID} /var/lib/glance/assets
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/glance.yml} /var/lib/glance/config/glance.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/home.yml}   /var/lib/glance/config/home.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/assets/user.css}   /var/lib/glance/assets/user.css
