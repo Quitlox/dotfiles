@@ -22,6 +22,15 @@ let
     glab
     fd
     ripgrep
+    which
+    curl
+    jq
+    wget
+    inetutils # provides hostname
+    util-linux # provides col
+    man-db
+    man-pages
+    nix
     # MCP
     procps # provides pgrep
     # Python
