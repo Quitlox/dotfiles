@@ -4,13 +4,13 @@
 #
 # --- Deployment ---
 #
-# yamtrack.home.quitlox.dev
+# - `yamtrack.home.quitlox.dev`
 #
 { config, ... }:
 let
   domain = config.quitlox.traefik.domain;
 
-  # Unpriviliged user for the container
+  # Unprivileged user for the container
   yamtrackUID = 1502;
   yamtrackGID = 1502;
 in
@@ -19,7 +19,7 @@ in
     "d /var/lib/yamtrack/ 0700 yamtrack yamtrack - -"
   ];
 
-  # Unpriviliged user for the container
+  # Unprivileged user for the container
   users.groups.yamtrack.gid = yamtrackGID;
   users.users.yamtrack = {
     uid = yamtrackUID;

@@ -104,7 +104,7 @@ in
   services.jellyfin.group = "media";
   services.jellyfin.openFirewall = true;
 
-  # Always prioritise Jellyfin IO
+  # Always prioritize Jellyfin IO
   systemd.services.jellyfin.serviceConfig.IOSchedulingPriority = 0;
 
   # Expose through traefik
