@@ -1,0 +1,25 @@
+- name: HomeLab
+  columns:
+    - size: full
+      widgets:
+        - type: monitor
+          cache: 1m
+          title: Media Services
+          style: compact
+          sites:
+            - title: Jellyfin
+              icon: sh:jellyfin
+              url: https://jellyfin.home.quitlox.dev
+              check-url: https://jellyfin.home.quitlox.dev/health
+            - title: Prowlarr
+              icon: sh:prowlarr
+              url: https://prowlarr.home.quitlox.dev
+              check-url: https://prowlarr.home.quitlox.dev/api/v1/health?apikey=${PROWLARR_APIKEY}
+            - title: Radarr
+              icon: sh:radarr
+              url: https://radarr.home.quitlox.dev
+              check-url: https://radarr.home.quitlox.dev/api/v3/health?apikey=${RADARR_APIKEY}
+            - title: Sonarr
+              icon: sh:sonarr
+              url: https://sonarr.home.quitlox.dev
+              check-url: https://sonarr.home.quitlox.dev/api/v3/health?apikey=${SONARR_APIKEY}
