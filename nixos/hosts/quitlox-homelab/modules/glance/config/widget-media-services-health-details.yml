@@ -1,5 +1,5 @@
 - type: custom-api
-  title: Media Health Details
+  title: Media Services - Health Details
   cache: 1m
   url: https://prowlarr.home.quitlox.dev/api/v1/health
   headers:

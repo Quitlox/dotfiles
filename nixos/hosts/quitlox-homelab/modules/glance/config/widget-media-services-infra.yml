@@ -1,0 +1,29 @@
+- type: monitor
+  cache: 1m
+  title: Media Services - Infra
+  style: compact
+  sites:
+    - title: Prowlarr
+      icon: sh:prowlarr
+      url: https://prowlarr.home.quitlox.dev
+      check-url: https://prowlarr.home.quitlox.dev/api/v1/health?apikey=${PROWLARR_APIKEY}
+    - title: Radarr
+      icon: sh:radarr
+      url: https://radarr.home.quitlox.dev
+      check-url: https://radarr.home.quitlox.dev/api/v3/health?apikey=${RADARR_APIKEY}
+    - title: Sonarr
+      icon: sh:sonarr
+      url: https://sonarr.home.quitlox.dev
+      check-url: https://sonarr.home.quitlox.dev/api/v3/health?apikey=${SONARR_APIKEY}
+    - title: Bazarr
+      icon: sh:bazarr
+      url: https://bazarr.home.quitlox.dev
+      check-url: https://bazarr.home.quitlox.dev/api/system/ping
+    - title: Profilarr
+      icon: si:sonarr
+      url: https://profilarr.home.quitlox.dev
+      check-url: https://profilarr.home.quitlox.dev/api/v1/health
+    - title: cross-seed
+      icon: mdi:vector-link
+      url: http://quitlox-homelab.local:2112
+      check-url: http://quitlox-homelab.local:2112/api/ping

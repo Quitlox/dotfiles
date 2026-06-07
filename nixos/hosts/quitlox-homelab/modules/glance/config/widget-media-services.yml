@@ -1,0 +1,15 @@
+- type: monitor
+  cache: 1m
+  title: Media Services
+  sites:
+    - title: Jellyfin
+      icon: sh:jellyfin
+      url: https://jellyfin.home.quitlox.dev
+      check-url: https://jellyfin.home.quitlox.dev/health
+    - title: Seerr
+      icon: sh:overseerr
+      url: https://seerr.home.quitlox.dev
+      check-url: https://seerr.home.quitlox.dev/api/v1/status
+    - title: qBittorrent
+      icon: sh:qbittorrent
+      url: https://qbittorrent.home.quitlox.dev
