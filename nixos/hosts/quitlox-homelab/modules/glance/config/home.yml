@@ -48,6 +48,7 @@
               check-url: http://quitlox-homelab.local:2112/api/ping
         - $include: widget-media-status.yml
         - $include: widget-applications.yml
+        - $include: widget-opencode-activity.yml
     - size: small
       widgets:
         - type: monitor

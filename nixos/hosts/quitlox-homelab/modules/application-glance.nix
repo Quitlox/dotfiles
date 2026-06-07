@@ -36,6 +36,7 @@ in
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-status.yml} /var/lib/glance/config/widget-media-status.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-hetzner-dns.yml} /var/lib/glance/config/widget-hetzner-dns.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-applications.yml} /var/lib/glance/config/widget-applications.yml
+      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-opencode-activity.yml} /var/lib/glance/config/widget-opencode-activity.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/assets/user.css}   /var/lib/glance/assets/user.css
     '';
   };
@@ -45,7 +46,6 @@ in
     owner = "glance";
     group = "glance";
   };
-
   sops.templates."glance.env" = {
     owner = "glance";
     group = "root";
@@ -56,6 +56,8 @@ in
       BAZARR_APIKEY=${config.sops.placeholder."services/bazarr/apikey"}
       HETZNER_CLOUD_APIKEY=${config.sops.placeholder."hetzner/cloud-apikey"}
       HETZNER_PROJECT_ID=${config.sops.placeholder."hetzner/project-id"}
+      OPENCODE_USERNAME=${config.sops.placeholder."services/opencode/user_name"}
+      OPENCODE_PASSWORD=${config.sops.placeholder."services/opencode/user_pass"}
     '';
   };
 

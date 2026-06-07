@@ -1,0 +1,45 @@
+- type: group
+  title: OpenCode Activity
+  widgets:
+    - type: custom-api
+      title: Recent Sessions
+      cache: 5m
+      url: https://opencode.home.quitlox.dev/session
+      basic-auth:
+        username: ${OPENCODE_USERNAME}
+        password: ${OPENCODE_PASSWORD}
+      template: |
+        {{ $sessions := .JSON.Array "" }}
+        {{ $total := len $sessions | toFloat }}
+        {{ $start := sub $total 5 | toInt }}
+        <ul class="list list-gap-10">
+        {{ range $i, $s := $sessions }}
+          {{ if ge $i $start }}
+          <li>
+            <a class="size-h4 color-highlight block text-truncate" href="https://opencode.home.quitlox.dev">{{ $s.String "title" }}</a>
+            <p class="size-h6 color-subdue text-truncate">{{ $s.String "directory" }}</p>
+          </li>
+          {{ end }}
+        {{ end }}
+        </ul>
+
+    - type: custom-api
+      title: Recent Projects
+      cache: 5m
+      url: https://opencode.home.quitlox.dev/project
+      basic-auth:
+        username: ${OPENCODE_USERNAME}
+        password: ${OPENCODE_PASSWORD}
+      template: |
+        {{ $projects := .JSON.Array "" }}
+        {{ $total := len $projects | toFloat }}
+        {{ $start := sub $total 5 | toInt }}
+        <ul class="list list-gap-10">
+        {{ range $i, $p := $projects }}
+          {{ if ge $i $start }}
+          <li>
+            <p class="size-h4 color-highlight text-truncate">{{ $p.String "worktree" }}</p>
+          </li>
+          {{ end }}
+        {{ end }}
+        </ul>
