@@ -46,6 +46,7 @@ in
       RADARR_APIKEY=${config.sops.placeholder."services/radarr/apikey"}
       SONARR_APIKEY=${config.sops.placeholder."services/sonarr/apikey"}
       PROWLARR_APIKEY=${config.sops.placeholder."services/prowlarr/apikey"}
+      BAZARR_APIKEY=${config.sops.placeholder."services/bazarr/apikey"}
     '';
   };
 
