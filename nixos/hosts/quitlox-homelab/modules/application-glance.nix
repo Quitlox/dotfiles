@@ -48,6 +48,7 @@ in
       PROWLARR_APIKEY=${config.sops.placeholder."services/prowlarr/apikey"}
       BAZARR_APIKEY=${config.sops.placeholder."services/bazarr/apikey"}
       HETZNER_CLOUD_APIKEY=${config.sops.placeholder."hetzner/cloud-apikey"}
+      HETZNER_PROJECT_ID=${config.sops.placeholder."hetzner/project-id"}
     '';
   };
 
