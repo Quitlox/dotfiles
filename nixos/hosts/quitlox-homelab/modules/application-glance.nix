@@ -33,6 +33,7 @@ in
       install -d -m 770 -o ${toString glanceUID} -g ${toString glanceGID} /var/lib/glance/assets
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/glance.yml} /var/lib/glance/config/glance.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/home.yml}   /var/lib/glance/config/home.yml
+      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-status.yml} /var/lib/glance/config/widget-media-status.yml
       install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/assets/user.css}   /var/lib/glance/assets/user.css
     '';
   };

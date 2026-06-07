@@ -1,0 +1,53 @@
+- type: custom-api
+  title: Media Health Details
+  cache: 1m
+  url: https://prowlarr.home.quitlox.dev/api/v1/health
+  headers:
+    X-Api-Key: ${PROWLARR_APIKEY}
+  subrequests:
+    prowlarr:
+      url: https://prowlarr.home.quitlox.dev/api/v1/health
+      headers:
+        X-Api-Key: ${PROWLARR_APIKEY}
+    radarr:
+      url: https://radarr.home.quitlox.dev/api/v3/health
+      headers:
+        X-Api-Key: ${RADARR_APIKEY}
+    sonarr:
+      url: https://sonarr.home.quitlox.dev/api/v3/health
+      headers:
+        X-Api-Key: ${SONARR_APIKEY}
+  template: |
+    {{ $prowlarr := .Subrequest "prowlarr" }}
+    {{ $prowlarrIssues := $prowlarr.JSON.Array "" }}
+    {{ $radarr := .Subrequest "radarr" }}
+    {{ $radarrIssues := $radarr.JSON.Array "" }}
+    {{ $sonarr := .Subrequest "sonarr" }}
+    {{ $sonarrIssues := $sonarr.JSON.Array "" }}
+
+    {{ if and (eq (len $prowlarrIssues) 0) (eq (len $radarrIssues) 0) (eq (len $sonarrIssues) 0) }}
+      <div class="color-positive">All systems operational</div>
+    {{ else }}
+      <ul class="list list-gap-10">
+        {{ range $issue := $prowlarrIssues }}
+          <li class="flex items-start gap-10">
+            <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
+            <span><a href="https://prowlarr.home.quitlox.dev" class="color-highlight">Prowlarr</a>: {{ $issue.String "message" }}</span>
+          </li>
+        {{ end }}
+
+        {{ range $issue := $radarrIssues }}
+          <li class="flex items-start gap-10">
+            <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
+            <span><a href="https://radarr.home.quitlox.dev" class="color-highlight">Radarr</a>: {{ $issue.String "message" }}</span>
+          </li>
+        {{ end }}
+
+        {{ range $issue := $sonarrIssues }}
+          <li class="flex items-start gap-10">
+            <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
+            <span><a href="https://sonarr.home.quitlox.dev" class="color-highlight">Sonarr</a>: {{ $issue.String "message" }}</span>
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
