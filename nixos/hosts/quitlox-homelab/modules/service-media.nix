@@ -466,6 +466,10 @@ in
       GlobalDLSpeedLimit = 122070; # [Optional] 1 Gbps
       GlobalUPSpeedLimit = 12207; # [Optional] 100 Mbps
       GlobalMaxRatio = 3; # [Optional] seeding ratio
+      BandwidthSchedulerEnabled = true; # [Optional] alternative speed limit (daytime)
+      UseAlternativeGlobalSpeedLimit = true; # [Optional] alternative speed limit (daytime)
+      AlternativeGlobalDLSpeedLimit = 10; # [Optional] 10 Kbps
+      AlternativeGlobalUPSpeedLimit = 10; # [Optional] 10 Kbps
       IgnoreSlowTorrentsForQueueing = true; # [Optional] do not count slow torrents towards limits
       SlowTorrentsDownloadRate = 500; # [Optional] do not count slow downloads towards limit
       SlowTorrentsUploadRate = 500; # [Optional] do not count slow uploads towards limit
@@ -484,6 +488,12 @@ in
       #     (line must actually be removed from /var/lib/qbittorrent/qBittorrent/config/qBittorrent.conf)
       #     (though password should be necessary due to subnet whitelist)
       Password_PBKDF2 = "@ByteArray(Wt7a55MpU5dvNLTcX1REKQ==:oPdjBY6ldjd8yY+Y3NcUxxBX3DVRJ1nqBPaZntJXmnkb1FyqoyHIVNKNjet07ui5RqdRVhj8LX1oEhWF212nig==)"; # nixos/secrets/secrets.yaml
+
+    };
+    # [Optional] alternative speed limit schedule
+    Preferences.Scheduler = {
+      start_time = "@Variant(\\0\\0\\0\\xf\\x1\\x80\\x85\\x80)"; # 07:00
+      end_time = "@Variant(\\0\\0\\0\\xf\\x5\\n\\xe4\\xc0)"; # 23:30
     };
   };
 
