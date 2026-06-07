@@ -9,7 +9,7 @@
 # prowlarr.service         2101  prowlarr     /var/lib/prowlarr    Torrent index manager
 # bazarr.service           2107  bazarr       /var/lib/bazarr      Subtitles manager
 # arion-profilarr.service  2109  -            /var/lib/profilarr   Configuration manager (for profiles, quality)
-# jellyseerr.service       2108  jellyseer    /var/lib/jellyseerr  Media Discovery
+# seerr.service            2108  jellyseer    /var/lib/jellyseerr  Media Discovery
 # qbittorrent.service      2111  qbittorrent  /var/lib/qbittorrent qBittorrent Web UI
 # cross-seed.service       2112  qbittorrent  /var/lib/cross-seed  Cross-seeding Deamon
 #
@@ -311,6 +311,7 @@ in
   #       Radarr at http://localhost:2102, with apikey from secrets.yaml
   #       Select Quality Profile "2160p Balanced"
   #       Root Folder "/srv/media/movies"
+  #       External URL "https://radarr.home.quitlox.dev"
   #       Enable Scan
   #   2. Add Sonarr
   #       Server Name "Series"
@@ -318,12 +319,14 @@ in
   #       Select Quality Profile "1080p Quality"
   #       Root Folder "/srv/media/movies"
   #       Anime Root Folder "/srv/media/anime"
+  #       External URL "https://sonarr.home.quitlox.dev"
   #       Enable Scan
   #   3. Settings
   #       Default Permissions > Auto-Approve = "true"
   #       Default Permissions > Manage Issues > Report Issues = "true"
   #       Default Permissions > Manage Issues > View Issues = "true"
   #       Streaming Region = "Netherlands"
+  #       Application URL = "https://seerr.home.quitlox.dev"
 
   services.seerr.enable = true;
   services.seerr.port = 2108;

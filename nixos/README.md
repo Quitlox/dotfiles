@@ -68,12 +68,13 @@ approached using HTTPS.
 
 ## TODO
 
-- [ ] Jellyfin
-  - [ ] Move thumbnails to drives (on SSD currently)
+- [ ] Fixes
+  - [ ] Jellyfin: Move thumbnails to drives (on SSD currently)
+  - [X] Seer: Redirect sonarr/radarr properly
 - [ ] Dashboard
   - [ ] Display Traefik Log
   - [ ] Setup Dashy (https://dashy.to/)
-  - [ ] Setup Beszel? (https://www.beszel.dev/)
+  - [X] Setup Beszel? (https://www.beszel.dev/)
   - [ ] Setup Glanse?
 - [ ] Healthchecks
   - [ ] Check that Hetzner API Key works
@@ -85,11 +86,10 @@ approached using HTTPS.
   - [ ] Expose all services under `quitlox-homelab.local/services/<service>` in
         case domain is unreachable.
   - [ ] Figure out if the "user" accounts are necessary for Docker
-
-- [ ] Migrations
-  - [ ] There is a major version of Profilarr (incompatible)
-  - [ ] Jellyseerr is now seerr - [ ] https://docs.seerr.dev/migration-guide/
+  - [ ] Configure checkhealth for all services
+  - [ ] Do not hardcode things like hostnames
 
 - [ ] Optional
-  - [x] Setup Yamtrack: https://github.com/FuzzyGrim/Yamtrack
-  - [ ] Configure private tracker
+  - [ ] Uptime Kuma ?
+  - [ ] Notifiarr ?
+  - [ ] qbit_manage ?
