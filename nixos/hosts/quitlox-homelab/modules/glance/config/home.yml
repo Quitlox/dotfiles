@@ -3,7 +3,7 @@
     - size: full
       widgets:
         - type: monitor
-          cache: 1m
+          cache: 1s
           title: Media Services
           sites:
             - title: Jellyfin
@@ -18,7 +18,7 @@
               icon: sh:qbittorrent
               url: https://qbittorrent.home.quitlox.dev
         - type: monitor
-          cache: 1m
+          cache: 1s
           title: Media Services - Infra
           style: compact
           sites:
@@ -50,7 +50,7 @@
     - size: small
       widgets:
         - type: monitor
-          cache: 1m
+          cache: 1s
           title: Server
           sites:
             - title: ddns-updater

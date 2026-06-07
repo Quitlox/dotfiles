@@ -13,7 +13,7 @@
       {{ range .JSON.Array "zones" }}
         <li>
           <div class="flex items-center justify-between gap-10">
-            <a class="size-h5 color-highlight text-truncate block" href="https://console.hetzner.com/projects/${HETZNER_PROJECT_ID}/dns/{{ .String "id" }}/records">{{ .String "name" }}</a>
+            <a class="size-h5 color-highlight text-truncate block" href="https://console.hetzner.com/projects/${HETZNER_PROJECT_ID}/dns/{{ .String "id" }}/records" target="_blank">{{ .String "name" }}</a>
             {{ $status := .String "status" }}
             <span class="size-h6{{ if eq $status "ok" }} color-positive{{ else }} color-negative{{ end }}">{{ $status }}</span>
           </div>
