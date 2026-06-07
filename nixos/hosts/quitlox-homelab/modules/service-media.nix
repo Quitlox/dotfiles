@@ -55,6 +55,7 @@ let
   sonarr_apikey = "services/sonarr/apikey";
   radarr_apikey = "services/radarr/apikey";
   prowlarr_apikey = "services/prowlarr/apikey";
+  bazarr_apikey = "services/bazarr/apikey";
 in
 {
   ##############################################################################
@@ -286,6 +287,18 @@ in
   services.bazarr.group = "media";
   services.bazarr.openFirewall = true;
   services.bazarr.listenPort = 2107;
+
+  # Bazarr API Key
+  systemd.services.bazarr.serviceConfig.EnvironmentFile = [ config.sops.templates."bazarr.env".path ];
+  sops.secrets."${bazarr_apikey}" = {
+    owner = "bazarr";
+    group = "media";
+  };
+  sops.templates."bazarr.env" = {
+    content = ''
+      DYNACONF_AUTH__apikey=${config.sops.placeholder."${bazarr_apikey}"}
+    '';
+  };
 
   # Expose through traefik
   quitlox.traefik.expose-internal = {
