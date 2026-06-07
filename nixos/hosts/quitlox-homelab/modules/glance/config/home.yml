@@ -57,38 +57,6 @@
               icon: mdi:dns
               url: https://home.quitlox.dev/services/ddns
               check-url: https://home.quitlox.dev/services/ddns/health
-        - type: custom-api
-          title: Hetzner DNS
-          title-url: https://dns.hetzner.com
-          cache: 5m
-          url: https://api.hetzner.cloud/v1/zones
-          headers:
-            Authorization: Bearer ${HETZNER_CLOUD_APIKEY}
-            Accept: application/json
-          template: |
-            {{ $code := .Response.StatusCode }}
-            {{ if eq $code 200 }}
-              <ul class="list list-gap-10">
-              {{ range .JSON.Array "zones" }}
-                <li>
-                  <div class="flex items-center justify-between gap-10">
-                    <a class="size-h5 color-highlight text-truncate block" href="https://console.hetzner.com/projects/${HETZNER_PROJECT_ID}/dns/{{ .String "id" }}/records">{{ .String "name" }}</a>
-                    {{ $status := .String "status" }}
-                    <span class="size-h6{{ if eq $status "ok" }} color-positive{{ else }} color-negative{{ end }}">{{ $status }}</span>
-                  </div>
-                  <ul class="list-horizontal-text">
-                    <li>{{ .Int "record_count" }} records</li>
-                    <li>TTL {{ .Int "ttl" }}</li>
-                  </ul>
-                </li>
-              {{ end }}
-              </ul>
-            {{ else if eq $code 401 }}
-              <p class="size-h5 color-negative">Hetzner API returned HTTP 401 Unauthorized.</p>
-              <p class="size-h6 color-paragraph">DDNS will not be able to update DNS records with a dynamic IP address.</p>
-            {{ else }}
-              <p class="size-h5 color-negative">Hetzner API returned HTTP {{ $code }}.</p>
-              <p class="size-h6 color-paragraph">DDNS updates may fail while this persists.</p>
-            {{ end }}
+        - $include: widget-hetzner-dns.yml
     - size: small
       widgets: []
