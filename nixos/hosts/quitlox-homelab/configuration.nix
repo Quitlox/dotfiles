@@ -23,7 +23,6 @@
     ../../modules/service-traefik.nix
     ./modules/service-ddns-updater.nix
     ./modules/service-media.nix
-    ./modules/application-dashy.nix
     ./modules/application-yamtrack.nix
     ./modules/application-opencode.nix
     ./modules/service-beszel.nix

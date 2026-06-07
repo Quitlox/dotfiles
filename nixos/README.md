@@ -73,9 +73,8 @@ approached using HTTPS.
   - [X] Seer: Redirect sonarr/radarr properly
 - [ ] Dashboard
   - [ ] Display Traefik Log
-  - [ ] Setup Dashy (https://dashy.to/)
   - [X] Setup Beszel? (https://www.beszel.dev/)
-  - [ ] Setup Glanse?
+  - [X] Setup Glance (https://github.com/glanceapp/glance)
 - [ ] Healthchecks
   - [ ] Check that Hetzner API Key works
   - [ ] ddns-updater soundrr checkhealth
