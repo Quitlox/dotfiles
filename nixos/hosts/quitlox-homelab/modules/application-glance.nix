@@ -40,6 +40,11 @@ in
   };
 
   # sops template for the env file with API keys
+  sops.secrets."hetzner/project-id" = {
+    owner = "glance";
+    group = "glance";
+  };
+
   sops.templates."glance.env" = {
     owner = "glance";
     group = "root";
