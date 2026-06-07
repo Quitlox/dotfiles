@@ -1,0 +1,8 @@
+- type: monitor
+  cache: 1m
+  title: Applications
+  sites:
+    - title: OpenCode
+      icon: auto-invert https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/opencode.svg
+      url: https://opencode.home.quitlox.dev
+      check-url: https://opencode.home.quitlox.dev/global/health
