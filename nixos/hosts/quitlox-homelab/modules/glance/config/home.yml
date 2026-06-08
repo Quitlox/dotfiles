@@ -1,14 +1,18 @@
 - name: HomeLab
   columns:
+    - size: small
+      widgets:
+        - $include: widget-media-services-infra.yml
+        - $include: widget-media-services-health-details.yml
     - size: full
       widgets:
         - $include: widget-media-services.yml
-        - $include: widget-media-services-infra.yml
-        - $include: widget-media-services-health-details.yml
         - $include: widget-applications.yml
         - $include: widget-opencode-activity.yml
     - size: small
       widgets:
+        - $include: widget-unifi.yml
+        - $include: widget-hetzner-dns.yml
         - type: monitor
           cache: 1m
           title: Server
@@ -17,7 +21,3 @@
               icon: mdi:dns
               url: https://home.quitlox.dev/services/ddns
               check-url: https://home.quitlox.dev/services/ddns/health
-        - $include: widget-hetzner-dns.yml
-    - size: small
-      widgets:
-        - $include: widget-unifi.yml
