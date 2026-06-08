@@ -2,13 +2,21 @@
 #
 # Deployment
 # - glance.home.quitlox.dev
-{ config, ... }:
+{ config, lib, ... }:
 let
   domain = config.quitlox.traefik.domain;
 
   # Unprivileged user for the container
   glanceUID = 1505;
   glanceGID = 1505;
+
+  mkInstallCmd = destDir: name: _type:
+    "install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/${destDir}/${name}} /var/lib/glance/${destDir}/${name}";
+
+  regularFiles = dir: lib.filterAttrs (_: type: type == "regular") (builtins.readDir dir);
+
+  configInstallCmds = lib.mapAttrsToList (mkInstallCmd "config") (regularFiles ./glance/config);
+  assetInstallCmds = lib.mapAttrsToList (mkInstallCmd "assets") (regularFiles ./glance/assets);
 in
 {
   # Unprivileged user for the container
@@ -31,15 +39,8 @@ in
       install -d -m 770 -o ${toString glanceUID} -g ${toString glanceGID} /var/lib/glance
       install -d -m 770 -o ${toString glanceUID} -g ${toString glanceGID} /var/lib/glance/config
       install -d -m 770 -o ${toString glanceUID} -g ${toString glanceGID} /var/lib/glance/assets
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/glance.yml} /var/lib/glance/config/glance.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/home.yml}   /var/lib/glance/config/home.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-services.yml} /var/lib/glance/config/widget-media-services.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-services-infra.yml} /var/lib/glance/config/widget-media-services-infra.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-media-services-health-details.yml} /var/lib/glance/config/widget-media-services-health-details.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-hetzner-dns.yml} /var/lib/glance/config/widget-hetzner-dns.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-applications.yml} /var/lib/glance/config/widget-applications.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/config/widget-opencode-activity.yml} /var/lib/glance/config/widget-opencode-activity.yml
-      install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/assets/user.css}   /var/lib/glance/assets/user.css
+      ${lib.concatStringsSep "\n      " configInstallCmds}
+      ${lib.concatStringsSep "\n      " assetInstallCmds}
     '';
   };
 
