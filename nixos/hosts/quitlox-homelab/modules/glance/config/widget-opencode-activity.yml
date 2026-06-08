@@ -4,15 +4,15 @@
     - type: custom-api
       title: Recent Sessions
       cache: 5m
-      url: https://${OPENCODE_USERNAME}:${OPENCODE_PASSWORD}@opencode.home.quitlox.dev/session
+      url: https://${OPENCODE_USERNAME}:${OPENCODE_PASSWORD}@opencode.home.quitlox.dev/api/session
       template: |
-        {{ $sessions := .JSON.Array "" }}
+        {{ $sessions := .JSON.Array "items" }}
         <ul class="list list-gap-10">
         {{ range $i, $s := $sessions }}
           {{ if lt $i 5 }}
           <li>
             <a class="size-h4 color-highlight block text-truncate" href="https://opencode.home.quitlox.dev">{{ $s.String "title" }}</a>
-            <p class="size-h6 color-subdue text-truncate">{{ $s.String "directory" }}</p>
+            <p class="size-h6 color-subdue text-truncate">{{ $s.String "model.id" }}</p>
           </li>
           {{ end }}
         {{ end }}
