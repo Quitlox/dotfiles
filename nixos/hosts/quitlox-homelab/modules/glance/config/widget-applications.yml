@@ -9,3 +9,11 @@
       basic-auth:
         username: ${OPENCODE_USERNAME}
         password: ${OPENCODE_PASSWORD}
+    - title: Beszel
+      icon: sh:beszel
+      url: https://beszel.home.quitlox.dev
+      check-url: https://beszel.home.quitlox.dev/api/health
+    - title: Yamtrack
+      icon: sh:yamtrack
+      url: https://yamtrack.home.quitlox.dev
+      check-url: https://yamtrack.home.quitlox.dev/health/
