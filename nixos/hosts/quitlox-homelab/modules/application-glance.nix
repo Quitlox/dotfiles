@@ -61,6 +61,8 @@ in
       HETZNER_PROJECT_ID=${config.sops.placeholder."hetzner/project-id"}
       OPENCODE_USERNAME=${config.sops.placeholder."services/opencode/user_name"}
       OPENCODE_PASSWORD=${config.sops.placeholder."services/opencode/user_pass"}
+      UNIFI_CONSOLE_IP=${config.sops.placeholder."services/unify/console-ip"}
+      UNIFI_API_KEY=${config.sops.placeholder."services/unify/apikey"}
     '';
   };
 
