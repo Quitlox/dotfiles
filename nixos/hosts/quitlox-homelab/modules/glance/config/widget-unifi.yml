@@ -7,6 +7,29 @@
     X-API-KEY: ${UNIFI_API_KEY}
     Accept: application/json
   template: |
+    {{ $code := .Response.StatusCode }}
+    {{ if ne $code 200 }}
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="width:40px; height:40px; flex-shrink:0; display:flex; justify-content:center; align-items:center; overflow:hidden;">
+        <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/ubiquiti-unifi-light.svg" width="24" height="24" style="object-fit:contain; filter: var(--filter-disable);">
+      </div>
+      <div style="flex-grow:1; min-width:0;">
+        <a class="size-h4 block text-truncate color-highlight">Unifi</a>
+        <ul class="list-horizontal-text">
+          <li><span class="color-negative">HTTP {{ $code }}</span></li>
+        </ul>
+        {{ if eq $code 401 }}
+        <p class="size-h6 color-paragraph">Check that your UNIFI_API_KEY is correct.</p>
+        {{ else if eq $code 403 }}
+        <p class="size-h6 color-paragraph">Check that your UNIFI_API_KEY has the required permissions.</p>
+        {{ else if or (eq $code 502) (eq $code 503) }}
+        <p class="size-h6 color-paragraph">The Unifi console appears to be down or starting up.</p>
+        {{ else }}
+        <p class="size-h6 color-paragraph">Check UNIFI_CONSOLE_IP and that the console is reachable from the container.</p>
+        {{ end }}
+      </div>
+    </div>
+    {{ else }}
     <style>
       .list-horizontal-text.no-bullets-unifi > *:not(:last-child)::after {
           content: none !important;
@@ -111,4 +134,5 @@
           </div>
         </div>
       </div>
+    {{ end }}
     {{ end }}
