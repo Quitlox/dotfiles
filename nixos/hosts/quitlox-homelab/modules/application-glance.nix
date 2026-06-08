@@ -49,6 +49,14 @@ in
     owner = "glance";
     group = "glance";
   };
+  sops.secrets."services/unify/console-ip" = {
+    owner = "glance";
+    group = "glance";
+  };
+  sops.secrets."services/unify/apikey" = {
+    owner = "glance";
+    group = "glance";
+  };
   sops.templates."glance.env" = {
     owner = "glance";
     group = "root";
