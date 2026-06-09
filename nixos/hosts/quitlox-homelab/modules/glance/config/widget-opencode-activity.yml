@@ -1,4 +1,4 @@
 - type: extension
-  url: http://opencode-extension:8080
+  url: http://glance-extension-opencode:8080
   cache: 5m
   allow-potentially-dangerous-html: true

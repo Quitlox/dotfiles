@@ -49,6 +49,7 @@ in
       container_name = "glance-extension-opencode";
       restart = "unless-stopped";
       networks = [ "proxy" ];
+      extra_hosts = [ "opencode.home.quitlox.dev:host-gateway" ];
       env_file = [ config.sops.templates."glance.env".path ];
       environment = {
         OPENCODE_BASE_URL = "https://opencode.home.quitlox.dev";
