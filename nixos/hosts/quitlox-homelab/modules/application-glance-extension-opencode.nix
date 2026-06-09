@@ -10,7 +10,7 @@ let
     pname = "glance-extension-opencode";
     version = "0.1.0";
     src = ./glance/extension-opencode;
-    vendorHash = "";
+    vendorHash = null;
     ldflags = [ "-s" "-w" ];
     env.CGO_ENABLED = "0";
   };
