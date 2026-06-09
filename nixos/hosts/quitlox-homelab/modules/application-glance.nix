@@ -12,9 +12,7 @@ let
 
   mkInstallCmd = destDir: name: _type:
     "install -m 664 -o ${toString glanceUID} -g ${toString glanceGID} ${./glance/${destDir}/${name}} /var/lib/glance/${destDir}/${name}";
-
   regularFiles = dir: lib.filterAttrs (_: type: type == "regular") (builtins.readDir dir);
-
   configInstallCmds = lib.mapAttrsToList (mkInstallCmd "config") (regularFiles ./glance/config);
   assetInstallCmds = lib.mapAttrsToList (mkInstallCmd "assets") (regularFiles ./glance/assets);
 in
@@ -44,7 +42,7 @@ in
     '';
   };
 
-  # sops template for the env file with API keys
+  # Wire in the secrets and keys used by Glance
   sops.secrets."hetzner/project-id" = {
     owner = "glance";
     group = "glance";
@@ -57,6 +55,7 @@ in
     owner = "glance";
     group = "glance";
   };
+
   sops.templates."glance.env" = {
     owner = "glance";
     group = "root";

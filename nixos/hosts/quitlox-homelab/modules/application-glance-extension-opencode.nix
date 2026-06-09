@@ -1,7 +1,9 @@
-# Glance extension - OpenCode Activity widget
+# Glance Extension - OpenCode Activity Widget
 #
-# Builds the Go extension as a Docker image and runs it as a sidecar
-# in the glance arion project.
+# A Widget showing the recent OpenCode sessions and projects.
+#
+# Builds the Go extension as a Docker image and runs it as a sidecar in the
+# glance arion project.
 { config, lib, pkgs, ... }:
 let
   opencode-extension-bin = pkgs.buildGoModule {
@@ -19,6 +21,7 @@ let
     config = {
       Cmd = [ "/bin/opencode-glance-extension" ];
       ExposedPorts = { "8080/tcp" = {}; };
+      # SSL Certificates required to perform HTTPS
       Env = [ "SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt" ];
     };
     copyToRoot = [ opencode-extension-bin pkgs.cacert ];
@@ -39,6 +42,7 @@ in
     };
   };
 
+  # Add the image as a sidecar to the glance container
   virtualisation.arion.projects.glance.settings = {
     services.opencode-extension.service = {
       image = "opencode-glance-extension:latest";
