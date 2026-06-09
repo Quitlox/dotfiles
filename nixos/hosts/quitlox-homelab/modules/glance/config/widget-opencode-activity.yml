@@ -1,35 +1,4 @@
-- type: group
-  title: OpenCode Activity
-  widgets:
-    - type: custom-api
-      title: Recent Sessions
-      cache: 5m
-      url: https://${OPENCODE_USERNAME}:${OPENCODE_PASSWORD}@opencode.home.quitlox.dev/api/session
-      template: |
-        {{ $sessions := .JSON.Array "items" }}
-        <ul class="list list-gap-10">
-        {{ range $i, $s := $sessions }}
-          {{ if lt $i 5 }}
-          <li>
-            <a class="size-h4 color-highlight block text-truncate" href="https://opencode.home.quitlox.dev">{{ $s.String "title" }}</a>
-            <p class="size-h6 color-subdue text-truncate">{{ $s.String "model.id" }}</p>
-          </li>
-          {{ end }}
-        {{ end }}
-        </ul>
-
-    - type: custom-api
-      title: Recent Projects
-      cache: 5m
-      url: https://${OPENCODE_USERNAME}:${OPENCODE_PASSWORD}@opencode.home.quitlox.dev/project
-      template: |
-        {{ $projects := .JSON.Array "" }}
-        <ul class="list list-gap-10">
-        {{ range $i, $p := $projects }}
-          {{ if lt $i 5 }}
-          <li>
-            <p class="size-h4 color-highlight text-truncate">{{ $p.String "worktree" }}</p>
-          </li>
-          {{ end }}
-        {{ end }}
-        </ul>
+- type: extension
+  url: http://opencode-extension:8080
+  cache: 5m
+  allow-potentially-dangerous-html: true
