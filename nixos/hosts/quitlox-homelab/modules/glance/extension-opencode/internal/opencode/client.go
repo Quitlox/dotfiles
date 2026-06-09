@@ -2,7 +2,6 @@
 package opencode
 
 import (
-	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -69,10 +68,7 @@ func (client *Client) FetchSessions() ([]model.Session, error) {
 var errUnexpectedStatus = errors.New("unexpected HTTP status")
 
 func (client *Client) doRequest(url string) (*http.Response, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer cancel()
-
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("creating request: %w", err)
 	}
