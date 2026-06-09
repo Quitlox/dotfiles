@@ -12,14 +12,14 @@ let
     src = ./glance/extension-opencode;
     vendorHash = "";
     ldflags = [ "-s" "-w" ];
-    CGO_ENABLED = 0;
+    env.CGO_ENABLED = "0";
   };
 
   glance-extension-opencode-image = pkgs.dockerTools.buildImage {
     name = "glance-extension-opencode";
     tag = "latest";
     config = {
-      Cmd = [ "/bin/opencode-glance-extension" ];
+      Cmd = [ "/bin/glance-extension-opencode" ];
       ExposedPorts = { "8080/tcp" = {}; };
       # SSL Certificates required to perform HTTPS
       Env = [ "SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt" ];
