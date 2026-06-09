@@ -1,25 +1,27 @@
+// Binary opencode-glance-extension serves an OpenCode activity widget for Glance.
 package main
 
 import (
+	"cmp"
 	"embed"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"time"
 
-	"github.com/quitlox/opencode-glance-extension/internal/handler"
-	"github.com/quitlox/opencode-glance-extension/internal/opencode"
+	"github.com/quitlox/glance-extension-opencode/internal/handler"
+	"github.com/quitlox/glance-extension-opencode/internal/opencode"
 )
 
 //go:embed templates/*.html
 var templateFS embed.FS
 
 func main() {
-	baseURL := envOrDefault("OPENCODE_BASE_URL", "https://opencode.home.quitlox.dev")
+	baseURL := cmp.Or(os.Getenv("OPENCODE_BASE_URL"), "https://opencode.home.quitlox.dev")
 	username := os.Getenv("OPENCODE_USERNAME")
 	password := os.Getenv("OPENCODE_PASSWORD")
-	port := envOrDefault("PORT", "8080")
+	port := cmp.Or(os.Getenv("PORT"), "8080")
 
 	if username == "" || password == "" {
 		log.Fatal("OPENCODE_USERNAME and OPENCODE_PASSWORD must be set")
@@ -38,17 +40,18 @@ func main() {
 	client := opencode.NewClient(baseURL, username, password)
 	h := handler.NewWidgetHandler(client, tmpl)
 
-	http.Handle("/", h)
-	addr := fmt.Sprintf(":%s", port)
-	log.Printf("listening on %s", addr)
-	if err := http.ListenAndServe(addr, nil); err != nil {
+	mux := http.NewServeMux()
+	mux.Handle("/", h)
+
+	srv := &http.Server{
+		Addr:              ":" + port,
+		Handler:           mux,
+		ReadHeaderTimeout: 10 * time.Second,
+		IdleTimeout:       60 * time.Second,
+	}
+
+	log.Printf("listening on %s", srv.Addr)
+	if err := srv.ListenAndServe(); err != nil {
 		log.Fatal(err)
 	}
-}
-
-func envOrDefault(key, fallback string) string {
-	if v := os.Getenv(key); v != "" {
-		return v
-	}
-	return fallback
 }

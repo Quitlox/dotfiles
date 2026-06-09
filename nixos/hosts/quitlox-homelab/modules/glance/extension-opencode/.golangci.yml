@@ -1,0 +1,28 @@
+version: "2"
+linters:
+  default: none
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - bodyclose
+    - copyloopvar
+    - durationcheck
+    - errname
+    
+    - funcorder
+    - gocheckcompilerdirectives
+    - gocritic
+    - gosec
+    - intrange
+    - misspell
+    - noctx
+    - perfsprint
+    - revive
+    - unconvert
+    - usestdlibvars
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

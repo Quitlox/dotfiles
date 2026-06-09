@@ -1,3 +1,4 @@
+// Package handler serves the OpenCode widget HTTP endpoint.
 package handler
 
 import (
@@ -6,22 +7,25 @@ import (
 	"log"
 	"net/http"
 	"sort"
+	"strconv"
 	"strings"
 
-	"github.com/quitlox/opencode-glance-extension/internal/model"
-	"github.com/quitlox/opencode-glance-extension/internal/opencode"
+	"github.com/quitlox/glance-extension-opencode/internal/model"
+	"github.com/quitlox/glance-extension-opencode/internal/opencode"
 )
 
+// WidgetHandler renders OpenCode activity as an HTML widget.
 type WidgetHandler struct {
 	client *opencode.Client
 	tmpl   *template.Template
 }
 
+// NewWidgetHandler creates a WidgetHandler with the given client and template.
 func NewWidgetHandler(client *opencode.Client, tmpl *template.Template) *WidgetHandler {
 	return &WidgetHandler{client: client, tmpl: tmpl}
 }
 
-func (h *WidgetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *WidgetHandler) ServeHTTP(w http.ResponseWriter, _ *http.Request) {
 	projects, err := h.client.FetchProjects()
 	if err != nil {
 		log.Printf("error fetching projects: %v", err)
@@ -47,7 +51,8 @@ func (h *WidgetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Widget-Title", "OpenCode Activity")
 	w.Header().Set("Widget-Content-Type", "html")
 
-	if err := h.tmpl.ExecuteTemplate(w, "layout", data); err != nil {
+	err = h.tmpl.ExecuteTemplate(w, "layout", data)
+	if err != nil {
 		log.Printf("error executing template: %v", err)
 	}
 }
@@ -125,6 +130,7 @@ type tmplData struct {
 	Sessions []model.SessionView
 }
 
+// FormatCost formats a cost value as a dollar string.
 func FormatCost(c float64) string {
 	if c < 0.01 {
 		return fmt.Sprintf("$%.4f", c)
@@ -132,6 +138,7 @@ func FormatCost(c float64) string {
 	return fmt.Sprintf("$%.2f", c)
 }
 
+// FormatTokens formats a token count as a human-readable string (e.g. "1.2M", "3.4k").
 func FormatTokens(t int64) string {
 	switch {
 	case t >= 1_000_000:
@@ -139,10 +146,11 @@ func FormatTokens(t int64) string {
 	case t >= 1_000:
 		return fmt.Sprintf("%.1fk", float64(t)/1_000)
 	default:
-		return fmt.Sprintf("%d", t)
+		return strconv.FormatInt(t, 10)
 	}
 }
 
+// WorkspaceLabel maps internal workspace names to display labels.
 func WorkspaceLabel(ws string) string {
 	if ws == "" {
 		return ""
@@ -159,6 +167,7 @@ func WorkspaceLabel(ws string) string {
 	}
 }
 
+// ShortenModel returns the short name of a model ID (the part after the last "/").
 func ShortenModel(id string) string {
 	parts := strings.Split(id, "/")
 	return parts[len(parts)-1]
