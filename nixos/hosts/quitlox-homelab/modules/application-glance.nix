@@ -77,20 +77,6 @@ in
   virtualisation.arion.projects.glance.settings = {
     project.name = "glance";
     networks.proxy.name = "proxy";
-    services.opencode-extension.service = {
-      image = "opencode-glance-extension:latest";
-      container_name = "opencode-extension";
-      restart = "unless-stopped";
-      networks = [ "proxy" ];
-      env_file = [ config.sops.templates."glance.env".path ];
-      environment = {
-        OPENCODE_BASE_URL = "https://opencode.home.quitlox.dev";
-        PORT = "8080";
-      };
-      labels = {
-        "traefik.enable" = "false";
-      };
-    };
 
     services.glance.service = {
       image = "glanceapp/glance";
