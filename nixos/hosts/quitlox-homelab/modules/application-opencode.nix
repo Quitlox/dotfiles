@@ -37,6 +37,8 @@ let
     python3
     uv
     pyright
+    # Go
+    go
     # Rust
     rustup
     rust-analyzer
