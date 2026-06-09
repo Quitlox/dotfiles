@@ -51,6 +51,16 @@ in
         URLS = "https://yamtrack.${domain}";
         REDIS_URL = "redis://redis:6379";
         SECRET_FILE = "/run/secrets/yamtrack_secret";
+        # Override default ~5s beat tick interval to reduce idle I/O
+        CELERY_BEAT_MAX_LOOP_INTERVAL = "180";
+      };
+      # Override Dockerfile default 45s health check interval to reduce idle I/O
+      healthcheck = {
+        test = [ "CMD" "wget" "--no-verbose" "--tries=1" "--spider" "http://127.0.0.1:8000/health/" ];
+        interval = "5m";
+        timeout = "15s";
+        start_period = "30s";
+        retries = 5;
       };
       volumes = [
         "/var/lib/yamtrack/db:/yamtrack/db"
