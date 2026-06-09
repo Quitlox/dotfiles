@@ -49,10 +49,10 @@ in
       container_name = "glance-extension-opencode";
       restart = "unless-stopped";
       networks = [ "proxy" ];
-      extra_hosts = [ "opencode.home.quitlox.dev:host-gateway" ];
+      extra_hosts = [ "host.docker.internal:host-gateway" ];
       env_file = [ config.sops.templates."glance.env".path ];
       environment = {
-        OPENCODE_BASE_URL = "https://opencode.home.quitlox.dev";
+        OPENCODE_BASE_URL = "http://host.docker.internal:4096";
         PORT = "8080";
       };
       labels = {
