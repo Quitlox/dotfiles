@@ -131,7 +131,7 @@ in
       WorkingDirectory = "/var/lib/opencode/Workspace";
       EnvironmentFile = config.sops.templates."opencode.env".path;
 
-      ExecStart = "${pkgs.opencode}/bin/opencode serve --hostname 127.0.0.1 --port 4096";
+      ExecStart = "${pkgs.opencode}/bin/opencode serve --hostname 0.0.0.0 --port 4096";
 
       Restart = "always";
       RestartSec = "5s";
