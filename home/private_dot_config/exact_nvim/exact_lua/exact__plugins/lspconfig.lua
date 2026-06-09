@@ -123,6 +123,7 @@ local lsps = {
     "css_variables",
     "docker_compose_language_service",
     "dockerls",
+    "gopls",
     "harper_ls",
     "hyprls",
     "jsonls",

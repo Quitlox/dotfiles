@@ -7,6 +7,7 @@ local ts = require("nvim-treesitter")
 -- Install default parsers
 ts.install({
     -- Programming Languages
+    "go",
     "lua",
     "luadoc",
     "nix",

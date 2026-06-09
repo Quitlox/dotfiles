@@ -142,7 +142,7 @@ require("conform").setup({
     formatters_by_ft = {
         bib = { "bibtex-tidy" },
         cpp = { "clang-format" },
-        go = { "gofmt" },
+        go = { "goimports" },
         javascript = { "prettier", "eslint_d" },
         json = { "prettier" },
         jsonc = { "prettier" },

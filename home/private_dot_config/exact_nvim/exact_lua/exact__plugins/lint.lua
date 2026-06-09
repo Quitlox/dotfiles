@@ -17,6 +17,7 @@ require("lint").linters_by_ft = {
     -- Minor Languages
     ansible = { "ansible_lint", "codespell" },
     bash = { "shellcheck", "codespell" },
+    go = { "golangcilint" },
     toml = { "tombi" },
 }
 
