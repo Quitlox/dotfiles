@@ -115,6 +115,9 @@ func merge(projects []model.Project, sessions []model.Session, externalURL strin
 
 	views := make([]model.ProjectView, 0, len(projects))
 	for _, p := range projects {
+		if p.IsGlobal() {
+			continue
+		}
 		projSessions := sessionMap[p.ID]
 		var totalCost float64
 		var totalTokens int64

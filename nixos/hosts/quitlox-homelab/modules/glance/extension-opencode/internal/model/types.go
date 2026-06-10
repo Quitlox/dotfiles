@@ -34,6 +34,12 @@ type Session struct {
 	Title     string    `json:"title"`
 }
 
+// IsGlobal reports whether the project is the catch-all root project
+// (worktree "/"), which holds sessions started outside any real project.
+func (p Project) IsGlobal() bool {
+	return p.Worktree == "/" || p.Worktree == ""
+}
+
 // IsSubagent reports whether the session is a subagent session.
 func (s Session) IsSubagent() bool {
 	return strings.HasSuffix(s.Title, " subagent)") && strings.Contains(s.Title, "(@")
