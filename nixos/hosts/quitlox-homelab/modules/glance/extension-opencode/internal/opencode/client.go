@@ -2,6 +2,7 @@
 package opencode
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -13,75 +14,69 @@ import (
 
 // Client communicates with the OpenCode API.
 type Client struct {
-	BaseURL    string
-	Username   string
-	Password   string
-	HTTPClient *http.Client
+	baseURL    string
+	username   string
+	password   string
+	httpClient *http.Client
 }
 
 // NewClient creates a Client with basic auth credentials and a default timeout.
 func NewClient(baseURL, username, password string) *Client {
 	return &Client{
-		BaseURL:  baseURL,
-		Username: username,
-		Password: password,
-		HTTPClient: &http.Client{
+		baseURL:  baseURL,
+		username: username,
+		password: password,
+		httpClient: &http.Client{
 			Timeout: 30 * time.Second,
 		},
 	}
 }
 
-// FetchProjects retrieves all projects from the OpenCode API.
-func (client *Client) FetchProjects() ([]model.Project, error) {
-	resp, err := client.doRequest(client.BaseURL + "/project")
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
+// FetchProjects retrieves all projects. Unlike sessions, the projects
+// endpoint lives at the server root and returns a bare JSON array.
+func (c *Client) FetchProjects(ctx context.Context) ([]model.Project, error) {
 	var projects []model.Project
-	err = json.NewDecoder(resp.Body).Decode(&projects)
-	if err != nil {
-		return nil, fmt.Errorf("decoding projects: %w", err)
+	if err := c.fetchJSON(ctx, c.baseURL+"/project", &projects); err != nil {
+		return nil, fmt.Errorf("fetching projects: %w", err)
 	}
 	return projects, nil
 }
 
-// FetchSessions retrieves all sessions from the OpenCode API.
-func (client *Client) FetchSessions() ([]model.Session, error) {
-	resp, err := client.doRequest(client.BaseURL + "/api/session")
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
+// FetchSessions retrieves all sessions. The sessions endpoint belongs to the
+// web UI API and wraps its results in an "items" envelope.
+func (c *Client) FetchSessions(ctx context.Context) ([]model.Session, error) {
 	var result struct {
 		Items []model.Session `json:"items"`
 	}
-	err = json.NewDecoder(resp.Body).Decode(&result)
-	if err != nil {
-		return nil, fmt.Errorf("decoding sessions: %w", err)
+	if err := c.fetchJSON(ctx, c.baseURL+"/api/session", &result); err != nil {
+		return nil, fmt.Errorf("fetching sessions: %w", err)
 	}
 	return result.Items, nil
 }
 
 var errUnexpectedStatus = errors.New("unexpected HTTP status")
 
-func (client *Client) doRequest(url string) (*http.Response, error) {
-	req, err := http.NewRequest(http.MethodGet, url, nil)
+// fetchJSON GETs url and decodes the JSON response into v. The body is fully
+// decoded before returning, so ctx (typically the incoming request's context)
+// safely covers the entire exchange.
+func (c *Client) fetchJSON(ctx context.Context, url string, v any) error {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
-		return nil, fmt.Errorf("creating request: %w", err)
+		return fmt.Errorf("creating request: %w", err)
 	}
-	req.SetBasicAuth(client.Username, client.Password)
+	req.SetBasicAuth(c.username, c.password)
 
-	resp, err := client.HTTPClient.Do(req)
+	resp, err := c.httpClient.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("executing request: %w", err)
+		return fmt.Errorf("executing request: %w", err)
 	}
+	defer func() { _ = resp.Body.Close() }()
 
 	if resp.StatusCode != http.StatusOK {
-		_ = resp.Body.Close()
-		return nil, fmt.Errorf("%w: %d from %s", errUnexpectedStatus, resp.StatusCode, url)
+		return fmt.Errorf("%w: %d from %s", errUnexpectedStatus, resp.StatusCode, url)
 	}
-	return resp, nil
+	if err := json.NewDecoder(resp.Body).Decode(v); err != nil {
+		return fmt.Errorf("decoding response: %w", err)
+	}
+	return nil
 }
