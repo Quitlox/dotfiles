@@ -49,6 +49,8 @@ func (h *WidgetHandler) handleSessions(w http.ResponseWriter, _ *http.Request) {
 		return
 	}
 
+	sessions = dropEmptySessions(sessions)
+
 	worktreeMap := make(map[string]string, len(projects))
 	for _, p := range projects {
 		worktreeMap[p.ID] = p.Worktree
@@ -81,6 +83,8 @@ func (h *WidgetHandler) handleProjects(w http.ResponseWriter, _ *http.Request) {
 		return
 	}
 
+	sessions = dropEmptySessions(sessions)
+
 	views := merge(projects, sessions, h.externalURL)
 
 	data := tmplData{Projects: views}
@@ -91,6 +95,16 @@ func (h *WidgetHandler) handleProjects(w http.ResponseWriter, _ *http.Request) {
 	if err := h.tmpl.ExecuteTemplate(w, "projects", data); err != nil {
 		log.Printf("error executing template: %v", err)
 	}
+}
+
+func dropEmptySessions(sessions []model.Session) []model.Session {
+	kept := make([]model.Session, 0, len(sessions))
+	for _, s := range sessions {
+		if !model.IsEmptySession(s) {
+			kept = append(kept, s)
+		}
+	}
+	return kept
 }
 
 func merge(projects []model.Project, sessions []model.Session, externalURL string) []model.ProjectView {
@@ -180,18 +194,25 @@ type tmplData struct {
 }
 
 func FormatCost(c float64) string {
-	if c < 0.01 {
-		return fmt.Sprintf("$%.4f", c)
+	switch {
+	case c == 0:
+		return "$0.00"
+	case c < 0.01:
+		return "<$0.01"
+	default:
+		return fmt.Sprintf("$%.2f", c)
 	}
-	return fmt.Sprintf("$%.2f", c)
 }
 
 func FormatTokens(t int64) string {
+	abbrev := func(v float64, suffix string) string {
+		return strings.TrimSuffix(fmt.Sprintf("%.1f", v), ".0") + suffix
+	}
 	switch {
 	case t >= 1_000_000:
-		return fmt.Sprintf("%.1fM", float64(t)/1_000_000)
+		return abbrev(float64(t)/1_000_000, "M")
 	case t >= 1_000:
-		return fmt.Sprintf("%.1fk", float64(t)/1_000)
+		return abbrev(float64(t)/1_000, "k")
 	default:
 		return strconv.FormatInt(t, 10)
 	}

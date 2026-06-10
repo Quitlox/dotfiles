@@ -133,3 +133,21 @@ func SessionLink(baseURL, worktree, sessionID string) string {
 func ProjectLink(baseURL, worktree string) string {
 	return baseURL + "/" + Base64URLEncode(worktree) + "/session"
 }
+
+// IsEmptySession reports whether a session should be hidden from the widget:
+// it has no model, no token usage, or still carries the auto-generated
+// "New session - <timestamp>" title.
+func IsEmptySession(s Session) bool {
+	if s.Model.ID == "" {
+		return true
+	}
+	if s.Tokens.Input == 0 && s.Tokens.Output == 0 && s.Tokens.Cache.Read == 0 {
+		return true
+	}
+	if rest, ok := strings.CutPrefix(s.Title, "New session - "); ok {
+		if _, err := time.Parse(time.RFC3339, rest); err == nil {
+			return true
+		}
+	}
+	return false
+}

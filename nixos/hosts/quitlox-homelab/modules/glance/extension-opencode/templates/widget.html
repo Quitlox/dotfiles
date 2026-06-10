@@ -2,13 +2,14 @@
 <ul class="list list-gap-14 collapsible-container" data-collapse-after="5">
 {{range .Sessions}}
   <li>
-    <div class="flex items-center gap-8">
-      {{if .Active}}<span class="color-positive">&#9679;</span>{{end}}
-      <a class="size-h4 color-primary-if-not-visited text-truncate" href="{{.Link}}">{{.Title}}</a>
+    <div class="flex items-center gap-10">
+      {{if .Active}}<span class="color-positive shrink-0">&#9679;</span>{{end}}
+      <a class="size-h4 color-primary-if-not-visited block text-truncate" href="{{.Link}}">{{.Title}}</a>
     </div>
     <ul class="list-horizontal-text">
-      <li>{{shortenModel .ModelID}}</li>
       <li data-dynamic-relative-time="{{.UpdatedSecs}}"></li>
+      <li>{{shortenModel .ModelID}}</li>
+      {{if .Agent}}<li>{{.Agent}}</li>{{end}}
     </ul>
   </li>
 {{end}}
@@ -19,17 +20,17 @@
 <ul class="list list-gap-14 collapsible-container" data-collapse-after="5">
 {{range .Projects}}
   <li>
-    <div class="flex items-center gap-8">
-      {{if .Active}}<span class="color-positive">&#9679;</span>{{end}}
-      <a class="size-h4 color-primary-if-not-visited text-truncate" href="{{.Link}}">{{.ShortName}}</a>
-      {{if .Workspace}}<span class="size-h6 color-subdue margin-left-8">{{workspaceLabel .Workspace}}</span>{{end}}
+    <div class="flex items-center gap-10">
+      {{if .Active}}<span class="color-positive shrink-0">&#9679;</span>{{end}}
+      <a class="size-h4 color-primary-if-not-visited block text-truncate" href="{{.Link}}">{{.ShortName}}</a>
+      {{if .Workspace}}<span class="size-h6 color-subdue shrink-0">{{workspaceLabel .Workspace}}</span>{{end}}
     </div>
     <p class="size-h6 color-subdue text-truncate">{{.FullPath}}</p>
     <ul class="list-horizontal-text">
+      <li data-dynamic-relative-time="{{.LastUpdatedSecs}}"></li>
       <li>{{.SessionCount}} session{{if ne .SessionCount 1}}s{{end}}</li>
       <li>{{formatCost .TotalCost}}</li>
       <li>{{formatTokens .TotalTokens}} tokens</li>
-      <li data-dynamic-relative-time="{{.LastUpdatedSecs}}"></li>
     </ul>
   </li>
 {{end}}
