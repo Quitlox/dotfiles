@@ -53,6 +53,7 @@ in
       env_file = [ config.sops.templates."glance.env".path ];
       environment = {
         OPENCODE_BASE_URL = "http://host.docker.internal:4096";
+        OPENCODE_EXTERNAL_URL = "https://opencode.home.quitlox.dev";
         PORT = "8080";
       };
       labels = {

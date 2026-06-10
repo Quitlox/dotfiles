@@ -1,4 +1,10 @@
-- type: extension
-  url: http://glance-extension-opencode:8080
-  cache: 5m
-  allow-potentially-dangerous-html: true
+- type: group
+  widgets:
+    - type: extension
+      url: http://glance-extension-opencode:8080/sessions
+      cache: 5m
+      allow-potentially-dangerous-html: true
+    - type: extension
+      url: http://glance-extension-opencode:8080/projects
+      cache: 5m
+      allow-potentially-dangerous-html: true

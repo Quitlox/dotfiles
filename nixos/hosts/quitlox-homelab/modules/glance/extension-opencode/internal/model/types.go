@@ -2,6 +2,7 @@
 package model
 
 import (
+	"encoding/base64"
 	"path/filepath"
 	"strings"
 	"time"
@@ -33,6 +34,11 @@ type Session struct {
 	Title     string    `json:"title"`
 }
 
+// IsSubagent reports whether the session is a subagent session.
+func (s Session) IsSubagent() bool {
+	return strings.HasSuffix(s.Title, " subagent)") && strings.Contains(s.Title, "(@")
+}
+
 // Model identifies the LLM used in a session.
 type Model struct {
 	ID string `json:"id"`
@@ -62,6 +68,7 @@ type ProjectView struct {
 	TotalTokens     int64
 	LastUpdatedSecs int64
 	Active          bool
+	Link            string
 }
 
 // SessionView is a display-ready representation of a session.
@@ -73,6 +80,7 @@ type SessionView struct {
 	UpdatedMs   int64
 	UpdatedSecs int64
 	Active      bool
+	Link        string
 }
 
 // DeriveShortName returns the last path component of a worktree, or "Global" for root paths.
@@ -108,4 +116,20 @@ func splitPath(p string) []string {
 // IsActive reports whether a session updated at the given timestamp is considered recent.
 func IsActive(updatedMs int64) bool {
 	return time.Since(time.UnixMilli(updatedMs)) < time.Hour
+}
+
+// Base64URLEncode encodes a string using URL-safe base64 without padding,
+// matching the encoding used by the OpenCode web UI for route parameters.
+func Base64URLEncode(s string) string {
+	return base64.RawURLEncoding.EncodeToString([]byte(s))
+}
+
+// SessionLink returns the OpenCode web UI URL for a session within the given project worktree.
+func SessionLink(baseURL, worktree, sessionID string) string {
+	return baseURL + "/" + Base64URLEncode(worktree) + "/session/" + sessionID
+}
+
+// ProjectLink returns the OpenCode web UI URL for a project's session list.
+func ProjectLink(baseURL, worktree string) string {
+	return baseURL + "/" + Base64URLEncode(worktree) + "/session"
 }

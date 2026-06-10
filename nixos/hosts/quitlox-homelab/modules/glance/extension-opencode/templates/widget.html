@@ -3,8 +3,8 @@
 {{range .Sessions}}
   <li>
     <div class="flex items-center gap-8">
-      <a class="size-h4 color-primary-if-not-visited text-truncate" href="#">{{.Title}}</a>
       {{if .Active}}<span class="color-positive">&#9679;</span>{{end}}
+      <a class="size-h4 color-primary-if-not-visited text-truncate" href="{{.Link}}">{{.Title}}</a>
     </div>
     <ul class="list-horizontal-text">
       <li>{{shortenModel .ModelID}}</li>
@@ -20,9 +20,9 @@
 {{range .Projects}}
   <li>
     <div class="flex items-center gap-8">
-      <a class="size-h4 color-primary-if-not-visited text-truncate" href="#">{{.ShortName}}</a>
       {{if .Active}}<span class="color-positive">&#9679;</span>{{end}}
-      {{if .Workspace}}<span class="size-h6 color-subdue">{{workspaceLabel .Workspace}}</span>{{end}}
+      <a class="size-h4 color-primary-if-not-visited text-truncate" href="{{.Link}}">{{.ShortName}}</a>
+      {{if .Workspace}}<span class="size-h6 color-subdue margin-left-8">{{workspaceLabel .Workspace}}</span>{{end}}
     </div>
     <p class="size-h6 color-subdue text-truncate">{{.FullPath}}</p>
     <ul class="list-horizontal-text">
@@ -34,15 +34,4 @@
   </li>
 {{end}}
 </ul>
-{{end}}
-
-{{define "layout"}}
-<div class="margin-bottom-20">
-  <p class="size-h3 color-highlight margin-bottom-10">Recent Sessions</p>
-  {{template "sessions" .}}
-</div>
-<div>
-  <p class="size-h3 color-highlight margin-bottom-10">Projects</p>
-  {{template "projects" .}}
-</div>
 {{end}}

@@ -21,6 +21,7 @@ func main() {
 	baseURL := cmp.Or(os.Getenv("OPENCODE_BASE_URL"), "https://opencode.home.quitlox.dev")
 	username := os.Getenv("OPENCODE_USERNAME")
 	password := os.Getenv("OPENCODE_PASSWORD")
+	externalURL := cmp.Or(os.Getenv("OPENCODE_EXTERNAL_URL"), "https://opencode.home.quitlox.dev")
 	port := cmp.Or(os.Getenv("PORT"), "8080")
 
 	if username == "" || password == "" {
@@ -38,7 +39,7 @@ func main() {
 	}
 
 	client := opencode.NewClient(baseURL, username, password)
-	h := handler.NewWidgetHandler(client, tmpl)
+	h := handler.NewWidgetHandler(client, tmpl, externalURL)
 
 	mux := http.NewServeMux()
 	mux.Handle("/", h)

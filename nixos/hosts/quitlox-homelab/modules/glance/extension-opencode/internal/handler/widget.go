@@ -1,4 +1,3 @@
-// Package handler serves the OpenCode widget HTTP endpoint.
 package handler
 
 import (
@@ -14,18 +13,28 @@ import (
 	"github.com/quitlox/glance-extension-opencode/internal/opencode"
 )
 
-// WidgetHandler renders OpenCode activity as an HTML widget.
 type WidgetHandler struct {
-	client *opencode.Client
-	tmpl   *template.Template
+	client      *opencode.Client
+	tmpl        *template.Template
+	externalURL string
 }
 
-// NewWidgetHandler creates a WidgetHandler with the given client and template.
-func NewWidgetHandler(client *opencode.Client, tmpl *template.Template) *WidgetHandler {
-	return &WidgetHandler{client: client, tmpl: tmpl}
+func NewWidgetHandler(client *opencode.Client, tmpl *template.Template, externalURL string) *WidgetHandler {
+	return &WidgetHandler{client: client, tmpl: tmpl, externalURL: externalURL}
 }
 
-func (h *WidgetHandler) ServeHTTP(w http.ResponseWriter, _ *http.Request) {
+func (h *WidgetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	switch r.URL.Path {
+	case "/sessions":
+		h.handleSessions(w, r)
+	case "/projects":
+		h.handleProjects(w, r)
+	default:
+		http.NotFound(w, r)
+	}
+}
+
+func (h *WidgetHandler) handleSessions(w http.ResponseWriter, _ *http.Request) {
 	projects, err := h.client.FetchProjects()
 	if err != nil {
 		log.Printf("error fetching projects: %v", err)
@@ -40,24 +49,51 @@ func (h *WidgetHandler) ServeHTTP(w http.ResponseWriter, _ *http.Request) {
 		return
 	}
 
-	projectViews := merge(projects, sessions)
-	sessionViews := buildSessionViews(sessions)
-
-	data := tmplData{
-		Projects: projectViews,
-		Sessions: sessionViews,
+	worktreeMap := make(map[string]string, len(projects))
+	for _, p := range projects {
+		worktreeMap[p.ID] = p.Worktree
 	}
 
-	w.Header().Set("Widget-Title", "OpenCode Activity")
+	views := buildSessionViews(sessions, worktreeMap, h.externalURL)
+
+	data := tmplData{Sessions: views}
+
+	w.Header().Set("Widget-Title", "Sessions")
 	w.Header().Set("Widget-Content-Type", "html")
 
-	err = h.tmpl.ExecuteTemplate(w, "layout", data)
-	if err != nil {
+	if err := h.tmpl.ExecuteTemplate(w, "sessions", data); err != nil {
 		log.Printf("error executing template: %v", err)
 	}
 }
 
-func merge(projects []model.Project, sessions []model.Session) []model.ProjectView {
+func (h *WidgetHandler) handleProjects(w http.ResponseWriter, _ *http.Request) {
+	projects, err := h.client.FetchProjects()
+	if err != nil {
+		log.Printf("error fetching projects: %v", err)
+		http.Error(w, "failed to fetch projects", http.StatusBadGateway)
+		return
+	}
+
+	sessions, err := h.client.FetchSessions()
+	if err != nil {
+		log.Printf("error fetching sessions: %v", err)
+		http.Error(w, "failed to fetch sessions", http.StatusBadGateway)
+		return
+	}
+
+	views := merge(projects, sessions, h.externalURL)
+
+	data := tmplData{Projects: views}
+
+	w.Header().Set("Widget-Title", "Projects")
+	w.Header().Set("Widget-Content-Type", "html")
+
+	if err := h.tmpl.ExecuteTemplate(w, "projects", data); err != nil {
+		log.Printf("error executing template: %v", err)
+	}
+}
+
+func merge(projects []model.Project, sessions []model.Session, externalURL string) []model.ProjectView {
 	sessionMap := make(map[string][]model.Session)
 	for _, s := range sessions {
 		sessionMap[s.ProjectID] = append(sessionMap[s.ProjectID], s)
@@ -93,6 +129,7 @@ func merge(projects []model.Project, sessions []model.Session) []model.ProjectVi
 			TotalTokens:     totalTokens,
 			LastUpdatedSecs: lastUpdated / 1000,
 			Active:          model.IsActive(lastUpdated),
+			Link:            model.ProjectLink(externalURL, p.Worktree),
 		})
 	}
 
@@ -103,15 +140,26 @@ func merge(projects []model.Project, sessions []model.Session) []model.ProjectVi
 	return views
 }
 
-func buildSessionViews(sessions []model.Session) []model.SessionView {
-	sorted := make([]model.Session, len(sessions))
-	copy(sorted, sessions)
+func buildSessionViews(sessions []model.Session, worktreeMap map[string]string, externalURL string) []model.SessionView {
+	sorted := make([]model.Session, 0, len(sessions))
+	for _, s := range sessions {
+		if s.IsSubagent() {
+			continue
+		}
+		sorted = append(sorted, s)
+	}
+
 	sort.Slice(sorted, func(i, j int) bool {
 		return sorted[i].Time.Updated > sorted[j].Time.Updated
 	})
 
 	views := make([]model.SessionView, 0, len(sorted))
 	for _, s := range sorted {
+		worktree := s.ProjectID
+		if wt, ok := worktreeMap[s.ProjectID]; ok {
+			worktree = wt
+		}
+
 		views = append(views, model.SessionView{
 			ID:          s.ID,
 			Title:       s.Title,
@@ -120,6 +168,7 @@ func buildSessionViews(sessions []model.Session) []model.SessionView {
 			UpdatedMs:   s.Time.Updated,
 			UpdatedSecs: s.Time.Updated / 1000,
 			Active:      model.IsActive(s.Time.Updated),
+			Link:        model.SessionLink(externalURL, worktree, s.ID),
 		})
 	}
 	return views
@@ -130,7 +179,6 @@ type tmplData struct {
 	Sessions []model.SessionView
 }
 
-// FormatCost formats a cost value as a dollar string.
 func FormatCost(c float64) string {
 	if c < 0.01 {
 		return fmt.Sprintf("$%.4f", c)
@@ -138,7 +186,6 @@ func FormatCost(c float64) string {
 	return fmt.Sprintf("$%.2f", c)
 }
 
-// FormatTokens formats a token count as a human-readable string (e.g. "1.2M", "3.4k").
 func FormatTokens(t int64) string {
 	switch {
 	case t >= 1_000_000:
@@ -150,7 +197,6 @@ func FormatTokens(t int64) string {
 	}
 }
 
-// WorkspaceLabel maps internal workspace names to display labels.
 func WorkspaceLabel(ws string) string {
 	if ws == "" {
 		return ""
@@ -167,7 +213,6 @@ func WorkspaceLabel(ws string) string {
 	}
 }
 
-// ShortenModel returns the short name of a model ID (the part after the last "/").
 func ShortenModel(id string) string {
 	parts := strings.Split(id, "/")
 	return parts[len(parts)-1]
