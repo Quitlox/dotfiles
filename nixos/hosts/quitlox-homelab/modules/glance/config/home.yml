@@ -12,6 +12,7 @@
         - $include: widget-opencode-activity.yml
     - size: small
       widgets:
+        - $include: widget-beszel-server-stats.yml
         - $include: widget-unifi.yml
         - $include: widget-hetzner-dns.yml
         - type: monitor

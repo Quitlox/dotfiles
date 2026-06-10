@@ -62,7 +62,7 @@ in
   sops.secrets."services/beszel/ssh_pub" = {
     owner = "beszel";
   };
-  sops.secrets."services/beszel/token" = {
+  sops.secrets."services/beszel/agent-token" = {
     owner = "beszel";
   };
   sops.secrets."services/beszel/user_name" = {
@@ -89,7 +89,7 @@ in
       systems:
         - name: "quitlox-homelab"
           host: "/beszel_socket/beszel.sock"
-          token: "${config.sops.placeholder."services/beszel/token"}"
+          token: "${config.sops.placeholder."services/beszel/agent-token"}"
           users:
             - "${config.sops.placeholder."services/beszel/user_name"}"
     '';

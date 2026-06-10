@@ -55,6 +55,10 @@ in
     owner = "glance";
     group = "glance";
   };
+  sops.secrets."services/beszel/token" = {
+    owner = "glance";
+    group = "glance";
+  };
 
   sops.templates."glance.env" = {
     owner = "glance";
@@ -70,6 +74,8 @@ in
       OPENCODE_PASSWORD=${config.sops.placeholder."services/opencode/user_pass"}
       UNIFI_CONSOLE_IP=${config.sops.placeholder."services/unify/console-ip"}
       UNIFI_API_KEY=${config.sops.placeholder."services/unify/apikey"}
+      BESZEL_URL=https://beszel.home.quitlox.dev
+      BESZEL_TOKEN=${config.sops.placeholder."services/beszel/token"}
     '';
   };
 
