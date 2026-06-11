@@ -1,0 +1,50 @@
+- type: custom-api
+  title: Trending Media
+  title-url: https://seerr.home.quitlox.dev/discover/trending
+  url: https://seerr.home.quitlox.dev/api/v1/discover/trending
+  cache: 15m
+  icon: sh:overseerr
+  headers:
+    accept: "application/json"
+    x-api-key: ${OVERSEERR_API_KEY}
+  parameters:
+    language: "en"
+    page: "1"
+  options:
+    show-media-type: true
+    show-media-desc: true
+  template: |
+    {{ $showMediaType := .Options.BoolOr "show-media-type" true }}
+    {{ $showMediaDesc := .Options.BoolOr "show-media-desc" true }}
+    {{ if eq .Response.StatusCode 200 }}
+      {{ $items := .JSON.Array "results" }}
+      {{ if gt (len $items) 0 }}
+        <ul class="list list-gap-10 collapsible-container" data-collapse-after="5">
+        {{ range $items }}
+          <li class="flex items-start gap-10 thumbnail-container thumbnail-parent">
+            {{ $mediaType := .String "mediaType" }}
+            {{ $mediaTitle := "" }}
+            {{ $mediaTypeUpper := "" }}
+            {{ if eq $mediaType "movie" }} {{ $mediaTitle = .String "title" }} {{ $mediaTypeUpper = "Movie" }}{{ else }}{{ $mediaTitle = .String "name" }} {{ $mediaTypeUpper = "TV" }}{{ end }}
+            {{ $overseerrUrl := concat "https://seerr.home.quitlox.dev" "/" $mediaType "/" ( .String "id" ) }}
+            {{ $tmdbUrl := concat "https://www.themoviedb.org" "/" $mediaType "/" ( .String "id" ) }}
+            <a href={{ $overseerrUrl }} target="_blank">
+            <img src={{ concat "https://image.tmdb.org/t/p/w300" (.String "posterPath") }} style="border-radius: 5px; min-width: 5rem; max-width: 5rem;" class="card">
+            </a>
+            <div class="flex-1" style="padding-right: 5px;">
+              <p class="color-positive size-h4 text-truncate-2-lines margin-top-5" title={{ $mediaTitle }}><a href={{ $overseerrUrl }} target="_blank">{{ $mediaTitle }}</a></p>
+              <p class="size-h4" title="TMDB Rating"><a href={{ $tmdbUrl }} target="_blank">TMDB: {{ mul (.Float "voteAverage") 10 | toInt }}% {{ if $showMediaType }}| {{ $mediaTypeUpper }}{{ end }}</a></p>
+              {{ if $showMediaDesc }}<p class="color-subdue size-h4 text-truncate-2-lines" title={{ .String "overview" }}>{{ .String "overview" }}</p>{{ end }}
+            </div>
+          </li>
+        {{ end }}
+        </ul>
+      {{ else }}
+        <details style="margin-top:0.5rem">
+          <summary> Raw JSON:</summary>
+          <pre stye="font-size:10px">
+      {{ (printf "%+v" .JSON) }}
+          </pre>
+        </details>
+      {{ end }}
+    {{ end }}

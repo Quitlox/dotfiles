@@ -4,3 +4,4 @@
       widgets:
         - $include: widget-github-notifications.yml
         - $include: widget-jellyfin-latest.yml
+        - $include: widget-overseerr-trending.yml

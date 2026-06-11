@@ -71,6 +71,10 @@ in
     owner = "glance";
     group = "glance";
   };
+  sops.secrets."services/glance/overseerr/apikey" = {
+    owner = "glance";
+    group = "glance";
+  };
 
   sops.templates."glance.env" = {
     owner = "glance";
@@ -92,6 +96,7 @@ in
       JELLYFIN_URL=https://jellyfin.home.quitlox.dev
       JELLYFIN_KEY=${config.sops.placeholder."services/glance/jellyfin/apikey"}
       JELLYFIN_USER=${config.sops.placeholder."services/glance/jellyfin/user"}
+      OVERSEERR_API_KEY=${config.sops.placeholder."services/glance/overseerr/apikey"}
     '';
   };
 
