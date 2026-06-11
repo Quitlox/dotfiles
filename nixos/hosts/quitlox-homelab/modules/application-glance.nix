@@ -59,6 +59,10 @@ in
     owner = "glance";
     group = "glance";
   };
+  sops.secrets."services/github/token" = {
+    owner = "glance";
+    group = "glance";
+  };
 
   sops.templates."glance.env" = {
     owner = "glance";
@@ -76,6 +80,7 @@ in
       UNIFI_API_KEY=${config.sops.placeholder."services/unify/apikey"}
       BESZEL_URL=https://beszel.home.quitlox.dev
       BESZEL_TOKEN=${config.sops.placeholder."services/beszel/token"}
+      GITHUB_TOKEN=${config.sops.placeholder."services/github/token"}
     '';
   };
 

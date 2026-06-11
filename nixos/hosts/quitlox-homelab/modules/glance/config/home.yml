@@ -1,4 +1,5 @@
 - name: Home
   columns:
     - size: full
-      widgets: []
+      widgets:
+        - $include: widget-github-notifications.yml
