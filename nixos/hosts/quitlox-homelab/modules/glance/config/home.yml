@@ -3,3 +3,4 @@
     - size: full
       widgets:
         - $include: widget-github-notifications.yml
+        - $include: widget-jellyfin-latest.yml

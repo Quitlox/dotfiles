@@ -63,6 +63,14 @@ in
     owner = "glance";
     group = "glance";
   };
+  sops.secrets."services/jellyfin/apikey" = {
+    owner = "glance";
+    group = "glance";
+  };
+  sops.secrets."services/jellyfin/user" = {
+    owner = "glance";
+    group = "glance";
+  };
 
   sops.templates."glance.env" = {
     owner = "glance";
@@ -81,6 +89,9 @@ in
       BESZEL_URL=https://beszel.home.quitlox.dev
       BESZEL_TOKEN=${config.sops.placeholder."services/beszel/token"}
       GITHUB_TOKEN=${config.sops.placeholder."services/github/token"}
+      JELLYFIN_URL=https://jellyfin.home.quitlox.dev
+      JELLYFIN_KEY=${config.sops.placeholder."services/jellyfin/apikey"}
+      JELLYFIN_USER=${config.sops.placeholder."services/jellyfin/user"}
     '';
   };
 
