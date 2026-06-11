@@ -127,11 +127,11 @@ in
   ### secrets                                                               ###
   ##############################################################################
 
-  sops.secrets."services/opencode/user_name" = {
+  sops.secrets."services/glance/opencode/user_name" = {
     owner = "opencode";
     group = "opencode";
   };
-  sops.secrets."services/opencode/user_pass" = {
+  sops.secrets."services/glance/opencode/user_pass" = {
     owner = "opencode";
     group = "opencode";
   };
@@ -140,8 +140,8 @@ in
     owner = "opencode";
     group = "opencode";
     content = ''
-      OPENCODE_SERVER_USERNAME=${config.sops.placeholder."services/opencode/user_name"}
-      OPENCODE_SERVER_PASSWORD=${config.sops.placeholder."services/opencode/user_pass"}
+      OPENCODE_SERVER_USERNAME=${config.sops.placeholder."services/glance/opencode/user_name"}
+      OPENCODE_SERVER_PASSWORD=${config.sops.placeholder."services/glance/opencode/user_pass"}
     '';
   };
 
