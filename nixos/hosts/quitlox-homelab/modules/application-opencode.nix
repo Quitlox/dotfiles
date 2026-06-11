@@ -43,11 +43,40 @@ let
     rustup
     rust-analyzer
   ];
+# Wrapper scripts that constrain exactly which privileged commands opencode
+  # may run via sudo without a password.
+  opencode-rebuild = pkgs.writeShellScriptBin "opencode-rebuild" ''
+    exec /run/current-system/sw/bin/nixos-rebuild switch --flake /etc/nixos
+  '';
+  opencode-reboot = pkgs.writeShellScriptBin "opencode-reboot" ''
+    exec /run/current-system/sw/bin/systemctl reboot
+  '';
 in
 {
   ##############################################################################
   ### system-wide config                                                     ###
   ##############################################################################
+
+  security.sudo.extraRules = [
+    {
+      users = [ "opencode" ];
+      commands = [
+        {
+          command = "${opencode-rebuild}/bin/opencode-rebuild";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "${opencode-reboot}/bin/opencode-reboot";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
+  environment.systemPackages = [
+    opencode-rebuild
+    opencode-reboot
+  ];
 
   # System-wide config at /etc/opencode/opencode.json
   # Takes precedence over ~/.config/opencode and can thus be used for machine
@@ -136,9 +165,7 @@ in
       Restart = "always";
       RestartSec = "5s";
 
-      # Light hardening — avoid overly restrictive sandboxing that would
-      # break the agent's ability to run build tools and formatters.
-      NoNewPrivileges = true;
+      NoNewPrivileges = false;
     };
 
     environment = {
