@@ -47,11 +47,11 @@ in
     owner = "glance";
     group = "glance";
   };
-  sops.secrets."services/unify/console-ip" = {
+  sops.secrets."services/glance/unify/console-ip" = {
     owner = "glance";
     group = "glance";
   };
-  sops.secrets."services/unify/apikey" = {
+  sops.secrets."services/glance/unify/apikey" = {
     owner = "glance";
     group = "glance";
   };
@@ -59,15 +59,15 @@ in
     owner = "glance";
     group = "glance";
   };
-  sops.secrets."services/github/token" = {
+  sops.secrets."services/glance/github/token" = {
     owner = "glance";
     group = "glance";
   };
-  sops.secrets."services/jellyfin/apikey" = {
+  sops.secrets."services/glance/jellyfin/apikey" = {
     owner = "glance";
     group = "glance";
   };
-  sops.secrets."services/jellyfin/user" = {
+  sops.secrets."services/glance/jellyfin/user" = {
     owner = "glance";
     group = "glance";
   };
@@ -82,16 +82,16 @@ in
       BAZARR_APIKEY=${config.sops.placeholder."services/bazarr/apikey"}
       HETZNER_CLOUD_APIKEY=${config.sops.placeholder."hetzner/cloud-apikey"}
       HETZNER_PROJECT_ID=${config.sops.placeholder."hetzner/project-id"}
-      OPENCODE_USERNAME=${config.sops.placeholder."services/opencode/user_name"}
-      OPENCODE_PASSWORD=${config.sops.placeholder."services/opencode/user_pass"}
-      UNIFI_CONSOLE_IP=${config.sops.placeholder."services/unify/console-ip"}
-      UNIFI_API_KEY=${config.sops.placeholder."services/unify/apikey"}
+      OPENCODE_USERNAME=${config.sops.placeholder."services/glance/opencode/user_name"}
+      OPENCODE_PASSWORD=${config.sops.placeholder."services/glance/opencode/user_pass"}
+      UNIFI_CONSOLE_IP=${config.sops.placeholder."services/glance/unify/console-ip"}
+      UNIFI_API_KEY=${config.sops.placeholder."services/glance/unify/apikey"}
       BESZEL_URL=https://beszel.home.quitlox.dev
       BESZEL_TOKEN=${config.sops.placeholder."services/beszel/token"}
-      GITHUB_TOKEN=${config.sops.placeholder."services/github/token"}
+      GITHUB_TOKEN=${config.sops.placeholder."services/glance/github/token"}
       JELLYFIN_URL=https://jellyfin.home.quitlox.dev
-      JELLYFIN_KEY=${config.sops.placeholder."services/jellyfin/apikey"}
-      JELLYFIN_USER=${config.sops.placeholder."services/jellyfin/user"}
+      JELLYFIN_KEY=${config.sops.placeholder."services/glance/jellyfin/apikey"}
+      JELLYFIN_USER=${config.sops.placeholder."services/glance/jellyfin/user"}
     '';
   };
 
