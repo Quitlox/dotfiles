@@ -1,8 +1,12 @@
 - name: Home
   columns:
-    - size: full
+    - size: small
       widgets:
         - $include: widget-github-notifications.yml
+    - size: full
+      widgets:
         - $include: widget-jellyfin-latest.yml
-        - $include: widget-jellyfin-emby-stats.yml
         - $include: widget-overseerr-trending.yml
+    - size: small
+      widgets:
+        - $include: widget-jellyfin-emby-stats.yml
