@@ -1,0 +1,7 @@
+- type: custom-api
+  title: xkcd
+  cache: 2m
+  url: https://xkcd.com/info.0.json
+  template: |
+    <body> {{ .JSON.String "title" }}</body>
+    <img src="{{ .JSON.String "img" }}"></img>

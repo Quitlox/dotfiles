@@ -3,6 +3,7 @@
     - size: small
       widgets:
         - $include: widget-github-notifications.yml
+        - $include: widget-xkcd.yml
     - size: full
       widgets:
         - $include: widget-jellyfin-latest.yml
