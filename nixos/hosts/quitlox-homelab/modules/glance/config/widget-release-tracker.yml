@@ -1,0 +1,27 @@
+- type: releases
+  title: Software Releases
+  show-source-icon: true
+  cache: 2h
+  token: ${GITHUB_TOKEN}
+  limit: 25
+  collapse-after: 6
+  repositories:
+    # Media stack
+    - jellyfin/jellyfin
+    - Prowlarr/Prowlarr
+    - Radarr/Radarr
+    - Sonarr/Sonarr
+    - morpheus65535/bazarr
+    - Fallenbagel/jellyseerr
+    - qbittorrent/qBittorrent
+    - cross-seed/cross-seed
+    - Dictionarry-Hub/profilarr
+    # Applications
+    - glanceapp/glance
+    - anomalyco/opencode
+    - fuzzygrim/yamtrack
+    - henrygd/beszel
+    # Infrastructure
+    - qdm12/ddns-updater
+    - traefik/traefik
+    - tailscale/tailscale

@@ -10,6 +10,7 @@
         - $include: widget-media-services.yml
         - $include: widget-applications.yml
         - $include: widget-opencode-activity.yml
+        - $include: widget-release-tracker.yml
     - size: small
       widgets:
         - $include: widget-beszel-server-stats.yml
