@@ -93,6 +93,7 @@ in
       BESZEL_URL=https://beszel.home.quitlox.dev
       BESZEL_TOKEN=${config.sops.placeholder."services/beszel/token"}
       GITHUB_TOKEN=${config.sops.placeholder."services/glance/github/token"}
+      CUP_URL=cup:8000
       JELLYFIN_URL=https://jellyfin.home.quitlox.dev
       JELLYFIN_KEY=${config.sops.placeholder."services/glance/jellyfin/apikey"}
       JELLYFIN_USER=${config.sops.placeholder."services/glance/jellyfin/user"}

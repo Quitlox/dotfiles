@@ -14,7 +14,6 @@ let
   opencodePackages = with pkgs; [
     # Core
     opencode
-    sudo
     # Shell
     bash
     openssh

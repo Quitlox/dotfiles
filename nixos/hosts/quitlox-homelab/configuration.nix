@@ -26,6 +26,7 @@
     ./modules/application-yamtrack.nix
     ./modules/application-opencode.nix
     ./modules/service-beszel.nix
+    ./modules/service-cup.nix
     ./modules/application-glance.nix
     ./modules/application-glance-extension-opencode.nix
     # server defaults (nice-to-haves) from srvos
