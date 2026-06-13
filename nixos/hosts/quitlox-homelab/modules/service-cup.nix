@@ -35,7 +35,6 @@ in
       image = "ghcr.io/sergi0g/cup:latest";
       container_name = "cup";
       restart = "unless-stopped";
-      user = "${toString cupUID}:${toString cupGID}";
       networks = [ "proxy" ];
       command = "serve -p 8000";
       volumes = [
