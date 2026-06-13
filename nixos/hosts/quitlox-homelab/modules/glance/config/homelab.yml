@@ -11,18 +11,11 @@
         - $include: widget-media-services.yml
         - $include: widget-applications.yml
         - $include: widget-opencode-activity.yml
-        - $include: widget-cup-updates.yml
-        - $include: widget-release-tracker.yml
     - size: small
       widgets:
         - $include: widget-beszel-server-stats.yml
         - $include: widget-unifi.yml
         - $include: widget-hetzner-dns.yml
-        - type: monitor
-          cache: 1s
-          title: Server
-          sites:
-            - title: ddns-updater
-              icon: mdi:dns
-              url: https://home.quitlox.dev/services/ddns
-              check-url: https://home.quitlox.dev/services/ddns/health
+        - $include: widget-ddns-updater.yml
+        - $include: widget-cup-updates.yml
+        - $include: widget-release-tracker.yml

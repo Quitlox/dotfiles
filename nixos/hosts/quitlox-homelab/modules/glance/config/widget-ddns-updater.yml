@@ -1,0 +1,8 @@
+- type: monitor
+  cache: 1s
+  title: Server
+  sites:
+    - title: ddns-updater
+      icon: mdi:dns
+      url: https://home.quitlox.dev/services/ddns
+      check-url: https://home.quitlox.dev/services/ddns/health
