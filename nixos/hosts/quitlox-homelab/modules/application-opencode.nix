@@ -184,7 +184,10 @@ in
 
     # Explicit PATH so the service is self-contained, independent of
     # profile activation order.
-    path = opencodePackages;
+    # /run/wrappers/bin is needed so that `sudo` resolves to the NixOS
+    # setuid wrapper instead of the bare Nix store binary (which lacks
+    # the setuid bit and cannot work).
+    path = opencodePackages ++ [ "/run/wrappers/bin" ];
   };
 
   ##############################################################################
