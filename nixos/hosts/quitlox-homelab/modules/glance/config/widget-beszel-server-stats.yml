@@ -1,6 +1,6 @@
 - type: custom-api
   title: Server Stats
-  cache: 5m
+  cache: 1s
   options:
     base-url: ${BESZEL_URL}
     api-key: ${BESZEL_TOKEN}

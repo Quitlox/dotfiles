@@ -4,11 +4,11 @@
       title: OpenCode Sessions
       title-url: https://opencode.home.quitlox.dev
       url: http://glance-extension-opencode:8080/sessions
-      cache: 5m
+      cache: 1s
       allow-potentially-dangerous-html: true
     - type: extension
       title: OpenCode Projects
       title-url: https://opencode.home.quitlox.dev
       url: http://glance-extension-opencode:8080/projects
-      cache: 5m
+      cache: 1s
       allow-potentially-dangerous-html: true

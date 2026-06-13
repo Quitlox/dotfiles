@@ -16,7 +16,7 @@
         - $include: widget-unifi.yml
         - $include: widget-hetzner-dns.yml
         - type: monitor
-          cache: 1m
+          cache: 1s
           title: Server
           sites:
             - title: ddns-updater

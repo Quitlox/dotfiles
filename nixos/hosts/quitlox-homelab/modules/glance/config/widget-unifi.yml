@@ -1,6 +1,6 @@
 - type: custom-api
   title: Unifi
-  cache: 1m
+  cache: 1s
   allow-insecure: true
   url: https://${UNIFI_CONSOLE_IP}/proxy/network/api/stat/sites
   headers:

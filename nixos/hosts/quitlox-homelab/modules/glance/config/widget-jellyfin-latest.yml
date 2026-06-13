@@ -1,7 +1,7 @@
 - type: custom-api
   title: Jellyfin — Next Up
   frameless: true
-  cache: 5m
+  cache: 1s
   options:
     base-url: ${JELLYFIN_URL}
     api-key: ${JELLYFIN_KEY}

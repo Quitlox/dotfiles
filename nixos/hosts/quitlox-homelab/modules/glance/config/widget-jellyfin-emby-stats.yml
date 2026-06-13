@@ -1,6 +1,6 @@
 - type: custom-api
   title: Jellyfin Stats
-  cache: 5m
+  cache: 1s
   options:
     url: ${JELLYFIN_URL}
     key: ${JELLYFIN_KEY}

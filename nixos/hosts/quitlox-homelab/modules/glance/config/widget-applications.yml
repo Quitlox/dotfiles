@@ -1,5 +1,5 @@
 - type: monitor
-  cache: 1m
+  cache: 1s
   title: Applications
   sites:
     - title: OpenCode

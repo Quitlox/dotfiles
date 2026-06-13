@@ -2,7 +2,7 @@
   title: Trending Media
   title-url: https://seerr.home.quitlox.dev/discover/trending
   url: https://seerr.home.quitlox.dev/api/v1/discover/trending
-  cache: 15m
+  cache: 1s
   icon: sh:overseerr
   headers:
     accept: "application/json"
