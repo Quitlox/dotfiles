@@ -75,6 +75,10 @@ in
     owner = "glance";
     group = "glance";
   };
+  sops.secrets."services/glance/airvpn/apikey" = {
+    owner = "glance";
+    group = "glance";
+  };
 
   sops.templates."glance.env" = {
     owner = "glance";
@@ -98,6 +102,7 @@ in
       JELLYFIN_KEY=${config.sops.placeholder."services/glance/jellyfin/apikey"}
       JELLYFIN_USER=${config.sops.placeholder."services/glance/jellyfin/user"}
       OVERSEERR_API_KEY=${config.sops.placeholder."services/glance/seerr/apikey"}
+      AIRVPN_API_KEY=${config.sops.placeholder."services/glance/airvpn/apikey"}
     '';
   };
 

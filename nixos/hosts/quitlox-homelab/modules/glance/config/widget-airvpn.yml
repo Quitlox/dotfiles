@@ -1,0 +1,70 @@
+- type: custom-api
+  title: AirVPN
+  title-url: https://airvpn.org
+  icon: mdi:vpn
+  cache: 30s
+  url: https://airvpn.org/api/?format=json&key=${AIRVPN_API_KEY}&service=userinfo
+  template: |
+    {{ $code := .Response.StatusCode }}
+    {{ if ne $code 200 }}
+      <div class="color-negative text-center">
+        <p>AirVPN API returned HTTP {{ $code }}.</p>
+      </div>
+    {{ else if ne (.JSON.String "result") "ok" }}
+      <div class="color-negative text-center">
+        <p>{{ .JSON.String "result" }}</p>
+        <p class="size-sm">Check your AirVPN API key.</p>
+      </div>
+    {{ else }}
+      {{ $connected := .JSON.Bool "user.connected" }}
+      <div class="flex justify-between text-center">
+        <div>
+          <div class="size-h3{{ if $connected }} color-positive{{ else }} color-negative{{ end }}">
+            {{ if $connected }}Connected{{ else }}Offline{{ end }}
+          </div>
+          <div class="size-h6">STATUS</div>
+        </div>
+        <div>
+          <div class="color-highlight size-h3">{{ .JSON.Int "user.expiration_days" }}</div>
+          <div class="size-h6">DAYS LEFT</div>
+        </div>
+        {{ if $connected }}
+        <div>
+          {{ $bwLoad := .JSON.Int "connection.server_bw" }}
+          <div class="color-highlight size-h3">{{ $bwLoad }}%</div>
+          <div class="size-h6">LOAD</div>
+        </div>
+        {{ end }}
+      </div>
+      {{ if $connected }}
+      <div style="margin-top: 15px;">
+        <div class="size-h6 color-paragraph" style="margin-bottom: 4px;">Server</div>
+        <div class="color-highlight">{{ .JSON.String "connection.server_name" }}</div>
+        <div class="size-sm color-paragraph">{{ .JSON.String "connection.server_location" }}, {{ .JSON.String "connection.server_country" }}</div>
+        {{ $bwLoad := .JSON.Int "connection.server_bw" }}
+        <div title="{{ $bwLoad }}% load" style="background: rgba(128, 128, 128, 0.2); border-radius: 5px; height: 4px; margin-top: 8px; overflow: hidden;">
+          <div style="width: {{ $bwLoad }}%; background-color: var(--color-positive); height: 100%; border-radius: 5px;"></div>
+        </div>
+      </div>
+      {{ end }}
+      {{ $sessions := .JSON.Array "sessions" }}
+      {{ if gt (len $sessions) 0 }}
+      <div style="margin-top: 15px;">
+        <div class="size-h6 color-paragraph" style="margin-bottom: 5px;">Sessions</div>
+        <ul class="list collapsible-container" data-collapse-after="3" style="--list-gap: 8px;">
+          {{ range $s := $sessions }}
+          <li class="flex justify-between items-center">
+            <span class="text-truncate color-highlight" style="max-width: 55%;">{{ $s.String "device" }}</span>
+            <span class="size-sm color-paragraph">
+              {{ $dataBytes := $s.Int "data" }}
+              {{ if gt $dataBytes 1073741824 }}{{ printf "%.1f GB" (div ($dataBytes | toFloat) 1073741824.0) }}
+              {{ else if gt $dataBytes 1048576 }}{{ printf "%.1f MB" (div ($dataBytes | toFloat) 1048576.0) }}
+              {{ else if gt $dataBytes 1024 }}{{ printf "%.1f KB" (div ($dataBytes | toFloat) 1024.0) }}
+              {{ else }}{{ $dataBytes }} B{{ end }}
+            </span>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    {{ end }}
