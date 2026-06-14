@@ -30,6 +30,7 @@
     ./modules/service-cup.nix
     ./modules/application-glance.nix
     ./modules/application-glance-extension-opencode.nix
+    ./modules/application-homeassistant.nix
     # server defaults (nice-to-haves) from srvos
     (srvos.outPath + "/nixos/common/detect-hostname-change.nix")
     (srvos.outPath + "/nixos/common/update-diff.nix")
