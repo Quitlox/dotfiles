@@ -46,8 +46,8 @@ let
     rustup
     rust-analyzer
   ];
-# Wrapper scripts that constrain exactly which privileged commands opencode
-  # may run via sudo without a password.
+
+  # Privileged commands exposed to opencode user
   opencode-rebuild = pkgs.writeShellScriptBin "opencode-rebuild" ''
     exec /run/current-system/sw/bin/nixos-rebuild switch --flake /etc/nixos
   '';
