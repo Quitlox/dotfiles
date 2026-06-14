@@ -21,67 +21,144 @@
     {{ $sonarrIssues := $sonarr.JSON.Array "" }}
     {{ $bazarrIssues := $bazarr.JSON.Array "data" }}
 
+    {{ $prowlarrCount := len $prowlarrIssues }}
+    {{ $radarrCount := len $radarrIssues }}
+    {{ $sonarrCount := len $sonarrIssues }}
+    {{ $bazarrCount := len $bazarrIssues }}
+
+    {{ $prowlarrHasError := false }}
+    {{ range $issue := $prowlarrIssues }}
+      {{ if eq ($issue.String "type") "error" }}{{ $prowlarrHasError = true }}{{ end }}
+    {{ end }}
+    {{ $radarrHasError := false }}
+    {{ range $issue := $radarrIssues }}
+      {{ if eq ($issue.String "type") "error" }}{{ $radarrHasError = true }}{{ end }}
+    {{ end }}
+    {{ $sonarrHasError := false }}
+    {{ range $issue := $sonarrIssues }}
+      {{ if eq ($issue.String "type") "error" }}{{ $sonarrHasError = true }}{{ end }}
+    {{ end }}
+
     {{ $allUp := and $prowlarrOk $radarrOk $sonarrOk $bazarrOk }}
-    {{ $allClear := and $allUp (eq (len $prowlarrIssues) 0) (eq (len $radarrIssues) 0) (eq (len $sonarrIssues) 0) (eq (len $bazarrIssues) 0) }}
+    {{ $allClear := and $allUp (eq $prowlarrCount 0) (eq $radarrCount 0) (eq $sonarrCount 0) (eq $bazarrCount 0) }}
 
     {{ if $allClear }}
-      <div class="color-positive">All systems operational</div>
+      <div class="flex items-center gap-10 color-positive">
+        <span>&#9679;</span>
+        <span>All systems operational</span>
+      </div>
     {{ else }}
-      <ul class="list list-gap-10">
-        {{ if $prowlarrOk }}
-          {{ range $issue := $prowlarrIssues }}
-            <li class="flex items-start gap-10">
-              <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
-              <span><a href="https://prowlarr.home.quitlox.dev" class="color-highlight">Prowlarr</a>: {{ $issue.String "message" }}</span>
-            </li>
-          {{ end }}
-        {{ else }}
-          <li class="flex items-start gap-10">
-            <span class="color-negative">&#9679;</span>
-            <span><a href="https://prowlarr.home.quitlox.dev" class="color-highlight">Prowlarr</a>: Offline ({{ $prowlarr.Response.Status }})</span>
-          </li>
+      <div class="flex flex-column gap-12">
+        {{ if or (not $prowlarrOk) (gt $prowlarrCount 0) }}
+          <div>
+            <div class="flex justify-between items-center gap-10" style="margin-bottom: 6px;">
+              <a href="https://prowlarr.home.quitlox.dev" class="size-h4 color-highlight">Prowlarr</a>
+              {{ if $prowlarrOk }}
+                <span class="size-h6 {{ if $prowlarrHasError }}color-negative{{ else }}color-highlight{{ end }}">{{ $prowlarrCount }} {{ if eq $prowlarrCount 1 }}issue{{ else }}issues{{ end }}</span>
+              {{ else }}
+                <span class="size-h6 color-negative">offline</span>
+              {{ end }}
+            </div>
+            <ul class="list list-gap-5">
+              {{ if $prowlarrOk }}
+                {{ range $issue := $prowlarrIssues }}
+                  <li class="flex items-start gap-10">
+                    <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
+                    <span class="color-paragraph">{{ $issue.String "message" }}</span>
+                  </li>
+                {{ end }}
+              {{ else }}
+                <li class="flex items-start gap-10">
+                  <span class="color-negative">&#9679;</span>
+                  <span class="color-paragraph">{{ $prowlarr.Response.Status }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
         {{ end }}
 
-        {{ if $radarrOk }}
-          {{ range $issue := $radarrIssues }}
-            <li class="flex items-start gap-10">
-              <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
-              <span><a href="https://radarr.home.quitlox.dev" class="color-highlight">Radarr</a>: {{ $issue.String "message" }}</span>
-            </li>
-          {{ end }}
-        {{ else }}
-          <li class="flex items-start gap-10">
-            <span class="color-negative">&#9679;</span>
-            <span><a href="https://radarr.home.quitlox.dev" class="color-highlight">Radarr</a>: Offline ({{ $radarr.Response.Status }})</span>
-          </li>
+        {{ if or (not $radarrOk) (gt $radarrCount 0) }}
+          <div>
+            <div class="flex justify-between items-center gap-10" style="margin-bottom: 6px;">
+              <a href="https://radarr.home.quitlox.dev" class="size-h4 color-highlight">Radarr</a>
+              {{ if $radarrOk }}
+                <span class="size-h6 {{ if $radarrHasError }}color-negative{{ else }}color-highlight{{ end }}">{{ $radarrCount }} {{ if eq $radarrCount 1 }}issue{{ else }}issues{{ end }}</span>
+              {{ else }}
+                <span class="size-h6 color-negative">offline</span>
+              {{ end }}
+            </div>
+            <ul class="list list-gap-5">
+              {{ if $radarrOk }}
+                {{ range $issue := $radarrIssues }}
+                  <li class="flex items-start gap-10">
+                    <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
+                    <span class="color-paragraph">{{ $issue.String "message" }}</span>
+                  </li>
+                {{ end }}
+              {{ else }}
+                <li class="flex items-start gap-10">
+                  <span class="color-negative">&#9679;</span>
+                  <span class="color-paragraph">{{ $radarr.Response.Status }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
         {{ end }}
 
-        {{ if $sonarrOk }}
-          {{ range $issue := $sonarrIssues }}
-            <li class="flex items-start gap-10">
-              <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
-              <span><a href="https://sonarr.home.quitlox.dev" class="color-highlight">Sonarr</a>: {{ $issue.String "message" }}</span>
-            </li>
-          {{ end }}
-        {{ else }}
-          <li class="flex items-start gap-10">
-            <span class="color-negative">&#9679;</span>
-            <span><a href="https://sonarr.home.quitlox.dev" class="color-highlight">Sonarr</a>: Offline ({{ $sonarr.Response.Status }})</span>
-          </li>
+        {{ if or (not $sonarrOk) (gt $sonarrCount 0) }}
+          <div>
+            <div class="flex justify-between items-center gap-10" style="margin-bottom: 6px;">
+              <a href="https://sonarr.home.quitlox.dev" class="size-h4 color-highlight">Sonarr</a>
+              {{ if $sonarrOk }}
+                <span class="size-h6 {{ if $sonarrHasError }}color-negative{{ else }}color-highlight{{ end }}">{{ $sonarrCount }} {{ if eq $sonarrCount 1 }}issue{{ else }}issues{{ end }}</span>
+              {{ else }}
+                <span class="size-h6 color-negative">offline</span>
+              {{ end }}
+            </div>
+            <ul class="list list-gap-5">
+              {{ if $sonarrOk }}
+                {{ range $issue := $sonarrIssues }}
+                  <li class="flex items-start gap-10">
+                    <span class="{{ if eq ($issue.String "type") "error" }}color-negative{{ else }}color-highlight{{ end }}">&#9679;</span>
+                    <span class="color-paragraph">{{ $issue.String "message" }}</span>
+                  </li>
+                {{ end }}
+              {{ else }}
+                <li class="flex items-start gap-10">
+                  <span class="color-negative">&#9679;</span>
+                  <span class="color-paragraph">{{ $sonarr.Response.Status }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
         {{ end }}
 
-        {{ if $bazarrOk }}
-          {{ range $issue := $bazarrIssues }}
-            <li class="flex items-start gap-10">
-              <span class="color-negative">&#9679;</span>
-              <span><a href="https://bazarr.home.quitlox.dev" class="color-highlight">Bazarr</a>: {{ $issue.String "object" }} - {{ $issue.String "issue" }}</span>
-            </li>
-          {{ end }}
-        {{ else }}
-          <li class="flex items-start gap-10">
-            <span class="color-negative">&#9679;</span>
-            <span><a href="https://bazarr.home.quitlox.dev" class="color-highlight">Bazarr</a>: Offline ({{ $bazarr.Response.Status }})</span>
-          </li>
+        {{ if or (not $bazarrOk) (gt $bazarrCount 0) }}
+          <div>
+            <div class="flex justify-between items-center gap-10" style="margin-bottom: 6px;">
+              <a href="https://bazarr.home.quitlox.dev" class="size-h4 color-highlight">Bazarr</a>
+              {{ if $bazarrOk }}
+                <span class="size-h6 color-negative">{{ $bazarrCount }} {{ if eq $bazarrCount 1 }}issue{{ else }}issues{{ end }}</span>
+              {{ else }}
+                <span class="size-h6 color-negative">offline</span>
+              {{ end }}
+            </div>
+            <ul class="list list-gap-5">
+              {{ if $bazarrOk }}
+                {{ range $issue := $bazarrIssues }}
+                  <li class="flex items-start gap-10">
+                    <span class="color-negative">&#9679;</span>
+                    <span class="color-paragraph">{{ $issue.String "object" }} - {{ $issue.String "issue" }}</span>
+                  </li>
+                {{ end }}
+              {{ else }}
+                <li class="flex items-start gap-10">
+                  <span class="color-negative">&#9679;</span>
+                  <span class="color-paragraph">{{ $bazarr.Response.Status }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
         {{ end }}
-      </ul>
+      </div>
     {{ end }}
