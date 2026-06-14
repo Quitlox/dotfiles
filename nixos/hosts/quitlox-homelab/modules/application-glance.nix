@@ -127,6 +127,9 @@ in
         "traefik.http.routers.glance.rule" = "Host(`glance.${domain}`)";
         "traefik.http.routers.glance.middlewares" = "ip-internal@file";
         "traefik.http.routers.glance.service" = "glance";
+        "traefik.http.routers.glance-home.rule" = "Host(`${domain}`)";
+        "traefik.http.routers.glance-home.middlewares" = "ip-internal@file";
+        "traefik.http.routers.glance-home.service" = "glance";
         "traefik.http.services.glance.loadbalancer.server.port" = "8080";
       };
     };
