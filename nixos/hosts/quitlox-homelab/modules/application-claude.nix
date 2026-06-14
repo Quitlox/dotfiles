@@ -75,10 +75,12 @@ in
     };
 
     path = [
-      # Reuse the opencode user's toolchain. 
-      "/etc/profiles/per-user/opencode/bin"
-      "/run/wrappers/bin"
-      "/run/current-system/sw/bin"
+      # Reuse the opencode user's toolchain. NixOS appends `/bin` and `/sbin`
+      # to each entry, so give the profile/system *prefixes* (not the bin dirs)
+      # — otherwise PATH ends up pointing at nonexistent `.../bin/bin`.
+      "/etc/profiles/per-user/opencode"
+      "/run/wrappers"
+      "/run/current-system/sw"
     ];
   };
 }

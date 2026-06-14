@@ -191,7 +191,10 @@ in
     # /run/wrappers/bin is needed so that `sudo` resolves to the NixOS
     # setuid wrapper instead of the bare Nix store binary (which lacks
     # the setuid bit and cannot work).
-    path = opencodePackages ++ [ "/run/wrappers/bin" ];
+    # NixOS appends `/bin` (and `/sbin`) to each path entry, so pass the
+    # `/run/wrappers` prefix — `/run/wrappers/bin` would become a nonexistent
+    # `/run/wrappers/bin/bin` and the setuid `sudo` wrapper would be unreachable.
+    path = opencodePackages ++ [ "/run/wrappers" ];
   };
 
   ##############################################################################
