@@ -70,16 +70,12 @@ approached using HTTPS.
 
 - [ ] Fixes
   - [ ] Jellyfin: Move thumbnails to drives (on SSD currently)
-  - [X] Seer: Redirect sonarr/radarr properly
 - [ ] Dashboard
   - [ ] Display Traefik Log
-  - [X] Setup Beszel? (https://www.beszel.dev/)
-  - [X] Setup Glance (https://github.com/glanceapp/glance)
 - [ ] Healthchecks
   - [ ] Check that Hetzner API Key works
   - [ ] ddns-updater soundrr checkhealth
 - [ ] Maintenance and Security
-  - [ ] Pin docker images and Update through renovate?
   - [ ] Automatically update NixOS (flake)?
   - [ ] Provide SSO or OAuth for login to services?
   - [ ] Expose all services under `quitlox-homelab.local/services/<service>` in
@@ -89,6 +85,25 @@ approached using HTTPS.
   - [ ] Do not hardcode things like hostnames
 
 - [ ] Optional
-  - [ ] Uptime Kuma ?
   - [ ] Notifiarr ?
   - [ ] qbit_manage ?
+  - [ ] PDF services ? PdfDing ? Stirling PDF https://docs.stirlingpdf.com/#documentation-guide
+  - [ ] RSSHub -> RSS (inoreader)
+  - [ ] Podgrab -> podcasts ?
+  - [ ] HRConvert 2
+  - [ ] Authentik
+  - [ ] Backup with Backblaze
+  - [ ] Immich
+
+- [ ] TODO:
+  - [ ] Configure HomeAssistant, add devices from AppleTV
+  - [ ] Fix AirVPN qbittorrent (showing "firewalled")
+  - [ ] Setup Audiobookshelf?
+  - [ ] Claude remote + use same "opencode-config"
+  - [ ] Move away from docker and either to rootless docker or podman (research)
+
+- [ ] Contrib
+  - [ ] Yamtrack: quite resource intensive: continuous redis transactions, high memory
+
+- Notes:
+  - Icons: https://dashboardicons.com/
