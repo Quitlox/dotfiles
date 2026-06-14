@@ -72,16 +72,12 @@ approached using HTTPS.
   - [ ] Jellyfin: Move thumbnails to drives (on SSD currently)
 - [ ] Dashboard
   - [ ] Display Traefik Log
-- [ ] Healthchecks
-  - [ ] Check that Hetzner API Key works
-  - [ ] ddns-updater soundrr checkhealth
 - [ ] Maintenance and Security
   - [ ] Automatically update NixOS (flake)?
   - [ ] Provide SSO or OAuth for login to services?
   - [ ] Expose all services under `quitlox-homelab.local/services/<service>` in
         case domain is unreachable.
   - [ ] Figure out if the "user" accounts are necessary for Docker
-  - [ ] Configure checkhealth for all services
   - [ ] Do not hardcode things like hostnames
 
 - [ ] Optional
@@ -91,19 +87,31 @@ approached using HTTPS.
   - [ ] RSSHub -> RSS (inoreader)
   - [ ] Podgrab -> podcasts ?
   - [ ] HRConvert 2
-  - [ ] Authentik
   - [ ] Backup with Backblaze
-  - [ ] Immich
 
 - [ ] TODO:
   - [ ] Configure HomeAssistant, add devices from AppleTV
-  - [ ] Fix AirVPN qbittorrent (showing "firewalled")
+  - [x] Fix AirVPN qbittorrent (showing "firewalled")
   - [ ] Setup Audiobookshelf?
-  - [ ] Claude remote + use same "opencode-config"
+  - [x] Claude remote + use same "opencode-config"
   - [ ] Move away from docker and either to rootless docker or podman (research)
+  - [ ] Delete media via seerr / jellyfin
 
-- [ ] Contrib
-  - [ ] Yamtrack: quite resource intensive: continuous redis transactions, high memory
+Research:
 
-- Notes:
-  - Icons: https://dashboardicons.com/
+- Immich
+- Task Management: Vikunja.io, Tududi, Super-Productivity, HamsterBase Tasks, Donetick, Appflowy
+- Remote Shell: Termix, Apache Guacamole
+- Recipes: ManageMeals, Mealie, Recipya, Tamari
+- Bitwarden: Vaultwarden
+- Google Timeline: Dawarich
+- Authentication: Authelia, Authentik, KeyCloack
+
+Interesting:
+
+- Wanderer -> self-hosted trail database
+- Appsmith -> low-code self-hosted application platform
+
+Notes:
+
+- Icons: https://dashboardicons.com/
