@@ -25,6 +25,7 @@
     ./modules/service-media.nix
     ./modules/application-yamtrack.nix
     ./modules/application-opencode.nix
+    ./modules/application-claude.nix
     ./modules/service-beszel.nix
     ./modules/service-cup.nix
     ./modules/application-glance.nix
