@@ -13,6 +13,10 @@
       icon: sh:beszel
       url: https://beszel.home.quitlox.dev
       check-url: https://beszel.home.quitlox.dev/api/health
+    - title: Home Assistant
+      icon: sh:home-assistant
+      url: https://homeassistant.home.quitlox.dev
+      check-url: https://homeassistant.home.quitlox.dev/
     - title: Yamtrack
       icon: sh:yamtrack
       url: https://yamtrack.home.quitlox.dev
