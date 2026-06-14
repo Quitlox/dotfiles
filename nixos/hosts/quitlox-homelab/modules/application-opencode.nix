@@ -28,6 +28,9 @@ let
     wget
     inetutils # provides hostname
     util-linux # provides col
+    binutils # provides strings
+    docker # provides docker CLI
+    gcc
     man-db
     man-pages
     nix
@@ -111,6 +114,7 @@ in
   ##############################################################################
 
   users.groups.opencode.gid = opencodeGID;
+  users.groups.systemd-journal.members = [ "opencode" ];
   users.users.opencode = {
     uid = opencodeUID;
     home = "/var/lib/opencode";
