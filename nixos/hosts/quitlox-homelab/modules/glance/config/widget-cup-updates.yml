@@ -91,32 +91,34 @@
                     {{ $serverName = $defaultServerName }}
                   {{ end }}
 
-                  <div style="margin: 0.5rem 0; font-size: 1.28rem; color: #6c757d;">
-                    {{ $serverName }}
+                  <div class="flex flex-column items-center gap-5" style="margin-top: 0.4rem;">
+                    {{ if and $currentVersion $newVersion }}
+                      <div class="flex gap-10 justify-center items-center">
+                        <span style="font-size: 1.28rem; color: #6c757d;">{{ $serverName }}</span>
+                        <span>{{ $currentVersion }}</span>
+                        <span>→</span>
+                        <span class="size-h4 color-positive">{{ $newVersion }}</span>
+                      </div>
+                    {{ end }}
+
+                    {{ if $localDigests }}
+                      {{ $digest := index $localDigests 0 }}
+                      {{ $digestStr := printf "%s" $digest }}
+                      {{ $remoteDigestStr := printf "%s" $remoteDigest }}
+
+                      {{ $shortLocal := slice $digestStr 7 13 }}
+                      {{ $shortRemote := slice $remoteDigestStr 7 13 }}
+
+                      <div class="flex gap-10 justify-center items-center">
+                        {{ if not (and $currentVersion $newVersion) }}
+                          <span style="font-size: 1.28rem; color: #6c757d;">{{ $serverName }}</span>
+                        {{ end }}
+                        <span>Dig: {{ $shortLocal }}</span>
+                        <span>→</span>
+                        <span>Dig: <span class="color-positive">{{ $shortRemote }}</span></span>
+                      </div>
+                    {{ end }}
                   </div>
-
-                  {{ if and $currentVersion $newVersion }}
-                    <div style="margin: 0.2rem 0;">
-                      <span>{{ $currentVersion }}</span>
-                      <span> → </span>
-                      <span class="size-h4 color-positive">{{ $newVersion }}</span>
-                    </div>
-                  {{ end }}
-
-                  {{ if $localDigests }}
-                    {{ $digest := index $localDigests 0 }}
-                    {{ $digestStr := printf "%s" $digest }}
-                    {{ $remoteDigestStr := printf "%s" $remoteDigest }}
-
-                    {{ $shortLocal := slice $digestStr 7 13 }}
-                    {{ $shortRemote := slice $remoteDigestStr 7 13 }}
-
-                    <div class="flex gap-10 justify-center items-center" style="margin-top: 0.5rem;">
-                      <span>Dig: {{ $shortLocal }}</span>
-                      <span>→</span>
-                      <span>Dig: <span class="color-positive">{{ $shortRemote }}</span></span>
-                    </div>
-                  {{ end }}
                 </li>
               {{ end }}
             {{ end }}
@@ -130,5 +132,5 @@
         </ul>
       </div>
 
-      <a href="https://cup.home.quitlox.dev" target="_blank" rel="noreferrer" style="display: block; text-align: center; font-size: 0.8rem; opacity: 0.4; margin-top: 0.5rem;">cup.home.quitlox.dev</a>
+      <a href="https://cup.home.quitlox.dev" target="_blank" rel="noreferrer" style="display: block; text-align: center; font-size: 0.8rem; opacity: 0.4; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05);">cup.home.quitlox.dev</a>
     </div>
