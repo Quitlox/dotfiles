@@ -18,10 +18,14 @@
 #
 { config, ... }:
 {
+  users.groups.homeassistant.gid = 1507;
+
+  users.users.opencode.extraGroups = [ "homeassistant" ];
+
   # Persistent state (root-owned; HA runs as root)
   systemd.tmpfiles.rules = [
-    "d /var/lib/homeassistant        0700 root root - -"
-    "d /var/lib/homeassistant/config 0700 root root - -"
+    "d /var/lib/homeassistant        2770 root homeassistant - -"
+    "d /var/lib/homeassistant/config 2770 root homeassistant - -"
     "d /var/lib/matter-server        0700 root root - -"
   ];
 
@@ -31,7 +35,7 @@
     text = ''
       cfg=/var/lib/homeassistant/config/configuration.yaml
       if [ ! -f "$cfg" ]; then
-        install -m 0644 -o root -g root /dev/stdin "$cfg" <<'EOF'
+        install -m 0664 -o root -g homeassistant /dev/stdin "$cfg" <<'EOF'
       default_config:
 
       http:
