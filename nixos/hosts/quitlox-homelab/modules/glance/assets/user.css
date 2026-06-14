@@ -1,1 +1,5 @@
 /* Custom CSS for Glance */
+
+[data-scheme="dark"] .xkcd img {
+  filter: invert(1);
+}

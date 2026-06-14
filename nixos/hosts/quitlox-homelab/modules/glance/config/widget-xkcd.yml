@@ -1,6 +1,7 @@
 - type: custom-api
   title: xkcd
   cache: 2m
+  css-class: xkcd
   url: https://xkcd.com/info.0.json
   template: |
     <body> {{ .JSON.String "title" }}</body>
