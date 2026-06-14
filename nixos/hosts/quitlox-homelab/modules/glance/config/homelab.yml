@@ -3,9 +3,9 @@
     - size: small
       widgets:
         - $include: widget-airvpn.yml
+        - $include: widget-qbittorrent-stats.yml
         - $include: widget-media-services-infra.yml
         - $include: widget-media-services-health-details.yml
-        - $include: widget-qbittorrent-stats.yml
     - size: full
       widgets:
         - $include: widget-media-services.yml
