@@ -70,7 +70,6 @@
       container_name = "matter-server";
       restart = "unless-stopped";
       network_mode = "host";
-      security_opt = [ "apparmor=unconfined" ];
       volumes = [
         "/var/lib/matter-server:/data"
         "/run/dbus:/run/dbus:ro"
