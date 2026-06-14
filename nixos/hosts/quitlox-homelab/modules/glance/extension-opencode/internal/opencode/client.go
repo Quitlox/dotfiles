@@ -42,16 +42,13 @@ func (c *Client) FetchProjects(ctx context.Context) ([]model.Project, error) {
 	return projects, nil
 }
 
-// FetchSessions retrieves all sessions. The sessions endpoint belongs to the
-// web UI API and wraps its results in an "items" envelope.
+// FetchSessions retrieves all sessions.
 func (c *Client) FetchSessions(ctx context.Context) ([]model.Session, error) {
-	var result struct {
-		Items []model.Session `json:"items"`
-	}
-	if err := c.fetchJSON(ctx, c.baseURL+"/api/session", &result); err != nil {
+	var sessions []model.Session
+	if err := c.fetchJSON(ctx, c.baseURL+"/api/session", &sessions); err != nil {
 		return nil, fmt.Errorf("fetching sessions: %w", err)
 	}
-	return result.Items, nil
+	return sessions, nil
 }
 
 var errUnexpectedStatus = errors.New("unexpected HTTP status")
