@@ -64,12 +64,17 @@ in
     {
       users = [ "opencode" ];
       commands = [
+        # NOTE: sudo matches the command by literal path string and does not
+        # follow symlinks, so this must be the path users actually invoke
+        # (/run/current-system/sw/bin/...), NOT the "${opencode-rebuild}"
+        # /nix/store path. Otherwise the NOPASSWD rule never matches and sudo
+        # falls back to prompting for a password.
         {
-          command = "${opencode-rebuild}/bin/opencode-rebuild";
+          command = "/run/current-system/sw/bin/opencode-rebuild";
           options = [ "NOPASSWD" ];
         }
         {
-          command = "${opencode-reboot}/bin/opencode-reboot";
+          command = "/run/current-system/sw/bin/opencode-reboot";
           options = [ "NOPASSWD" ];
         }
       ];
