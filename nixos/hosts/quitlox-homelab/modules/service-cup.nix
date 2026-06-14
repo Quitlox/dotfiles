@@ -1,8 +1,8 @@
-# Cup
+# Cup - Docker container updates made easy
 #
-# Lightweight Docker container update checker with a JSON API.
-# Used as a data source by Glance to show current vs. latest versions
-# with update type classification (major/minor/patch/digest).
+# Cup monitors container images for updates. Its standout feature is its
+# simplicity and low footprint. The binary is tiny and it uses minimal system
+# resources.
 #
 # --- Deployment ---
 #
