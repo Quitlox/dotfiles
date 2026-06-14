@@ -44,11 +44,13 @@ func (c *Client) FetchProjects(ctx context.Context) ([]model.Project, error) {
 
 // FetchSessions retrieves all sessions.
 func (c *Client) FetchSessions(ctx context.Context) ([]model.Session, error) {
-	var sessions []model.Session
-	if err := c.fetchJSON(ctx, c.baseURL+"/api/session", &sessions); err != nil {
+	var result struct {
+		Data []model.Session `json:"data"`
+	}
+	if err := c.fetchJSON(ctx, c.baseURL+"/api/session", &result); err != nil {
 		return nil, fmt.Errorf("fetching sessions: %w", err)
 	}
-	return sessions, nil
+	return result.Data, nil
 }
 
 var errUnexpectedStatus = errors.New("unexpected HTTP status")
