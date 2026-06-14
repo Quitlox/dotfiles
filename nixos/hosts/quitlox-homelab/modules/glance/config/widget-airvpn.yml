@@ -4,11 +4,15 @@
   icon: mdi:vpn
   cache: 30s
   url: https://airvpn.org/api/?format=json&key=${AIRVPN_API_KEY}&service=userinfo
+  subrequests:
+    status:
+      url: https://airvpn.org/api/?format=json&service=status
   template: |
     {{ $code := .Response.StatusCode }}
-    {{ if ne $code 200 }}
+    {{ $statusReq := .Subrequest "status" }}
+    {{ if or (ne $code 200) (ne $statusReq.Response.StatusCode 200) }}
       <div class="color-negative text-center">
-        <p>AirVPN API returned HTTP {{ $code }}.</p>
+        <p>AirVPN API returned an error.</p>
       </div>
     {{ else if ne (.JSON.String "result") "ok" }}
       <div class="color-negative text-center">
@@ -17,6 +21,26 @@
       </div>
     {{ else }}
       {{ $connected := .JSON.Bool "user.connected" }}
+      {{ $serverName := .JSON.String "connection.server_name" }}
+      {{ $serverLocation := .JSON.String "connection.server_location" }}
+      {{ $serverCountry := .JSON.String "connection.server_country" }}
+      {{ $serverBw := .JSON.Int "connection.server_bw" }}
+      {{ $serverBwMax := 0 }}
+      {{ $serverLoad := .JSON.Int "connection.server_load" }}
+      {{ $serverUsers := 0 }}
+      {{ $sessions := .JSON.Array "sessions" }}
+      {{ if and $connected (ne $serverName "") }}
+        {{ range $s := $statusReq.JSON.Array "servers" }}
+          {{ if eq ($s.String "public_name") $serverName }}
+            {{ $serverLocation = $s.String "location" }}
+            {{ $serverCountry = $s.String "country_name" }}
+            {{ $serverBw = $s.Int "bw" }}
+            {{ $serverBwMax = $s.Int "bw_max" }}
+            {{ $serverLoad = $s.Int "currentload" }}
+            {{ $serverUsers = $s.Int "users" }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
       <div class="flex justify-between text-center">
         <div>
           <div class="size-h3{{ if $connected }} color-positive{{ else }} color-negative{{ end }}">
@@ -30,39 +54,82 @@
         </div>
         {{ if $connected }}
         <div>
-          {{ $bwLoad := .JSON.Int "connection.server_bw" }}
-          <div class="color-highlight size-h3">{{ $bwLoad }}%</div>
-          <div class="size-h6">LOAD</div>
+          <div class="color-highlight size-h3">{{ len $sessions }}</div>
+          <div class="size-h6">SESSIONS</div>
         </div>
         {{ end }}
       </div>
       {{ if $connected }}
-      <div style="margin-top: 15px;">
-        <div class="size-h6 color-paragraph" style="margin-bottom: 4px;">Server</div>
-        <div class="color-highlight">{{ .JSON.String "connection.server_name" }}</div>
-        <div class="size-sm color-paragraph">{{ .JSON.String "connection.server_location" }}, {{ .JSON.String "connection.server_country" }}</div>
-        {{ $bwLoad := .JSON.Int "connection.server_bw" }}
-        <div title="{{ $bwLoad }}% load" style="background: rgba(128, 128, 128, 0.2); border-radius: 5px; height: 4px; margin-top: 8px; overflow: hidden;">
-          <div style="width: {{ $bwLoad }}%; background-color: var(--color-positive); height: 100%; border-radius: 5px;"></div>
+      <div style="margin-top: 16px;">
+        <div class="flex justify-between items-center" style="margin-bottom: 8px;">
+          <div class="size-h6 color-paragraph">Server</div>
+          <div class="size-sm color-highlight">{{ $serverLoad }}% load</div>
+        </div>
+        <div style="background: rgba(128, 128, 128, 0.06); border: 1px solid rgba(128, 128, 128, 0.12); border-radius: 8px; padding: 10px;">
+          <div class="flex justify-between items-start" style="gap: 10px;">
+            <div style="min-width: 0;">
+              <div class="color-highlight text-truncate">{{ $serverName }}</div>
+              <div class="size-sm color-paragraph text-truncate">{{ $serverLocation }}, {{ $serverCountry }}</div>
+            </div>
+            {{ if gt $serverUsers 0 }}
+              <div class="size-sm color-paragraph" style="flex-shrink: 0;">{{ $serverUsers }} users</div>
+            {{ end }}
+          </div>
+          {{ if gt $serverBwMax 0 }}
+          {{ $barWidth := $serverLoad }}
+          {{ if gt $barWidth 100 }}{{ $barWidth = 100 }}{{ end }}
+          <div title="{{ $serverLoad }}% load" style="background: rgba(128, 128, 128, 0.2); border-radius: 5px; height: 4px; margin-top: 10px; overflow: hidden;">
+            <div style="width: {{ $barWidth }}%; background-color: var(--color-positive); height: 100%; border-radius: 5px;"></div>
+          </div>
+          <div class="size-sm color-paragraph text-right" style="margin-top: 5px;">{{ $serverBw }} / {{ $serverBwMax }} Mbit/s</div>
+          {{ end }}
         </div>
       </div>
       {{ end }}
-      {{ $sessions := .JSON.Array "sessions" }}
       {{ if gt (len $sessions) 0 }}
       <div style="margin-top: 15px;">
-        <div class="size-h6 color-paragraph" style="margin-bottom: 5px;">Sessions</div>
-        <ul class="list collapsible-container" data-collapse-after="3" style="--list-gap: 8px;">
+        <div class="flex justify-between items-center" style="margin-bottom: 8px;">
+          <div class="size-h6 color-paragraph">Sessions</div>
+          <div class="size-sm color-highlight">{{ len $sessions }} active</div>
+        </div>
+        <ul class="list collapsible-container" data-collapse-after="2" style="--list-gap: 8px;">
           {{ range $s := $sessions }}
-          <li class="flex justify-between items-center">
-            <span class="text-truncate color-highlight" style="max-width: 55%;">{{ $s.String "device" }}</span>
-            <span class="size-sm color-paragraph">
-              {{ $dataBytes := $s.Int "data" }}
-              {{ if gt $dataBytes 1073741824 }}{{ printf "%.1f GB" (div ($dataBytes | toFloat) 1073741824.0) }}
-              {{ else if gt $dataBytes 1048576 }}{{ printf "%.1f MB" (div ($dataBytes | toFloat) 1048576.0) }}
-              {{ else if gt $dataBytes 1024 }}{{ printf "%.1f KB" (div ($dataBytes | toFloat) 1024.0) }}
-              {{ else }}{{ $dataBytes }} B{{ end }}
-            </span>
-          </li>
+            {{ $downloadBytes := $s.Int "bytes_write" }}
+            {{ $uploadBytes := $s.Int "bytes_read" }}
+            {{ $downloadSpeed := $s.Int "speed_write" }}
+            {{ $uploadSpeed := $s.Int "speed_read" }}
+            <li style="background: rgba(128, 128, 128, 0.06); border: 1px solid rgba(128, 128, 128, 0.12); border-radius: 8px; padding: 10px;">
+              <div class="flex justify-between items-start" style="gap: 10px;">
+                <div style="min-width: 0;">
+                  <div class="color-highlight text-truncate">{{ $s.String "server_name" }}</div>
+                  <div class="size-sm color-paragraph text-truncate">{{ $s.String "server_location" }}, {{ $s.String "server_country" }}</div>
+                </div>
+                <div class="size-sm color-paragraph text-right" style="flex-shrink: 0;">
+                  <div>since</div>
+                  <div>{{ $s.String "connected_since_date" }}</div>
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px;">
+                <div>
+                  <div class="size-h6 color-paragraph">TRAFFIC</div>
+                  <div class="size-sm color-highlight">
+                    {{ if gt $downloadBytes 1000000000 }}{{ printf "%.1f GB" (div ($downloadBytes | toFloat) 1000000000.0) }}{{ else }}{{ printf "%.1f MB" (div ($downloadBytes | toFloat) 1000000.0) }}{{ end }} down
+                  </div>
+                  <div class="size-sm color-paragraph">
+                    {{ if gt $uploadBytes 1000000000 }}{{ printf "%.1f GB" (div ($uploadBytes | toFloat) 1000000000.0) }}{{ else }}{{ printf "%.1f MB" (div ($uploadBytes | toFloat) 1000000.0) }}{{ end }} up
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="size-h6 color-paragraph">SPEED</div>
+                  <div class="size-sm color-highlight">
+                    {{ if gt $downloadSpeed 1000000 }}{{ printf "%.1f MB/s" (div ($downloadSpeed | toFloat) 1000000.0) }}{{ else }}{{ printf "%.1f kB/s" (div ($downloadSpeed | toFloat) 1000.0) }}{{ end }} down
+                  </div>
+                  <div class="size-sm color-paragraph">
+                    {{ if gt $uploadSpeed 1000000 }}{{ printf "%.1f MB/s" (div ($uploadSpeed | toFloat) 1000000.0) }}{{ else }}{{ printf "%.1f kB/s" (div ($uploadSpeed | toFloat) 1000.0) }}{{ end }} up
+                  </div>
+                </div>
+              </div>
+            </li>
           {{ end }}
         </ul>
       </div>
