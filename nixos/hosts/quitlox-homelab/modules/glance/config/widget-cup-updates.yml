@@ -5,7 +5,6 @@
   method: GET
   template: |
     {{ $defaultServerName := "homelab" }}
-    {{ $showUpdateKind := true }}
     {{ $filterInactiveImages := true }}
 
     <style>
@@ -55,35 +54,6 @@
           <div class="size-h6">AVAILABLE</div>
         </div>
       </div>
-
-      {{ if $showUpdateKind }}
-        <div class="flex items-center text-center" style="margin-top: 1rem;">
-          <div class="flex-1">
-            <div class="status-values-cup size-h3">{{ .JSON.Int "metrics.major_updates" }}</div>
-            <div class="size-h6">MAJOR</div>
-          </div>
-          <div class="vertical-separator-cup" style="width: 2px; margin: 0 0.25rem;"></div>
-          <div class="flex-1">
-            <div class="status-values-cup size-h3">{{ .JSON.Int "metrics.minor_updates" }}</div>
-            <div class="size-h6">MINOR</div>
-          </div>
-          <div class="vertical-separator-cup" style="width: 2px; margin: 0 0.25rem;"></div>
-          <div class="flex-1">
-            <div class="status-values-cup size-h3">{{ .JSON.Int "metrics.patch_updates" }}</div>
-            <div class="size-h6">PATCH</div>
-          </div>
-          <div class="vertical-separator-cup" style="width: 2px; margin: 0 0.25rem;"></div>
-          <div class="flex-1">
-            <div class="status-values-cup size-h3">{{ .JSON.Int "metrics.other_updates" }}</div>
-            <div class="size-h6">DIGEST</div>
-          </div>
-          <div class="vertical-separator-cup" style="width: 2px; margin: 0 0.25rem;"></div>
-          <div class="flex-1">
-            <div class="status-values-cup size-h3">{{ .JSON.Int "metrics.unknown" }}</div>
-            <div class="size-h6">UNKNOWN</div>
-          </div>
-        </div>
-      {{ end }}
 
       <div class="container-list-cup">
         <ul class="list list-gap-10-cup collapsible-container" data-collapse-after="3">
@@ -159,4 +129,6 @@
           {{ end }}
         </ul>
       </div>
+
+      <a href="https://cup.home.quitlox.dev" target="_blank" rel="noreferrer" style="display: block; text-align: center; font-size: 0.8rem; opacity: 0.4; margin-top: 0.5rem;">cup.home.quitlox.dev</a>
     </div>
