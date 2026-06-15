@@ -86,6 +86,7 @@ in
             "127.0.0.1/32" # localhost
             cfg.lan.subnet # local subnet
             "100.64.0.0/10" # tailscale CGNAT range
+            "192.168.3.0/24" # UniFi Teleport VPN subnet
           ];
         };
       };
