@@ -4,7 +4,7 @@
 # full HomeAssistant VM (HOAS); the addons-apps can be configured natively
 # through NixOS.
 #
-# Deployment: 
+# Deployment:
 #   - https://homeassistant.home.quitlox.dev
 #
 # Companion services:
@@ -16,39 +16,35 @@
 # for proper discovery. This also means the service is not on the traefik
 # `proxy` network, so the port is exposed explicitely instead.
 #
-{ config, ... }:
+# ----- Configuration -----
+#
+# The YAML configuration of Home Assistant is stored in this repository and
+# deployed on every rebuild. Home Assistant is only party declarative, most
+# configuration is stored in its database.
+#
+# After rebuilding, Home Assistant must be restarted: 
+#   - docker restart homeassistant
+#
+{ config, lib, ... }:
+let
+  mkInstallCmd = name: _type:
+    "install -m 664 -o root -g homeassistant ${./homeassistant/config/${name}} /var/lib/homeassistant/config/${name}";
+  configFiles = lib.filterAttrs (_: type: type == "regular") (builtins.readDir ./homeassistant/config);
+  configInstallCmds = lib.mapAttrsToList mkInstallCmd configFiles;
+in
 {
   users.groups.homeassistant.gid = 1507;
 
   users.users.opencode.extraGroups = [ "homeassistant" ];
 
-  # Persistent state (root-owned; HA runs as root)
-  systemd.tmpfiles.rules = [
-    "d /var/lib/homeassistant        2770 root homeassistant - -"
-    "d /var/lib/homeassistant/config 2770 root homeassistant - -"
-    "d /var/lib/matter-server        0700 root root - -"
-  ];
-
-  # Minimal seed configuration if absent, configures access through reverse-proxy.
+  # Persistent state directories
   system.activationScripts.homeassistant-config = {
     deps = [ "users" "groups" ];
     text = ''
-      cfg=/var/lib/homeassistant/config/configuration.yaml
-      if [ ! -f "$cfg" ]; then
-        install -m 0664 -o root -g homeassistant /dev/stdin "$cfg" <<'EOF'
-      default_config:
-
-      http:
-        use_x_forwarded_for: true
-        trusted_proxies:
-          - 127.0.0.1
-          - ::1
-
-      automation: !include automations.yaml
-      script: !include scripts.yaml
-      scene: !include scenes.yaml
-      EOF
-      fi
+      install -d -m 2770 -o root -g homeassistant /var/lib/homeassistant
+      install -d -m 2770 -o root -g homeassistant /var/lib/homeassistant/config
+      install -d -m 0700 -o root -g root /var/lib/matter-server
+      ${lib.concatStringsSep "\n      " configInstallCmds}
     '';
   };
 
