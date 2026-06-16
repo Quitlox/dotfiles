@@ -35,7 +35,7 @@ in
 {
   users.groups.homeassistant.gid = 1507;
 
-  users.users.opencode.extraGroups = [ "homeassistant" ];
+  users.users.code.extraGroups = [ "homeassistant" ];
 
   # Persistent state directories
   system.activationScripts.homeassistant-config = {

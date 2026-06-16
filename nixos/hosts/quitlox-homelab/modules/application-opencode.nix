@@ -6,12 +6,13 @@
 let
   domain = config.quitlox.traefik.domain;
 
-  # Unprivileged user for the service
-  opencodeUID = 1503;
-  opencodeGID = 1503;
+  # user and group for development purposes, shared by opencode, claude and
+  # code editors. home in /var/lib/code
+  codeUID = 1503;
+  codeGID = 1503;
 
-  # Packages needed by the opencode user and service
-  opencodePackages = with pkgs; [
+  # Packages needed by the code user and service
+  codePackages = with pkgs; [
     # Core
     opencode
     # Shell
@@ -47,11 +48,11 @@ let
     rust-analyzer
   ];
 
-  # Privileged commands exposed to opencode user
-  opencode-rebuild = pkgs.writeShellScriptBin "opencode-rebuild" ''
+  # Privileged commands exposed to the code user
+  code-rebuild = pkgs.writeShellScriptBin "code-rebuild" ''
     exec /run/current-system/sw/bin/nixos-rebuild switch --flake /etc/nixos
   '';
-  opencode-reboot = pkgs.writeShellScriptBin "opencode-reboot" ''
+  code-reboot = pkgs.writeShellScriptBin "code-reboot" ''
     exec /run/current-system/sw/bin/systemctl reboot
   '';
 in
@@ -62,19 +63,19 @@ in
 
   security.sudo.extraRules = [
     {
-      users = [ "opencode" ];
+      users = [ "code" ];
       commands = [
         # NOTE: sudo matches the command by literal path string and does not
         # follow symlinks, so this must be the path users actually invoke
-        # (/run/current-system/sw/bin/...), NOT the "${opencode-rebuild}"
+        # (/run/current-system/sw/bin/...), NOT the "${code-rebuild}"
         # /nix/store path. Otherwise the NOPASSWD rule never matches and sudo
         # falls back to prompting for a password.
         {
-          command = "/run/current-system/sw/bin/opencode-rebuild";
+          command = "/run/current-system/sw/bin/code-rebuild";
           options = [ "NOPASSWD" ];
         }
         {
-          command = "/run/current-system/sw/bin/opencode-reboot";
+          command = "/run/current-system/sw/bin/code-reboot";
           options = [ "NOPASSWD" ];
         }
       ];
@@ -82,8 +83,8 @@ in
   ];
 
   environment.systemPackages = [
-    opencode-rebuild
-    opencode-reboot
+    code-rebuild
+    code-reboot
   ];
 
   # System-wide config at /etc/opencode/opencode.json
@@ -92,7 +93,7 @@ in
   environment.etc."opencode/opencode.json".text = builtins.toJSON {
     "$schema" = "https://opencode.ai/config.json";
     permission = {
-      # The opencode user has limited access
+      # The code user has limited access
       "external_directory" = "allow";
     };
   };
@@ -102,33 +103,33 @@ in
   ##############################################################################
 
   systemd.tmpfiles.rules = [
-    "d /var/lib/opencode                          0700 opencode opencode - -"
-    "d /var/lib/opencode/Workspace                0700 opencode opencode - -"
-    "d /var/lib/opencode/.config                  0700 opencode opencode - -"
-    "d /var/lib/opencode/.config/opencode         0700 opencode opencode - -"
-    "d /var/lib/opencode/.local                   0700 opencode opencode - -"
-    "d /var/lib/opencode/.local/share             0700 opencode opencode - -"
-    "d /var/lib/opencode/.local/share/opencode    0700 opencode opencode - -"
-    "d /var/lib/opencode/.ssh                     0700 opencode opencode - -"
-    "d /var/lib/opencode/.cargo                   0700 opencode opencode - -"
-    "d /var/lib/opencode/.rustup                  0700 opencode opencode - -"
+    "d /var/lib/code                          0700 code code - -"
+    "d /var/lib/code/Workspace                0700 code code - -"
+    "d /var/lib/code/.config                  0700 code code - -"
+    "d /var/lib/code/.config/opencode         0700 code code - -"
+    "d /var/lib/code/.local                   0700 code code - -"
+    "d /var/lib/code/.local/share             0700 code code - -"
+    "d /var/lib/code/.local/share/opencode    0700 code code - -"
+    "d /var/lib/code/.ssh                     0700 code code - -"
+    "d /var/lib/code/.cargo                   0700 code code - -"
+    "d /var/lib/code/.rustup                  0700 code code - -"
   ];
 
   ##############################################################################
   ### user                                                                   ###
   ##############################################################################
 
-  users.groups.opencode.gid = opencodeGID;
-  users.groups.systemd-journal.members = [ "opencode" ];
-  users.users.opencode = {
-    uid = opencodeUID;
-    home = "/var/lib/opencode";
-    group = "opencode";
+  users.groups.code.gid = codeGID;
+  users.groups.systemd-journal.members = [ "code" ];
+  users.users.code = {
+    uid = codeUID;
+    home = "/var/lib/code";
+    group = "code";
     isSystemUser = true;
     # Shell required for interactive auth flows (gh auth login, glab auth login, opencode auth login)
     shell = pkgs.bash;
     # Per-user packages (available in interactive sessions as this user)
-    packages = opencodePackages;
+    packages = codePackages;
   };
 
   ##############################################################################
@@ -136,17 +137,17 @@ in
   ##############################################################################
 
   sops.secrets."services/glance/opencode/user_name" = {
-    owner = "opencode";
-    group = "opencode";
+    owner = "code";
+    group = "code";
   };
   sops.secrets."services/glance/opencode/user_pass" = {
-    owner = "opencode";
-    group = "opencode";
+    owner = "code";
+    group = "code";
   };
 
   sops.templates."opencode.env" = {
-    owner = "opencode";
-    group = "opencode";
+    owner = "code";
+    group = "code";
     content = ''
       OPENCODE_SERVER_USERNAME=${config.sops.placeholder."services/glance/opencode/user_name"}
       OPENCODE_SERVER_PASSWORD=${config.sops.placeholder."services/glance/opencode/user_pass"}
@@ -164,9 +165,9 @@ in
     wants = [ "network-online.target" ];
 
     serviceConfig = {
-      User = "opencode";
-      Group = "opencode";
-      WorkingDirectory = "/var/lib/opencode/Workspace";
+      User = "code";
+      Group = "code";
+      WorkingDirectory = "/var/lib/code/Workspace";
       EnvironmentFile = config.sops.templates."opencode.env".path;
 
       ExecStart = "${pkgs.opencode}/bin/opencode serve --hostname 0.0.0.0 --port 4096";
@@ -178,15 +179,15 @@ in
     };
 
     environment = {
-      # XDG base dirs pointing into the opencode user's home
-      HOME = "/var/lib/opencode";
-      XDG_CONFIG_HOME = "/var/lib/opencode/.config";
-      XDG_DATA_HOME = "/var/lib/opencode/.local/share";
+      # XDG base dirs pointing into the code user's home
+      HOME = "/var/lib/code";
+      XDG_CONFIG_HOME = "/var/lib/code/.config";
+      XDG_DATA_HOME = "/var/lib/code/.local/share";
 
       # Rust toolchain dirs (rustup mutates these; keep them in the user home)
-      RUSTUP_HOME = "/var/lib/opencode/.rustup";
-      CARGO_HOME = "/var/lib/opencode/.cargo";
-      
+      RUSTUP_HOME = "/var/lib/code/.rustup";
+      CARGO_HOME = "/var/lib/code/.cargo";
+
       # Configure SSH path
       GIT_SSH_COMMAND = "${pkgs.openssh}/bin/ssh";
     };
@@ -199,7 +200,7 @@ in
     # NixOS appends `/bin` (and `/sbin`) to each path entry, so pass the
     # `/run/wrappers` prefix — `/run/wrappers/bin` would become a nonexistent
     # `/run/wrappers/bin/bin` and the setuid `sudo` wrapper would be unreachable.
-    path = opencodePackages ++ [ "/run/wrappers" ];
+    path = codePackages ++ [ "/run/wrappers" ];
   };
 
   ##############################################################################

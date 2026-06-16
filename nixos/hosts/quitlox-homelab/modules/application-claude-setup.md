@@ -1,10 +1,10 @@
 # Claude Code (remote-control) — First-time Setup
 
-Run as the `opencode` user:
+Run as the `code` user:
 
 ```bash
-sudo -u opencode -s
-cd /var/lib/opencode
+sudo -u code -s
+cd /var/lib/code
 ```
 
 1. Authenticate with claude.ai:
@@ -28,7 +28,7 @@ journalctl -u claude-serve -n 50    # should show a registered claude.ai/code se
 
 ## Adding language toolchains
 
-The service reuses the `opencode` user's toolchain via
-`/etc/profiles/per-user/opencode/bin`. Add new runtimes/tools in
-`application-opencode.nix` under `users.users.opencode.packages` and run
+The service reuses the `code` user's toolchain via
+`/etc/profiles/per-user/code/bin`. Add new runtimes/tools in
+`application-opencode.nix` under `users.users.code.packages` and run
 `nixos-rebuild switch` — `claude-serve` picks them up automatically.

@@ -26,8 +26,8 @@ in
     isSystemUser = true;
   };
 
-  # Allow the opencode user to edit the glance configuration
-  users.users.opencode.extraGroups = [ "glance" ];
+  # Allow the code user to edit the glance configuration
+  users.users.code.extraGroups = [ "glance" ];
 
   # Create directory structure and deploy config files from the dotfiles repo on
   # every activation (always overwrite)

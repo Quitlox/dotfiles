@@ -5,7 +5,7 @@
     extraGroups = [
       "wheel"
       "media"
-      "opencode"
+      "code"
     ];
   };
 

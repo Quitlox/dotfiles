@@ -1,30 +1,31 @@
 # Claude Code - remote-control (server mode) session.
-# 
+#
 # The Claude Code server mode works using an outbound connection; claude
 # registers itself at the Antrhopic API and polls for work.
 #
-# Reuses the `opencode` user, group, home (/var/lib/opencode) and toolchain so both
-# agents share one environment. See application-claude-setup.md for first-time auth.
+# Runs as the shared `code` user/group with home /var/lib/code, the same
+# identity and toolchain as the opencode agent, so both share one environment.
+# See application-claude-setup.md for first-time auth.
 { config, lib, pkgs, ... }:
 let
   # `claude remote-control` blocks on two prompts causing a restart due to no-TTY:
   #   - the one-time "Enable Remote Control? (y/n)" consent (`remoteDialogSeen`)
   #   - the workspace-trust dialog for the working directory
-  #     (`projects."/var/lib/opencode".hasTrustDialogAccepted`)
+  #     (`projects."/var/lib/code".hasTrustDialogAccepted`)
   # Both live in ~/.claude.json. Pre-set them idempotently so the server starts
   # headless without any manual first-run step.
   prepare-claude-config = pkgs.writeShellScript "claude-prepare-config" ''
     set -eu
-    cfg="/var/lib/opencode/.claude.json"
+    cfg="/var/lib/code/.claude.json"
     [ -f "$cfg" ] || echo '{}' > "$cfg"
-    check='.remoteDialogSeen == true and (.projects."/var/lib/opencode".hasTrustDialogAccepted == true)'
+    check='.remoteDialogSeen == true and (.projects."/var/lib/code".hasTrustDialogAccepted == true)'
     if ${pkgs.jq}/bin/jq -e "$check" "$cfg" >/dev/null 2>&1; then
       exit 0
     fi
     tmp="$cfg.tmp"
     ${pkgs.jq}/bin/jq '
       .remoteDialogSeen = true
-      | .projects."/var/lib/opencode".hasTrustDialogAccepted = true
+      | .projects."/var/lib/code".hasTrustDialogAccepted = true
     ' "$cfg" > "$tmp"
     ${pkgs.coreutils}/bin/install -m 600 "$tmp" "$cfg"
     rm -f "$tmp"
@@ -35,8 +36,8 @@ in
   nixpkgs.config.allowUnfreePredicate =
     pkg: builtins.elem (lib.getName pkg) [ "claude-code" ];
 
-  # Make `claude` available in the opencode user's interactive shell too.
-  users.users.opencode.packages = [ pkgs.claude-code ];
+  # Make `claude` available in the code user's interactive shell too.
+  users.users.code.packages = [ pkgs.claude-code ];
 
   systemd.services.claude-serve = {
     description = "Claude Code remote-control server";
@@ -45,9 +46,9 @@ in
     wants = [ "network-online.target" ];
 
     serviceConfig = {
-      User = "opencode";
-      Group = "opencode";
-      WorkingDirectory = "/var/lib/opencode";
+      User = "code";
+      Group = "code";
+      WorkingDirectory = "/var/lib/code";
 
       # Pre-accept the consent + workspace-trust prompts that would otherwise
       # block headless start (see prepare-claude-config above).
@@ -63,9 +64,9 @@ in
     environment = {
       # HOME is the one that matters: claude reads ~/.claude/.credentials.json,
       # ~/.claude.json, ~/.claude/settings.json, and the symlinked skills/CLAUDE.md.
-      HOME = "/var/lib/opencode";
-      XDG_CONFIG_HOME = "/var/lib/opencode/.config";
-      XDG_DATA_HOME = "/var/lib/opencode/.local/share";
+      HOME = "/var/lib/code";
+      XDG_CONFIG_HOME = "/var/lib/code/.config";
+      XDG_DATA_HOME = "/var/lib/code/.local/share";
 
       GIT_SSH_COMMAND = "${pkgs.openssh}/bin/ssh";
 
@@ -75,10 +76,10 @@ in
     };
 
     path = [
-      # Reuse the opencode user's toolchain. NixOS appends `/bin` and `/sbin`
+      # Reuse the code user's toolchain. NixOS appends `/bin` and `/sbin`
       # to each entry, so give the profile/system *prefixes* (not the bin dirs)
       # — otherwise PATH ends up pointing at nonexistent `.../bin/bin`.
-      "/etc/profiles/per-user/opencode"
+      "/etc/profiles/per-user/code"
       "/run/wrappers"
       "/run/current-system/sw"
     ];
