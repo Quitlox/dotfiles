@@ -3,18 +3,19 @@
 -- +---------------------------------------------------------+
 
 require("codecompanion").setup({
-    adapters = {
-        http = {
-            acp = {
-                claude_code = function()
-                    return require("codecompanion.adapters").extend("claude_code", {
-                        env = "ANTHROPIC_API_KEY",
-                    })
-                end,
+    adapters = {},
+    interactions = {
+        cli = {
+            agent = "opencode",
+            agents = {
+                opencode = {
+                    cmd = "opencode",
+                    args = {},
+                    description = "OpenCode",
+                    provider = "terminal",
+                },
             },
         },
-    },
-    interactions = {
         chat = {
             adapter = "copilot",
             model = "claude-sonnet-4.5",
@@ -87,9 +88,14 @@ require("codecompanion").setup({
 
 --+- Keymaps ------------------------------------------------+
 -- vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>c", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true, desc = "Toggle Chat" })
-vim.keymap.set("v", "<leader>c", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
-vim.keymap.set("v", "<leader>C", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>c", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true, desc = "Toggle Chat" })
+-- vim.keymap.set("v", "<leader>c", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("v", "<leader>C", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+-- [C]odeCompanion [A]dd
+vim.keymap.set({ "n", "v" }, "<leader>ca", function()
+    return require("codecompanion").cli("#{this}", { focus = false })
+end, { desc = "Add context to the CLI agent" })
 
 --+- Commands -----------------------------------------------+
 -- Expand 'cc' into 'CodeCompanion' in the command line
