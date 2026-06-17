@@ -16,7 +16,14 @@ require("markview").setup({
 
         headings = { shift_width = 0 },
     },
-    markdown = {},
+    markdown = {
+        list_items = {
+            -- Make sure bulletpoints / checklists are actually indented when wrapping is one
+            shift_width = 4,
+            -- Make sure bulletpoints / checklists are actually indented when wrapping is one
+            indent_size = 4,
+        },
+    },
     latex = {
         -- TODO: If these work well, I should contribute them to the main repo (in lua/markview/spec.lua)
         -- Map textsf command to use the same rendering as mathsf
