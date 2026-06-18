@@ -24,8 +24,10 @@
     ./modules/service-ddns-updater.nix
     ./modules/service-media.nix
     ./modules/application-yamtrack.nix
+    ./modules/user-code.nix
     ./modules/application-opencode.nix
     ./modules/application-claude.nix
+    ./modules/application-code-server.nix
     ./modules/service-beszel.nix
     ./modules/service-cup.nix
     ./modules/application-glance.nix

@@ -6,48 +6,6 @@
 let
   domain = config.quitlox.traefik.domain;
 
-  # user and group for development purposes, shared by opencode, claude and
-  # code editors. home in /var/lib/code
-  codeUID = 1503;
-  codeGID = 1503;
-
-  # Packages needed by the code user and service
-  codePackages = with pkgs; [
-    # Core
-    opencode
-    # Shell
-    bash
-    openssh
-    git
-    gh
-    glab
-    fd
-    ripgrep
-    which
-    curl
-    jq
-    wget
-    inetutils # provides hostname
-    util-linux # provides col
-    binutils # provides strings
-    docker # provides docker CLI
-    gcc
-    man-db
-    man-pages
-    nix
-    # MCP
-    procps # provides pgrep
-    # Python
-    python3
-    uv
-    pyright
-    # Go
-    go
-    # Rust
-    rustup
-    rust-analyzer
-  ];
-
   # Privileged commands exposed to the code user
   code-rebuild = pkgs.writeShellScriptBin "code-rebuild" ''
     exec /run/current-system/sw/bin/nixos-rebuild switch --flake /etc/nixos
@@ -65,11 +23,8 @@ in
     {
       users = [ "code" ];
       commands = [
-        # NOTE: sudo matches the command by literal path string and does not
-        # follow symlinks, so this must be the path users actually invoke
-        # (/run/current-system/sw/bin/...), NOT the "${code-rebuild}"
-        # /nix/store path. Otherwise the NOPASSWD rule never matches and sudo
-        # falls back to prompting for a password.
+	# NOTE: sudo matches the string, so we require the runtime-path, not
+	# the store-path.
         {
           command = "/run/current-system/sw/bin/code-rebuild";
           options = [ "NOPASSWD" ];
@@ -102,35 +57,12 @@ in
   ### directories                                                            ###
   ##############################################################################
 
+  # Base home dirs (.config, .local/share, etc.) come from user-code.nix; only the
+  # opencode-specific leaves live here.
   systemd.tmpfiles.rules = [
-    "d /var/lib/code                          0700 code code - -"
-    "d /var/lib/code/Workspace                0700 code code - -"
-    "d /var/lib/code/.config                  0700 code code - -"
     "d /var/lib/code/.config/opencode         0700 code code - -"
-    "d /var/lib/code/.local                   0700 code code - -"
-    "d /var/lib/code/.local/share             0700 code code - -"
     "d /var/lib/code/.local/share/opencode    0700 code code - -"
-    "d /var/lib/code/.ssh                     0700 code code - -"
-    "d /var/lib/code/.cargo                   0700 code code - -"
-    "d /var/lib/code/.rustup                  0700 code code - -"
   ];
-
-  ##############################################################################
-  ### user                                                                   ###
-  ##############################################################################
-
-  users.groups.code.gid = codeGID;
-  users.groups.systemd-journal.members = [ "code" ];
-  users.users.code = {
-    uid = codeUID;
-    home = "/var/lib/code";
-    group = "code";
-    isSystemUser = true;
-    # Shell required for interactive auth flows (gh auth login, glab auth login, opencode auth login)
-    shell = pkgs.bash;
-    # Per-user packages (available in interactive sessions as this user)
-    packages = codePackages;
-  };
 
   ##############################################################################
   ### secrets                                                               ###
@@ -192,15 +124,11 @@ in
       GIT_SSH_COMMAND = "${pkgs.openssh}/bin/ssh";
     };
 
-    # Explicit PATH so the service is self-contained, independent of
-    # profile activation order.
-    # /run/wrappers/bin is needed so that `sudo` resolves to the NixOS
-    # setuid wrapper instead of the bare Nix store binary (which lacks
-    # the setuid bit and cannot work).
-    # NixOS appends `/bin` (and `/sbin`) to each path entry, so pass the
-    # `/run/wrappers` prefix — `/run/wrappers/bin` would become a nonexistent
-    # `/run/wrappers/bin/bin` and the setuid `sudo` wrapper would be unreachable.
-    path = codePackages ++ [ "/run/wrappers" ];
+    path = [
+      "/etc/profiles/per-user/code"
+      "/run/wrappers"
+      "/run/current-system/sw"
+    ];
   };
 
   ##############################################################################

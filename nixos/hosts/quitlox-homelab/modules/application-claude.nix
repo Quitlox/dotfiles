@@ -1,7 +1,7 @@
 # Claude Code - remote-control (server mode) session.
 #
 # The Claude Code server mode works using an outbound connection; claude
-# registers itself at the Antrhopic API and polls for work.
+# registers itself at the Anthropic API and polls for work.
 #
 # Runs as the shared `code` user/group with home /var/lib/code, the same
 # identity and toolchain as the opencode agent, so both share one environment.
@@ -62,23 +62,17 @@ in
     };
 
     environment = {
-      # HOME is the one that matters: claude reads ~/.claude/.credentials.json,
-      # ~/.claude.json, ~/.claude/settings.json, and the symlinked skills/CLAUDE.md.
       HOME = "/var/lib/code";
       XDG_CONFIG_HOME = "/var/lib/code/.config";
       XDG_DATA_HOME = "/var/lib/code/.local/share";
 
       GIT_SSH_COMMAND = "${pkgs.openssh}/bin/ssh";
 
-      # remote-control renders an (optional) TUI; give it a sane terminal type
-      # for the headless/no-TTY case.
+      # claude renders a TUI, so provide a default TERM
       TERM = "xterm-256color";
     };
 
     path = [
-      # Reuse the code user's toolchain. NixOS appends `/bin` and `/sbin`
-      # to each entry, so give the profile/system *prefixes* (not the bin dirs)
-      # — otherwise PATH ends up pointing at nonexistent `.../bin/bin`.
       "/etc/profiles/per-user/code"
       "/run/wrappers"
       "/run/current-system/sw"
