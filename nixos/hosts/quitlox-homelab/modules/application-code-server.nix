@@ -16,7 +16,7 @@
   ##############################################################################
   ### secrets                                                                ###
   ##############################################################################
-  sops.secrets."services/code-server/pass-hash" = {
+  sops.secrets."services/code-server/pass_hash" = {
     owner = "code";
     group = "code";
   };
@@ -24,7 +24,7 @@
     owner = "code";
     group = "code";
     content = ''
-      HASHED_PASSWORD=${config.sops.placeholder."services/code-server/pass-hash"}
+      HASHED_PASSWORD=${config.sops.placeholder."services/code-server/pass_hash"}
     '';
   };
 
