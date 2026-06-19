@@ -25,3 +25,7 @@
       icon: di:code-server.png
       url: https://code.home.quitlox.dev
       check-url: https://code.home.quitlox.dev/healthz
+    - title: Traefik
+      icon: sh:traefik
+      url: https://home.quitlox.dev/services/traefik/dashboard/
+      check-url: https://home.quitlox.dev/services/traefik/api/overview
