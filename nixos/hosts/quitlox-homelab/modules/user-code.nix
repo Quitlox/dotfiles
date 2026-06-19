@@ -11,14 +11,14 @@ in
   ##############################################################################
 
   systemd.tmpfiles.rules = [
-    "d /var/lib/code                  0700 code code - -"
-    "d /var/lib/code/Workspace        0700 code code - -"
-    "d /var/lib/code/.config          0700 code code - -"
-    "d /var/lib/code/.local           0700 code code - -"
-    "d /var/lib/code/.local/share     0700 code code - -"
-    "d /var/lib/code/.ssh             0700 code code - -"
-    "d /var/lib/code/.cargo           0700 code code - -"
-    "d /var/lib/code/.rustup          0700 code code - -"
+    "d /var/lib/code                  0770 code code - -"
+    "d /var/lib/code/Workspace        0770 code code - -"
+    "d /var/lib/code/.config          0770 code code - -"
+    "d /var/lib/code/.local           0770 code code - -"
+    "d /var/lib/code/.local/share     0770 code code - -"
+    "d /var/lib/code/.ssh             0770 code code - -"
+    "d /var/lib/code/.cargo           0770 code code - -"
+    "d /var/lib/code/.rustup          0770 code code - -"
   ];
 
   ##############################################################################
