@@ -3,3 +3,8 @@
 [data-scheme="dark"] .xkcd img {
   filter: invert(1);
 }
+
+/* Show pointer cursor on monitor widget icons (clickable via user.js) */
+.widget-type-monitor .monitor-site-icon {
+  cursor: pointer;
+}

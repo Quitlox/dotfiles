@@ -4,6 +4,10 @@ server:
 theme:
   custom-css-file: /assets/user.css
 
+document:
+  head: |
+    <script src="/assets/user.js"></script>
+
 pages:
   - $include: home.yml
   - $include: homelab.yml
