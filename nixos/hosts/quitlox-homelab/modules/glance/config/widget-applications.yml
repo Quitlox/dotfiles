@@ -21,3 +21,7 @@
       icon: sh:yamtrack
       url: https://yamtrack.home.quitlox.dev
       check-url: https://yamtrack.home.quitlox.dev/health/
+    - title: Code Server
+      icon: di:code-server.png
+      url: https://code.home.quitlox.dev
+      check-url: https://code.home.quitlox.dev/healthz
