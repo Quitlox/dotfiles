@@ -11,6 +11,7 @@ scene: !include scenes.yaml
 
 # Network configuration (reverse proxy)
 http:
+  server_port: 4002
   use_x_forwarded_for: true
   trusted_proxies:
     - 127.0.0.1

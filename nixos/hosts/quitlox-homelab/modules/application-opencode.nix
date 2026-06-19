@@ -102,7 +102,7 @@ in
       WorkingDirectory = "/var/lib/code/Workspace";
       EnvironmentFile = config.sops.templates."opencode.env".path;
 
-      ExecStart = "${pkgs.opencode}/bin/opencode serve --hostname 0.0.0.0 --port 4096";
+      ExecStart = "${pkgs.opencode}/bin/opencode serve --hostname 0.0.0.0 --port 3002";
 
       Restart = "always";
       RestartSec = "5s";
@@ -137,7 +137,7 @@ in
 
   # Allow Docker containers (e.g. Glance extension sidecar) to reach the
   # OpenCode API on the host. Protected by basic auth.
-  networking.firewall.allowedTCPPorts = [ 4096 ];
+  networking.firewall.allowedTCPPorts = [ 3002 ];
 
   ##############################################################################
   ### traefik                                                                ###
@@ -152,7 +152,7 @@ in
       service = "opencode";
     };
     http.services.opencode = {
-      loadBalancer.servers = [ { url = "http://127.0.0.1:4096"; } ];
+      loadBalancer.servers = [ { url = "http://127.0.0.1:3002"; } ];
     };
   };
 }

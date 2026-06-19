@@ -33,7 +33,7 @@
 From the homelab host (credentials from `secrets.yml`):
 
 ```bash
-curl -u <user_name>:<user_pass> http://127.0.0.1:4096/global/health
+curl -u <user_name>:<user_pass> http://127.0.0.1:3002/global/health
 ```
 
 ## Adding language toolchains

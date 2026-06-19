@@ -36,7 +36,7 @@
     user = "code";
     group = "code";
     host = "127.0.0.1";
-    port = 2113;
+    port = 3001;
     auth = "password";
     disableTelemetry = true;
     disableUpdateCheck = true;
@@ -57,5 +57,5 @@
   ##############################################################################
   ### traefik                                                                ###
   ##############################################################################
-  quitlox.traefik.expose-internal.code.port = 2113;
+  quitlox.traefik.expose-internal.code.port = 3001;
 }

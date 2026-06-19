@@ -66,12 +66,16 @@ in
       ];
     };
 
-    # Matter controller HA talks to over ws://localhost:5580/ws
+    # Matter controller HA talks to over ws://localhost:4003/ws
     services.matter-server.service = {
       image = "ghcr.io/home-assistant-libs/python-matter-server:stable";
       container_name = "matter-server";
       restart = "unless-stopped";
       network_mode = "host";
+      # Override default port (5580) -> 4003.
+      # Must include original CMD args (--storage-path, --paa-root-cert-dir) as
+      # `command` replaces the Dockerfile CMD entirely (ENTRYPOINT stays).
+      command = "--storage-path /data --paa-root-cert-dir /data/credentials --port 4003";
       volumes = [
         "/var/lib/matter-server:/data"
         "/run/dbus:/run/dbus:ro"
@@ -80,9 +84,9 @@ in
   };
 
   # Expose via Traefik (host-networked -> loopback), internal-only (ip-internal).
-  quitlox.traefik.expose-internal.homeassistant.port = 8123;
+  quitlox.traefik.expose-internal.homeassistant.port = 4002;
 
   # Host-network discovery + Matter commissioning need these on the LAN.
   networking.firewall.allowedUDPPorts = [ 5353 5540 ]; # mDNS, Matter
-  networking.firewall.allowedTCPPorts = [ 8123 5580 ]; # HA UI (LAN direct), Matter ws
+  networking.firewall.allowedTCPPorts = [ 4002 4003 ]; # HA UI (LAN direct), Matter ws
 }
