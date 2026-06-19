@@ -1,0 +1,5 @@
+command_nixos_rebuild:
+  alias: NixOS Update & Rebuild
+  icon: mdi:nix
+  sequence:
+    - service: shell_command.command_nixos_rebuild

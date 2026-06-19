@@ -1,1 +1,20 @@
-[]
+- id: command_nixos_rebuild_notify
+  alias: Notify on NixOS rebuild status
+  trigger:
+    - platform: state
+      entity_id: sensor.command_nixos_rebuild_status
+  condition:
+    - condition: template
+      value_template: "{{ trigger.to_state.state not in ['unknown', 'unavailable', 'idle', ''] }}"
+  action:
+    - service: persistent_notification.create
+      data:
+        notification_id: nixos_rebuild
+        title: NixOS Rebuild
+        message: >-
+          {% set s = trigger.to_state.state %}
+          {% if s == 'running:flake-update' %}⏳ Updating flake inputs…
+          {% elif s == 'running:rebuild' %}🔨 Building & switching…
+          {% elif s == 'success' %}✅ Rebuild complete.
+          {% elif s.startswith('failed') %}❌ Rebuild failed ({{ s }}). Check the log.
+          {% else %}{{ s }}{% endif %}

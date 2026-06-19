@@ -43,6 +43,7 @@ in
     text = ''
       install -d -m 2770 -o root -g homeassistant /var/lib/homeassistant
       install -d -m 2770 -o root -g homeassistant /var/lib/homeassistant/config
+      install -d -m 2770 -o root -g homeassistant /var/lib/homeassistant/bridge
       install -d -m 0700 -o root -g root /var/lib/matter-server
       ${lib.concatStringsSep "\n      " configInstallCmds}
     '';
@@ -59,6 +60,7 @@ in
       environment.TZ = "Europe/Amsterdam";
       volumes = [
         "/var/lib/homeassistant/config:/config"
+        "/var/lib/homeassistant/bridge:/bridge" # container -> host action bridge
         "/etc/localtime:/etc/localtime:ro"
         "/run/dbus:/run/dbus:ro" # for host integrations (e.g. Bluetooth later)
       ];

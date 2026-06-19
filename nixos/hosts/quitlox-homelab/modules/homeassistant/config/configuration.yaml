@@ -20,3 +20,27 @@ media_player:
   - platform: kef
     host: 192.168.1.101
     type: LSX
+
+# ----- Bridge: command-nixos-rebuild -----
+# Drops a trigger file into the shared bridge dir (/bridge). A host systemd.path
+# unit (homeassistant-command-rebuild) watches it and runs the flake update + rebuild.
+shell_command:
+  command_nixos_rebuild: 'date -Iseconds > /bridge/rebuild.trigger'
+
+command_line:
+  # Current phase: running:flake-update | running:rebuild | success | failed:<code>
+  - sensor:
+      name: Command NixOS Rebuild Status
+      command: "cat /bridge/rebuild.status 2>/dev/null || echo idle"
+      scan_interval: 15
+  # Log to "tail" attribute
+  - sensor:
+      name: Command NixOS Rebuild Log
+      command: >-
+        python3 -c "import json,os;p='/bridge/rebuild.log';d=open(p).read()[-3500:] if os.path.exists(p) else '';print(json.dumps({'tail':d}))"
+      value_template: >-
+        {% set t = value_json.tail | trim %}
+        {{ (t.split('\n') | last)[:255] if t else 'idle' }}
+      json_attributes:
+        - tail
+      scan_interval: 15
