@@ -17,11 +17,6 @@ http:
     - 127.0.0.1
     - 192.168.1.100
 
-media_player:
-  - platform: kef
-    host: 192.168.1.101
-    type: LSX
-
 # ----- Bridge: command-nixos-rebuild -----
 # Drops a trigger file into the shared bridge dir (/bridge). A host systemd.path
 # unit (homeassistant-command-rebuild) watches it and runs the flake update + rebuild.
