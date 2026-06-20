@@ -55,10 +55,6 @@ in
     owner = "glance";
     group = "glance";
   };
-  sops.secrets."services/beszel/token" = {
-    owner = "glance";
-    group = "glance";
-  };
   sops.secrets."services/glance/github/token" = {
     owner = "glance";
     group = "glance";
@@ -95,7 +91,8 @@ in
       UNIFI_CONSOLE_IP=${config.sops.placeholder."services/glance/unify/console-ip"}
       UNIFI_API_KEY=${config.sops.placeholder."services/glance/unify/apikey"}
       BESZEL_URL=https://beszel.home.quitlox.dev
-      BESZEL_TOKEN=${config.sops.placeholder."services/beszel/token"}
+      BESZEL_USER=${config.sops.placeholder."services/beszel/user_name"}
+      BESZEL_PASS=${config.sops.placeholder."services/beszel/user_pass"}
       GITHUB_TOKEN=${config.sops.placeholder."services/glance/github/token"}
       CUP_URL=cup:8000
       JELLYFIN_URL=https://jellyfin.home.quitlox.dev

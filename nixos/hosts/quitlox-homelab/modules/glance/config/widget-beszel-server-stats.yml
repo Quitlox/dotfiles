@@ -1,13 +1,17 @@
 - type: custom-api
   title: Server Stats
   cache: 1s
+  method: POST
+  url: ${BESZEL_URL}/api/collections/users/auth-with-password
+  body-type: json
+  body:
+    identity: "${BESZEL_USER}"
+    password: "${BESZEL_PASS}"
   options:
     base-url: ${BESZEL_URL}
-    api-key: ${BESZEL_TOKEN}
   template: |
     {{/* Required config options */}}
     {{ $baseURL := .Options.StringOr "base-url" "" }}
-    {{ $apiKey := .Options.StringOr "api-key" "" }}
 
     {{/* Error message template */}}
     {{ define "errorMsg" }}
@@ -35,9 +39,12 @@
     {{ end }}
 
     {{/* Check required fields */}}
-    {{ if or (eq $baseURL "") (eq $apiKey "") }}
+    {{ if eq $baseURL "" }}
       {{ template "errorMsg" "Some required options are not set." }}
+    {{ else if ne .Response.StatusCode 200 }}
+      {{ template "errorMsg" (printf "Beszel authentication failed: %s" .Response.Status) }}
     {{ else }}
+      {{ $apiKey := .JSON.String "token" }}
 
       {{ $token := concat "Bearer " $apiKey }}
 
