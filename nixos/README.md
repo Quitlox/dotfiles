@@ -73,8 +73,6 @@ approached using HTTPS.
 - [ ] Dashboard
   - [ ] Display Traefik Log
 - [ ] Maintenance and Security
-  - [ ] Automatically update NixOS (flake)?
-  - [ ] Provide SSO or OAuth for login to services?
   - [ ] Expose all services under `quitlox-homelab.local/services/<service>` in
         case domain is unreachable.
   - [ ] Figure out if the "user" accounts are necessary for Docker
@@ -90,12 +88,13 @@ approached using HTTPS.
   - [ ] Backup with Backblaze
 
 - [ ] TODO:
-  - [ ] Configure HomeAssistant, add devices from AppleTV
+  - [X] Configure HomeAssistant, add devices from AppleTV
   - [x] Fix AirVPN qbittorrent (showing "firewalled")
   - [ ] Setup Audiobookshelf?
   - [x] Claude remote + use same "opencode-config"
   - [ ] Move away from docker and either to rootless docker or podman (research)
   - [ ] Delete media via seerr / jellyfin
+  - [ ] Fail2Ban
 
 Research:
 
