@@ -13,6 +13,7 @@
     ../../modules/system/nixos-settings.nix
     ../../modules/system/user-quitlox.nix
     ../../modules/service-openssh.nix
+    ../../modules/service-fail2ban.nix
     ../../modules/service-tailscale.nix
     ../../modules/extra-arion.nix
     ../../modules/extra-sops.nix

@@ -72,7 +72,7 @@ Tasks:
 
 - [ ] Proper security review of configuration
 - [ ] Make modules more configurable (domain, ports, hostname, enable)
-- [ ] Setup Fail2Ban
+- [X] Setup Fail2Ban
 
 Research:
 
