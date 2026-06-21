@@ -2,7 +2,6 @@
   columns:
     - size: small
       widgets:
-        - $include: widget-usage.yml
         - $include: widget-github-notifications.yml
         - $include: widget-xkcd.yml
     - size: full

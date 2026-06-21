@@ -9,5 +9,5 @@ document:
     <script src="/assets/user.js"></script>
 
 pages:
-  - $include: home.yml
   - $include: homelab.yml
+  - $include: home.yml

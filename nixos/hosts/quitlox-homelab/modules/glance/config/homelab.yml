@@ -6,6 +6,7 @@
         - $include: widget-qbittorrent-stats.yml
         - $include: widget-media-services-infra.yml
         - $include: widget-media-services-health-details.yml
+        - $include: widget-llm-usage.yml
     - size: full
       widgets:
         - $include: widget-media-services.yml

@@ -2,6 +2,10 @@
   cache: 1s
   title: Applications
   sites:
+    - title: Traefik
+      icon: sh:traefik
+      url: https://home.quitlox.dev/services/traefik/dashboard/
+      check-url: https://home.quitlox.dev/services/traefik/api/overview
     - title: OpenCode
       icon: auto-invert https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/opencode.svg
       url: https://opencode.home.quitlox.dev
@@ -9,10 +13,10 @@
       basic-auth:
         username: ${OPENCODE_USERNAME}
         password: ${OPENCODE_PASSWORD}
-    - title: Beszel
-      icon: sh:beszel
-      url: https://beszel.home.quitlox.dev
-      check-url: https://beszel.home.quitlox.dev/api/health
+    - title: Code Server
+      icon: di:code-server.png
+      url: https://code.home.quitlox.dev
+      check-url: https://code.home.quitlox.dev/healthz
     - title: Home Assistant
       icon: sh:home-assistant
       url: https://homeassistant.home.quitlox.dev
@@ -21,11 +25,7 @@
       icon: sh:yamtrack
       url: https://yamtrack.home.quitlox.dev
       check-url: https://yamtrack.home.quitlox.dev/health/
-    - title: Code Server
-      icon: di:code-server.png
-      url: https://code.home.quitlox.dev
-      check-url: https://code.home.quitlox.dev/healthz
-    - title: Traefik
-      icon: sh:traefik
-      url: https://home.quitlox.dev/services/traefik/dashboard/
-      check-url: https://home.quitlox.dev/services/traefik/api/overview
+    - title: Beszel
+      icon: sh:beszel
+      url: https://beszel.home.quitlox.dev
+      check-url: https://beszel.home.quitlox.dev/api/health
