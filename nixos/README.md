@@ -68,43 +68,36 @@ approached using HTTPS.
 
 ## TODO
 
-- [ ] Fixes
-  - [ ] Jellyfin: Move thumbnails to drives (on SSD currently)
-- [ ] Dashboard
-  - [ ] Display Traefik Log
-- [ ] Maintenance and Security
-  - [ ] Expose all services under `quitlox-homelab.local/services/<service>` in
-        case domain is unreachable.
-  - [ ] Figure out if the "user" accounts are necessary for Docker
-  - [ ] Do not hardcode things like hostnames
+Tasks:
 
-- [ ] Optional
-  - [ ] Notifiarr ?
-  - [ ] qbit_manage ?
-  - [ ] PDF services ? PdfDing ? Stirling PDF https://docs.stirlingpdf.com/#documentation-guide
-  - [ ] RSSHub -> RSS (inoreader)
-  - [ ] Podgrab -> podcasts ?
-  - [ ] HRConvert 2
-  - [ ] Backup with Backblaze
-
-- [ ] TODO:
-  - [X] Configure HomeAssistant, add devices from AppleTV
-  - [x] Fix AirVPN qbittorrent (showing "firewalled")
-  - [ ] Setup Audiobookshelf?
-  - [x] Claude remote + use same "opencode-config"
-  - [ ] Move away from docker and either to rootless docker or podman (research)
-  - [ ] Delete media via seerr / jellyfin
-  - [ ] Fail2Ban
+- [ ] Proper security review of configuration
+- [ ] Make modules more configurable (domain, ports, hostname, enable)
+- [ ] Setup Fail2Ban
 
 Research:
 
-- Immich
-- Task Management: Vikunja.io, Tududi, Super-Productivity, HamsterBase Tasks, Donetick, Appflowy
-- Remote Shell: Termix, Apache Guacamole
-- Recipes: ManageMeals, Mealie, Recipya, Tamari
-- Bitwarden: Vaultwarden
-- Google Timeline: Dawarich
-- Authentication: Authelia, Authentik, KeyCloack
+- [ ] Photos: Immich
+- [ ] Task Management: Vikunja.io, Tududi, Super-Productivity, HamsterBase Tasks, Donetick, Appflowy
+- [ ] Remote Shell: Termix, Apache Guacamole
+- [ ] Recipes: ManageMeals, Mealie, Recipya, Tamari
+- [ ] Bitwarden: Vaultwarden
+- [ ] Google Timeline: Dawarich
+- [ ] Authentication: Authelia, Authentik, KeyCloack
+- [ ] Podcasts: Audiobookshelf, Podgrab
+- [ ] RSS: RSSHub
+- [ ] Files: NextCloud
+- [ ] Backup: Backblaze
+- [ ] Tools: HRConver2, PdfDing, StirlingPDF
+
+Projects:
+
+- Home Assistant
+    - [ ] Energy tracking with ESP32 Board via P1 port
+    - [ ] Notification: Leaving stovetop unattended
+    - [ ] Notification: Leaving roofwindow open (away, wind)
+    - [ ] Checklist Notification: tracking out trash, making breakfast
+- Server
+    - [ ] Log aggregation
 
 Interesting:
 
