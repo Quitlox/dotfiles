@@ -77,6 +77,7 @@ Tasks:
 Research:
 
 - [ ] Photos: Immich
+- [ ] Calendar: ?
 - [ ] Task Management: Vikunja.io, Tududi, Super-Productivity, HamsterBase Tasks, Donetick, Appflowy
 - [ ] Remote Shell: Termix, Apache Guacamole
 - [ ] Recipes: ManageMeals, Mealie, Recipya, Tamari
@@ -88,6 +89,7 @@ Research:
 - [ ] Files: NextCloud
 - [ ] Backup: Backblaze
 - [ ] Tools: HRConver2, PdfDing, StirlingPDF
+- [ ] Coding: Coder
 
 Projects:
 
