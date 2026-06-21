@@ -1,0 +1,10 @@
+- type: bookmarks
+  title: Usage
+  groups:
+    - links:
+        - title: OpenCode
+          icon: auto-invert https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/opencode.svg
+          url: https://opencode.ai/workspace/wrk_01KT2CQ156PCNNZM6DKX5VDTA2/go
+        - title: Claude
+          icon: si:claude
+          url: https://claude.ai/new#settings/usage
