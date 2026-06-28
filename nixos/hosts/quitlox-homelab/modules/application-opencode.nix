@@ -10,6 +10,9 @@ let
   code-rebuild = pkgs.writeShellScriptBin "code-rebuild" ''
     exec /run/current-system/sw/bin/nixos-rebuild switch --flake /etc/nixos
   '';
+  code-flake-update = pkgs.writeShellScriptBin "code-flake-update" ''
+    exec /run/current-system/sw/bin/nix flake update --flake /etc/nixos
+  '';
   code-reboot = pkgs.writeShellScriptBin "code-reboot" ''
     exec /run/current-system/sw/bin/systemctl reboot
   '';
@@ -30,6 +33,10 @@ in
           options = [ "NOPASSWD" ];
         }
         {
+          command = "/run/current-system/sw/bin/code-flake-update";
+          options = [ "NOPASSWD" ];
+        }
+        {
           command = "/run/current-system/sw/bin/code-reboot";
           options = [ "NOPASSWD" ];
         }
@@ -39,6 +46,7 @@ in
 
   environment.systemPackages = [
     code-rebuild
+    code-flake-update
     code-reboot
   ];
 
