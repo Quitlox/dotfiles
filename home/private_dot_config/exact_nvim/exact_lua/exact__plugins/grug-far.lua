@@ -88,3 +88,37 @@ vim.keymap.set("n", "<C-F>", function() grug_far.open({ prefills = { paths = vim
 vim.keymap.set("v", "<C-f>", function() grug_far.with_visual_selection({ prefills = { paths = vim.fn.expand('%') } }) end, { desc = "Find & Replace (current file)" })
 vim.keymap.set("v", "<C-F>", function() grug_far.with_visual_selection() end, { desc = "Find & Replace (all files)" })
 -- stylua: ignore end
+
+-- Disable grug-far keymaps in terminal windows.
+-- In sidekick windows, <C-f> in n/t is owned by sidekick's own buffer-local "files" picker
+-- (set in sidekick config.lua), so we leave those untouched and only override <C-f> in v mode
+-- and <C-F> in n/v mode. In all other terminal buffers, both <C-f> and <C-F> fall through to
+-- the default scroll-forward behavior.
+local function passthrough(key)
+    vim.api.nvim_feedkeys(vim.keycode(key), "n", false)
+end
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = vim.api.nvim_create_augroup("MyGrugFarTerminalDisable", { clear = true }),
+    callback = function(args)
+        vim.schedule(function()
+            if not vim.api.nvim_buf_is_valid(args.buf) or vim.bo[args.buf].buftype ~= "terminal" then
+                return
+            end
+            if vim.bo[args.buf].filetype == "sidekick_terminal" then
+                vim.keymap.set("v", "<C-f>", function()
+                    passthrough("<C-f>")
+                end, { buffer = args.buf, desc = "Default scroll forward" })
+                vim.keymap.set({ "n", "v" }, "<C-F>", function()
+                    passthrough("<C-F>")
+                end, { buffer = args.buf, desc = "Default scroll forward" })
+            else
+                vim.keymap.set({ "n", "v" }, "<C-f>", function()
+                    passthrough("<C-f>")
+                end, { buffer = args.buf, desc = "Default scroll forward" })
+                vim.keymap.set({ "n", "v" }, "<C-F>", function()
+                    passthrough("<C-F>")
+                end, { buffer = args.buf, desc = "Default scroll forward" })
+            end
+        end)
+    end,
+})
