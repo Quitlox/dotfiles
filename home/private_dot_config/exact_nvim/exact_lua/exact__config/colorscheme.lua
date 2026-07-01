@@ -119,7 +119,8 @@ require("catppuccin").setup({
     },
 })
 
--- vim.cmd([[set background=light]])
+-- Ensure background is always dark
+vim.o.background = "dark"
 
 -- Set colorscheme
 -- vim.cmd.colorscheme("catppuccin-nvim")
