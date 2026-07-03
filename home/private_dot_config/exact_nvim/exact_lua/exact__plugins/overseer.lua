@@ -46,6 +46,20 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end,
 })
 
+-- Let <C-h/j/k/l> jump straight out of the overseer output terminal from
+-- terminal mode. Buffer-local so it doesn't clash with bash mappings in
+-- other terminals.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "OverseerOutput",
+    callback = function(args)
+        local opts = { buffer = args.buf, silent = true }
+        vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], opts)
+        vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
+        vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
+        vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
+    end,
+})
+
 --+- Setup --------------------------------------------------+
 require("overseer").setup({
     ---@diagnostic disable-next-line: assign-type-mismatch
