@@ -96,9 +96,6 @@ require("obsidian").setup({
     },
 
     --+- User Inferface ---------------+
-    completion = {
-        blink = true,
-    },
     picker = {
         name = "snacks.pick",
         note_mappings = {
