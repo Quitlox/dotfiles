@@ -1,0 +1,48 @@
+# NixOS rebuild bridge — single HA package co-locating the trigger,
+# status sensors, and notification automation for the
+# homeassistant-command-rebuild host systemd unit (see
+# application-homeassistant-command-rebuild.nix). Bundling these as a
+# package keeps the whole feature in one file instead of scattering it
+# across configuration.yaml + automations_manual.yaml.
+shell_command:
+  command_nixos_rebuild: 'date -Iseconds > /bridge/rebuild.trigger'
+
+command_line:
+  # Current phase: running:flake-update | running:rebuild | success | failed:<code>
+  - sensor:
+      name: Command NixOS Rebuild Status
+      command: "cat /bridge/rebuild.status 2>/dev/null || echo idle"
+      scan_interval: 15
+  # Log to "tail" attribute
+  - sensor:
+      name: Command NixOS Rebuild Log
+      command: >-
+        python3 -c "import json,os;p='/bridge/rebuild.log';d=open(p).read()[-3500:] if os.path.exists(p) else '';print(json.dumps({'tail':d}))"
+      value_template: >-
+        {% set t = value_json.tail | trim %}
+        {{ (t.split('\n') | last)[:255] if t else 'idle' }}
+      json_attributes:
+        - tail
+      scan_interval: 15
+
+automation:
+  - id: command_nixos_rebuild_notify
+    alias: Notify on NixOS rebuild status
+    triggers:
+      - trigger: state
+        entity_id: sensor.command_nixos_rebuild_status
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.state not in ['unknown', 'unavailable', 'idle', ''] }}"
+    actions:
+      - action: persistent_notification.create
+        data:
+          notification_id: nixos_rebuild
+          title: NixOS Rebuild
+          message: >-
+            {% set s = trigger.to_state.state %}
+            {% if s == 'running:flake-update' %}⏳ Updating flake inputs…
+            {% elif s == 'running:rebuild' %}🔨 Building & switching…
+            {% elif s == 'success' %}✅ Rebuild complete.
+            {% elif s.startswith('failed') %}❌ Rebuild failed ({{ s }}). Check the log.
+            {% else %}{{ s }}{% endif %}
