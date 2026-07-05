@@ -10,6 +10,7 @@ frontend:
 homeassistant:
   packages:
     nixos_rebuild: !include nixos_rebuild_package.yaml
+    nixos_reboot: !include nixos_reboot_package.yaml
 
 # UI-managed automations live in automations.yaml. This file is owned by the UI
 # and is intentionally NOT deployed by the NixOS activation script, so UI edits

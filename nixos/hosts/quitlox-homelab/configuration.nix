@@ -35,6 +35,7 @@
     ./modules/application-glance-extension-opencode.nix
     ./modules/application-homeassistant.nix
     ./modules/application-homeassistant-command-rebuild.nix
+    ./modules/application-homeassistant-command-reboot.nix
     # server defaults (nice-to-haves) from srvos
     (srvos.outPath + "/nixos/common/detect-hostname-change.nix")
     (srvos.outPath + "/nixos/common/update-diff.nix")

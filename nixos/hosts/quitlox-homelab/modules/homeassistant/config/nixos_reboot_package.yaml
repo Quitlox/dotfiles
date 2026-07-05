@@ -1,0 +1,38 @@
+# NixOS reboot bridge — companion to nixos_rebuild_package.yaml.
+#
+# Triggered reboots are asymmetric vs rebuilds: Home Assistant itself goes
+# down the instant the trigger fires, so there is no log sensor (nothing
+# to capture) and no phase-change notification (HA is down). Instead:
+#   - shell_command.command_nixos_reboot drops the trigger file
+#   - command_line sensor reads /bridge/reboot.status (idle/rebooting/success)
+#   - one automation fires on homeassistant_started when the status sensor
+#     shows the reboot was triggered from HA (rebooting->success flip on the
+#     next boot, performed by homeassistant-command-reboot-mark-complete.service)
+#
+# See the host side: application-homeassistant-command-reboot.nix
+shell_command:
+  command_nixos_reboot: 'date -Iseconds > /bridge/reboot.trigger'
+
+command_line:
+  # Current phase: idle | rebooting | success
+  - sensor:
+      name: Command NixOS Reboot Status
+      command: "cat /bridge/reboot.status 2>/dev/null || echo idle"
+      scan_interval: 15
+
+automation:
+  - id: nixos_reboot_complete_notify
+    alias: Notify on NixOS reboot complete
+    triggers:
+      - trigger: homeassistant
+        event: start
+    conditions:
+      - condition: template
+        value_template: >-
+          {{ states('sensor.command_nixos_reboot_status') in ['rebooting', 'success'] }}
+    actions:
+      - action: persistent_notification.create
+        data:
+          notification_id: nixos_reboot
+          title: NixOS Reboot
+          message: "✅ Reboot complete (triggered via Home Assistant)."
