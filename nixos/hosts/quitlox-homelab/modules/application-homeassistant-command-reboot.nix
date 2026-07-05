@@ -1,7 +1,7 @@
 # Home Assistant - Command: Reboot
 #
-# Companion to application-homeassistant-command-rebuild.nix, mirroring its
-# bridge pattern so Home Assistant can trigger a clean server reboot.
+# Reboot server command for homeassistant. M
+# Mirrors application-homeassistant-command-rebuild.nix.
 #
 #   - HA writes a trigger file  -> /bridge/reboot.trigger
 #   - a systemd.path watches it -> starts homeassistant-command-reboot.service (root)

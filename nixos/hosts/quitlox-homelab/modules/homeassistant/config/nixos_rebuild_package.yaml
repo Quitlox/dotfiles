@@ -1,9 +1,7 @@
-# NixOS rebuild bridge — single HA package co-locating the trigger,
-# status sensors, and notification automation for the
-# homeassistant-command-rebuild host systemd unit (see
-# application-homeassistant-command-rebuild.nix). Bundling these as a
-# package keeps the whole feature in one file instead of scattering it
-# across configuration.yaml + automations_manual.yaml.
+# Package: Rebuild Command
+# 
+# Provides a server rebuild (update) command to Home Assistant. 
+# Depends on application-homeassistant-command-rebuild.nix; see for explanation of flow.
 shell_command:
   command_nixos_rebuild: 'date -Iseconds > /bridge/rebuild.trigger'
 

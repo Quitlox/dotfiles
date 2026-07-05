@@ -5,16 +5,13 @@ default_config:
 frontend:
   themes: !include_dir_merge_named themes
 
-# Bundled features. Each package co-locates all HA integrations (sensors,
-# shell_commands, automations, ...) for one feature in a single file.
+# Bundled configuration packages managed in dotfiles repository.
 homeassistant:
   packages:
     nixos_rebuild: !include nixos_rebuild_package.yaml
     nixos_reboot: !include nixos_reboot_package.yaml
 
-# UI-managed automations live in automations.yaml. This file is owned by the UI
-# and is intentionally NOT deployed by the NixOS activation script, so UI edits
-# survive rebuilds. See application-homeassistant.nix.
+# Owned by Home Assistant for UI-based configuration.
 automation: !include automations.yaml
 
 script: !include scripts.yaml
