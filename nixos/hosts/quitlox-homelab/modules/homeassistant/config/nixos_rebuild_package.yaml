@@ -1,7 +1,9 @@
-# Package: Rebuild Command
-# 
-# Provides a server rebuild (update) command to Home Assistant. 
-# Depends on application-homeassistant-command-rebuild.nix; see for explanation of flow.
+# NixOS rebuild bridge — single HA package co-locating the trigger,
+# status sensors, and notification automation for the
+# homeassistant-command-rebuild host systemd unit (see
+# application-homeassistant-command-rebuild.nix). Bundling these as a
+# package keeps the whole feature in one file instead of scattering it
+# across configuration.yaml + automations_manual.yaml.
 shell_command:
   command_nixos_rebuild: 'date -Iseconds > /bridge/rebuild.trigger'
 
@@ -10,7 +12,8 @@ command_line:
   - sensor:
       name: Command NixOS Rebuild Status
       command: "cat /bridge/rebuild.status 2>/dev/null || echo idle"
-      scan_interval: 15
+      # Deliberately slow polling rate; increased after trigger
+      scan_interval: 60
   # Log to "tail" attribute
   - sensor:
       name: Command NixOS Rebuild Log
@@ -21,7 +24,8 @@ command_line:
         {{ (t.split('\n') | last)[:255] if t else 'idle' }}
       json_attributes:
         - tail
-      scan_interval: 15
+      # Deliberately slow polling rate; increased after trigger
+      scan_interval: 60
 
 automation:
   - id: command_nixos_rebuild_notify
@@ -44,3 +48,25 @@ automation:
             {% elif s == 'success' %}✅ Rebuild complete.
             {% elif s.startswith('failed') %}❌ Rebuild failed ({{ s }}). Check the log.
             {% else %}{{ s }}{% endif %}
+
+  # After trigger, increase pollling rate untill status leaved the "running" phase.
+  - id: command_nixos_rebuild_fast_poll
+    alias: Fast-poll rebuild sensors while running
+    triggers:
+      - trigger: state
+        entity_id: sensor.command_nixos_rebuild_status
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.state.startswith('running') }}"
+    actions:
+      - repeat:
+          while:
+            - condition: template
+              value_template: "{{ states('sensor.command_nixos_rebuild_status').startswith('running') }}"
+          sequence:
+            - action: homeassistant.update_entity
+              target:
+                entity_id:
+                  - sensor.command_nixos_rebuild_status
+                  - sensor.command_nixos_rebuild_log
+            - delay: 1

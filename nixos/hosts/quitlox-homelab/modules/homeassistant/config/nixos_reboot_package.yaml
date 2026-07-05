@@ -10,7 +10,8 @@ command_line:
   - sensor:
       name: Command NixOS Reboot Status
       command: "cat /bridge/reboot.status 2>/dev/null || echo idle"
-      scan_interval: 15
+      # Deliberately slow polling rate; increased after trigger
+      scan_interval: 60
 
 automation:
   - id: nixos_reboot_complete_notify
@@ -28,3 +29,23 @@ automation:
           notification_id: nixos_reboot
           title: NixOS Reboot
           message: "✅ Reboot complete (triggered via Home Assistant)."
+
+  # After trigger, increase pollling rate untill status leaved the "rebooting" phase.
+  - id: command_nixos_reboot_fast_poll
+    alias: Fast-poll reboot status while rebooting
+    triggers:
+      - trigger: state
+        entity_id: sensor.command_nixos_reboot_status
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.state == 'rebooting' }}"
+    actions:
+      - repeat:
+          while:
+            - condition: template
+              value_template: "{{ states('sensor.command_nixos_reboot_status') == 'rebooting' }}"
+          sequence:
+            - action: homeassistant.update_entity
+              target:
+                entity_id: sensor.command_nixos_reboot_status
+            - delay: 1
