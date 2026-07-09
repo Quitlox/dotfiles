@@ -89,8 +89,6 @@ in
   #     - "Extract trickplay images during the library scan"
   #     - "Enable chapter image extraction"
   #     - "Extract chapter images during the library scan"
-  # 4 (Performance):
-  #     - # TODO: Setup QuickSync and transcoding
   # 4. (Optional) Install Theme:
   #     - https://github.com/lscambo13/ElegantFin
   #     - @import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
@@ -118,6 +116,47 @@ in
       rule = "Host(`jellyfin.${config.quitlox.traefik.domain}`)";
       service = "jellyfin";
       middlewares = [ "ip-internal" ];
+    };
+  };
+
+  ##############################################################################
+  ### Jellyfin - Hardware transcoding (Intel UHD 630 / Comet Lake, Gen 9.5)  ###
+  ##############################################################################
+  # The i5-10500's integrated UHD Graphics 630 provides Quick Sync, 
+  # use for transcoding.
+
+  # Install GPU userspace drivers
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # iHD VA-API driver (Broadwell+); required
+      intel-compute-runtime # OpenCL runtime; required for HDR/Dolby Vision tone-mapping
+    ];
+  };
+
+  # Let the jellyfin user open /dev/dri/renderD128.
+  users.users.jellyfin.extraGroups = [
+    "render"
+    "video"
+  ];
+
+  # Enable hardware acceleration in Jellyfin.
+  services.jellyfin.hardwareAcceleration = {
+    enable = true;
+    type = "vaapi";
+    device = "/dev/dri/renderD128";
+  };
+
+  # Decleratively configure encoding.xml.
+  services.jellyfin.forceEncodingConfig = true;
+  services.jellyfin.transcoding = {
+    enableToneMapping = true; # HDR / Dolby Vision
+    enableHardwareEncoding = true;
+    hardwareDecodingCodecs = {
+      h264 = true;
+      hevc = true;
+      hevc10bit = true;
+      vp9 = true;
     };
   };
 
