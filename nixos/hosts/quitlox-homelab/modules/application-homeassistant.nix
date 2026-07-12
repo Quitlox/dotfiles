@@ -64,6 +64,11 @@ in
         "/etc/localtime:/etc/localtime:ro"
         "/run/dbus:/run/dbus:ro" # for host integrations (e.g. Bluetooth later)
       ];
+      # Zigbee coordinator: Sonoff Dongle Plus MG24 (Silicon Labs EFR32MG24, EZSP)
+      # Stable by-id path to avoid ttyUSB* renumbering across reboots.
+      devices = [
+        "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_d2abfb6daca2ef11a0cb8c6661ce3355-if00-port0:/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_d2abfb6daca2ef11a0cb8c6661ce3355-if00-port0"
+      ];
     };
 
     # Matter controller HA talks to over ws://localhost:4003/ws
