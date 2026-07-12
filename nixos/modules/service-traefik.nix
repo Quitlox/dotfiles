@@ -75,6 +75,16 @@ in
       # Access logs are noisy, so logged to seperate file
       services.traefik.staticConfigOptions.accessLog = {
         filePath = "${config.services.traefik.dataDir}/access.log";
+        # Keep User-Agent and Referer header for access log.
+        fields = {
+          headers = {
+            defaultMode = "drop";
+            names = {
+              "User-Agent" = "keep";
+              "Referer" = "keep";
+            };
+          };
+        };
       };
     }
 
