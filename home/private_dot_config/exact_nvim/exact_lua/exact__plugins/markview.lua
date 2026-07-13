@@ -17,7 +17,13 @@ require("markview").setup({
         headings = { shift_width = 0 },
     },
     markdown = {
+        block_quotes = {
+            -- Continue the quote border on soft-wrapped lines (opt-in; not a spec default)
+            wrap = true,
+        },
         list_items = {
+            -- Indent soft-wrapped list text to align under the item (opt-in; not a spec default)
+            wrap = true,
             -- Make sure bulletpoints / checklists are actually indented when wrapping is on
             shift_width = 4,
             -- Make sure bulletpoints / checklists are actually indented when wrapping is on
