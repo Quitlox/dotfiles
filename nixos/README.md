@@ -89,7 +89,7 @@ Research:
 - [ ] Files: NextCloud
 - [ ] Backup: Backblaze
 - [ ] Tools: HRConver2, PdfDing, StirlingPDF
-- [ ] Coding: Coder
+- [X] Coding: Coder
 
 Projects:
 
