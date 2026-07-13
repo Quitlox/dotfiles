@@ -67,6 +67,7 @@ local ignore_filetypes = {
     "dialog",
     "fidget",
     "gitlab",
+    "Glance",
     "lazy",
     "mason",
     "msg",
