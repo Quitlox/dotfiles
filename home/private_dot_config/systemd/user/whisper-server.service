@@ -1,0 +1,25 @@
+# Requires `whisper-cpp` to be installed
+
+[Unit]
+Description=whisper.cpp server (Vulkan/GPU) for OpenWhispr remote transcription
+Documentation=https://github.com/ggml-org/whisper.cpp
+After=graphical-session.target
+
+[Service]
+Type=simple
+# GPU (Vulkan) is used automatically; pass -ng/--no-gpu to force CPU.
+# --inference-path serves whisper.cpp's inference handler at OpenWhispr's
+# OpenAI-dialect path ({base}/audio/transcriptions), so the self-hosted STT
+# setting can point straight at http://127.0.0.1:8910.
+ExecStart=/usr/bin/whisper-server \
+    --model %h/.cache/openwhispr/whisper-models/ggml-large-v3.bin \
+    --host 127.0.0.1 \
+    --port 8910 \
+    --inference-path /audio/transcriptions \
+    --threads 6 \
+    --convert
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
