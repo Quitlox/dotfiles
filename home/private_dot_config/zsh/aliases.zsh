@@ -14,7 +14,9 @@ alias gs='git_status_short'
 alias gfa='git add $(git ls-files --modified --others --exclude-standard | fzf -m)'
 
 # Needed for kitty terminal
-alias ssh='kitty +kitten ssh'
+if command -v kitty > /dev/null 2>&1; then
+  alias ssh='kitty +kitten ssh'
+fi
 
 alias cp='cp -iv' 		# cp: Confirm + Verbose
 alias df='df -h' 		# Human-readable sizes
