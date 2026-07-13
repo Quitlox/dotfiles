@@ -71,6 +71,7 @@ win + shift + oem_6     : komorebic cycle-stack next      # ]
 # +- Window Toggles --------------------------------------+
 win + f                 : komorebic toggle-monocle
 win + shift + f         : komorebic toggle-float
+ctrl + shift + space    : komorebic toggle-float
 
 # +- Layouts (BSP split direction) ------------------------+
 # BSP auto-splits; flip-layout changes the tree orientation
