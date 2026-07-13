@@ -55,6 +55,16 @@
       "id": "M365Copilot.exe",
       "matching_strategy": "Equals"
     },
+    {
+      "kind": "Exe",
+      "id": "Todoist.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "explorer.exe",
+      "matching_strategy": "Equals"
+    },
     [
       {
         "kind": "Exe",
@@ -83,7 +93,7 @@
   "monitors": [
     {
       "workspaces": [
-        { "name": "1", "layout": "Columns", "initial_workspace_rules": [
+        { "name": "1", "layout": "Columns", "tile": false, "initial_workspace_rules": [
           { "kind": "Exe", "id": "OUTLOOK.EXE", "matching_strategy": "Equals" },
           { "kind": "Exe", "id": "ms-teams.exe", "matching_strategy": "Equals" }
         ] },
