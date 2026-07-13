@@ -18,10 +18,12 @@ require("markview").setup({
     },
     markdown = {
         list_items = {
-            -- Make sure bulletpoints / checklists are actually indented when wrapping is one
+            -- Make sure bulletpoints / checklists are actually indented when wrapping is on
             shift_width = 4,
-            -- Make sure bulletpoints / checklists are actually indented when wrapping is one
+            -- Make sure bulletpoints / checklists are actually indented when wrapping is on
             indent_size = 4,
+            -- Use the standard bullet for "-" bullets instead of the default "●"
+            marker_minus = { text = "•" },
         },
     },
     latex = {
