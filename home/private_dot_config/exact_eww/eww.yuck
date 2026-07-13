@@ -186,6 +186,17 @@
     (button :class "notifications-button"
             ""))
 
+; +--- Widget: Whisper Dictation Server ---------------------------------------+
+(defpoll var-whisper :interval "2s" :initial "inactive"
+  "systemctl --user is-active whisper-server.service")
+(defwidget w-whisper []
+    (button :class "whisper ${var-whisper == "active" ? "whisper-on" : "whisper-off"}"
+            :onclick "~/.config/eww/scripts/toggle-whisper.sh &"
+            :tooltip {var-whisper == "active"
+                       ? "Dictation server: ON (click to stop)"
+                       : "Dictation server: OFF (click to start)"}
+      (label :text {var-whisper == "active" ? "󰍬" : "󰍭"})))
+
 ; +--- Sections ---------------------------------------------------------------+
 (defwidget section-start []
   (box :orientation "h"
@@ -209,6 +220,7 @@
        (w-battery)
        (w-container-system)
        (w-datetime)
+       (w-whisper)
        (notifications-button)))
 
 (defwidget bar-container []

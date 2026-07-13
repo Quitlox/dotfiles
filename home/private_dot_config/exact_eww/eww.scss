@@ -154,3 +154,15 @@ $surface0: rgba(204, 208, 218, 0.1);
         background: rgba(204, 208, 218, 0.5);
     }
 }
+
+// +--- Widget: Whisper Dictation Server --------------------------------------+
+.whisper {
+    @extend .base;
+    font-size: 14;
+
+    &:hover {
+        background: rgba(204, 208, 218, 0.5);
+    }
+}
+.whisper-on  { color: rgb(166, 227, 161); }        // green: server running
+.whisper-off { color: rgba(204, 208, 218, 0.5); }  // muted: server stopped
