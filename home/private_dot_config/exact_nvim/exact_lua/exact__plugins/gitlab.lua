@@ -19,7 +19,6 @@ end, {
 })
 
 --+- Setup --------------------------------------------------+
-require("gitlab.server").build(true)
 require("diffview") -- gitlab requires global state from diffview
 require("gitlab").setup({
     discussion_tree = {
