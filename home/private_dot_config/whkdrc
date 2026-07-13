@@ -35,7 +35,7 @@ win + j                 : komorebic focus down
 win + k                 : komorebic focus up
 # NOTE: win + l requires DisableLockWorkstation=1 in registry:
 # HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System
-# To lock the screen, use Ctrl+Alt+Del → Lock.
+# To lock the screen, use win + alt + l (see Lock Screen section below).
 win + l                 : komorebic focus right
 win + space             : komorebic cycle-focus next
 win + oem_4             : komorebic cycle-focus previous # [
@@ -104,8 +104,10 @@ win + shift + 8         : komorebic move-to-named-workspace 8
 win + shift + 9         : komorebic move-to-named-workspace 9
 
 # +- Lock Screen ------------------------------------------+
-# With DisableLockWorkstation=1, use Ctrl+Alt+Del → Lock instead.
-# The rundll32 LockWorkStation API is blocked by the same policy.
+# Lock_And_Leave.cmd flips DisableLockWorkstation back to 0 (rundll32
+# LockWorkStation is blocked while it is 1), then locks. The
+# "ReDisableLockOnUnlock" scheduled task sets it back to 1 on unlock.
+win + alt + l           : & "C:\Users\witloxkhd\OneDrive - TNO\Documents\Files\Hacks\Windows Automated Changes\Lock_And_Leave.cmd"
 
 # +- Multi-Monitor ----------------------------------------+
 win + ctrl + oem_4      : komorebic cycle-monitor previous # [
