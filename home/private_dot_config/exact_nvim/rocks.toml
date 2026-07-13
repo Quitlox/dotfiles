@@ -164,7 +164,7 @@
 "vivify.vim" = { git = "jannis-baum/vivify.vim", rev = "39663f5d201609731a2ac3de58d6cd81f1f64efe" }
 "table-nvim" = { git = "scjangra/table-nvim", rev = "816d251963bf4c8c3d765dab40ebac3c259c7b6d" }
 # +- Python -------------------------------------------------+
-"python.nvim" = { git = "joshzcold/python.nvim", rev = "2e09bcb0a799eab6613744e802c11adea659d73d" }
+"venv-selector.nvim" = { git = "linux-cultist/venv-selector.nvim", rev = "cc4bb3975de8835291f9bb45889e96c6b2795fc4" }
 "neotest-python" = { git = "nvim-neotest/neotest-python", rev = "e6df4f1892f6137f58135917db24d1655937d831" }
 "nvim-dap-python" = "scm"
 # +- Rust ---------------------------------------------------+
