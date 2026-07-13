@@ -140,7 +140,13 @@ local picker_command_history = {
     preview = "none",
 }
 ---@class snacks.picker.Config
-local picker_notifications = {}
+local picker_notifications = {
+    win = {
+        preview = {
+            wo = { wrap = true },
+        },
+    },
+}
 
 ---@class snacks.picker.Config
 local picker_grep = {
