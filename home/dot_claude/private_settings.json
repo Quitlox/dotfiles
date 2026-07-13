@@ -1,5 +1,8 @@
 {
   "env": {},
+  "attribution": {
+    "commit": ""
+  },
   "permissions": {
     "allow": [
       "Grep",
@@ -49,9 +52,6 @@
     ]
   },
   "model": "opus",
-  "attribution": {
-    "commit": ""
-  },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
@@ -76,5 +76,6 @@
     "mode": "hold"
   },
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "tui": "fullscreen"
 }
