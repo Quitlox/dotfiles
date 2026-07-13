@@ -6,7 +6,7 @@ end
 --+- Env: Neovide -------------------------------------------+
 if vim.fn.exists("g:neovide") == 1 then
     -- vim.o.guifont = "Iosevka,Symbols Nerd Font:h11" -> Original love
-    vim.o.guifont = "VictorMono Nerd Font,Symbols Nerd Font:h11" -- -> italics are a bit too much (caligraphy)
+    vim.o.guifont = "VictorMono Nerd Font,Symbols Nerd Font:h10" -- -> italics are a bit too much (caligraphy)
     -- vim.o.guifont = "Mononoki Nerd Font,Symbols Nerd Font:h12"
     -- vim.o.guifont = "Fantasque Sans Mono,Symbols Nerd Font:h11" -> curvy typewriter
     -- vim.o.guifont = "Hack,Symbols Nerd Font:h11" -> Slightly cooler version of Fira Code?
