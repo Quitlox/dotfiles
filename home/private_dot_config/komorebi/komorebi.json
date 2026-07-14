@@ -104,7 +104,7 @@
         { "name": "6", "layout": "Columns" },
         { "name": "7", "layout": "Columns" },
         { "name": "8", "layout": "Columns" },
-        { "name": "9", "layout": "Columns" }
+        { "name": "9", "layout": "Columns", "tile": false }
       ]
     }
   ]
