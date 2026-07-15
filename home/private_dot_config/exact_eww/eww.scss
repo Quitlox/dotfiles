@@ -155,8 +155,8 @@ $surface0: rgba(204, 208, 218, 0.1);
     }
 }
 
-// +--- Widget: Whisper Dictation Server --------------------------------------+
-.whisper {
+// +--- Widget: Dictation Stack -----------------------------------------------+
+.dictation {
     @extend .base;
     font-size: 14;
 
@@ -164,5 +164,6 @@ $surface0: rgba(204, 208, 218, 0.1);
         background: rgba(204, 208, 218, 0.5);
     }
 }
-.whisper-on  { color: rgb(166, 227, 161); }        // green: server running
-.whisper-off { color: rgba(204, 208, 218, 0.5); }  // muted: server stopped
+.dictation-on      { color: rgb(166, 227, 161); }        // green: both services up
+.dictation-partial { color: rgb(249, 226, 175); }        // amber: only one up
+.dictation-off     { color: rgba(204, 208, 218, 0.5); }  // muted: both stopped

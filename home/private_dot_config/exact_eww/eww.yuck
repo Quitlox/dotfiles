@@ -186,16 +186,17 @@
     (button :class "notifications-button"
             ""))
 
-; +--- Widget: Whisper Dictation Server ---------------------------------------+
-(defpoll var-whisper :interval "2s" :initial "inactive"
-  "systemctl --user is-active whisper-server.service")
-(defwidget w-whisper []
-    (button :class "whisper ${var-whisper == "active" ? "whisper-on" : "whisper-off"}"
-            :onclick "~/.config/eww/scripts/toggle-whisper.sh &"
-            :tooltip {var-whisper == "active"
-                       ? "Dictation server: ON (click to stop)"
-                       : "Dictation server: OFF (click to start)"}
-      (label :text {var-whisper == "active" ? "󰍬" : "󰍭"})))
+; +--- Widget: Dictation Stack (whisper STT + cleanup LLM) --------------------+
+(defpoll var-dictation :interval "2s" :initial "inactive"
+  "~/.config/eww/scripts/dictation-status.sh")
+(defwidget w-dictation []
+    (button :class "dictation ${var-dictation == "active" ? "dictation-on" :
+                                var-dictation == "partial" ? "dictation-partial" : "dictation-off"}"
+            :onclick "~/.config/eww/scripts/toggle-dictation.sh &"
+            :tooltip {var-dictation == "active"  ? "Dictation stack: ON (STT + cleanup) — click to stop" :
+                      var-dictation == "partial" ? "Dictation stack: PARTIAL — click to complete startup" :
+                      "Dictation stack: OFF — click to start"}
+      (label :text {var-dictation == "active" ? "󰍬" : "󰍭"})))
 
 ; +--- Sections ---------------------------------------------------------------+
 (defwidget section-start []
@@ -220,7 +221,7 @@
        (w-battery)
        (w-container-system)
        (w-datetime)
-       (w-whisper)
+       (w-dictation)
        (notifications-button)))
 
 (defwidget bar-container []
