@@ -1,0 +1,27 @@
+# Requires `llama-cpp` to be installed
+[Unit]
+Description=llama.cpp server (Vulkan/GPU) for OpenWhispr dictation cleanup
+Documentation=https://github.com/ggml-org/llama.cpp
+After=graphical-session.target
+
+[Service]
+Type=simple
+# GPU (Vulkan) via the same system ggml backend whisper.cpp uses; --n-gpu-layers
+# offloads all layers. The model auto-downloads to ~/.cache/huggingface/hub on first
+# start (~5.4 GB), so the first launch takes a while. OpenWhispr's self-hosted
+# cleanup posts OpenAI /v1/chat/completions here, so point the "Self-hosted"
+# cleanup URL at http://127.0.0.1:8911/v1 (the /v1 suffix matters).
+ExecStart=/usr/bin/llama-server \
+    --hf-repo bartowski/google_gemma-4-E4B-it-GGUF \
+    --hf-file google_gemma-4-E4B-it-Q4_K_M.gguf \
+    --alias gemma-4-e4b \
+    --host 127.0.0.1 \
+    --port 8911 \
+    --ctx-size 8192 \
+    --n-gpu-layers 99 \
+    --jinja
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
