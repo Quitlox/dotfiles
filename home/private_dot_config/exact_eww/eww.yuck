@@ -193,7 +193,7 @@
     (button :class "dictation ${var-dictation == "active" ? "dictation-on" :
                                 var-dictation == "partial" ? "dictation-partial" : "dictation-off"}"
             :onclick "~/.config/eww/scripts/toggle-dictation.sh &"
-            :tooltip {var-dictation == "active"  ? "Dictation stack: ON (STT + cleanup) — click to stop" :
+            :tooltip {var-dictation == "active"  ? "Dictation stack: ON (app + STT + cleanup) — click to stop" :
                       var-dictation == "partial" ? "Dictation stack: PARTIAL — click to complete startup" :
                       "Dictation stack: OFF — click to start"}
       (label :text {var-dictation == "active" ? "󰍬" : "󰍭"})))
