@@ -134,7 +134,6 @@ in
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # iHD VA-API driver (Broadwell+); required
-      intel-media-sdk # Legacy libmfx runtime; required for QSV on Gen < 12 (this i5-10500 is Gen 9.5)
       intel-compute-runtime # OpenCL runtime; required for HDR/Dolby Vision tone-mapping
     ];
   };
