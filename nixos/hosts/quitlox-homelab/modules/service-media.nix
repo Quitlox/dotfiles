@@ -511,7 +511,7 @@ in
       InterfaceAddress = "0.0.0.0"; # [AirVPN] won't work without it
       # uTPRateLimited = false; # [AirVPN] advises to disable rate limiting
 
-      QueueingSystemEnabled = true; # [Optional] enable limits/queuing of torrents?
+      QueueingSystemEnabled = false; # [Optional] enable limits/queuing of torrents?
       MaxActiveUploads = -1; # [Optional] up seeding limit
       MaxActiveDownloads = 3; # [Optional] up seeding limit
       MaxActiveTorrents = -1; # [Optional] up seeding limit
