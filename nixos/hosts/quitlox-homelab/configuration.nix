@@ -48,8 +48,17 @@
   # Use the systemd-boot EFI boot loader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
   # Performance (/tmp in RAM)
   boot.tmp.useTmpfs = true;
+  # Limit tmpfs at 25% of RAM (default is 50%).
+  boot.tmp.tmpfsSize = "25%";
+
+  # Recover from hard lockup using hardware watchdog
+  systemd.settings.Manager = {
+    RuntimeWatchdogSec = "30s";
+    RebootWatchdogSec = "10m";
+  };
 
   system.stateVersion = "25.05";
   networking.hostName = "quitlox-homelab";
@@ -63,7 +72,19 @@
   boot.zfs.forceImportRoot = false;
   boot.zfs.extraPools = [ "tank" ];
   services.zfs.autoScrub.enable = true;
-  
+
+  # Cap the Adaptive Adaptive Replacement Cache (ARC) at 4 GiB (25%).
+  # Default is (System memory - 1GB = 15GB) which is to aggressive for a system
+  # not solely running as a NAS.
+  #
+  # See: 
+  # - https://wiki.nixos.org/wiki/ZFS#Changing_the_Adaptive_Replacement_Cache_size
+  # - https://blog.thalheim.io/2025/10/17/zfs-ate-my-ram-understanding-the-arc-cache/
+  # - https://openzfs.github.io/openzfs-docs/Performance%20and%20Tuning/Workload%20Tuning.html#adaptive-replacement-cache
+  #
+  # Value is in bytes; 4 * 1024^3 = 4294967296.
+  boot.kernelParams = [ "zfs.zfs_arc_max=4294967296" ];
+
   # `sudo zpool create -o ashift=12 -O xattr=sa -O compression=lz4 -O atime=off -O mountpoint=none tank mirror "$D1" "$D2"`
   # `sudo zfs set canmount=off tank`
   # `sudo zfs create -o mountpoint=/srv/media tank/media`
