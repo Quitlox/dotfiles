@@ -130,11 +130,16 @@ in
   # use for transcoding.
 
   # Install GPU userspace drivers
+  # NOTE: Intel QSV on Gen 9.5 (this i5-10500 / UHD 630) requires the legacy
+  # `intel-media-sdk` (libmfx) runtime, which NixOS marks insecure
+  # (CVE-2023-22656/45221/47169/47282/48368, EOL with no upstream fix).
+  # The modern oneVPL GPU runtime (`vpl-gpu-rt`) only supports Tiger Lake+.
+  # Therefore we use the VAAPI acceleration path instead, which the iHD
+  # driver fully supports on Gen 9.5 without any insecure package.
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # iHD VA-API driver (Broadwell+); required
-      intel-compute-runtime # OpenCL runtime; required for HDR/Dolby Vision tone-mapping
     ];
   };
 
@@ -147,14 +152,16 @@ in
   # Enable hardware acceleration in Jellyfin.
   services.jellyfin.hardwareAcceleration = {
     enable = true;
-    type = "qsv";
+    type = "vaapi";
     device = "/dev/dri/renderD128";
   };
 
   # Decleratively configure encoding.xml.
   services.jellyfin.forceEncodingConfig = true;
   services.jellyfin.transcoding = {
-    enableToneMapping = true; # HDR / Dolby Vision
+    # Note: VAAPI on Gen 9.5 cannot do HDR/Dolby Vision tone-mapping
+    # (that pipeline requires the QSV+OpenCL path which needs libmfx).
+    enableToneMapping = false;
     enableHardwareEncoding = true;
     hardwareDecodingCodecs = {
       h264 = true;
@@ -163,7 +170,6 @@ in
       vp8 = true;
       vp9 = true;
       hevc10bit = true;
-      hevcRExt10bit = true;
     };
   };
 
