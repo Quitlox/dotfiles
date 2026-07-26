@@ -147,7 +147,7 @@ in
   # Enable hardware acceleration in Jellyfin.
   services.jellyfin.hardwareAcceleration = {
     enable = true;
-    type = "vaapi";
+    type = "qsv";
     device = "/dev/dri/renderD128";
   };
 
@@ -159,8 +159,11 @@ in
     hardwareDecodingCodecs = {
       h264 = true;
       hevc = true;
-      hevc10bit = true;
+      mpeg2 = true;
+      vp8 = true;
       vp9 = true;
+      hevc10bit = true;
+      hevcRExt10bit = true;
     };
   };
 
