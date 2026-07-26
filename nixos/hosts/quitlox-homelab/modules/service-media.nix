@@ -106,6 +106,10 @@ in
   # Always prioritize Jellyfin IO
   systemd.services.jellyfin.serviceConfig.IOSchedulingPriority = 0;
 
+  # Keep scratch files off tmpfs since tmpfs is mounted to RAM.
+  # Jobs like Trickplay may produce too much data to fit inside RAM.
+  systemd.services.jellyfin.environment.TMPDIR = "/var/cache/jellyfin/tmp";
+
   # Expose through traefik
   services.traefik.dynamicConfigOptions = {
     http.services.jellyfin = {
