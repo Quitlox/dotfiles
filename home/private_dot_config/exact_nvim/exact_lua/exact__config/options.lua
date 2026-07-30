@@ -99,15 +99,15 @@ if vim.fn.has("wildmenu") == 1 then
     vim.opt.wildignorecase = true
 
     -- Version Control
-    vim.opt.wildignore:append(".git,.hg,.svn,.stversions,*.spl,")
+    vim.opt.wildignore:append(".git,.hg,.svn,.stversions,*.spl")
     -- Temp files
-    vim.opt.wildignore:append("*.o,*.out,*~,%*,Session.vim,")
+    vim.opt.wildignore:append("*.o,*.out,*~,%*,Session.vim")
     -- Misc. files
     vim.opt.wildignore:append("*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store")
     -- Web Dev
     vim.opt.wildignore:append("**/node_modules/**,**/bower_modules/**,*/.sass-cache/*,*.lock")
     -- Python
-    vim.opt.wildignore:append("__pycache__,*.egg-info,.pytest_cache,.mypy_cache/**,*.pyc,*.lock,")
+    vim.opt.wildignore:append("__pycache__,*.egg-info,.pytest_cache,.mypy_cache/**,*.pyc,*.lock")
     -- Latex
     vim.opt.wildignore:append("*.aux,*.bbl,*.bcf,*.blg,*.fls,*.log,*.run*.xml,*.synctex*.gz,*.fdb_latexmk,*.glg,*.glo,*.gls,*.ist,*.toc,*.glsdefs,*.tikzstyles")
 end

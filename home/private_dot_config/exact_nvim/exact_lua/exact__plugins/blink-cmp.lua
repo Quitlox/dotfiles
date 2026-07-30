@@ -43,7 +43,7 @@ require("blink-cmp").setup({
     cmdline = {
         keymap = { preset = "cmdline" },
         -- keymap = { preset = "cmdline", ["/"] = { "accept", "fallback" } },
-        sources = { "buffer", "cmdline", "path" },
+        sources = { "buffer", "cmdline" },
         completion = {
             menu = { auto_show = true },
             list = { selection = { preselect = false, auto_insert = true } },
@@ -141,6 +141,33 @@ require("blink-cmp").setup({
                     end,
                 },
             },
+            cmdline = {
+                -- The cmdline source has no options, so fix up its path completions here to match the
+                -- path source: file/directory icons instead of a blanket Property (wrench) icon, and
+                -- a trailing slash on the label only (`trailing_slash = false, label_trailing_slash = true`).
+                -- Keeping the slash out of the inserted text lets typing "/" accept a directory and
+                -- retrigger completion, instead of producing "dir//".
+                transform_items = function(_, items)
+                    -- Path-like values of getcmdcompltype(), see :h command-complete
+                    local path_completion_types = { dir = true, dir_in_path = true, file = true, file_in_path = true, runtime = true }
+                    if not path_completion_types[vim.fn.getcmdcompltype()] then
+                        return items
+                    end
+
+                    local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+                    for _, item in ipairs(items) do
+                        local is_dir = vim.endswith(item.label, "/")
+                        item.kind = is_dir and CompletionItemKind.Folder or CompletionItemKind.File
+
+                        -- Strip the trailing slash from the inserted text, but never from the root "/"
+                        local new_text = item.textEdit and item.textEdit.newText
+                        if is_dir and new_text and #new_text > 1 and vim.endswith(new_text, "/") then
+                            item.textEdit.newText = new_text:sub(1, -2)
+                        end
+                    end
+                    return items
+                end,
+            },
             conventional_commits = {
                 name = "Conventional Commits",
                 module = "blink-cmp-conventional-commits",
@@ -231,15 +258,6 @@ require("blink-cmp").setup({
                 },
                 override = {
                     should_show_items = function(self, context, items)
-                        -- In cmdline mode, only show path completions for directory commands
-                        -- (cmdline source handles file commands like :e, but not directory commands like :cd)
-                        if context.mode == "cmdline" then
-                            local cmdline = vim.fn.getcmdline()
-                            local cmd = cmdline:match("^%s*(%S+)")
-                            local dir_cmds = { "cd", "tcd", "lcd", "chdir" }
-                            return cmd and vim.tbl_contains(dir_cmds, cmd)
-                        end
-
                         -- Ensure that path completion does not show in codecompanion window (interferes with slash commands)
                         local is_trigger = context.trigger.initial_kind == "trigger_character" and context.trigger.initial_character == "/"
                         if is_trigger and vim.bo.filetype == "codecompanion" then
